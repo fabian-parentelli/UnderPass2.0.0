@@ -1,0 +1,19 @@
+.videoTut {
+    width: 100%;
+    margin-top: 70px;
+    padding: 1rem;
+
+    display: flex;
+    flex-direction: column;
+
+    .videoTutTitle {
+        display: flex;
+        align-items: center;
+        gap: .4rem;
+    }
+
+    button {
+        margin-top: 1rem;
+    }
+    
+}

@@ -1,0 +1,35 @@
+@import '../../../style/colors.scss';
+
+.userMenu {
+    min-height: 100vh;
+    padding: 2rem 0 0 0;
+    background-color: $colorC;
+    transition: .3s ease-in-out;
+    width: 45px;
+
+    &:hover {
+        width: 150px;
+    }
+
+    .userMen {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        color: #fff;
+        cursor: pointer;
+        padding: 6px;
+        text-decoration: none;
+        
+        &:hover {
+            background-color: $colorD;
+        }
+        
+        .icon {
+            font-size: 2rem;
+        }
+        
+        p {
+            white-space: nowrap;
+        }
+    }
+}

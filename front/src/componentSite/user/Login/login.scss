@@ -1,0 +1,73 @@
+@import '../../../style/colors.scss';
+
+.login {
+    margin-top: 80px;
+    min-height: 80vh;
+    margin-bottom: 2rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    form {
+        height: 424px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+
+        h2 span {
+            color: $colorB;
+        }
+
+        div {
+            display: flex;
+            flex-direction: column;
+
+            Label {
+                margin-left: 3px;
+            }
+        }
+
+        .loginLinck {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            
+            .logPLinck {
+                text-decoration: none;
+                color: $colorC;
+                font-weight: 600;
+                cursor: pointer;
+                transition: .3s;
+
+                &:hover {
+                    color: gray;
+                }
+            }
+        }
+    }
+
+    img {
+        width: 300px;
+        box-shadow: 5px 5px 15px;
+    }
+}
+
+@media (max-width: 767px) {
+    .login {
+       flex-direction: column;
+       padding: 0 1rem;
+    
+        form {    
+            
+            h2 {
+                text-align: center;
+            }
+        }
+    
+        img {
+            width: 280px;
+            box-shadow: 5px 5px 15px;
+        }
+    }
+}

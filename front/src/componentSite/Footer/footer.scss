@@ -1,0 +1,185 @@
+@import '../../style/colors.scss';
+
+.foot {
+    width: 100%;
+    background-color: #242424;
+    padding-top: 2rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footerUp {
+    width: 100%;
+    display: flex;
+    color: #EAEBEF;
+}
+
+.fottWe {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.fottWe p {
+    width: 300px;
+    text-align: center;
+    font-size: 14px;
+    margin-bottom: 1rem;
+}
+
+.logoImgCont {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    
+    p {
+        font-size: 2rem;
+        text-align: start;
+        width: 40%;
+    }
+}
+
+#logoImg {
+    width: 80px;
+    transition: 0.3s;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    &:hover {
+        transform: scale(1.15);
+    }
+}
+
+
+.footnetWorks {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 60%;
+    margin: 12px;
+
+    .icon {
+        font-size: 2rem;
+        cursor: pointer;
+        transition: .3s ease-in-out;
+        &:hover {
+            transform: scale(1.15);
+        }
+    }
+}
+
+.footWhatsapp {
+    width: 40%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    margin-top: 1rem;
+    border: solid 1px #fff;
+    padding: 12px;
+    border-radius: 12px;
+    transition: .3s;
+    cursor: pointer;
+}
+
+.footWhatsapp:hover {
+    background-color: $colorB;
+}
+
+.footWhatsapp img {
+    width: 20px;
+}
+
+.footWhatsapp p {
+    font-size: 1.2rem;
+    margin-top: 1rem;
+}
+
+.footCards {
+    display: flex;
+    justify-content: space-around;
+    width: 70%;
+    height: 80%;
+}
+
+.footCards_children h2 {
+    color: #EAEBEF;
+    margin-bottom: 1rem;
+}
+
+.footCards_children ul {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 1rem;
+}
+
+.footCards_children ul li {
+    list-style: none;
+}
+
+.footCards_children ul li a {
+    text-decoration: none;
+    color: #EAEBEF;
+    transition: .3s;
+}
+
+.footCards_children ul li a:hover {
+    color: $colorB;
+}
+
+.footerBotom {
+    margin: 2rem 0 1rem 0;
+    color: #4d4d4d;
+    text-align: center;
+    font-size: 14px;
+}
+
+.footerBotom p {
+    margin-top: 6px;
+}
+
+.footerBotomDiv {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+
+    img {
+        width: 30px;
+    }
+}
+
+@media (max-width: 767px) {
+    .footerUp {
+        flex-direction: column;
+    }
+    .fottWe {
+        width: 100% !important;
+    }
+    .footnetWorks {
+        width: 100%;
+    }
+    .footCards {
+        margin-top: 2rem;
+        width: 100% !important;
+    }
+
+    .separador {
+        display: block;
+        width:80%;
+        border-top: solid 2px #4d4d4d;
+        margin: 2rem auto;
+    }
+
+    .footCards_children ul li a {
+        font-size: 12px;
+    }
+
+    .footCards_children h2 {
+        font-size: 1rem;
+    }
+}

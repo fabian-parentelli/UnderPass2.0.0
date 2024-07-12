@@ -1,0 +1,80 @@
+@import '../../../style/colors.scss';
+
+.whatEmail {
+    min-height: 100vh;
+    width: 100%;
+    margin-top: 70px;
+    background-image: url('https://res.cloudinary.com/dtzy75wyt/image/upload/v1720566745/images/qv8irdwnbisd5mvvmx60.jpg');
+    background-size: cover;
+    background-position: top;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding: 2rem 0;
+
+    img {
+        width: 300px;
+        object-fit: contain;
+        border-radius: 12px;
+        box-shadow: 5px 5px 15px;
+    }
+
+    form {
+        min-height: 50vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        background-color: #ffffff11;
+        padding: 1rem;
+        border-radius: 12px;
+        text-align: center;
+
+        h2 {
+            color: #fff;
+            font-size: 2rem;
+        }
+
+        p {
+            color: #ffffff8a;
+        }
+
+        .divinput {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            gap: 5px;
+
+            label {
+                color: #fff;
+            }
+
+            input {
+                height: 30px;
+                width: 80%;
+                border-radius: 6px;
+                border: none;
+            }
+        }
+        .whatEmailBtn {
+            width: 230px;
+        }
+    }
+}
+
+@media screen and (max-width: 769px) {
+    .whatEmail {
+        form {
+            height: 80vh;
+            margin: 1rem;
+        }
+    }
+}
+
+.notUp {
+    margin-top: 0 !important;
+}

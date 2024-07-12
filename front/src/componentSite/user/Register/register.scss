@@ -1,0 +1,65 @@
+@import '../../../style/colors.scss';
+
+.Register {
+    margin-top: 70px;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.897), rgba(0, 0, 0, 0.842)), url('https://res.cloudinary.com/dtzy75wyt/image/upload/v1720391237/images/vtl8jxooyl7awpqv1jpr.png');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.8;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    .registerLeft {
+        height: 90vh;
+        max-width: 40%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+
+        .registerLeftUp {
+
+            h1 {
+                color: #fff;
+                font-size: 3rem;
+            }
+
+            h2 {
+                color: #fff;
+                font-size: 2rem;
+            }
+
+            p {
+                color: #fff;
+                margin-top: 12px;
+                font-size: 1.2rem;
+
+                .pLink {
+                    color: $colorA;
+                    text-decoration: none;
+                    font-size: 1.2rem;
+                    font-weight: 600;
+                    transition: .3s ease-in-out;
+
+                    &:hover {
+                        color: $colorB;
+                    }
+                }
+            }
+        }
+
+        .registerLeftLine {
+            width: 30%;
+            height: 4px;
+            background-color: #fff;
+            border-radius: 6px;
+
+        }
+
+        .registerLeftP {
+            width: 60%;
+            color: #fff;
+        }
+    }
+}

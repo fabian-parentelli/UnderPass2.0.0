@@ -1,0 +1,14 @@
+.searchHelp {
+    width: 60%;
+
+    input:hover {
+        border: none;
+    }
+}
+
+@media (max-width: 767px) {
+
+    .searchHelp {
+        width: 90%;
+    }
+}

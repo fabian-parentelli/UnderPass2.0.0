@@ -1,0 +1,57 @@
+@import '../../../style/colors.scss';
+
+.fields {
+    width: 100%;
+
+    .fieldsbtn {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 1rem;
+        width: 100%;
+        border: none;
+        height: 30px;
+        font-weight: 600;
+
+        .arrow {
+            width: 15px;
+            transition: .3s;
+        }
+    }
+
+    .accordion {
+        height: 0px;
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+        transition: 0.3s ease-in-out;
+        text-decoration: none;
+
+        .lineUnder {
+            text-decoration: none;
+        }
+
+        li {
+            display: flex;
+            align-items: center;
+            background-color: $colorD;
+            padding: 12px;
+            border-left: solid 2px $colorA;
+            transition: .3s;
+            cursor: pointer;
+            color: #fff;
+            text-decoration: none;
+
+            &:hover {
+                background-color: $colorC;
+            }
+
+            &:active {
+                color: $colorC;
+            }
+        }
+    }
+
+    .animated {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+        transition: 0.3s ease-in-out;
+    }
+}

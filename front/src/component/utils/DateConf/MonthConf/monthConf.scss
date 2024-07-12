@@ -1,0 +1,25 @@
+@import '../../../../style/colors.scss';
+
+.monthConf {
+    padding: 3px 3px;
+    border-radius: 3px;
+    border: none;
+    width: 70px;
+
+    .monthConfOp {
+        text-align: center;
+    }
+}
+
+.monthConf::-webkit-scrollbar {
+    width: 3px;
+}
+
+.monthConf::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 5px;
+}
+
+.monthConf::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+}

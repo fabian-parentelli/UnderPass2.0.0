@@ -1,0 +1,110 @@
+@import '../../../style/colors.scss';
+
+.helps {
+    min-height: 100vh;
+    margin-top: 70px;
+
+    .helpHeader {
+        height: 100vh;
+        width: 100%;
+        background-image: linear-gradient(#f41414b6, #f45b14ce), url('https://res.cloudinary.com/dtzy75wyt/image/upload/v1720639230/images/fjaa7uarbg6xo0u68kby.jpg');
+        background-position: center;
+        background-size: cover;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        .helpHCont {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .helpHTop {
+                width: 100%;
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                padding-top: 2rem;
+
+                h2 {
+                    color: #fff;
+                    font-size: 2rem;
+                }
+
+                ul {
+                    width: 40%;
+                    display: flex;
+                    justify-content: space-around;
+
+                    li {
+                        list-style: none;
+
+                        a {
+                            text-decoration: none;
+                            color: #fff;
+                            font-size: 1.2rem;
+                            transition: .3s ease-in-out;
+
+                            &:hover {
+                                color: $colorC;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .line {
+                width: 85%;
+                height: 2px;
+                background-color: #fff;
+                margin-top: 2rem;
+            }
+        }
+
+        .helpHContBottom {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+            height: 60%;
+            margin: 10% 0 1% 0;
+
+            h3 {
+                color: #fff;
+                font-size: 2rem;
+            }
+
+            p {
+                color: #fff;
+                font-size: 1.4rem;
+                margin-bottom: 4rem;
+            }
+        }
+    }
+
+}
+
+@media (max-width: 767px) {
+    .helps {
+        .helpHeader {
+            .helpHCont {
+                .helpHTop {
+                    height: 100%;
+                    flex-direction: column;
+                    ul {
+                        flex-wrap: wrap;
+                        gap: 1rem;
+                    }
+                }
+            }
+            .helpHContBottom {
+                text-align: center;
+                p {
+                    margin-bottom: 12px;
+                }
+            }
+        }
+
+    }
+}

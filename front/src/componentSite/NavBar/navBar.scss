@@ -1,0 +1,185 @@
+@import '../../style/colors.scss';
+
+.nav {
+    width: 100%;
+    height: 70px;
+    position: fixed;
+    top: 0;
+    transition: top .3s;
+    background-color: $colorC;
+    box-shadow: 1px 1px 15px;
+    z-index: 1001;
+}
+
+.prentation {
+    display: flex;
+    align-items: center;
+    p {
+        color: #fff;
+        font-size: 1.4rem;
+    }
+}
+
+.nav .browser {
+    width: 90%;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav .browser img {
+    width: 80px;
+    transition: .3s;
+    cursor: pointer;
+}
+
+.nav .browser img:hover {
+    transform: scale(1.15);
+}
+
+.menu_inside {
+    cursor: pointer;
+}
+
+.menu_links {
+    height: 100%;
+    transition: transform .5s;
+    display: flex;
+}
+
+.menu_item {
+    list-style: none;
+    position: relative;
+    height: 100%;
+    --clip: polygon(0 0, 100% 0, 100% 0, 0 0);
+    --transform: rotate(-90deg);
+}
+
+.menu_item:hover {
+    --clip: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    --transform: rotate(0);
+}
+
+.menu_link {
+    color: #fff;
+    text-decoration: none;
+    padding: 0 30px;
+    display: flex;
+    height: 100%;
+    align-items: center;
+}
+
+.menu_link:hover {
+    background-color: $colorD;
+}
+
+.menu_nesting {
+    list-style: none;
+    transition: clip-path .3s;
+    clip-path: var(--clip);
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: max-content;
+    transform: translateY(100%);
+    background-color: $colorC;
+}
+
+.menu_arrow {
+    display: block;
+    margin-left: 6px;
+    width: 15px !important;
+    transform: var(--transform);
+    transition: transform .3s ease-in-out;
+}
+
+.menu_link--inside {
+    padding: 30px 100px 30px 20px;
+}
+
+.menu_link--inside:hover {
+    background-color: $colorD;
+}
+
+.menu_hamburguer {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    cursor: pointer;
+    display: none;
+}
+
+@media (max-width: 767px) {
+    .menu_hamburguer {
+        display: flex;
+        width: 50px;
+    }
+
+    .menu_item {
+        --clip: 0;
+        overflow: hidden;
+    }
+
+    .menu_item--active {
+        --transform: rotate(0);
+        --background: $colorB;
+    }
+
+    .menu_item--show {
+        background-color: var(--background);
+    }
+
+    .menu_links {
+        position: fixed;
+        max-width: 400px;
+        width: 100%;
+        top: 70px;
+        bottom: 0;
+        right: 0;
+        background-color: #242424;
+        overflow-y: auto;
+        display: grid;
+        grid-auto-rows: max-content;
+        transform: translateX(100%);
+    }
+
+    .menu_links--show {
+        transform: unset;
+        width: 100%;
+    }
+
+    .menu_link {
+        padding: 15px 0;
+        padding-left: 30px;
+        height: auto;
+    }
+
+    .menu_arrow {
+        margin-left: auto;
+        margin-right: 20px;
+    }
+
+    .menu_nesting {
+        display: grid;
+        position: unset;
+        width: auto;
+        height: 100%;
+        transform: translateY(0);
+        height: 0;
+        transition: height .3s;
+        overflow: auto;
+    }
+
+    .menu_link--inside {
+        width: 90%;
+        margin-left: auto;
+        border-left: 1px solid $colorA;
+    }
+
+    .menu_img {
+        color: $colorA;
+    }
+}

@@ -1,0 +1,77 @@
+@import '../../../../style/colors.scss';
+
+.registerHelp {
+    width: 100%;
+    min-height: 100vh;
+
+    .registerHelpUp {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 2rem;
+
+        h5 {
+            font-size: 4rem;
+        }
+
+        p {
+            font-size: 1.2rem;
+        }
+
+        .registerHelpVideo {
+            text-decoration: none;
+            color: $colorA;
+            font-weight: 600;
+            transition: .3s ease-in-out;
+
+            &:hover {
+                color: $colorB;
+            }
+        }
+    }
+
+    .registerHelpCont {
+        display: flex;
+        justify-content: center;
+        gap: 4rem;
+        margin: 2rem 0;
+        padding: 0 2rem;
+
+        p {
+            width: 40%;
+            line-height: 1.8;
+
+            strong {
+                color: $colorB;
+            }
+        }
+
+        .registerHelpImg {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+
+            img {
+                width: 300px;
+                box-shadow: 5px 5px 15px;
+            }
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    .registerHelp {
+        text-align: center;
+        p {
+            margin: 1rem 0;
+        }
+        .registerHelpCont {
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            p {
+                width: 100%;
+            }
+        }
+    }
+}

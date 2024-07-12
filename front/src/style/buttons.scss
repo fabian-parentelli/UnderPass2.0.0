@@ -1,0 +1,56 @@
+@import './colors.scss';
+
+.btn {
+    height: 30px;
+    width: 150px;
+    border-radius: 3px;
+    border: none;
+    font-size: 1.2rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: .3s ease-in-out;
+}
+
+.btnA {
+    background-color: $colorA;
+    color: black;
+
+    &:hover {
+        background-color: $colorE;
+    }
+}
+
+.btnB {
+    background-color: $colorB;
+    color: black;
+    
+    &:hover {
+        background-color: $colorF;
+    }
+}
+
+.btnC {
+    border: solid 1px black;
+    
+    &:hover {
+        background-color: rgb(180, 180, 180);
+    }
+}
+
+.btnD {
+    background-color: $colorC;
+    color: #fff;
+    
+    &:hover {
+        background-color: $colorD;
+    }
+}
+
+.btnE {
+    background-color: #840005;
+    color: #fff;
+    
+    &:hover {
+        background-color: #a6291f;
+    }
+}

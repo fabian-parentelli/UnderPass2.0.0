@@ -1,0 +1,152 @@
+@import '../../../../style/colors.scss';
+
+.recoverPass {
+    width: 100%;
+    min-height: 100vh;
+
+    .line {
+        width: 80%;
+        height: 1px;
+        background-color: $colorD;
+        margin: 6rem auto;
+    }
+
+    .registerHelpUp {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 2rem;
+
+        h5 {
+            font-size: 4rem;
+        }
+
+        p {
+            font-size: 1.2rem;
+        }
+
+        .registerHelpVideo {
+            text-decoration: none;
+            color: $colorA;
+            font-weight: 600;
+            transition: .3s ease-in-out;
+
+            &:hover {
+                color: $colorB;
+            }
+        }
+    }
+
+    .recoverPassCont {
+        width: 100%;
+        text-align: center;
+        padding: 2rem 6rem;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        flex-direction: column;
+        gap: 2rem;
+
+        .recoverPassItem {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+
+            p {
+                line-height: 2;
+                strong {
+                    color: $colorB;
+                }
+            }
+
+            .recPassImg {
+                width: 100%;
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                position: relative;
+                gap: 2rem;
+                img {
+                    width: 300px;
+                    box-shadow: 5px 5px 15px;
+                }
+                .arrowImg {
+                    color: $colorA;
+                    font-size: 6rem;
+                    transform: rotate(90deg);
+                    position: absolute;
+                    bottom: 8%;
+                    right: 16%;
+                }
+            }
+        }
+
+        .recPassItemVert {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+            width: 80%;
+
+            p {
+                line-height: 2;
+                strong {
+                    color: $colorB;
+                }
+            }
+
+            img {
+                width: 300px;
+                box-shadow: 5px 5px 15px;
+            }
+        }
+    }
+}
+
+@media (max-width: 1075px) {
+    .recoverPass {
+        text-align: center;
+        .line {
+            width: 60%;
+        }
+        .registerHelpUp {
+            h5 {
+                font-size: 3.6rem;
+            }
+
+            p {
+                font-size: 1.2rem;
+            }
+
+            .registerHelpVideo {
+                text-decoration: none;
+                color: $colorA;
+                font-weight: 600;
+                transition: .3s ease-in-out;
+
+                &:hover {
+                    color: $colorB;
+                }
+            }
+        }
+        .recoverPassCont {
+            padding: 12px;
+            margin-top: 2rem;
+            .recoverPassItem {
+                .recPassImg {
+                    width: 100%;
+                    flex-direction: column;
+                    .arrowImg {
+                        bottom: 4%;
+                    }
+                }
+            }
+            .recPassItemVert {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                align-items: center;
+            }
+        }
+    }
+}

@@ -1,0 +1,40 @@
+@import '../../../../style/colors.scss';
+
+.preBody {
+    height: 100vh;
+    width: 100%;
+    background-color: $colorD;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+
+    .bodyCountryText {
+        height: 60vh;
+        width: 300px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        div {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+
+            h2 {
+                font-size: 2rem;
+                text-align: center;
+                color: #fff;
+            }
+        }
+
+        p {
+            color: #fff;
+        }
+    }
+
+    img {
+        width: 250px;
+        object-fit: contain;
+    }
+}
