@@ -1,4 +1,4 @@
-import { tutorialsManager } from '../dao/manager/index.manager.js';
+import { tutorialsManager, bannersManager } from '../dao/manager/index.manager.js';
 
 export default class ImagenRepository {
 
@@ -24,6 +24,13 @@ export default class ImagenRepository {
 
     updateVideo = async (img) => {
         const result = await tutorialsManager.updateVideo(img);
+        return result;
+    };
+
+    // -- Banners -- 
+
+    newBanners = async (video) => {
+        const result = await bannersManager.newBanners(video);
         return result;
     };
 

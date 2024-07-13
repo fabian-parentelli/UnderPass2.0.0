@@ -7,6 +7,14 @@ const newVideoTut = async (video) => {
     return { status: 'success', result };
 };
 
+const newBanners = async (banner, imgUrl) => {
+    banner.imgUrl = imgUrl;
+    banner.date = new Date();
+    const result = await imagenRepository.newBanners(banner);
+    if (!result) throw new ImagenNotFound('No se puede guardar el banner');
+    return { status: 'success', result };
+};
+
 const getAllVideos = async () => {
     const result = await imagenRepository.getAllVideos();
     if (!result) throw new ImagenNotFound('No se puede encontrar los video tutoriales');
@@ -28,4 +36,4 @@ const activeVideo = async ({ id }) => {
     return { status: 'success', result };
 };
 
-export { newVideoTut, getAllVideos, getVideoTutByName, activeVideo };
+export { newVideoTut, newBanners, getAllVideos, getVideoTutByName, activeVideo };

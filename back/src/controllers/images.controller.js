@@ -12,8 +12,9 @@ const newVideoTut = async (req, res) => {
 };
 
 const newBanners = async (req, res) => {
+    const imagesUrl = req.cloudinaryUrls;
     try {
-        const result = await imagenService.newBanners({ ...req.body });
+        const result = await imagenService.newBanners({ ...req.body }, imagesUrl);
         if (result) return res.sendSuccess(result);
     } catch (error) {
         if (error instanceof ImagenNotFound) return res.sendClientError(error.message);

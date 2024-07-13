@@ -15,3 +15,14 @@ input {
     background-color: gray;
     margin-top: 3px;
 }
+
+select {
+    height: 30px;
+    border-radius: 3px;
+    border: solid 1px rgb(206, 206, 206);
+    padding-left: 3px;
+
+    &:hover {
+        border: solid 1px #0f1936;
+    }
+}

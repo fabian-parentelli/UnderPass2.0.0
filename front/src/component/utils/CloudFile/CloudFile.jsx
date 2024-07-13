@@ -5,18 +5,24 @@ import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 const CloudFile = ({ onChange, folderName, contClass }) => {
     const fileInputRef = useRef(null);
     const [images, setImages] = useState([]);
+    const [files, setFiles] = useState([]);
 
     const handleImgChange = (e) => {
-        const files = e.target.files;
-        const imageArray = [];
-        for (let i = 0; i < files.length; i++) {
-            imageArray.push(URL.createObjectURL(files[i]));
-        };
+        const selectedFiles = Array.from(e.target.files);
+        const newFiles = [...files, ...selectedFiles];
+
+        // Ordenar los archivos por nombre, fecha u otro criterio si es necesario
+        newFiles.sort((a, b) => a.name.localeCompare(b.name)); // Ejemplo de ordenación por nombre
+
+        setFiles(newFiles);
+
+        const imageArray = newFiles.map(file => URL.createObjectURL(file));
         setImages(imageArray);
+
         const formData = new FormData();
-        for (let i = 0; i < files.length; i++) {
-            formData.append('files', files[i]);
-        };
+        newFiles.forEach(file => {
+            formData.append('files', file);
+        });
         formData.append('folderName', folderName);
         onChange(formData);
     };
@@ -57,5 +63,3 @@ const CloudFile = ({ onChange, folderName, contClass }) => {
 };
 
 export default CloudFile;
-
-// cfRect cfCircle

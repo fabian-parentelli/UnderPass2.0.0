@@ -1,22 +1,25 @@
 import './newBanner.scss';
 import { useState } from 'react';
 import CloudFile from '../../../../../component/utils/CloudFile/CloudFile';
+import { newBannerApi } from '../../../../../helpers/images/banners/newBanner.api';
 
-const NewBanner = () => {
+const NewBanner = ({ setLoading, setVew }) => {
 
     const [formData, setFormData] = useState(null);
-    const [values, setValues] = useState({ title: 'title', folders: '', links: '' });
+    const [values, setValues] = useState({ title: 'title', folders: '', links: '', country: '' });
 
     const handleFileChange = (data) => setFormData(data);
     const handleChange = (e) => setValues({ ...values, [e.target.name]: e.target.value });
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        setLoading(true);
         for (const field in values) formData.set(field, values[field]);
-
-        for (let pair of formData.entries()) {
-            console.log(pair[0] + ': ' + pair[1]);
-        }
+        const response = await newBannerApi(formData);
+        if (response.status === 'success') {
+            setLoading(false);
+            setVew(false);
+        } else console.log(response); setLoading(false);
     };
 
     return (
@@ -52,9 +55,19 @@ const NewBanner = () => {
                 />
             </div>
 
+            <div>
+                <label>País</label>
+                <select name="country" onChange={handleChange} required>
+                    <option value=""></option>
+                    <option value="all">Todos</option>
+                    <option value="AR">Argentina</option>
+                    <option value="UR">Uruguay</option>
+                </select>
+            </div>
+
             {values && values.folders &&
                 <>
-                    <CloudFile onChange={handleFileChange} folderName={`banner/${values.folders}`} contClass='cfRect' />
+                    <CloudFile onChange={handleFileChange} folderName={`banners/${values.folders}`} contClass='cfRect' />
                     <p>Pixeles Banners 1538*380</p>
                     <p>Pixeles PostCel 1080*1080</p>
                 </>
