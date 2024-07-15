@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import MonthConf from './MonthConf/MonthConf';
 import YearConf from './YearConf.jsx/YearConf';
 
-const DateConf = ({ setValues, birthday }) => {
+const DateConf = ({ setValues, birthday, isRequired }) => {
 
     const [dates, setDates] = useState({ day: birthday?.day || '', month: birthday?.month || '', year: birthday?.year || '' });
 
@@ -23,9 +23,9 @@ const DateConf = ({ setValues, birthday }) => {
 
     return (
         <div className='dateConf'>
-            <DayConf handleInputChange={handleInputChange} init={dates.day} />
-            <MonthConf handleInputChange={handleInputChange} init={dates.month} />
-            <YearConf handleInputChange={handleInputChange} init={dates.year} />
+            <DayConf handleInputChange={handleInputChange} init={dates.day} isRequired={isRequired} />
+            <MonthConf handleInputChange={handleInputChange} init={dates.month} isRequired={isRequired} />
+            <YearConf handleInputChange={handleInputChange} init={dates.year} isRequired={isRequired} />
         </div>
     );
 

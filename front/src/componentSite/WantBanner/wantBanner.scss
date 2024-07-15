@@ -1,0 +1,29 @@
+.wantBanner {
+    width: 100%;
+    min-height: 90vh;
+    margin-top: 70px;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    .wantBannerDiv {
+        min-height: 373px;
+    }
+
+    img {
+        width: 500px;
+        object-fit: contain;
+        filter: drop-shadow(5px 5px 15px);
+    }
+}
+
+@media (max-width: 767px) {
+    .wantBanner {
+        flex-direction: column;
+
+        img {
+            width: 300px;
+        }
+    }
+}

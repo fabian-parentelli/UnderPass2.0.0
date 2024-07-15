@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken';
 import config from '../config/dotEnv.config.js';
 
 const generateToken = (user) => {
-    const token = jwt.sign({ user }, config.privateKey, { expiresIn: '24h' });
+    const token = jwt.sign({ user }, config.privateKey);
     return token;
 };
 

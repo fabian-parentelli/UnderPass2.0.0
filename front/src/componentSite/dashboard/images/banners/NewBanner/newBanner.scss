@@ -8,4 +8,9 @@
         flex-direction: column;
         width: 300px;
     }
+
+    .newBannerEnd div {
+        display: flex;
+        flex-direction: row;
+    }
 }

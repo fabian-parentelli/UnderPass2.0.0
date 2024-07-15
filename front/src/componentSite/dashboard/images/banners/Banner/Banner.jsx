@@ -3,7 +3,7 @@ import './banner.scss';
 import ViewCarouselIcon from '@mui/icons-material/ViewCarousel';
 import NewBanner from '../NewBanner/NewBanner';
 import Load from '../../../../../component/utils/Load';
-import ScrollToTop from '../../../../../component/utils/ScrollToTop';
+import VewBanner from '../VewBanner/VewBanner';
 
 const Banner = () => {
 
@@ -21,13 +21,7 @@ const Banner = () => {
             <button className='btn btnC' onClick={() => setVew(!vew)}>{vew ? 'Ver' : 'Crear'}</button>
             {vew
                 ? <NewBanner setLoading={setLoading} setVew={setVew} />
-                : 'otra'
-
-                // Estoy aca tengo que mostrar los banners pero tengo que hacer una paginación y un sistema de filtros 
-                //
-                //
-                //
-                //---------------------------------------------------------------------------------------------------
+                : <VewBanner setLoading={setLoading} />
             }
             <Load loading={loading} />
         </div>

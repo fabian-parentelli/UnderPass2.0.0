@@ -32,6 +32,27 @@ const getAllVideos = async (req, res) => {
     };
 };
 
+const getBannerBody = async (req, res) => {
+    try {
+        const result = await imagenService.getBannerBody();
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof EventNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
+const getAllBanners = async (req, res) => {
+    const { limit = 12, page = 1, active, country, category } = req.query;
+    try {
+        const result = await imagenService.getAllBanners(limit, page, active, country, category);
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof EventNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
 const getVideoTutByName = async (req, res) => {
     const { name } = req.params;
     try {
@@ -53,4 +74,30 @@ const activeVideo = async (req, res) => {
     };
 };
 
-export { newVideoTut, newBanners, getAllVideos, getVideoTutByName, activeVideo };
+const updBanner = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const result = await imagenService.updBanner({ ...req.body }, id);
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof ImagenNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
+const updBannerActive = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const result = await imagenService.updBannerActive(id);
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof ImagenNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
+export {
+    newVideoTut, newBanners, getAllVideos, getAllBanners,
+    getVideoTutByName, activeVideo, updBanner, updBannerActive,
+    getBannerBody
+};

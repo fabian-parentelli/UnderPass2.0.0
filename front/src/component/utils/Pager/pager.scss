@@ -1,0 +1,42 @@
+@import '../../../style/colors.scss';
+
+.pager {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    padding-bottom: 2rem;
+
+    .gtppagerActualPage {
+        width: 30px;
+        height: 30px;
+        border: none;
+        border-radius: 6px;
+        background-color: $colorA;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+
+    .gtppagerNextPage {
+        color: #fff;
+        width: 30px;
+        height: 30px;
+        border: none;
+        border-radius: 6px;
+        background-color: $colorD;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: .3s ease-in-out;
+        box-shadow: 5px 5px 15px black;
+        &:hover {
+            background-color: $colorC;
+        }
+        &:active {
+            box-shadow: none;
+        }
+    }
+}

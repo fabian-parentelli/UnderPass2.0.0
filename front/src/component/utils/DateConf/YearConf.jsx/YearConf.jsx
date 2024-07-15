@@ -1,6 +1,6 @@
 import './yearConf.scss';
 
-const YearConf = ({ handleInputChange, init }) => {
+const YearConf = ({ handleInputChange, init, isRequired = true }) => {
 
     const currentYear = new Date().getFullYear();
     const years = [];
@@ -9,7 +9,11 @@ const YearConf = ({ handleInputChange, init }) => {
     };
 
     return (
-        <select className='yearConf' name="year" value={init || ''} onChange={handleInputChange} required>
+        <select
+            className='yearConf' name="year" value={init || ''}
+            onChange={handleInputChange}
+            required={isRequired}>
+
             <option value="" disabled>Año</option>
             {years.map((year, index) => (
                 <option key={index} value={year}>{year}</option>

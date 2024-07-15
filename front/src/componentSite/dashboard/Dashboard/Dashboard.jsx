@@ -4,6 +4,7 @@ import { Routes, Route, Link } from 'react-router-dom';
 import Fields from '../../../component/dashboard/Fields/Fields';
 import VideoTut from '../images/videoTutoriales/VideoTut/VideoTut';
 import Banner from '../images/banners/Banner/Banner';
+import PriceList from '../economy/PriceList/PriceList';
 
 const Dashboard = () => {
 
@@ -24,13 +25,15 @@ const Dashboard = () => {
                     <Fields title={'Mensajes'} category={[{ name: 'Contactos sin ver', path: 'vewcontact' }, { name: 'Enviar email', path: 'newcontact' }]} />
                     <Fields title={'Eventos'} category={[{ name: 'Ver eventos', path: 'getevent' }, { name: 'Crear evento', path: 'newevent' }]} />
                     <Fields title={'Sitios'} category={[{ name: 'Nuevo sitio', path: 'newsite' }, { name: 'Ver sitios', path: 'vewsite' }]} />
-                    <Fields title={'x'} category={[{ name: 'x', path: 'newsMessage' }, { name: 'x', path: '' }]} />
+                    <Fields title={'Economía'} category={[{ name: 'Caja', path: 'newsMessage' }, { name: 'Precios', path: 'pricelist' }]} />
                 </div>
                 <Routes>
                     <Route path='/' element={<Panel />} />
 
                     <Route path='/videotut' element={<VideoTut />} />
                     <Route path='/banners' element={<Banner />} />
+
+                    <Route path='pricelist' element={<PriceList />} />
                     {/* <Route path='/newavatar' element={<NewAvatar />} />
                 <Route path='/vewavatar' element={<VewAvatar />} />
                 <Route path='/newimgevent' element={<NewImEvent />} />

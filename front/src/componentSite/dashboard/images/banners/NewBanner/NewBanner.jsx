@@ -2,11 +2,16 @@ import './newBanner.scss';
 import { useState } from 'react';
 import CloudFile from '../../../../../component/utils/CloudFile/CloudFile';
 import { newBannerApi } from '../../../../../helpers/images/banners/newBanner.api';
+import CategorySelected from '../../../../../component/dashboard/banner/CategorySelected/CategorySelected';
+import CountrySelected from '../../../../../component/dashboard/banner/CountrySelected/CountrySelected';
+import DateConf from '../../../../../component/utils/DateConf/DateConf';
 
 const NewBanner = ({ setLoading, setVew }) => {
 
     const [formData, setFormData] = useState(null);
-    const [values, setValues] = useState({ title: 'title', folders: '', links: '', country: '' });
+    const [values, setValues] = useState({ 
+        title: 'title', folders: '', links: '', country: '', category: '', 
+    });
 
     const handleFileChange = (data) => setFormData(data);
     const handleChange = (e) => setValues({ ...values, [e.target.name]: e.target.value });
@@ -56,13 +61,16 @@ const NewBanner = ({ setLoading, setVew }) => {
             </div>
 
             <div>
-                <label>País</label>
-                <select name="country" onChange={handleChange} required>
-                    <option value=""></option>
-                    <option value="all">Todos</option>
-                    <option value="AR">Argentina</option>
-                    <option value="UR">Uruguay</option>
-                </select>
+                <CountrySelected handleChange={handleChange} />
+            </div>
+            
+            <div>
+                <CategorySelected handleChange={handleChange} />
+            </div>
+
+            <div className='newBannerEnd'>
+                <label>Cierre programado</label>
+                <DateConf setValues={setValues} isRequired={false} />
             </div>
 
             {values && values.folders &&
