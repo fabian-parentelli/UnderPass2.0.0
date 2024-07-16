@@ -1,9 +1,14 @@
 import './formPriceList.scss';
+import ListVew from '../ListVew/ListVew.jsx';
 import BannersPrice from '../BannersPrice/BannersPrice';
 import flagsIcon from '../../../../../utils/flagsIcon.utils.js';
-import ListVew from '../ListVew/ListVew.jsx';
+import { useLoginContext } from '../../../../../context/LoginContext.jsx';
 
 const FormPriceList = ({ country, vew, setLoading, setMessage, setOpen }) => {
+
+    const { user } = useLoginContext();
+
+    console.log(user.data.role);
 
     return (
         <div className='formPriceList'>
@@ -20,10 +25,9 @@ const FormPriceList = ({ country, vew, setLoading, setMessage, setOpen }) => {
             }
 
             {vew === '' && <ListVew country={country} setLoading={setLoading} />}
-            {vew === 'banner' &&
+            {vew === 'banner' && user.data.role === 'master' &&
                 <BannersPrice country={country} setLoading={setLoading} setMessage={setMessage} setOpen={setOpen} />
             }
-
         </div>
     );
 };

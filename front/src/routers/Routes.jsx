@@ -12,7 +12,7 @@ import NewPassword from "../componentSite/user/NewPassword/NewPassword.jsx";
 import Helps from "../componentSite/help/Helps/Helps.jsx";
 import VideoHelp from "../componentSite/help/VideoHelp/VideoHelp.jsx";
 import Profile from "../componentSite/userPanel/Profil/Profil.jsx";
-import WantBanner from "../componentSite/WantBanner/WantBanner.jsx";
+import UserBanner from "../componentSite/userPanel/UserBanner/UserBanner.jsx";
 
 const RoutesComp = () => {
 
@@ -30,7 +30,7 @@ const RoutesComp = () => {
                     <Route path="/password/:token" element={<NewPassword />} />
                     <Route path="/help" element={<Helps />} />
                     <Route path="/videohelp/:tutorial" element={<VideoHelp />} />
-                    <Route path="wantbanner" element={<WantBanner />} />
+                    <Route path="/userbanner" element={<UserBanner />} />
 
                     {user.logged &&
                         <>
@@ -38,7 +38,7 @@ const RoutesComp = () => {
                         </>
                     }
 
-                    {user.logged && user.data && user.data.role === 'admin' &&
+                    {user.logged && user.data && (user.data.role === 'admin' || user.data.role === 'master') &&
                         <Route path="/dashboard/*" element={<Dashboard />} />
                     }
                 </Routes>

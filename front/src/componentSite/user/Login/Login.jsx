@@ -24,10 +24,10 @@ const Login = () => {
         if (user.logged) {
             setMessage({ status: 'success', mess: 'Inicio de sesión exitoso' });
             setOpen(true);
-            const location = localStorage.getItem('location');
-            if (location) {
-                localStorage.removeItem('location');
-                setTimeout(() => { navigate(`/${location}`) }, 2000);
+            const path = localStorage.getItem('path');
+            if (path) {
+                localStorage.removeItem('path');
+                setTimeout(() => { navigate(`/${path}`) }, 2000);
             } else setTimeout(() => { navigate('/') }, 2000);
         };
         if (user.error) {

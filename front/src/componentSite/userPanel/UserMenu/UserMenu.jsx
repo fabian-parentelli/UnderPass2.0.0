@@ -7,6 +7,7 @@ import TheaterComedyIcon from '@mui/icons-material/TheaterComedy';
 import HomeIcon from '@mui/icons-material/Home';
 import LanguageIcon from '@mui/icons-material/Language';
 import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';
+import ViewCarouselIcon from '@mui/icons-material/ViewCarousel';
 
 const UserMenu = () => {
 
@@ -46,6 +47,11 @@ const UserMenu = () => {
             <Link to={'/profile/whatyouremail'} className='userMen'>
                 <LockIcon className='icon' />
                 <p>Contraseña</p>
+            </Link>
+            
+            <Link to={'/profile/whatyouremail'} className='userMen'>
+                <ViewCarouselIcon className='icon' />
+                <p>Banner</p>
             </Link>
             
         </div>

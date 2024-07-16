@@ -12,6 +12,7 @@ const userSchema = new mongoose.Schema({
         city: { type: String },
         province: { type: String },
         address: { type: String },
+        country: { type: String },
         postalCode: { type: String },
     },
     avatar: [{ type: String }],

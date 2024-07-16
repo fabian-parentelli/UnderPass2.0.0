@@ -1,4 +1,4 @@
-import FormContact from '../../component/contact/FormContact/FormContact';
+import FormContact from '../../contact/FormContact/FormContact';
 import './wantBanner.scss';
 
 const WantBanner = () => {

@@ -47,7 +47,7 @@ const LoginProvider = ({ children }) => {
     const logout = () => {
         setUser({ data: null, error: null, logged: false, registered: false });
         localStorage.removeItem('token');
-        localStorage.removeItem('location');
+        localStorage.removeItem('path');
     };
 
     const current = async () => {
