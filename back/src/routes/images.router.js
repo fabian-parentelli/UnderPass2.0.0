@@ -8,6 +8,7 @@ export default class ImagenRouter extends Router {
     init() {
         this.post('/videotut', ['ADMIN', 'MASTER'], passportEnum.JWT, imageController.newVideoTut);
         this.post('/banner', ['ADMIN', 'MASTER'], passportEnum.JWT, multipleUploader, uploadToCloudinary, imageController.newBanners);
+        this.post('/applbanner', ['USER', 'ADMIN', 'MASTER'], passportEnum.JWT, multipleUploader, uploadToCloudinary, imageController.applBanner);
         this.get('/getAllVideo', ['PUBLIC'], passportEnum.NOTHING, imageController.getAllVideos);
         this.get('/bannerbody', ['PUBLIC'], passportEnum.NOTHING, imageController.getBannerBody);
         this.get('/getallbanners', ['PUBLIC'], passportEnum.NOTHING, imageController.getAllBanners);

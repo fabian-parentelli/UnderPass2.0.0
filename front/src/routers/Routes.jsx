@@ -12,7 +12,7 @@ import NewPassword from "../componentSite/user/NewPassword/NewPassword.jsx";
 import Helps from "../componentSite/help/Helps/Helps.jsx";
 import VideoHelp from "../componentSite/help/VideoHelp/VideoHelp.jsx";
 import Profile from "../componentSite/userPanel/Profil/Profil.jsx";
-import UserBanner from "../componentSite/userPanel/UserBanner/UserBanner.jsx";
+import BannerWant from "../componentSite/BannerWant/BannerWant.jsx";
 
 const RoutesComp = () => {
 
@@ -30,7 +30,7 @@ const RoutesComp = () => {
                     <Route path="/password/:token" element={<NewPassword />} />
                     <Route path="/help" element={<Helps />} />
                     <Route path="/videohelp/:tutorial" element={<VideoHelp />} />
-                    <Route path="/userbanner" element={<UserBanner />} />
+                    <Route path="/bannerwant" element={<BannerWant />} />
 
                     {user.logged &&
                         <>

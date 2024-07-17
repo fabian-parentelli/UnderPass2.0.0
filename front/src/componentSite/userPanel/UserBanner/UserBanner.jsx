@@ -1,35 +1,23 @@
 import './userBanner.scss';
-import { useLoginContext } from "../../../context/LoginContext";
-import DataUserBanner from './DataUserBanner/DataUserBanner';
-import { useEffect, useState } from 'react';
+import { useLoginContext } from "../../../context/LoginContext";  
+import ViewCarouselIcon from '@mui/icons-material/ViewCarousel';
+import WantBanner from '../../../component/banner/WantBanner/WantBanner';
+import FormWantBanner from '../../../component/banner/FormWantBanner/FormWantBanner';
 
 const UserBanner = () => {
 
     const { user } = useLoginContext();
     const country = localStorage.getItem('country');
-    const [values, setValues] = useState({
-        name: user?.data?.name || '', email: user?.data?.email || '',
-        location: {
-            province: user?.data?.location?.province || '',
-            city: user?.data?.location?.city || '',
-            country: user?.data?.location?.country || country,
-        }
-    });
-    const [isUser, setIsUser] = useState(false);
-
-    useEffect(() => { if (user.logged) setIsUser(true) }, []);
 
     return (
         <div className='userBanner'>
-            {!isUser
-                ? <DataUserBanner setValues={setValues} setIsUser={setIsUser} />
-                : 'Cosa'
-            }
+            <div className='userBannerTitle'>
+                <ViewCarouselIcon style={{fontSize: '2rem'}} />
+                <h2>Banner</h2>
+            </div>
+            <div className='line'></div>
 
-            {/* aca tengo que llamar al componente de la creación del banner
-                pasar user por parametro 
-                country
-            */}
+            {user && country && <FormWantBanner user={user} country={country} />}
         </div>
     );
 };

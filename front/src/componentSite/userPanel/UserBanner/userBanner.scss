@@ -1,6 +1,10 @@
 .userBanner {
-    margin-top: 90px;
-    min-height: 80vh;
-
+    padding: 1rem;
+    width: 90%;
     
+    .userBannerTitle {
+        display: flex;
+        align-items: center;
+        gap: .4rem;
+    }
 }

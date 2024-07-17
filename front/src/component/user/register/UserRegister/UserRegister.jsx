@@ -36,7 +36,11 @@ const UserRegister = () => {
         if (user.registered) {
             setMessage({ status: 'success', mess: 'Registro exitoso' });
             setOpen(true);
-            setTimeout(() => { navigate('/') }, 2000);
+            const path = localStorage.getItem('path');
+            if (path) {
+                localStorage.removeItem('path');
+                setTimeout(() => { navigate(`/${path}`) }, 2000);
+            } else setTimeout(() => { navigate('/') }, 2000);
         };
     }, [user]);
 

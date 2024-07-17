@@ -22,6 +22,20 @@ const newBanners = async (req, res) => {
     };
 };
 
+const applBanner = async (req, res) => {
+    const imagesUrl = req.cloudinaryUrls;
+    try {
+        const result = await imagenService.applBanner({ ...req.body }, imagesUrl);
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+
+        console.log(error); //--------------------------------Borrar-------------------------
+
+        if (error instanceof ImagenNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
 const getAllVideos = async (req, res) => {
     try {
         const result = await imagenService.getAllVideos();
@@ -97,7 +111,7 @@ const updBannerActive = async (req, res) => {
 };
 
 export {
-    newVideoTut, newBanners, getAllVideos, getAllBanners,
+    newVideoTut, newBanners, applBanner, getAllVideos, getAllBanners,
     getVideoTutByName, activeVideo, updBanner, updBannerActive,
     getBannerBody
 };

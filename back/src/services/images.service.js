@@ -1,3 +1,4 @@
+import { application } from "express";
 import { imagenRepository } from "../repositories/index.repositories.js";
 import { ImagenNotFound } from '../utils/custom-exceptions.utils.js';
 
@@ -14,6 +15,13 @@ const newBanners = async (banner, imgUrl) => {
     delete banner.birthday;
     const result = await imagenRepository.newBanners(banner);
     if (!result) throw new ImagenNotFound('No se puede guardar el banner');
+    return { status: 'success', result };
+};
+
+const applBanner = async (application, imgUrl) => {
+    application.img = imgUrl;
+    const result = await imagenRepository.applBanner(application);
+    if (!result) throw new ImagenNotFound('No se puede guardar la petición');
     return { status: 'success', result };
 };
 
@@ -75,7 +83,7 @@ const updBannerActive = async (id) => {
 };
 
 export {
-    newVideoTut, newBanners, getAllVideos, getAllBanners,
+    newVideoTut, newBanners, applBanner, getAllVideos, getAllBanners,
     getVideoTutByName, activeVideo, updBanner, updBannerActive,
     getBannerBody
 };

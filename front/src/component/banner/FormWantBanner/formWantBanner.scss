@@ -1,0 +1,39 @@
+.formWantBanner {
+    margin-top: 0.4rem;
+    width: 100%;
+    margin-bottom: 2rem;
+
+    .formWantBannerP {
+        font-size: 14px;
+    }
+    
+    form {
+        margin-top: 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+
+        .formWantBannerDiv {
+            display: flex;
+            flex-direction: column;
+            width: 300px;
+        }
+
+        .formWantBannerRow {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 0.2rem;
+        }
+    }
+}
+
+@media (max-width: 769px) {
+    .formWantBanner form {
+        align-items: center;
+
+        .formWantBannerDiv {
+            width: 280px;
+        }
+    }
+}

@@ -49,7 +49,7 @@ const UserMenu = () => {
                 <p>Contraseña</p>
             </Link>
             
-            <Link to={'/profile/whatyouremail'} className='userMen'>
+            <Link to={'/profile/userBanner'} className='userMen'>
                 <ViewCarouselIcon className='icon' />
                 <p>Banner</p>
             </Link>

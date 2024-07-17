@@ -4,11 +4,11 @@
     margin-top: 70px;
 
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
 
     .wantBannerDiv {
-        min-height: 373px;
+        width: 50%;
     }
 
     img {
@@ -18,12 +18,18 @@
     }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 769px) {
     .wantBanner {
         flex-direction: column;
-
+        align-items: center;
+        padding: 1rem;
+        text-align: center;
+        .wantBannerDiv {
+            width: 100%;
+        }
+    
         img {
-            width: 300px;
+            width: 280px;
         }
     }
 }
