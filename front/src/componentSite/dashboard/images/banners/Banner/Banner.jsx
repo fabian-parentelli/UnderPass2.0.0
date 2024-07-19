@@ -4,6 +4,7 @@ import ViewCarouselIcon from '@mui/icons-material/ViewCarousel';
 import NewBanner from '../NewBanner/NewBanner';
 import Load from '../../../../../component/utils/Load';
 import VewBanner from '../VewBanner/VewBanner';
+import Title from '../../../../../component/dashboard/Title/Title';
 
 const Banner = () => {
 
@@ -12,11 +13,7 @@ const Banner = () => {
 
     return (
         <div className='banner'>
-            <div className='bannerTitle'>
-                <ViewCarouselIcon style={{ fontSize: '2rem' }} />
-                <h2>Banners</h2>
-            </div>
-            <div className='line'></div>
+            <Title Icon={ViewCarouselIcon} name='Banners' />
 
             <button className='btn btnC' onClick={() => setVew(!vew)}>{vew ? 'Ver' : 'Crear'}</button>
             {vew

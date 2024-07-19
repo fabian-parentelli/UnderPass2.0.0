@@ -22,7 +22,7 @@ const AutoComplete = ({ data, handleChange }) => {
             }}
             renderInput={(params) => <TextField {...params} label="Busqueda"
                 InputLabelProps={{
-                    style: { color: '#fff', fontSize: '13px', fontFamily: 'Pangolin, cursive' }
+                    style: { fontSize: '13px', fontFamily: 'Pangolin, cursive' }
                 }}
             />}
         />

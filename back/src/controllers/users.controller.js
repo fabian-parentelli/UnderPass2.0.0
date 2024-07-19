@@ -53,6 +53,31 @@ const interPass = async (req, res) => {
     };
 };
 
+const getAllUsers = async (req, res) => {
+    const { user } = req.user;
+    try {
+        const result = await userService.getAllUsers(user);
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof UserNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
+const sekker = async (req, res) => {
+    const { user } = req.user;
+    try {
+        const result = await userService.sekker(user);
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+
+        console.log(error);
+
+        if (error instanceof UserNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
 const newPassword = async (req, res) => {
     try {
         const result = await userService.newPassword({ ...req.body }, { ...req.user });
@@ -63,4 +88,4 @@ const newPassword = async (req, res) => {
     };
 };
 
-export { register, login, recoverPassword, current, interPass, newPassword };
+export { register, login, recoverPassword, current, interPass, getAllUsers, sekker, newPassword };

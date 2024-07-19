@@ -23,5 +23,10 @@ export default class UserRepository {
         const result = await userManager.getByIdPass(id);
         return result;
     };
+    
+    getAllUsers = async (query) => {
+        const result = await userManager.getAllUsers(query);
+        return result;
+    };
 
 };

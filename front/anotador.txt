@@ -1,0 +1,9 @@
+addToCart({
+                _id: product._id,
+                quantity: 1,
+                price: product.price,
+                is: 'product',
+                name: product.name,
+                description: product.description,
+                img: product.img[0].imgUrl
+});

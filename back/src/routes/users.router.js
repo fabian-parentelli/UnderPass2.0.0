@@ -11,6 +11,8 @@ export default class UserRouter extends Router {
         this.post('/recover_password', ['PUBLIC'], passportEnum.NOTHING, userController.recoverPassword);
         this.get('/current', ['PUBLIC'], passportEnum.JWT, userController.current);
         this.get('/inter_pass/:id', ['PUBLIC'], passportEnum.NOTHING, userController.interPass);
+        this.get('/', ['ADMIN', 'MASTER'], passportEnum.JWT, userController.getAllUsers);
+        this.get('/seeker', ['ADMIN', 'MASTER'], passportEnum.JWT, userController.sekker);
         this.put('/new_password', ['PUBLIC'], passportEnum.JWT, userController.newPassword);
     };
 };

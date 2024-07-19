@@ -3,20 +3,8 @@
     padding: 1rem;
     width: 80%;
 
-    .priceListTitle {
-        display: flex;
-        justify-content: space-between;
-        
-        div {
-            display: flex;
-            align-items: flex-end;
-            gap: .4rem;
-        }
-    }
-
     button {
         color: #ffff;
-        margin-top: 1rem;
     }
 
     .priceListForms {

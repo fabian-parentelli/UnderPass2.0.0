@@ -6,7 +6,7 @@ import cors from 'cors';
 import env from './config/dotEnv.config.js';
 
 import {
-    userRouter, imagenRouter, priceRouter, pdfRouter, graphRouter
+    userRouter, imagenRouter, priceRouter, pdfRouter, graphRouter, aplliRouter
 } from './routes/index.router.js';
 
 const app = express();
@@ -24,5 +24,6 @@ app.use('/api/img', imagenRouter);
 app.use('/api/price', priceRouter);
 app.use('/api/pdf', pdfRouter);
 app.use('/api/graph', graphRouter);
+app.use('/api/appli', aplliRouter);
 
 app.listen(env.port, () => console.log('Server conected'));

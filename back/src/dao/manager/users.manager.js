@@ -18,4 +18,8 @@ export default class User {
         return await userModel.findOne({ passId: id }).lean(); s
     };
 
+    getAllUsers = async (query) => {
+        return await userModel.find(query).lean();
+    };
+
 };

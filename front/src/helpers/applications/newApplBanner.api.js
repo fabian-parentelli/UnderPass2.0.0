@@ -3,7 +3,7 @@ const url = import.meta.env.VITE_API_URL;
 const newApplBannerApi = async (banner) => {
 
     const token = localStorage.getItem('token');
-    const response = await fetch(`${url}/api/img/applbanner`, {
+    const response = await fetch(`${url}/api/appli/banner`, {
         method: 'POST',
         body: banner,
         headers: {

@@ -4,7 +4,7 @@ import FormPriceList from './FormPriceList/FormPriceList';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import Load from '../../../../component/utils/Load';
 import SnackbarAlert from '../../../../component/utils/SnackbarAlert';
-import Exchange from '../../../../component/utils/Exchange/Exchange';
+import Title from '../../../../component/dashboard/Title/Title';
 
 const PriceList = () => {
 
@@ -16,14 +16,7 @@ const PriceList = () => {
     return (
         <div className='priceList'>
 
-            <div className='priceListTitle'>
-                <div>
-                    <FormatListBulletedIcon style={{ fontSize: '2rem' }} />
-                    <h2>Lista de Precios</h2>
-                </div>
-                <Exchange />
-            </div>
-            <div className='line'></div>
+            <Title Icon={FormatListBulletedIcon} name='Lista de precios' />
 
             <button className='btn btnB' onClick={() => setVew(vew === '' ? 'banner' : '')}>Banners</button>
 

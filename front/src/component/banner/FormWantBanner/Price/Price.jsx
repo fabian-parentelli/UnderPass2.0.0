@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import RequestQuoteIcon from '@mui/icons-material/RequestQuote';
 import { lastBannerPriceApi } from '../../../../helpers/prices/banners/lastBannerPrice.api';
 
-const Price = ({ country, handleChange, values }) => {
+const Price = ({ country, handleChange, values, setDataPrice }) => {
 
     const [price, setPrice] = useState(null);
     const [sale, setSale] = useState(0);
@@ -11,7 +11,10 @@ const Price = ({ country, handleChange, values }) => {
     useEffect(() => {
         const fetchData = async () => {
             const response = await lastBannerPriceApi(country);
-            if (response.status === 'success') setPrice(response.result);
+            if (response.status === 'success') {
+                setPrice(response.result);
+                setDataPrice(response.result.price);
+            };
         }; fetchData();
     }, []);
 

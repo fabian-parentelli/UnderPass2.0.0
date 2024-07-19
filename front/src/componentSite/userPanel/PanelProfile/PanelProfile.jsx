@@ -1,4 +1,5 @@
 import './panelProfile.scss';
+import WantTo from './WantTo/WantTo';
 
 const PanelProfile = ({ user }) => {
 
@@ -14,6 +15,8 @@ const PanelProfile = ({ user }) => {
                     <div className='line'></div>
                 </div>
             </div>
+            
+            <WantTo />
         </div>
     );
 };

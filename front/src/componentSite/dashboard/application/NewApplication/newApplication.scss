@@ -1,0 +1,18 @@
+.newApplication {
+    min-height: 80vh;
+    margin-top: 70px;
+    padding: 1rem;
+    width: 80%;
+
+    .newApplicationDiv {
+        margin-top: 2rem;
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+
+        .newApplicationChek {
+            display: flex;
+            gap: 1rem;
+        }
+    }
+}

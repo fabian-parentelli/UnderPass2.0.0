@@ -75,6 +75,23 @@ const interPass = async (id) => {
     return url;
 };
 
+const getAllUsers = async (user) => {
+    const query = user.role === 'master' ? {} : { role: { $ne: 'master' } };
+    const result = await userRepository.getAllUsers(query);
+    if (!result) throw new UserNotFound('No encontramos usuarios');
+    return { status: 'success', result };
+};
+
+const sekker = async (user) => {
+    const query = user.role === 'master' ? {} : { role: { $ne: 'master' } };
+    const users = await userRepository.getAllUsers(query);
+    if (!users) throw new UserNotFound('No encontramos usuarios');
+    const result = users.map((us) => {
+        return { label: us.name, country: us.location.country, _id: us._id };
+    });
+    return { status: 'success', result };
+};
+
 const newPassword = async ({ password: newPassword }, { user: email }) => {
     const user = await userRepository.getByEmail(email);
     if (!user) throw new UserNotFound('usuario no encontrado');
@@ -91,4 +108,4 @@ const newPassword = async ({ password: newPassword }, { user: email }) => {
     return { status: 'success', user };
 };
 
-export { register, login, current, recoverPassword, interPass, newPassword };
+export { register, login, current, recoverPassword, interPass, getAllUsers, sekker, newPassword };

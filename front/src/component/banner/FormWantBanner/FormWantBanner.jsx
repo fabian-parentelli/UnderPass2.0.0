@@ -1,21 +1,30 @@
 import './formWantBanner.scss';
-import Switch from '@mui/material/Switch';
-import CategorySelected from '../../dashboard/banner/CategorySelected/CategorySelected';
 import { useState } from 'react';
-import MyBanner from './MyBanner/MyBanner'
-import UnderBanner from './UnderBanner/UnderBanner'
 import Price from './Price/Price';
-import { newApplBannerApi } from '../../../helpers/images/banners/newApplBanner.api';
+import Load from '../../utils/Load.jsx';
+import Switch from '@mui/material/Switch';
+import MyBanner from './MyBanner/MyBanner';
+import { useNavigate } from 'react-router-dom';
 import AlertDialog from '../../utils/AlertDialog';
+import UnderBanner from './UnderBanner/UnderBanner';
+import { newApplBannerApi } from '../../../helpers/applications/newApplBanner.api.js';
+import CategorySelected from '../../dashboard/banner/CategorySelected/CategorySelected';
+import { useCartContext } from '../../../context/CartContext.jsx';
 
 const FormWantBanner = ({ user, country }) => {
 
+    const { addToCart } = useCartContext();
+    const navigate = useNavigate();
+    const [dataPrice, setDataPrice] = useState(0);
     const [formData, setFormData] = useState(new FormData());
     const [underBanner, setUnderBanner] = useState(false);
     const [values, setValues] = useState({
-        title: '', category: '', days: '', underBanner: underBanner, textBanner: '', user: user._id, country: country
+        title: '', category: '', days: '', underBanner: underBanner, textBanner: '',
+        user: user._id, country: country, type: 'banner'
     });
     const [message, setMessage] = useState({ open: false, title: '', content: '' });
+    const [loading, setloading] = useState(false);
+
     const handleSwitchChange = (event) => {
         setUnderBanner(event.target.checked);
         setValues({ ...values, underBanner: event.target.checked });
@@ -25,18 +34,34 @@ const FormWantBanner = ({ user, country }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setloading(true);
         for (const field in values) formData.set(field, values[field]);
-
         const response = await newApplBannerApi(formData);
         if (response.status === 'success') {
             setMessage({
-                open: true, 
+                open: true,
                 title: 'Recibimos con éxito tu solicitud',
                 content: 'Una vez realizado el pago nuestro personal de artística, revisará tu solicitud, en menos de 24 horas hábiles tu banner ya se va a encontrar habilitado.'
             });
+            const path = localStorage.getItem('path');
+            if (path) { localStorage.removeItem('path'); navigate(`/${path}`) };
 
-            // acá agregarlo al carrito ----------------------------------- //////////
-        };
+            console.log(response.result.days);
+
+            addToCart({
+                id: response.result._id,
+                quantity: response.result.days,
+                price: dataPrice,
+                is: 'banner',
+                name: response.result.title,
+                description: 'Solicitud de banner',
+                img: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1720899516/banners/wnatToBanner/exave8yrcu9dpqtyalgo.png'
+            });
+
+            // Estoy acá -- La idea es agregar al carrito --
+
+        } else console.log(response);
+        setloading(false);
     };
 
     return (
@@ -52,7 +77,9 @@ const FormWantBanner = ({ user, country }) => {
                     <CategorySelected handleChange={handleChange} />
                 </div>
 
-                <Price country={country} handleChange={handleChange} values={values} />
+                <Price
+                    country={country} handleChange={handleChange} values={values} setDataPrice={setDataPrice}
+                />
 
                 <div className='formWantBannerRow'>
                     <p>Mi banner</p>
@@ -67,6 +94,7 @@ const FormWantBanner = ({ user, country }) => {
                 <button className='btn btnB'>Solicitar</button>
             </form>
             <AlertDialog message={message} setMessage={setMessage} />
+            <Load loading={loading} />
         </div>
     );
 };

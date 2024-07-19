@@ -7,3 +7,11 @@
         resize: none;
     }
 }
+
+@media (max-width: 769px) {
+    .underBanner {
+        textarea {
+            width: 100%;
+        }
+    }
+}

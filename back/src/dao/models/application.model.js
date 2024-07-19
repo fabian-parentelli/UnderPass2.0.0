@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 
-const appliBannerCollection = 'appliBanners';
+const applicationCollection = 'application';
 
-const appliBannerSchema = new mongoose.Schema({
+const applicationSchema = new mongoose.Schema({
     folderName: { type: String },
     title: { type: String },
     category: { type: String },
@@ -14,6 +14,7 @@ const appliBannerSchema = new mongoose.Schema({
     active: { type: Boolean, default: true },
     img: [{ type: String }],
     date: { type: Date, default: Date.now },
+    type: { type: String },
 });
 
-export const aplliBannersModel = mongoose.model(appliBannerCollection, appliBannerSchema);
+export const apllicationModel = mongoose.model(applicationCollection, applicationSchema);

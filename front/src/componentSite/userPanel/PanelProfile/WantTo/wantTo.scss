@@ -1,0 +1,17 @@
+.wantTo {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+
+    label {
+        margin-left: 3px;
+    }
+}
+
+@media (max-width: 767px) {
+
+    .wantTo {
+        width: 100%;
+    }
+}

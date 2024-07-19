@@ -4,6 +4,7 @@ import Load from '../../../../../component/utils/Load';
 import NewVideoTut from '../NewVideoTut/NewVideoTut';
 import SlideshowIcon from '@mui/icons-material/Slideshow';
 import VewVideosTut from '../VewVideosTut/VewVideosTut';
+import Title from '../../../../../component/dashboard/Title/Title';
 
 const VideoTut = () => {
 
@@ -12,11 +13,7 @@ const VideoTut = () => {
 
     return (
         <div className='videoTut'>
-            <div className='videoTutTitle'>
-                <SlideshowIcon />
-                <h2>Videos Tutolriales</h2>
-            </div>
-            <div className='line'></div>
+            <Title Icon={SlideshowIcon} name='Video Tutoriales' />
 
             <button className='btn btnD' onClick={() => setIsNew(!isNew)}>
                 {!isNew ? 'Video nuevo' : 'Ver Videos'}

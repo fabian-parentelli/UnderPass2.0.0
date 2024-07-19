@@ -1,4 +1,4 @@
-import { tutorialsManager, bannersManager, appliBannerManager } from '../dao/manager/index.manager.js';
+import { tutorialsManager, bannersManager } from '../dao/manager/index.manager.js';
 
 export default class ImagenRepository {
 
@@ -55,16 +55,9 @@ export default class ImagenRepository {
         const result = await bannersManager.getBannerById(id);
         return result;
     };
-    
+
     updateBanner = async (banner) => {
         const result = await bannersManager.updateBanner(banner);
-        return result;
-    };
-
-    // Aplication Banner ------------
-
-    applBanner = async (application) => {
-        const result = await appliBannerManager.applBanner(application);
         return result;
     };
 
