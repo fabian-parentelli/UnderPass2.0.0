@@ -22,4 +22,8 @@ export default class User {
         return await userModel.find(query).lean();
     };
 
+    getUserById = async (id) => {
+        return await userModel.findById(id).lean();
+    };
+
 };

@@ -1,0 +1,42 @@
+@import '../../../../../style/colors.scss';
+
+.tableVewApplication {
+    margin: 1rem 0;
+
+    .flagsIcon {
+        border-radius: 0;
+        width: 30px;
+        object-fit: contain;
+    }
+
+    .pUser {
+        font-size: 10px;
+    }
+
+    .tdActive {
+        transition: .3s;
+        cursor: pointer;
+
+        &:hover {
+            background-color: rgb(197, 196, 196);
+        }
+    }
+}
+
+@media (max-width: 767px) {
+
+    .tableVewApplication {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .tableVewApplication::-webkit-scrollbar {
+        height: 6px;
+    }
+    
+    .tableVewApplication::-webkit-scrollbar-thumb {
+        background-color: $colorB; 
+        border-radius: 6px; 
+    }
+    
+}

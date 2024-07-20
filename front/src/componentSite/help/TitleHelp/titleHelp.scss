@@ -1,0 +1,54 @@
+@import '../../../style/colors.scss';
+
+.titleHelp {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 6rem;
+    width: 100%;
+    text-align: center;
+
+    h5 {
+        font-size: 4rem;
+    }
+
+    p {
+        font-size: 1.2rem;
+    }
+
+    .videoHelpTitle {
+        text-decoration: none;
+        color: $colorA;
+        font-weight: 600;
+        transition: .3s ease-in-out;
+
+        &:hover {
+            color: $colorB;
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    .titleHelp {
+        padding: 1rem;
+
+        h5 {
+            font-size: 2rem;
+        }
+
+        p {
+            font-size: 1rem;
+        }
+
+        .videoHelpTitle {
+            text-decoration: none;
+            color: $colorA;
+            font-weight: 600;
+            transition: .3s ease-in-out;
+
+            &:hover {
+                color: $colorB;
+            }
+        }
+    }
+}

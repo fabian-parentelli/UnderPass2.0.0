@@ -21,6 +21,7 @@ const data = [
     { label: 'Registrarte', data: 'registerHelp' },
     { label: 'Iniciar sesión', data: 'loginHelp' },
     { label: 'Recuperar contraseña', data: 'recoverPassHelp' },
+    { label: 'Quiero estar en el banner', data: 'wantBannerHelp' },
     // { label: 'Modificar datos personales', data: 'updDataHelp' },
     // { label: 'Foto de perfil o avatar', data: 'avatarHelp' },
     // { label: 'Datos financieros', data: 'finaceDate' },

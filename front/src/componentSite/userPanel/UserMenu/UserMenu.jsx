@@ -7,7 +7,7 @@ import TheaterComedyIcon from '@mui/icons-material/TheaterComedy';
 import HomeIcon from '@mui/icons-material/Home';
 import LanguageIcon from '@mui/icons-material/Language';
 import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';
-import ViewCarouselIcon from '@mui/icons-material/ViewCarousel';
+import LiveTvIcon from '@mui/icons-material/LiveTv';
 
 const UserMenu = () => {
 
@@ -49,9 +49,9 @@ const UserMenu = () => {
                 <p>Contraseña</p>
             </Link>
             
-            <Link to={'/profile/userBanner'} className='userMen'>
-                <ViewCarouselIcon className='icon' />
-                <p>Banner</p>
+            <Link to={'/profile/advertising'} className='userMen'>
+                <LiveTvIcon className='icon' />
+                <p>Publicidad</p>
             </Link>
             
         </div>

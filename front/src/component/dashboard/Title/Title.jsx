@@ -1,9 +1,10 @@
 import './title.scss';
+import { Link } from 'react-router-dom';
 import Today from '../../utils/Today/Today';
 import Exchange from '../../utils/Exchange/Exchange';
 import { useLoginContext } from '../../../context/LoginContext';
 
-const Title = ({ Icon, name }) => {
+const Title = ({ Icon, name, goTo }) => {
 
     const { user } = useLoginContext();
 
@@ -17,6 +18,9 @@ const Title = ({ Icon, name }) => {
                 <div>
                     <Today />
                     {user && user.data.role !== 'user' && <Exchange />}
+                    {user && user.data.role == 'user' && 
+                        <Link to={goTo} className='help'>Ayuda</Link> 
+                    }
                 </div>
             </div>
             <div className='line'></div>

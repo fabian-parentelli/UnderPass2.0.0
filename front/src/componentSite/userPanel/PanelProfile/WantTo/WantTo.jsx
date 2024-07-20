@@ -16,7 +16,8 @@ const WantTo = () => {
             <label>Quiero ...</label>
             <select value={value} onChange={handleChange}>
                 <option value="">...</option>
-                <option value="/profile/userBanner">Estar en el banner</option>
+                <option value="/profile/advertising">Estar en el banner</option>
+                <option value="/profile/advertising">Crear publicidad</option>
                 <option value="/cart">Ver el carrito</option>
             </select>
         </div>

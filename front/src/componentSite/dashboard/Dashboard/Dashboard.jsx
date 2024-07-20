@@ -7,6 +7,7 @@ import Banner from '../images/banners/Banner/Banner';
 import PriceList from '../economy/PriceList/PriceList';
 import NewApplication from '../application/NewApplication/NewApplication';
 import VewApplication from '../application/VewApplication/VewApplication';
+import VewUserApplication from '../application/VewUserApplication/VewUserApplication';
 
 const Dashboard = () => {
 
@@ -28,7 +29,7 @@ const Dashboard = () => {
                 <Fields title={'Eventos'} category={[{ name: 'Ver eventos', path: 'getevent' }, { name: 'Crear evento', path: 'newevent' }]} />
                 <Fields title={'Sitios'} category={[{ name: 'Nuevo sitio', path: 'newsite' }, { name: 'Ver sitios', path: 'vewsite' }]} />
                 <Fields title={'Economía'} category={[{ name: 'Caja', path: 'newsMessage' }, { name: 'Precios', path: 'pricelist' }]} />
-                <Fields title={'Solicitudes'} category={[{ name: 'Crear', path: 'newapplication' }, { name: 'Ver', path: 'vewapplicattion' }]} />
+                <Fields title={'Solicitudes'} category={[{ name: 'Crear', path: 'newapplication' }, { name: 'Ver', path: 'vewapplicattion' }, { name: 'Usuario', path: 'vewapplicattionuser' }]} />
             </div>
             <Routes>
                 <Route path='/' element={<Panel />} />
@@ -39,6 +40,7 @@ const Dashboard = () => {
                 <Route path='/pricelist' element={<PriceList />} />
                 <Route path='/newapplication' element={<NewApplication />} />
                 <Route path='/vewapplicattion' element={<VewApplication />} />
+                <Route path='/vewapplicattionuser' element={<VewUserApplication />} />
             </Routes>
         </div>
     );

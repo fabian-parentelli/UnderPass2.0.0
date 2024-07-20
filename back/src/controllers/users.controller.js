@@ -70,9 +70,6 @@ const sekker = async (req, res) => {
         const result = await userService.sekker(user);
         if (result) return res.sendSuccess(result);
     } catch (error) {
-
-        console.log(error);
-
         if (error instanceof UserNotFound) return res.sendClientError(error.message);
         res.sendServerError(error.message);
     };

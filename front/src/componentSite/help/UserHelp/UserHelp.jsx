@@ -3,6 +3,7 @@ import RegisterHelp from './RegisterHelp/RegisterHelp.jsx';
 import LoginHelp from './LoginHelp/LoginHelp.jsx';
 import SearchHelp from '../SearchHelp/SearchHelp.jsx';
 import RecoverPassHelp from './RecoverPassHelp/RecoverPassHelp.jsx';
+import WantBannerHelp from './WantBannerHelp/WantBannerHelp.jsx';
 
 const UserHelp = () => {
 
@@ -15,6 +16,7 @@ const UserHelp = () => {
             <RegisterHelp />
             <LoginHelp />
             <RecoverPassHelp />
+            <WantBannerHelp />
         </div>
     );
 };

@@ -12,10 +12,8 @@ const Helps = () => {
         if (location.hash) {
             const elementId = location.hash.substring(1);
             const element = document.getElementById(elementId);
-            if (element) {
-                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-        }
+            if (element) element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        };
     }, [location]);
 
     return (

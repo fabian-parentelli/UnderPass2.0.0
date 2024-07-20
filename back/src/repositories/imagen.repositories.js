@@ -36,16 +36,19 @@ export default class ImagenRepository {
 
     getBannerBody = async () => {
         const result = await bannersManager.getBannerBody();
-        for (let i = result.length - 1; i >= 0; i--) {
-            if (result[i].end < new Date()) {
-                result[i].active = false;
-                await bannersManager.updateBanner(result[i]);
-                result.splice(i, 1);
+        const today = new Date().setHours(0, 0, 0, 0);
+        const updatedBanners = result.filter(banner => {
+            const bannerEndDate = new Date(banner.end).setHours(0, 0, 0, 0);
+            if (bannerEndDate < today) {
+                banner.active = false;
+                bannersManager.updateBanner(banner);
+                return false;
             };
-        };
-        return result;
+            return true;
+        });
+        return updatedBanners;
     };
-
+    
     getAllBanners = async (query, limit, page) => {
         const result = await bannersManager.getAllBanners(query, limit, page);
         return result;

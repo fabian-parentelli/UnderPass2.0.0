@@ -16,7 +16,8 @@ const applicationSchema = new mongoose.Schema({
     img: [{ type: String }],
     date: { type: Date, default: Date.now },
     type: { type: String },
-    pay: { type: Boolean, default: false }
+    pay: { type: Boolean, default: false },
+    underVew: { type: Boolean, default: true },
 });
 
 applicationSchema.plugin(mongoosePaginate);

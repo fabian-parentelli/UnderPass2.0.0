@@ -7,9 +7,6 @@ const bannerPrices = async (req, res) => {
         const result = await graphService.bannerPrices(country);
         if (result) return res.sendSuccess(result);
     } catch (error) {
-
-        console.log(error); //------------------------------Borarr -------------------------------
-
         if (error instanceof GraphNotFound) return res.sendClientError(error.message);
         res.sendServerError(error.message);
     };

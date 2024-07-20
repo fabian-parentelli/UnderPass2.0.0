@@ -1,5 +1,18 @@
 .userSearch {
     width: 300px;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    .icon {
+        color: gray;
+        font-size: 2rem;
+        cursor: pointer;
+        transition: .3s;
+        &:hover {
+            color: rgb(97, 96, 96);
+        }
+    }
 
     input:hover {
         border: none;

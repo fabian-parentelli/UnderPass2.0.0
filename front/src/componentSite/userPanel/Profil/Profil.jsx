@@ -1,10 +1,11 @@
 import './profile.scss';
 import { useEffect } from "react";
 import UserMenu from '../UserMenu/UserMenu';
-import UserBanner from '../UserBanner/UserBanner';
+
 import { Route, Routes } from 'react-router-dom';
 import PanelProfile from '../PanelProfile/PanelProfile';
 import { useLoginContext } from "../../../context/LoginContext";
+import Advertising from '../Advertising/Advertising';
 
 const Profile = () => {
 
@@ -16,7 +17,7 @@ const Profile = () => {
             <UserMenu />
             <Routes>
                 <Route path='/' element={<PanelProfile user={user.data} />} />
-                <Route path='/userBanner' element={<UserBanner />} />
+                <Route path='/advertising' element={<Advertising />} />
             </Routes>
         </div>
     );

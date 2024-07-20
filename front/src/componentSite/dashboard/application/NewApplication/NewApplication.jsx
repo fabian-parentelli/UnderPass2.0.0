@@ -17,7 +17,7 @@ const NewApplication = () => {
 
     return (
         <div className='newApplication'>
-            <Title Icon={ViewCarousel} name='Solicitar Banner' />
+            <Title Icon={ViewCarousel} name='Solicitar Publicidad' />
             <div className='newApplicationDiv' >
                 <UserSearch setUser={setUser} />
                 <div className='newApplicationChek'>

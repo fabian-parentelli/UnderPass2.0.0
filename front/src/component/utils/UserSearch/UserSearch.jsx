@@ -1,7 +1,8 @@
 import './userSearch.scss';
 import { useEffect, useState } from "react";
-import { getSeekerUserApi } from "../../../helpers/users/getSeekerUser.api.js";
 import AutoComplete from "../AutoComplete.jsx";
+import { getSeekerUserApi } from "../../../helpers/users/getSeekerUser.api.js";
+import CleaningServicesIcon from '@mui/icons-material/CleaningServices';
 
 const UserSearch = ({ setUser }) => {
 
@@ -20,6 +21,7 @@ const UserSearch = ({ setUser }) => {
     return (
         <div className="userSearch">
             {data && <AutoComplete data={data} handleChange={handleChange} />}
+            <CleaningServicesIcon className='icon' onClick={() => setUser(null)} />
         </div>
     );
 };

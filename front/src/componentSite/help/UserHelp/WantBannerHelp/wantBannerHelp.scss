@@ -1,0 +1,68 @@
+@import '../../../../style/colors.scss';
+
+#wantBannerHelp {
+    width: 90%;
+    margin: 0 auto;
+    border-top: solid 1px gray;
+
+    .wantBannerHelpImg {
+        width: 100%;
+        margin-top: 5%;
+        display: flex;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+
+        img {
+            height: 200px;
+            object-fit: cover;
+            box-shadow: 5px 5px 15px;
+            margin-bottom: 6%;
+        }
+
+        .imgWePort {
+            height: 300px;
+            margin-top: 6%;
+        }
+    }
+
+    ol {
+        width: 80%;
+        margin: 2rem auto;
+
+        li {
+            margin: .6rem;
+
+            strong {
+                color: $colorB;
+            }
+
+            ul li strong {
+                color: $colorA;
+            }
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    #wantBannerHelp {
+        width: 95%;
+
+        .wantBannerHelpImg {
+            gap: 2rem;
+
+            img {
+                width: 200px;
+                height: auto;
+            }
+
+            .imgWePort {
+                width: 300px;
+                height: auto;
+            }
+        }
+
+        ol {
+            width: 100%;
+        }
+    }
+}

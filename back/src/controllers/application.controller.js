@@ -12,18 +12,48 @@ const appliBanner = async (req, res) => {
     };
 };
 
-const getBanners = async (req, res) => {
+const getAll = async (req, res) => {
     const { limit = 12, page = 1, active, country, category, type, pay } = req.query;
     try {
-        const result = await appliService.getBanners(limit, page, active, country, category, type, pay);
+        const result = await appliService.getAll(limit, page, active, country, category, type, pay);
         if (result) return res.sendSuccess(result);
     } catch (error) {
-
-        console.log(error); //--------------------------------Borrar-------------------------
-
         if (error instanceof AppliNotFound) return res.sendClientError(error.message);
         res.sendServerError(error.message);
     };
 };
 
-export { appliBanner, getBanners };
+const getByUserId = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const result = await appliService.getByUserId(id);
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof AppliNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
+const updActive = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const result = await appliService.updActive(id);
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof AppliNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
+const updVew = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const result = await appliService.updVew(id);
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof AppliNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
+export { appliBanner, getAll, getByUserId, updActive, updVew };

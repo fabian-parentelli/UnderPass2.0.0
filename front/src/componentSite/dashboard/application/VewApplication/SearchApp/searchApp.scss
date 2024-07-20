@@ -1,0 +1,14 @@
+@import '../../../../../style/colors.scss';
+
+.searchApp {
+    display: flex;
+    align-items: flex-end;
+    gap: 1rem;
+    width: 80%;
+
+    div {
+        display: flex;
+        flex-direction: column;
+        width: 200px;
+    }
+}
