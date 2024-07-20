@@ -13,7 +13,7 @@ const Price = ({ country, handleChange, values, setDataPrice }) => {
             const response = await lastBannerPriceApi(country);
             if (response.status === 'success') {
                 setPrice(response.result);
-                setDataPrice(response.result.price);
+                setDataPrice(response.result);
             };
         }; fetchData();
     }, []);

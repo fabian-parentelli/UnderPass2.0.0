@@ -7,6 +7,7 @@ import { uploadToCloudinary } from '../config/cloudinary.config.js';
 export default class AppliRouter extends Router {
     init() {
         this.post('/banner', ['USER', 'ADMIN', 'MASTER'], passportEnum.JWT, multipleUploader, uploadToCloudinary, appliController.appliBanner);
+        this.get('/all', ['ADMIN', 'MASTER'], passportEnum.JWT, appliController.getBanners);
     };
 };
 

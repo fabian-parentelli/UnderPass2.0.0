@@ -10,6 +10,7 @@ import UnderBanner from './UnderBanner/UnderBanner';
 import { newApplBannerApi } from '../../../helpers/applications/newApplBanner.api.js';
 import CategorySelected from '../../dashboard/banner/CategorySelected/CategorySelected';
 import { useCartContext } from '../../../context/CartContext.jsx';
+import { imgages } from '../../../utils/imagesData.utils.js';
 
 const FormWantBanner = ({ user, country }) => {
 
@@ -43,23 +44,21 @@ const FormWantBanner = ({ user, country }) => {
                 title: 'Recibimos con éxito tu solicitud',
                 content: 'Una vez realizado el pago nuestro personal de artística, revisará tu solicitud, en menos de 24 horas hábiles tu banner ya se va a encontrar habilitado.'
             });
-            const path = localStorage.getItem('path');
-            if (path) { localStorage.removeItem('path'); navigate(`/${path}`) };
-
-            console.log(response.result.days);
-
             addToCart({
-                id: response.result._id,
+                _id: response.result._id,
                 quantity: response.result.days,
-                price: dataPrice,
+                price: dataPrice.price,
                 is: 'banner',
                 name: response.result.title,
                 description: 'Solicitud de banner',
-                img: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1720899516/banners/wnatToBanner/exave8yrcu9dpqtyalgo.png'
+                img: imgages.cartBanner,
+                data: dataPrice
             });
-
-            // Estoy acá -- La idea es agregar al carrito --
-
+            setTimeout(() => {
+                const path = localStorage.getItem('path');
+                if (path) { localStorage.removeItem('path'); navigate(`/${path}`) }
+                else navigate('/cart');
+            }, 2000);
         } else console.log(response);
         setloading(false);
     };
@@ -72,25 +71,19 @@ const FormWantBanner = ({ user, country }) => {
                     <label>Título</label>
                     <input type="text" name='title' onChange={handleChange} required />
                 </div>
-
                 <div className='formWantBannerDiv'>
                     <CategorySelected handleChange={handleChange} />
                 </div>
-
                 <Price
                     country={country} handleChange={handleChange} values={values} setDataPrice={setDataPrice}
                 />
-
                 <div className='formWantBannerRow'>
                     <p>Mi banner</p>
                     <Switch checked={underBanner} onChange={handleSwitchChange} />
                     <p>Banner de UnderPass</p>
                 </div>
-
                 {underBanner && <UnderBanner handleChange={handleChange} />}
-
                 <MyBanner handleFileChange={handleFileChange} user={user} />
-
                 <button className='btn btnB'>Solicitar</button>
             </form>
             <AlertDialog message={message} setMessage={setMessage} />

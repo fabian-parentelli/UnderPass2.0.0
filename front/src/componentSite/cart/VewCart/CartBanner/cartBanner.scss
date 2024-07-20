@@ -1,0 +1,33 @@
+@import '../../../../style/colors.scss';
+
+.tdBanner {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    position: relative;
+    width: 160px;
+
+    .cartBannerImg {
+        border-radius: 0;
+        width: 100px;
+        height: 100px; 
+    }
+
+    .cancelIcon {
+        position: absolute;
+        color: $colorB;
+        top: 0;
+        left: 5px;
+        cursor: pointer;
+        transition: .3s ease-in-out;
+        z-index: 2;
+        &:hover {
+            color: $colorC;
+        }
+    }
+
+    .pID {
+        color: gray;
+        font-size: 10px;
+    }
+}

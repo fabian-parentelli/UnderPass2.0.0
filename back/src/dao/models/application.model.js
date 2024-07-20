@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import mongoosePaginate from 'mongoose-paginate-v2';
 
 const applicationCollection = 'application';
 
@@ -15,6 +16,9 @@ const applicationSchema = new mongoose.Schema({
     img: [{ type: String }],
     date: { type: Date, default: Date.now },
     type: { type: String },
+    pay: { type: Boolean, default: false }
 });
+
+applicationSchema.plugin(mongoosePaginate);
 
 export const apllicationModel = mongoose.model(applicationCollection, applicationSchema);

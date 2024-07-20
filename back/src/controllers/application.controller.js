@@ -7,6 +7,17 @@ const appliBanner = async (req, res) => {
         const result = await appliService.appliBanner({ ...req.body }, imagesUrl);
         if (result) return res.sendSuccess(result);
     } catch (error) {
+        if (error instanceof AppliNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
+const getBanners = async (req, res) => {
+    const { limit = 12, page = 1, active, country, category, type, pay } = req.query;
+    try {
+        const result = await appliService.getBanners(limit, page, active, country, category, type, pay);
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
 
         console.log(error); //--------------------------------Borrar-------------------------
 
@@ -15,4 +26,4 @@ const appliBanner = async (req, res) => {
     };
 };
 
-export { appliBanner };
+export { appliBanner, getBanners };

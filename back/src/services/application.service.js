@@ -8,4 +8,19 @@ const appliBanner = async (application, imgUrl) => {
     return { status: 'success', result };
 };
 
-export { appliBanner };
+const getBanners = async (limit, page, active, country, category, type, pay) => {
+
+    if(limit) console.log(limit);
+    if(page) console.log(page);
+    if(active) console.log(active);
+    if(country) console.log(country);
+    if(category) console.log(category);
+    if(type) console.log(type);
+    if(pay) console.log(pay);
+
+    console.log('cosa loca');
+
+    // bueno estoy aca haciendo las peticiones ..........
+};
+
+export { appliBanner, getBanners };

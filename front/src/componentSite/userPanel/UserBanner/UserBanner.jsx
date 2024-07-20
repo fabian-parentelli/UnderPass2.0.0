@@ -13,7 +13,7 @@ const UserBanner = () => {
         <div className='userBanner'>
             <Title Icon={ViewCarouselIcon} name='Solicitar estar en el Banner' />
 
-            {user && country && <FormWantBanner user={user} country={country} />}
+            {user && country && <FormWantBanner user={user.data} country={country} />}
         </div>
     );
 };

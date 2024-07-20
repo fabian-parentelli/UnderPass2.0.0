@@ -1,5 +1,5 @@
 import './vewCart.scss';
-// import CartItems from './CartItems/CartItems';
+import CartItems from './CartItems/CartItems';
 import { useCartContext } from "../../../context/CartContext";
 // import CartPeople from './CartPeople/CartPeople';
 
@@ -12,13 +12,13 @@ const VewCart = () => {
             <h2>Tu Carrito</h2>
             <div className='vewCartDivStart'>
                 <p className='deletCart' onClick={() => emptyCart()}>Eliminar todo el carrito</p>
-                <p>{cart.length} </p>
+                <p>{cart.length} Items</p>
                 <p style={{ color: '#f45c14' }}>Ayuda</p>
             </div>
             <div className='line'></div>
-            
+
             <div className='vewCartChekout'>
-                {/* <CartItems /> */}
+                <CartItems cart={cart} />
                 {/* <CartPeople /> */}
             </div>
 

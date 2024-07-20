@@ -37,11 +37,19 @@ const CartProvider = ({ children }) => {
         };
     };
     const isProduct = () => cart.some(prod => prod.is === 'product');
+    const updatePrice = (id, newPrice) => {
+        const index = cart.findIndex(item => item._id === id);
+        if (index !== -1) {
+            const updatedCart = [...cart];
+            updatedCart[index] = { ...updatedCart[index], price: newPrice };
+            setCart(updatedCart);
+        };
+    };
 
     return (
         <CartContext.Provider value={{
             cart, addToCart, isInCart, emptyCart, totalProduct, removeItem, totalQuantity, updateQuantity,
-            totalCart, isProduct
+            totalCart, isProduct, updatePrice
         }}>
             {children}
         </CartContext.Provider>

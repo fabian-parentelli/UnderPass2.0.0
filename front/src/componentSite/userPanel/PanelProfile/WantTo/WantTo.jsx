@@ -9,14 +9,15 @@ const WantTo = () => {
 
     const handleChange = (e) => setValue(e.target.value);
 
-    useEffect(() => { navigate(`/profile/${value}`) }, [value]);
+    useEffect(() => { navigate(value) }, [value]);
 
     return (
         <div className='wantTo'>
             <label>Quiero ...</label>
             <select value={value} onChange={handleChange}>
                 <option value="">...</option>
-                <option value="userBanner">Estar en el banner</option>
+                <option value="/profile/userBanner">Estar en el banner</option>
+                <option value="/cart">Ver el carrito</option>
             </select>
         </div>
     );
