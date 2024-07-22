@@ -39,3 +39,10 @@ export class AppliNotFound extends Error {
         this.name = this.constructor.name;
     };
 };
+
+export class AllertsNotFound extends Error {
+    constructor(message) {
+        super(message);
+        this.name = this.constructor.name;
+    };
+};

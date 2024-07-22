@@ -21,7 +21,8 @@ const userSchema = new mongoose.Schema({
     role: { type: String, default: 'user' },
     passId: { type: String },
     financeData: { type: String },
-    dni: { type: String }
+    dni: { type: String },
+    created: { type: Date, default: Date.now }
 });
 
 userSchema.plugin(mongoosePaginate);

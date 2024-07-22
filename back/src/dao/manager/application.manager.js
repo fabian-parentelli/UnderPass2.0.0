@@ -22,4 +22,8 @@ export default class Application {
         return await apllicationModel.findByIdAndUpdate({ _id: application._id }, application).lean();
     };
 
+    getUnderVew = async () => {
+        return await apllicationModel.countDocuments({ underVew: true });
+    };
+
 };

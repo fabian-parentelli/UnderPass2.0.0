@@ -19,7 +19,7 @@ const UserMenu = () => {
                 <p>Mi perfil</p>
             </Link>
 
-            <Link to={'/profile/yourdata'} className='userMen'>
+            <Link to={'/profile/datauser'} className='userMen'>
                 <AccountBoxIcon className='icon' />
                 <p>Tus Datos</p>
             </Link>

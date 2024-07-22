@@ -75,6 +75,13 @@ const interPass = async (id) => {
     return url;
 };
 
+const getUserById = async (id) => {
+    const result = await userRepository.getUserById(id);
+    if (!result) throw new UserNotFound('Usuario no encontrado');
+    delete result.password;
+    return { status: 'success', result };
+};
+
 const getAllUsers = async (user) => {
     const query = user.role === 'master' ? {} : { role: { $ne: 'master' } };
     const result = await userRepository.getAllUsers(query);
@@ -108,4 +115,7 @@ const newPassword = async ({ password: newPassword }, { user: email }) => {
     return { status: 'success', user };
 };
 
-export { register, login, current, recoverPassword, interPass, getAllUsers, sekker, newPassword };
+export {
+    register, login, current, recoverPassword, interPass,
+    getAllUsers, sekker, newPassword, getUserById
+};

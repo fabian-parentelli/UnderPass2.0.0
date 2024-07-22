@@ -1,0 +1,13 @@
+.alerts {
+    display: flex;
+    align-items: center;
+
+    .alertsLink {
+        color: #fff;
+        transition: .3s;
+        
+        &:hover {
+            color: gray;
+        }
+    }
+}

@@ -26,5 +26,10 @@ export default class AppliRepository {
         const result = await appliManager.update(application);
         return result;
     };
+    
+    getUnderVew = async () => {
+        const result = await appliManager.getUnderVew();
+        return result;
+    };
 
 };

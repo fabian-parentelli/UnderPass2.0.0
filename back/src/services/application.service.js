@@ -1,10 +1,10 @@
 import { appliRepository, userRepository } from "../repositories/index.repositories.js";
-import { AppliNotFound, ImagenNotFound } from '../utils/custom-exceptions.utils.js';
+import { AppliNotFound } from '../utils/custom-exceptions.utils.js';
 
 const appliBanner = async (application, imgUrl) => {
     application.img = imgUrl;
     const result = await appliRepository.appliBanner(application);
-    if (!result) throw new ImagenNotFound('No se puede guardar la solicitud');
+    if (!result) throw new AppliNotFound('No se puede guardar la solicitud');
     return { status: 'success', result };
 };
 
@@ -25,9 +25,13 @@ const getAll = async (limit, page, active, country, category, type, pay) => {
 };
 
 const getByUserId = async (id) => {
-    const result = await appliRepository.getByUserId(id)
+    let result = await appliRepository.getByUserId(id);
     if (!result) throw new AppliNotFound('No se encuentran la solicitud');
-    return { status: 'success', result };
+    result = await Promise.all(result.map(async (appl) => {
+        const userDb = await userRepository.getUserById(appl.user);
+        appl.user = { name: userDb.name, userId: userDb._id, email: userDb.email };
+        return appl;
+    })); return { status: 'success', result };
 };
 
 const updActive = async (id) => {
