@@ -19,6 +19,7 @@ const WantTo = () => {
                 <option value="/profile/advertising">Estar en el banner</option>
                 <option value="/profile/advertising">Crear publicidad</option>
                 <option value="/cart">Ver el carrito</option>
+                <option value="/profile/datauser">Tus datos</option>
             </select>
         </div>
     );

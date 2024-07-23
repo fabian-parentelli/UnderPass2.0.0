@@ -9,11 +9,15 @@ export default class UserRouter extends Router {
         this.post('/register', ['PUBLIC'], passportEnum.NOTHING, multipleUploader, uploadToCloudinary, userController.register);
         this.post('/login', ['PUBLIC'], passportEnum.NOTHING, userController.login);
         this.post('/recover_password', ['PUBLIC'], passportEnum.NOTHING, userController.recoverPassword);
+        this.post('/financial', ['USER', 'ADMIN', 'MASTER'], passportEnum.JWT, userController.newFinancial);
         this.get('/current', ['PUBLIC'], passportEnum.JWT, userController.current);
         this.get('/seeker', ['ADMIN', 'MASTER'], passportEnum.JWT, userController.sekker);
         this.get('/inter_pass/:id', ['PUBLIC'], passportEnum.NOTHING, userController.interPass);
+        this.get('/financial/:id', ['USER', 'ADMIN', 'MASTER'], passportEnum.JWT, userController.getFinancial);
         this.get('/:id', ['USER', 'ADMIN', 'MASTER'], passportEnum.JWT, userController.getUserById);
         this.get('/', ['ADMIN', 'MASTER'], passportEnum.JWT, userController.getAllUsers);
         this.put('/new_password', ['PUBLIC'], passportEnum.JWT, userController.newPassword);
+        this.put('/financial', ['USER', 'ADMIN', 'MASTER'], passportEnum.JWT, userController.updFinancial);
+        this.put('/', ['USER', 'ADMIN', 'MASTER'], passportEnum.JWT, userController.updUser);
     };
 };

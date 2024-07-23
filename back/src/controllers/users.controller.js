@@ -32,6 +32,16 @@ const recoverPassword = async (req, res) => {
     };
 };
 
+const newFinancial = async (req, res) => {
+    try {
+        const result = await userService.newFinancial({ ...req.body });
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof UserNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
 const current = async (req, res) => {
     try {
         const result = await userService.current({ ...req.user });
@@ -47,6 +57,17 @@ const interPass = async (req, res) => {
     try {
         const result = await userService.interPass(id);
         res.redirect(result);
+    } catch (error) {
+        if (error instanceof UserNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
+const getFinancial = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const result = await userService.getFinancial(id);
+        if (result) return res.sendSuccess(result);
     } catch (error) {
         if (error instanceof UserNotFound) return res.sendClientError(error.message);
         res.sendServerError(error.message);
@@ -96,7 +117,28 @@ const newPassword = async (req, res) => {
     };
 };
 
+const updFinancial = async (req, res) => {
+    try {
+        const result = await userService.updFinancial({ ...req.body });
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof UserNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
+const updUser = async (req, res) => {
+    const { user } = req.user;
+    try {
+        const result = await userService.updUser({ ...req.body }, user);
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof UserNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
 export {
     register, login, recoverPassword, current, interPass,
-    getAllUsers, sekker, newPassword, getUserById
+    getAllUsers, sekker, newPassword, getUserById, updUser, newFinancial, getFinancial, updFinancial
 };

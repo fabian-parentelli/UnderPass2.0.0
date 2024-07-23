@@ -62,6 +62,15 @@ const recoverPassword = async ({ email }) => {
     return { status: 'success' };
 };
 
+const newFinancial = async (data) => {
+    const result = await userRepository.newFinancial(data);
+    const user = await userRepository.getUserById(data.userId);
+    user.financeData = result._id.toString();
+    await userRepository.update(user);
+    if (!result) throw new UserNotFound('No se puedo guardar el registro financiero');
+    return { status: 'success', result };
+};
+
 const current = (user) => {
     const newUser = { ...user };
     return newUser;
@@ -73,6 +82,12 @@ const interPass = async (id) => {
     const tokenPass = passwordToken(user.email);
     const url = `${env.frontUrl}/password/${tokenPass}`;
     return url;
+};
+
+const getFinancial = async (id) => {
+    const result = await userRepository.getFinanceByUserId(id);
+    if (!result) throw new UserNotFound('Usuario no encontrado');
+    return { status: 'success', result };
 };
 
 const getUserById = async (id) => {
@@ -115,7 +130,28 @@ const newPassword = async ({ password: newPassword }, { user: email }) => {
     return { status: 'success', user };
 };
 
+const updFinancial = async (data) => {
+    const financial = await userRepository.getFinanceByUserId(data.userId);
+    if (!financial) throw new UserNotFound('Datos financieros no encontrado');
+    const newFinancial = { ...financial, ...data };
+    const result = await userRepository.updateFinace(newFinancial);
+    if (!result) throw new UserNotFound('No se puede actualizar el dato financiero');
+    return { status: 'success', result };
+};
+
+const updUser = async (user, whatUser) => {
+    const userDB = await userRepository.getUserById(user._id);
+    if (!user) throw new UserNotFound('usuario no encontrado');
+    const newUser = { ...userDB, ...user };
+    const result = await userRepository.update(newUser);
+    if (!result) throw new UserNotFound('La contraseña nueva no se puede guardar');
+    delete result.password;
+    const accesToken = generateToken(result);
+    if(whatUser.role === 'user') return { status: 'success', accesToken };
+    else return { status: 'success', result };
+};
+
 export {
     register, login, current, recoverPassword, interPass,
-    getAllUsers, sekker, newPassword, getUserById
+    getAllUsers, sekker, newPassword, getUserById, updUser, newFinancial, getFinancial, updFinancial
 };

@@ -1,4 +1,4 @@
-import { userManager } from '../dao/manager/index.manager.js';
+import { userManager, financialUserManager } from '../dao/manager/index.manager.js';
 
 export default class UserRepository {
 
@@ -31,6 +31,23 @@ export default class UserRepository {
     
     getUserById = async (id) => {
         const result = await userManager.getUserById(id);
+        return result;
+    };
+
+    // Financial Data....
+
+    newFinancial = async (data) => {
+        const result = await financialUserManager.newFinancial(data);
+        return result;
+    };
+    
+    getFinanceByUserId = async (id) => {
+        const result = await financialUserManager.getFinanceByUserId(id);
+        return result;
+    };
+    
+    updateFinace = async (finance) => {
+        const result = await financialUserManager.updateFinace(finance);
         return result;
     };
 

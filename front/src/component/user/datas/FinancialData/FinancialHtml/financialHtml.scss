@@ -1,0 +1,49 @@
+.financialHtml {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: rgba(0, 0, 0, 0.37);
+    padding: 2rem;
+    border-radius: 6px;
+
+    .financialDiv {
+        display: flex;
+        gap: 1rem;
+
+        div {
+            display: flex;
+            flex-direction: column;
+            width: 200px;
+
+            label {
+                color: #fff;
+            }
+
+            p {
+                background-color: #fff;
+                height: 30px;
+                border-radius: 3px;
+                display: flex;
+                align-items: center;
+                padding-left: 3px;
+                font-size: 12px;
+            }
+        }
+    }
+}
+
+@media (max-width: 1025px) {
+    .financialHtml {
+        padding: 1rem;
+
+        .financialDiv {
+            flex-direction: column;
+
+            div {
+                flex-direction: column;
+                width: 100%;
+            }
+        }
+    }
+}

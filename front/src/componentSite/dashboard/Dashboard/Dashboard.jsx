@@ -8,6 +8,7 @@ import PriceList from '../economy/PriceList/PriceList';
 import NewApplication from '../application/NewApplication/NewApplication';
 import VewApplication from '../application/VewApplication/VewApplication';
 import VewUserApplication from '../application/VewUserApplication/VewUserApplication';
+import UserDashboard from '../UserDashboard/UserDashboard';
 
 const Dashboard = () => {
 
@@ -15,16 +16,15 @@ const Dashboard = () => {
         <div className='dashboard'>
             <div className='dashboardCont'>
                 <Link to={'/dashboard'} className='dashboardH2'><h2>Panel</h2></Link>
+
                 <Fields
                     title={'Imágenes'}
-                    category={[
-                        { name: 'Banners', path: 'banners' },
-                        { name: 'Avatares', path: 'newavatar' },
-                        { name: 'Nuevo Evento', path: 'newimgevent' },
-                        { name: 'Videos tutoriales', path: 'videotut' }
-                    ]}
+                    category={[{ name: 'Banners', path: 'banners' }, { name: 'Avatares', path: 'newavatar' }, { name: 'Nuevo Evento', path: 'newimgevent' }, { name: 'Videos tutoriales', path: 'videotut' }]}
                 />
-                <Fields title={'Usuarios'} category={[{ name: 'Ver', path: 'vewuser' }, { name: 'Modificar', path: 'upadUser' }, { name: 'x', path: '' }]} />
+                <Fields
+                    title={'Usuarios'}
+                    category={[{ name: 'Ver', path: 'vewuser' }, { name: 'Modificar', path: 'upadUser' }, { name: 'Buscar', path: 'userdashboard' }]}
+                />
                 <Fields title={'Mensajes'} category={[{ name: 'Contactos sin ver', path: 'vewcontact' }, { name: 'Enviar email', path: 'newcontact' }]} />
                 <Fields title={'Eventos'} category={[{ name: 'Ver eventos', path: 'getevent' }, { name: 'Crear evento', path: 'newevent' }]} />
                 <Fields title={'Sitios'} category={[{ name: 'Nuevo sitio', path: 'newsite' }, { name: 'Ver sitios', path: 'vewsite' }]} />
@@ -36,6 +36,8 @@ const Dashboard = () => {
 
                 <Route path='/videotut' element={<VideoTut />} />
                 <Route path='/banners' element={<Banner />} />
+
+                <Route path='/userdashboard' element={<UserDashboard />} />
 
                 <Route path='/pricelist' element={<PriceList />} />
                 <Route path='/newapplication' element={<NewApplication />} />

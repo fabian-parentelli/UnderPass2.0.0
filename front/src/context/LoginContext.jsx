@@ -2,6 +2,7 @@ import { createContext, useContext, useState } from "react";
 import { loginUserApi } from '../helpers/users/loginUser.api.js';
 import { currentUserApi } from '../helpers/users/currentUser.api.js';
 import { userRegisterApi } from '../helpers/users/registerUser.api.js';
+import { updDataUserApi } from "../helpers/users/updDataUser.api.js";
 // import { updateUserApi } from '../helpers/users/updateUser.api.js';
 
 const LoginContext = createContext();
@@ -29,7 +30,7 @@ const LoginProvider = ({ children }) => {
         if (registerData.status === 'success') {
             localStorage.setItem('token', registerData.accesToken);
             await current();
-        }; 
+        };
         setLoading(false);
     };
 
@@ -57,20 +58,21 @@ const LoginProvider = ({ children }) => {
         };
     };
 
-    // const updateUser = async (user, id) => {
-    //     const result = await updateUserApi(user, id);
-    //     if (result.status === 'success') {
-    //         localStorage.setItem('token', result.accesToken);
-    //         await current();
-    //         return { status: 'success' };
-    //     };
-    // };
+    const updateUser = async (user) => {
+        const response = await updDataUserApi(user);
+        if (response.status === 'success') {
+            if (response.accesToken) {
+                localStorage.setItem('token', response.accesToken);
+                await current();
+                return { status: 'success' };
+            } else return { status: 'success' };
+        } else return { status: 'error' };
+    };
 
     return (
         <LoginContext.Provider
             value={{
-                // setUser updateUser
-                register, loading, user, current, logout, login
+                register, loading, user, current, logout, login, updateUser
             }}
         >
             {children}
