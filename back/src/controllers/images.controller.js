@@ -22,6 +22,17 @@ const newBanners = async (req, res) => {
     };
 };
 
+const newAvatar = async (req, res) => {
+    const imagesUrl = req.cloudinaryUrls;
+    try {
+        const result = await imagenService.newAvatar({ ...req.body }, imagesUrl);
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof ImagenNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
 const getAllVideos = async (req, res) => {
     try {
         const result = await imagenService.getAllVideos();
@@ -46,6 +57,28 @@ const getAllBanners = async (req, res) => {
     const { limit = 12, page = 1, active, country, category } = req.query;
     try {
         const result = await imagenService.getAllBanners(limit, page, active, country, category);
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof EventNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
+const avatarActive = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const result = await imagenService.avatarActive(id);
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof UserNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
+const getAvatars = async (req, res) => {
+    const { type } = req.params;
+    try {
+        const result = await imagenService.getAvatars(type);
         if (result) return res.sendSuccess(result);
     } catch (error) {
         if (error instanceof EventNotFound) return res.sendClientError(error.message);
@@ -99,5 +132,5 @@ const updBannerActive = async (req, res) => {
 export {
     newVideoTut, newBanners, getAllVideos, getAllBanners,
     getVideoTutByName, activeVideo, updBanner, updBannerActive,
-    getBannerBody
+    getBannerBody, newAvatar, getAvatars, avatarActive
 };

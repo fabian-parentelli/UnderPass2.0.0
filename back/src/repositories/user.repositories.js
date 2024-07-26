@@ -23,14 +23,29 @@ export default class UserRepository {
         const result = await userManager.getByIdPass(id);
         return result;
     };
-    
+
     getAllUsers = async (query) => {
         const result = await userManager.getAllUsers(query);
         return result;
     };
-    
+
     getUserById = async (id) => {
         const result = await userManager.getUserById(id);
+        return result;
+    };
+
+    paginates = async (query, options) => {
+        const result = await userManager.paginates(query, options);
+        return result;
+    };
+
+    searchUser = async (name) => {
+        const result = await userManager.searchUser(name);
+        return result;
+    };
+
+    userAmount = async (country) => {
+        const result = await userManager.userAmount(country);
         return result;
     };
 
@@ -40,12 +55,12 @@ export default class UserRepository {
         const result = await financialUserManager.newFinancial(data);
         return result;
     };
-    
+
     getFinanceByUserId = async (id) => {
         const result = await financialUserManager.getFinanceByUserId(id);
         return result;
     };
-    
+
     updateFinace = async (finance) => {
         const result = await financialUserManager.updateFinace(finance);
         return result;

@@ -1,9 +1,9 @@
 import './userDashboard.scss';
 import { useState } from 'react';
-import Title from '../../../component/dashboard/Title/Title';
+import Title from '../../../../component/dashboard/Title/Title';
 import EngineeringIcon from '@mui/icons-material/Engineering';
-import UserSearch from '../../../component/utils/UserSearch/UserSearch';
-import UserDatas from '../../../component/user/datas/UserDatas/UserDatas';
+import UserSearch from '../../../../component/utils/UserSearch/UserSearch';
+import UserDatas from '../../../../component/user/datas/UserDatas/UserDatas';
 
 const UserDashboard = () => {
 

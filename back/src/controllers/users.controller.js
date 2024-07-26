@@ -42,6 +42,29 @@ const newFinancial = async (req, res) => {
     };
 };
 
+const paginates = async (req, res) => {
+    const { user } = req.user;
+    const { limit = 12, page = 1, active, country } = req.query;
+    try {
+        const result = await userService.paginates(user, limit, page, active, country);
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof UserNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
+const searchUser = async (req, res) => {
+    const { name } = req.params;
+    try {
+        const result = await userService.searchUser(name);
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof UserNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
 const current = async (req, res) => {
     try {
         const result = await userService.current({ ...req.user });
@@ -127,6 +150,53 @@ const updFinancial = async (req, res) => {
     };
 };
 
+const ImgAvatar = async (req, res) => {
+    const { id } = req.params;
+    const { user } = req.user;
+    const imagesUrl = req.cloudinaryUrls;
+    try {
+        const result = await userService.ImgAvatar(id, imagesUrl, user);
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof UserNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
+const updAvatar = async (req, res) => {
+    const { id } = req.params;
+    const { user } = req.user;
+    try {
+        const result = await userService.updAvatar(id, { ...req.body }, user);
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof UserNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
+const updRole = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const result = await userService.updRole(id);
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof UserNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
+const updActive = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const result = await userService.updActive(id);
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof UserNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
 const updUser = async (req, res) => {
     const { user } = req.user;
     try {
@@ -139,6 +209,7 @@ const updUser = async (req, res) => {
 };
 
 export {
-    register, login, recoverPassword, current, interPass,
-    getAllUsers, sekker, newPassword, getUserById, updUser, newFinancial, getFinancial, updFinancial
+    register, login, recoverPassword, current, interPass, paginates, updRole, updActive, searchUser,
+    getAllUsers, sekker, newPassword, getUserById, updUser, newFinancial, getFinancial, updFinancial,
+    updAvatar, ImgAvatar
 };

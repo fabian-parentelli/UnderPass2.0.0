@@ -2,7 +2,12 @@
 
 .expandApplication {
     padding-left: 2rem;
-    padding-top: 1rem;
+
+    .expandList {
+        display: flex;
+        flex-direction: column;
+        gap: .4rem;
+    }
 
     ul li {
         font-size: 14px;
@@ -10,7 +15,7 @@
     }
 
     ul li strong {
-        color: $colorA;
+        color: $colorB;
     }
 
 }

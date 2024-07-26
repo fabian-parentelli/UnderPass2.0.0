@@ -10,15 +10,10 @@ const CloudFile = ({ onChange, folderName, contClass }) => {
     const handleImgChange = (e) => {
         const selectedFiles = Array.from(e.target.files);
         const newFiles = [...files, ...selectedFiles];
-
-        // Ordenar los archivos por nombre, fecha u otro criterio si es necesario
-        newFiles.sort((a, b) => a.name.localeCompare(b.name)); // Ejemplo de ordenación por nombre
-
+        newFiles.sort((a, b) => a.name.localeCompare(b.name)); 
         setFiles(newFiles);
-
         const imageArray = newFiles.map(file => URL.createObjectURL(file));
         setImages(imageArray);
-
         const formData = new FormData();
         newFiles.forEach(file => {
             formData.append('files', file);
@@ -63,3 +58,5 @@ const CloudFile = ({ onChange, folderName, contClass }) => {
 };
 
 export default CloudFile;
+
+// cfRect - cfCircle 

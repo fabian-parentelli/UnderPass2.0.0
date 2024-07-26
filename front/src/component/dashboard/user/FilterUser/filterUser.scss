@@ -1,0 +1,26 @@
+.filterUser {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    form {
+        display: flex;
+        gap: 1rem;
+
+        select {
+            width: 200px;
+        }
+    }
+
+    .filterUserDiv {
+        display: flex;
+        align-items: center;
+        background-color: #ffff;
+        border-radius: 3px;
+        padding: 0 .4rem;
+
+        input {
+            border: none;
+        }
+    }
+}

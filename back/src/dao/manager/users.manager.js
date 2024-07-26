@@ -26,4 +26,24 @@ export default class User {
         return await userModel.findById(id).lean();
     };
 
+    paginates = async (query, options) => {
+        return await userModel.paginate(query, options)
+    };
+
+    searchUser = async (name) => {
+        const query = {
+            role: { $ne: 'master' },
+            $or: [{ name: { $regex: name, $options: 'i' } }]
+        };
+        return await userModel.paginate(query, { limit: 10, page: 1, lean: true });
+    };
+
+    userAmount = async (country) => {
+        const filter = {
+            role: { $nin: ["master", "admin"] },
+            "location.country": { $regex: new RegExp(country, 'i') }
+        };
+        return await userModel.countDocuments(filter);
+    };
+
 };

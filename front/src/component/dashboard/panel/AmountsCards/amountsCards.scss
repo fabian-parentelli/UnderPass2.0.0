@@ -1,0 +1,23 @@
+@import '../../../../style/colors.scss';
+
+.amountsCards {
+    display: flex;
+    flex-direction: column;
+    gap: .4rem;
+    background-color: $colorC;
+    width: 400px;
+    padding: 1rem;
+    border-radius: 6px;
+    box-shadow: 5px 5px 15px black;
+    color: #fff;
+
+    div {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+        img {
+            width: 30px;
+        }
+    }
+}

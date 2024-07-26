@@ -15,11 +15,7 @@ const register = async (user, imagesUrl) => {
     delete user.folderName;
     if (imagesUrl.length === 0) imagesUrl = ['https://res.cloudinary.com/dtzy75wyt/image/upload/v1720397419/avatars/efiifldfknz2z8zfeezl.png'];
     user.avatar = imagesUrl;
-    user.location = {
-        country: user.country,
-        province: user.province,
-        city: user.city
-    };
+    user.location = { country: user.country, province: user.province, city: user.city };
     delete user.country;
     delete user.province;
     delete user.city;
@@ -69,6 +65,24 @@ const newFinancial = async (data) => {
     await userRepository.update(user);
     if (!result) throw new UserNotFound('No se puedo guardar el registro financiero');
     return { status: 'success', result };
+};
+
+const paginates = async (user, limit, page, active, country) => {
+    const query = {};
+    if (user !== 'master') { query.role = { $ne: 'master' } };
+    if (active !== undefined) { query.active = active };
+    if (country) query['location.country'] = { $regex: country, $options: "i" };
+    const options = { page, limit, sort: { created: -1 }, lean: true };
+    const result = await userRepository.paginates(query, options);
+    if (!result) throw new UserNotFound('No se encuentran los usuarios');
+    result.docs.forEach((us) => delete us.password);
+    return { status: 'success', result };
+};
+
+const searchUser = async (name) => {
+    const userData = await userRepository.searchUser(name);
+    if (userData.docs.length < 1) return { status: 'success', result: {} };
+    return { status: 'success', userData };
 };
 
 const current = (user) => {
@@ -139,6 +153,55 @@ const updFinancial = async (data) => {
     return { status: 'success', result };
 };
 
+const ImgAvatar = async (userId, img, user) => {
+    const userDb = await userRepository.getUserById(userId);
+    if (!userDb) throw new UserNotFound('No se encuentra el usuario');
+    userDb.avatar.unshift(img[0]);
+    const result = await userRepository.update(userDb);
+    if (!result) throw new UserNotFound('No se puede actualizar el avatar del usuario');
+    if (user.role !== 'user') return { status: 'success', result };
+    else {
+        delete userDb.password;
+        delete userDb.financeData;
+        const accesToken = generateToken(userDb);
+        return { status: 'success', accesToken };
+    };
+};
+
+const updAvatar = async (userId, { img }, user) => {
+    const userDb = await userRepository.getUserById(userId);
+    if (!userDb) throw new UserNotFound('No se encuentra el usuario');
+    userDb.avatar.unshift(img);
+    const result = await userRepository.update(userDb);
+    if (!result) throw new UserNotFound('No se puede actualizar el avatar del usuario');
+    if (user.role !== 'user') return { status: 'success', result };
+    else {
+        delete userDb.password;
+        delete userDb.financeData;
+        const accesToken = generateToken(userDb);
+        return { status: 'success', accesToken };
+    };
+};
+
+const updRole = async (id) => {
+    const user = await userRepository.getUserById(id);
+    if (!user) throw new UserNotFound('No se encuentra el usuario');
+    if (user.role === 'admin') user.role = 'user';
+    else user.role = 'admin';
+    const result = await userRepository.update(user);
+    if (!result) throw new UserNotFound('No se puede actualizar el usuario');
+    return { status: 'success' };
+};
+
+const updActive = async (id) => {
+    const user = await userRepository.getUserById(id);
+    if (!user) throw new UserNotFound('No se encuentra el usuario');
+    user.active = !user.active;
+    const result = await userRepository.update(user);
+    if (!result) throw new UserNotFound('No se puede actualizar el usuario');
+    return { status: 'success' };
+};
+
 const updUser = async (user, whatUser) => {
     const userDB = await userRepository.getUserById(user._id);
     if (!user) throw new UserNotFound('usuario no encontrado');
@@ -147,11 +210,12 @@ const updUser = async (user, whatUser) => {
     if (!result) throw new UserNotFound('La contraseña nueva no se puede guardar');
     delete result.password;
     const accesToken = generateToken(result);
-    if(whatUser.role === 'user') return { status: 'success', accesToken };
+    if (whatUser.role === 'user') return { status: 'success', accesToken };
     else return { status: 'success', result };
 };
 
 export {
-    register, login, current, recoverPassword, interPass,
-    getAllUsers, sekker, newPassword, getUserById, updUser, newFinancial, getFinancial, updFinancial
+    register, login, current, recoverPassword, interPass, paginates, updRole, updActive, searchUser,
+    getAllUsers, sekker, newPassword, getUserById, updUser, newFinancial, getFinancial, updFinancial,
+    updAvatar, ImgAvatar
 };

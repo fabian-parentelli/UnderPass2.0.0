@@ -1,4 +1,4 @@
-import { tutorialsManager, bannersManager } from '../dao/manager/index.manager.js';
+import { tutorialsManager, bannersManager, avatarManager } from '../dao/manager/index.manager.js';
 
 export default class ImagenRepository {
 
@@ -48,7 +48,7 @@ export default class ImagenRepository {
         });
         return updatedBanners;
     };
-    
+
     getAllBanners = async (query, limit, page) => {
         const result = await bannersManager.getAllBanners(query, limit, page);
         return result;
@@ -64,4 +64,25 @@ export default class ImagenRepository {
         return result;
     };
 
+    // Avatars -----------------------------------------
+
+    newAvatar = async (avatar) => {
+        const result = await avatarManager.newAvatar(avatar);
+        return result;
+    };
+    
+    getAvatars = async (query) => {
+        const result = await avatarManager.getAvatars(query);
+        return result;
+    };
+    
+    getAvatarById = async (id) => {
+        const result = await avatarManager.getAvatarById(id);
+        return result;
+    };
+    
+    updateAvatar = async (avatar) => {
+        const result = await avatarManager.updateAvatar(avatar);
+        return result;
+    };
 };

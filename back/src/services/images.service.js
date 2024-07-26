@@ -17,6 +17,13 @@ const newBanners = async (banner, imgUrl) => {
     return { status: 'success', result };
 };
 
+const newAvatar = async (avatar, imgUrl) => {
+    avatar.imgUrl = imgUrl[0];
+    const result = await imagenRepository.newAvatar(avatar);
+    if (!result) throw new ImagenNotFound('No se puede guardar el avatar');
+    return { status: 'success', result };
+};
+
 const getAllVideos = async () => {
     const result = await imagenRepository.getAllVideos();
     if (!result) throw new ImagenNotFound('No se puede encontrar los video tutoriales');
@@ -37,6 +44,23 @@ const getAllBanners = async (limit, page, active, country, category) => {
     if (active !== undefined) query.active = active;
     const result = await imagenRepository.getAllBanners(query, limit, page);
     if (!result) throw new ImagenNotFound('No se encuentran los banners');
+    return { status: 'success', result };
+};
+
+const avatarActive = async (id) => {
+    const avatar = await imagenRepository.getAvatarById(id);
+    if (!avatar) throw new ImagenNotFound('No se encuentra el avatar');
+    avatar.active = !avatar.active;
+    const result = await imagenRepository.updateAvatar(avatar);
+    if (!result) throw new ImagenNotFound('No se encuentra el avatar');
+    return { status: 'success', result };
+};
+
+const getAvatars = async (type) => {
+    const query = {};
+    if (type === 'user') query.active = true;
+    const result = await imagenRepository.getAvatars(query);
+    if (!result) throw new ImagenNotFound('No se encuentran los avatars');
     return { status: 'success', result };
 };
 
@@ -77,5 +101,5 @@ const updBannerActive = async (id) => {
 export {
     newVideoTut, newBanners, getAllVideos, getAllBanners,
     getVideoTutByName, activeVideo, updBanner, updBannerActive,
-    getBannerBody
+    getBannerBody, newAvatar, getAvatars, avatarActive
 };

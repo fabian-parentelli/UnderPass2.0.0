@@ -1,0 +1,35 @@
+.printUsers {
+    margin: 2rem 0;
+}
+
+.printUsersName {
+    cursor: pointer;
+    transition: .3s ease-in-out;
+
+    &:hover {
+        color: black;
+    }
+}
+
+.flagsIcon {
+    border-radius: 0;
+    width: 30px;
+    object-fit: contain;
+}
+
+.printUsersRole {
+    cursor: pointer;
+    transition: .3s;
+
+    &:hover {
+        color: black;
+    }
+}
+
+.printUsersActive {
+    cursor: pointer;
+    
+    &:hover {
+        background-color: rgba(184, 184, 184, 0.671);
+    }
+}

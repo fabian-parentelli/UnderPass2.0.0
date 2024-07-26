@@ -4,6 +4,7 @@ import { passportEnum } from '../config/enums.config.js';
 
 export default class AlertsRouter extends Router {
     init() {
-        this.get('/', ['USER', 'ADMIN', 'MASTER'], passportEnum.JWT, alertsController.getAll);
+        this.get('/', ['ADMIN', 'MASTER'], passportEnum.JWT, alertsController.getAll);
+        this.get('/amount', ['ADMIN', 'MASTER'], passportEnum.JWT, alertsController.amount);
     };
 };

@@ -24,7 +24,7 @@ const UserMenu = () => {
                 <p>Tus Datos</p>
             </Link>
             
-            <Link to={'/profile/avatarmenu'} className='userMen'>
+            <Link to={'/profile/panelavatar'} className='userMen'>
                 <PhotoIcon className='icon' />
                 <p>Avatar</p>
             </Link>

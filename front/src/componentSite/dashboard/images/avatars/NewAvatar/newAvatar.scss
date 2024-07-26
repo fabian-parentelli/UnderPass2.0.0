@@ -1,0 +1,17 @@
+.newAvatar {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    .newAvatarInp {
+        display: flex;
+        flex-direction: column;
+        width: 300px;
+    }
+
+    .newAvatarCloud {
+        width: 300px;
+        height: 300px;
+    }
+}

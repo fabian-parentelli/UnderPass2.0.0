@@ -12,4 +12,14 @@ const getAll = async (req, res) => {
     };
 };
 
-export { getAll };
+const amount = async (req, res) => {
+    try {
+        const result = await alertsServices.amount();
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof AllertsNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
+export { getAll, amount };

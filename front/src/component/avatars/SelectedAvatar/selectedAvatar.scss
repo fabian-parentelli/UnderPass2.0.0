@@ -1,0 +1,30 @@
+.selectedAvatar {
+
+    .selectedAvatarBtn {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+        img {
+            width: 100px;
+            object-fit: contain;
+            border-radius: 50%;
+            margin-left: 1rem;
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    
+    .selectedAvatar {
+
+        .selectedAvatarBtn {
+            flex-direction: column;
+            align-items: flex-start;
+
+            img {
+                width: 80px;
+            }
+        }
+    }
+}
