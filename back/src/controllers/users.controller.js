@@ -175,6 +175,18 @@ const updAvatar = async (req, res) => {
     };
 };
 
+const historyAvatar = async (req, res) => {
+    const { id } = req.params;
+    const { user } = req.user;
+    try {
+        const result = await userService.historyAvatar(id, { ...req.body }, user);
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof UserNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
 const updRole = async (req, res) => {
     const { id } = req.params;
     try {
@@ -211,5 +223,5 @@ const updUser = async (req, res) => {
 export {
     register, login, recoverPassword, current, interPass, paginates, updRole, updActive, searchUser,
     getAllUsers, sekker, newPassword, getUserById, updUser, newFinancial, getFinancial, updFinancial,
-    updAvatar, ImgAvatar
+    updAvatar, ImgAvatar, historyAvatar
 };

@@ -1,0 +1,39 @@
+@import '../../../../style/colors.scss';
+
+#avatarHelp {
+    width: 90%;
+    margin: 0 auto;
+    border-top: solid 1px gray;
+
+    .avatarHelpPhot {
+        margin-top: 4rem;
+        display: flex;
+        justify-content: space-around;
+
+        img {
+            height: 300px;
+            box-shadow: 5px 5px 15px;
+        }
+    }
+
+    .avatarHelpP {
+        line-height: 2.5;
+        width: 80%;
+        margin: 4rem auto;
+    }
+
+    strong {
+        color: $colorB;
+    }
+
+    .avatarHelpImg {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        img {
+            width: 40%;
+            box-shadow: 5px 5px 15px;
+        }
+    }
+}

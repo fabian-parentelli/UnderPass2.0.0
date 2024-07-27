@@ -2,8 +2,8 @@ import './preAvatar.scss';
 import { useState } from "react";
 import Load from "../../utils/Load";
 import VewAvatars from "../VewAvatars/VewAvatars";
-import { updAvatarUserApi } from '../../../helpers/users/updAvatarUser.api';
 import { useLoginContext } from '../../../context/LoginContext';
+import { updAvatarUserApi } from '../../../helpers/users/updAvatarUser.api.js';
 
 const PreAvatar = ({ id, setImage }) => {
 
@@ -17,9 +17,7 @@ const PreAvatar = ({ id, setImage }) => {
             if (response.accesToken) {
                 localStorage.setItem('token', response.accesToken);
                 await current();
-            } else {
-                setImage(response.result.avatar[0]);
-            };
+            } else setImage(response.result.avatar[0]);
         } else console.log(response);
         setLoading(false);
     };

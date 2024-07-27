@@ -16,7 +16,7 @@ const SelectedAvatar = ({ user }) => {
             <div className='selectedAvatarBtn'>
                 {image && <img src={image} alt="img" />}
                 <button className='btn btnC' onClick={() => setVew(false)} >Avatars</button>
-                <button className='btn btnC' onClick={() => setVew(true)} >Subir Img</button>
+                <button className='btn btnC' onClick={() => setVew(true)} >Tu Foto</button>
             </div>
 
             {!vew

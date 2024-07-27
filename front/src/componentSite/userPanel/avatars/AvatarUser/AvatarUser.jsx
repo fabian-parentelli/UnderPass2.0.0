@@ -10,7 +10,7 @@ const AvatarUser = () => {
 
     return (
         <div className='avatarUser'>
-            <Title Icon={SupervisedUserCircleIcon} name='Avatares' goTo='/help' />
+            <Title Icon={SupervisedUserCircleIcon} name='Avatares' goTo='/help#avatarHelp' />
             <SelectedAvatar user={user.data} />
         </div>
     );

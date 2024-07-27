@@ -2,9 +2,9 @@ import './uploadAvatar.scss';
 import { useState } from 'react';
 import Load from '../../utils/Load';
 import CloudFile from '../../utils/CloudFile/CloudFile';
+import HistoryAvatar from '../HistoryAvatar/HistoryAvatar.jsx';
 import { useLoginContext } from '../../../context/LoginContext';
 import { updImgAvatarApi } from '../../../helpers/users/updImgAvatar.api.js';
-import HistoryAvatar from '../HistoryAvatar/HistoryAvatar.jsx';
 
 const UploadAvatar = ({ id, setImage }) => {
 

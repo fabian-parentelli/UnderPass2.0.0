@@ -22,4 +22,5 @@ const data = [
     { label: 'Recuperar contraseña', data: 'recoverPassHelp' },
     { label: 'Quiero estar en el banner', data: 'wantBannerHelp' },
     { label: 'Modificar datos del usuario', data: 'yourDataHelp' },
+    { label: 'Modificar avatar', data: 'avatarHelp' },
 ];

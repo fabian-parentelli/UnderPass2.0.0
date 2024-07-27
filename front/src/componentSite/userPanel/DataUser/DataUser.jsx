@@ -10,7 +10,7 @@ const DataUser = () => {
 
     return (
         <div className='dataUser'>
-            <Title Icon={AccountBoxIcon} name='Tus Datos' goTo='yourdata' />
+            <Title Icon={AccountBoxIcon} name='Tus Datos' goTo='/help#yourDataHelp' />
             {user && user.data && user.data._id && < UserDatas id={user.data._id} />}
         </div>
     );

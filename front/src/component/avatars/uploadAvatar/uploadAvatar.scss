@@ -1,6 +1,7 @@
 .uploadAvatar {
     display: flex;
-    width: 50%;
+    flex-wrap: wrap;
+    max-width: 550px;
     gap: 4rem;
     margin-top: 2rem;
     background-color: rgba(0, 0, 0, 0.527);

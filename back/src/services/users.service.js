@@ -183,6 +183,23 @@ const updAvatar = async (userId, { img }, user) => {
     };
 };
 
+const historyAvatar = async (userId, { img }, user) => {
+    const userDb = await userRepository.getUserById(userId);
+    if (!userDb) throw new UserNotFound('No se encuentra el usuario');
+    const imgUrl = userDb.avatar[img];
+    userDb.avatar.splice(img, 1);
+    userDb.avatar.unshift(imgUrl);
+    const result = await userRepository.update(userDb);
+    if (!result) throw new UserNotFound('No se puede actualizar el avatar del usuario');
+    if (user.role !== 'user') return { status: 'success', result };
+    else {
+        delete userDb.password;
+        delete userDb.financeData;
+        const accesToken = generateToken(userDb);
+        return { status: 'success', accesToken };
+    };
+};
+
 const updRole = async (id) => {
     const user = await userRepository.getUserById(id);
     if (!user) throw new UserNotFound('No se encuentra el usuario');
@@ -217,5 +234,5 @@ const updUser = async (user, whatUser) => {
 export {
     register, login, current, recoverPassword, interPass, paginates, updRole, updActive, searchUser,
     getAllUsers, sekker, newPassword, getUserById, updUser, newFinancial, getFinancial, updFinancial,
-    updAvatar, ImgAvatar
+    updAvatar, ImgAvatar, historyAvatar
 };

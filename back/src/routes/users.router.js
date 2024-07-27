@@ -22,6 +22,7 @@ export default class UserRouter extends Router {
         this.put('/financial', ['USER', 'ADMIN', 'MASTER'], passportEnum.JWT, userController.updFinancial);
         this.put('/avatar/:id', ['USER', 'ADMIN', 'MASTER'], passportEnum.JWT, userController.updAvatar);
         this.put('/imgavatar/:id', ['USER', 'ADMIN', 'MASTER'], passportEnum.JWT, multipleUploader, uploadToCloudinary, userController.ImgAvatar);
+        this.put('/history/:id', ['USER', 'ADMIN', 'MASTER'], passportEnum.JWT, userController.historyAvatar);
         this.put('/role/:id', ['MASTER'], passportEnum.JWT, userController.updRole);
         this.put('/active/:id', ['ADMIN', 'MASTER'], passportEnum.JWT, userController.updActive);
         this.put('/', ['USER', 'ADMIN', 'MASTER'], passportEnum.JWT, userController.updUser);
