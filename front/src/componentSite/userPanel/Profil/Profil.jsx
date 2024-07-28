@@ -8,6 +8,7 @@ import { useLoginContext } from "../../../context/LoginContext";
 import Advertising from '../Advertising/Advertising';
 import DataUser from '../DataUser/DataUser';
 import AvatarUser from '../avatars/AvatarUser/AvatarUser';
+import ProductPanel from '../product/ProductPanel/ProductPanel';
 
 const Profile = () => {
 
@@ -20,8 +21,9 @@ const Profile = () => {
             <Routes>
                 <Route path='/' element={<PanelProfile user={user.data} />} />
                 <Route path='/datauser' element={<DataUser />} />
-                <Route  path='/panelavatar' element={<AvatarUser />} />
+                <Route path='/panelavatar' element={<AvatarUser />} />
                 <Route path='/advertising' element={<Advertising />} />
+                <Route path='productmenu' element={<ProductPanel />} />
             </Routes>
         </div>
     );

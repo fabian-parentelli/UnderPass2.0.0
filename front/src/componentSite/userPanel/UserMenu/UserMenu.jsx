@@ -39,9 +39,9 @@ const UserMenu = () => {
                 <p>Sitio</p>
             </Link>
             
-            <Link to={'/profile/marketmenu'} className='userMen'>
+            <Link to={'/profile/productmenu'} className='userMen'>
                 <CardGiftcardIcon className='icon' />
-                <p>Mercado</p>
+                <p>Productos</p>
             </Link>
 
             <Link to={'/profile/whatyouremail'} className='userMen'>

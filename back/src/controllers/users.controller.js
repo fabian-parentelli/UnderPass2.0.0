@@ -33,8 +33,9 @@ const recoverPassword = async (req, res) => {
 };
 
 const newFinancial = async (req, res) => {
+    const { user } = req.user;
     try {
-        const result = await userService.newFinancial({ ...req.body });
+        const result = await userService.newFinancial({ ...req.body }, user);
         if (result) return res.sendSuccess(result);
     } catch (error) {
         if (error instanceof UserNotFound) return res.sendClientError(error.message);

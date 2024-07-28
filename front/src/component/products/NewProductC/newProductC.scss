@@ -1,0 +1,101 @@
+.newProductC {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 4rem;
+    margin: 1rem 0 0 1rem;
+
+    .newProductCDiv {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        align-items: center;
+    }
+
+    .newProductCForm {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+
+        .newProductCFormA {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+
+            .newProductCFormB {
+                display: flex;
+                gap: 2rem;
+
+                div {
+                    display: flex;
+                    flex-direction: column;
+                }
+            }
+        }
+
+        .newProductCSwitch {
+
+            div {
+                display: flex;
+                align-items: center;
+                
+                p {
+                    font-size: 14px;
+                }
+            }
+
+            .newProductCSwitchText {
+                color: gray;
+                font-size: 12px;
+            }
+        }
+
+        .newProductText {
+            display: flex;
+            flex-direction: column;
+
+            textarea {
+                height: 100px;
+            }
+        }
+    }
+}
+
+@media (max-width: 767px) {
+
+    .newProductC {
+        margin: 0;
+        width: 100%;
+
+        .newProductCForm {
+            gap: 2rem;
+            width: 100%;
+
+            .newProductCFormA {
+                width: 100%;
+                
+                .newProductCFormB {
+                    flex-direction: column;
+                    gap: 2rem;
+                    width: 100%;
+
+                    div {
+                        width: 100%;
+                        display: flex;
+                        flex-direction: column;
+                    }
+                }
+            }
+
+            .newProductText {
+                display: flex;
+                flex-direction: column;
+
+                textarea {
+                    height: 100px;
+                }
+            }
+        }
+    }
+}

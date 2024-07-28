@@ -20,6 +20,10 @@
 
     img {
         width: 500px;
+        mask-image: linear-gradient(
+            black 80%,
+            transparent
+        );
     }
 }
 

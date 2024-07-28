@@ -14,6 +14,7 @@ import VideoHelp from "../componentSite/help/VideoHelp/VideoHelp.jsx";
 import Profile from "../componentSite/userPanel/Profil/Profil.jsx";
 import BannerWant from "../componentSite/BannerWant/BannerWant.jsx";
 import VewCart from "../componentSite/cart/VewCart/VewCart.jsx";
+import NewProduct from "../componentSite/product/NewProduct/NewProduct.jsx";
 
 const RoutesComp = () => {
 
@@ -33,6 +34,7 @@ const RoutesComp = () => {
                     <Route path="/videohelp/:tutorial" element={<VideoHelp />} />
                     <Route path="/bannerwant" element={<BannerWant />} />
                     <Route path="/cart" element={<VewCart />} />
+                    <Route path="/newproduct" element={<NewProduct />} />
 
                     {user.logged &&
                         <>

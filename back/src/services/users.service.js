@@ -58,13 +58,17 @@ const recoverPassword = async ({ email }) => {
     return { status: 'success' };
 };
 
-const newFinancial = async (data) => {
+const newFinancial = async (data, user) => {
     const result = await userRepository.newFinancial(data);
-    const user = await userRepository.getUserById(data.userId);
-    user.financeData = result._id.toString();
-    await userRepository.update(user);
-    if (!result) throw new UserNotFound('No se puedo guardar el registro financiero');
-    return { status: 'success', result };
+    if (!result) throw new UserNotFound('No se puede guardar el registro financiero');
+    const userDb = await userRepository.getUserById(data.userId);
+    if (!userDb) throw new UserNotFound('No se puede encontrar el usuario');
+    userDb.financeData = result._id.toString();
+    await userRepository.update(userDb);
+    delete userDb.password;
+    const accesToken = generateToken(userDb);
+    if (data.userId == user._id) return { status: 'success', accesToken };
+    else return { status: 'success', result };
 };
 
 const paginates = async (user, limit, page, active, country) => {
@@ -159,13 +163,11 @@ const ImgAvatar = async (userId, img, user) => {
     userDb.avatar.unshift(img[0]);
     const result = await userRepository.update(userDb);
     if (!result) throw new UserNotFound('No se puede actualizar el avatar del usuario');
+    delete userDb.password;
+    const accesToken = generateToken(userDb);
+    if (userId == user._id) return { status: 'success', accesToken };
     if (user.role !== 'user') return { status: 'success', result };
-    else {
-        delete userDb.password;
-        delete userDb.financeData;
-        const accesToken = generateToken(userDb);
-        return { status: 'success', accesToken };
-    };
+    else return { status: 'success', accesToken };
 };
 
 const updAvatar = async (userId, { img }, user) => {
@@ -174,13 +176,11 @@ const updAvatar = async (userId, { img }, user) => {
     userDb.avatar.unshift(img);
     const result = await userRepository.update(userDb);
     if (!result) throw new UserNotFound('No se puede actualizar el avatar del usuario');
+    delete userDb.password;
+    const accesToken = generateToken(userDb);
+    if (userId == user._id) return { status: 'success', accesToken };
     if (user.role !== 'user') return { status: 'success', result };
-    else {
-        delete userDb.password;
-        delete userDb.financeData;
-        const accesToken = generateToken(userDb);
-        return { status: 'success', accesToken };
-    };
+    else return { status: 'success', accesToken };
 };
 
 const historyAvatar = async (userId, { img }, user) => {
@@ -191,13 +191,11 @@ const historyAvatar = async (userId, { img }, user) => {
     userDb.avatar.unshift(imgUrl);
     const result = await userRepository.update(userDb);
     if (!result) throw new UserNotFound('No se puede actualizar el avatar del usuario');
+    delete userDb.password;
+    const accesToken = generateToken(userDb);
+    if (userId == user._id) return { status: 'success', accesToken };
     if (user.role !== 'user') return { status: 'success', result };
-    else {
-        delete userDb.password;
-        delete userDb.financeData;
-        const accesToken = generateToken(userDb);
-        return { status: 'success', accesToken };
-    };
+    else return { status: 'success', accesToken };
 };
 
 const updRole = async (id) => {

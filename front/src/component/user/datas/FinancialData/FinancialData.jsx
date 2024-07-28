@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import SnackbarAlert from '../../../utils/SnackbarAlert';
 import FinancialHtml from './FinancialHtml/FinancialHtml';
 import { newFinancialDataApi } from '../../../../helpers/users/newFinacialData.api';
 import { getFinancialApi } from '../../../../helpers/users/getFinancial.api';
 import { updFinancialApi } from '../../../../helpers/users/updFinancial.api';
-import SnackbarAlert from '../../../utils/SnackbarAlert';
+import { useLoginContext } from '../../../../context/LoginContext';
 
 const FinancialData = ({ id, setLoading }) => {
 
@@ -13,6 +15,8 @@ const FinancialData = ({ id, setLoading }) => {
     const [values, setValues] = useState({
         holder: '', cuit: '', bank: '', account: '', cbu: '', userId: id
     });
+    const navigate = useNavigate();
+    const { current } = useLoginContext();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -43,7 +47,18 @@ const FinancialData = ({ id, setLoading }) => {
             if (response.status === 'success') {
                 setMessage({ status: 'success', mess: 'Datos financieros creados correctamente' });
                 setOpen(true);
-                setTimeout(() => { setOpen(false) }, 2000);
+                if (response.accesToken) {
+                    localStorage.setItem('token', response.accesToken);
+                    await current();
+                };
+                setTimeout(() => {
+                    setOpen(false);
+                    const path = localStorage.getItem('path');
+                    if (path) {
+                        localStorage.removeItem('path');
+                        navigate(`/${path}`);
+                    };
+                }, 2000);
             } else console.log(response);
         } else {
             const response = await updFinancialApi(values);

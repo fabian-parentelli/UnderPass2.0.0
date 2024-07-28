@@ -5,6 +5,7 @@ import PdfRouter from './pdf.router.js';
 import GraphRouter from './graph.router.js';
 import AplliRouter from './application.router.js';
 import AlertsRouter from './alerts.router.js';
+import ProductRouter from './products.router.js';
 
 export const userRouter = new UserRouter().getRouter();
 export const imagenRouter = new ImagenRouter().getRouter();
@@ -13,3 +14,4 @@ export const pdfRouter = new PdfRouter().getRouter();
 export const graphRouter = new GraphRouter().getRouter();
 export const aplliRouter = new AplliRouter().getRouter();
 export const alertsRouter = new AlertsRouter().getRouter();
+export const productRouter = new ProductRouter().getRouter();

@@ -4,6 +4,7 @@ import mongoosePaginate from 'mongoose-paginate-v2';
 const applicationCollection = 'application';
 
 const applicationSchema = new mongoose.Schema({
+
     folderName: { type: String },
     title: { type: String },
     category: { type: String },
@@ -18,6 +19,7 @@ const applicationSchema = new mongoose.Schema({
     type: { type: String },
     pay: { type: Boolean, default: false },
     underVew: { type: Boolean, default: true },
+    
 });
 
 applicationSchema.plugin(mongoosePaginate);
