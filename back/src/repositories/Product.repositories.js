@@ -6,4 +6,9 @@ export default class ProductRepository {
         const result = await productManager.newProduct(product);
         return result;
     };
+    
+    getByUserId = async (id) => {
+        const result = await productManager.getByUserId(id);
+        return result;
+    };
 };

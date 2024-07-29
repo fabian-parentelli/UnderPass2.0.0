@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Load from '../../utils/Load';
 import SnackbarAlert from '../../utils/SnackbarAlert';
 import NewProductC from '../NewProductC/NewProductC';
+import VewProductC from '../VewProductC/VewProductC';
 
 const SelectedProd = ({ userId }) => {
 
@@ -21,7 +22,7 @@ const SelectedProd = ({ userId }) => {
             </button>
 
             {vew
-                ? 'Ver los productos'
+                ? <VewProductC userId={userId} setLoading={setLoading} />
                 : <NewProductC userId={userId} setOpen={setOpen} setMessage={setMessage} setLoading={setLoading} />
             }
             <SnackbarAlert open={open} message={message} />

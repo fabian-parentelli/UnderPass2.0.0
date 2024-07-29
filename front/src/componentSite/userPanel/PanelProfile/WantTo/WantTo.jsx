@@ -4,11 +4,10 @@ import { useNavigate } from 'react-router-dom';
 
 const WantTo = () => {
 
-    const [value, setValue] = useState('');
     const navigate = useNavigate();
+    const [value, setValue] = useState('');
 
     const handleChange = (e) => setValue(e.target.value);
-
     useEffect(() => { navigate(value) }, [value]);
 
     return (

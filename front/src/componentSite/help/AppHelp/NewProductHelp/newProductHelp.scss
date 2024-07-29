@@ -1,0 +1,91 @@
+@import '../../../../style/colors.scss';
+
+#newProductHelp {
+    width: 80%;
+    margin: 0 auto;
+    border-top: 1px solid gray;
+
+    .newProductHelpA {
+        display: flex;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+        margin-top: 4rem;
+
+        img {
+            width: 200px;
+            box-shadow: 5px 5px 15px;
+        }
+
+        div {
+            width: 50%;
+
+            ol li {
+                margin-top: 1rem;
+                margin-left: 1rem;
+            }
+        }
+    }
+
+    .newProductHelpB {
+        margin-top: 6rem;
+
+        .newProductHelpP {
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        ol {
+            margin: 1rem 0 0 1.2rem;
+
+            li {
+                margin-top: .8rem;
+
+                ul {
+                    margin: 0 0 0 2rem;
+                }
+            }
+        }
+    }
+
+    .newProductHelpC {
+        display: flex;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+        margin-top: 6rem;
+
+        img {
+            width: 300px;
+            box-shadow: 5px 5px 15px;
+        }
+    }
+
+    strong {
+        color: $colorB;
+    }
+}
+
+@media (max-width: 767px) {
+    #newProductHelp {
+        width: 100%;
+        padding: 1rem;
+
+        .newProductHelpA {
+            align-items: center;
+            margin-top: 1rem;
+
+            img {
+                width: 80%;
+            }
+
+            div {
+                margin-top: 2rem;
+                width: 100%;
+            }
+        }
+
+        .newProductHelpC {
+            margin-top: 2rem;
+            gap: 2rem;
+        }
+    }
+}

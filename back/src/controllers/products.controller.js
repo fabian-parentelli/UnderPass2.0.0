@@ -13,4 +13,15 @@ const newProduct = async (req, res) => {
     };
 };
 
-export { newProduct };
+const getByUserId = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const result = await productService.getByUserId(id);
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof ProductNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
+export { newProduct, getByUserId };

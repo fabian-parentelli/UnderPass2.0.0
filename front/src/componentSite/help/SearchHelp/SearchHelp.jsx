@@ -23,4 +23,5 @@ const data = [
     { label: 'Quiero estar en el banner', data: 'wantBannerHelp' },
     { label: 'Modificar datos del usuario', data: 'yourDataHelp' },
     { label: 'Modificar avatar', data: 'avatarHelp' },
+    { label: 'Crear un producto', data: 'newProductHelp' },
 ];

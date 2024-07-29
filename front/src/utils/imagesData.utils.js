@@ -15,7 +15,11 @@ const imagesHelp = {
 
     avatarHistory: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1722032022/help/d2elsmrwgw6tdttt5d18.png',
     avatar: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1722032022/help/owkedcm3cbsvbpndpkre.png',
-    navAvatar: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1722032915/help/zz6ctbvkrao6ekvn1xpz.png'
+    navAvatar: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1722032915/help/zz6ctbvkrao6ekvn1xpz.png',
+
+    newProductA: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1722174738/help/y6cw0kdmdxmvfslca8yf.png',
+    newProductB: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1722174738/help/tskmevpd09pqagpgsqlk.png',
+    newProductC: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1722174738/help/bahrxrknhuozigc3dq0e.png'
 };
 
 export { imgages, imagesHelp };

@@ -19,4 +19,10 @@ const newProduct = async (images, imagesUrl, product) => {
     return { status: 'success', result };
 };
 
-export { newProduct };
+const getByUserId = async (id) => {
+    const result = await productRepository.getByUserId(id);
+    if (!result) throw new ProductNotFound('No se encuentra el usuario');
+    return { status: 'success', result };
+};
+
+export { newProduct, getByUserId };

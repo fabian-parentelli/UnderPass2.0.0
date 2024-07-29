@@ -3,6 +3,7 @@ import SearchHelp from '../SearchHelp/SearchHelp';
 import UserHelp from '../UserHelp/UserHelp';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import AppHelp from '../AppHelp/AppHelp';
 
 const Helps = () => {
 
@@ -23,9 +24,9 @@ const Helps = () => {
                     <div className='helpHTop'>
                         <h2>Información</h2>
                         <ul>
-                            <li><a href="#">General</a></li>
-                            <li><a href="#">Plataforma</a></li>
+                            <li><a href="#appHelp">Plataforma</a></li>
                             <li><a href="#userHelp">Usuario</a></li>
+                            <li><a href="#">General</a></li>
                         </ul>
                     </div>
                     <div className='line'></div>
@@ -36,6 +37,7 @@ const Helps = () => {
                     <SearchHelp />
                 </div>
             </div>
+            <AppHelp />
             <UserHelp />
         </div>
     );

@@ -6,4 +6,8 @@ export default class Product {
         return await productModel.create(event);
     };
 
+    getByUserId = async (id) => {
+        return await productModel.find({ userId: id }).lean();
+    };
+
 };

@@ -10,9 +10,9 @@ import AvatarHelp from './AvatarHelp/AvatarHelp.jsx';
 const UserHelp = () => {
 
     return (
-        <div className='userHelp'>
+        <div className='userHelp' id='userHelp'>
             <div className='userHelpHeader'>
-                <h4 id='userHelp'>Usuarios</h4>
+                <h4>Usuarios</h4>
                 <SearchHelp />
             </div>
             <RegisterHelp />

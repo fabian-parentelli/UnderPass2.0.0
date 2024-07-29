@@ -1,0 +1,14 @@
+@import '../../../style/colors.scss';
+
+.formVewProductHtml {
+
+    .formVewProductHtmlInf {
+        cursor: pointer;
+        transition: .3s;
+
+        &:hover {
+            color: black;
+            background-color: $colorB;
+        }
+    }
+}

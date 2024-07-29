@@ -12,6 +12,7 @@ import UserDashboard from '../user/UserDashboard/UserDashboard';
 import VewUsersDashboards from '../user/VewUsersDashboard/VewUsersDashboard';
 import Avatars from '../images/avatars/Avatars/Avatars';
 import AvatarUserDas from '../user/AvatarUserDas/AvatarUserDas';
+import ProductUserDas from '../product/ProductUserDas/ProductUserDas';
 
 const Dashboard = () => {
 
@@ -33,6 +34,11 @@ const Dashboard = () => {
                 <Fields title={'Sitios'} category={[{ name: 'Nuevo sitio', path: 'newsite' }, { name: 'Ver sitios', path: 'vewsite' }]} />
 
                 <Fields
+                    title={'Productos'}
+                    category={[{ name: 'Usuario', path: 'productuser' }, { name: 'Ver todo', path: 'vewsite' }]}
+                />
+
+                <Fields
                     title={'Economía'}
                     category={[{ name: 'Caja', path: 'newsMessage' }, { name: 'Precios', path: 'pricelist' }]}
                 />
@@ -51,6 +57,8 @@ const Dashboard = () => {
                 <Route path='/vewusers' element={<VewUsersDashboards />} />
                 <Route path='/userdashboard' element={<UserDashboard />} />
                 <Route path='/avatardas' element={<AvatarUserDas />} />
+
+                <Route path='/productuser' element={<ProductUserDas />} />
 
                 <Route path='/pricelist' element={<PriceList />} />
 
