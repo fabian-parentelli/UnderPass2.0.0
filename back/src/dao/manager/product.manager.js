@@ -10,4 +10,12 @@ export default class Product {
         return await productModel.find({ userId: id }).lean();
     };
 
+    getProdById = async (id) => {
+        return await productModel.findById(id).lean();
+    };
+
+    update = async (product) => {
+        return await productModel.findByIdAndUpdate({ _id: product._id }, product, { new: true });
+    };
+
 };

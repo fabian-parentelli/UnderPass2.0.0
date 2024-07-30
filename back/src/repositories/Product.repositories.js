@@ -11,4 +11,14 @@ export default class ProductRepository {
         const result = await productManager.getByUserId(id);
         return result;
     };
+    
+    getProdById = async (id) => {
+        const result = await productManager.getProdById(id);
+        return result;
+    };
+    
+    update = async (product) => {
+        const result = await productManager.update(product);
+        return result;
+    };
 };

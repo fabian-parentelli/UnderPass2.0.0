@@ -11,4 +11,49 @@
             background-color: $colorB;
         }
     }
+
+    .expandRow {
+
+        td {
+
+            p {
+                margin-top: 1rem;
+            }
+
+            .expandRowDiv {
+                margin-top: 1rem;
+
+                input {
+                    margin-left: 1rem;
+                }
+            }
+
+            .expandRowSwitch {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+
+                label {
+                    margin-top: .8rem;
+                }
+            }
+
+            .expandRowImg {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                margin-top: 1rem;
+
+                .expandRowImgIn {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                }
+            }
+        }
+    }
+
+    strong {
+        color: $colorB;
+    }
 }

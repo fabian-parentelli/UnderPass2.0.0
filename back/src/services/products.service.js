@@ -25,4 +25,13 @@ const getByUserId = async (id) => {
     return { status: 'success', result };
 };
 
-export { newProduct, getByUserId };
+const updData = async (id, data) => {
+    const product = await productRepository.getProdById(id);
+    if (!product) throw new ProductNotFound('No se encuentra el producto');
+    const newProduct = { ...product, ...data };
+    const result = await productRepository.update(newProduct);
+    if (!result) throw new ProductNotFound('No se puede actualizar el producto');
+    return { status: 'success', result };
+};
+
+export { newProduct, getByUserId, updData };

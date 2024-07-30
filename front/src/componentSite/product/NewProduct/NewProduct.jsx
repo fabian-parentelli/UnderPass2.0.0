@@ -21,7 +21,6 @@ const NewProduct = () => {
             {user && user.logged && user.data.financeData &&
                 <NewProductC userId={user.data._id} setOpen={setOpen} setMessage={setMessage} setLoading={setLoading} />
             }
-            
             <SnackbarAlert open={open} message={message} />
             <Load loading={loading} />
         </div>
