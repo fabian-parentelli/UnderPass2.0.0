@@ -25,6 +25,27 @@ const getByUserId = async (id) => {
     return { status: 'success', result };
 };
 
+const getAll = async (limit, page, active, country, inSite) => {
+    const query = {};
+    if (country) query['location.country'] = { $regex: country, $options: "i" };
+    if (active !== undefined) query.active = active;
+    if (inSite !== undefined) query.inSite = inSite;
+    const result = await productRepository.getAll(query, limit, page);
+    if (!result) throw new ProductNotFound('No se encuentran los usuarios');
+    return { status: 'success', result };
+};
+
+const updImgActive = async (data) => {
+    const product = await productRepository.getProdById(data.prodId);
+    if (!product) throw new ProductNotFound('No se encuentra el producto');
+    product.img.forEach((prod) => {
+        if (prod._id == data.imgId) prod.actives = !prod.actives;
+    });
+    const result = await productRepository.update(product);
+    if (!result) throw new ProductNotFound('No se puede actualizar el producto');
+    return { status: 'success', result };
+};
+
 const updData = async (id, data) => {
     const product = await productRepository.getProdById(id);
     if (!product) throw new ProductNotFound('No se encuentra el producto');
@@ -34,4 +55,22 @@ const updData = async (id, data) => {
     return { status: 'success', result };
 };
 
-export { newProduct, getByUserId, updData };
+const updActive = async (id) => {
+    const product = await productRepository.getProdById(id);
+    if (!product) throw new ProductNotFound('No se encuentra el producto');
+    product.active = !product.active;
+    const result = await productRepository.update(product);
+    if (!result) throw new ProductNotFound('No se puede actualizar el producto');
+    return { status: 'success', result };
+};
+
+const uploadImg = async (images, imagesUrl, product) => {
+    const productDB = await productRepository.getProdById(product.pid);
+    if (!productDB) throw new ProductNotFound('No se encuentra el producto');
+    productDB.img.push({ imgUrl: imagesUrl[0], imgName: images.originalname });
+    const result = await productRepository.update(productDB);
+    if (!result) throw new ProductNotFound('No se puede actualizar el producto');
+    return { status: 'success', result };
+};
+
+export { newProduct, getByUserId, updData, updImgActive, uploadImg, updActive, getAll };

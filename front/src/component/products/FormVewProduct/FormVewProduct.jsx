@@ -1,12 +1,16 @@
+import { useEffect, useState } from 'react';
 import FormVewProductHtml from './FormVewProductHtml';
-import { useLoginContext } from '../../../context/LoginContext.jsx';
+import SnackbarAlert from '../../utils/SnackbarAlert.jsx';
 import { updProductDataApi } from '../../../helpers/products/updProductData.api.js';
-import { getProductByUserIdApi } from '../../../helpers/products/getProductByUserId.api.js';
-import { useState } from 'react';
+import { updImgActiveProductApi } from '../../../helpers/products/updImgActiveProduct.api.js';
+import { uploadImgProductApi } from '../../../helpers/products/uploadImgProduct.api.js';
+import { updActiveProductApi } from '../../../helpers/products/updActiveProduct.api.js';
 
 const FormVewProduct = ({ products, setProducts, setLoading }) => {
 
-    const { user } = useLoginContext();
+    const [open, setOpen] = useState(false);
+    const [message, setMessage] = useState({ status: '', mess: '' });
+    const [formData, setFormData] = useState(null);
 
     const handleChange = (e, prodId, field) => {
         setProducts(products.map(prod => prod._id === prodId ? { ...prod, [field]: e.target.value } : prod));
@@ -28,19 +32,83 @@ const FormVewProduct = ({ products, setProducts, setLoading }) => {
         }));
     };
 
-
     const handleSwitchChange = async (e, prodId) => {
+        setLoading(true);
         const checked = e.target.checked;
-        setProducts(products.map(prod =>
-            prod._id === prodId ? { ...prod, inSite: checked } : prod
-        ));
-        // Conectar con la base para cambiar el switch
+        setProducts(products.map(prod => prod._id === prodId ? { ...prod, inSite: checked } : prod));
+        const response = await updProductDataApi({ inSite: checked }, prodId);
+        if (response.status === 'success') {
+            setOpen(true);
+            setMessage({ status: 'success', mess: `Ahora ${checked ? 'Si' : 'No'} se va a ver el producto en tu sitio` });
+            setTimeout(() => { setOpen(false) }, 2000);
+        } else console.log(response);
+        setLoading(false);
     };
 
     const handleUpdate = async (id) => {
+        setLoading(true);
         const product = products.find(prod => prod._id === id);
-        const response = await updProductDataApi(product);
-        console.log(response);
+        const response = await updProductDataApi(product, id);
+        if (response.status === 'success') {
+            setOpen(true);
+            setMessage({ status: 'success', mess: 'Producto modificado' });
+            setTimeout(() => { setOpen(false) }, 2000);
+        } else console.log(response);
+        setLoading(false);
+    };
+
+    const handleImgInactive = async (prodId, imgId) => {
+        setLoading(true);
+        const response = await updImgActiveProductApi({ prodId, imgId });
+        if (response.status === 'success') {
+            const index = products.findIndex(prod => prod._id === prodId);
+            if (index !== -1) {
+                const updatedProduct = { ...products[index] };
+                updatedProduct.img = updatedProduct.img.map(img =>
+                    img._id === imgId ? { ...img, actives: !img.actives } : img
+                );
+                const updatedProducts = [...products];
+                updatedProducts[index] = updatedProduct;
+                setProducts(updatedProducts);
+            };
+        } else console.log(response);
+        setLoading(false);
+    };
+
+    useEffect(() => {
+        const fetchData = async () => {
+            if (formData) {
+                setLoading(true);
+                const response = await uploadImgProductApi(formData);
+                if (response.status === 'success') {
+                    const index = products.findIndex(prod => prod._id === response.result._id);
+                    if (index !== -1) {
+                        const updatedProduct = { ...products[index] };
+                        updatedProduct.img = response.result.img;
+                        const updatedProducts = [...products];
+                        updatedProducts[index] = updatedProduct;
+                        setProducts(updatedProducts);
+                    };
+                } else console.log(response);
+                setLoading(false);
+            };
+        }; fetchData();
+    }, [formData]);
+
+    const handleActive = async (id) => {
+        setLoading(true);
+        const response = await updActiveProductApi(id);
+        if (response.status === 'success') {
+            const index = products.findIndex(prod => prod._id === response.result._id);
+            if (index !== -1) {
+                const updatedProduct = { ...products[index] };
+                updatedProduct.active = response.result.active;
+                const updatedProducts = [...products];
+                updatedProducts[index] = updatedProduct;
+                setProducts(updatedProducts);
+            };
+        } else console.log(response);
+        setLoading(false);
     };
 
     return (
@@ -53,8 +121,12 @@ const FormVewProduct = ({ products, setProducts, setLoading }) => {
                     handleLocation={handleLocation}
                     handleSwitchChange={handleSwitchChange}
                     handleUpdate={handleUpdate}
+                    handleImgInactive={handleImgInactive}
+                    setFormData={setFormData}
+                    handleActive={handleActive}
                 />
             }
+            <SnackbarAlert open={open} message={message} />
         </>
     );
 };

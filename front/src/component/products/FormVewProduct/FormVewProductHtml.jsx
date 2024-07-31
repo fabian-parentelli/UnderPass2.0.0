@@ -5,12 +5,13 @@ import BigImg from '../../utils/BigImg/BigImg';
 import { useLoginContext } from '../../../context/LoginContext';
 import CloudFile from '../../utils/CloudFile/CloudFile';
 
-const FormVewProductHtml = ({
-    products, handleChange, handleDescription, handleLocation, handleSwitchChange, handleUpdate }) => {
+const FormVewProductHtml = ({ products, handleChange, setFormData, handleActive,
+    handleDescription, handleLocation, handleSwitchChange, handleUpdate, handleImgInactive }) => {
 
     const { user } = useLoginContext();
     const [vew, setVew] = useState(null);
     const handleInfo = (id) => setVew(vew === id ? null : id);
+    const handleFileChange = (data) => setFormData(data);
 
     return (
         <div className='formVewProductHtml'>
@@ -62,7 +63,10 @@ const FormVewProductHtml = ({
                                     onClick={() => handleInfo(prod._id)}
                                     className='formVewProductHtmlInf'
                                 >Ver</td>
-                                <td style={{ color: prod.active ? 'green' : 'red' }} >
+                                <td
+                                    onClick={() => handleActive(prod._id)}
+                                    style={{ color: prod.active ? 'green' : 'red', cursor: 'pointer' }}
+                                >
                                     {prod.active ? 'SI' : 'NO'}
                                 </td>
                             </tr>
@@ -132,16 +136,19 @@ const FormVewProductHtml = ({
 
                                         <div className='expandRowImg'>
                                             {prod.img.map((img) => (
-                                                <Fragment key={img._id}>
-                                                    {img.active &&
-                                                        <div className='expandRowImgIn'>
-                                                            <BigImg img={img.imgUrl} />
-                                                            <button className='btn btnE'>Desactivar</button>
-                                                        </div>
-                                                    }
-                                                </Fragment>
+                                                <div className='expandRowImgIn' key={img._id}>
+                                                    <BigImg img={img.imgUrl} />
+                                                    <button
+                                                        onClick={() => handleImgInactive(prod._id, img._id)}
+                                                        className={`btn ${img.actives ? 'btnC' : 'btnE'}`}
+                                                    >
+                                                        {img.actives ? 'Desactivar' : 'Activar'}
+                                                    </button>
+                                                </div>
                                             ))}
-                                            <CloudFile onChange={''} folderName={''} contClass='cfCircle' />
+                                            <div className='uploadImg'>
+                                                <CloudFile onChange={handleFileChange} folderName={`product/${prod.userId}`} contClass='cfCircle' id={prod._id} />
+                                            </div>
                                         </div>
                                     </td>
                                 </tr>

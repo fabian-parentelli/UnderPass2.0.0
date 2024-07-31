@@ -15,6 +15,7 @@ const AmountsCards = ({ title, arg, uru }) => {
                 <img src={flagsIcon.uy} alt="img" />
                 <p>Uruguay: {uru}</p>
             </div>
+            <div className='line'></div>
             <p className='panelUserTotal'>Total: {arg + uru}</p>
         </div>
     );

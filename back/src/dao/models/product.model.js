@@ -17,7 +17,7 @@ const productSchema = new mongoose.Schema({
         {
             imgUrl: { type: String },
             imgName: { type: String },
-            active: { type: Boolean },
+            actives: { type: Boolean, default: true  },
         }
     ],
     date: { type: Date, default: Date.now },

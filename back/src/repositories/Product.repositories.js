@@ -21,4 +21,15 @@ export default class ProductRepository {
         const result = await productManager.update(product);
         return result;
     };
+    
+    getAll = async (query, limit, page) => {
+        const result = await productManager.getAll(query, limit, page);
+        return result;
+    };
+    
+    productAmount = async (country) => {
+        const result = await productManager.productAmount(country);
+        return result;
+    };
+
 };

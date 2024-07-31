@@ -18,4 +18,16 @@ export default class Product {
         return await productModel.findByIdAndUpdate({ _id: product._id }, product, { new: true });
     };
 
+    getAll = async (query, limit, page) => {
+        return await productModel.paginate(query, { limit, page, lean: true, sort: { date: -1 } });
+    };
+
+    productAmount = async (country) => {
+        const filter = {
+            "location.country": { $regex: new RegExp(country, 'i') },
+            active: true
+        };
+        return await productModel.countDocuments(filter);
+    };
+
 };

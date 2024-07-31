@@ -1,4 +1,4 @@
-import { appliRepository, userRepository } from "../repositories/index.repositories.js";
+import { appliRepository, userRepository, productRepository } from "../repositories/index.repositories.js";
 import { AllertsNotFound } from '../utils/custom-exceptions.utils.js';
 
 const getAll = async (user) => {
@@ -12,12 +12,13 @@ const getAll = async (user) => {
 const amount = async () => {
     const result = {};
     result.ar = {
-        users: await userRepository.userAmount('AR') || 0
+        users: await userRepository.userAmount('AR') || 0,
+        products: await productRepository.productAmount('AR')
     };
     result.uy = {
-        users: await userRepository.userAmount('UY') || 0
+        users: await userRepository.userAmount('UY') || 0,
+        products: await productRepository.productAmount('AY')
     };
-    // Agregar todos los datos que quiero obtener
     return { status: 'success', result };
 };
 

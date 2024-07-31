@@ -2,7 +2,7 @@ import './cloudFile.scss';
 import { useState, useRef } from 'react';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 
-const CloudFile = ({ onChange, folderName, contClass }) => {
+const CloudFile = ({ onChange, folderName, contClass, id }) => {
     const fileInputRef = useRef(null);
     const [images, setImages] = useState([]);
     const [files, setFiles] = useState([]);
@@ -10,7 +10,7 @@ const CloudFile = ({ onChange, folderName, contClass }) => {
     const handleImgChange = (e) => {
         const selectedFiles = Array.from(e.target.files);
         const newFiles = [...files, ...selectedFiles];
-        newFiles.sort((a, b) => a.name.localeCompare(b.name)); 
+        newFiles.sort((a, b) => a.name.localeCompare(b.name));
         setFiles(newFiles);
         const imageArray = newFiles.map(file => URL.createObjectURL(file));
         setImages(imageArray);
@@ -19,6 +19,7 @@ const CloudFile = ({ onChange, folderName, contClass }) => {
             formData.append('files', file);
         });
         formData.append('folderName', folderName);
+        if (id) formData.append('pid', id);
         onChange(formData);
     };
 

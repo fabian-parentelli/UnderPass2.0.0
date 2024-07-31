@@ -9,8 +9,6 @@ const ProductUserDas = () => {
 
     const [user, setUser] = useState(null);
 
-    console.log(user);
-
     return (
         <div className='productUserDas'>
             <Title Icon={AgricultureIcon} name='Productos por Usuario' />

@@ -17,7 +17,12 @@ const AmountPanel = () => {
 
     return (
         <div className='amountPanel'>
-            {result && <AmountsCards title='Usuarios' arg={result.ar.users} uru={result.uy.users}  /> }
+            {result &&
+                <>
+                    <AmountsCards title='Usuarios' arg={result.ar.users} uru={result.uy.users} />
+                    <AmountsCards title='Productos' arg={result.ar.products} uru={result.uy.products} />
+                </>
+            }
         </div>
     );
 };

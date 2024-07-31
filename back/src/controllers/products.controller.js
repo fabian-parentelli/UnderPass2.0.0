@@ -24,10 +24,20 @@ const getByUserId = async (req, res) => {
     };
 };
 
-const updData = async (req, res) => {
-    const { id } = req.params;
+const getAll = async (req, res) => {
+    const { limit = 12, page = 1, active, country, inSite } = req.query;
     try {
-        const result = await productService.updData(id, {...req.body});
+        const result = await productService.getAll(limit, page, active, country, inSite);
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof AppliNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
+const updImgActive = async (req, res) => {
+    try {
+        const result = await productService.updImgActive({ ...req.body });
         if (result) return res.sendSuccess(result);
     } catch (error) {
         if (error instanceof ProductNotFound) return res.sendClientError(error.message);
@@ -35,4 +45,37 @@ const updData = async (req, res) => {
     };
 };
 
-export { newProduct, getByUserId, updData };
+const updData = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const result = await productService.updData(id, { ...req.body });
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof ProductNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
+const updActive = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const result = await productService.updActive(id);
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof ProductNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
+const uploadImg = async (req, res) => {
+    const images = req.files;
+    const imagesUrl = req.cloudinaryUrls;
+    try {
+        const result = await productService.uploadImg(images, imagesUrl, { ...req.body });
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof ProductNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+export { newProduct, getByUserId, updData, updImgActive, uploadImg, updActive, getAll };
