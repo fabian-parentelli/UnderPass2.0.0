@@ -40,8 +40,8 @@ const VewProductsDas = () => {
         <div className='VewProductsDas'>
             <Title Icon={StorefrontIcon} name='Todos los productos' />
             <SearchProduct setProducts={setProducts} setPaginate={setPaginate} setLoading={setLoading} />
-            <FormVewProduct products={products} setProducts={setProducts} setLoading={setLoading} />
-            <Pager users={paginate} HandleChangePage={HandleChangePage} />
+            {products && <FormVewProduct products={products} setProducts={setProducts} setLoading={setLoading} />}
+            {paginate && <Pager users={paginate} HandleChangePage={HandleChangePage} />}
             <Load loading={loading} />
         </div>
     );

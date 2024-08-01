@@ -1,0 +1,92 @@
+@import '../../../../style/colors.scss';
+
+#vewProductHelp {
+    width: 80%;
+    margin: 0 auto;
+    border-top: 1px solid gray;
+    padding: 1rem;
+
+    .vewProductHelpA {
+        margin-top: 6rem;
+        display: flex;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+        gap: 1rem;
+
+        ul {
+            width: 27%;
+        }
+
+        img {
+            height: 200px;
+            box-shadow: 5px 5px 15px;
+        }
+    }
+
+    .vewProductHelpB {
+        width: 100%;
+        margin-top: 8rem;
+        box-shadow: 5px 5px 15px;
+    }
+
+    .vewProductHelpC {
+        margin: 4rem 0 0 4rem;
+
+        p {
+            font-weight: 600;
+            margin-top: 2rem;
+        }
+
+        ul li {
+            line-height: 3rem;
+        }
+    }
+
+    .vewProductHelpD {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 4rem;
+
+        img {
+            box-shadow: 5px 5px 15px;
+        }
+    }
+
+    strong {
+        color: $colorB;
+    }
+}
+
+@media (max-width: 767px) {
+    #vewProductHelp {
+        width: 95%;
+        text-align: center;
+
+        .vewProductHelpA {
+            margin-top: 1rem;
+
+            ul {
+                width: 100%;
+                margin-bottom: 2rem;
+            }
+        }
+
+        .vewProductHelpB {
+            margin-top: 2rem;
+        }
+
+        .vewProductHelpC {
+            margin: 4rem 0 0 0;
+
+            p {
+                line-height: 3rem;
+            }
+
+        }
+
+        .vewProductHelpD img {
+            width: 280px;
+        }
+    }
+}

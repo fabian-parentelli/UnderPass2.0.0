@@ -19,7 +19,11 @@ const imagesHelp = {
 
     newProductA: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1722174738/help/y6cw0kdmdxmvfslca8yf.png',
     newProductB: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1722174738/help/tskmevpd09pqagpgsqlk.png',
-    newProductC: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1722174738/help/bahrxrknhuozigc3dq0e.png'
+    newProductC: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1722174738/help/bahrxrknhuozigc3dq0e.png',
+
+    vewProductA: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1722446341/help/wavjoixs2ulrw6l2gvvv.png',
+    vewProductB: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1722446340/help/ni4oeyfaw7enbxgxsqc8.png',
+    vewProductC: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1722446341/help/ojugxpaltyiuop2k2hmh.png'
 };
 
 export { imgages, imagesHelp };

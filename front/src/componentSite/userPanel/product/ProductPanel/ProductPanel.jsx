@@ -11,7 +11,7 @@ const ProductPanel = () => {
 
     return (
         <div className='productPanel'>
-            <Title Icon={CheckroomIcon} name='Tus Productos' goTo='/help' />
+            <Title Icon={CheckroomIcon} name='Tus Productos' goTo='/help#vewProductHelp' />
             {user && user.data && !user.data.financeData
                 ? <IsFinancialData setPath='profile/productmenu' />
                 : <SelectedProd userId={user.data._id} />

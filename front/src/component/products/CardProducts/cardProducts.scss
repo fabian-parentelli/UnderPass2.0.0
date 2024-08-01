@@ -1,0 +1,40 @@
+.cardProducts {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+
+    .cardProduct {
+        width: 200px;
+        height: 300px;
+        border: solid 1px gray;
+        padding: 1rem;
+        border-radius: 6px;
+        transition: .3s ease-in-out;
+        box-shadow: 5px 5px 15px;
+
+        &:hover {
+            transform: translateY(-6px);
+        }
+
+        .cardProductDivImg {
+            position: relative;
+
+            .star {
+                position: absolute;
+                right: 0;
+                color: gray;
+                cursor: pointer;
+                transition: .3s;
+
+                &:hover {
+                    transform: translateY(-3px);
+                }
+            }
+
+            img {
+                width: 100%;
+            }
+
+        }
+    }
+}

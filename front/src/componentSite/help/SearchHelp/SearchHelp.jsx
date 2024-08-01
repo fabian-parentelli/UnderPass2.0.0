@@ -24,4 +24,5 @@ const data = [
     { label: 'Modificar datos del usuario', data: 'yourDataHelp' },
     { label: 'Modificar avatar', data: 'avatarHelp' },
     { label: 'Crear un producto', data: 'newProductHelp' },
+    { label: 'Ver y modificar un producto', data: 'vewProductHelp' },
 ];
