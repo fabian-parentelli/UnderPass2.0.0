@@ -43,6 +43,17 @@ const newFinancial = async (req, res) => {
     };
 };
 
+const newFavorite = async (req, res) => {
+    const { user } = req.user;
+    try {
+        const result = await userService.newFavorite({ ...req.body }, user);
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof UserNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
 const paginates = async (req, res) => {
     const { user } = req.user;
     const { limit = 12, page = 1, active, country } = req.query;
@@ -224,5 +235,5 @@ const updUser = async (req, res) => {
 export {
     register, login, recoverPassword, current, interPass, paginates, updRole, updActive, searchUser,
     getAllUsers, sekker, newPassword, getUserById, updUser, newFinancial, getFinancial, updFinancial,
-    updAvatar, ImgAvatar, historyAvatar
+    updAvatar, ImgAvatar, historyAvatar, newFavorite
 };

@@ -10,6 +10,7 @@ export default class UserRouter extends Router {
         this.post('/login', ['PUBLIC'], passportEnum.NOTHING, userController.login);
         this.post('/recover_password', ['PUBLIC'], passportEnum.NOTHING, userController.recoverPassword);
         this.post('/financial', ['USER', 'ADMIN', 'MASTER'], passportEnum.JWT, userController.newFinancial);
+        this.post('/favorite', ['USER', 'ADMIN', 'MASTER'], passportEnum.JWT, userController.newFavorite);
         this.get('/paginates', ['ADMIN', 'MASTER'], passportEnum.JWT, userController.paginates);
         this.get('/current', ['PUBLIC'], passportEnum.JWT, userController.current);
         this.get('/seeker', ['ADMIN', 'MASTER'], passportEnum.JWT, userController.sekker);

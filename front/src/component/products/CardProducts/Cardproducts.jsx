@@ -1,21 +1,23 @@
 import './cardProducts.scss';
-import StarIcon from '@mui/icons-material/Star';
-import StarBorderIcon from '@mui/icons-material/StarBorder';
+import CarouselManuel from '../../utils/CarouselManual/CarouselManual';
+import Favorite from '../../utils/Favorite/Favorite';
 
 const CardProducts = ({ products }) => {
-
-    console.log(products);
 
     return (
         <div className='cardProducts'>
             {products && products.map((prod) => (
                 <div key={prod._id} className='cardProduct'>
                     <div className='cardProductDivImg'>
-                        <StarBorderIcon className='star' />
-                        <img src={prod.img[0].imgUrl} alt="img" />
+                        <Favorite id={prod._id} />
+                        <CarouselManuel images={prod.img} />
                     </div>
-
-                    {/* Estoy aca haciendo la card de los productos */}
+                    <h3>{prod.name}</h3>
+                    <p>{prod.description.small}</p>
+                    <div className='cardProductsButton'>
+                        <p>${prod.price}</p>
+                        <button className='btnCard'>Ver</button>
+                    </div>
                 </div>
             ))}
         </div>

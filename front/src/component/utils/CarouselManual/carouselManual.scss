@@ -1,0 +1,38 @@
+.carouselManuel {
+    position: relative;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.carouselManuel-slide {
+    display: flex;
+    justify-content: center;
+
+    img {
+        width: 200px;
+        height: 240px;
+        object-fit: contain;
+    }
+}
+
+.carouselManuel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-0%);
+    background: transparent;
+    border: none;
+    color: gray;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1;
+}
+
+.carouselManuel-button.prev {
+    left: 1px;
+}
+
+.carouselManuel-button.next {
+    right: 1px;
+}

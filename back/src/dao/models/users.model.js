@@ -22,7 +22,8 @@ const userSchema = new mongoose.Schema({
     passId: { type: String },
     financeData: { type: String },
     dni: { type: String },
-    created: { type: Date, default: Date.now }
+    created: { type: Date, default: Date.now },
+    favorites: [{ type: String, default: [] }]
 });
 
 userSchema.plugin(mongoosePaginate);

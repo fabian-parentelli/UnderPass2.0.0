@@ -71,6 +71,19 @@ const newFinancial = async (data, user) => {
     else return { status: 'success', result };
 };
 
+const newFavorite = async ({ favorite }, user) => {
+    const userDb = await userRepository.getUserById(user._id);
+    const index = userDb.favorites.findIndex(prod => prod == favorite);
+    if (index != -1) {
+        userDb.favorites.splice(index, 1);
+    } else userDb.favorites.push(favorite);
+    const result = await userRepository.update(userDb);
+    delete result.password;
+    delete result.financeData;
+    const accesToken = generateToken(result);
+    return { status: 'success', accesToken };
+};
+
 const paginates = async (user, limit, page, active, country) => {
     const query = {};
     if (user !== 'master') { query.role = { $ne: 'master' } };
@@ -232,5 +245,5 @@ const updUser = async (user, whatUser) => {
 export {
     register, login, current, recoverPassword, interPass, paginates, updRole, updActive, searchUser,
     getAllUsers, sekker, newPassword, getUserById, updUser, newFinancial, getFinancial, updFinancial,
-    updAvatar, ImgAvatar, historyAvatar
+    updAvatar, ImgAvatar, historyAvatar, newFavorite
 };

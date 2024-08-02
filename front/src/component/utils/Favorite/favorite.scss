@@ -1,0 +1,11 @@
+.favorite {
+    position: absolute;
+    right: 0;
+    cursor: pointer;
+    transition: .3s;
+    z-index: 1;
+
+    &:hover {
+        transform: translateY(-3px);
+    }
+}
