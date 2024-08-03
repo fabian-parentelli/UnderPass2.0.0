@@ -8,6 +8,7 @@ const getAllProductsApi = async (obj) => {
     if (obj.inSite) urlData += `inSite=${obj.inSite}&`;
     if (obj.active) urlData += `active=${obj.active}&`;
     if (obj.country) urlData += `country=${obj.country}&`;
+    if (obj.location) urlData += `location=${obj.location}&`;
 
     const response = await fetch(urlData, {
         method: 'GET',

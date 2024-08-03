@@ -21,7 +21,8 @@
     "react-flags-select": "^2.2.3",
     "react-router-dom": "^6.24.1",
     "react-to-print": "^2.15.1",
-    "sass": "^1.77.6"
+    "sass": "^1.77.6",
+    "sweetalert2": "^11.12.4"
   },
   "devDependencies": {
     "@types/react": "^18.3.3",

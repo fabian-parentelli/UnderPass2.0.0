@@ -1,27 +1,26 @@
-import './cartBanner.scss';
+import './cartProduct.scss';
 import CancelIcon from '@mui/icons-material/Cancel';
 import BigImg from '../../../../component/utils/BigImg/BigImg';
-import { useCartContext } from '../../../../context/CartContext';
 import Counter from '../../../../component/utils/Counter/Counter';
-import PriceCartBanner from './prices/PriceCartBanner';
+import { useCartContext } from '../../../../context/CartContext';
 
-const CartBanner = ({ item }) => {
+const CartProduct = ({ item }) => {
 
     const { removeItem, totalProduct } = useCartContext();
 
     return (
-        <tr className='cartBanner'>
+        <tr className='cartProduct'>
             <td className='tdBanner'>
                 <CancelIcon className='cancelIcon' onClick={() => removeItem(item._id)} />
                 <BigImg img={item.img} border={false} />
                 <p>{item.name}</p>
                 <p className='pID'>{item._id}</p>
             </td>
-            <td>{<PriceCartBanner item={item} />}</td>
+            <td>${item.price}</td>
             <td><Counter prod={item} /></td>
             <td style={{ width: '80px' }}>${totalProduct(item._id)}</td>
         </tr>
     );
 };
 
-export default CartBanner;
+export default CartProduct;

@@ -12,7 +12,7 @@ const NewProduct = () => {
     const { user } = useLoginContext();
     const [loading, setLoading] = useState(false);
     const [open, setOpen] = useState(false);
-    const [message, setMessage] = useState({ status: '', mess: '' });
+    const [message, setMessage] = useState({ status: '', mess: '' });    
 
     return (
         <div className='newProduct'>

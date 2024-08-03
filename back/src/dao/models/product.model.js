@@ -27,7 +27,8 @@ const productSchema = new mongoose.Schema({
         country: { type: String },
     },
     active: { type: Boolean, default: true },
-    inSite: { type: Boolean }
+    inSite: { type: Boolean },
+    type: { type: String, default: 'product' }
 });
 
 productSchema.plugin(mongoosePaginate);

@@ -1,19 +1,17 @@
-import './theMarket.scss';
+import './otherProducts.scss';
 import { useEffect, useState } from 'react';
-import Load from '../../../component/utils/Load';
-import Pager from '../../../component/utils/Pager/Pager';
-import { useLoginContext } from '../../../context/LoginContext';
-import { getAllProductsApi } from '../../../helpers/products/getAllProducts.api';
-import CardProducts from '../../../component/products/CardProducts/Cardproducts';
+import { useLoginContext } from '../../../../context/LoginContext';
+import { getAllProductsApi } from '../../../../helpers/products/getAllProducts.api';
+import CardProducts from '../../../../component/products/CardProducts/Cardproducts';
+import Pager from '../../../../component/utils/Pager/Pager';
 
-const TheMarket = () => {
+const OtherProducts = ({ setLoading }) => {
 
     const [products, setProducts] = useState(null);
-    const [loadin, setLoading] = useState(false);
     const { user } = useLoginContext();
 
     const country = localStorage.getItem('country');
-    const query = { active: true, country: country, limit: 40 };
+    const query = { active: true, country: country, limit: 4 };
     if (user && user.data) query.location = user.data.location.province;
 
     useEffect(() => {
@@ -36,13 +34,13 @@ const TheMarket = () => {
     };
 
     return (
-        <div className='theMarket'>
-            <h2>El Mercado</h2>
+        <div className='otherProducts'>
             {products && <CardProducts products={products.docs} />}
-            {products && <Pager users={products} HandleChangePage={HandleChangePage} />}
-            <Load loading={loadin} />
+            <div style={{ marginTop: '4rem' }}>
+                {products && <Pager users={products} HandleChangePage={HandleChangePage} />}
+            </div>
         </div>
     );
 };
 
-export default TheMarket;
+export default OtherProducts;

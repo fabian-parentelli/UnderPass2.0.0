@@ -140,7 +140,7 @@ const sekker = async (user) => {
     const users = await userRepository.getAllUsers(query);
     if (!users) throw new UserNotFound('No encontramos usuarios');
     const result = users.map((us) => {
-        return { label: us.name, country: us.location.country, _id: us._id };
+        return { label: us.name, country: us.location.country, _id: us._id, financeData: us.financeData || '' };
     });
     return { status: 'success', result };
 };

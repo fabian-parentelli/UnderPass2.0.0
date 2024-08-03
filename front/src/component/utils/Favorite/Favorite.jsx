@@ -11,8 +11,10 @@ const Favorite = ({ id }) => {
     const { user, current } = useLoginContext();
 
     useEffect(() => {
-        const favorite = user.data.favorites.includes(id)
-        if (favorite) setFavorites([...favorites, id]);
+        if (user && user.data) {
+            const favorite = user.data.favorites.includes(id)
+            if (favorite) setFavorites([...favorites, id]);
+        };
     }, [user.data]);
 
     const handleFavorite = async (id) => {

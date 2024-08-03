@@ -14,7 +14,11 @@ const ProductUserDas = () => {
             <Title Icon={AgricultureIcon} name='Productos por Usuario' />
             <UserSearch setUser={setUser} />
             <div className='productUserDasSelected'>
-               {user && <SelectedProd userId={user._id} />}
+                {user ? (user.financeData ? (
+                    <SelectedProd userId={user._id} />
+                ) : (<p>El usuario no posee datos financieros</p>)
+                ) : (<p>Seleccione un usuario</p>)
+                }
             </div>
         </div>
     );

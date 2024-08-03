@@ -1,22 +1,11 @@
 @import '../../../style/colors.scss';
 
 .formVewProductHtml {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-
-    &::-webkit-scrollbar {
-        height: 6px;
-    }
-
-    &::-webkit-scrollbar-thumb {
-        background-color: $colorB;
-        border-radius: 6px;
-    }
 
     .formVewProductHtmlInf {
         cursor: pointer;
         transition: .3s;
-
+        
         &:hover {
             color: black;
             background-color: $colorB;
@@ -72,5 +61,31 @@
 
     strong {
         color: $colorB;
+    }
+}
+
+@media (max-width: 767px) {
+    .formVewProductHtml {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+
+        &::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: $colorB;
+            border-radius: 6px;
+        }
+
+        .formVewProductHtmlInf {
+            cursor: pointer;
+            transition: .3s;
+
+            &:hover {
+                color: black;
+                background-color: $colorB;
+            }
+        }
     }
 }

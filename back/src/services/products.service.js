@@ -25,13 +25,19 @@ const getByUserId = async (id) => {
     return { status: 'success', result };
 };
 
-const getAll = async (limit, page, active, country, inSite) => {
+const getAll = async (limit, page, active, country, inSite, location) => {
     const query = {};
     if (country) query['location.country'] = { $regex: country, $options: "i" };
     if (active !== undefined) query.active = active;
     if (inSite !== undefined) query.inSite = inSite;
-    const result = await productRepository.getAll(query, limit, page);
+    const result = await productRepository.getAll(query, limit, page, location);
     if (!result) throw new ProductNotFound('No se encuentran los usuarios');
+    return { status: 'success', result };
+};
+
+const getById = async (id) => {
+    const result = await productRepository.getProdById(id);
+    if (!result) throw new ProductNotFound('No se encuentra el producto');
     return { status: 'success', result };
 };
 
@@ -73,4 +79,4 @@ const uploadImg = async (images, imagesUrl, product) => {
     return { status: 'success', result };
 };
 
-export { newProduct, getByUserId, updData, updImgActive, uploadImg, updActive, getAll };
+export { newProduct, getByUserId, updData, updImgActive, uploadImg, updActive, getAll, getById };

@@ -16,6 +16,7 @@ import BannerWant from "../componentSite/BannerWant/BannerWant.jsx";
 import VewCart from "../componentSite/cart/VewCart/VewCart.jsx";
 import NewProduct from "../componentSite/product/NewProduct/NewProduct.jsx";
 import TheMarket from "../componentSite/product/TheMarket/TheMarket.jsx";
+import VewTheProduct from "../componentSite/product/VewTheProduct/VewTheProduct.jsx";
 
 const RoutesComp = () => {
 
@@ -37,6 +38,7 @@ const RoutesComp = () => {
                     <Route path="/cart" element={<VewCart />} />
                     <Route path="/newproduct" element={<NewProduct />} />
                     <Route path="/themarket" element={<TheMarket />} />
+                    <Route path="/product/:id" element={<VewTheProduct />} />
 
                     {user.logged &&
                         <>
