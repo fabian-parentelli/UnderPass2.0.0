@@ -49,6 +49,11 @@ export default class UserRepository {
         return result;
     };
 
+    getFavorite = async (id) => {
+        const result = await userManager.getFavorite(id);
+        return result;
+    };
+
     // Financial Data....
 
     newFinancial = async (data) => {

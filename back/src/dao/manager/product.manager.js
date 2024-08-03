@@ -10,6 +10,13 @@ export default class Product {
         return await productModel.find({ userId: id }).lean();
     };
 
+    getByTipsSearch = async (query = {}, name) => {
+        const nameQuery = { name: { $regex: name, $options: 'i' } };
+        const combinedQuery = { ...query, ...nameQuery };
+        return await productModel.paginate(combinedQuery, { limit: 40, page: 1, lean: true });
+    };
+    
+
     getProdById = async (id) => {
         return await productModel.findById(id).lean();
     };

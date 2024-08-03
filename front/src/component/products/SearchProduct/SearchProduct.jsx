@@ -1,10 +1,11 @@
 import './SearchProduct.scss';
 import { useState } from 'react';
 import { getAllProductsApi } from '../../../helpers/products/getAllProducts.api';
+import SelectedProvince from '../../utils/SelectedProvince';
 
 const SearchProduct = ({ setProducts, setPaginate, setLoading }) => {
 
-    const [values, setValues] = useState({ inSite: '', country: '', active: '' });
+    const [values, setValues] = useState({ inSite: '', country: '', active: '', province: '' });
 
     const handleChange = async (e) => setValues({ ...values, [e.target.name]: e.target.value });
 
@@ -39,6 +40,10 @@ const SearchProduct = ({ setProducts, setPaginate, setLoading }) => {
                 <option value="true">Si</option>
                 <option value="false">No</option>
             </select>
+
+            <div style={{ width: '150px' }}>
+                <SelectedProvince handleChange={handleChange} required={false} />
+            </div>
 
             <button className='btn btnB'>Filtrar</button>
         </form>

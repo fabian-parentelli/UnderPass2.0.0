@@ -13,11 +13,11 @@ const amount = async () => {
     const result = {};
     result.ar = {
         users: await userRepository.userAmount('AR') || 0,
-        products: await productRepository.productAmount('AR')
+        products: await productRepository.productAmount('AR') || 0
     };
     result.uy = {
         users: await userRepository.userAmount('UY') || 0,
-        products: await productRepository.productAmount('AY')
+        products: await productRepository.productAmount('UY') || 0
     };
     return { status: 'success', result };
 };

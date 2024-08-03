@@ -46,4 +46,9 @@ export default class User {
         return await userModel.countDocuments(filter);
     };
 
+    getFavorite = async (id) => {
+        const user = await userModel.findById(id).select('favorites').lean();        
+        return user ? user.favorites : [];
+    };
+
 };

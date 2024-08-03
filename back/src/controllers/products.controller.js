@@ -24,10 +24,22 @@ const getByUserId = async (req, res) => {
     };
 };
 
-const getAll = async (req, res) => {
-    const { limit = 12, page = 1, active, country, inSite, location } = req.query;
+const getByTipsSearch = async (req, res) => {
+    const { name } = req.params;
+    const { favorite } = req.params
     try {
-        const result = await productService.getAll(limit, page, active, country, inSite, location);
+        const result = await productService.getByTipsSearch(name, favorite);
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof ProductNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
+const getAll = async (req, res) => {
+    const { limit = 12, page = 1, active, country, inSite, location, province, user } = req.query;
+    try {
+        const result = await productService.getAll(limit, page, active, country, inSite, location, province, user);
         if (result) return res.sendSuccess(result);
     } catch (error) {
         if (error instanceof AppliNotFound) return res.sendClientError(error.message);
@@ -89,4 +101,7 @@ const uploadImg = async (req, res) => {
         res.sendServerError(error.message);
     };
 };
-export { newProduct, getByUserId, updData, updImgActive, uploadImg, updActive, getAll, getById };
+export {
+    newProduct, getByUserId, updData, updImgActive, uploadImg, updActive, getAll, getById,
+    getByTipsSearch
+};

@@ -25,9 +25,23 @@ const getByUserId = async (id) => {
     return { status: 'success', result };
 };
 
-const getAll = async (limit, page, active, country, inSite, location) => {
+const getByTipsSearch = async (name, favorite) => {
+    let favorites = [];
     const query = {};
+    if (favorite !== 'false') favorites = await userRepository.getFavorite(favorite);
+    if (favorites.length > 0) query._id = { $in: favorites };
+    const result = await productRepository.getByTipsSearch(query, name)
+    if (!result) throw new ProductNotFound('No se encuentra el producto');
+    return { status: 'success', result };
+};
+
+const getAll = async (limit, page, active, country, inSite, location, province, user) => {
+    const query = {};
+    let favorites = [];
+    if (user) favorites = await userRepository.getFavorite(user);
+    if (favorites.length > 0) query._id = { $in: favorites };
     if (country) query['location.country'] = { $regex: country, $options: "i" };
+    if (province) query['location.province'] = { $regex: province, $options: "i" };
     if (active !== undefined) query.active = active;
     if (inSite !== undefined) query.inSite = inSite;
     const result = await productRepository.getAll(query, limit, page, location);
@@ -79,4 +93,6 @@ const uploadImg = async (images, imagesUrl, product) => {
     return { status: 'success', result };
 };
 
-export { newProduct, getByUserId, updData, updImgActive, uploadImg, updActive, getAll, getById };
+export {
+    newProduct, getByUserId, updData, updImgActive, uploadImg, updActive, getAll, getById, getByTipsSearch
+};

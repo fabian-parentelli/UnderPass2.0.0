@@ -11,6 +11,11 @@ export default class ProductRepository {
         const result = await productManager.getByUserId(id);
         return result;
     };
+    
+    getByTipsSearch = async (query, name) => {
+        const result = await productManager.getByTipsSearch(query, name);
+        return result;
+    };
 
     getProdById = async (id) => {
         const result = await productManager.getProdById(id);

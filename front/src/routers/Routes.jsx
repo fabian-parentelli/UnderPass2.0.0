@@ -17,6 +17,7 @@ import VewCart from "../componentSite/cart/VewCart/VewCart.jsx";
 import NewProduct from "../componentSite/product/NewProduct/NewProduct.jsx";
 import TheMarket from "../componentSite/product/TheMarket/TheMarket.jsx";
 import VewTheProduct from "../componentSite/product/VewTheProduct/VewTheProduct.jsx";
+import BodyCart from "../componentSite/cart/BodyCart/BodyCart.jsx";
 
 const RoutesComp = () => {
 
@@ -50,6 +51,7 @@ const RoutesComp = () => {
                         <Route path="/dashboard/*" element={<Dashboard />} />
                     }
                 </Routes>
+                <BodyCart />
                 <Footer />
             </ScrollToTop>
         </BrowserRouter>

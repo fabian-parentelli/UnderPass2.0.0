@@ -5,6 +5,7 @@ import Pager from '../../../component/utils/Pager/Pager';
 import { useLoginContext } from '../../../context/LoginContext';
 import { getAllProductsApi } from '../../../helpers/products/getAllProducts.api';
 import CardProducts from '../../../component/products/CardProducts/Cardproducts';
+import FilterProduct from './FilterProduct/FilterProduct';
 
 const TheMarket = () => {
 
@@ -38,6 +39,7 @@ const TheMarket = () => {
     return (
         <div className='theMarket'>
             <h2>El Mercado</h2>
+            <FilterProduct setProducts={setProducts} setLoading={setLoading} />
             {products && <CardProducts products={products.docs} />}
             {products && <Pager users={products} HandleChangePage={HandleChangePage} />}
             <Load loading={loadin} />

@@ -1,0 +1,66 @@
+@import '../../../../style/colors.scss';
+
+.filterProduct {
+    width: 80%;
+    background-color: rgb(199, 199, 199);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    border-radius: 6px;
+    padding: 1rem;
+
+    .filterProductFilter {
+        display: flex;
+        align-items: center;
+        padding: 6px;
+        background-color: white;
+        border-radius: 6px;
+        gap: 6px;
+        width: 300px;
+
+        .filterProductReturn {
+            color: $colorB;
+            padding: 3px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: .3s ease-in-out;
+
+            &:hover {
+                background-color: rgba(128, 128, 128, 0.295);
+            }
+        }
+    }
+
+    .filterProductRight {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        width: 300px;
+
+        .iconStar {
+            font-size: 2rem;
+            cursor: pointer;
+            transition: .3s ease-in-out;
+            color: $colorB;
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    
+    .filterProduct {
+        width: 96%;
+        flex-direction: column;
+        gap: 1rem;
+        padding: 12px 0;
+
+        .filterProductRight {
+            gap: 6px;
+        }
+    }
+}
