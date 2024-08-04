@@ -53,3 +53,10 @@ export class ProductNotFound extends Error {
         this.name = this.constructor.name;
     };
 };
+
+export class PublicityNotFound extends Error {
+    constructor(message) {
+        super(message);
+        this.name = this.constructor.name;
+    };
+};

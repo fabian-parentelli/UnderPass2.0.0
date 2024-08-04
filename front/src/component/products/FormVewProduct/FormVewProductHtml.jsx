@@ -137,7 +137,7 @@ const FormVewProductHtml = ({ products, handleChange, setFormData, handleActive,
                                         <div className='expandRowImg'>
                                             {prod.img.map((img) => (
                                                 <div className='expandRowImgIn' key={img._id}>
-                                                    <BigImg img={img.imgUrl} />
+                                                    <BigImg img={img.imgUrl} border={false} />
                                                     <button
                                                         onClick={() => handleImgInactive(prod._id, img._id)}
                                                         className={`btn ${img.actives ? 'btnC' : 'btnE'}`}

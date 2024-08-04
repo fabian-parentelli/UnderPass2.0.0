@@ -1,0 +1,30 @@
+@import '../../../style/colors.scss';
+
+.bodyProduct {
+
+    .theMarkets {
+        text-decoration: none;
+
+        h2 {
+            text-align: center;
+            font-size: 4rem;
+            margin-top: 2rem;
+            cursor: pointer;
+            color: $colorC;
+            transition: .3s ease-in-out;
+
+            &:hover {
+                color: $colorE;
+            }
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    .bodyProduct {
+
+        h2 {
+            font-size: 3rem;
+        }
+    }
+}

@@ -15,7 +15,6 @@ export default class Product {
         const combinedQuery = { ...query, ...nameQuery };
         return await productModel.paginate(combinedQuery, { limit: 40, page: 1, lean: true });
     };
-    
 
     getProdById = async (id) => {
         return await productModel.findById(id).lean();

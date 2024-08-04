@@ -14,6 +14,7 @@ import Avatars from '../images/avatars/Avatars/Avatars';
 import AvatarUserDas from '../user/AvatarUserDas/AvatarUserDas';
 import ProductUserDas from '../product/ProductUserDas/ProductUserDas';
 import VewProductsDas from '../product/VewProductsDas/VewProductsDas';
+import NewPublicity from '../publicity/NewPublicity/NewPublicity';
 
 const Dashboard = () => {
 
@@ -47,6 +48,10 @@ const Dashboard = () => {
                     title={'Solicitudes'}
                     category={[{ name: 'Crear', path: 'newapplication' }, { name: 'Ver', path: 'vewapplicattion' }, { name: 'Usuario', path: 'vewapplicattionuser' }]}
                 />
+                <Fields
+                    title={'Publicidad'}
+                    category={[{ name: 'Crear', path: 'newpublicity' }, { name: 'x', path: '' }, { name: 'x', path: '' }]}
+                />
             </div>
             <Routes>
                 <Route path='/' element={<Panel />} />
@@ -67,6 +72,8 @@ const Dashboard = () => {
                 <Route path='/newapplication' element={<NewApplication />} />
                 <Route path='/vewapplicattion' element={<VewApplication />} />
                 <Route path='/vewapplicattionuser' element={<VewUserApplication />} />
+
+                <Route path='/newpublicity' element={<NewPublicity />} />
             </Routes>
         </div>
     );

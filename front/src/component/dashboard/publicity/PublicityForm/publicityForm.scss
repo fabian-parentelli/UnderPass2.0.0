@@ -1,0 +1,17 @@
+.publicityForm {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+
+    div {
+        display: flex;
+        flex-direction: column;
+        width: 300px;
+    }
+
+    .newBannerEnd div {
+        display: flex;
+        flex-direction: row;
+    }
+}
