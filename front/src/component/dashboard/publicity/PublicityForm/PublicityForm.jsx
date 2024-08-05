@@ -1,5 +1,6 @@
 import './publicityForm.scss';
 import { useState } from 'react';
+import Switch from '@mui/material/Switch';
 import DateConf from '../../../utils/DateConf/DateConf'
 import CloudFile from '../../../utils/CloudFile/CloudFile';
 import CategorySelected from '../../banner/CategorySelected/CategorySelected';
@@ -8,13 +9,20 @@ import { newPublicityApi } from '../../../../helpers/publicity/newPublicity.api'
 
 const PublicityForm = ({ type, setLoading, setType }) => {
 
+    const [checked, setChecked] = useState(false);
     const [formData, setFormData] = useState(null);
     const [values, setValues] = useState({
-        title: '', folders: '', links: '', country: '', category: '', type: type
+        title: '', folders: '', links: '', country: '', category: '', type: type, inPortal: checked
     });
 
     const handleFileChange = (data) => setFormData(data);
     const handleChange = (e) => setValues({ ...values, [e.target.name]: e.target.value });
+
+    const handleSwitchChange = (e) => {
+        const isChecked = e.target.checked;
+        setChecked(isChecked);
+        setValues(prevValues => ({ ...prevValues, inPortal: isChecked }));
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -63,11 +71,23 @@ const PublicityForm = ({ type, setLoading, setType }) => {
             <div>
                 <CountrySelected handleChange={handleChange} />
             </div>
-            
+
             <div>
                 <CategorySelected handleChange={handleChange} />
             </div>
 
+            <div>
+                <label>En la portada</label>
+                <div className='switchForm'>
+                    <p>No</p>
+                    <Switch
+                        checked={checked}
+                        onChange={handleSwitchChange}
+                    />
+                    <p>SI</p>
+                </div>
+
+            </div>
             <div className='newBannerEnd'>
                 <label>Cierre programado</label>
                 <DateConf setValues={setValues} isRequired={false} />

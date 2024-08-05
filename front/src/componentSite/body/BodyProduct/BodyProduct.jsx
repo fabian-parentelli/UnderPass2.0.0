@@ -1,7 +1,17 @@
+import { useEffect } from 'react';
 import './bodyProduct.scss';
 import { Link } from 'react-router-dom';
+import { getProductsRandomApi } from '../../../helpers/products/getProductRandom.api.js';
 
 const BodyProduct = () => {
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await getProductsRandomApi();
+            
+
+        }; fetchData();
+    }, []);
 
     return (
         <div className='bodyProduct'>

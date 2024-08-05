@@ -58,6 +58,16 @@ const getById = async (req, res) => {
     };
 };
 
+const getRandom = async (req, res) => {
+    try {
+        const result = await productService.getRandom();
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof ProductNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
 const updImgActive = async (req, res) => {
     try {
         const result = await productService.updImgActive({ ...req.body });
@@ -103,5 +113,5 @@ const uploadImg = async (req, res) => {
 };
 export {
     newProduct, getByUserId, updData, updImgActive, uploadImg, updActive, getAll, getById,
-    getByTipsSearch
+    getByTipsSearch, getRandom
 };

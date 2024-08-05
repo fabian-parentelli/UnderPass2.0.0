@@ -1,0 +1,15 @@
+.searchPublicitary {
+    display: flex;
+    align-items: flex-end;
+    gap: 2rem;
+
+    div {
+        display: flex;
+        flex-direction: column;
+        width: 150px;
+
+        label {
+            margin-left: 3px;
+        }
+    }
+}

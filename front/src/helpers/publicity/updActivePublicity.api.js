@@ -1,10 +1,10 @@
 const url = import.meta.env.VITE_API_URL;
 
-const getProductByIdApi = async (id) => {
+const updActivePublicityApi = async (id) => {
 
     const token = localStorage.getItem('token');
-    const response = await fetch(`${url}/api/product/id/${id}`, {
-        method: 'GET',
+    const response = await fetch(`${url}/api/publicity/active/${id}`, {
+        method: 'PUT',
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
@@ -12,8 +12,8 @@ const getProductByIdApi = async (id) => {
         }
     });
     const content = await response.json();
-    if (content.error) return content;
+    if (content.error) return error;
     if (content.data) return content.data;
 };
 
-export { getProductByIdApi };
+export { updActivePublicityApi };

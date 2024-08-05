@@ -8,6 +8,14 @@
         display: flex;
         flex-direction: column;
         width: 300px;
+
+        .switchForm {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 1rem;
+        }
     }
 
     .newBannerEnd div {

@@ -11,6 +11,10 @@
         flex-direction: column;
         gap: 2rem;
         align-items: center;
+
+        p {
+            color: gray;
+        }
     }
 
     .newProductCForm {

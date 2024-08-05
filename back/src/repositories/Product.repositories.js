@@ -21,6 +21,11 @@ export default class ProductRepository {
         const result = await productManager.getProdById(id);
         return result;
     };
+    
+    getRandom = async () => {
+        const result = await productManager.getRandom();
+        return result;
+    };
 
     update = async (product) => {
         const result = await productManager.update(product);

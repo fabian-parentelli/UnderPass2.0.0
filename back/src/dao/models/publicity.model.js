@@ -14,7 +14,8 @@ const publicitySchema = new mongoose.Schema({
     country: { type: String },
     category: { type: String },
     end: { type: Date },
-    type: { type: String }
+    type: { type: String },
+    inPortal: { type: Boolean, default: false }
 });
 
 publicitySchema.plugin(mongoosePaginate);

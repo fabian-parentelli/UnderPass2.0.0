@@ -1,0 +1,12 @@
+.vewUpdPuiblicity {
+    margin: 1rem 0 2rem 0;
+
+    .tdBack {
+        cursor: pointer;
+        transition: .3s ease-in-out;
+
+        &:hover {
+            background-color: rgba(128, 128, 128, 0.349);
+        }
+    }
+}

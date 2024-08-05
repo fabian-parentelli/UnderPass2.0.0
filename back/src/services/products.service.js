@@ -1,4 +1,4 @@
-import { productRepository, userRepository } from "../repositories/index.repositories.js";
+import { productRepository, userRepository, publicityRepository } from "../repositories/index.repositories.js";
 import { ProductNotFound } from '../utils/custom-exceptions.utils.js';
 
 const newProduct = async (images, imagesUrl, product) => {
@@ -55,6 +55,14 @@ const getById = async (id) => {
     return { status: 'success', result };
 };
 
+const getRandom = async () => {
+    const products = await productRepository.getRandom();
+    
+    
+    
+    
+};
+
 const updImgActive = async (data) => {
     const product = await productRepository.getProdById(data.prodId);
     if (!product) throw new ProductNotFound('No se encuentra el producto');
@@ -94,5 +102,6 @@ const uploadImg = async (images, imagesUrl, product) => {
 };
 
 export {
-    newProduct, getByUserId, updData, updImgActive, uploadImg, updActive, getAll, getById, getByTipsSearch
+    newProduct, getByUserId, updData, updImgActive, uploadImg, updActive, getAll, getById, 
+    getByTipsSearch, getRandom
 };

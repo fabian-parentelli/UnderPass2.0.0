@@ -60,6 +60,7 @@ const NewProductC = ({ userId, setOpen, setMessage, setLoading }) => {
                 <h2>Crear producto</h2>
                 <p>Completa todos los campos</p>
                 <CloudFile onChange={handleFileChange} folderName={`product/${userId}`} contClass='cfRect' />
+                <p>No ingreses mas de 4 imágenes</p>
             </div>
 
             <form className='newProductCForm' onSubmit={handleSubmit}>
