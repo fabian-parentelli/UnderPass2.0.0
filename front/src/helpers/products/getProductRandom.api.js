@@ -2,7 +2,8 @@ const url = import.meta.env.VITE_API_URL;
 
 const getProductsRandomApi = async () => {
 
-    const response = await fetch(`${url}/api/product/random`, {
+    const country = localStorage.getItem('country');
+    const response = await fetch(`${url}/api/product/random?country=${country}`, {
         method: 'GET',
         headers: {
             'Accept': 'application/json',

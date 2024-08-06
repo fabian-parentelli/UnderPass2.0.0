@@ -1,5 +1,6 @@
 import { productRepository, userRepository, publicityRepository } from "../repositories/index.repositories.js";
 import { ProductNotFound } from '../utils/custom-exceptions.utils.js';
+import { joinPublicity } from "../utils/joinPublicity.utils.js";
 
 const newProduct = async (images, imagesUrl, product) => {
     product.description = JSON.parse(product.description);
@@ -35,7 +36,7 @@ const getByTipsSearch = async (name, favorite) => {
     return { status: 'success', result };
 };
 
-const getAll = async (limit, page, active, country, inSite, location, province, user) => {
+const getAll = async (limit, page, active, country, inSite, location, province, user, publicity) => {
     const query = {};
     let favorites = [];
     if (user) favorites = await userRepository.getFavorite(user);
@@ -46,6 +47,14 @@ const getAll = async (limit, page, active, country, inSite, location, province, 
     if (inSite !== undefined) query.inSite = inSite;
     const result = await productRepository.getAll(query, limit, page, location);
     if (!result) throw new ProductNotFound('No se encuentran los usuarios');
+    if (publicity === 'false') return { status: 'success', result };
+    const querys = {
+        country: { $in: [country, 'all'] },
+        active: true,
+        type: { $regex: 'Cards', $options: "i" }
+    };
+    const cards = await publicityRepository.getAll(querys, limit, page);
+    result.docs = joinPublicity(result.docs, cards.docs);
     return { status: 'success', result };
 };
 
@@ -55,12 +64,19 @@ const getById = async (id) => {
     return { status: 'success', result };
 };
 
-const getRandom = async () => {
-    const products = await productRepository.getRandom();
-    
-    
-    
-    
+const getRandom = async (country, limit = 5, page = 1) => {
+    const products = await productRepository.getRandom(country);
+    if (!products) throw new ProductNotFound('No se encuentra el producto');
+    const query = {
+        country: { $in: [country, 'all'] },
+        inPortal: true,
+        active: true,
+        type: { $regex: 'Cards', $options: "i" }
+    };
+    const cards = await publicityRepository.getAll(query, limit, page);
+    if (!cards) throw new ProductNotFound('No se encuentran las publicidades');
+    const result = joinPublicity(products, cards.docs);
+    return { status: 'success', result };
 };
 
 const updImgActive = async (data) => {
@@ -102,6 +118,6 @@ const uploadImg = async (images, imagesUrl, product) => {
 };
 
 export {
-    newProduct, getByUserId, updData, updImgActive, uploadImg, updActive, getAll, getById, 
+    newProduct, getByUserId, updData, updImgActive, uploadImg, updActive, getAll, getById,
     getByTipsSearch, getRandom
 };

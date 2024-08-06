@@ -22,8 +22,8 @@ export default class ProductRepository {
         return result;
     };
     
-    getRandom = async () => {
-        const result = await productManager.getRandom();
+    getRandom = async (country) => {                
+        const result = await productManager.getRandom(country);
         return result;
     };
 

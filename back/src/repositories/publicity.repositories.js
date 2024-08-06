@@ -7,8 +7,8 @@ export default class PublicityRepository {
         return result;
     };
 
-    getAll = async (query, limit, page) => {
-        const result = await publicityManager.getAll(query, limit, page);
+    getAll = async (query, limit, page) => {        
+        const result = await publicityManager.getAll(query, limit, page);    
         if (query.active === 'false' || query.country || query.category || query.inPortal) return result;
         const today = new Date().setHours(0, 0, 0, 0);
         const updatePublicity = result.docs.filter(publicity => {
@@ -31,6 +31,11 @@ export default class PublicityRepository {
 
     update = async (publicity) => {
         const result = await publicityManager.update(publicity);
+        return result;
+    };
+
+    getCards = async (type, country, { inPortal }, { limit }) => {
+        const result = await publicityManager.getCards(type, country, inPortal, limit);
         return result;
     };
 };

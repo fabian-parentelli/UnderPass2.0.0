@@ -2,10 +2,10 @@ import './theMarket.scss';
 import { useEffect, useState } from 'react';
 import Load from '../../../component/utils/Load';
 import Pager from '../../../component/utils/Pager/Pager';
-import { useLoginContext } from '../../../context/LoginContext';
-import { getAllProductsApi } from '../../../helpers/products/getAllProducts.api';
-import CardProducts from '../../../component/products/CardProducts/Cardproducts';
 import FilterProduct from './FilterProduct/FilterProduct';
+import { useLoginContext } from '../../../context/LoginContext';
+import CardProducts from '../../../component/products/CardProducts/Cardproducts';
+import { getAllProductsApi } from '../../../helpers/products/getAllProducts.api.js';
 
 const TheMarket = () => {
 
@@ -41,7 +41,7 @@ const TheMarket = () => {
             <h2>El Mercado</h2>
             <FilterProduct setProducts={setProducts} setLoading={setLoading} />
             {products && <CardProducts products={products.docs} />}
-            {products && <Pager users={products} HandleChangePage={HandleChangePage} />}
+            {products && <div style={{ marginTop: '4rem' }}><Pager users={products} HandleChangePage={HandleChangePage} /></div>}
             <Load loading={loadin} />
         </div>
     );

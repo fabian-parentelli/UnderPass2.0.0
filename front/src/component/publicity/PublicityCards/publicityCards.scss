@@ -1,0 +1,20 @@
+.publicityCards {
+    margin-top: 2rem;
+    width: 250px;
+    height: 400px;
+    border-radius: 6px;
+    transition: .3s ease-in-out;
+    box-shadow: 5px 5px 15px black;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    &:hover {
+        transform: translateY(-6px);
+    }
+
+    .publicityCardsImg {
+        border-radius: 6px;
+    }
+}

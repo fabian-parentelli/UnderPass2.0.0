@@ -11,6 +11,7 @@ const getAllProductsApi = async (obj) => {
     if (obj.location) urlData += `location=${obj.location}&`; //Es province pero solo para ordenar no para filtrar
     if (obj.province) urlData += `province=${obj.province}&`;
     if (obj.user) urlData += `user=${obj.user}&`;
+    if (obj.publicity) urlData += `publicity=${obj.publicity}&`;
 
     const response = await fetch(urlData, {
         method: 'GET',

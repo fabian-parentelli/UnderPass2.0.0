@@ -11,7 +11,7 @@ const OtherProducts = ({ setLoading }) => {
     const { user } = useLoginContext();
 
     const country = localStorage.getItem('country');
-    const query = { active: true, country: country, limit: 4 };
+    const query = { active: true, country: country, limit: 4, publicity: 'false' };
     if (user && user.data) query.location = user.data.location.province;
 
     useEffect(() => {

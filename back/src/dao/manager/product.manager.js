@@ -20,9 +20,10 @@ export default class Product {
         return await productModel.findById(id).lean();
     };
 
-    getRandom = async (limit = 9) => {
-        return await productModel.aggregate([{ $sample: { size: limit } }]).exec();
+    getRandom = async (country, limit =11) => {
+        return await productModel.aggregate([{ $match: { 'location.country': country } }, { $sample: { size: limit } }]).exec();
     };
+
 
     update = async (product) => {
         return await productModel.findByIdAndUpdate({ _id: product._id }, product, { new: true });

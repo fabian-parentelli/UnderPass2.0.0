@@ -37,9 +37,9 @@ const getByTipsSearch = async (req, res) => {
 };
 
 const getAll = async (req, res) => {
-    const { limit = 12, page = 1, active, country, inSite, location, province, user } = req.query;
+    const { limit = 12, page = 1, active, country, inSite, location, province, user, publicity } = req.query;
     try {
-        const result = await productService.getAll(limit, page, active, country, inSite, location, province, user);
+        const result = await productService.getAll(limit, page, active, country, inSite, location, province, user, publicity);
         if (result) return res.sendSuccess(result);
     } catch (error) {
         if (error instanceof AppliNotFound) return res.sendClientError(error.message);
@@ -59,8 +59,9 @@ const getById = async (req, res) => {
 };
 
 const getRandom = async (req, res) => {
+    const { country } = req.query;
     try {
-        const result = await productService.getRandom();
+        const result = await productService.getRandom(country);
         if (result) return res.sendSuccess(result);
     } catch (error) {
         if (error instanceof ProductNotFound) return res.sendClientError(error.message);

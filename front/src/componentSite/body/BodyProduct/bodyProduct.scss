@@ -1,6 +1,7 @@
 @import '../../../style/colors.scss';
 
 .bodyProduct {
+    margin-bottom: 10%;
 
     .theMarkets {
         text-decoration: none;
@@ -16,6 +17,17 @@
             &:hover {
                 color: $colorE;
             }
+        }
+    }
+
+    .bodyProductP {
+        text-align: center;
+        margin-top: 4rem;
+        color: $colorB;
+        transition: .3s ease-in-out;
+        
+        &:hover {
+            color: $colorD;
         }
     }
 }
