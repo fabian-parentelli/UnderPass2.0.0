@@ -1,18 +1,19 @@
-.listVew {
-    width: 100%;
-    margin-left: 1rem;
+.listView {
+    display: flex;
+    flex-direction: column;
+}
 
-    .listVewBtn {
-        display: flex;
-        align-items: center;
-        gap: 0.4rem;
-    }
+.listViewCont {
+    margin-top: 1rem;
+}
 
-    .line {
-        width: 100%;
-        height: 1px;
-        background-color: #ccc;
-        margin-top: 10px;
-        margin-bottom: 10px;
-    }
+.listViewCont p {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.listViewSales p {
+    font-size: 12px;
+    font-weight: normal;
+    color: gray;
 }

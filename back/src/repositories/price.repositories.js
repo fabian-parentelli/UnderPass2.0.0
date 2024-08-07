@@ -1,21 +1,19 @@
-import { priceBannerManager } from '../dao/manager/index.manager.js';
+import { priceManager } from '../dao/manager/index.manager.js';
 
 export default class PriceRepository {
 
-    // Banners ...
-
-    newBannerPrice = async (price) => {
-        const result = await priceBannerManager.newBannerPrice(price);
+    newPrice = async (price) => {
+        const result = await priceManager.newPrice(price);
         return result;
     };
 
-    getLastBanner = async (country) => {
-        const result = await priceBannerManager.getLastBanner(country);
+    getLastPrice = async (country, name) => {
+        const result = await priceManager.getLastPrice(country, name);
         return result;
     };
     
-    getAllBanner = async (country) => {
-        const result = await priceBannerManager.getAllBanner(country);
+    getAllPrice = async () => {
+        const result = await priceManager.getAllPrice();
         return result;
     };
 

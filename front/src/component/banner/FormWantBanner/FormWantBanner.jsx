@@ -7,10 +7,10 @@ import MyBanner from './MyBanner/MyBanner';
 import { useNavigate } from 'react-router-dom';
 import AlertDialog from '../../utils/AlertDialog';
 import UnderBanner from './UnderBanner/UnderBanner';
+import { imgages } from '../../../utils/imagesData.utils.js';
+import { useCartContext } from '../../../context/CartContext.jsx';
 import { newApplBannerApi } from '../../../helpers/applications/newApplBanner.api.js';
 import CategorySelected from '../../dashboard/banner/CategorySelected/CategorySelected';
-import { useCartContext } from '../../../context/CartContext.jsx';
-import { imgages } from '../../../utils/imagesData.utils.js';
 
 const FormWantBanner = ({ user, country }) => {
 
@@ -75,7 +75,7 @@ const FormWantBanner = ({ user, country }) => {
                     <CategorySelected handleChange={handleChange} />
                 </div>
                 <Price
-                    country={country} handleChange={handleChange} values={values} setDataPrice={setDataPrice}
+                    country={country} handleChange={handleChange} values={values} setDataPrice={setDataPrice} name='banners' 
                 />
                 <div className='formWantBannerRow'>
                     <p>Mi banner</p>

@@ -1,51 +1,50 @@
-import './bannersPrice.scss';
-import React, { useEffect, useState } from 'react';
-import { newPriceApi } from '../../../../../helpers/prices/banners/newPrice.api.js';
-import { lastBannerPriceApi } from '../../../../../helpers/prices/banners/lastBannerPrice.api.js';
-import LineCharts from '../../../../../component/utils/chart/LineCharts.jsx';
-import GraphBanner from './GraphBanner.jsx';
+import './newPrice.scss';
+import { useEffect, useState } from 'react';
+import { newPriceApi } from '../../../../../helpers/prices/newPrice.api.js';
+import { getLastPriceApi } from '../../../../../helpers/prices/getLastPrice.api.js';
 
-const BannersPrice = ({ country, setLoading, setMessage, setOpen }) => {
+const NewPrice = ({ country, setLoading, setMessage, setOpen, type }) => {
 
-    const [formData, setFormData] = useState({
-        name: 'banner',
-        country: country,
-        price: '',
+    const [values, setValues] = useState({
+        name: '', country: country, price: '',
         sales: [{ days: '', sale: '' }, { days: '', sale: '' }, { days: '', sale: '' }]
     });
 
+    useEffect(() => { setValues({ ...values, name: type }) }, [type])
+
     useEffect(() => {
         const fetchData = async () => {
-            setLoading(true);
-            const response = await lastBannerPriceApi(country);
+            const response = await getLastPriceApi({ country: country, name: type });
             if (response && response.status === 'success') {
                 const data = response.result;
-                setFormData({
-                    name: data.name || 'banner',
+                setValues({
+                    name: type,
                     country: data.country || country,
                     price: data.price || '',
                     sales: data.sales.length ? data.sales : [{ days: '', sale: '' }, { days: '', sale: '' }, { days: '', sale: '' }]
                 });
-            };
-            setLoading(false);
+            } else setValues({
+                name: type, country: country, price: '',
+                sales: [{ days: '', sale: '' }, { days: '', sale: '' }, { days: '', sale: '' }]
+            });
         }; fetchData();
-    }, [country]);
+    }, [country, type]);
 
     const handleChange = (e, index, field) => {
         const value = e.target.value;
         if (field === 'price') {
-            setFormData({ ...formData, price: value });
+            setValues({ ...values, price: value });
         } else {
-            const newSales = formData.sales.map((sale, i) =>
+            const newSales = values.sales.map((sale, i) =>
                 i === index ? { ...sale, [field]: value } : sale);
-            setFormData({ ...formData, sales: newSales });
+            setValues({ ...values, sales: newSales });
         };
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
-        const response = await newPriceApi(formData);
+        const response = await newPriceApi(values);
         if (response.status === 'success') {
             setLoading(false);
             setOpen(true);
@@ -54,23 +53,24 @@ const BannersPrice = ({ country, setLoading, setMessage, setOpen }) => {
         } else {
             setMessage({ status: 'error', mess: response });
             setTimeout(() => { setOpen(false); }, 2000);
-        };
+        };        
     };
 
     return (
-        <>
+        <div className='newPrice'>
             <form className='bannersPrice' onSubmit={handleSubmit}>
-                <h4>Banners</h4>
+                <p>EL precio por publicidad es por dia y en moneda local.<br />El precio de eventos, productos y turnos es porcentaje del mismo.</p>
                 <div>
-                    <label>Banners x día $</label>
+
+                    <label>Precio</label>
                     <input
                         type="text"
-                        value={formData.price}
+                        value={values.price}
                         onChange={(e) => handleChange(e, null, 'price')}
                     />
                 </div>
 
-                {formData.sales.map((sale, index) => (
+                {(type === 'banners' || type === 'separator' || type === 'cards') && values.sales.map((sale, index) => (
                     <div key={index}>
                         <div className='divSale'>
                             <label>Descuento más de</label>
@@ -94,9 +94,8 @@ const BannersPrice = ({ country, setLoading, setMessage, setOpen }) => {
                 ))}
                 <button className='btn btnC'>Actualizar</button>
             </form>
-            <GraphBanner country={country} />
-        </>
+        </div>
     );
 };
 
-export default BannersPrice;
+export default NewPrice;

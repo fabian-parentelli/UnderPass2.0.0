@@ -1,15 +1,16 @@
 const url = import.meta.env.VITE_API_URL;
 
-async function newPriceApi(price) {
+async function getLastPriceApi(obj) {
 
-    const token = localStorage.getItem('token');
-    const response = await fetch(`${url}/api/price/banner`, {
-        method: 'POST',
-        body: JSON.stringify(price),
+    let urlData = `${url}/api/price/last?`;
+    if (obj.country) urlData += `country=${obj.country}&`;
+    if (obj.name) urlData += `name=${obj.name}&`;
+
+    const response = await fetch(urlData, {
+        method: 'GET',
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
         }
     });
     const content = await response.json();
@@ -17,4 +18,4 @@ async function newPriceApi(price) {
     if(content.data) return content.data;
 };
 
-export { newPriceApi };
+export { getLastPriceApi };

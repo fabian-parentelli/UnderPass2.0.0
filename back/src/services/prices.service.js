@@ -2,14 +2,15 @@ import { priceRepository } from "../repositories/index.repositories.js";
 import { PriceNotFound } from '../utils/custom-exceptions.utils.js';
 import * as exchangeData from "../utils/exchangeApi.utils.js";
 
-const newBannerPrice = async (price) => {
-    const result = await priceRepository.newBannerPrice(price);
-    if (!result) throw new PriceNotFound('No se puede guardar el video tutorial');
+const newPrice = async (price) => {
+    price.sales = price.sales.filter(sale => sale.days && sale.sale);
+    const result = await priceRepository.newPrice(price);
+    if (!result) throw new PriceNotFound('No se puede guardar el nuevo precio');
     return { status: 'success', result };
 };
 
-const getLastBanner = async (country) => {
-    const result = await priceRepository.getLastBanner(country);
+const getLastPrice = async (country, name) => {
+    const result = await priceRepository.getLastPrice(country, name);
     if (!result) return { status: 'notFound', result: {} };
     return { status: 'success', result };
 };
@@ -23,10 +24,10 @@ const exchange = async () => {
     return { status: 'success', result };
 };
 
-const getListPrice = async (country) => {
-    const lastBanner = await priceRepository.getLastBanner(country);
-    const result = { banner: lastBanner };
+const getAllPrice = async () => {
+    const result = await priceRepository.getAllPrice();
+    if (!result) throw new PriceNotFound('No se puede obtener la lista de precios');
     return { status: 'success', result };
 };
 
-export { newBannerPrice, getLastBanner, exchange, getListPrice };
+export { newPrice, getLastPrice, exchange, getAllPrice };

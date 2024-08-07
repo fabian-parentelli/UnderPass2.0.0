@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 
-const priceBannerCollection = 'priceBanners';
+const priceCollection = 'prices';
 
-const priceBannerSchema = new mongoose.Schema({
+const priceSchema = new mongoose.Schema({
     name: { type: String },
     country: { type: String },
     price: { type: Number },
@@ -16,4 +16,4 @@ const priceBannerSchema = new mongoose.Schema({
     active: { type: Boolean, default: true },
 });
 
-export const priceBannerModel = mongoose.model(priceBannerCollection, priceBannerSchema);
+export const priceModel = mongoose.model(priceCollection, priceSchema);

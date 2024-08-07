@@ -1,9 +1,9 @@
 import * as priceService from '../services/prices.service.js';
 import { PriceNotFound } from '../utils/custom-exceptions.utils.js';
 
-const newBannerPrice = async (req, res) => {
+const newPrice = async (req, res) => {
     try {
-        const result = await priceService.newBannerPrice({ ...req.body });
+        const result = await priceService.newPrice({ ...req.body });
         if (result) return res.sendSuccess(result);
     } catch (error) {
         if (error instanceof PriceNotFound) return res.sendClientError(error.message);
@@ -11,10 +11,10 @@ const newBannerPrice = async (req, res) => {
     };
 };
 
-const getLastBanner = async (req, res) => {
-    const { country } = req.params;
+const getLastPrice = async (req, res) => {
+    const { country, name } = req.query;
     try {
-        const result = await priceService.getLastBanner(country);
+        const result = await priceService.getLastPrice(country, name);
         if (result) return res.sendSuccess(result);
     } catch (error) {
         if (error instanceof PriceNotFound) return res.sendClientError(error.message);
@@ -32,10 +32,9 @@ const exchange = async (req, res) => {
     };
 };
 
-const getListPrice = async (req, res) => {
-    const { country } = req.params;
+const getAllPrice = async (req, res) => {
     try {
-        const result = await priceService.getListPrice(country);
+        const result = await priceService.getAllPrice();
         if (result) return res.sendSuccess(result);
     } catch (error) {
         if (error instanceof PriceNotFound) return res.sendClientError(error.message);
@@ -43,4 +42,4 @@ const getListPrice = async (req, res) => {
     };
 };
 
-export { newBannerPrice, getLastBanner, exchange, getListPrice };
+export { newPrice, getLastPrice, exchange, getAllPrice };

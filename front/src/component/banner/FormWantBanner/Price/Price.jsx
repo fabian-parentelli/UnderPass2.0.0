@@ -1,16 +1,16 @@
 import './price.scss';
 import { useEffect, useState } from 'react';
 import RequestQuoteIcon from '@mui/icons-material/RequestQuote';
-import { lastBannerPriceApi } from '../../../../helpers/prices/banners/lastBannerPrice.api';
+import { getLastPriceApi } from '../../../../helpers/prices/getLastPrice.api.js';
 
-const Price = ({ country, handleChange, values, setDataPrice }) => {
+const Price = ({ country, handleChange, values, setDataPrice, name }) => {
 
     const [price, setPrice] = useState(null);
     const [sale, setSale] = useState(0);
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await lastBannerPriceApi(country);
+            const response = await getLastPriceApi({ country: country, name: name });
             if (response.status === 'success') {
                 setPrice(response.result);
                 setDataPrice(response.result);
