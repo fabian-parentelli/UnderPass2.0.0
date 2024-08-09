@@ -1,7 +1,7 @@
 import './price.scss';
 import { useEffect, useState } from 'react';
 import RequestQuoteIcon from '@mui/icons-material/RequestQuote';
-import { getLastPriceApi } from '../../../../helpers/prices/getLastPrice.api.js';
+import { getLastPriceApi } from '../../../helpers/prices/getLastPrice.api.js';
 
 const Price = ({ country, handleChange, values, setDataPrice, name }) => {
 
@@ -16,7 +16,7 @@ const Price = ({ country, handleChange, values, setDataPrice, name }) => {
                 setDataPrice(response.result);
             };
         }; fetchData();
-    }, []);
+    }, [name]);
 
     useEffect(() => {
         if (price) {

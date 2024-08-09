@@ -1,0 +1,26 @@
+.userApplication {
+
+    .advertisingBtn {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+
+        .btnShower {
+            box-shadow: 5px 5px 15px;
+        }
+    }
+
+    .advertisingImg {
+        margin-top: 1.4rem;
+        width: 45%;
+    }
+}
+
+@media (max-width: 767px) {
+    .advertising {
+
+        .advertisingImg {
+            width: 90%;
+        }
+    }
+}

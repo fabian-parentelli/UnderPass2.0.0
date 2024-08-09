@@ -1,4 +1,4 @@
-import { useLoginContext } from "../../../../context/LoginContext";
+import { useLoginContext } from "../../../context/LoginContext";
 
 const CategorySelected = ({ handleChange, isRequired = true }) => {
 

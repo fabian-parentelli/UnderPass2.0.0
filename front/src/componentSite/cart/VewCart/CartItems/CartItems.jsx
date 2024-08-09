@@ -21,7 +21,7 @@ const CartItems = ({ cart }) => {
                 <tbody>
                     {cart.length > 0 && cart.map((item, index) => (
                         <Fragment key={index}>
-                            {item.is === 'banner' && <CartBanner item={item} />}
+                            {item.is === 'banners' && <CartBanner item={item} />}
                             {item.is === 'product' && <CartProduct item={item} />}
                         </Fragment>
                     ))}

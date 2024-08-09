@@ -1,11 +1,11 @@
 const url = import.meta.env.VITE_API_URL;
 
-const newApplBannerApi = async (banner) => {
+const newApplicationApi = async (application) => {
 
     const token = localStorage.getItem('token');
-    const response = await fetch(`${url}/api/appli/banner`, {
+    const response = await fetch(`${url}/api/appli`, {
         method: 'POST',
-        body: banner,
+        body: application,
         headers: {
             'Accept': 'application/json',
             'Authorization': `Bearer ${token}`
@@ -16,4 +16,4 @@ const newApplBannerApi = async (banner) => {
     if (content.data) return content.data;
 };
 
-export { newApplBannerApi };
+export { newApplicationApi };

@@ -2,7 +2,7 @@ import './newBanner.scss';
 import { useState } from 'react';
 import CloudFile from '../../../../../component/utils/CloudFile/CloudFile';
 import { newBannerApi } from '../../../../../helpers/images/banners/newBanner.api';
-import CategorySelected from '../../../../../component/dashboard/banner/CategorySelected/CategorySelected';
+import CategorySelected from '../../../../../component/advertisting/CategorySelected/CategorySelected';
 import CountrySelected from '../../../../../component/dashboard/banner/CountrySelected/CountrySelected';
 import DateConf from '../../../../../component/utils/DateConf/DateConf';
 

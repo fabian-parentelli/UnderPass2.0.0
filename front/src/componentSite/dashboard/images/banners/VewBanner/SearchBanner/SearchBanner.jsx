@@ -1,8 +1,8 @@
 import './searchBanner.scss';
 import { useState } from 'react';
 import { getAllBannersApi } from '../../../../../../helpers/images/banners/getAllBanners.api.js';
-import CountrySelected from '../../../../../../component/dashboard/banner/CountrySelected/CountrySelected';
-import CategorySelected from '../../../../../../component/dashboard/banner/CategorySelected/CategorySelected';
+import CountrySelected from '../../../../../../component/dashboard/banner/CountrySelected/CountrySelected.jsx';
+import CategorySelected from '../../../../../../component/advertisting/CategorySelected/CategorySelected.jsx';
 
 const SearchBanner = ({ setBanners, setLoading }) => {
 

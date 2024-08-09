@@ -1,6 +1,6 @@
 import './searchApp.scss';
 import { useState } from 'react';
-import CategorySelected from '../../../../../component/dashboard/banner/CategorySelected/CategorySelected';
+import CategorySelected from '../../../../../component/advertisting/CategorySelected/CategorySelected.jsx';
 import CountrySelected from '../../../../../component/dashboard/banner/CountrySelected/CountrySelected';
 import { getAllApplicationApi } from '../../../../../helpers/applications/getAllApplicatiosn.api.js';
 

@@ -1,10 +1,10 @@
 import * as appliService from '../services/application.service.js';
 import { AppliNotFound } from '../utils/custom-exceptions.utils.js';
 
-const appliBanner = async (req, res) => {
+const newApplication = async (req, res) => {
     const imagesUrl = req.cloudinaryUrls;
     try {
-        const result = await appliService.appliBanner({ ...req.body }, imagesUrl);
+        const result = await appliService.newApplication({ ...req.body }, imagesUrl);
         if (result) return res.sendSuccess(result);
     } catch (error) {
         if (error instanceof AppliNotFound) return res.sendClientError(error.message);
@@ -56,4 +56,4 @@ const updVew = async (req, res) => {
     };
 };
 
-export { appliBanner, getAll, getByUserId, updActive, updVew };
+export { newApplication, getAll, getByUserId, updActive, updVew };

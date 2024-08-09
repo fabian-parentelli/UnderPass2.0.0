@@ -1,11 +1,11 @@
-import './underBanner.scss';
+import './textApplication.scss';
 
-const UnderBanner = ({ handleChange }) => {
+const TextApplication = ({ handleChange }) => {
 
     return (
         <div className='underBanner'>
             <textarea
-                name="textBanner"
+                name="text"
                 placeholder='Lugar, evento, producto, etc'
                 onChange={handleChange}
             ></textarea>
@@ -14,4 +14,4 @@ const UnderBanner = ({ handleChange }) => {
     );
 };
 
-export default UnderBanner;
+export default TextApplication;

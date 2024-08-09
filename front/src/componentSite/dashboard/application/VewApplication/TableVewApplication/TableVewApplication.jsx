@@ -10,10 +10,11 @@ const TableVewApplication = ({ appli, handleActive, handeleVew }) => {
     const { user } = useLoginContext();
 
     const handleInfo = (id) => setVew(vew === id ? null : id);
-
+    
     return (
         <div className='tableVewApplication'>
             <table>
+                
                 <thead>
                     <tr>
                         <th>Título</th>
@@ -24,9 +25,10 @@ const TableVewApplication = ({ appli, handleActive, handeleVew }) => {
                         <th>Tipo</th>
                         <th>Pago</th>
                         <th>Activo</th>
-                        {user && user.data.role !== 'user' && <th>Visto</th>}
+                        <th>Visto</th>
                     </tr>
                 </thead>
+
                 <tbody>
                     {appli && appli.docs && appli.docs.map(app => (
                         <Fragment key={app._id}>
@@ -49,9 +51,9 @@ const TableVewApplication = ({ appli, handleActive, handeleVew }) => {
                                 </td>
                                 <td>{app.underBanner ? 'No' : 'Sí'}</td>
                                 <td>
-                                    <p>{app.user.name}</p>
-                                    <p>{app.user.email}</p>
-                                    <p className='pUser'>{app.user.userId}</p>
+                                    <p>{app.userId.name}</p>
+                                    <p>{app.userId.email}</p>
+                                    <p className='pUser'>{app.userId.userId}</p>
                                 </td>
                                 <td>{app.type}</td>
                                 <td style={{ color: app.pay ? 'green' : 'red' }}>
@@ -64,7 +66,7 @@ const TableVewApplication = ({ appli, handleActive, handeleVew }) => {
                                 >
                                     {app.active ? 'Sí' : 'No'}
                                 </td>
-                                {user && user.data.role !== 'user' &&
+                                {user && user.data.role !== 'user' ?
                                     <td
                                         style={{ color: !app.underVew ? 'green' : 'red' }}
                                         className='tdActive'
@@ -72,11 +74,16 @@ const TableVewApplication = ({ appli, handleActive, handeleVew }) => {
                                     >
                                         {app.underVew === false ? 'Si' : 'No'}
                                     </td>
+                                    : <td
+                                        style={{ color: !app.underVew ? 'green' : 'red' }}
+                                    >
+                                        {app.underVew === false ? 'Si' : 'No'}
+                                    </td>
                                 }
                             </tr>
                             {vew === app._id && (
                                 <tr className='expandRow'>
-                                    <td colSpan="8">
+                                    <td colSpan="9">
                                         <ExpandApplication app={app} />
                                     </td>
                                 </tr>

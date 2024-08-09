@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Switch from '@mui/material/Switch';
 import DateConf from '../../../utils/DateConf/DateConf'
 import CloudFile from '../../../utils/CloudFile/CloudFile';
-import CategorySelected from '../../banner/CategorySelected/CategorySelected';
+import CategorySelected from '../../../advertisting/CategorySelected/CategorySelected';
 import CountrySelected from '../../banner/CountrySelected/CountrySelected';
 import { newPublicityApi } from '../../../../helpers/publicity/newPublicity.api';
 

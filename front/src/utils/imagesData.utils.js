@@ -1,7 +1,8 @@
 const imgages = {
     cartBanner: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1721422159/images/osgjsqazwowfnehrwzlb.png',
     dataUser: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1721573183/images/qel79gi83jo6h96h8nzi.jpg',
-    counter: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1722084685/images/chdt5vxe650chbinliwn.png'
+    counter: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1722084685/images/chdt5vxe650chbinliwn.png',
+    applications: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1723058402/images/roi4pzpojqifhzfemsai.png',
 };
 
 const imagesHelp = {

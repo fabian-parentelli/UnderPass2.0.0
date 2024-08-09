@@ -1,5 +1,5 @@
 import './wantBanner.scss';
-import FormWantBanner from '../FormWantBanner/FormWantBanner';
+import PostApplication from '../../advertisting/Applications/PostApplication/PostApplication';
 
 const WantBanner = ({ user, country }) => {
 
@@ -7,7 +7,7 @@ const WantBanner = ({ user, country }) => {
         <div className='wantBanner'>
             <div className='wantBannerDiv'>
                 <h2>Quiero estar en el Banner.</h2>
-                {user && country && <FormWantBanner user={user} country={country} />}
+                {<PostApplication userId={user._id} type='banners' country={country} />}
             </div>
             <img src="https://res.cloudinary.com/dtzy75wyt/image/upload/v1720959207/images/hn8qgjvacj8lxqzuwoyq.png" alt="img" />
         </div>

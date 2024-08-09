@@ -1,0 +1,15 @@
+.applications {
+    margin-top: 1rem;
+
+    .applicationsBtn {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+
+        .applicationsCheck {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+    }
+}

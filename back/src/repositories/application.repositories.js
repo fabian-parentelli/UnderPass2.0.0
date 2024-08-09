@@ -2,8 +2,8 @@ import { appliManager } from '../dao/manager/index.manager.js';
 
 export default class AppliRepository {
 
-    appliBanner = async (application) => {
-        const result = await appliManager.appliBanner(application);
+    newApplication = async (application) => {
+        const result = await appliManager.newApplication(application);
         return result;
     };
     

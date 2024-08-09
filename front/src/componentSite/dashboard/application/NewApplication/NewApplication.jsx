@@ -4,7 +4,7 @@ import ViewCarousel from '@mui/icons-material/ViewCarousel';
 import Title from '../../../../component/dashboard/Title/Title';
 import Checkboxes from '../../../../component/utils/Checkboxes';
 import UserSearch from '../../../../component/utils/UserSearch/UserSearch';
-import FormWantBanner from '../../../../component/banner/FormWantBanner/FormWantBanner';
+import PostApplication from '../../../../component/advertisting/Applications/PostApplication/PostApplication';
 
 const NewApplication = () => {
 
@@ -21,11 +21,11 @@ const NewApplication = () => {
             <div className='newApplicationDiv' >
                 <UserSearch setUser={setUser} />
                 <div className='newApplicationChek'>
-                    {user && <Checkboxes labels={['Banner', 'Publicidad Cards', 'Separador']} setType={setType} />}
+                    {user && <Checkboxes labels={['banners', 'cards', 'separator']} setType={setType} />}
                 </div>
             </div>
 
-            {user && type === 'Banner' && <FormWantBanner user={user} country={user.country} />}
+            {user && type && <PostApplication userId={user._id} type={type} country={user.country} />}
 
         </div>
     );

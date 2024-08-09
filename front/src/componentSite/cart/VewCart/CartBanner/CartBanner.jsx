@@ -17,7 +17,7 @@ const CartBanner = ({ item }) => {
                 <p>{item.name}</p>
                 <p className='pID'>{item._id}</p>
             </td>
-            <td>{<PriceCartBanner item={item} />}</td>
+            <td style={{width: '285px'}}>{<PriceCartBanner item={item} />}</td>
             <td><Counter prod={item} /></td>
             <td style={{ width: '80px' }}>${totalProduct(item._id)}</td>
         </tr>

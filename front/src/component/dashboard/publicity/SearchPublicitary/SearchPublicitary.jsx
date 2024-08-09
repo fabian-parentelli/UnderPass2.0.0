@@ -1,6 +1,6 @@
 import './searchPublicitary.scss';
 import { useState } from 'react';
-import CategorySelected from '../../banner/CategorySelected/CategorySelected';
+import CategorySelected from '../../../advertisting/CategorySelected/CategorySelected';
 import CountrySelected from '../../banner/CountrySelected/CountrySelected';
 import { getAllPublicityApi } from '../../../../helpers/publicity/getAllPublicity.api';
 

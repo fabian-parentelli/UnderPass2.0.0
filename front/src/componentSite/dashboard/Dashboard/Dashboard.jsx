@@ -47,7 +47,7 @@ const Dashboard = () => {
                 />
                 <Fields
                     title={'Solicitudes'}
-                    category={[{ name: 'Crear', path: 'newapplication' }, { name: 'Ver', path: 'vewapplicattion' }, { name: 'Usuario', path: 'vewapplicattionuser' }]}
+                    category={[{ name: 'Crear', path: 'newapplication' }, { name: 'Ver', path: 'vewapplicattion' }, { name: 'Ver x usuario', path: 'vewapplicattionuser' }]}
                 />
                 <Fields
                     title={'Publicidad'}

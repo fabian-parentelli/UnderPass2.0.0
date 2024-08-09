@@ -2,7 +2,7 @@ import { apllicationModel } from '../models/application.model.js';
 
 export default class Application {
 
-    appliBanner = async (application) => {
+    newApplication = async (application) => {
         return await apllicationModel.create(application);
     };
 
@@ -15,7 +15,7 @@ export default class Application {
     };
 
     getByUserId = async (id) => {
-        return await apllicationModel.find({ user: id }).lean();
+        return await apllicationModel.find({ userId: id }).lean();
     };
 
     update = async (application) => {
