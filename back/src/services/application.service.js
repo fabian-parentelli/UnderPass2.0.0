@@ -18,10 +18,6 @@ const getAll = async (limit, page, active, country, category, type, pay) => {
     const result = await appliRepository.getAll(query, limit, page);
     if (!result) throw new AppliNotFound('No se encuentran las solicitudes');
     result.docs = await Promise.all(result.docs.map(async (appl) => {
-
-        console.log(appl.userId);
-        
-
         const userDb = await userRepository.getUserById(appl.userId);
         appl.userId = { name: userDb.name, userId: userDb._id, email: userDb.email };
         return appl;

@@ -3,16 +3,17 @@ import { useState } from 'react';
 import Switch from '@mui/material/Switch';
 import DateConf from '../../../utils/DateConf/DateConf'
 import CloudFile from '../../../utils/CloudFile/CloudFile';
-import CategorySelected from '../../../advertisting/CategorySelected/CategorySelected';
 import CountrySelected from '../../banner/CountrySelected/CountrySelected';
-import { newPublicityApi } from '../../../../helpers/publicity/newPublicity.api';
+import { newPublicityApi } from '../../../../helpers/publicity/newPublicity.api.js';
+import CategorySelected from '../../../advertisting/CategorySelected/CategorySelected';
 
-const PublicityForm = ({ type, setLoading, setType }) => {
+const PublicityForm = ({ type, setLoading, setType, appli }) => {
 
     const [checked, setChecked] = useState(false);
     const [formData, setFormData] = useState(null);
     const [values, setValues] = useState({
-        title: '', folders: '', links: '', country: '', category: '', type: type, inPortal: checked
+        title: '', folders: '', links: '', country: '', category: '', type: type, inPortal: checked, 
+        application: appli || ''
     });
 
     const handleFileChange = (data) => setFormData(data);

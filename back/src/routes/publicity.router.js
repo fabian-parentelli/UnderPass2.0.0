@@ -8,6 +8,7 @@ export default class PublicitynRouter extends Router {
     init() {
         this.post('/', ['ADMIN', 'MASTER'], passportEnum.JWT, multipleUploader, uploadToCloudinary, publicityController.newPublicity);
         this.get('/', ['PUBLIC'], passportEnum.NOTHING, publicityController.getAll);
+        this.put('/uservew', ['USER'], passportEnum.JWT, publicityController.updUserVew);
         this.put('/active/:id', ['ADMIN', 'MASTER'], passportEnum.JWT, publicityController.updActive);
         this.put('/portal/:id', ['ADMIN', 'MASTER'], passportEnum.JWT, publicityController.updPortal);
         this.put('/:id', ['ADMIN', 'MASTER'], passportEnum.JWT, publicityController.updPublicity);

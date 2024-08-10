@@ -23,7 +23,7 @@ const BodyProduct = () => {
             {!products ? <LoadSmall />
                 : <CardProducts products={products} />
             }
-            <Link to={'/themarket'} className='theMarkets'><p className='bodyProductP'>Ver mas</p></Link>
+            <Link to={'/themarket'} className='theMarkets'><p className='bodyProductP'>Ver mas productos</p></Link>
         </div>
     );
 };

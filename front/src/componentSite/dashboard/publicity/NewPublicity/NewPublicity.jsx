@@ -1,15 +1,17 @@
 import './newPublicity.scss';
 import { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import LiveTvIcon from '@mui/icons-material/LiveTv';
+import Load from '../../../../component/utils/Load';
 import Title from '../../../../component/dashboard/Title/Title';
 import Checkboxes from '../../../../component/utils/Checkboxes';
 import PublicityForm from '../../../../component/dashboard/publicity/PublicityForm/PublicityForm';
-import Load from '../../../../component/utils/Load';
 
 const NewPublicity = () => {
 
     const [type, setType] = useState('');
     const [loading, setLoading] = useState(false);
+    const { appli } = useParams();
 
     return (
         <div className='newPublicity'>
@@ -23,7 +25,7 @@ const NewPublicity = () => {
                 {type && type === 'Cards' && <p><strong>Cards:</strong> 1 imágenes _ 250x400px</p>}
                 {type && type === 'Separator' && <p><strong>Separator:</strong> 1 imágenes _ 1583x100px</p>}
             </div>
-            {type && <PublicityForm type={type} setLoading={setLoading} setType={setType} />}
+            {type && <PublicityForm type={type} setLoading={setLoading} setType={setType} appli={appli} />}
             <Load loading={loading} />
         </div>
     );

@@ -9,6 +9,17 @@
         gap: .4rem;
     }
 
+    .tdLink {
+        text-decoration: none;
+        color: #555555;
+        cursor: pointer;
+        transition: .3s;
+
+        &:hover {
+            color: #858585;
+        }
+    }
+
     ul li {
         font-size: 14px;
         color: #555555;

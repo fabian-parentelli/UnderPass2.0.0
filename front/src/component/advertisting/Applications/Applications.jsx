@@ -2,6 +2,7 @@ import './applications.scss';
 import { useState } from 'react';
 import Checkboxes from '../../utils/Checkboxes';
 import PostApplication from './PostApplication/PostApplication';
+import GetApplication from './GetApplication/GetApplication';
 
 const Applications = ({ userId, country }) => {
 
@@ -22,6 +23,7 @@ const Applications = ({ userId, country }) => {
             </div>
 
             {vew && type && <PostApplication userId={userId} type={type} country={country} />}
+            {!vew && <GetApplication userId={userId} />}
         </div >
     );
 };

@@ -24,6 +24,11 @@ export default class PublicityRepository {
         return result;
     };
 
+    getByUserId = async (id) => {
+        const result = await publicityManager.getByUserId(id);
+        return result;
+    };
+
     getById = async (id) => {
         const result = await publicityManager.getById(id);
         return result;
@@ -36,6 +41,11 @@ export default class PublicityRepository {
 
     getCards = async (type, country, { inPortal }, { limit }) => {
         const result = await publicityManager.getCards(type, country, inPortal, limit);
+        return result;
+    };
+
+    getUserVew = async (id) => {
+        const result = await publicityManager.getUserVew(id);
         return result;
     };
 };

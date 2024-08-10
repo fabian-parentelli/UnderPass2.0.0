@@ -17,7 +17,7 @@ const SubNav = () => {
             </div>
 
             <div className='subNavIcons'>
-                <Alerts />
+                <Alerts user={user.data} />
                 {user && user.data && (user.data.role === 'admin' || user.data.role === 'master') &&
                     <Link to={'/dashboard'} className='btnDoorCont'>
                         <BarChartIcon />

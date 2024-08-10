@@ -1,3 +1,5 @@
+import Alerts from '../../body/SubNav/Alerts/Alerts';
+import AlertProfile from './AlertProfile/AlertProfile';
 import './panelProfile.scss';
 import WantTo from './WantTo/WantTo';
 
@@ -15,7 +17,8 @@ const PanelProfile = ({ user }) => {
                     <div className='line'></div>
                 </div>
             </div>
-            
+
+            <AlertProfile user={user} />
             <WantTo />
         </div>
     );

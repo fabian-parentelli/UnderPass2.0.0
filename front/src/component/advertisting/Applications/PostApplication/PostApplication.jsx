@@ -65,7 +65,7 @@ const PostApplication = ({ userId, type, country }) => {
 
     return (
         <div className='postApplication'>
-            <p>{getData(type)}</p>
+            <p className='postApplicationP'>{getData(type)}</p>
             <form onSubmit={handleSubmit}>
                 <div className='formWantBannerDiv'>
                     <label>Título</label>

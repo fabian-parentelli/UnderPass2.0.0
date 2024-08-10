@@ -3,6 +3,7 @@ import React, { Fragment, useState } from 'react';
 import flagsIcon from '../../../../../utils/flagsIcon.utils';
 import ExpandApplication from '../ExpandApplicattion/ExpandApplication';
 import { useLoginContext } from '../../../../../context/LoginContext';
+import { Link } from 'react-router-dom';
 
 const TableVewApplication = ({ appli, handleActive, handeleVew }) => {
 
@@ -10,11 +11,11 @@ const TableVewApplication = ({ appli, handleActive, handeleVew }) => {
     const { user } = useLoginContext();
 
     const handleInfo = (id) => setVew(vew === id ? null : id);
-    
+
     return (
         <div className='tableVewApplication'>
             <table>
-                
+
                 <thead>
                     <tr>
                         <th>Título</th>
@@ -49,15 +50,17 @@ const TableVewApplication = ({ appli, handleActive, handeleVew }) => {
                                 <td>
                                     {new Date(app.date).toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' })}
                                 </td>
-                                <td>{app.underBanner ? 'No' : 'Sí'}</td>
+                                <td>{app.isWorkOur ? 'No' : 'Sí'}</td>
                                 <td>
                                     <p>{app.userId.name}</p>
                                     <p>{app.userId.email}</p>
                                     <p className='pUser'>{app.userId.userId}</p>
                                 </td>
                                 <td>{app.type}</td>
-                                <td style={{ color: app.pay ? 'green' : 'red' }}>
-                                    {app.pay ? 'Sí' : 'No'}
+                                <td className='tdActive'>
+                                    <Link to={'/cart'} style={{ color: app.pay ? 'green' : 'red', textDecoration: 'none' }}>
+                                        {app.pay ? 'Sí' : 'No'}
+                                    </Link>
                                 </td>
                                 <td
                                     style={{ color: app.active ? 'green' : 'red' }}

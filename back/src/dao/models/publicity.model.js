@@ -15,7 +15,11 @@ const publicitySchema = new mongoose.Schema({
     category: { type: String },
     end: { type: Date },
     type: { type: String },
-    inPortal: { type: Boolean, default: false }
+    inPortal: { type: Boolean, default: false },
+    application: {
+        userId: { type: String },
+        userVew: { type: Boolean }
+    }
 });
 
 publicitySchema.plugin(mongoosePaginate);

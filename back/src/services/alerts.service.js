@@ -1,10 +1,14 @@
-import { appliRepository, userRepository, productRepository } from "../repositories/index.repositories.js";
-import { AllertsNotFound } from '../utils/custom-exceptions.utils.js';
+import {
+    appliRepository, userRepository, productRepository, publicityRepository
+} from "../repositories/index.repositories.js";
+// import { AllertsNotFound } from '../utils/custom-exceptions.utils.js';
 
 const getAll = async (user) => {
     const result = {};
     if (user.role !== 'user') {
         result.applications = await appliRepository.getUnderVew() || '';
+    } else {
+        result.applications = await publicityRepository.getUserVew(user._id) || '';
     };
     return { status: 'success', result };
 };

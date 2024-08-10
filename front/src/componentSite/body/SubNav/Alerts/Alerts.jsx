@@ -6,8 +6,8 @@ import BadgeComp from '../../../../component/utils/BadgeComp/BadgeComp';
 import BadgeIcon from '@mui/icons-material/Badge';
 import { Link } from 'react-router-dom';
 
-const Alerts = () => {
-
+const Alerts = ({ user }) => {
+    
     const [alerts, setAlerts] = useState(null);
 
     useEffect(() => {
@@ -20,7 +20,7 @@ const Alerts = () => {
     return (
         <div className='alerts'>
             {alerts && alerts.applications &&
-                <Link className='alertsLink' to={'/dashboard/vewapplicattion'}>
+                <Link className='alertsLink' to={user.role !== 'user' ? '/dashboard/vewapplicattion' : '/profile/advertising'}>
                     <BadgeComp
                         Icon={BadgeIcon}
                         data={alerts.applications}

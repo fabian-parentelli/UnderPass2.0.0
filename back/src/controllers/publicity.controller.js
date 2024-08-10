@@ -23,6 +23,17 @@ const getAll = async (req, res) => {
     };
 };
 
+const updUserVew = async (req, res) => {
+    const { user } = req.user;
+    try {
+        const result = await publicityService.updUserVew(user);
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof PublicityNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
 const updActive = async (req, res) => {
     const { id } = req.params;
     try {
@@ -56,4 +67,4 @@ const updPublicity = async (req, res) => {
     };
 };
 
-export { newPublicity, getAll, updPublicity, updActive, updPortal };
+export { newPublicity, getAll, updPublicity, updActive, updPortal, updUserVew };

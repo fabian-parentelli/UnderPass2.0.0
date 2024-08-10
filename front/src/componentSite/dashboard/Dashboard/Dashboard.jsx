@@ -74,7 +74,7 @@ const Dashboard = () => {
                 <Route path='/vewapplicattion' element={<VewApplication />} />
                 <Route path='/vewapplicattionuser' element={<VewUserApplication />} />
 
-                <Route path='/newpublicity' element={<NewPublicity />} />
+                <Route path='/newpublicity/:appli?' element={<NewPublicity />} />
                 <Route path='/vewpublicity' element={<VewPublicity />} />
             </Routes>
         </div>

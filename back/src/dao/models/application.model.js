@@ -18,7 +18,7 @@ const applicationSchema = new mongoose.Schema({
     date: { type: Date, default: Date.now },
     type: { type: String },
     pay: { type: Boolean, default: false },
-    underVew: { type: Boolean, default: true },
+    underVew: { type: Boolean, default: true }
 });
 
 applicationSchema.plugin(mongoosePaginate);
