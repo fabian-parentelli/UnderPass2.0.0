@@ -6,10 +6,7 @@ import { useLoginContext } from '../../../../../context/LoginContext.jsx';
 
 const ExpandApplication = ({ app }) => {
 
-    const { user } = useLoginContext();
-
-    console.log(app.userId.userId);
-    
+    const { user } = useLoginContext();    
 
     return (
         <div className='expandApplication'>

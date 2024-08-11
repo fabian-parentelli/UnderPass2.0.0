@@ -6,16 +6,20 @@ export default class Publicity {
         return await publicityModel.create(tutorial);
     };
 
+    getByUserId = async (id) => {
+        return await publicityModel.find({ 'application.userId': id, active: true }).lean();
+    };
+
+    getAmountInPortal = async (query) => {
+        return  await publicityModel.countDocuments(query);        
+    };  
+
     getAll = async (query, limit, page) => {
         return await publicityModel.paginate(query, { limit, page, lean: true, sort: { date: -1 } });
     };
 
     update = async (publicity) => {
         return await publicityModel.findByIdAndUpdate({ _id: publicity._id }, publicity, { new: true });
-    };
-
-    getByUserId = async (id) => {
-        return await publicityModel.find({ 'application.userId': id }).lean();
     };
 
     getById = async (id) => {

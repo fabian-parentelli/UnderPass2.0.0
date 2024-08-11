@@ -12,6 +12,18 @@ const newPublicity = async (publicity, imgUrl) => {
     return { status: 'success', result };
 };
 
+const getByUserId = async (id) => {
+    const result = await publicityRepository.getByUserId(id);
+    if (!result) throw new PublicityNotFound('No se encuentran los anuncios publiocitarios');
+    return { status: 'success', result };
+};
+
+const getAmountInPortal = async () => {
+    const result = await publicityRepository.getAmountInPortal({ inPortal: true, active: true });
+    if (!result) return { status: 'none', result };
+    return { status: 'success', result };
+};
+
 const getAll = async (limit, page, active, country, category, type, inPortal) => {
     const query = {};
     if (country) query.country = { $regex: country, $options: "i" };
@@ -61,4 +73,7 @@ const updPublicity = async (upd, id) => {
     return { status: 'success', result };
 };
 
-export { newPublicity, getAll, updPublicity, updActive, updPortal, updUserVew };
+export {
+    newPublicity, getAll, updPublicity, updActive, updPortal, updUserVew, getByUserId,
+    getAmountInPortal
+};

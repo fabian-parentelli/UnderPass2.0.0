@@ -1,0 +1,12 @@
+.priceAddToPortal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+
+    .priceAddToPortalInput {
+        display: flex;
+        align-items: flex-end;
+        gap: 6px;
+    }
+}

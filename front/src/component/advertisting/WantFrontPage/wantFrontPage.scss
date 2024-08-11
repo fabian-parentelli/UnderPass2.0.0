@@ -1,0 +1,19 @@
+.wantFrontPage {
+    width: 300px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+
+    .isThereNo {
+        color: red;
+        margin: 12px;
+    }
+
+    .isThereOk {
+        color: green;
+        margin: 12px;
+    }
+}

@@ -14,6 +14,7 @@ const priceSchema = new mongoose.Schema({
     ],
     date: { type: Date, default: Date.now },
     active: { type: Boolean, default: true },
+    portal: { type: Number }
 });
 
 export const priceModel = mongoose.model(priceCollection, priceSchema);

@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import RequestQuoteIcon from '@mui/icons-material/RequestQuote';
 import { getLastPriceApi } from '../../../helpers/prices/getLastPrice.api.js';
 
-const Price = ({ country, handleChange, values, setDataPrice, name }) => {
+const Price = ({ country, handleChange, values, setDataPrice, name, dataPrice }) => {
 
     const [price, setPrice] = useState(null);
     const [sale, setSale] = useState(0);
@@ -13,7 +13,7 @@ const Price = ({ country, handleChange, values, setDataPrice, name }) => {
             const response = await getLastPriceApi({ country: country, name: name });
             if (response.status === 'success') {
                 setPrice(response.result);
-                setDataPrice(response.result);
+                setDataPrice && setDataPrice(response.result);
             };
         }; fetchData();
     }, [name]);
@@ -43,14 +43,24 @@ const Price = ({ country, handleChange, values, setDataPrice, name }) => {
                 <p>días</p>
             </div>
 
-            <div>
-                {price &&
-                    <>
-                        <p>Costo por día ${price.price - ((price.price * sale) / 100)}</p>
-                        <p>total: {(price.price - ((price.price * sale) / 100)) * values.days}</p>
-                    </>
-                }
-            </div>
+            {dataPrice === 'dataPrice' ?
+                <div>
+                    {price &&
+                        <>
+                            <p>Costo por día ${price.price - ((price.price * sale) / 100)}</p>
+                            <p>total: {(price.price - ((price.price * sale) / 100)) * values.days}</p>
+                        </>
+                    }
+                </div>
+                : <div>
+                    {price &&
+                        <>
+                            <p>Costo por día ${price.portal - ((price.portal * sale) / 100)}</p>
+                            <p>total: {(price.portal - ((price.portal * sale) / 100)) * values.days}</p>
+                        </>
+                    }
+                </div>
+            }
 
             <div className='listIcon'>
                 <RequestQuoteIcon />
@@ -67,7 +77,10 @@ const Price = ({ country, handleChange, values, setDataPrice, name }) => {
                         </thead>
                         <tbody>
                             <tr>
-                                <td>${price && price.price}</td>
+                                {dataPrice === 'dataPrice'
+                                    ? <td>${price && price.price}</td>
+                                    : <td>${price && price.portal}</td>
+                                }
                                 {price && price.sales.map((pri, index) => (
                                     <td key={index}>% {pri.sale}</td>
                                 ))}

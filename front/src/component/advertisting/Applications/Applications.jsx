@@ -4,7 +4,7 @@ import Checkboxes from '../../utils/Checkboxes';
 import PostApplication from './PostApplication/PostApplication';
 import GetApplication from './GetApplication/GetApplication';
 
-const Applications = ({ userId, country }) => {
+const Applications = ({ userId, country, setLoading }) => {
 
     const [vew, setVew] = useState(false);
     const [type, setType] = useState(null);
@@ -22,8 +22,8 @@ const Applications = ({ userId, country }) => {
                 }
             </div>
 
-            {vew && type && <PostApplication userId={userId} type={type} country={country} />}
-            {!vew && <GetApplication userId={userId} />}
+            {vew && type && <PostApplication userId={userId} type={type} country={country} setLoading={setLoading} />}
+            {!vew && <GetApplication userId={userId} setLoading={setLoading} />}
         </div >
     );
 };

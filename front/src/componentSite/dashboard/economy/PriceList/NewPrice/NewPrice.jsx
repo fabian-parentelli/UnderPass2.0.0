@@ -6,7 +6,7 @@ import { getLastPriceApi } from '../../../../../helpers/prices/getLastPrice.api.
 const NewPrice = ({ country, setLoading, setMessage, setOpen, type }) => {
 
     const [values, setValues] = useState({
-        name: '', country: country, price: '',
+        name: '', country: country, price: '', portal: '',
         sales: [{ days: '', sale: '' }, { days: '', sale: '' }, { days: '', sale: '' }]
     });
 
@@ -21,10 +21,11 @@ const NewPrice = ({ country, setLoading, setMessage, setOpen, type }) => {
                     name: type,
                     country: data.country || country,
                     price: data.price || '',
+                    portal: data.portal || '',
                     sales: data.sales.length ? data.sales : [{ days: '', sale: '' }, { days: '', sale: '' }, { days: '', sale: '' }]
                 });
             } else setValues({
-                name: type, country: country, price: '',
+                name: type, country: country, price: '', portal: '',
                 sales: [{ days: '', sale: '' }, { days: '', sale: '' }, { days: '', sale: '' }]
             });
         }; fetchData();
@@ -32,8 +33,8 @@ const NewPrice = ({ country, setLoading, setMessage, setOpen, type }) => {
 
     const handleChange = (e, index, field) => {
         const value = e.target.value;
-        if (field === 'price') {
-            setValues({ ...values, price: value });
+        if (field === 'price' || field === 'portal' ) {
+            setValues({ ...values, [field]: value });
         } else {
             const newSales = values.sales.map((sale, i) =>
                 i === index ? { ...sale, [field]: value } : sale);
@@ -53,7 +54,7 @@ const NewPrice = ({ country, setLoading, setMessage, setOpen, type }) => {
         } else {
             setMessage({ status: 'error', mess: response });
             setTimeout(() => { setOpen(false); }, 2000);
-        };        
+        };
     };
 
     return (
@@ -61,7 +62,6 @@ const NewPrice = ({ country, setLoading, setMessage, setOpen, type }) => {
             <form className='bannersPrice' onSubmit={handleSubmit}>
                 <p>EL precio por publicidad es por dia y en moneda local.<br />El precio de eventos, productos y turnos es porcentaje del mismo.</p>
                 <div>
-
                     <label>Precio</label>
                     <input
                         type="text"
@@ -69,6 +69,17 @@ const NewPrice = ({ country, setLoading, setMessage, setOpen, type }) => {
                         onChange={(e) => handleChange(e, null, 'price')}
                     />
                 </div>
+
+                {( type === 'separator' || type === 'cards') &&
+                    <div>
+                        <label>Portada</label>
+                        <input
+                            type="text"
+                            value={values.portal}
+                            onChange={(e) => handleChange(e, null, 'portal')}
+                        />
+                    </div>
+                }
 
                 {(type === 'banners' || type === 'separator' || type === 'cards') && values.sales.map((sale, index) => (
                     <div key={index}>

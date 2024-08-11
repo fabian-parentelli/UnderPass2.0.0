@@ -6,6 +6,16 @@ export default class PublicityRepository {
         const result = await publicityManager.newPublicity(publicity);
         return result;
     };
+    
+    getByUserId = async (id) => {
+        const result = await publicityManager.getByUserId(id);
+        return result;
+    };
+    
+    getAmountInPortal = async (query) => {
+        const result = await publicityManager.getAmountInPortal(query);
+        return result;
+    };
 
     getAll = async (query, limit, page) => {        
         const result = await publicityManager.getAll(query, limit, page);    
@@ -21,11 +31,6 @@ export default class PublicityRepository {
             return true;
         });
         result.docs = updatePublicity;
-        return result;
-    };
-
-    getByUserId = async (id) => {
-        const result = await publicityManager.getByUserId(id);
         return result;
     };
 

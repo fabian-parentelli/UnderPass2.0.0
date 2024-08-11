@@ -12,6 +12,27 @@ const newPublicity = async (req, res) => {
     };
 };
 
+const getByUserId = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const result = await publicityService.getByUserId(id);
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof PublicityNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
+const getAmountInPortal = async (req, res) => {
+    try {
+        const result = await publicityService.getAmountInPortal();
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof PublicityNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
 const getAll = async (req, res) => {
     const { limit = 12, page = 1, active, country, category, type, inPortal } = req.query;
     try {
@@ -67,4 +88,7 @@ const updPublicity = async (req, res) => {
     };
 };
 
-export { newPublicity, getAll, updPublicity, updActive, updPortal, updUserVew };
+export {
+    newPublicity, getAll, updPublicity, updActive, updPortal, updUserVew, getByUserId,
+    getAmountInPortal
+};

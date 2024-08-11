@@ -1,7 +1,6 @@
 import './postApplication.scss';
 import { useState } from 'react';
 import Price from '../../Price/Price';
-import Load from '../../../utils/Load';
 import Switch from '@mui/material/Switch';
 import { useNavigate } from 'react-router-dom';
 import AlertDialog from '../../../utils/AlertDialog';
@@ -12,7 +11,7 @@ import { useCartContext } from '../../../../context/CartContext.jsx';
 import CategorySelected from '../../CategorySelected/CategorySelected';
 import { newApplicationApi } from '../../../../helpers/applications/newApplication.api.js';
 
-const PostApplication = ({ userId, type, country }) => {
+const PostApplication = ({ userId, type, country, setLoading }) => {
 
     const navigate = useNavigate();
     const { addToCart } = useCartContext();
@@ -24,7 +23,6 @@ const PostApplication = ({ userId, type, country }) => {
     });
     const [dataPrice, setDataPrice] = useState(0);
     const [message, setMessage] = useState({ open: false, title: '', content: '' });
-    const [loading, setloading] = useState(false);
 
     const handleSwitchChange = (event) => {
         setIsWorkOur(event.target.checked);
@@ -35,7 +33,7 @@ const PostApplication = ({ userId, type, country }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setloading(true);
+        setLoading(true);
         for (const field in values) formData.set(field, values[field]);
         const response = await newApplicationApi(formData);
         if (response.status === 'success') {
@@ -60,7 +58,7 @@ const PostApplication = ({ userId, type, country }) => {
                 else navigate('/cart');
             }, 2000);
         } else console.log(response);
-        setloading(false);
+        setLoading(false);
     };
 
     return (
@@ -75,7 +73,7 @@ const PostApplication = ({ userId, type, country }) => {
                     <CategorySelected handleChange={handleChange} />
                 </div>
                 <Price
-                    country={country} handleChange={handleChange} values={values} setDataPrice={setDataPrice} name={type}
+                    country={country} handleChange={handleChange} values={values} setDataPrice={setDataPrice} name={type} dataPrice='dataPrice'
                 />
                 <div className='formWantBannerRow'>
                     <p>Mi banner</p>
@@ -92,7 +90,6 @@ const PostApplication = ({ userId, type, country }) => {
                 <button className='btn btnB'>Solicitar</button>
             </form>
             <AlertDialog message={message} setMessage={setMessage} />
-            <Load loading={loading} />
         </div>
     );
 };

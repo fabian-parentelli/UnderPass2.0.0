@@ -1,0 +1,12 @@
+.vewPublicityProfil {
+    margin-top: 2rem;
+
+    .vewPublicityProfilBack {
+        cursor: pointer;
+        transition: .3s;
+
+        &:hover {
+            background-color: rgb(192, 192, 192);
+        }
+    }
+}
