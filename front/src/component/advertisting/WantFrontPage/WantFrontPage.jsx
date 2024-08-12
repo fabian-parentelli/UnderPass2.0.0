@@ -1,18 +1,23 @@
 import './wantFrontPage.scss';
 import { useEffect, useState } from 'react';
+import AlertDialog from '../../utils/AlertDialog.jsx';
 import LoadSmall from '../../utils/LoadSmall/LoadSmall';
+import { imgages } from '../../../utils/imagesData.utils.js';
 import ModalCustom from '../../utils/ModalCustom/ModalCustom';
 import { useCartContext } from '../../../context/CartContext.jsx';
 import PriceAddToPortal from '../PriceAddPortal/PriceAddPortal.jsx';
+import { newApplicationApi } from '../../../helpers/applications/newApplication.api.js';
 import { getAmountInPortalApi } from '../../../helpers/publicity/getAmountInPortal.api.js';
 
-const WantFrontPage = ({ modalIsOpen, closeModal, data }) => {
+const WantFrontPage = ({ modalIsOpen, closeModal, data, setLoading, setModalIsOpen }) => {
 
-    const {addToCart} = useCartContext();
+    const { addToCart } = useCartContext();
 
+    const [dataPrice, setDataPrice] = useState(null);
     const [isThere, setIsThere] = useState(0);
     const [small, setSmall] = useState(true);
     const [values, setValues] = useState({ days: 0 });
+    const [message, setMessage] = useState({ open: false, title: '', content: '' });
 
     useEffect(() => {
         const fetchData = async () => {
@@ -23,14 +28,38 @@ const WantFrontPage = ({ modalIsOpen, closeModal, data }) => {
         }; fetchData();
     }, []);
 
-    const handleApplication = () => {
-        // Ver como resuelvo porque tengo que agregarlo a la base de datos
-        // luego de eso agregarlo  al carrito...
-        ////////////////////////////////////////////////////////////////
-        ////////////////////////////////////////////////////////////////
-        ////////////////////////////////////////////////////////////////
-        ////////////////////////////////////////////////////////////////
-        ////////////////////////////////////////////////////////////////
+    const handleApplication = async () => {
+        setLoading(true);
+        const info = {
+            title: data.title,
+            days: values.days,
+            userId: data.application.userId || '',
+            country: data.country,
+            type: `${data.type}ToPortal`,
+            applicationId: data._id,
+            text: 'Agregar a la portada'
+        };
+        const formData = new FormData();
+        for (const key in info) if (info.hasOwnProperty(key)) formData.append(key, info[key]);
+        const response = await newApplicationApi(formData);
+        if (response.status === 'success') {
+            setMessage({
+                open: true,
+                title: 'Recibimos con éxito tu solicitud',
+                content: `Una vez realizado el pago nuestro personal de artística, revisará tu solicitud, en menos de 24 horas hábiles tu ${data.type} ya se encontrara en la portada.`
+            });
+            addToCart({
+                _id: response.result._id,
+                quantity: response.result.days,
+                price: dataPrice.price - dataPrice.portal,
+                is: `${data.type}ToPortal`,
+                name: response.result.title,
+                description: `Agregar ${data.type} al portal`,
+                img: imgages.addToPort,
+                data: dataPrice
+            });
+        };
+        setTimeout(() => { setLoading(false); setModalIsOpen(false) }, 2000);
     };
 
     return (
@@ -44,11 +73,12 @@ const WantFrontPage = ({ modalIsOpen, closeModal, data }) => {
                 }
                 {!small && isThere <= 10 &&
                     <>
-                        <PriceAddToPortal data={data} values={values} setValues={setValues} />
-                        <button className='btn btnA'>Solicitar</button>
+                        <PriceAddToPortal data={data} values={values} setValues={setValues} setDataPrice={setDataPrice} />
+                        <button className='btn btnA' onClick={handleApplication}>Solicitar</button>
                     </>
                 }
             </div>
+            <AlertDialog message={message} setMessage={setMessage} />
         </ModalCustom>
     );
 };

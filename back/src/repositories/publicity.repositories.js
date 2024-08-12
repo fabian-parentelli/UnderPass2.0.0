@@ -7,8 +7,8 @@ export default class PublicityRepository {
         return result;
     };
     
-    getByUserId = async (id) => {
-        const result = await publicityManager.getByUserId(id);
+    getByUserId = async (id, active) => {
+        const result = await publicityManager.getByUserId(id, active);
         return result;
     };
     

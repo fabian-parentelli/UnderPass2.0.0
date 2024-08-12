@@ -12,9 +12,9 @@ const newPublicity = async (publicity, imgUrl) => {
     return { status: 'success', result };
 };
 
-const getByUserId = async (id) => {
-    const result = await publicityRepository.getByUserId(id);
-    if (!result) throw new PublicityNotFound('No se encuentran los anuncios publiocitarios');
+const getByUserId = async (id, active) => {
+    const result = await publicityRepository.getByUserId(id, active);
+    if (!result) throw new PublicityNotFound('No se encuentran los anuncios publiocitarios');    
     return { status: 'success', result };
 };
 
@@ -24,14 +24,15 @@ const getAmountInPortal = async () => {
     return { status: 'success', result };
 };
 
-const getAll = async (limit, page, active, country, category, type, inPortal) => {
+const getAll = async (limit, page, active, country, category, type, inPortal, id) => {    
     const query = {};
+    if(id) query._id = id;
     if (country) query.country = { $regex: country, $options: "i" };
     if (category) query.category = { $regex: category, $options: "i" };
     if (active !== undefined) query.active = active;
     if (inPortal !== undefined) query.inPortal = inPortal;
     if (type) query.type = { $regex: type, $options: "i" };
-    const result = await publicityRepository.getAll(query, limit, page);
+    const result = await publicityRepository.getAll(query, limit, page);    
     if (!result) throw new PublicityNotFound('No se encuentran los anuncios publiocitarios');
     return { status: 'success', result };
 };

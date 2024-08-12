@@ -56,7 +56,14 @@ const TableVewApplication = ({ appli, handleActive, handeleVew }) => {
                                     <p>{app.userId.email}</p>
                                     <p className='pUser'>{app.userId.userId}</p>
                                 </td>
-                                <td>{app.type}</td>
+
+                                <td
+                                    style={{
+                                        color: (app.type !== 'cards' && app.type !== 'banners' && app.type !== 'separator')
+                                        ? '#00756F' : 'gray'
+                                    }}
+                                >{app.type}</td>
+
                                 <td className='tdActive'>
                                     <Link to={'/cart'} style={{ color: app.pay ? 'green' : 'red', textDecoration: 'none' }}>
                                         {app.pay ? 'Sí' : 'No'}

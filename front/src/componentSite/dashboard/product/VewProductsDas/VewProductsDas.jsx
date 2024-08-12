@@ -17,7 +17,7 @@ const VewProductsDas = () => {
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
-            const response = await getAllProductsApi({});
+            const response = await getAllProductsApi({ publicity: 'false' });
             if (response.status === 'success') {
                 setProducts(response.result.docs);
                 setPaginate(response.result);
@@ -28,7 +28,7 @@ const VewProductsDas = () => {
 
     const HandleChangePage = async (page) => {
         setLoading(true);
-        const response = await getAllProductsApi({ page: page });
+        const response = await getAllProductsApi({ page: page, publicity: 'false' });
         if (response.status === 'success') {
             setProducts(response.result.docs);
             setPaginate(response.result);

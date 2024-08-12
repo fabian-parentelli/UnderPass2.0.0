@@ -7,7 +7,7 @@ import { uploadToCloudinary } from '../config/cloudinary.config.js';
 export default class PublicitynRouter extends Router {
     init() {
         this.post('/', ['ADMIN', 'MASTER'], passportEnum.JWT, multipleUploader, uploadToCloudinary, publicityController.newPublicity);
-        this.get('/userid/:id', ['USER', 'ADMIN', 'MASTER'], passportEnum.JWT, publicityController.getByUserId);
+        this.get('/userid/:id/active/:active', ['USER', 'ADMIN', 'MASTER'], passportEnum.JWT, publicityController.getByUserId);
         this.get('/inportal', ['USER', 'ADMIN', 'MASTER'], passportEnum.JWT, publicityController.getAmountInPortal);
         this.get('/', ['PUBLIC'], passportEnum.NOTHING, publicityController.getAll);
         this.put('/uservew', ['USER'], passportEnum.JWT, publicityController.updUserVew);

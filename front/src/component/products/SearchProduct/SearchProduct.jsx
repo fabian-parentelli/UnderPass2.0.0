@@ -5,7 +5,7 @@ import SelectedProvince from '../../utils/SelectedProvince';
 
 const SearchProduct = ({ setProducts, setPaginate, setLoading }) => {
 
-    const [values, setValues] = useState({ inSite: '', country: '', active: '', province: '' });
+    const [values, setValues] = useState({ inSite: '', country: '', active: '', province: '', publicity: 'false' });
 
     const handleChange = async (e) => setValues({ ...values, [e.target.name]: e.target.value });
 

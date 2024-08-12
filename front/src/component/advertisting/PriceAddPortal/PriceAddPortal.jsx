@@ -2,7 +2,7 @@ import './priceAddToPortal.scss';
 import { useEffect, useState } from 'react';
 import { getLastPriceApi } from '../../../helpers/prices/getLastPrice.api.js';
 
-const PriceAddToPortal = ({ data, values, setValues }) => {
+const PriceAddToPortal = ({ data, values, setValues, setDataPrice }) => {
 
     const [price, setPrice] = useState(null);
     const [sale, setSale] = useState(0);
@@ -10,7 +10,7 @@ const PriceAddToPortal = ({ data, values, setValues }) => {
     useEffect(() => {
         const fetchData = async () => {
             const response = await getLastPriceApi({ country: data.country, name: data.type });
-            if (response.status === 'success') setPrice(response.result);
+            if (response.status === 'success') { setPrice(response.result); setDataPrice(response.result) }
             else console.log(response);
         }; fetchData();
     }, [data.country, data.type]);

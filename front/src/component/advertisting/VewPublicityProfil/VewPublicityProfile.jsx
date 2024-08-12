@@ -10,6 +10,7 @@ const VewPublicityProfil = ({ userId, setLoading }) => {
     const [publicity, setPublicity] = useState([]);
     const [values, setValues] = useState({});
     const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [finished, setFinished] = useState(false);
 
     const openModal = () => setModalIsOpen(true);
     const closeModal = () => setModalIsOpen(false);
@@ -17,12 +18,12 @@ const VewPublicityProfil = ({ userId, setLoading }) => {
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
-            const response = await getPublicityByUserIdApi(userId);
+            const response = await getPublicityByUserIdApi(userId, !finished);
             if (response.status === 'success') setPublicity(response.result);
             else console.log('error:', response);
             setLoading(false);
         }; userId && fetchData();
-    }, []);
+    }, [finished]);
 
     const handleChange = (e, id) => {
         setValues(prevValues => ({ ...prevValues, [id]: { links: e.target.value } }))
@@ -39,7 +40,8 @@ const VewPublicityProfil = ({ userId, setLoading }) => {
 
     return (
         <div className='vewPublicityProfil'>
-            <table>
+            <button className='btnCard' onClick={() => setFinished(!finished)}>Ver finalizadas</button>
+            <table style={{ marginTop: '2rem' }}>
                 <thead>
                     <tr>
                         <th>Img</th>
@@ -84,7 +86,15 @@ const VewPublicityProfil = ({ userId, setLoading }) => {
                                 </td>
                                 <td className='vewPublicityProfilBack'>Solicitar</td>
                             </tr>
-                            {modalIsOpen && <WantFrontPage modalIsOpen={modalIsOpen} closeModal={closeModal} data={pub} />}
+                            {modalIsOpen &&
+                                <WantFrontPage
+                                    modalIsOpen={modalIsOpen}
+                                    closeModal={closeModal}
+                                    data={pub}
+                                    setLoading={setLoading}
+                                    setModalIsOpen={setModalIsOpen}
+                                />
+                            }
                         </Fragment>
                     ))}
                 </tbody>

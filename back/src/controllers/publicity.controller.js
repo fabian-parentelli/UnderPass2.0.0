@@ -13,9 +13,9 @@ const newPublicity = async (req, res) => {
 };
 
 const getByUserId = async (req, res) => {
-    const { id } = req.params;
+    const { id, active } = req.params;    
     try {
-        const result = await publicityService.getByUserId(id);
+        const result = await publicityService.getByUserId(id, active);
         if (result) return res.sendSuccess(result);
     } catch (error) {
         if (error instanceof PublicityNotFound) return res.sendClientError(error.message);
@@ -34,9 +34,9 @@ const getAmountInPortal = async (req, res) => {
 };
 
 const getAll = async (req, res) => {
-    const { limit = 12, page = 1, active, country, category, type, inPortal } = req.query;
+    const { limit = 12, page = 1, active, country, category, type, inPortal, id } = req.query;
     try {
-        const result = await publicityService.getAll(limit, page, active, country, category, type, inPortal);
+        const result = await publicityService.getAll(limit, page, active, country, category, type, inPortal, id);
         if (result) return res.sendSuccess(result);
     } catch (error) {
         if (error instanceof PublicityNotFound) return res.sendClientError(error.message);

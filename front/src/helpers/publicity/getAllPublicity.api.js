@@ -10,6 +10,7 @@ const getAllPublicityApi = async (obj) => {
     if (obj.country) urlData += `country=${obj.country}&`;
     if (obj.category) urlData += `category=${obj.category}&`;
     if (obj.type) urlData += `type=${obj.type}&`;
+    if (obj.id) urlData += `id=${obj.id}&`;
 
     const response = await fetch(urlData, {
         method: 'GET',

@@ -16,6 +16,7 @@ import ProductUserDas from '../product/ProductUserDas/ProductUserDas';
 import VewProductsDas from '../product/VewProductsDas/VewProductsDas';
 import NewPublicity from '../publicity/NewPublicity/NewPublicity';
 import VewPublicity from '../publicity/VewPublicity/VewPublicity';
+import UserPublicityDas from '../publicity/UserPublicityDas/UserPublicityDas';
 
 const Dashboard = () => {
 
@@ -47,11 +48,11 @@ const Dashboard = () => {
                 />
                 <Fields
                     title={'Solicitudes'}
-                    category={[{ name: 'Crear', path: 'newapplication' }, { name: 'Ver', path: 'vewapplicattion' }, { name: 'Ver x usuario', path: 'vewapplicattionuser' }]}
+                    category={[{ name: 'Crear', path: 'newapplication' }, { name: 'Ver', path: 'vewapplicattion' }, { name: 'Como usuario', path: 'vewapplicattionuser' }]}
                 />
                 <Fields
                     title={'Publicidad'}
-                    category={[{ name: 'Crear', path: 'newpublicity' }, { name: 'Ver', path: 'vewpublicity' }]}
+                    category={[{ name: 'Crear', path: 'newpublicity' }, { name: 'Ver', path: 'vewpublicity' }, { name: 'Como usuario', path: 'userpublicity' }]}
                 />
             </div>
             <Routes>
@@ -76,6 +77,7 @@ const Dashboard = () => {
 
                 <Route path='/newpublicity/:appli?' element={<NewPublicity />} />
                 <Route path='/vewpublicity' element={<VewPublicity />} />
+                <Route path='/userpublicity' element={<UserPublicityDas />} />
             </Routes>
         </div>
     );

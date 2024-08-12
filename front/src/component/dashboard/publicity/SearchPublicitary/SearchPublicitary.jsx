@@ -58,6 +58,11 @@ const SearchPublicitary = ({ setPublicitary, setLoading }) => {
                 </select>
             </div>
 
+            <div>
+                <label>ApplicationI d</label>
+                <input type="text" name='id' onChange={handleChange}/>
+            </div>
+
             <button className='btn btnB' style={{ color: 'white' }}>Buscar</button>
         </form>
     );

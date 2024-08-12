@@ -1,9 +1,9 @@
 const url = import.meta.env.VITE_API_URL;
 
-const getPublicityByUserIdApi = async (id) => {
+const getPublicityByUserIdApi = async (id, active) => {
 
     const token = localStorage.getItem('token');
-    const response = await fetch(`${url}/api/publicity/userid/${id}`, {
+    const response = await fetch(`${url}/api/publicity/userid/${id}/active/${active}`, {
         method: 'GET',
         headers: {
             'Accept': 'application/json',

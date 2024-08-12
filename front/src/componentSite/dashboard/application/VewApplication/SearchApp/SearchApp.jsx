@@ -43,8 +43,9 @@ const SearchApp = ({ setAppli, setLoading }) => {
                 <label>Tipo</label>
                 <select name="type" onChange={handleChange} >
                     <option value=""></option>
-                    <option value='banner'>Banner</option>
-                    <option value='card'>Cards</option>
+                    <option value='banners'>Banner</option>
+                    <option value='cards'>Cards</option>
+                    <option value='cardsToPortal'>Cards Portal</option>
                 </select>
             </div>
 

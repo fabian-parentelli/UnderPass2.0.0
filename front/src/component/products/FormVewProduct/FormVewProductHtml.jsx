@@ -13,6 +13,9 @@ const FormVewProductHtml = ({ products, handleChange, setFormData, handleActive,
     const handleInfo = (id) => setVew(vew === id ? null : id);
     const handleFileChange = (data) => setFormData(data);
 
+    console.log(products);
+    
+
     return (
         <div className='formVewProductHtml'>
             <table>
@@ -30,7 +33,7 @@ const FormVewProductHtml = ({ products, handleChange, setFormData, handleActive,
                     {products && products.map((prod) => (
                         <Fragment key={prod._id}>
                             <tr>
-                                <td><BigImg img={prod.img[0].imgUrl} border={false} /></td>
+                                {prod.img && <td><BigImg img={prod.img[0].imgUrl} border={false} /></td>}
                                 <td>
                                     <input type="text"
                                         name='name'

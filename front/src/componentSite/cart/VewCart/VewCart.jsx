@@ -22,7 +22,6 @@ const VewCart = () => {
                 {/* <CartPeople /> */}
             </div>
 
-
         </div>
     );
 };
