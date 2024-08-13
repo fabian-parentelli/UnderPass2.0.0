@@ -59,7 +59,7 @@ const SearchPublicitary = ({ setPublicitary, setLoading }) => {
             </div>
 
             <div>
-                <label>ApplicationI d</label>
+                <label>Application Id</label>
                 <input type="text" name='id' onChange={handleChange}/>
             </div>
 

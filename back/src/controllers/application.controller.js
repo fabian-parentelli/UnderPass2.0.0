@@ -13,9 +13,9 @@ const newApplication = async (req, res) => {
 };
 
 const getAll = async (req, res) => {
-    const { limit = 12, page = 1, active, country, category, type, pay } = req.query;
+    const { limit = 12, page = 1, active, country, category, type, pay, underVew } = req.query;
     try {
-        const result = await appliService.getAll(limit, page, active, country, category, type, pay);
+        const result = await appliService.getAll(limit, page, active, country, category, type, pay, underVew);
         if (result) return res.sendSuccess(result);
     } catch (error) {
         if (error instanceof AppliNotFound) return res.sendClientError(error.message);

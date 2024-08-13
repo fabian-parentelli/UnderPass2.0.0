@@ -20,6 +20,7 @@ const applicationSchema = new mongoose.Schema({
     pay: { type: Boolean, default: false },
     underVew: { type: Boolean, default: true },
     applicationId: { type: String },
+    inPortal: { type: Boolean }
 });
 
 applicationSchema.plugin(mongoosePaginate);

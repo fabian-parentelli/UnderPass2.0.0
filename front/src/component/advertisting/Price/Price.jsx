@@ -43,7 +43,7 @@ const Price = ({ country, handleChange, values, setDataPrice, name, dataPrice })
                 <p>días</p>
             </div>
 
-            {dataPrice === 'dataPrice' ?
+            {!dataPrice ?
                 <div>
                     {price &&
                         <>
@@ -77,7 +77,7 @@ const Price = ({ country, handleChange, values, setDataPrice, name, dataPrice })
                         </thead>
                         <tbody>
                             <tr>
-                                {dataPrice === 'dataPrice'
+                                {!dataPrice
                                     ? <td>${price && price.price}</td>
                                     : <td>${price && price.portal}</td>
                                 }

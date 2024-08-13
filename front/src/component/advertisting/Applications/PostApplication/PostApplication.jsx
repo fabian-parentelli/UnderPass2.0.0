@@ -16,10 +16,11 @@ const PostApplication = ({ userId, type, country, setLoading }) => {
     const navigate = useNavigate();
     const { addToCart } = useCartContext();
     const [isWorkOur, setIsWorkOur] = useState(false);
+    const [isInPortal, setIsInPortal] = useState(false);
     const [formData, setFormData] = useState(new FormData());
     const [values, setValues] = useState({
         title: '', category: '', days: '', isWorkOur: isWorkOur, text: '',
-        userId: userId, country: country, type: type
+        userId: userId, country: country, type: type, inPortal: isInPortal
     });
     const [dataPrice, setDataPrice] = useState(0);
     const [message, setMessage] = useState({ open: false, title: '', content: '' });
@@ -27,6 +28,9 @@ const PostApplication = ({ userId, type, country, setLoading }) => {
     const handleSwitchChange = (event) => {
         setIsWorkOur(event.target.checked);
         setValues({ ...values, isWorkOur: event.target.checked });
+    };
+    const handleIsinPortal = (e) => {
+        setIsInPortal(e.target.checked); setValues({ ...values, inPortal: e.target.checked });
     };
     const handleFileChange = (data) => setFormData(data);
     const handleChange = (e) => setValues({ ...values, [e.target.name]: e.target.value });
@@ -48,6 +52,7 @@ const PostApplication = ({ userId, type, country, setLoading }) => {
                 price: dataPrice.price,
                 is: type,
                 name: response.result.title,
+                inPortal: values.inPortal,
                 description: `Solicitud de ${type}`,
                 img: imgages.cartBanner,
                 data: dataPrice
@@ -72,9 +77,19 @@ const PostApplication = ({ userId, type, country, setLoading }) => {
                 <div className='formWantBannerDiv'>
                     <CategorySelected handleChange={handleChange} />
                 </div>
+
+                {type !== 'banners' &&
+                    <div div className='formWantBannerRow'>
+                        <p>General</p>
+                        <Switch checked={isInPortal} onChange={handleIsinPortal} />
+                        <p>Portal</p>
+                    </div>
+                }
+
                 <Price
-                    country={country} handleChange={handleChange} values={values} setDataPrice={setDataPrice} name={type} dataPrice='dataPrice'
+                    country={country} handleChange={handleChange} values={values} setDataPrice={setDataPrice} name={type} dataPrice={isInPortal}
                 />
+
                 <div className='formWantBannerRow'>
                     <p>Mi banner</p>
                     <Switch checked={isWorkOur} onChange={handleSwitchChange} />
@@ -88,9 +103,9 @@ const PostApplication = ({ userId, type, country, setLoading }) => {
                 </div>
 
                 <button className='btn btnB'>Solicitar</button>
-            </form>
+            </form >
             <AlertDialog message={message} setMessage={setMessage} />
-        </div>
+        </div >
     );
 };
 

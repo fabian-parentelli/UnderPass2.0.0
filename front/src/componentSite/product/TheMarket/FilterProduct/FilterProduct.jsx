@@ -14,7 +14,7 @@ const FilterProduct = ({ setProducts, setLoading }) => {
     const [province, setProvince] = useState({ province: '' });
     const [star, setStar] = useState(false);
     const [type, setType] = useState('');
-    const [query, setQuery] = useState({ active: true, country: localStorage.getItem('country'), limit: 40 });
+    const [query, setQuery] = useState({ active: true, country: localStorage.getItem('country') });
 
     const handleChange = (e) => setProvince({ [e.target.name]: e.target.value });
 
@@ -25,12 +25,12 @@ const FilterProduct = ({ setProducts, setLoading }) => {
             if (star) updatedQuery.user = user.data._id;
             else delete updatedQuery.user;
         };
-        if(type) {
-            if(type === 'Merchandising') updatedQuery.inSite = 'true';
+        if (type) {
+            if (type === 'Merchandising') updatedQuery.inSite = 'true';
             else if (type === 'Productos') updatedQuery.inSite = 'false';
             else delete updatedQuery.inSite;
         };
-        
+
         const fetchData = async () => {
             setLoading(true);
             const response = await getAllProductsApi(updatedQuery);
@@ -42,7 +42,7 @@ const FilterProduct = ({ setProducts, setLoading }) => {
     }, [province, star, query, type]);
 
     const handleStar = () => setStar(prevStar => !prevStar);
-    
+
     return (
         <div className='filterProduct'>
             <div className='filterProductFilter'>

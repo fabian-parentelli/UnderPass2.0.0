@@ -7,7 +7,7 @@ import { getAllApplicationApi } from '../../../../../helpers/applications/getAll
 const SearchApp = ({ setAppli, setLoading }) => {
 
     const [values, setValues] = useState({
-        category: '', active: '', country: '', type: '', pay: ''
+        category: '', active: '', country: '', type: '', pay: '', underVew: ''
     });
     const handleChange = (e) => setValues({ ...values, [e.target.name]: e.target.value });
 
@@ -46,6 +46,7 @@ const SearchApp = ({ setAppli, setLoading }) => {
                     <option value='banners'>Banner</option>
                     <option value='cards'>Cards</option>
                     <option value='cardsToPortal'>Cards Portal</option>
+                    <option value='cardsMoreTime'>Cards Mas tiempo</option>
                 </select>
             </div>
 
@@ -55,6 +56,15 @@ const SearchApp = ({ setAppli, setLoading }) => {
                     <option value=""></option>
                     <option value='true'>Si</option>
                     <option value='false'>No</option>
+                </select>
+            </div>
+
+            <div>
+                <label>Visto</label>
+                <select name="underVew" onChange={handleChange} >
+                    <option value=""></option>
+                    <option value='true'>No</option>
+                    <option value='false'>Si</option>
                 </select>
             </div>
 

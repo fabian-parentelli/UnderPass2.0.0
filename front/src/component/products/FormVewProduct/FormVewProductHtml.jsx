@@ -13,9 +13,6 @@ const FormVewProductHtml = ({ products, handleChange, setFormData, handleActive,
     const handleInfo = (id) => setVew(vew === id ? null : id);
     const handleFileChange = (data) => setFormData(data);
 
-    console.log(products);
-    
-
     return (
         <div className='formVewProductHtml'>
             <table>

@@ -28,6 +28,7 @@ const CartProduct = ({ item }) => {
                 <p>{item.name}</p>
                 <p className='pID'>{item._id}</p>
             </td>
+            <td>{item.is}</td>
             <td>${item.price}</td>
             <td><Counter prod={item} /></td>
             {<td style={{ width: '80px' }}>${((totalProduct(item._id) * price) / 100) + totalProduct(item._id)}</td>}

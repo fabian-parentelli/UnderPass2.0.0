@@ -4,16 +4,20 @@ import BigImg from '../../utils/BigImg/BigImg';
 import { updPublicityApi } from '../../../helpers/publicity/updPublicity.api.js';
 import { getPublicityByUserIdApi } from '../../../helpers/publicity/getPublicityByUserId.api.js';
 import WantFrontPage from '../WantFrontPage/WantFrontPage.jsx';
+import MoreTime from '../MoreTime/MoreTime.jsx';
 
 const VewPublicityProfil = ({ userId, setLoading }) => {
 
     const [publicity, setPublicity] = useState([]);
     const [values, setValues] = useState({});
     const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [moreTime, setMoreTime] = useState(false);
     const [finished, setFinished] = useState(false);
 
     const openModal = () => setModalIsOpen(true);
     const closeModal = () => setModalIsOpen(false);
+    const openMoreTime = () => setMoreTime(true);
+    const closeMoreTime = () => setMoreTime(false);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -84,15 +88,24 @@ const VewPublicityProfil = ({ userId, setLoading }) => {
                                     <p>{new Date(pub.end).toLocaleDateString()}</p>
                                     <p>{Math.ceil((new Date(pub.end) - new Date()) / (1000 * 60 * 60 * 24))} días restantes</p>
                                 </td>
-                                <td className='vewPublicityProfilBack'>Solicitar</td>
+                                <td className='vewPublicityProfilBack' onClick={openMoreTime}>Solicitar</td>
                             </tr>
-                            {modalIsOpen &&
+                            {modalIsOpen && !pub.inPortal &&
                                 <WantFrontPage
                                     modalIsOpen={modalIsOpen}
                                     closeModal={closeModal}
                                     data={pub}
                                     setLoading={setLoading}
                                     setModalIsOpen={setModalIsOpen}
+                                />
+                            }
+                            {moreTime &&
+                                <MoreTime
+                                    moreTime={moreTime}
+                                    closeMoreTime={closeMoreTime}
+                                    data={pub}
+                                    setLoading={setLoading}
+                                    setMoreTime={setMoreTime}
                                 />
                             }
                         </Fragment>

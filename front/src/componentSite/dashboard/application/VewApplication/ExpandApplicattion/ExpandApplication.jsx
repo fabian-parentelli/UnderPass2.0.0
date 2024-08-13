@@ -4,6 +4,7 @@ import BigImg from '../../../../../component/utils/BigImg/BigImg';
 import bannersCategory from '../../../../../utils/bannersCategory.utils.js';
 import { useLoginContext } from '../../../../../context/LoginContext.jsx';
 import Copy from '../../../../../component/utils/Copy.jsx';
+import AccountTreeIcon from '@mui/icons-material/AccountTree';
 
 const ExpandApplication = ({ app }) => {
 
@@ -12,6 +13,11 @@ const ExpandApplication = ({ app }) => {
     return (
         <div className='expandApplication'>
             <ul className='expandList'>
+
+                <li style={{ color: app.inPortal && 'brown' }}>
+                    <strong>Portada:</strong> {app.inPortal ? 'Si' : 'No'}
+                </li>
+
                 {app.category
                     ? <li><strong>Categoria:</strong>{bannersCategory(app.category)}</li>
                     : <li className='expandApplicationAppId'>
@@ -24,7 +30,7 @@ const ExpandApplication = ({ app }) => {
                 <li>
                     {user && user.data && user.data.role !== 'user' ? (
                         <Link to={`/dashboard/newpublicity/${app.userId.userId || ''}`} className='tdLink'>
-                            <strong>Id:</strong> {app._id || ''}
+                            <strong>Id:</strong> {app._id || ''} <AccountTreeIcon />
                         </Link>
                     ) : (<p><strong>Id:</strong> {app._id || ''}</p>)}
                 </li>

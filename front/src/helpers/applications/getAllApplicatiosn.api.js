@@ -10,6 +10,7 @@ const getAllApplicationApi = async (obj) => {
     if (obj.country) urlData += `country=${obj.country}&`;
     if (obj.type) urlData += `type=${obj.type}&`;
     if (obj.pay) urlData += `pay=${obj.pay}&`;
+    if (obj.underVew) urlData += `underVew=${obj.underVew}&`;
 
     const token = localStorage.getItem('token');
     const response = await fetch(urlData, {

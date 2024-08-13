@@ -60,7 +60,7 @@ const TableVewApplication = ({ appli, handleActive, handeleVew }) => {
                                 <td
                                     style={{
                                         color: (app.type !== 'cards' && app.type !== 'banners' && app.type !== 'separator')
-                                        ? '#00756F' : 'gray'
+                                            ? '#00756F' : 'gray'
                                     }}
                                 >{app.type}</td>
 
@@ -93,9 +93,7 @@ const TableVewApplication = ({ appli, handleActive, handeleVew }) => {
                             </tr>
                             {vew === app._id && (
                                 <tr className='expandRow'>
-                                    <td colSpan="9">
-                                        <ExpandApplication app={app} />
-                                    </td>
+                                    <td colSpan="9"><ExpandApplication app={app} /></td>
                                 </tr>
                             )}
                         </Fragment>

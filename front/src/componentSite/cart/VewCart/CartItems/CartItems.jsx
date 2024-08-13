@@ -1,5 +1,6 @@
 import './cartItems.scss';
 import { Fragment } from 'react';
+import CartCards from '../CartCards/CartCards';
 import CartBanner from '../CartBanner/CartBanner';
 import CartProduct from '../CartProduct/CartProduct';
 
@@ -13,6 +14,7 @@ const CartItems = ({ cart }) => {
                 <thead>
                     <tr>
                         <th>Item</th>
+                        <th>Tipo</th>
                         <th>Precio</th>
                         <th>Unidades</th>
                         <th>Total</th>
@@ -23,6 +25,8 @@ const CartItems = ({ cart }) => {
                         <Fragment key={index}>
                             {item.is === 'banners' && <CartBanner item={item} />}
                             {item.is === 'product' && <CartProduct item={item} />}
+                            {item.is === 'cards' && <CartCards item={item} />}
+                            {item.is === 'cardsMoreTime' && <CartCards item={item} />}
                         </Fragment>
                     ))}
                 </tbody>

@@ -8,12 +8,13 @@ const newApplication = async (application, imgUrl) => {
     return { status: 'success', result };
 };
 
-const getAll = async (limit, page, active, country, category, type, pay) => {    
+const getAll = async (limit, page, active, country, category, type, pay, underVew) => {    
     const query = {};
     if (category) query.category = { $regex: category, $options: "i" };
     if (country) query.country = { $regex: country, $options: "i" };
     if (type) query.type = type;
     if (active !== undefined) query.active = active;
+    if (underVew !== undefined) query.underVew = underVew;
     if (pay !== undefined) query.pay = pay;
     const result = await appliRepository.getAll(query, limit, page);
     if (!result) throw new AppliNotFound('No se encuentran las solicitudes');
