@@ -51,7 +51,7 @@ const getAll = async (limit, page, active, country, inSite, location, province, 
     const querys = {
         country: { $in: [country, 'all'] },
         active: true,
-        type: { $regex: 'Cards', $options: "i" }
+        type: { $in: ['cards', 'separator'] }
     };
     const cards = await publicityRepository.getAll(querys, limit, page);
     result.docs = joinPublicity(result.docs, cards.docs);
@@ -71,7 +71,7 @@ const getRandom = async (country, limit = 5, page = 1) => {
         country: { $in: [country, 'all'] },
         inPortal: true,
         active: true,
-        type: { $regex: 'Cards', $options: "i" }
+        type: { $in: ['cards', 'separator'] }
     };
     const cards = await publicityRepository.getAll(query, limit, page);
     if (!cards) throw new ProductNotFound('No se encuentran las publicidades');

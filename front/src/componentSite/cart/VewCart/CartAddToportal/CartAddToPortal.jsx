@@ -1,11 +1,10 @@
-import PriceCards from './PriceCards/PriceCards';
 import CancelIcon from '@mui/icons-material/Cancel';
-import BigImg from '../../../../component/utils/BigImg/BigImg';
 import { useCartContext } from '../../../../context/CartContext';
+import BigImg from '../../../../component/utils/BigImg/BigImg';
+import PriceAddToPortal from './PriceAddToPortal';
 import Counter from '../../../../component/utils/Counter/Counter';
 
-
-const CartCards = ({ item }) => {
+const CartAddToPortal = ({ item }) => {
 
     const { removeItem, totalProduct } = useCartContext();
 
@@ -18,11 +17,11 @@ const CartCards = ({ item }) => {
                 <p className='pID'>{item._id}</p>
             </td>
             <td>{item.is}</td>
-            <td style={{width: '285px'}}><PriceCards item={item} /></td>
+            <td style={{ width: '285px' }}><PriceAddToPortal item={item} /></td>
             <td><Counter prod={item} /></td>
             <td style={{ width: '80px' }}>${totalProduct(item._id)}</td>
         </tr>
     );
 };
 
-export default CartCards;
+export default CartAddToPortal;

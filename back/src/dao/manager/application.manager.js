@@ -15,8 +15,8 @@ export default class Application {
     };
 
     getByUserId = async (id) => {
-        return await apllicationModel.find({ userId: id }).lean();
-    };
+        return await apllicationModel.find({ userId: id }).sort({ date: -1 }).lean();
+    };    
 
     update = async (application) => {
         return await apllicationModel.findByIdAndUpdate({ _id: application._id }, application).lean();

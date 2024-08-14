@@ -20,7 +20,7 @@ export default class Product {
         return await productModel.findById(id).lean();
     };
 
-    getRandom = async (country, limit =11) => {
+    getRandom = async (country, limit = 13) => {
         return await productModel.aggregate([{ $match: { 'location.country': country } }, { $sample: { size: limit } }]).exec();
     };
 

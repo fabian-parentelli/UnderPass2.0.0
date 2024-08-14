@@ -3,6 +3,7 @@ import { Fragment } from 'react';
 import CartCards from '../CartCards/CartCards';
 import CartBanner from '../CartBanner/CartBanner';
 import CartProduct from '../CartProduct/CartProduct';
+import CartAddToPortal from '../CartAddToportal/CartAddToPortal';
 
 const CartItems = ({ cart }) => {
 
@@ -27,6 +28,7 @@ const CartItems = ({ cart }) => {
                             {item.is === 'product' && <CartProduct item={item} />}
                             {item.is === 'cards' && <CartCards item={item} />}
                             {item.is === 'cardsMoreTime' && <CartCards item={item} />}
+                            {item.is === 'cardsToPortal' && <CartAddToPortal item={item} />}
                         </Fragment>
                     ))}
                 </tbody>

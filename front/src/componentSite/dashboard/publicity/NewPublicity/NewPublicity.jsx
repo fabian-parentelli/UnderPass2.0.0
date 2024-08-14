@@ -21,9 +21,9 @@ const NewPublicity = () => {
             </div>
             <div className='newPublicityData'>
                 {!type && <p>Medidas en píxeles</p>}
-                {type && type === 'banners' && <p><strong>Banner:</strong> 2 imágenes _ (1) 1583x380px - (2) 1080x1080px.</p>}
+                {type && type === 'banners' && <p><strong>Banner:</strong> 2 imágenes _ (1) 1583x380px - (2) 768x250px.</p>}
                 {type && type === 'cards' && <p><strong>Cards:</strong> 1 imágenes _ 250x400px</p>}
-                {type && type === 'separator' && <p><strong>Separator:</strong> 1 imágenes _ 1583x100px</p>}
+                {type && type === 'separator' && <p><strong>Separator:</strong> 2 imágenes _ (1) 1920x200px - (2) 1080x1080px.</p>}
             </div>
             {type && <PublicityForm type={type} setLoading={setLoading} setType={setType} appli={appli} />}
             <Load loading={loading} />

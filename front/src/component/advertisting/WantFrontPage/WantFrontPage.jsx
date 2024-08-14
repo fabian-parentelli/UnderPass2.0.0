@@ -41,7 +41,7 @@ const WantFrontPage = ({ modalIsOpen, closeModal, data, setLoading, setModalIsOp
         };
         const formData = new FormData();
         for (const key in info) if (info.hasOwnProperty(key)) formData.append(key, info[key]);
-        const response = await newApplicationApi(formData);
+        const response = await newApplicationApi(formData);        
         if (response.status === 'success') {
             setMessage({
                 open: true,
@@ -51,12 +51,13 @@ const WantFrontPage = ({ modalIsOpen, closeModal, data, setLoading, setModalIsOp
             addToCart({
                 _id: response.result._id,
                 quantity: response.result.days,
-                price: dataPrice.price - dataPrice.portal,
+                price: dataPrice.portal - dataPrice.price,
                 is: `${data.type}ToPortal`,
                 name: response.result.title,
                 description: `Agregar ${data.type} al portal`,
                 img: imgages.addToPort,
-                data: dataPrice
+                data: dataPrice,
+                end: data.end
             });
         };
         setTimeout(() => { setLoading(false); setModalIsOpen(false) }, 2000);

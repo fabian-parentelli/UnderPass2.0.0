@@ -10,7 +10,10 @@ const Counter = ({ prod }) => {
     const { updateQuantity } = useCartContext();
 
     const handelLess = () => count > 1 && setCount(count - 1);
-    const handleAdd = () => setCount(count + 1);
+    const handleAdd = () => {
+        if (prod.end) count < Math.ceil((new Date(prod.end) - new Date()) / (1000 * 60 * 60 * 24)) && setCount(count + 1);
+        else setCount(count + 1);
+    };
 
     useEffect(() => {
         updateQuantity(prod._id, count);
