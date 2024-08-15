@@ -4,7 +4,6 @@ import BigImg from '../../../../component/utils/BigImg/BigImg';
 import { useCartContext } from '../../../../context/CartContext';
 import Counter from '../../../../component/utils/Counter/Counter';
 
-
 const CartCards = ({ item }) => {
 
     const { removeItem, totalProduct } = useCartContext();

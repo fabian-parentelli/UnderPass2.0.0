@@ -27,8 +27,10 @@ const CartItems = ({ cart }) => {
                             {item.is === 'banners' && <CartBanner item={item} />}
                             {item.is === 'product' && <CartProduct item={item} />}
                             {item.is === 'cards' && <CartCards item={item} />}
-                            {item.is === 'cardsMoreTime' && <CartCards item={item} />}
-                            {item.is === 'cardsToPortal' && <CartAddToPortal item={item} />}
+                            {item.is === 'separator' && <CartCards item={item} />}
+
+                            {item.is === 'moreTime' && <CartCards item={item} />}
+                            {item.is === 'toPortal' && <CartAddToPortal item={item} />}
                         </Fragment>
                     ))}
                 </tbody>

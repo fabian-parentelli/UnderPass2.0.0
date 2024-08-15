@@ -19,11 +19,12 @@ const PostApplication = ({ userId, type, country, setLoading }) => {
     const [isInPortal, setIsInPortal] = useState(false);
     const [formData, setFormData] = useState(new FormData());
     const [values, setValues] = useState({
-        title: '', category: '', days: '', isWorkOur: isWorkOur, text: '',
+        title: '', category: '', days: '', isWorkOur: isWorkOur, text: '', links: '',
         userId: userId, country: country, type: type, inPortal: isInPortal
     });
     const [dataPrice, setDataPrice] = useState(0);
     const [message, setMessage] = useState({ open: false, title: '', content: '' });
+    const [costPerDay, setCostPerDay] = useState(0);
 
     const handleSwitchChange = (event) => {
         setIsWorkOur(event.target.checked);
@@ -49,7 +50,7 @@ const PostApplication = ({ userId, type, country, setLoading }) => {
             addToCart({
                 _id: response.result._id,
                 quantity: response.result.days,
-                price: dataPrice.price,
+                price: costPerDay,
                 is: type,
                 name: response.result.title,
                 inPortal: values.inPortal,
@@ -79,15 +80,23 @@ const PostApplication = ({ userId, type, country, setLoading }) => {
                 </div>
 
                 {type !== 'banners' &&
-                    <div div className='formWantBannerRow'>
+                    <div className='formWantBannerRow'>
                         <p>General</p>
                         <Switch checked={isInPortal} onChange={handleIsinPortal} />
                         <p>Portal</p>
                     </div>
                 }
 
+                <div className='formWantBannerDiv'>
+                    <label>Links</label>
+                    <p className='pLinks'>Te sugerimos que el {type} de publicidad enlace a un sitio tuyo pero interno en UnderPass, si no sabes como hacerlo solo dinos a donde que nosotros lo buscamos.</p>
+                    <input type="text" name='links' onChange={handleChange} placeholder='ej: mi_sitio' />
+                </div>
+
                 <Price
-                    country={country} handleChange={handleChange} values={values} setDataPrice={setDataPrice} name={type} dataPrice={isInPortal}
+                    country={country} handleChange={handleChange} 
+                    values={values} setDataPrice={setDataPrice} name={type} dataPrice={isInPortal}
+                    setCostPerDay={setCostPerDay} costPerDay={costPerDay}
                 />
 
                 <div className='formWantBannerRow'>

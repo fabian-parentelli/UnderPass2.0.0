@@ -40,7 +40,7 @@ const VewPublicityProfil = ({ userId, setLoading }) => {
             setLoading(false)
         } else console.log(response);
         setLoading(false);
-    };
+    };    
 
     return (
         <div className='vewPublicityProfil'>
@@ -90,7 +90,7 @@ const VewPublicityProfil = ({ userId, setLoading }) => {
                                 </td>
                                 <td className='vewPublicityProfilBack' onClick={openMoreTime}>Solicitar</td>
                             </tr>
-                            {modalIsOpen && !pub.inPortal &&
+                            {modalIsOpen &&
                                 <WantFrontPage
                                     modalIsOpen={modalIsOpen}
                                     closeModal={closeModal}

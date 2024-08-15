@@ -45,8 +45,11 @@ const SearchApp = ({ setAppli, setLoading }) => {
                     <option value=""></option>
                     <option value='banners'>Banner</option>
                     <option value='cards'>Cards</option>
+                    <option value='separator'>Separator</option>
                     <option value='cardsToPortal'>Cards Portal</option>
                     <option value='cardsMoreTime'>Cards Mas tiempo</option>
+                    <option value='separatorMoreTime'>Separator Mas tiempo</option>
+                    <option value='separatorToPortal'>Separator Portal</option>
                 </select>
             </div>
 

@@ -15,6 +15,7 @@ const MoreTime = ({ moreTime, closeMoreTime, data, setLoading, setMoreTime }) =>
     const [dataPrice, setDataPrice] = useState(null);
     const [values, setValues] = useState({ days: '', inPortal: isInPortal });
     const [message, setMessage] = useState({ open: false, title: '', content: '' });
+    const [costPerDay, setCostPerDay] = useState(0);
 
     const handleSwitch = (e) => {
         setIsInPortal(e.target.checked);
@@ -46,8 +47,8 @@ const MoreTime = ({ moreTime, closeMoreTime, data, setLoading, setMoreTime }) =>
             addToCart({
                 _id: response.result._id,
                 quantity: response.result.days,
-                price: isInPortal ? dataPrice.portal : dataPrice.price,
-                is: `${data.type}MoreTime`,
+                price: costPerDay,
+                is: `moreTime`,
                 name: response.result.title,
                 description: `Agregar mas tiempo al ${data.type}`,
                 img: imgages.moreTime,
@@ -70,7 +71,8 @@ const MoreTime = ({ moreTime, closeMoreTime, data, setLoading, setMoreTime }) =>
                 </div>
 
                 <Price
-                    country={data.country} handleChange={handleChange} values={values} setDataPrice={setDataPrice} name={data.type} dataPrice={isInPortal}
+                    country={data.country} handleChange={handleChange} values={values} setDataPrice={setDataPrice} 
+                    name={data.type} dataPrice={isInPortal} setCostPerDay={setCostPerDay} costPerDay={costPerDay}
                 />
 
                 <button className='btn btnA' onClick={handleApplication}>Solicitar</button>

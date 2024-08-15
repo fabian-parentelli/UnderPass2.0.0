@@ -18,6 +18,8 @@ const ExpandApplication = ({ app }) => {
                     <strong>Portada:</strong> {app.inPortal ? 'Si' : 'No'}
                 </li>
 
+                {app.links && <li><strong>Links:</strong> {app.links}</li>}
+
                 {app.category
                     ? <li><strong>Categoria:</strong>{bannersCategory(app.category)}</li>
                     : <li className='expandApplicationAppId'>

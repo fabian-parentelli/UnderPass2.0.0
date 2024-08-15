@@ -3,7 +3,8 @@ import { useEffect, useState } from 'react';
 import RequestQuoteIcon from '@mui/icons-material/RequestQuote';
 import { getLastPriceApi } from '../../../helpers/prices/getLastPrice.api.js';
 
-const Price = ({ country, handleChange, values, setDataPrice, name, dataPrice }) => {
+const Price = ({
+    country, handleChange, values, setDataPrice, name, dataPrice, setCostPerDay, costPerDay }) => {
 
     const [price, setPrice] = useState(null);
     const [sale, setSale] = useState(0);
@@ -14,24 +15,31 @@ const Price = ({ country, handleChange, values, setDataPrice, name, dataPrice })
             if (response.status === 'success') {
                 setPrice(response.result);
                 setDataPrice && setDataPrice(response.result);
-            };
-        }; fetchData();
-    }, [name]);
+            }
+        };
+        fetchData();
+    }, [name, country, setDataPrice]);
 
     useEffect(() => {
         if (price) {
             let data = 0;
             price.sales.forEach((sale) => { if (values.days >= sale.days) data = sale.sale });
             setSale(data);
-        };
-    }, [values.days]);
+        }
+    }, [values.days, price]);
+
+    useEffect(() => {
+        if (price) {
+            let basePrice = dataPrice ? price.portal : price.price;
+            let adjustedPrice = basePrice - ((basePrice * sale) / 100);
+            setCostPerDay(adjustedPrice);
+        }
+    }, [price, dataPrice, sale]);
 
     return (
         <div className='price'>
-
             <div>
                 <p>Mostrar</p>
-
                 <input
                     style={{ width: '60px' }}
                     type="text"
@@ -39,28 +47,17 @@ const Price = ({ country, handleChange, values, setDataPrice, name, dataPrice })
                     onChange={handleChange}
                     required
                 />
-
                 <p>días</p>
             </div>
 
-            {!dataPrice ?
-                <div>
-                    {price &&
-                        <>
-                            <p>Costo por día ${price.price - ((price.price * sale) / 100)}</p>
-                            <p>total: {(price.price - ((price.price * sale) / 100)) * values.days}</p>
-                        </>
-                    }
-                </div>
-                : <div>
-                    {price &&
-                        <>
-                            <p>Costo por día ${price.portal - ((price.portal * sale) / 100)}</p>
-                            <p>total: {(price.portal - ((price.portal * sale) / 100)) * values.days}</p>
-                        </>
-                    }
-                </div>
-            }
+            <div>
+                {price &&
+                    <>
+                        <p>Costo por día ${costPerDay}</p>
+                        <p>total: {costPerDay * values.days}</p>
+                    </>
+                }
+            </div>
 
             <div className='listIcon'>
                 <RequestQuoteIcon />
@@ -71,7 +68,7 @@ const Price = ({ country, handleChange, values, setDataPrice, name, dataPrice })
                             <tr>
                                 <th>Lista</th>
                                 {price && price.sales.map((pri, index) => (
-                                    <th key={index}>{pri.days} dias</th>
+                                    <th key={index}>{pri.days} días</th>
                                 ))}
                             </tr>
                         </thead>
@@ -88,7 +85,6 @@ const Price = ({ country, handleChange, values, setDataPrice, name, dataPrice })
                         </tbody>
                     </table>
                 </div>
-
             </div>
         </div>
     );

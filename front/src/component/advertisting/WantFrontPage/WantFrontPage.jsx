@@ -52,7 +52,7 @@ const WantFrontPage = ({ modalIsOpen, closeModal, data, setLoading, setModalIsOp
                 _id: response.result._id,
                 quantity: response.result.days,
                 price: dataPrice.portal - dataPrice.price,
-                is: `${data.type}ToPortal`,
+                is: `toPortal`,
                 name: response.result.title,
                 description: `Agregar ${data.type} al portal`,
                 img: imgages.addToPort,
