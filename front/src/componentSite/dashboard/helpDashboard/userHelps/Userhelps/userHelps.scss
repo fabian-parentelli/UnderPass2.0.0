@@ -1,0 +1,32 @@
+#userHelpsDas {
+    margin-top: 1rem;
+
+    .imagesTitle {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+
+        .icon {
+            font-size: 2rem;
+        }
+    }
+
+    p {
+        line-height: 1.6;
+    }
+
+    .imagesDiv {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+    
+    .imagesHelpDasP {
+        color: gray;
+        margin-top: 6px;
+    }
+
+    strong {
+        color: #00756F;
+    }
+}

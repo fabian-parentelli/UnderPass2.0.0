@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import BadgeIcon from '@mui/icons-material/Badge';
 import MessageIcon from '@mui/icons-material/Message';
-import DeleteCountry from './DeleteCountry/DeleteCountry.jsx'
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
+import DeleteCountry from './DeleteCountry/DeleteCountry.jsx';
 import ConfirmationNumberIcon from '@mui/icons-material/ConfirmationNumber';
 import { getAllAlertsApi } from '../../../../helpers/alerts/getAllAlerts.api.js';
 
@@ -45,6 +46,14 @@ const AlertsPanel = () => {
                     >
                         <MessageIcon className='icon' />
                         <p>Mensjaes</p>
+                    </Link>
+
+                    <Link to={'/dashboard/helpdas'}
+                        className='alertsPanelDiv'
+                        style={{ backgroundColor: '#CACACA' }}
+                    >
+                        <HelpOutlineIcon className='icon' />
+                        <p>Ayudas</p>
                     </Link>
 
                     <DeleteCountry />

@@ -17,6 +17,7 @@ import VewProductsDas from '../product/VewProductsDas/VewProductsDas';
 import NewPublicity from '../publicity/NewPublicity/NewPublicity';
 import VewPublicity from '../publicity/VewPublicity/VewPublicity';
 import UserPublicityDas from '../publicity/UserPublicityDas/UserPublicityDas';
+import HelpDas from '../helpDashboard/HelpDas/HelpDas';
 
 const Dashboard = () => {
 
@@ -57,6 +58,7 @@ const Dashboard = () => {
             </div>
             <Routes>
                 <Route path='/' element={<Panel />} />
+                <Route path='/helpdas' element={<HelpDas />} />
 
                 <Route path='/banners' element={<Banner />} />
                 <Route path='/newavatar' element={<Avatars />} />
