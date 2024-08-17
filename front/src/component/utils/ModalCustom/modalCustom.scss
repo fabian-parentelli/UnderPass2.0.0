@@ -8,6 +8,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 5;
 }
 
 .modalCustom {
@@ -16,4 +17,18 @@
     padding: 20px;
     max-width: 600px; 
     margin: auto;
+}
+
+@media (max-width: 1024px) {
+    .modalCustom { 
+        max-height: 90vh; 
+        overflow-y: auto; 
+        overflow-x: hidden;
+    }
+
+}
+@media (max-width: 767px) {
+    .modalCustom { 
+        max-width: 280px;
+    }
 }

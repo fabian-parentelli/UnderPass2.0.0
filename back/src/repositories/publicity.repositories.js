@@ -20,22 +20,36 @@ export default class PublicityRepository {
 
     getAll = async (query, limit, page) => {
         const result = await publicityManager.getAll(query, limit, page);
-        if (query.active === 'false') return result;
+        if(!query.active) return result;
         const today = new Date().setHours(0, 0, 0, 0);
-        const updatedDocs = await Promise.all(result.docs.map(async (publicity) => {
-            const publicityEnd = new Date(publicity.end).setHours(0, 0, 0, 0);
-            if (publicityEnd < today) {
-                if (publicity.active === true) await newAlert({ eventId: publicity._id, userId: publicity.application.userId, type: 'publicity' });
-                publicity.active = false;
-                publicity.inPortal = false;
-                await publicityManager.update(publicity);
-                return null;
+        const updatedDocs = [];
+        for (let i = 0; i < result.docs.length; i++) {
+            const publicity = result.docs[i];
+            if (!publicity.end) updatedDocs.push(publicity);
+            else {
+                const publicityEnd = new Date(publicity.end).setHours(0, 0, 0, 0);                
+                if (publicityEnd > today) updatedDocs.push(publicity);
+                else {
+                    if (publicity.active === true) {
+                        await newAlert({ eventId: publicity._id, userId: publicity.application.userId, type: 'publicityOff' });
+                        publicity.active = false;
+                        publicity.inPortal = false;
+                        await publicityManager.update(publicity);
+                        continue
+                    };
+                };
             };
-            return publicity;
-        }));
-        result.docs = updatedDocs.filter(publicity => publicity !== null);
+        };
+        result.docs = updatedDocs;
         return result;
     };
+
+
+
+
+
+
+
 
     getById = async (id) => {
         const result = await publicityManager.getById(id);

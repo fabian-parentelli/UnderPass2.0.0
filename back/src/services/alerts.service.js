@@ -10,12 +10,16 @@ const newAlert = async (alert) => {
 
 const getAll = async (user) => {
     const result = {};
-    if (user.role !== 'user') {
-        result.applications = await appliRepository.getUnderVew() || '';
-    } else {
-        result.applications = await publicityRepository.getUserVew(user._id) || '';
-        result.alerts = await alertsRepository.getAlerts(user._id || '');
-    };
+    const alerts = await alertsRepository.getAlerts({ userId: user._id, active: true });
+    if (!alerts) return { status: 'success', result: '' }
+    const alertTypes = new Set();
+    alerts.forEach(alert => alertTypes.add(alert.type));
+    alertTypes.forEach((type) => {
+        result[type] = {
+            count: alerts.filter(alert => alert.type === type).length,
+            data: alerts.filter(alert => alert.type === type)
+        };
+    });
     return { status: 'success', result };
 };
 
@@ -32,4 +36,23 @@ const amount = async () => {
     return { status: 'success', result };
 };
 
-export { getAll, amount, newAlert };
+const getByUser = async (limit, page, user) => {
+    const result = await alertsRepository.getPaginate(limit, page, { userId: user });
+    if (!result) throw new AllertsNotFound('No se encuentran alertas');
+    return { status: 'success', result };
+};
+
+const updActive = async (ids) => {
+    const results = await Promise.all(
+        Object.keys(ids).map(async (key) => {
+            const alert = await alertsRepository.getById(ids[key]);
+            if (!alert) throw new AllertsNotFound(`no se encuentra la alerta ${ids[key]}`);
+            alert.active = false;
+            return await alertsRepository.update(alert);
+        })
+    );
+    return { status: 'success', results };
+};
+
+
+export { getAll, amount, newAlert, updActive, getByUser };

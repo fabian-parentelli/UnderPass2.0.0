@@ -9,6 +9,7 @@ import Advertising from '../Advertising/Advertising';
 import DataUser from '../DataUser/DataUser';
 import AvatarUser from '../avatars/AvatarUser/AvatarUser';
 import ProductPanel from '../product/ProductPanel/ProductPanel';
+import AlertProfil from '../AlertProfil/AlertProfil';
 
 const Profile = () => {
 
@@ -23,7 +24,8 @@ const Profile = () => {
                 <Route path='/datauser' element={<DataUser />} />
                 <Route path='/panelavatar' element={<AvatarUser />} />
                 <Route path='/advertising' element={<Advertising />} />
-                <Route path='productmenu' element={<ProductPanel />} />
+                <Route path='/productmenu' element={<ProductPanel />} />
+                <Route path='/alerts' element={<AlertProfil />} />
             </Routes>
         </div>
     );

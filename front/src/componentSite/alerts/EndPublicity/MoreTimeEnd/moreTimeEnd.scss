@@ -1,0 +1,10 @@
+.moreTimeEnd {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    .moreTimeSwitch {
+        display: flex;
+        align-items: center;       
+    }
+}

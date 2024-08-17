@@ -51,7 +51,7 @@ const getAll = async (limit, page, active, country, inSite, location, province, 
     if (publicity === 'false') return { status: 'success', result };
     const querys = {
         country: { $in: [country, 'all'] },
-        active: true,
+        active: 'true',
         type: { $in: ['cards', 'separator'] }
     };
     const cards = await publicityRepository.getAll(querys, limit, page);

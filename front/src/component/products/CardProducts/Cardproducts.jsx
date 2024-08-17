@@ -7,11 +7,11 @@ const CardProducts = ({ products }) => {
 
     return (
         <div className='cardProducts'>
-            {products && products.map((prod) => (
+            {products && products.map((prod, index) => (
                 prod.type === 'product'
-                    ? (<ProductCard prod={prod} key={prod._id} />)
-                    : prod.type === 'cards' ? (<PublicityCards prod={prod} key={prod._id} />)
-                    : <SeparatorPublicity prod={prod} key={prod._id} />
+                    ? (<ProductCard prod={prod} key={index} />)
+                    : prod.type === 'cards' ? (<PublicityCards prod={prod} key={index} />)
+                    : <SeparatorPublicity prod={prod} key={index} />
             ))}
         </div>
     );
