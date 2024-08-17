@@ -8,38 +8,46 @@ import { useLoginContext } from '../../../../context/LoginContext.jsx';
 import TipsSearchproduct from '../TipsSearchProduct/TipsSearchProduct.jsx';
 import SelectedProvince from '../../../../component/utils/SelectedProvince.jsx';
 import { getAllProductsApi } from '../../../../helpers/products/getAllProducts.api.js';
+import { getByTipsSearchApi } from '../../../../helpers/products/getByTipsSearch.api.js';
 
-const FilterProduct = ({ setProducts, setLoading }) => {
+const FilterProduct = ({ setProducts, setLoading, page }) => {
     const { user } = useLoginContext();
     const [province, setProvince] = useState({ province: '' });
     const [star, setStar] = useState(false);
     const [type, setType] = useState('');
-    const [query, setQuery] = useState({ active: true, country: localStorage.getItem('country') });
+    const [query, setQuery] = useState({ active: true, country: localStorage.getItem('country'), limit: 40 });
+    const [values, setValues] = useState('');
 
     const handleChange = (e) => setProvince({ [e.target.name]: e.target.value });
 
     useEffect(() => {
-        const updatedQuery = { ...query, ...province };
-        if (user && user.data) {
-            updatedQuery.location = user.data.location.province;
-            if (star) updatedQuery.user = user.data._id;
-            else delete updatedQuery.user;
-        };
-        if (type) {
-            if (type === 'Merchandising') updatedQuery.inSite = 'true';
-            else if (type === 'Productos') updatedQuery.inSite = 'false';
-            else delete updatedQuery.inSite;
-        };
-
         const fetchData = async () => {
+            const updatedQuery = { ...query, ...province };
+            if (user && user.data) {
+                updatedQuery.location = user.data.location.province;
+                if (star) updatedQuery.user = user.data._id;
+                else delete updatedQuery.user;
+            };
+            if(page) updatedQuery.page = page;
+            if (type) {
+                if (type === 'Merchandising') updatedQuery.inSite = 'true';
+                else if (type === 'Productos') updatedQuery.inSite = 'false';
+                else delete updatedQuery.inSite;
+            };
             setLoading(true);
-            const response = await getAllProductsApi(updatedQuery);
-            if (response.status === 'success') setProducts(response.result);
-            else console.log(response);
+            if (!values) {
+                const response = await getAllProductsApi(updatedQuery);
+                if (response.status === 'success') setProducts(response.result);
+                else console.log(response);
+            } else {
+                const data = await getByTipsSearchApi(values, star ? user.data._id : false);
+                if (data.status === 'success') setProducts(data.result);
+                else console.log(data);
+            };
             setLoading(false);
         };
         fetchData();
-    }, [province, star, query, type]);
+    }, [province, star, query, type, values, page]);
 
     const handleStar = () => setStar(prevStar => !prevStar);
 
@@ -57,7 +65,8 @@ const FilterProduct = ({ setProducts, setLoading }) => {
             </div>
 
             <div className='filterProductRight'>
-                <TipsSearchproduct setProducts={setProducts} star={star} />
+                <TipsSearchproduct values={values} setValues={setValues} />
+
                 {user && user.logged && user.data.favorites.length > 0 && (
                     star
                         ? <StarIcon className='iconStar' onClick={handleStar} />

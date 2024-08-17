@@ -1,3 +1,5 @@
+@import '../../../style/colors.scss';
+
 .vewPublicityProfil {
     margin-top: 2rem;
 
@@ -8,5 +10,22 @@
         &:hover {
             background-color: rgb(192, 192, 192);
         }
+    }
+}
+
+@media (max-width: 767px) {
+
+    .vewPublicityProfil {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .vewPublicityProfil::-webkit-scrollbar {
+        height: 6px;
+    }
+    
+    .vewPublicityProfil::-webkit-scrollbar-thumb {
+        background-color: $colorB; 
+        border-radius: 6px; 
     }
 }

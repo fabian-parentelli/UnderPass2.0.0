@@ -31,6 +31,7 @@ const getByTipsSearch = async (name, favorite) => {
     const query = {};
     if (favorite !== 'false') favorites = await userRepository.getFavorite(favorite);
     if (favorites.length > 0) query._id = { $in: favorites };
+    query.active = true;
     const result = await productRepository.getByTipsSearch(query, name)
     if (!result) throw new ProductNotFound('No se encuentra el producto');
     return { status: 'success', result };

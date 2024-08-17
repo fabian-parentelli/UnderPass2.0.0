@@ -1,6 +1,9 @@
 const url = import.meta.env.VITE_API_URL;
 
 const getAllProductsApi = async (obj) => {
+
+    console.log(obj);
+    
     
     let urlData = `${url}/api/product?`;
     if (obj.page) urlData += `page=${obj.page}&`;

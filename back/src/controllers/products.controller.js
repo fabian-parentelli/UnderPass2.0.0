@@ -37,7 +37,7 @@ const getByTipsSearch = async (req, res) => {
 };
 
 const getAll = async (req, res) => {
-    const { limit = 12, page = 1, active, country, inSite, location, province, user, publicity } = req.query;
+    const { limit = 6, page = 1, active, country, inSite, location, province, user, publicity } = req.query;
     try {
         const result = await productService.getAll(limit, page, active, country, inSite, location, province, user, publicity);
         if (result) return res.sendSuccess(result);

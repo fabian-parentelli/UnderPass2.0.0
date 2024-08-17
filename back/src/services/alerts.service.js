@@ -1,7 +1,12 @@
 import {
-    appliRepository, userRepository, productRepository, publicityRepository
+    appliRepository, userRepository, productRepository, publicityRepository, alertsRepository
 } from "../repositories/index.repositories.js";
-// import { AllertsNotFound } from '../utils/custom-exceptions.utils.js';
+import { AllertsNotFound } from '../utils/custom-exceptions.utils.js';
+
+const newAlert = async (alert) => {
+    const result = await alertsRepository.newAlert(alert);
+    if (!result) throw new AllertsNotFound('No se puede guardar la alerta');
+};
 
 const getAll = async (user) => {
     const result = {};
@@ -9,6 +14,7 @@ const getAll = async (user) => {
         result.applications = await appliRepository.getUnderVew() || '';
     } else {
         result.applications = await publicityRepository.getUserVew(user._id) || '';
+        result.alerts = await alertsRepository.getAlerts(user._id || '');
     };
     return { status: 'success', result };
 };
@@ -26,4 +32,4 @@ const amount = async () => {
     return { status: 'success', result };
 };
 
-export { getAll, amount };
+export { getAll, amount, newAlert };

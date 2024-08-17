@@ -1,4 +1,5 @@
 import { publicityManager } from '../dao/manager/index.manager.js';
+import { newAlert } from '../services/alerts.service.js';
 
 export default class PublicityRepository {
 
@@ -6,31 +7,33 @@ export default class PublicityRepository {
         const result = await publicityManager.newPublicity(publicity);
         return result;
     };
-    
+
     getByUserId = async (id, active) => {
         const result = await publicityManager.getByUserId(id, active);
         return result;
     };
-    
+
     getAmountInPortal = async (query) => {
         const result = await publicityManager.getAmountInPortal(query);
         return result;
     };
 
-    getAll = async (query, limit, page) => {        
-        const result = await publicityManager.getAll(query, limit, page);    
-        if (query.active === 'false' || query.country || query.category || query.inPortal) return result;
+    getAll = async (query, limit, page) => {
+        const result = await publicityManager.getAll(query, limit, page);
+        if (query.active === 'false') return result;
         const today = new Date().setHours(0, 0, 0, 0);
-        const updatePublicity = result.docs.filter(publicity => {
+        const updatedDocs = await Promise.all(result.docs.map(async (publicity) => {
             const publicityEnd = new Date(publicity.end).setHours(0, 0, 0, 0);
             if (publicityEnd < today) {
+                if (publicity.active === true) await newAlert({ eventId: publicity._id, userId: publicity.application.userId, type: 'publicity' });
                 publicity.active = false;
-                publicityManager.update(publicity);
-                return false;
+                publicity.inPortal = false;
+                await publicityManager.update(publicity);
+                return null;
             };
-            return true;
-        });
-        result.docs = updatePublicity;
+            return publicity;
+        }));
+        result.docs = updatedDocs.filter(publicity => publicity !== null);
         return result;
     };
 

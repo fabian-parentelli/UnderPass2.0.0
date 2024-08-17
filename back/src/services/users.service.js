@@ -79,7 +79,6 @@ const newFavorite = async ({ favorite }, user) => {
     } else userDb.favorites.push(favorite);
     const result = await userRepository.update(userDb);
     delete result.password;
-    delete result.financeData;
     const accesToken = generateToken(result);
     return { status: 'success', accesToken };
 };
@@ -157,7 +156,6 @@ const newPassword = async ({ password: newPassword }, { user: email }) => {
     if (!result) throw new UserNotFound('La contraseña nueva no se puede guardar');
     delete user.password;
     if (user.passId) delete user.passId;
-    if (user.financeData) delete user.financeData;
     return { status: 'success', user };
 };
 
