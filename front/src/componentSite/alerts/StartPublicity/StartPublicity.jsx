@@ -1,13 +1,10 @@
-import './endPublicity.scss';
-import { useState } from 'react';
+import './startPublicity.scss';
+import { Link } from 'react-router-dom';
 import BigImg from '../../../component/utils/BigImg/BigImg';
 import ModalCustom from '../../../component/utils/ModalCustom/ModalCustom';
-import MoreTimeEnd from './MoreTimeEnd/MoreTimeEnd';
 import { updActiveAlertsApi } from '../../../helpers/alerts/updActiveAlerts.api.js';
 
-const EndPublicity = ({ modalIsOpen, setModalIsOpen, data, setNumberModal }) => {
-
-    const [moreTime, setMoreTime] = useState('');
+const StartPublicity = ({ modalIsOpen, setModalIsOpen, data, setNumberModal }) => {
 
     const closeModal = async () => {
         const ids = [];
@@ -17,10 +14,18 @@ const EndPublicity = ({ modalIsOpen, setModalIsOpen, data, setNumberModal }) => 
         setNumberModal(0);
     };
 
+    const handleClosed = async () => {
+        const ids = [];
+        data.forEach(aler => ids.push(aler._id));
+        await updActiveAlertsApi(ids);
+        setModalIsOpen(false);
+        setNumberModal(0);
+    };
+
     return (
         <ModalCustom modalIsOpen={modalIsOpen} closeModal={closeModal}>
-            <div className='endPublicity'>
-                <h2>Tu publicidad ha finalizado</h2>
+            <div className='startPublicity'>
+                <h2>Tu publicidad ha iniciado</h2>
                 {data && data.map((alert, index) => (
                     <div className='endPublicityAlerts' key={index}>
                         <div className='endPublicityImG'>
@@ -29,13 +34,8 @@ const EndPublicity = ({ modalIsOpen, setModalIsOpen, data, setNumberModal }) => 
                         <div className='endPublicityText'>
                             <p><strong>Nombre:</strong> {alert.data.title}</p>
                             <p><strong>Tipo:</strong> {alert.data.type}</p>
-                            {moreTime !== alert._id &&
-                                <>
-                                    <p><strong>Finalizo:</strong> {new Date(alert.data.end).toLocaleDateString()}</p>
-                                    <button className='btnCard' onClick={() => setMoreTime(alert._id)}>Renovar</button>
-                                </>
-                            }
-                            {moreTime === alert._id && <MoreTimeEnd data={alert.data} />}
+                            <p><strong>Finalizo:</strong> {new Date(alert.data.end).toLocaleDateString()}</p>
+                            <Link onClick={handleClosed} to={`/${alert.data?.links}`}><button className='btnCard'>Ver</button></Link>
                             <p className='endPublicityBlue'>Alerta generada el {new Date(alert.date).toLocaleDateString()}</p>
                         </div>
                     </div>
@@ -45,4 +45,4 @@ const EndPublicity = ({ modalIsOpen, setModalIsOpen, data, setNumberModal }) => 
     );
 };
 
-export default EndPublicity;
+export default StartPublicity;

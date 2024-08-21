@@ -1,5 +1,5 @@
 import {
-    appliRepository, userRepository, productRepository, publicityRepository, alertsRepository
+    userRepository, productRepository, alertsRepository
 } from "../repositories/index.repositories.js";
 import { AllertsNotFound } from '../utils/custom-exceptions.utils.js';
 
@@ -9,9 +9,10 @@ const newAlert = async (alert) => {
 };
 
 const getAll = async (user) => {
+    if(user.role === 'admin') user._id = '668d9529cf8bde76a0dc3adb';
     const result = {};
     const alerts = await alertsRepository.getAlerts({ userId: user._id, active: true });
-    if (!alerts) return { status: 'success', result: '' }
+    if (!alerts) return { status: 'success', result: '' };
     const alertTypes = new Set();
     alerts.forEach(alert => alertTypes.add(alert.type));
     alertTypes.forEach((type) => {
@@ -54,5 +55,12 @@ const updActive = async (ids) => {
     return { status: 'success', results };
 };
 
+const updateOneActive = async (id) => {
+    const alert = await alertsRepository.getByEventId(id);
+    if(alert) {
+        alert.active = false;
+        await alertsRepository.update(alert);
+    };
+};
 
-export { getAll, amount, newAlert, updActive, getByUser };
+export { getAll, amount, newAlert, updActive, getByUser, updateOneActive };

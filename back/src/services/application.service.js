@@ -1,14 +1,16 @@
 import { appliRepository, userRepository } from "../repositories/index.repositories.js";
 import { AppliNotFound } from '../utils/custom-exceptions.utils.js';
+import { newAlert, updateOneActive } from "./alerts.service.js";
 
 const newApplication = async (application, imgUrl) => {
     application.img = imgUrl;
     const result = await appliRepository.newApplication(application);
     if (!result) throw new AppliNotFound('No se puede guardar la solicitud');
+    if (result.userId) await newAlert({ eventId: result._id, userId: '668d9529cf8bde76a0dc3adb', type: 'newAplication' });
     return { status: 'success', result };
 };
 
-const getAll = async (limit, page, active, country, category, type, pay, underVew) => {    
+const getAll = async (limit, page, active, country, category, type, pay, underVew) => {
     const query = {};
     if (category) query.category = { $regex: category, $options: "i" };
     if (country) query.country = { $regex: country, $options: "i" };
@@ -22,7 +24,7 @@ const getAll = async (limit, page, active, country, category, type, pay, underVe
         const userDb = await userRepository.getUserById(appl.userId);
         appl.userId = { name: userDb.name, userId: userDb._id, email: userDb.email };
         return appl;
-    })); 
+    }));
     return { status: 'success', result };
 };
 
@@ -51,6 +53,7 @@ const updVew = async (id) => {
     application.underVew = !application.underVew;
     const result = await appliRepository.update(application);
     if (!result) throw new AppliNotFound('No se puede actualizar la solicitud');
+    await updateOneActive(id);
     return { status: 'success', result };
 };
 

@@ -6,7 +6,7 @@ export default class Alerts {
         return await alertsModel.create(alerts);
     };
 
-    getAlerts = async (query) => {        
+    getAlerts = async (query) => {
         return await alertsModel.find(query).lean();
     };
 
@@ -20,6 +20,10 @@ export default class Alerts {
 
     update = async (alert) => {
         return await alertsModel.findByIdAndUpdate({ _id: alert._id }, alert, { new: true });
+    };
+
+    getByEventId = async (id) => {
+        return await alertsModel.findOne({ eventId: id });
     };
 
 };

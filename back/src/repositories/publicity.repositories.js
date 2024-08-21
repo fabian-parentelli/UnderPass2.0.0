@@ -5,6 +5,7 @@ export default class PublicityRepository {
 
     newPublicity = async (publicity) => {
         const result = await publicityManager.newPublicity(publicity);
+        await newAlert({ eventId: result._id, userId: result.application.userId, type: 'publicityOn' });
         return result;
     };
 
@@ -43,13 +44,6 @@ export default class PublicityRepository {
         result.docs = updatedDocs;
         return result;
     };
-
-
-
-
-
-
-
 
     getById = async (id) => {
         const result = await publicityManager.getById(id);

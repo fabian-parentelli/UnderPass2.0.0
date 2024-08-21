@@ -18,6 +18,8 @@ import NewPublicity from '../publicity/NewPublicity/NewPublicity';
 import VewPublicity from '../publicity/VewPublicity/VewPublicity';
 import UserPublicityDas from '../publicity/UserPublicityDas/UserPublicityDas';
 import HelpDas from '../helpDashboard/HelpDas/HelpDas';
+import UserAlerts from '../alerts/UserAlerts/UserAlerts';
+import MayAlerts from '../alerts/MyAlerts/MyAlerts';
 
 const Dashboard = () => {
 
@@ -55,6 +57,11 @@ const Dashboard = () => {
                     title={'Publicidad'}
                     category={[{ name: 'Crear', path: 'newpublicity' }, { name: 'Ver', path: 'vewpublicity' }, { name: 'Como usuario', path: 'userpublicity' }]}
                 />
+
+                <Fields
+                    title={'Alertas'}
+                    category={[{ name: 'Mis Alertas', path: 'mayalert' }, { name: 'Usuario', path: 'useralert' }]}
+                />
             </div>
             <Routes>
                 <Route path='/' element={<Panel />} />
@@ -80,6 +87,9 @@ const Dashboard = () => {
                 <Route path='/newpublicity/:appli?' element={<NewPublicity />} />
                 <Route path='/vewpublicity' element={<VewPublicity />} />
                 <Route path='/userpublicity' element={<UserPublicityDas />} />
+
+                <Route path='/mayalert' element={<MayAlerts />} />
+                <Route path='/useralert' element={<UserAlerts />} />
             </Routes>
         </div>
     );

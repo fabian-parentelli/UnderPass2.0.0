@@ -1,12 +1,14 @@
 import './alerts.scss';
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import BadgeIcon from '@mui/icons-material/Badge';
-import { Fragment, useEffect, useState } from 'react';
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import LiveTvIcon from '@mui/icons-material/LiveTv';
+import FiberNewIcon from '@mui/icons-material/FiberNew';
+import Load from '../../../../component/utils/Load.jsx';
 import BadgeComp from '../../../../component/utils/BadgeComp/BadgeComp';
 import EndPublicity from '../../../alerts/EndPublicity/EndPublicity.jsx';
+import StartPublicity from '../../../alerts/StartPublicity/StartPublicity.jsx';
 import { getAllAlertsApi } from '../../../../helpers/alerts/getAllAlerts.api.js';
-import Load from '../../../../component/utils/Load.jsx';
+import { Link } from 'react-router-dom';
 
 const Alerts = ({ user }) => {
 
@@ -14,10 +16,12 @@ const Alerts = ({ user }) => {
     const [selectedAlert, setSelectedAlert] = useState(null);
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [loading, setLoading] = useState(false);
+    const [numberModal, setNumberModal] = useState(0);
 
-    const openModal = (alert) => {
+    const openModal = (number, alert) => {
         setModalIsOpen(true);
         setSelectedAlert(alert);
+        setNumberModal(number);
     };
 
     useEffect(() => {
@@ -29,30 +33,60 @@ const Alerts = ({ user }) => {
             } else console.log(response);
             setLoading(false);
         }; fetchData();
-        console.log(modalIsOpen);
-
     }, [modalIsOpen]);
+
+    console.log(alerts);
+
 
     return (
         <div className='alerts'>
 
             {alerts && alerts.publicityOff &&
-                <div className='alertsLink' onClick={() => openModal(alerts.publicityOff.data)} >
+                <div className='alertsLink' onClick={() => openModal(1, alerts.publicityOff.data)} >
                     <BadgeComp
                         Icon={BadgeIcon}
                         data={alerts.publicityOff.count}
+                        color='error'
+                    />
+                </div>
+            }
+
+            {alerts && alerts.publicityOn &&
+                <div className='alertsLink' onClick={() => openModal(2, alerts.publicityOn.data)} >
+                    <BadgeComp
+                        Icon={LiveTvIcon}
+                        data={alerts.publicityOn.count}
                         color='success'
                     />
                 </div>
             }
 
-            {modalIsOpen &&
+            {alerts && alerts.newAplication &&
+                <Link to={'/dashboard/vewapplicattion'} className='alertsLink' onClick={() => openModal(2, alerts.newAplication.data)} >
+                    <BadgeComp
+                        Icon={FiberNewIcon}
+                        data={alerts.newAplication.count}
+                        color='success'
+                    />
+                </Link>
+            }
+
+            {/* Modales */}
+
+            {numberModal === 1 &&
                 <EndPublicity
-                    modalIsOpen={modalIsOpen}
-                    setModalIsOpen={setModalIsOpen}
-                    data={selectedAlert}
+                    modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen} data={selectedAlert}
+                    setNumberModal={setNumberModal}
                 />
             }
+
+            {numberModal === 2 &&
+                <StartPublicity
+                    modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen} data={selectedAlert}
+                    setNumberModal={setNumberModal}
+                />
+            }
+
             <Load loading={loading} />
         </div >
     );

@@ -1,23 +1,30 @@
 import './alertsUserVew.scss';
+import Load from '../../utils/Load.jsx';
 import { useEffect, useState } from 'react';
-import { getAlertByUserIdApi } from '../../../helpers/alerts/getAlertByUserId.api.js';
+import Pager from '../../utils/Pager/Pager.jsx';
 import BigImg from '../../utils/BigImg/BigImg.jsx';
+import { getAlertByUserIdApi } from '../../../helpers/alerts/getAlertByUserId.api.js';
 
 const AlertsUserVew = ({ userId }) => {
 
     const [alerts, setAlerts] = useState(null);
     const [page, setPage] = useState(null);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
+            setLoading(true);
             const query = {};
             if (userId) query.user = userId;
             if (page) query.page = page;
             const response = await getAlertByUserIdApi(query);
             if (response.status === 'success') setAlerts(response.result);
             else console.log(response);
+            setLoading(false);
         }; fetchData();
     }, [userId, page]);
+
+    const HandleChangePage = (setPages) => setPage(setPages);
 
     return (
         <div className='alertsUserVew'>
@@ -41,6 +48,8 @@ const AlertsUserVew = ({ userId }) => {
                     ))}
                 </tbody>
             </table>
+            <div style={{ marginTop: '2rem' }}><Pager users={alerts} HandleChangePage={HandleChangePage} /></div>
+            <Load loading={loading} />
         </div>
     );
 };
@@ -48,7 +57,7 @@ const AlertsUserVew = ({ userId }) => {
 export default AlertsUserVew;
 
 function typeAlert(types) {
-    
+
     const alert = {
         'publicityOff': () => { return 'Ha finalizado tu publicidad' },
         'publicityOn': () => { return 'Ha iniciado tu publicidad' },

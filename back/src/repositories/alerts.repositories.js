@@ -1,4 +1,4 @@
-import { alertsManager, publicityManager } from '../dao/manager/index.manager.js';
+import { alertsManager, publicityManager, appliManager } from '../dao/manager/index.manager.js';
 
 export default class AlertsRepository {
 
@@ -11,6 +11,8 @@ export default class AlertsRepository {
         const result = await alertsManager.getAlerts(query);
         const updatedAlerts = await Promise.all(result.map(async (alert) => {
             if (alert.type === 'publicityOff') alert.data = await publicityManager.getById(alert.eventId);
+            if (alert.type === 'publicityOn') alert.data = await publicityManager.getById(alert.eventId);
+            if (alert.type === 'newAplication') alert.data = await appliManager.getAppById(alert.eventId);
             //
             // Seguir agregando distintos tipos de tipos de avisos...
             //
@@ -23,6 +25,8 @@ export default class AlertsRepository {
         const result = await alertsManager.getPaginate(limit, page, query);
         const updatedAlerts = await Promise.all(result.docs.map(async (alert) => {
             if (alert.type === 'publicityOff') alert.data = await publicityManager.getById(alert.eventId);
+            if (alert.type === 'publicityOn') alert.data = await publicityManager.getById(alert.eventId);
+            if (alert.type === 'newAplication') alert.data = await publicityManager.getById(alert.eventId);
             //
             // Seguir agregando distintos tipos de tipos de avisos...
             //
@@ -39,6 +43,11 @@ export default class AlertsRepository {
 
     update = async (alert) => {
         const result = await alertsManager.update(alert);
+        return result;
+    };
+    
+    getByEventId = async (id) => {
+        const result = await alertsManager.getByEventId(id);
         return result;
     };
 }

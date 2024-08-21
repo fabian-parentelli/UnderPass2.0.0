@@ -23,7 +23,7 @@ const amount = async (req, res) => {
 };
 
 const getByUser = async (req, res) => {
-    const { limit = 20, page = 1, user } = req.query;
+    const { limit = 24, page = 1, user } = req.query;
     try {
         const result = await alertsServices.getByUser(limit, page, user);
         if (result) return res.sendSuccess(result);
