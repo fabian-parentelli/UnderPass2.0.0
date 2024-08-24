@@ -48,7 +48,7 @@ const VewProductHelp = () => {
                 <p>Además, podrás gestionar las imágenes del producto:</p>
                 <ul>
                     <li>Verás todas las imágenes asociadas al producto. Puedes activarlas o desactivarlas utilizando los botones correspondientes debajo de cada imagen.</li>
-                    <li>Para agregar una nueva imagen, utiliza la opción <span class="highlight">CloudUpload</span>.</li>
+                    <li>Para agregar una nueva imagen, utiliza la opción <span className="highlight">CloudUpload</span>.</li>
                 </ul>
                 <p>Estos pasos te permitirán visualizar, activar/desactivar y modificar los datos de tus productos, incluyendo las imágenes.</p>
             </div>

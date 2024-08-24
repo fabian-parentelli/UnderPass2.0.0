@@ -60,3 +60,10 @@ export class PublicityNotFound extends Error {
         this.name = this.constructor.name;
     };
 };
+
+export class OrderNotFound extends Error {
+    constructor(message) {
+        super(message);
+        this.name = this.constructor.name;
+    };
+};

@@ -7,7 +7,7 @@ import env from './config/dotEnv.config.js';
 
 import {
     userRouter, imagenRouter, priceRouter, pdfRouter, graphRouter, aplliRouter, alertsRouter, productRouter,
-    publicityRouter
+    publicityRouter, orderRouter
 } from './routes/index.router.js';
 
 const app = express();
@@ -29,5 +29,6 @@ app.use('/api/appli', aplliRouter);
 app.use('/api/alerts', alertsRouter);
 app.use('/api/product', productRouter);
 app.use('/api/publicity', publicityRouter);
+app.use('/api/order', orderRouter);
 
 app.listen(env.port, () => console.log('Server conected'));

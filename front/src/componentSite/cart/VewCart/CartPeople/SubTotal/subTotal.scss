@@ -1,3 +1,16 @@
 .subTotal {
     padding: 1rem;
+
+    .subTotalPrice {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        margin-top: 1rem;
+    }
+
+    .subTotalIsProduct {
+        font-size: 12px;
+        margin-top: .6rem;
+        color: gray;
+    }
 }

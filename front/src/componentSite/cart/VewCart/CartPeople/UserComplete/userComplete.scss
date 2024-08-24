@@ -1,0 +1,10 @@
+.userComplete {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: .4rem;
+
+    input {
+        width: 100%;
+    }
+}

@@ -7,6 +7,7 @@ import Product from './product.manager.js';
 import Publicity from './publicity.manager.js';
 import Price from './price.manager.js';
 import Alerts from './alerts.manager.js';
+import Order from './order.manager.js';
 
 export const userManager = new User();
 export const tutorialsManager = new Tutorials();
@@ -17,3 +18,4 @@ export const productManager = new Product();
 export const publicityManager = new Publicity();
 export const priceManager = new Price();
 export const alertsManager = new Alerts();
+export const orderManager = new Order();

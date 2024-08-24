@@ -12,6 +12,7 @@ const Counter = ({ prod }) => {
     const handelLess = () => count > 1 && setCount(count - 1);
     const handleAdd = () => {
         if (prod.end) count < Math.ceil((new Date(prod.end) - new Date()) / (1000 * 60 * 60 * 24)) && setCount(count + 1);
+        else if (prod.stock) count < prod.stock && setCount(count + 1);
         else setCount(count + 1);
     };
 

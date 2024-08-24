@@ -33,6 +33,7 @@ const VewDataprod = ({ product }) => {
             addToCart({
                 _id: product._id,
                 quantity: 1,
+                stock: product.quantity,
                 price: product.price + ((product.price * price) / 100),
                 is: 'product',
                 name: product.name,

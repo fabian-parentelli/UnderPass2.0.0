@@ -7,6 +7,7 @@ import AplliRouter from './application.router.js';
 import AlertsRouter from './alerts.router.js';
 import ProductRouter from './products.router.js';
 import PublicitynRouter from './publicity.router.js';
+import OrderRouter from "./orders.router.js";
 
 export const userRouter = new UserRouter().getRouter();
 export const imagenRouter = new ImagenRouter().getRouter();
@@ -17,3 +18,4 @@ export const aplliRouter = new AplliRouter().getRouter();
 export const alertsRouter = new AlertsRouter().getRouter();
 export const productRouter = new ProductRouter().getRouter();
 export const publicityRouter = new PublicitynRouter().getRouter();
+export const orderRouter = new OrderRouter().getRouter();

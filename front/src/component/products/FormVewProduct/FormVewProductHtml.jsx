@@ -74,6 +74,8 @@ const FormVewProductHtml = ({ products, handleChange, setFormData, handleActive,
                                 <tr className='expandRow'>
                                     <td colSpan="6">
 
+                                        <p style={{ fontSize: '12px' }}><strong>ID:</strong> {prod._id}</p>
+
                                         <p><strong>Fecha de creación:</strong> {new Date(prod.date).toLocaleDateString()}</p>
 
                                         <div className='expandRowDiv'>
