@@ -1,14 +1,27 @@
 import './vewDataprod.scss';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SweetAlert from '../../../../component/utils/SweetAlert';
 import { useCartContext } from '../../../../context/CartContext';
+import { getLastPriceApi } from '../../../../helpers/prices/getLastPrice.api.js';
 
 const VewDataprod = ({ product }) => {
 
     const { addToCart, isInCart, updateQuantity } = useCartContext();
     const [isSweet, setIsSweet] = useState(false);
+    const [price, setPrice] = useState(0);
     const navigate = useNavigate();
+    const country = localStorage.getItem('country');
+
+    useEffect(() => {
+        const fetchData = async () => {
+            if (country) {
+                const response = await getLastPriceApi({ country: country, name: 'products' })
+                if (response.status === 'success') setPrice(response.result.price);
+                else console.log(response);
+            }
+        }; if (country) fetchData();
+    }, []);
 
     const handleAddToCart = (product, nav) => {
 
@@ -20,7 +33,7 @@ const VewDataprod = ({ product }) => {
             addToCart({
                 _id: product._id,
                 quantity: 1,
-                price: product.price,
+                price: product.price + ((product.price * price) / 100),
                 is: 'product',
                 name: product.name,
                 description: product.description,

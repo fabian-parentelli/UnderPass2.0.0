@@ -19,8 +19,9 @@ const AmountPanel = () => {
         <div className='amountPanel'>
             {result &&
                 <>
-                    <AmountsCards title='Usuarios' arg={result.ar.users} uru={result.uy.users} />
-                    <AmountsCards title='Productos' arg={result.ar.products} uru={result.uy.products} />
+                    <AmountsCards title='Usuarios' arg={result.ar.users} uru={result.uy.users} link={'vewusers'} />
+                    <AmountsCards title='Productos' arg={result.ar.products} uru={result.uy.products} link={'vewproducts'} />
+                    <AmountsCards title='Publicidad' arg={result.ar.publicity} uru={result.uy.publicity} link={'vewpublicity'} />
                 </>
             }
         </div>

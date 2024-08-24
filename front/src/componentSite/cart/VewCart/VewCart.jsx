@@ -1,7 +1,7 @@
 import './vewCart.scss';
 import CartItems from './CartItems/CartItems';
 import { useCartContext } from "../../../context/CartContext";
-// import CartPeople from './CartPeople/CartPeople';
+import CartPeople from './CartPeople/CartPeople.jsx';
 
 const VewCart = () => {
 
@@ -19,7 +19,7 @@ const VewCart = () => {
 
             <div className='vewCartChekout'>
                 <CartItems cart={cart} />
-                {/* <CartPeople /> */}
+                <CartPeople />
             </div>
 
         </div>

@@ -38,14 +38,14 @@ const Footer = () => {
 
                 <div className='footCards'>
                     <div className='footCards_children'>
-                        <h2>Categorías</h2>
+                        <h2>Actividades</h2>
                         <ul>
-                            <li><a href='#'>Música</a></li>
+                            <li><Link to={'/bannerwant'}>Estar en el banner</Link></li>
                             <li><a href='#'>Teatro</a></li>
                             <li><a href='#'>Cine</a></li>
                             <li><a href='#'>Salas de ensayo</a></li>
                             <li><a href='#'>Estudios de grabación</a></li>
-                            <li><a href='#'>Estidos de danza</a></li>
+                            <li><a href='#'>Estudos de danza</a></li>
                         </ul>
                     </div>
 

@@ -3,7 +3,6 @@ import Panel from '../panel/Panel/Panel';
 import { Routes, Route, Link, RouterProvider } from 'react-router-dom';
 import Fields from '../../../component/dashboard/Fields/Fields';
 import VideoTut from '../images/videoTutoriales/VideoTut/VideoTut';
-import Banner from '../images/banners/Banner/Banner';
 import PriceList from '../economy/PriceList/PriceList';
 import NewApplication from '../application/NewApplication/NewApplication';
 import VewApplication from '../application/VewApplication/VewApplication';
@@ -30,7 +29,7 @@ const Dashboard = () => {
 
                 <Fields
                     title={'Imágenes'}
-                    category={[{ name: 'Banners', path: 'banners' }, { name: 'Avatares', path: 'newavatar' }, { name: 'Nuevo Evento', path: 'newimgevent' }, { name: 'Videos tutoriales', path: 'videotut' }]}
+                    category={[{ name: 'Avatares', path: 'newavatar' }, { name: 'Nuevo Evento', path: 'newimgevent' }, { name: 'Videos tutoriales', path: 'videotut' }]}
                 />
                 <Fields
                     title={'Usuarios'}
@@ -67,7 +66,6 @@ const Dashboard = () => {
                 <Route path='/' element={<Panel />} />
                 <Route path='/helpdas' element={<HelpDas />} />
 
-                <Route path='/banners' element={<Banner />} />
                 <Route path='/newavatar' element={<Avatars />} />
                 <Route path='/videotut' element={<VideoTut />} />
 

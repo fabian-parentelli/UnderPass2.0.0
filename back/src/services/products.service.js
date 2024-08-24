@@ -65,7 +65,7 @@ const getById = async (id) => {
     return { status: 'success', result };
 };
 
-const getRandom = async (country, limit = 8, page = 1) => {
+const getRandom = async (country, limit = 7, page = 1) => {
     const products = await productRepository.getRandom(country);
     if (!products) throw new ProductNotFound('No se encuentra el producto');
     const query = {

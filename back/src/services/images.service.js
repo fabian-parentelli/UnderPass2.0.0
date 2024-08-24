@@ -7,16 +7,6 @@ const newVideoTut = async (video) => {
     return { status: 'success', result };
 };
 
-const newBanners = async (banner, imgUrl) => {
-    banner.imgUrl = imgUrl;
-    banner.date = new Date();
-    banner.end = banner.birthday;
-    delete banner.birthday;
-    const result = await imagenRepository.newBanners(banner);
-    if (!result) throw new ImagenNotFound('No se puede guardar el banner');
-    return { status: 'success', result };
-};
-
 const newAvatar = async (avatar, imgUrl) => {
     avatar.imgUrl = imgUrl[0];
     const result = await imagenRepository.newAvatar(avatar);
@@ -27,23 +17,6 @@ const newAvatar = async (avatar, imgUrl) => {
 const getAllVideos = async () => {
     const result = await imagenRepository.getAllVideos();
     if (!result) throw new ImagenNotFound('No se puede encontrar los video tutoriales');
-    return { status: 'success', result };
-};
-
-const getBannerBody = async () => {
-    const banners = await imagenRepository.getBannerBody();
-    if (!banners) throw new ImagenNotFound('No se encuentran las imagenes');
-    const result = banners.sort(() => Math.random() - 0.5);
-    return { status: 'success', result };
-};
-
-const getAllBanners = async (limit, page, active, country, category) => {
-    const query = {};
-    if (category) query.category = { $regex: category, $options: "i" };
-    if (country) query.country = { $regex: country, $options: "i" };
-    if (active !== undefined) query.active = active;
-    const result = await imagenRepository.getAllBanners(query, limit, page);
-    if (!result) throw new ImagenNotFound('No se encuentran los banners');
     return { status: 'success', result };
 };
 
@@ -79,27 +52,6 @@ const activeVideo = async ({ id }) => {
     return { status: 'success', result };
 };
 
-const updBanner = async (upd, id) => {
-    const banner = await imagenRepository.getBannerById(id);
-    if (!banner) throw new ImagenNotFound('No se encuentra el banner');
-    if (upd.links) banner.links = upd.links;
-    if (upd.end) banner.end = upd.end;
-    const result = await imagenRepository.updateBanner(banner);
-    if (!result) throw new ImagenNotFound('No se puede actualizar el banner');
-    return { status: 'success', result };
-};
-
-const updBannerActive = async (id) => {
-    const banner = await imagenRepository.getBannerById(id);
-    if (!banner) throw new ImagenNotFound('No se encuentra el banner');
-    banner.active = !banner.active;
-    const result = await imagenRepository.updateBanner(banner);
-    if (!result) throw new ImagenNotFound('No se puede actualizar el banner');
-    return { status: 'success', result };
-};
-
 export {
-    newVideoTut, newBanners, getAllVideos, getAllBanners,
-    getVideoTutByName, activeVideo, updBanner, updBannerActive,
-    getBannerBody, newAvatar, getAvatars, avatarActive
+    newVideoTut, getAllVideos, getVideoTutByName, activeVideo, newAvatar, getAvatars, avatarActive
 };

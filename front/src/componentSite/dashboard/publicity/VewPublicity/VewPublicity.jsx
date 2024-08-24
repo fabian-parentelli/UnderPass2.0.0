@@ -12,27 +12,28 @@ const VewPublicity = () => {
 
     const [values, setValues] = useState(null);
     const [loading, setLoading] = useState(false);
+    const [page, setPage] = useState(0);
+    const [querys, setQuerys] = useState({});
 
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
-            const response = await getAllPublicityApi({});
+            let query = {};
+            if (page) query.page = page;
+            if (querys) query = { ...query, ...querys };
+            const response = await getAllPublicityApi(query);
             if (response.status === 'success') setValues(response.result);
             else console.log(response);
             setLoading(false);
         }; fetchData();
-    }, []);
+    }, [page, querys]);
 
-    const HandleChangePage = async (page) => {
-        const response = await getAllPublicityApi({ active: 'true', page: page });
-        if (response.status === 'success') setValues(response.result);
-        else console.log(response);
-    };
+    const HandleChangePage = async (page) => setPage(page);
 
     return (
         <div className='vewPublicity'>
             <Title Icon={SmartScreenIcon} name='Ver y modificar Publicidad' />
-            <SearchPublicitary setPublicitary={setValues} setLoading={setLoading} />
+            <SearchPublicitary setQuerys={setQuerys} />
             {values && <VewUpdPuiblicity publicity={values} setPublicity={setValues} setLoading={setLoading} />}
             <div style={{ marginTop: '2rem' }}>
                 <Pager users={values} HandleChangePage={HandleChangePage} />

@@ -1,7 +1,7 @@
 import './bannerBody.scss';
 import { useEffect, useState } from 'react';
 import Carousel from '../../../component/utils/Carousel/Carousel.jsx';
-import { getBannerBody } from '../../../helpers/images/banners/getBannerBody.api.js';
+import { getBannerToBodyApi } from '../../../helpers/publicity/getBannerToBody.api.js';
 
 const BannerBody = () => {
 
@@ -9,21 +9,17 @@ const BannerBody = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await getBannerBody();
+            const response = await getBannerToBodyApi();
             if (response.status === 'success') {
-                const country = localStorage.getItem('country');
-                let imgs = response.result.map((ban) => {
-                    if (ban.country === 'all' || ban.country === country) {
-                        return { url: ban.imgUrl, links: ban.links };
-                    };
-                    return null;
-                }).filter(Boolean);
-                if (window.innerWidth > 767) imgs = imgs.map((imgObj) => ({ url: imgObj.url[0], links: imgObj.links }));
-                else imgs = imgs.map((imgObj) => ({ url: imgObj.url[1], links: imgObj.links }));
+                let imgs = response.result.docs;
+                if (window.innerWidth > 767) imgs = imgs.map((imgObj) => ({ url: imgObj.imgUrl[0], links: imgObj.links }));
+                else imgs = imgs.map((imgObj) => ({ url: imgObj.imgUrl[1], links: imgObj.links }));
                 setBanners(imgs);
-            };
-        }; fetchData();
+            } else console.log(response);
+        };
+        fetchData();
     }, []);
+
 
     return (
         <div className='bannerBody'>

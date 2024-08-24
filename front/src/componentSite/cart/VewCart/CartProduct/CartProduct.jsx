@@ -7,8 +7,8 @@ import Counter from '../../../../component/utils/Counter/Counter';
 import { getLastPriceApi } from '../../../../helpers/prices/getLastPrice.api.js';
 
 const CartProduct = ({ item }) => {
-
-    const [price, setPrice] = useState(10);
+    
+    const [price, setPrice] = useState(0);
     const { removeItem, totalProduct } = useCartContext();
     const country = localStorage.getItem('country');
 
@@ -31,7 +31,7 @@ const CartProduct = ({ item }) => {
             <td>{item.is}</td>
             <td>${item.price}</td>
             <td><Counter prod={item} /></td>
-            {<td style={{ width: '80px' }}>${((totalProduct(item._id) * price) / 100) + totalProduct(item._id)}</td>}
+            {<td style={{ width: '80px' }}>${totalProduct(item._id)}</td>}
         </tr>
     );
 };

@@ -1,11 +1,12 @@
 import './amountsCards.scss';
 import flagsIcon from '../../../../utils/flagsIcon.utils.js';
+import { Link } from 'react-router-dom';
 
 
-const AmountsCards = ({ title, arg, uru }) => {
+const AmountsCards = ({ title, arg, uru, link }) => {
 
     return (
-        <div className='amountsCards'>
+        <Link to={`/dashboard/${link}`} className='amountsCards'>
             <h3>{title}</h3>
             <div>
                 <img src={flagsIcon.ar} alt="img" />
@@ -17,7 +18,7 @@ const AmountsCards = ({ title, arg, uru }) => {
             </div>
             <div className='line'></div>
             <p className='panelUserTotal'>Total: {arg + uru}</p>
-        </div>
+        </Link>
     );
 };
 

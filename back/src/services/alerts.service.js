@@ -1,5 +1,6 @@
 import {
-    userRepository, productRepository, alertsRepository
+    userRepository, productRepository, alertsRepository,
+    publicityRepository
 } from "../repositories/index.repositories.js";
 import { AllertsNotFound } from '../utils/custom-exceptions.utils.js';
 
@@ -9,7 +10,7 @@ const newAlert = async (alert) => {
 };
 
 const getAll = async (user) => {
-    if(user.role === 'admin') user._id = '668d9529cf8bde76a0dc3adb';
+    if (user.role === 'admin') user._id = '668d9529cf8bde76a0dc3adb';
     const result = {};
     const alerts = await alertsRepository.getAlerts({ userId: user._id, active: true });
     if (!alerts) return { status: 'success', result: '' };
@@ -28,12 +29,15 @@ const amount = async () => {
     const result = {};
     result.ar = {
         users: await userRepository.userAmount('AR') || 0,
-        products: await productRepository.productAmount('AR') || 0
+        products: await productRepository.productAmount('AR') || 0,
+        publicity: await publicityRepository.getAmountInPortal({ country: 'AR', active: true }) || 0
     };
     result.uy = {
         users: await userRepository.userAmount('UY') || 0,
-        products: await productRepository.productAmount('UY') || 0
-    };
+        products: await productRepository.productAmount('UY') || 0,
+        publicity: await publicityRepository.getAmountInPortal({ country: 'UY', active: true }) || 0
+
+    };    
     return { status: 'success', result };
 };
 
@@ -57,7 +61,7 @@ const updActive = async (ids) => {
 
 const updateOneActive = async (id) => {
     const alert = await alertsRepository.getByEventId(id);
-    if(alert) {
+    if (alert) {
         alert.active = false;
         await alertsRepository.update(alert);
     };

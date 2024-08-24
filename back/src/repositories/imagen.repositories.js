@@ -1,4 +1,4 @@
-import { tutorialsManager, bannersManager, avatarManager } from '../dao/manager/index.manager.js';
+import { tutorialsManager, avatarManager } from '../dao/manager/index.manager.js';
 
 export default class ImagenRepository {
 
@@ -24,43 +24,6 @@ export default class ImagenRepository {
 
     updateVideo = async (img) => {
         const result = await tutorialsManager.updateVideo(img);
-        return result;
-    };
-
-    // -- Banners -- ---------
-
-    newBanners = async (video) => {
-        const result = await bannersManager.newBanners(video);
-        return result;
-    };
-
-    getBannerBody = async () => {
-        const result = await bannersManager.getBannerBody();
-        const today = new Date().setHours(0, 0, 0, 0);
-        const updatedBanners = result.filter(banner => {
-            const bannerEndDate = new Date(banner.end).setHours(0, 0, 0, 0);
-            if (bannerEndDate < today) {
-                banner.active = false;
-                bannersManager.updateBanner(banner);
-                return false;
-            };
-            return true;
-        });
-        return updatedBanners;
-    };
-
-    getAllBanners = async (query, limit, page) => {
-        const result = await bannersManager.getAllBanners(query, limit, page);
-        return result;
-    };
-
-    getBannerById = async (id) => {
-        const result = await bannersManager.getBannerById(id);
-        return result;
-    };
-
-    updateBanner = async (banner) => {
-        const result = await bannersManager.updateBanner(banner);
         return result;
     };
 

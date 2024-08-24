@@ -1,8 +1,9 @@
 const url = import.meta.env.VITE_API_URL;
 
-const getBannerBody = async () => {
+const getBannerToBodyApi = async () => {
 
-    const response = await fetch(`${url}/api/img/bannerbody`, {
+    const country = localStorage.getItem('country');
+    const response = await fetch(`${url}/api/publicity/banner/${country}`, {
         method: 'GET',
         headers: {
             'Accept': 'application/json',
@@ -14,4 +15,4 @@ const getBannerBody = async () => {
     if (content.error) return content.error;
 };
 
-export { getBannerBody };
+export { getBannerToBodyApi };

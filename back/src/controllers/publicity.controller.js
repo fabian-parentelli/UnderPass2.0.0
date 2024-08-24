@@ -23,6 +23,17 @@ const getByUserId = async (req, res) => {
     };
 };
 
+const getBanner = async (req, res) => {
+    const { country } = req.params;    
+    try {
+        const result = await publicityService.getBanner(country);
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof PublicityNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
 const getAmountInPortal = async (req, res) => {
     try {
         const result = await publicityService.getAmountInPortal();
@@ -90,5 +101,5 @@ const updPublicity = async (req, res) => {
 
 export {
     newPublicity, getAll, updPublicity, updActive, updPortal, updUserVew, getByUserId,
-    getAmountInPortal
+    getAmountInPortal, getBanner
 };

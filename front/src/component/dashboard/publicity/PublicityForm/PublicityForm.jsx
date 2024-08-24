@@ -12,7 +12,7 @@ const PublicityForm = ({ type, setLoading, setType, appli }) => {
     const [checked, setChecked] = useState(false);
     const [formData, setFormData] = useState(null);
     const [values, setValues] = useState({
-        title: '', folders: '', links: '', country: '', category: '', type: type, inPortal: checked, 
+        title: '', folders: '', links: '', country: '', category: '', type: type, inPortal: checked,
         application: appli || ''
     });
 
@@ -63,7 +63,6 @@ const PublicityForm = ({ type, setLoading, setType, appli }) => {
                 <input
                     type="text"
                     name='links'
-                    required
                     placeholder='Link a donde lo quieres dirigir'
                     onChange={handleChange}
                 />
@@ -77,31 +76,35 @@ const PublicityForm = ({ type, setLoading, setType, appli }) => {
                 <CategorySelected handleChange={handleChange} />
             </div>
 
-            <div>
-                <label>En la portada</label>
-                <div className='switchForm'>
-                    <p>No</p>
-                    <Switch
-                        checked={checked}
-                        onChange={handleSwitchChange}
-                    />
-                    <p>SI</p>
-                </div>
+            {type !== 'banners' &&
+                <div>
+                    <label>En la portada</label>
+                    <div className='switchForm'>
+                        <p>No</p>
+                        <Switch
+                            checked={checked}
+                            onChange={handleSwitchChange}
+                        />
+                        <p>SI</p>
+                    </div>
 
-            </div>
+                </div>
+            }
+
             <div className='newBannerEnd'>
                 <label>Cierre programado</label>
                 <DateConf setValues={setValues} isRequired={false} />
             </div>
 
-            {values && values.folders &&
+            {
+                values && values.folders &&
                 <>
                     <CloudFile onChange={handleFileChange} folderName={`publicity/${type}/${values.folders}`} contClass='cfRect' />
                 </>
             }
 
             <button className='btn btnB'>Crear</button>
-        </form>
+        </form >
     );
 };
 

@@ -1,15 +1,17 @@
 @import '../../../../style/colors.scss';
 
 .amountsCards {
+    text-decoration: none;
     display: flex;
     flex-direction: column;
     gap: .4rem;
     background-color: $colorC;
-    width: 400px;
+    width: 350px;
     padding: 1rem;
     border-radius: 6px;
     box-shadow: 5px 5px 15px black;
     color: #fff;
+    transition: .3s ease-in-out;
 
     div {
         display: flex;
@@ -19,5 +21,10 @@
         img {
             width: 30px;
         }
+    }
+
+    &:hover {
+        transform: translateY(-3px);
+        color: #fff;
     }
 }

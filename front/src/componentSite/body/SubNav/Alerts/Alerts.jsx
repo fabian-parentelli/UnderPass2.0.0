@@ -1,4 +1,5 @@
 import './alerts.scss';
+import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import BadgeIcon from '@mui/icons-material/Badge';
 import LiveTvIcon from '@mui/icons-material/LiveTv';
@@ -8,7 +9,6 @@ import BadgeComp from '../../../../component/utils/BadgeComp/BadgeComp';
 import EndPublicity from '../../../alerts/EndPublicity/EndPublicity.jsx';
 import StartPublicity from '../../../alerts/StartPublicity/StartPublicity.jsx';
 import { getAllAlertsApi } from '../../../../helpers/alerts/getAllAlerts.api.js';
-import { Link } from 'react-router-dom';
 
 const Alerts = ({ user }) => {
 
@@ -34,9 +34,6 @@ const Alerts = ({ user }) => {
             setLoading(false);
         }; fetchData();
     }, [modalIsOpen]);
-
-    console.log(alerts);
-
 
     return (
         <div className='alerts'>

@@ -1,26 +1,13 @@
 import './searchPublicitary.scss';
-import { useState } from 'react';
 import CategorySelected from '../../../advertisting/CategorySelected/CategorySelected';
 import CountrySelected from '../../banner/CountrySelected/CountrySelected';
-import { getAllPublicityApi } from '../../../../helpers/publicity/getAllPublicity.api';
 
-const SearchPublicitary = ({ setPublicitary, setLoading }) => {
+const SearchPublicitary = ({ setQuerys }) => {
 
-    const [values, setValues] = useState({});
-
-    const handleChange = (e) => setValues({ ...values, [e.target.name]: e.target.value });
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        setLoading(true);
-        const response = await getAllPublicityApi(values);
-        if(response.status === 'success') setPublicitary(response.result);
-        else console.log(response);
-        setLoading(false);
-    };
+    const handleChange = (e) => setQuerys(prevValues => ({ ...prevValues, [e.target.name]: e.target.value }));
 
     return (
-        <form className='searchPublicitary' onSubmit={handleSubmit}>
+        <form className='searchPublicitary'>
 
             <div>
                 <CategorySelected handleChange={handleChange} isRequired={false} />
@@ -47,7 +34,7 @@ const SearchPublicitary = ({ setPublicitary, setLoading }) => {
                     <option value="false">No</option>
                 </select>
             </div>
-            
+
             <div>
                 <label>Tipo</label>
                 <select name="type" onChange={handleChange}>
@@ -60,10 +47,9 @@ const SearchPublicitary = ({ setPublicitary, setLoading }) => {
 
             <div>
                 <label>Application Id</label>
-                <input type="text" name='id' onChange={handleChange}/>
+                <input type="text" name='id' onChange={handleChange} />
             </div>
 
-            <button className='btn btnB' style={{ color: 'white' }}>Buscar</button>
         </form>
     );
 };

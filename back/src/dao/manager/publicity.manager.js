@@ -14,7 +14,7 @@ export default class Publicity {
         return await publicityModel.countDocuments(query);
     };
 
-    getAll = async (query, limit, page) => {
+    getAll = async (query, limit, page) => {        
         return await publicityModel.paginate(query, { limit, page, lean: true, sort: { date: -1 } });
     };
 

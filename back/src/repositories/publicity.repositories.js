@@ -20,8 +20,8 @@ export default class PublicityRepository {
     };
 
     getAll = async (query, limit, page) => {
-        const result = await publicityManager.getAll(query, limit, page);
-        if(!query.active) return result;
+        const result = await publicityManager.getAll(query, limit, page);  
+        if(query.active === 'false') return result;
         const today = new Date().setHours(0, 0, 0, 0);
         const updatedDocs = [];
         for (let i = 0; i < result.docs.length; i++) {
