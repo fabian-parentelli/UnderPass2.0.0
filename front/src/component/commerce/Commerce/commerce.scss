@@ -1,0 +1,17 @@
+.commerce {
+    width: 100%;
+
+    .commerceButtons {
+        margin-top: .6rem;
+        display: flex;
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 767px) { 
+    .commerce {
+        .commerceButtons {
+            flex-direction: column;
+        }
+    }
+}

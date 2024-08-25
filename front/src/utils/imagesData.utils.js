@@ -4,7 +4,8 @@ const imgages = {
     counter: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1722084685/images/chdt5vxe650chbinliwn.png',
     applications: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1723058402/images/roi4pzpojqifhzfemsai.png',
     addToPort: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1723385288/images/hjwefm3gzcyqskj5niqv.png',
-    moreTime: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1723496166/images/t5m6p3ci1uzhgabg5gxd.png'
+    moreTime: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1723496166/images/t5m6p3ci1uzhgabg5gxd.png',
+    menTv: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1724617267/images/yynqq6ze8psjod5kjt2b.png'
 };
 
 const imagesHelp = {

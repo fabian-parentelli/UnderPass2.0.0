@@ -6,7 +6,7 @@ const newOrder = async (order, { user }) => {
     await newOrderUtils.updateUser(user._id, order.user);
     await newOrderUtils.updateStock(order.cart);
     const result = await newOrderUtils.newOrders(order.cart, user._id);
-    if(!result) throw new OrderNotFound('No se puede generar la orden');
+    if (!result) throw new OrderNotFound('No se puede generar la orden');
     await newOrderUtils.orderSeller(order, user._id, result._id);
     await newOrderUtils.alertsSend();
     await newOrderUtils.sendOrderEmail();
@@ -19,4 +19,14 @@ const newOrder = async (order, { user }) => {
     return { status: 'success', result };
 };
 
-export { newOrder };
+const getOrders = async (page, limit, userid, active) => {
+    const query = {};
+    if (active !== undefined) query.active = active;
+    if (userid) query.userId = userid;
+    if (active !== undefined) query.active = active;
+    const result = await orderRepository.getOrders(query, limit, page);
+    if (!result) throw new OrderNotFound('No se puede encontrar la orden');
+    return { status: 'success', result };
+};
+
+export { newOrder, getOrders };
