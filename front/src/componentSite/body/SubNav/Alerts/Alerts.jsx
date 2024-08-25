@@ -5,10 +5,12 @@ import BadgeIcon from '@mui/icons-material/Badge';
 import LiveTvIcon from '@mui/icons-material/LiveTv';
 import FiberNewIcon from '@mui/icons-material/FiberNew';
 import Load from '../../../../component/utils/Load.jsx';
+import StorefrontIcon from '@mui/icons-material/Storefront';
 import BadgeComp from '../../../../component/utils/BadgeComp/BadgeComp';
 import EndPublicity from '../../../alerts/EndPublicity/EndPublicity.jsx';
 import StartPublicity from '../../../alerts/StartPublicity/StartPublicity.jsx';
 import { getAllAlertsApi } from '../../../../helpers/alerts/getAllAlerts.api.js';
+import { updActiveAlertsApi } from '../../../../helpers/alerts/updActiveAlerts.api.js';
 
 const Alerts = ({ user }) => {
 
@@ -34,6 +36,12 @@ const Alerts = ({ user }) => {
             setLoading(false);
         }; fetchData();
     }, [modalIsOpen]);
+
+    const handleOff = async (data) =>{
+        const ids = [];
+        data.forEach(aler => ids.push(aler._id));
+        await updActiveAlertsApi(ids);
+    };
 
     return (
         <div className='alerts'>
@@ -63,6 +71,16 @@ const Alerts = ({ user }) => {
                     <BadgeComp
                         Icon={FiberNewIcon}
                         data={alerts.newAplication.count}
+                        color='success'
+                    />
+                </Link>
+            }
+            
+            {alerts && alerts.sold_product &&
+                <Link to={'/profile'} className='alertsLink' onClick={()=> handleOff(alerts.sold_product.data)} >
+                    <BadgeComp
+                        Icon={StorefrontIcon}
+                        data={alerts.sold_product.count}
                         color='success'
                     />
                 </Link>

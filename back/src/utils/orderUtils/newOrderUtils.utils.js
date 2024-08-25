@@ -1,7 +1,7 @@
 import {
-    userRepository, productRepository, orderSellerRepository
+    userRepository, productRepository, orderRepository, orderSellerRepository, alertsRepository
 } from "../../repositories/index.repositories.js";
-import { UserNotFound } from "../custom-exceptions.utils.js";
+import { OrderNotFound, UserNotFound } from "../custom-exceptions.utils.js";
 
 const updateUser = async (userId, data) => {
     const user = await userRepository.getUserById(userId);
@@ -21,4 +21,56 @@ const updateStock = async (order) => {
     };
 };
 
-export { updateUser, updateStock };
+const newOrders = async (order, userId) => {
+    const total = order.reduce((acc, prod) => acc + (prod.price * prod.quantity), 0);
+    const result = await orderRepository.newOrders({ userId: userId, cart: order, total: total });
+    if (!result) throw new OrderNotFound('No se puede guardar la orden');
+    return result;
+};
+
+const orederSllerResult = [];
+
+const orderSeller = async (order, userId, orderId) => {
+    const orders = [];
+    for (const ord of order.cart) {
+        if (ord.is === 'product') {
+            const product = await productRepository.getProdById(ord.typeId);
+            const prod = orders.findIndex((prod) => prod.sellerUserId == product.userId);
+            if (prod !== -1) orders[prod].cart.push(ord);
+            else {
+                const obj = {
+                    orderId: orderId,
+                    buyerUserId: userId,
+                    sellerUserId: product.userId,
+                    cart: [ord]
+                };
+                orders.push(obj);
+            };
+        };
+    };
+    for (const ord of orders) {
+        const result = await orderSellerRepository.newOrder(ord);
+        if (!result) throw new OrderNotFound('No se puede crear la orden vendedora');
+        orederSllerResult.push(result);
+    };
+};
+
+const alertsSend = async () => {
+    const alerts = [];
+    for (const ord of orederSllerResult) {
+        ord.cart.map(async (prod) => {
+            const alert = {
+                eventId: prod.typeId,
+                userId: ord.sellerUserId,
+                type: `sold_${prod.is}`
+            };
+            await alertsRepository.newAlert(alert);
+        });
+    };
+};
+
+const sendOrderEmail = async () => {
+    
+};
+
+export { updateUser, updateStock, newOrders, orderSeller, alertsSend };

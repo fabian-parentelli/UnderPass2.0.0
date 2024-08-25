@@ -9,6 +9,7 @@ import LanguageIcon from '@mui/icons-material/Language';
 import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';
 import LiveTvIcon from '@mui/icons-material/LiveTv';
 import AccessAlarmsIcon from '@mui/icons-material/AccessAlarms';
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 
 const UserMenu = () => {
 
@@ -58,6 +59,11 @@ const UserMenu = () => {
             <Link to={'/profile/alerts'} className='userMen'>
                 <AccessAlarmsIcon className='icon' />
                 <p>Alertas</p>
+            </Link>
+            
+            <Link to={'/profile/commerce_home'} className='userMen'>
+                <AttachMoneyIcon className='icon' />
+                <p>Comercio</p>
             </Link>
             
         </div>

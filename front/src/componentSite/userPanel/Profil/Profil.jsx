@@ -10,6 +10,7 @@ import DataUser from '../DataUser/DataUser';
 import AvatarUser from '../avatars/AvatarUser/AvatarUser';
 import ProductPanel from '../product/ProductPanel/ProductPanel';
 import AlertProfil from '../AlertProfil/AlertProfil';
+import CommerceHome from '../commerce/CommerceHome/CommerceHome';
 
 const Profile = () => {
 
@@ -26,6 +27,7 @@ const Profile = () => {
                 <Route path='/advertising' element={<Advertising />} />
                 <Route path='/productmenu' element={<ProductPanel />} />
                 <Route path='/alerts' element={<AlertProfil />} />
+                <Route path='/commerce_home' element={<CommerceHome />} />
             </Routes>
         </div>
     );

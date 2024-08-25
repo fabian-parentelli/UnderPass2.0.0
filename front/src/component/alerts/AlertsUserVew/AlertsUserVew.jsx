@@ -40,9 +40,12 @@ const AlertsUserVew = ({ userId }) => {
                 <tbody>
                     {alerts && alerts.docs.map((alert) => (
                         <tr key={alert._id}>
-                            <td>{<BigImg img={alert.data?.imgUrl[0]} border={false} />}</td>
+                            <td>
+                                {alert.data.img && <BigImg img={alert.data?.img[0].imgUrl} />}
+                                {alert.data.imgUrl && <BigImg img={alert.data?.imgUrl[0]} border={false} />}
+                            </td>
                             <td>{typeAlert(alert.type)}</td>
-                            <td>{alert.data?.title}</td>
+                            <td> {alert.data?.name} {alert.data?.title} </td>
                             <td>{new Date(alert.date).toLocaleDateString()}</td>
                         </tr>
                     ))}
@@ -57,11 +60,10 @@ const AlertsUserVew = ({ userId }) => {
 export default AlertsUserVew;
 
 function typeAlert(types) {
-
     const alert = {
         'publicityOff': () => { return 'Ha finalizado tu publicidad' },
         'publicityOn': () => { return 'Ha iniciado tu publicidad' },
+        'sold_product': () => { return 'Has vendido un producto' },
     };
-
     return (alert[types])();
 };
