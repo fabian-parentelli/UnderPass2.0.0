@@ -1,6 +1,6 @@
 import './commerceHome.scss';
+import ListAltIcon from '@mui/icons-material/ListAlt';
 import Title from '../../../../component/dashboard/Title/Title';
-import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
 import { useLoginContext } from '../../../../context/LoginContext';
 import Commerce from '../../../../component/commerce/Commerce/Commerce';
 
@@ -10,7 +10,7 @@ const CommerceHome = () => {
 
     return (
         <div className='commerceHome'>
-            <Title Icon={MonetizationOnIcon} name='Comercio' goTo='/help' />
+            <Title Icon={ListAltIcon} name='Ordenes' goTo='/help' />
             <Commerce user={user.data} />
         </div>
     );

@@ -9,6 +9,7 @@ import Price from './price.manager.js';
 import Alerts from './alerts.manager.js';
 import Order from './order.manager.js';
 import OrderSeller from './orderSeller.manager.js';
+import Wallet from './wallet.manager.js';
 
 export const userManager = new User();
 export const tutorialsManager = new Tutorials();
@@ -21,3 +22,4 @@ export const priceManager = new Price();
 export const alertsManager = new Alerts();
 export const orderManager = new Order();
 export const orderSellerManager = new OrderSeller();
+export const walletManager = new Wallet();

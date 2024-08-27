@@ -21,6 +21,7 @@ import UserAlerts from '../alerts/UserAlerts/UserAlerts';
 import MayAlerts from '../alerts/MyAlerts/MyAlerts';
 import UserOrders from '../orders/UserOrders/UserOrders';
 import AllOrders from '../orders/AllOrders/AllOrders';
+import WalletDas from '../economy/WalletDas/WalletDas';
 
 const Dashboard = () => {
 
@@ -48,7 +49,7 @@ const Dashboard = () => {
 
                 <Fields
                     title={'Economía'}
-                    category={[{ name: 'Caja', path: 'newsMessage' }, { name: 'Precios', path: 'pricelist' }]}
+                    category={[{ name: 'Caja', path: 'newsMessage' }, { name: 'Precios', path: 'pricelist' }, { name: 'Billeteras', path: 'walletdas' }]}
                 />
                 <Fields
                     title={'Solicitudes'}
@@ -84,6 +85,7 @@ const Dashboard = () => {
                 <Route path='/vewproducts' element={<VewProductsDas />} />
 
                 <Route path='/pricelist' element={<PriceList />} />
+                <Route path='/walletdas' element={<WalletDas />} />
 
                 <Route path='/newapplication' element={<NewApplication />} />
                 <Route path='/vewapplicattion' element={<VewApplication />} />

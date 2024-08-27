@@ -9,6 +9,7 @@ import ProductRouter from './products.router.js';
 import PublicitynRouter from './publicity.router.js';
 import OrderRouter from "./orders.router.js";
 import OrderSellerRouter from "./orderSeller.router.js";
+import WalletRouter from "./wallet.router.js";
 
 export const userRouter = new UserRouter().getRouter();
 export const imagenRouter = new ImagenRouter().getRouter();
@@ -21,3 +22,4 @@ export const productRouter = new ProductRouter().getRouter();
 export const publicityRouter = new PublicitynRouter().getRouter();
 export const orderRouter = new OrderRouter().getRouter();
 export const orderSellerRouter = new OrderSellerRouter().getRouter();
+export const walletRouter = new WalletRouter().getRouter();

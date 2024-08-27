@@ -1,0 +1,18 @@
+.sellerOrders {
+    margin-top: .6rem;
+
+    .sellerOrdersTop {
+        display: flex;
+        gap: 1rem;
+        align-items: flex-start;
+
+        div {
+            display: flex;
+            align-items: center;
+        }
+    }
+
+    .sellerOrdersPager {
+        margin-top: 2rem;
+    }
+}

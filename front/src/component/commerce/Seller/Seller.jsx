@@ -2,7 +2,7 @@ import './seller.scss';
 import { useEffect, useState } from 'react';
 import Pager from '../../utils/Pager/Pager.jsx';
 import SellerTable from '../SellerTable/SellerTable.jsx';
-import { getOrderSellerApi } from '../../../helpers/pdf/getOrderSeller.api.js';
+import { getOrderSellerApi } from '../../../helpers/orderSeller/getOrderSeller.api.js';
 
 const Seller = ({ userId, setLoading }) => {
 

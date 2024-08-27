@@ -1,4 +1,4 @@
-import { userManager, financialUserManager } from '../dao/manager/index.manager.js';
+import { userManager, financialUserManager, walletManager } from '../dao/manager/index.manager.js';
 
 export default class UserRepository {
 
@@ -6,6 +6,7 @@ export default class UserRepository {
         const result = await userManager.register(user);
         const newResult = { ...result._doc };
         delete newResult.password
+        await walletManager.newWallet({ userId: newResult._id, country: newResult.location.country });
         return newResult;
     };
 

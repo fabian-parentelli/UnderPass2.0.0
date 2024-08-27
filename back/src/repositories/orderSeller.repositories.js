@@ -10,7 +10,7 @@ export default class OrderSellerRepository {
     
     getOrders = async (order, user) => {
         const result = await orderSellerManager.getOrders(order);
-        const orders = await getOrdersUtil.getCart(result.docs, user);
+        const orders = await getOrdersUtil.getCart(result.docs, user);        
         result.docs = orders;
         return result;
     };

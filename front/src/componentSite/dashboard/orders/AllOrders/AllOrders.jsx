@@ -4,6 +4,7 @@ import Load from '../../../../component/utils/Load';
 import ListAltIcon from '@mui/icons-material/ListAlt';
 import Title from '../../../../component/dashboard/Title/Title';
 import ShopingAllOrder from './ShopingAllOrder/ShopingAllOrder';
+import SellerOrders from './SellerOrders/SellerOrders';
 
 const AllOrders = () => {
 
@@ -19,7 +20,7 @@ const AllOrders = () => {
                 <button className='btn btnB' onClick={() => handleInfo(2)}>Venta</button>
             </div>
             {vew === 1 && <ShopingAllOrder setLoading={setLoading} />}
-            {vew === 2 && 'Venta'}
+            {vew === 2 && <SellerOrders setLoading={setLoading} />}
             <Load loading={loading} />
         </div>
     );

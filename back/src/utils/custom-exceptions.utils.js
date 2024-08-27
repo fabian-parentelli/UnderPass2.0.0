@@ -74,3 +74,10 @@ export class OrderSellerNotFound extends Error {
         this.name = this.constructor.name;
     };
 };
+
+export class WalletNotFound extends Error {
+    constructor(message) {
+        super(message);
+        this.name = this.constructor.name;
+    };
+};

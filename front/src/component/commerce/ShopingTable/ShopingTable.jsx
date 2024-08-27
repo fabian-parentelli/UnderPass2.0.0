@@ -1,4 +1,5 @@
 import './shopingTable.scss';
+import Copy from '../../utils/Copy.jsx';
 import { Fragment, useState } from 'react';
 import BigImg from '../../utils/BigImg/BigImg.jsx';
 import typeCart from '../../../utils/typeCart.utils.js';
@@ -45,8 +46,8 @@ const ShopingTable = ({ orders }) => {
                                 <td style={{ color: ord.active ? 'green' : 'red' }} >{ord.active ? 'SI' : 'NO'}</td>
                                 {user.data.role !== 'user' &&
                                     <td>
-                                        <p>{ord.userData.name}</p>
-                                        <p>{ord.userData._id}</p>
+                                        <p>{ord.userData.name} <Copy values={ord.userData.name} /></p>
+                                        <p>{ord.userData._id} <Copy values={ord.userData._id} /></p>
                                         <p>{ord.userData.email}</p>
                                     </td>
                                 }

@@ -1,7 +1,8 @@
 @import '../../../style/colors.scss';
 
 .sellerTable {
-
+    overflow: auto;
+    
     .onClick {
         cursor: pointer;
         transition: .3s ease;

@@ -1,11 +1,13 @@
 import './sellerTable.scss';
 import { Fragment, useState } from 'react';
-import typeCart from '../../../utils/typeCart.utils.js';
 import BigImg from '../../utils/BigImg/BigImg.jsx';
+import typeCart from '../../../utils/typeCart.utils.js';
+import { useLoginContext } from '../../../context/LoginContext.jsx';
 
 const SellerTable = ({ values }) => {
 
     const [vew, setVew] = useState(null);
+    const { user } = useLoginContext();
     const handleInfo = (id) => setVew(vew === id ? null : id);
 
     return (
@@ -15,7 +17,9 @@ const SellerTable = ({ values }) => {
                     <tr>
                         <th>Ver</th>
                         <th>fecha</th>
+                        {user.data.role !== 'user' && <th>Cliente</th>}
                         <th>Pagado</th>
+                        {user.data.role !== 'user' && <th>Proveedor</th>}
                         <th>Cobrado</th>
                         <th>Orden</th>
                         <th>Total</th>
@@ -28,10 +32,28 @@ const SellerTable = ({ values }) => {
                             <tr >
                                 <td className='onClick' onClick={() => handleInfo(ord._id)}>{ord.cart.length}</td>
                                 <td>{new Date(ord.date).toLocaleDateString()}</td>
+
+                                {user.data.role !== 'user' &&
+                                    <td>
+                                        <p>{ord.buyerUserData.name}</p>
+                                        <p>{ord.buyerUserData._id}</p>
+                                        <p>{ord.buyerUserData.email}</p>
+                                    </td>
+                                }
+
                                 <td style={{ color: ord.pay.payIn.isPayIn ? 'green' : 'red' }}>
                                     <p>{ord.pay.payIn.isPayIn ? 'SI' : 'NO'}</p>
                                     {ord.pay.payIn.datePayIn && <p>{new Date(ord.pay.payIn.datePayIn).toLocaleDateString()}</p>}
                                 </td>
+
+                                {user.data.role !== 'user' &&
+                                    <td>
+                                        <p>{ord.sellerUserData.name}</p>
+                                        <p>{ord.sellerUserData._id}</p>
+                                        <p>{ord.sellerUserData.email}</p>
+                                    </td>
+                                }
+
                                 <td style={{ color: ord.pay.payOut.isPayOut ? 'green' : 'red' }}>
                                     <p>{ord.pay.payOut.isPayOut ? 'SI' : 'NO'}</p>
                                     {ord.pay.payOut.datePayOut && <p>{new Date(ord.pay.payIn.datePayOut).toLocaleDateString()}</p>}

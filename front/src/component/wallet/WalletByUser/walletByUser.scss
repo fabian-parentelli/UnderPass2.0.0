@@ -1,0 +1,55 @@
+@import '../../../style/colors.scss';
+
+.walletByUser {
+    width: 100%;
+
+    .walletByUserData {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+
+        img {
+            width: 100px;
+            object-fit: contain;
+        }
+
+        .walletByUserText {
+
+            p {
+                font-size: 12px;
+            }
+
+            .walletByUserMoney {
+                display: flex;
+                gap: .4rem;
+
+                p {
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+
+    .walletByUserTotalDiv {
+        margin-top: 1rem;
+        background-color: $colorC;
+        padding: .8rem;
+        width: 200px;
+        border-radius: 3px;
+
+        p {
+            background-color: #ffff;
+            padding: .4rem;
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    .walletByUser {
+
+        .walletByUserData {
+            flex-direction: column;
+        }
+    }
+
+}

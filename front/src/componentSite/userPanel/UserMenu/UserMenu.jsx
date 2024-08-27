@@ -9,7 +9,8 @@ import LanguageIcon from '@mui/icons-material/Language';
 import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';
 import LiveTvIcon from '@mui/icons-material/LiveTv';
 import AccessAlarmsIcon from '@mui/icons-material/AccessAlarms';
-import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
+import ListAltIcon from '@mui/icons-material/ListAlt';
+import LocalAtmIcon from '@mui/icons-material/LocalAtm';
 
 const UserMenu = () => {
 
@@ -19,6 +20,11 @@ const UserMenu = () => {
             <Link to={'/profile'} className='userMen'>
                 <HomeIcon className='icon' />
                 <p>Mi perfil</p>
+            </Link>
+
+            <Link to={'/profile/wallet'} className='userMen'>
+                <LocalAtmIcon className='icon' />
+                <p>Billetera</p>
             </Link>
 
             <Link to={'/profile/datauser'} className='userMen'>
@@ -62,8 +68,8 @@ const UserMenu = () => {
             </Link>
             
             <Link to={'/profile/commerce_home'} className='userMen'>
-                <AttachMoneyIcon className='icon' />
-                <p>Comercio</p>
+                <ListAltIcon className='icon' />
+                <p>Ordenes</p>
             </Link>
             
         </div>

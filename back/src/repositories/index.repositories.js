@@ -7,6 +7,7 @@ import PublicityRepository from './publicity.repositories.js';
 import AlertsRepository from './alerts.repositories.js';
 import OrderRepository from './order.repositories.js';
 import OrderSellerRepository from './orderSeller.repositories.js';
+import WalletRepository from './wallet.repositories.js';
 
 export const userRepository = new UserRepository();
 export const imagenRepository = new ImagenRepository();
@@ -17,3 +18,4 @@ export const publicityRepository = new PublicityRepository();
 export const alertsRepository = new AlertsRepository();
 export const orderRepository = new OrderRepository();
 export const orderSellerRepository = new OrderSellerRepository();
+export const walletRepository = new WalletRepository();

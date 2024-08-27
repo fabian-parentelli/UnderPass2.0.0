@@ -11,6 +11,7 @@ import AvatarUser from '../avatars/AvatarUser/AvatarUser';
 import ProductPanel from '../product/ProductPanel/ProductPanel';
 import AlertProfil from '../AlertProfil/AlertProfil';
 import CommerceHome from '../commerce/CommerceHome/CommerceHome';
+import Wallet from '../Wallet/Wallet';
 
 const Profile = () => {
 
@@ -28,6 +29,7 @@ const Profile = () => {
                 <Route path='/productmenu' element={<ProductPanel />} />
                 <Route path='/alerts' element={<AlertProfil />} />
                 <Route path='/commerce_home' element={<CommerceHome />} />
+                <Route path='/wallet' element={<Wallet />} />
             </Routes>
         </div>
     );
