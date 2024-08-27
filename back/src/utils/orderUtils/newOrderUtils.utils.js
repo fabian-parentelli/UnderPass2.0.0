@@ -32,17 +32,21 @@ const orederSllerResult = [];
 
 const orderSeller = async (order, userId, orderId) => {
     const orders = [];
+
     for (const ord of order.cart) {
         if (ord.is === 'product') {
             const product = await productRepository.getProdById(ord.typeId);
             const prod = orders.findIndex((prod) => prod.sellerUserId == product.userId);
-            if (prod !== -1) orders[prod].cart.push(ord);
-            else {
+            if (prod !== -1) {
+                orders[prod].cart.push(ord);
+                orders[prod].total += ord.price * ord.quantity;
+            }else {
                 const obj = {
                     orderId: orderId,
                     buyerUserId: userId,
                     sellerUserId: product.userId,
-                    cart: [ord]
+                    cart: [ord],
+                    total: ord.price * ord.quantity
                 };
                 orders.push(obj);
             };
@@ -67,10 +71,6 @@ const alertsSend = async () => {
             await alertsRepository.newAlert(alert);
         });
     };
-};
-
-const sendOrderEmail = async () => {
-    
 };
 
 export { updateUser, updateStock, newOrders, orderSeller, alertsSend };

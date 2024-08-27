@@ -4,6 +4,7 @@ import BigImg from '../../../../component/utils/BigImg/BigImg';
 import { useCartContext } from '../../../../context/CartContext';
 import Counter from '../../../../component/utils/Counter/Counter';
 import PriceCartBanner from './prices/PriceCartBanner';
+import typeCart from '../../../../utils/typeCart.utils';
 
 const CartBanner = ({ item }) => {
 
@@ -17,8 +18,8 @@ const CartBanner = ({ item }) => {
                 <p>{item.name}</p>
                 <p className='pID'>{item._id}</p>
             </td>
-            <td>{item.is}</td>
-            <td style={{width: '285px'}}>{<PriceCartBanner item={item} />}</td>
+            <td>{typeCart(item.is)}</td>
+            <td style={{ width: '285px' }}>{<PriceCartBanner item={item} />}</td>
             <td><Counter prod={item} /></td>
             <td style={{ width: '80px' }}>${totalProduct(item._id)}</td>
         </tr>

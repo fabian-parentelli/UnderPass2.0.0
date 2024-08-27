@@ -1,13 +1,12 @@
 const url = import.meta.env.VITE_API_URL;
 
-async function getOrdersApi(obj) {
-    
-    let urlData = `${url}/api/order?`;
+async function getOrderSellerApi(obj) {
+
+    let urlData = `${url}/api/order_seller?`;
     if (obj.page) urlData += `page=${obj.page}&`;
     if (obj.limit) urlData += `limit=${obj.limit}&`;
     if (obj.userid) urlData += `userid=${obj.userid}&`;
     if (obj.active) urlData += `active=${obj.active}&`;
-    if (obj.pay) urlData += `pay=${obj.pay}&`;
 
     const token = localStorage.getItem('token');
     const response = await fetch(urlData, {
@@ -23,4 +22,4 @@ async function getOrdersApi(obj) {
     if (content.data) return content.data;
 };
 
-export { getOrdersApi };
+export { getOrderSellerApi };

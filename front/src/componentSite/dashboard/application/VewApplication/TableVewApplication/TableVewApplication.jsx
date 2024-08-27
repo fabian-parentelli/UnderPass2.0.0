@@ -4,6 +4,7 @@ import flagsIcon from '../../../../../utils/flagsIcon.utils';
 import ExpandApplication from '../ExpandApplicattion/ExpandApplication';
 import { useLoginContext } from '../../../../../context/LoginContext';
 import { Link } from 'react-router-dom';
+import typeCart from '../../../../../utils/typeCart.utils';
 
 const TableVewApplication = ({ appli, handleActive, handeleVew }) => {
 
@@ -62,7 +63,7 @@ const TableVewApplication = ({ appli, handleActive, handeleVew }) => {
                                         color: (app.type !== 'cards' && app.type !== 'banners' && app.type !== 'separator')
                                             ? '#00756F' : 'gray'
                                     }}
-                                >{app.type}</td>
+                                >{typeCart(app.type)}</td>
 
                                 <td className='tdActive'>
                                     <Link to={'/cart'} style={{ color: app.pay ? 'green' : 'red', textDecoration: 'none' }}>

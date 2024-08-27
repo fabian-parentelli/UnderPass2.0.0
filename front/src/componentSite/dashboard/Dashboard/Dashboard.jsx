@@ -19,6 +19,8 @@ import UserPublicityDas from '../publicity/UserPublicityDas/UserPublicityDas';
 import HelpDas from '../helpDashboard/HelpDas/HelpDas';
 import UserAlerts from '../alerts/UserAlerts/UserAlerts';
 import MayAlerts from '../alerts/MyAlerts/MyAlerts';
+import UserOrders from '../orders/UserOrders/UserOrders';
+import AllOrders from '../orders/AllOrders/AllOrders';
 
 const Dashboard = () => {
 
@@ -61,6 +63,11 @@ const Dashboard = () => {
                     title={'Alertas'}
                     category={[{ name: 'Mis Alertas', path: 'mayalert' }, { name: 'Usuario', path: 'useralert' }]}
                 />
+                
+                <Fields
+                    title={'Ordenes'}
+                    category={[{ name: 'Usuarios', path: 'userorders' }, { name: 'Todas las ordenes', path: 'alloreders' }]}
+                />
             </div>
             <Routes>
                 <Route path='/' element={<Panel />} />
@@ -88,6 +95,9 @@ const Dashboard = () => {
 
                 <Route path='/mayalert' element={<MayAlerts />} />
                 <Route path='/useralert' element={<UserAlerts />} />
+
+                <Route path='/userorders' element={<UserOrders />} />
+                <Route path='/alloreders' element={<AllOrders />} />
             </Routes>
         </div>
     );

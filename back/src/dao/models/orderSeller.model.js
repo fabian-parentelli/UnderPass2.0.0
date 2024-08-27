@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import mongoosePaginate from 'mongoose-paginate-v2';
 
 const orderSellerCollection = 'order_seller';
 
@@ -25,7 +26,10 @@ const orderSellerSchema = new mongoose.Schema({
         },
     },
     active: { type: Boolean, default: true },
-    date: { type: Date, default: Date.now }
+    date: { type: Date, default: Date.now },
+    total: { type: Number },
 });
+
+orderSellerSchema.plugin(mongoosePaginate);
 
 export const orderSellerModel = mongoose.model(orderSellerCollection, orderSellerSchema);

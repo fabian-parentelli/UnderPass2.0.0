@@ -3,6 +3,7 @@ import Cash from '../Cash/Cash';
 import { useState } from 'react';
 import Shopping from '../Shopping/Shopping';
 import Load from '../../utils/Load';
+import Seller from '../Seller/Seller';
 
 const Commerce = ({ user }) => {
 
@@ -22,7 +23,7 @@ const Commerce = ({ user }) => {
                 <button className='btn btnC' onClick={() => handleVew('sales')}>ventas</button>
             </div>
             {vew == 'shopping' && <Shopping userId={user._id} setLoading={setLoading} />}
-            {vew == 'sales' && <p>Sales</p>}
+            {vew == 'sales' && <Seller userId={user._id} setLoading={setLoading} />}
             <Load loading={loading} />
         </div>
     );

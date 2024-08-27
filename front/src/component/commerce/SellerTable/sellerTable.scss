@@ -1,0 +1,67 @@
+@import '../../../style/colors.scss';
+
+.sellerTable {
+
+    .onClick {
+        cursor: pointer;
+        transition: .3s ease;
+
+        &:hover {
+            background-color: rgb(212, 212, 212);
+        }
+    }
+
+    .nonTr {
+        background-color: none;
+
+        &:hover {
+            background-color: #313131;
+        }
+    }
+
+    @keyframes scaleUp {
+        from {
+            transform: scaleY(0);
+            opacity: 0;
+        }
+
+        to {
+            transform: scaleY(1);
+            opacity: 1;
+        }
+    }
+
+    .scale-up-animation {
+        animation: scaleUp 0.3s ease-out;
+        transform-origin: top;
+        overflow: hidden;
+    }
+}
+
+@media (max-width: 767px) {
+    
+    .sellerTable {
+        width: 90%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+
+        &::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: $colorB;
+            border-radius: 6px;
+        }
+
+        .sellerTable {
+            cursor: pointer;
+            transition: .3s;
+
+            &:hover {
+                color: black;
+                background-color: $colorB;
+            }
+        }
+    }
+}

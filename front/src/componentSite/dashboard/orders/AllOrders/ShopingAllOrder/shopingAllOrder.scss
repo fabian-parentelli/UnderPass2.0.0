@@ -1,0 +1,15 @@
+.shopingAllOrder {
+    margin-top: .6rem;
+
+    .shopingAllOrderDiv {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+
+        .shopingAllOrderSwitch {
+            display: flex;
+            align-items: center;
+            margin: .4rem 0;
+        }
+    }
+}

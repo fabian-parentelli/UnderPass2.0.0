@@ -9,7 +9,6 @@ const newOrder = async (order, { user }) => {
     if (!result) throw new OrderNotFound('No se puede generar la orden');
     await newOrderUtils.orderSeller(order, user._id, result._id);
     await newOrderUtils.alertsSend();
-    await newOrderUtils.sendOrderEmail();
 
     // Conectarme a mercado pago ´para pobtener el linck de pago/////----------------------------------
     // Conectarme a mercado pago ´para pobtener el linck de pago/////----------------------------------
@@ -19,12 +18,13 @@ const newOrder = async (order, { user }) => {
     return { status: 'success', result };
 };
 
-const getOrders = async (page, limit, userid, active) => {
+const getOrders = async (page, limit, userid, active, pay, { user }) => {
     const query = {};
     if (active !== undefined) query.active = active;
     if (userid) query.userId = userid;
     if (active !== undefined) query.active = active;
-    const result = await orderRepository.getOrders(query, limit, page);
+    if (pay !== undefined) query['pay.isPay'] = pay;
+    const result = await orderRepository.getOrders(query, limit, page, user);
     if (!result) throw new OrderNotFound('No se puede encontrar la orden');
     return { status: 'success', result };
 };

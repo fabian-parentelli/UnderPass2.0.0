@@ -3,6 +3,7 @@ import { useCartContext } from '../../../../context/CartContext';
 import BigImg from '../../../../component/utils/BigImg/BigImg';
 import PriceAddToPortal from './PriceAddToPortal';
 import Counter from '../../../../component/utils/Counter/Counter';
+import typeCart from '../../../../utils/typeCart.utils';
 
 const CartAddToPortal = ({ item }) => {
 
@@ -16,7 +17,7 @@ const CartAddToPortal = ({ item }) => {
                 <p>{item.name}</p>
                 <p className='pID'>{item._id}</p>
             </td>
-            <td>{item.is}</td>
+            <td>{typeCart(item.is)}</td>
             <td style={{ width: '285px' }}><PriceAddToPortal item={item} /></td>
             <td><Counter prod={item} /></td>
             <td style={{ width: '80px' }}>${totalProduct(item._id)}</td>

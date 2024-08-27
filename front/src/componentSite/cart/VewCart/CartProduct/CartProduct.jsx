@@ -5,9 +5,10 @@ import BigImg from '../../../../component/utils/BigImg/BigImg';
 import { useCartContext } from '../../../../context/CartContext';
 import Counter from '../../../../component/utils/Counter/Counter';
 import { getLastPriceApi } from '../../../../helpers/prices/getLastPrice.api.js';
+import typeCart from '../../../../utils/typeCart.utils.js';
 
 const CartProduct = ({ item }) => {
-    
+
     const [price, setPrice] = useState(0);
     const { removeItem, totalProduct } = useCartContext();
     const country = localStorage.getItem('country');
@@ -28,7 +29,7 @@ const CartProduct = ({ item }) => {
                 <p>{item.name}</p>
                 <p className='pID'>{item._id}</p>
             </td>
-            <td>{item.is}</td>
+            <td>{typeCart(item.is)}</td>
             <td>${item.price}</td>
             <td><Counter prod={item} /></td>
             {<td style={{ width: '80px' }}>${totalProduct(item._id)}</td>}
