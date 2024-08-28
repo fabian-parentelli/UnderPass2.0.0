@@ -22,8 +22,8 @@ const updateStock = async (order) => {
 };
 
 const newOrders = async (order, userId) => {
-    const total = order.reduce((acc, prod) => acc + (prod.price * prod.quantity), 0);
-    const result = await orderRepository.newOrders({ userId: userId, cart: order, total: total });
+    const total = order.cart.reduce((acc, prod) => acc + (prod.price * prod.quantity), 0);
+    const result = await orderRepository.newOrders({ userId: userId, cart: order.cart, total: total, pay: { typePay: order.typePay } });
     if (!result) throw new OrderNotFound('No se puede guardar la orden');
     return result;
 };
@@ -40,7 +40,7 @@ const orderSeller = async (order, userId, orderId) => {
             if (prod !== -1) {
                 orders[prod].cart.push(ord);
                 orders[prod].total += ord.price * ord.quantity;
-            }else {
+            } else {
                 const obj = {
                     orderId: orderId,
                     buyerUserId: userId,
@@ -60,7 +60,6 @@ const orderSeller = async (order, userId, orderId) => {
 };
 
 const alertsSend = async () => {
-    const alerts = [];
     for (const ord of orederSllerResult) {
         ord.cart.map(async (prod) => {
             const alert = {

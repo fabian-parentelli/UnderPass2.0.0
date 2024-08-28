@@ -18,6 +18,7 @@ import NewProduct from "../componentSite/product/NewProduct/NewProduct.jsx";
 import TheMarket from "../componentSite/product/TheMarket/TheMarket.jsx";
 import VewTheProduct from "../componentSite/product/VewTheProduct/VewTheProduct.jsx";
 import BodyCart from "../componentSite/cart/BodyCart/BodyCart.jsx";
+import UnderPay from "../componentSite/pay/UnderPay/UnderPay.jsx";
 
 const RoutesComp = () => {
 
@@ -44,6 +45,7 @@ const RoutesComp = () => {
                     {user.logged &&
                         <>
                             <Route path="/profile/*" element={<Profile />} />
+                            <Route path="/underpay/:type/:id" element={<UnderPay />} />
                         </>
                     }
 

@@ -18,4 +18,11 @@ const getByUserId = async (id) => {
     return { status: 'success', result };
 };
 
-export { newWallet, getByUserId };
+const getMoneyByUserId = async (id) => {
+    const data = await walletRepository.getByUserId(id);
+    if (!data) throw new WalletNotFound('No se encuentra la billetera');
+    const result = data.total;
+    return { status: 'success', result };
+};
+
+export { newWallet, getByUserId, getMoneyByUserId };

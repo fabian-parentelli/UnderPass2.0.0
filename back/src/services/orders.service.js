@@ -5,16 +5,24 @@ import { OrderNotFound } from "../utils/custom-exceptions.utils.js";
 const newOrder = async (order, { user }) => {
     await newOrderUtils.updateUser(user._id, order.user);
     await newOrderUtils.updateStock(order.cart);
-    const result = await newOrderUtils.newOrders(order.cart, user._id);
+    const result = await newOrderUtils.newOrders(order, user._id);
     if (!result) throw new OrderNotFound('No se puede generar la orden');
+
+    // Si el order.typePay es Mercado pago hacer el llamado acá para devolver linck en esta respuesta.......
+    // Si el order.typePay es Mercado pago hacer el llamado acá para devolver linck en esta respuesta.......
+    // Si el order.typePay es Mercado pago hacer el llamado acá para devolver linck en esta respuesta.......
+    // Si el order.typePay es Mercado pago hacer el llamado acá para devolver linck en esta respuesta.......
+    // Si el order.typePay es Mercado pago hacer el llamado acá para devolver linck en esta respuesta.......
+    // Si el order.typePay es Mercado pago hacer el llamado acá para devolver linck en esta respuesta.......
+
     await newOrderUtils.orderSeller(order, user._id, result._id);
     await newOrderUtils.alertsSend();
+    return { status: 'success', result };
+};
 
-    // Conectarme a mercado pago ´para pobtener el linck de pago/////----------------------------------
-    // Conectarme a mercado pago ´para pobtener el linck de pago/////----------------------------------
-    // Conectarme a mercado pago ´para pobtener el linck de pago/////----------------------------------
-    // Conectarme a mercado pago ´para pobtener el linck de pago/////----------------------------------
-
+const getOrderById = async (id) => {
+    const result = await orderRepository.getOrderById(id);
+    if (!result) throw new OrderNotFound('No se puede encontrar la orden');
     return { status: 'success', result };
 };
 
@@ -29,4 +37,4 @@ const getOrders = async (page, limit, userid, active, pay, { user }) => {
     return { status: 'success', result };
 };
 
-export { newOrder, getOrders };
+export { newOrder, getOrderById, getOrders };

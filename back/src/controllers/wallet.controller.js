@@ -22,4 +22,15 @@ const getByUserId = async (req, res) => {
     };
 };
 
-export { newWallet, getByUserId };
+const getMoneyByUserId = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const result = await walletService.getMoneyByUserId(id);
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof WalletNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
+export { newWallet, getByUserId, getMoneyByUserId };

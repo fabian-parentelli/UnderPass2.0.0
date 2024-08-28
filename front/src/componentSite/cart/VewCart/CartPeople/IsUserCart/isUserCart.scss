@@ -6,6 +6,17 @@
     width: 40%;
     padding: 6px;
 
+    .isUserCartType {
+        margin-top: 1rem;
+        display: flex;
+
+        .isUserCartTypeMoney {
+            display: flex;
+            gap: 0.4rem;
+            margin-top: 8px;
+        }
+    }
+
 
     button {
         margin-top: 1rem;

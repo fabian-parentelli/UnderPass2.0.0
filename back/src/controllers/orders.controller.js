@@ -11,6 +11,17 @@ const newOrder = async (req, res) => {
     };
 };
 
+const getOrderById = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const result = await orderService.getOrderById(id);
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof OrderNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
 const getOrders = async (req, res) => {
     const { page = 1, limit = 12, userid, active, pay } = req.query;
     try {
@@ -22,4 +33,4 @@ const getOrders = async (req, res) => {
     };
 };
 
-export { newOrder, getOrders };
+export { newOrder, getOrderById, getOrders };

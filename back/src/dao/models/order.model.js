@@ -16,7 +16,8 @@ const orderSchema = new mongoose.Schema({
     total: { type: Number },
     pay: {
         isPay: { type: Boolean, default: false },
-        datePay: { type: Date }
+        datePay: { type: Date },
+        typePay: { type: String }
     },
     active: { type: Boolean, default: true },
     date: { type: Date, default: Date.now }

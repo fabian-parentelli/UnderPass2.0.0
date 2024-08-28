@@ -6,6 +6,10 @@ export default class Order {
         return await orderModel.create(order);
     };
 
+    getOrderById = async (id) => {
+        return await orderModel.findById(id).lean();
+    };
+
     getOrders = async (query, limit, page) => {
         return await orderModel.paginate(query, { limit, page, lean: true, sort: { date: -1 } })
     };

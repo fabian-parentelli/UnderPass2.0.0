@@ -41,6 +41,7 @@ const ShopingTable = ({ orders }) => {
                                 <td>
                                     <p style={{ color: ord.pay.isPay ? 'green' : 'red' }} >{ord.pay.isPay ? 'SI' : 'NO'}</p>
                                     {ord.pay.datePay && <p>{new Date(ord.pay.datePay).toLocaleDateString()}</p>}
+                                    <p>{ord.pay?.typePay}</p>
                                 </td>
                                 <td>${ord.total}</td>
                                 <td style={{ color: ord.active ? 'green' : 'red' }} >{ord.active ? 'SI' : 'NO'}</td>
