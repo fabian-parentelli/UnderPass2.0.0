@@ -1,5 +1,7 @@
 import SearchHelp from "../SearchHelp/SearchHelp";
+import ApplicationHelp from "./ApplicationHelp/ApplicationHelp";
 import NewProductHelp from "./NewProductHelp/NewProductHelp";
+import PublicityHelp from "./PublicityHelp/PublicityHelp";
 import VewProductHelp from "./VewProductHelp/VewProductHrlp";
 
 const AppHelp = () => {
@@ -13,6 +15,8 @@ const AppHelp = () => {
 
             <NewProductHelp />
             <VewProductHelp />
+            <PublicityHelp />
+            <ApplicationHelp />
         </div>
     );
 };

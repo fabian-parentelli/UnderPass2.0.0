@@ -9,6 +9,7 @@ const imgages = {
 };
 
 const imagesHelp = {
+    userDropdown: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1720642784/help/kdsw6a5yzlihl3nyb79q.png',
     panel: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1721509256/help/eu4zxarxe9ogbeh6ndec.png',
     advertising: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1721509255/help/ql9v5mc49lurpesabze4.png',
     cretaeAdvertising: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1721509255/help/qnaboqinuju17biqm8jk.png',
@@ -27,7 +28,15 @@ const imagesHelp = {
 
     vewProductA: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1722446341/help/wavjoixs2ulrw6l2gvvv.png',
     vewProductB: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1722446340/help/ni4oeyfaw7enbxgxsqc8.png',
-    vewProductC: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1722446341/help/ojugxpaltyiuop2k2hmh.png'
+    vewProductC: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1722446341/help/ojugxpaltyiuop2k2hmh.png',
+
+    publicitiesMenu: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1724962055/help/gj2yem90uyct1xsigoa4.png',
+
+    application: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1724966984/help/vqwjhuyigy9r3tafk8nt.png',
+    titleApplication: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1724966984/help/dqk32phpzbqudrcm4cpb.png',
+    activeApplication: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1724966983/help/hj8bcq245hyp9axjaipk.png',
+    newApplication: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1724966983/help/viqgzrce7ql5qsglhydr.png',
+    textAreaApplication: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1724966984/help/lwdczciji4cn99ojfxif.png',
 };
 
 export { imgages, imagesHelp };

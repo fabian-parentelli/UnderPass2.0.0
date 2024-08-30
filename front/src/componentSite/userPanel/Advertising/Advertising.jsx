@@ -18,7 +18,7 @@ const Advertising = () => {
 
     return (
         <div className='advertising'>
-            <Title Icon={LiveTvIcon} name='Publicidad' goTo='/help#advertising' />
+            <Title Icon={LiveTvIcon} name='Publicidad' goTo='/help#publicityHelp' />
             {user && user.data && <UserAppMenu userId={user.data._id} country={country} />}
         </div >
     );
