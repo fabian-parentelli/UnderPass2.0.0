@@ -11,6 +11,7 @@ import OrderRouter from "./orders.router.js";
 import OrderSellerRouter from "./orderSeller.router.js";
 import WalletRouter from "./wallet.router.js";
 import TicketRouter from "./ticket.router.js";
+import TransferRouter from "./transfer.router.js";
 
 export const userRouter = new UserRouter().getRouter();
 export const imagenRouter = new ImagenRouter().getRouter();
@@ -25,3 +26,4 @@ export const orderRouter = new OrderRouter().getRouter();
 export const orderSellerRouter = new OrderSellerRouter().getRouter();
 export const walletRouter = new WalletRouter().getRouter();
 export const ticketRouter = new TicketRouter().getRouter();
+export const transferRouter = new TransferRouter().getRouter();

@@ -12,6 +12,7 @@ import OrderSeller from './orderSeller.manager.js';
 import Wallet from './wallet.manager.js';
 import Ticket from './ticket.manager.js';
 import Data from './data.manager.js';
+import Transfer from './transfer.manager.js';
 
 export const userManager = new User();
 export const tutorialsManager = new Tutorials();
@@ -27,3 +28,4 @@ export const orderSellerManager = new OrderSeller();
 export const walletManager = new Wallet();
 export const ticketManager = new Ticket();
 export const dataManager = new Data();
+export const transferManager = new Transfer();

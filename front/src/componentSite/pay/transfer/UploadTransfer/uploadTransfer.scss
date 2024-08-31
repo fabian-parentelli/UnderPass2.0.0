@@ -11,3 +11,14 @@
         gap: 2rem;
     }
 }
+
+@media (max-width: 767px) {
+    .uploadTransfer {
+        margin-top: 1rem;
+
+        .uploadTransferChek {
+            gap: 1rem;
+            background-color: rgb(209, 208, 208);
+        }
+    }
+}

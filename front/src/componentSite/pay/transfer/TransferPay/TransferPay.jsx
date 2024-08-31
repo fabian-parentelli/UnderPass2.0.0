@@ -1,7 +1,7 @@
 import './transferPay.scss';
 import { useState } from 'react';
 import Debt from '../../Debt/Debt';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Load from '../../../../component/utils/Load';
 import UploadTransfer from '../UploadTransfer/UploadTransfer';
 import CountdownTimer from '../../../../component/utils/CountDownTimer';
@@ -14,9 +14,12 @@ const TransferPay = () => {
 
     return (
         <div className='transferPay'>
-            <div className='transferPayTime'>
-                <p>Tiempo restane:</p>
-                <CountdownTimer number={10} />
+            <div className='transferPayTop'>
+                <Link to={'/help'} className='transferPayHelp'>Ayuda</Link>
+                <div className='transferPayTime'>
+                    <p>Tiempo restane:</p>
+                    <CountdownTimer number={10} />
+                </div>
             </div>
 
             <div className='underPayTitle'>
@@ -25,10 +28,10 @@ const TransferPay = () => {
             </div>
 
             <div className='transferPayDebt'>
-                <Debt orderId={id} setOrder={setOrder} setLoading={setLoading} />
+                <Debt orderId={id} setOrder={setOrder} />
             </div>
 
-            <UploadTransfer order={order} />
+            <UploadTransfer order={order} setLoading={setLoading} />
 
             <Load loading={loading} />
         </div>

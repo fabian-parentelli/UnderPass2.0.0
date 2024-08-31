@@ -58,7 +58,7 @@ const LoginProvider = ({ children }) => {
         };
     };
 
-    const updateUser = async (user) => {
+    const updateUser = async (user) => {        
         const response = await updDataUserApi(user);
         if (response.status === 'success') {
             if (response.accesToken) {

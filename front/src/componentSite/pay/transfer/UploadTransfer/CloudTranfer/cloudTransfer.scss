@@ -1,10 +1,33 @@
+@import '../../../../../style/colors.scss';
+
 .cloudTransfer {
-    margin-top: 2rem;
+    margin-top: .4rem;
     display: flex;
     flex-direction: column;
     align-items: center;
 
+    .cloudTransferDivData {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+        margin-bottom: 1rem;
+
+        p strong {
+            color: $colorB;
+        }
+    }
+
     button {
         margin: 2rem 0;
+    }
+}
+
+@media (max-width: 767px) {
+    .cloudTransfer {
+        margin-top: 2rem;
+
+        .cloudTransferDivData {
+            justify-content: center;   
+        }
     }
 }

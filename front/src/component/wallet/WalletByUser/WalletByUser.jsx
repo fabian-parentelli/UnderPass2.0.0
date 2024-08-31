@@ -2,6 +2,7 @@ import './walletByUser.scss';
 import { useEffect, useState } from 'react';
 import FlagsCountry from '../../utils/FlagsCountry';
 import { getWalletByUserIdApi } from '../../../helpers/wallet/getWalletByUserId.api.js';
+import WalletBodyPanel from '../WalletBodyPanel/WalletBodyPanel.jsx';
 
 const WalletByUser = ({ userId, setLoading }) => {
 
@@ -18,28 +19,31 @@ const WalletByUser = ({ userId, setLoading }) => {
     }, []);
 
     return (
-        <div className='walletByUser'>
+        <>
             {wallet &&
                 <>
-                    <div className='walletByUserData'>
-                        <img src={wallet.user.imgUrl} alt="img" />
-                        <div className='walletByUserText'>
-                            <h3>{wallet.user.name}</h3>
-                            <p>{wallet.user.email}</p>
-                            <div className='walletByUserMoney'>
-                                <p><strong>Moneda:</strong></p>
-                                <FlagsCountry country={wallet.country} whidt={20} />
+                    <div className='walletByUser'>
+                        <div className='walletByUserData'>
+                            <img src={wallet.user.imgUrl} alt="img" />
+                            <div className='walletByUserText'>
+                                <h3>{wallet.user.name}</h3>
+                                <p>{wallet.user.email}</p>
+                                <div className='walletByUserMoney'>
+                                    <p><strong>Moneda:</strong></p>
+                                    <FlagsCountry country={wallet.country} whidt={20} />
+                                </div>
+                                <p><strong>UserId:</strong> {wallet.userId}</p>
+                                <p><strong>Billetera:</strong> {wallet._id}</p>
                             </div>
-                            <p><strong>UserId:</strong> {wallet.userId}</p>
-                            <p><strong>Billetera:</strong> {wallet._id}</p>
+                        </div>
+                        <div className='walletByUserTotalDiv'>
+                            <p>Tu saldo: ${wallet.total}</p>
                         </div>
                     </div>
-                    <div className='walletByUserTotalDiv'>
-                        <p>Tu saldo: ${wallet.total}</p>
-                    </div>
+                    <WalletBodyPanel wallet={wallet} setLoading={setLoading} />
                 </>
             }
-        </div>
+        </>
     );
 };
 

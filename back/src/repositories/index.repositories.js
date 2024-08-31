@@ -9,6 +9,7 @@ import OrderRepository from './order.repositories.js';
 import OrderSellerRepository from './orderSeller.repositories.js';
 import WalletRepository from './wallet.repositories.js';
 import TicketRepository from './ticket.repositories.js';
+import TransferRepository from './transfer.repositories.js';
 
 export const userRepository = new UserRepository();
 export const imagenRepository = new ImagenRepository();
@@ -21,3 +22,4 @@ export const orderRepository = new OrderRepository();
 export const orderSellerRepository = new OrderSellerRepository();
 export const walletRepository = new WalletRepository();
 export const ticketRepository = new TicketRepository();
+export const transferRepository = new TransferRepository();

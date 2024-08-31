@@ -35,6 +35,7 @@ const FormDataPass = ({ country, setLoading }) => {
 
     const handleUpdate = async (e) => {
         e.preventDefault();
+        setLoading(true);
         const response = await updDataPassApi(values);
         if (response.status === 'success') {
             setIsValues(true);

@@ -2,10 +2,14 @@
 
 .walletByUser {
     width: 100%;
+    display: flex;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 2rem;
 
     .walletByUserData {
         display: flex;
-        align-items: flex-start;
+        align-items: flex-end;
         gap: 1rem;
 
         img {
@@ -21,6 +25,7 @@
 
             .walletByUserMoney {
                 display: flex;
+                align-items: flex-end;
                 gap: .4rem;
 
                 p {
@@ -30,23 +35,12 @@
         }
     }
 
-    .walletByUserTotalDiv {
-        margin-top: 1rem;
-        background-color: $colorC;
-        padding: .8rem;
-        width: 200px;
-        border-radius: 3px;
 
-        p {
-            background-color: #ffff;
-            padding: .4rem;
-        }
-    }
 }
 
 @media (max-width: 767px) {
     .walletByUser {
-
+        gap: 0;
         .walletByUserData {
             flex-direction: column;
         }
