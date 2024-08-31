@@ -18,11 +18,21 @@ const orderSellerSchema = new mongoose.Schema({
     pay: {
         payIn: {
             isPayIn: { type: Boolean, default: false },
-            datePayIn: { type: Date }
+            datePayIn: { type: Date },
+            statusPayIn: { type: String }
+        },
+        payCredited: {
+            isPayCredited: { type: Boolean, default: false },
+            datePayCredited: { type: Date },
         },
         payOut: {
             isPayOut: { type: Boolean, default: false },
-            datePayOut: { type: Date }
+            datePayOut: { type: Date },
+            statusPayOut: { type: String },
+            payOutData : {
+                ticketNumber: { type: String },
+                ticketImg: { type: String },
+            }
         },
     },
     active: { type: Boolean, default: true },

@@ -17,7 +17,8 @@ const orderSchema = new mongoose.Schema({
     pay: {
         isPay: { type: Boolean, default: false },
         datePay: { type: Date },
-        typePay: { type: String }
+        typePay: { type: String },
+        statusPay: { type: String }
     },
     active: { type: Boolean, default: true },
     date: { type: Date, default: Date.now }

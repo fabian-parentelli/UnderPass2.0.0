@@ -1,6 +1,16 @@
 import * as priceService from '../services/prices.service.js';
 import { PriceNotFound } from '../utils/custom-exceptions.utils.js';
 
+const newDataPass = async (req, res) => {
+    try {
+        const result = await priceService.newDataPass({ ...req.body });
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof PriceNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
 const newPrice = async (req, res) => {
     try {
         const result = await priceService.newPrice({ ...req.body });
@@ -32,6 +42,27 @@ const exchange = async (req, res) => {
     };
 };
 
+const getDataPass = async (req, res) => {
+    const { country } = req.params;
+    try {
+        const result = await priceService.getDataPass(country);
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof PriceNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
+const updDataPass = async (req, res) => {
+    try {
+        const result = await priceService.updDataPass({ ...req.body });
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof PriceNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
 const getAllPrice = async (req, res) => {
     try {
         const result = await priceService.getAllPrice();
@@ -42,4 +73,4 @@ const getAllPrice = async (req, res) => {
     };
 };
 
-export { newPrice, getLastPrice, exchange, getAllPrice };
+export { newPrice, getLastPrice, exchange, getAllPrice, newDataPass, getDataPass, updDataPass };

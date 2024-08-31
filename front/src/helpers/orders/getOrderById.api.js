@@ -1,6 +1,6 @@
 const url = import.meta.env.VITE_API_URL;
 
-const getOrderByUserIdApi = async (id) => {
+const getOrderByIdApi = async (id) => {
 
     const token = localStorage.getItem('token');
     const response = await fetch(`${url}/api/order/${id}`, {
@@ -16,4 +16,4 @@ const getOrderByUserIdApi = async (id) => {
     if (content.data) return content.data;
 };
 
-export { getOrderByUserIdApi };
+export { getOrderByIdApi };

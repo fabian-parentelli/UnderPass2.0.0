@@ -2,8 +2,8 @@ import './payCart.scss';
 import { useEffect, useState } from 'react';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import UnderMoney from '../../../../component/pay/UnderMoney/UnderMoney';
-import { getOrderByUserIdApi } from '../../../../helpers/orders/getOrderByUserId.api.js';
-import { postUnderPayApi } from '../../../../helpers/ticket/postUnderPay.api.js';
+import { getOrderByIdApi } from '../../../../helpers/orders/getOrderById.api.js';
+// import { postUnderPayApi } from '../../../../helpers/ticket/postUnderPay.api.js';
 
 const PayCart = ({ orderId, setLoading }) => {
 
@@ -12,7 +12,7 @@ const PayCart = ({ orderId, setLoading }) => {
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
-            const response = await getOrderByUserIdApi(orderId);
+            const response = await getOrderByIdApi(orderId);
             if (response.status === 'success') setOrder(response.result);
             else console.error(response.error);
             setLoading(false);
@@ -20,7 +20,7 @@ const PayCart = ({ orderId, setLoading }) => {
     }, []);
 
     const handleClick = async () => {
-        const response = await postUnderPayApi({ orderId: order._id, byTo: 'underpass', total: order.total });
+        // const response = await postUnderPayApi({ orderId: order._id, byTo: 'underpass', total: order.total });
         
     };
 

@@ -1,0 +1,27 @@
+.printFormDataPass {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    .printFormDataPassTitle {
+        display: flex;
+        gap: 1rem;
+    }
+
+    .printFormDataPassInputsDiv {
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: .1rem;
+
+        input {
+            width: 300px;
+        }
+
+        .printFormDataPassInputsDivIn {
+            display: flex;
+            align-items: flex-end;
+            gap: .1rem;
+        }
+    }
+}

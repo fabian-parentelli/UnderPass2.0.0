@@ -45,7 +45,7 @@ const IsUserCart = ({ user, setLoading }) => {
                 "date": "2024-08-28T18:11:24.111Z",
                 "pay": {
                     "isPay": false,
-                    "typePay": "UnderPay"
+                    "typePay": "Transferencia"
                 },
                 "total": 31621,
                 "userId": "6696b1b4a18c066e4ebfbc0c",
@@ -56,7 +56,7 @@ const IsUserCart = ({ user, setLoading }) => {
         }
         if (response.status === 'success') {
             if (response.result.pay.typePay === 'UnderPay') navigate(`/underpay/cart/${response.result._id}`);
-            if (response.result.pay.typePay === 'Transferencia') navigate('/transfer');
+            if (response.result.pay.typePay === 'Transferencia') navigate(`/transfer/${response.result._id}`);
             if (response.result.pay.typePay === 'Mercado Pago') window.open(response.result.mercadopago, '_blank');
         } else console.error(response.error);
         setLoading(false);

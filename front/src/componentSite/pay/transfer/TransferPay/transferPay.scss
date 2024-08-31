@@ -1,0 +1,37 @@
+.transferPay {
+    margin-top: 70px;
+    min-height: 80vh;
+    padding: 1rem;
+    width: 100%;
+
+    .transferPayTime {
+        width: 95%;
+        display: flex;
+        justify-content: flex-end;
+        gap: .4rem;
+        margin-top: 1rem;
+    }
+    
+    .underPayTitle {
+        text-align: center;
+        width: 80%;
+        margin: 0 auto;
+
+        h2 {
+            font-size: 3rem;
+        }
+        
+        p{
+            margin-top: 1rem;
+            font-size: 14px;
+            line-height: 2;
+        }
+    }
+
+    .transferPayDebt {
+        margin-top: 1rem;
+        text-align: center;
+    }
+
+    
+}

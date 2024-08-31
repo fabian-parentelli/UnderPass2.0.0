@@ -19,6 +19,7 @@ import TheMarket from "../componentSite/product/TheMarket/TheMarket.jsx";
 import VewTheProduct from "../componentSite/product/VewTheProduct/VewTheProduct.jsx";
 import BodyCart from "../componentSite/cart/BodyCart/BodyCart.jsx";
 import UnderPay from "../componentSite/pay/UnderPay/UnderPay.jsx";
+import TransferPay from "../componentSite/pay/transfer/TransferPay/TransferPay.jsx";
 
 const RoutesComp = () => {
 
@@ -46,6 +47,7 @@ const RoutesComp = () => {
                         <>
                             <Route path="/profile/*" element={<Profile />} />
                             <Route path="/underpay/:type/:id" element={<UnderPay />} />
+                            <Route path="/transfer/:id" element={<TransferPay />} />
                         </>
                     }
 

@@ -2,6 +2,12 @@ import { priceRepository } from "../repositories/index.repositories.js";
 import { PriceNotFound } from '../utils/custom-exceptions.utils.js';
 import * as exchangeData from "../utils/exchangeApi.utils.js";
 
+const newDataPass = async (data) => {
+    const result = await priceRepository.newDataPass(data);
+    if (!result) throw new PriceNotFound('No se pueden guardar los datos');
+    return { status: 'success', result };
+};
+
 const newPrice = async (price) => {
     price.sales = price.sales.filter(sale => sale.days && sale.sale);
     const result = await priceRepository.newPrice(price);
@@ -24,10 +30,24 @@ const exchange = async () => {
     return { status: 'success', result };
 };
 
+const getDataPass = async (country) => {
+    const result = await priceRepository.getDataPass(country);
+    if (!result) return { status: 'error', result };
+    return { status: 'success', result };
+};
+
+const updDataPass = async (data) => {
+    const dataPass = await priceRepository.getDataPass(data.country);
+    const newData = { ...dataPass, ...data };
+    const result = await priceRepository.updDataPass(newData);
+    if (!result) throw new PriceNotFound('No se puede actualizar los datos');
+    return { status: 'success', result };
+};
+
 const getAllPrice = async () => {
     const result = await priceRepository.getAllPrice();
     if (!result) throw new PriceNotFound('No se puede obtener la lista de precios');
     return { status: 'success', result };
 };
 
-export { newPrice, getLastPrice, exchange, getAllPrice };
+export { newPrice, getLastPrice, exchange, getAllPrice, newDataPass, getDataPass, updDataPass };
