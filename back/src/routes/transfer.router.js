@@ -7,5 +7,6 @@ import { uploadToCloudinary } from '../config/cloudinary.config.js';
 export default class TransferRouter extends Router {
     init() {
         this.post('/', ['USER', 'ADMIN', 'MASTER'], passportEnum.JWT, multipleUploader, uploadToCloudinary, transferController.newTransfer);
+        this.get('/', ['USER', 'ADMIN', 'MASTER'], passportEnum.JWT, transferController.getTrasfer);    
     };
 };

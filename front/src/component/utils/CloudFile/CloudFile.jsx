@@ -60,4 +60,4 @@ const CloudFile = ({ onChange, folderName, contClass, id }) => {
 
 export default CloudFile;
 
-// cfRect - cfCircle 
+// cfRect - cfCircle

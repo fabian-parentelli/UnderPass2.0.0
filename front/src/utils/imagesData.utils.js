@@ -5,7 +5,10 @@ const imgages = {
     applications: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1723058402/images/roi4pzpojqifhzfemsai.png',
     addToPort: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1723385288/images/hjwefm3gzcyqskj5niqv.png',
     moreTime: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1723496166/images/t5m6p3ci1uzhgabg5gxd.png',
-    menTv: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1724617267/images/yynqq6ze8psjod5kjt2b.png'
+    menTv: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1724617267/images/yynqq6ze8psjod5kjt2b.png',
+    weAreLooking: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1725130129/images/nj3aygb2da45an9zwk5v.png',
+    infoLogo: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1725140758/images/dwvpd16wf6ccg9upoy2e.png',
+     
 };
 
 const imagesHelp = {

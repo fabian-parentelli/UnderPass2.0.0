@@ -1,18 +1,22 @@
 import './walletBodyPanel.scss';
+import { useState } from 'react';
 import Checkboxes from '../../utils/Checkboxes';
+import Payments from './Payments/Payments';
 
 const WalletBodyPanel = ({ wallet, setLoading }) => {
+
+    const [type, setType] = useState(null);
 
     return (
         <div className='walletBodyPanel'>
             <div className='walletBodyPanelChek'>
-                <Checkboxes labels={['Configuración', 'Movimiento', 'Pagos', 'Cobros']} />
+                <Checkboxes labels={['Configuración', 'Movimientos', 'Pagos', 'Cobros']} setType={setType} />
             </div>
-            
-            {/* Estoy acá quiero hacer algunos componentes falsos con string */}
-            {/* Hacer Componente para ver los págos */}
-            {/* Dentro de componente pagos hacer trnsferencia  */}
-            {/* dentro de este ver las opciones de transeferencias  */}
+
+            {type === 'Configuración' && <p>Configuración</p>}
+            {type === 'Movimientos' && <p>Movimientos</p>}
+            {type === 'Pagos' && <Payments wallet={wallet} setLoading={setLoading} />}
+            {type === 'Cobros' && <p>Cobros</p>}
 
         </div>
     );

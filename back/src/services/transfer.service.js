@@ -23,4 +23,14 @@ const newTransfer = async (imgUrl, data, { user }) => {
     return { status: 'success', result };
 };
 
-export { newTransfer };
+const getTrasfer = async (confirm, user, page, country) => {
+    const query = {};
+    if (confirm !== undefined) query.confirm = confirm;
+    if (user) query.userId = user;
+    if (country) query.country = country;
+    const result = await transferRepository.getTrasfer(query, page);    
+    if (!result) throw new TransferNotFound('No se puede encontrar el comprobante');
+    return { status: 'success', result };
+};
+
+export { newTransfer, getTrasfer };

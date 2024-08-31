@@ -12,4 +12,15 @@ const newTransfer = async (req, res) => {
     };
 };
 
-export { newTransfer };
+const getTrasfer = async (req, res) => {
+    const { confirm, user, page, country } = req.query;
+    try {
+        const result = await transferService.getTrasfer(confirm, user, page, country);
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof TransferNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
+export { newTransfer, getTrasfer };

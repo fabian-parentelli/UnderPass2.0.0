@@ -1,0 +1,27 @@
+@import '../../../../style/colors.scss';
+
+.paymentsTable {
+
+    .paymentsTableImg {
+        cursor: pointer;
+        transition: .3s ease-in-out;
+        
+        &:hover {
+            background-color: rgb(163, 163, 163);
+        }
+    }
+}
+
+.paymentsTableInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    h3 {
+        color: $colorA;
+    }
+
+    p strong {
+        color: $colorB;
+    }
+}
