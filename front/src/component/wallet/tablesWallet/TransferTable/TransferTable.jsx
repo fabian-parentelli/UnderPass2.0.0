@@ -1,26 +1,21 @@
-import './paymentsTable.scss';
+import './transferTable.scss';
 import { Fragment, useState } from 'react';
-import { imgages } from '../../../../utils/imagesData.utils';
-import { useLoginContext } from '../../../../context/LoginContext';
-import ModalCustom from '../../../utils/ModalCustom/ModalCustom';
 import TimePass from '../../../utils/TimePass';
-import CloudFile from '../../../utils/CloudFile/CloudFile';
+import { imgages } from '../../../../utils/imagesData.utils';
+import ModalCustom from '../../../utils/ModalCustom/ModalCustom';
+import { useLoginContext } from '../../../../context/LoginContext';
+import TransferUpdTable from '../TransferUpdTable/TransferUpdTable';
 
-const TransferTable = ({ transfers, handleConfirm, handleFileChange, handleUpdCloud }) => {
+const TransferTable = ({ transfers, handleConfirm, setTransfers, setLoading }) => {
 
     const { user } = useLoginContext();
     const [open, setOpen] = useState(false);
     const [whatOpen, setWhatOpen] = useState(null);
+    const [vewUpd, setVewUpd] = useState(null);
 
-    const closeModal = () => {
-        setOpen(false);
-        setWhatOpen(null);
-    };
-
-    const openModal = (id) => {
-        setWhatOpen(id);
-        setOpen(true);
-    };
+    const closeModal = () => { setOpen(false); setWhatOpen(null) };
+    const openModal = (id) => { setWhatOpen(id); setOpen(true) };
+    const handleVew = (id) => setVewUpd(vewUpd === id ? null : id)
 
     return (
         <div className='paymentsTable'>
@@ -32,7 +27,7 @@ const TransferTable = ({ transfers, handleConfirm, handleFileChange, handleUpdCl
                         <th>Orden</th>
                         <th>Comprobante</th>
                         <th>Fecha</th>
-                        {user.data.role !== 'user' && <th>Fecha</th>}
+                        {user.data.role !== 'user' && <th>Actualizar</th>}
                         <th>Confirm</th>
                     </tr>
                 </thead>
@@ -50,9 +45,9 @@ const TransferTable = ({ transfers, handleConfirm, handleFileChange, handleUpdCl
                                 <td>
                                     {user.data.role !== 'user' &&
                                         <>
-                                            <p>{trans.userData.name}</p>
-                                            <p>{trans.userData.email}</p>
-                                            <p>{trans.userData.phone}</p>
+                                            <p>{trans.userData?.name}</p>
+                                            <p>{trans.userData?.email}</p>
+                                            <p>{trans.userData?.phone}</p>
                                         </>
                                     }
                                     <p>{trans.userId}</p>
@@ -64,12 +59,9 @@ const TransferTable = ({ transfers, handleConfirm, handleFileChange, handleUpdCl
                                     <p>Horas hábiles pasadas:<TimePass startDate={trans.date} /></p>
                                 </td>
                                 {user.data.role !== 'user' &&
-                                    (!trans.imgUrl
-                                        ? <td>
-                                            <CloudFile onChange={handleFileChange} folderName='transfer/users' contClass='minimal' id={trans._id} />
-                                            <p onClick={handleUpdCloud} className='btnCard' style={{textAlign: 'center'}}>Subir</p>
-                                        </td>
-                                        : <td style={{ color: 'green' }}>Disponible</td>)
+                                    <td onClick={() => handleVew(trans._id)} className='paymentsTableUpdate'>
+                                        Ver Ventana
+                                    </td>
                                 }
                                 <td
                                     onClick={user.data.role !== 'user' && handleConfirm ? () => handleConfirm(trans._id) : undefined}
@@ -99,6 +91,19 @@ const TransferTable = ({ transfers, handleConfirm, handleFileChange, handleUpdCl
                                     )}
                                 </ModalCustom>
                             )}
+
+                            {vewUpd === trans._id &&
+                                <tr className='expandRow'>
+                                    <td colSpan='9'>
+                                        <TransferUpdTable
+                                            transfer={trans}
+                                            transfers={transfers}
+                                            setTransfers={setTransfers}
+                                            setLoading={setLoading}
+                                        />
+                                    </td>
+                                </tr>
+                            }
                         </Fragment>
                     ))}
                 </tbody>

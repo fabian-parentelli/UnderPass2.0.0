@@ -7,6 +7,7 @@ const getTransferApi = async (obj) => {
     if (obj.user) urlData += `user=${obj.user}&`;
     if (obj.page) urlData += `page=${obj.page}&`;
     if (obj.country) urlData += `country=${obj.country}&`;
+    if (obj.type) urlData += `type=${obj.type}&`;
 
     const token = localStorage.getItem('token');
     const response = await fetch(urlData, {

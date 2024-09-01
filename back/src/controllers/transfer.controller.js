@@ -13,9 +13,9 @@ const newTransfer = async (req, res) => {
 };
 
 const getTrasfer = async (req, res) => {
-    const { confirm, user, page, country } = req.query;
+    const { confirm, user, page, country, type } = req.query;
     try {
-        const result = await transferService.getTrasfer(confirm, user, page, country);
+        const result = await transferService.getTrasfer(confirm, user, page, country, type);
         if (result) return res.sendSuccess(result);
     } catch (error) {
         if (error instanceof TransferNotFound) return res.sendClientError(error.message);
@@ -23,4 +23,16 @@ const getTrasfer = async (req, res) => {
     };
 };
 
-export { newTransfer, getTrasfer };
+const updTransfer = async (req, res) => {
+    const imagesUrl = req.cloudinaryUrls;
+    const { id } = req.params;
+    try {
+        const result = await transferService.updTransfer(imagesUrl, { ...req.body }, id);
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof TransferNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
+export { newTransfer, getTrasfer, updTransfer };

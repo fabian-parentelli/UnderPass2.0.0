@@ -31,7 +31,7 @@ const WhatsAppTransfer = ({ order, setLoading, setMessage, setOpen, dataPass }) 
             setMessage({ status: 'error', mess: response.error });
             setOpen(true);
         };
-        setTimeout(() => { navigate('/profile') }, 2000); // Cambiar esto es solo por ahora la dirección....
+        setTimeout(() => { navigate('/profile/wallet') }, 2000);
     };
 
     return (

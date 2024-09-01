@@ -19,4 +19,21 @@ export default class TransferRepository {
         };
         return result;
     };
-}
+
+    getById = async (id) => {
+        const result = await transferManager.getById(id);
+        return result;
+    };
+
+    updTransfer = async (transfer) => {
+        const result = await transferManager.updTransfer(transfer);
+        const user = await userManager.getUserById(transfer.userId);
+        result.userData = {
+            name: user.name,
+            email: user.email,
+            phone: user.phone || null,
+        };
+        return result;
+    };
+
+};

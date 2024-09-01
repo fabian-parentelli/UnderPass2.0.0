@@ -27,7 +27,7 @@ const WriteTransfer = ({ order, setLoading, setMessage, setOpen, dataPass }) => 
             setMessage({ status: 'error', mess: response.error });
             setOpen(true);
         };
-        setTimeout(() => { navigate('/profile') }, 2000); // Corregir esto
+        setTimeout(() => { navigate('/profile/wallet') }, 2000);
     };
 
     return (

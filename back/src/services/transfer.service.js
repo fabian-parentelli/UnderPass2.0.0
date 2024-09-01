@@ -23,14 +23,34 @@ const newTransfer = async (imgUrl, data, { user }) => {
     return { status: 'success', result };
 };
 
-const getTrasfer = async (confirm, user, page, country) => {
+const getTrasfer = async (confirm, user, page, country, type) => {
     const query = {};
+    
+    console.log(confirm);
+    
     if (confirm !== undefined) query.confirm = confirm;
     if (user) query.userId = user;
     if (country) query.country = country;
-    const result = await transferRepository.getTrasfer(query, page);    
+    if (type) query.type = type;
+    const result = await transferRepository.getTrasfer(query, page);
     if (!result) throw new TransferNotFound('No se puede encontrar el comprobante');
     return { status: 'success', result };
 };
 
-export { newTransfer, getTrasfer };
+const updTransfer = async (imgUrl, data, id) => {
+    const tranfer = await transferRepository.getById(id);
+    if (!tranfer) throw new TransferNotFound('No se encuentra la transferencia');
+    if (imgUrl) tranfer.imgUrl = imgUrl[0];
+    if (data) {
+        if (data.country) {
+            tranfer.country = data.country;
+            delete data.country;
+        };
+        tranfer.data = data;
+    };
+    const result = await transferRepository.updTransfer(tranfer);
+    if (!result) throw new TransferNotFound('La actualización no se pudo realizar');
+    return { status: 'success', result };
+}
+
+export { newTransfer, getTrasfer, updTransfer };

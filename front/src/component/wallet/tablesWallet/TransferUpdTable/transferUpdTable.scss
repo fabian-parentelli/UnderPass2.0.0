@@ -1,0 +1,10 @@
+.transferUpdTable {
+    display: flex;
+    gap: 1rem;
+    
+    .transferUpdTableData {
+        display: flex;
+        flex-direction: column;
+        gap: .2rem;
+    }
+}

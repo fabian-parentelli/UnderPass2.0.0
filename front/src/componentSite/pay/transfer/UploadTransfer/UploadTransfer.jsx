@@ -30,7 +30,6 @@ const UploadTransfer = ({ order, setLoading }) => {
                 <div className='uploadTransferChek'>
                     <Checkboxes labels={['Subir ticket', 'WhatsApp', 'Completar datos']} setType={setType} />
                 </div>
-
                 {type && type === 'Subir ticket' && <CloudTransfer order={order} setLoading={setLoading} setMessage={setMessage} setOpen={setOpen} dataPass={dataPass} />}
                 {type && type === 'WhatsApp' && <WhatsAppTransfer order={order} setLoading={setLoading} setMessage={setMessage} setOpen={setOpen} dataPass={dataPass} />}
                 {type && type === 'Completar datos' && <WriteTransfer order={order} setLoading={setLoading} setMessage={setMessage} setOpen={setOpen} dataPass={dataPass} />}

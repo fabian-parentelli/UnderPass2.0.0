@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Pager from '../../../utils/Pager/Pager.jsx';
 import { getTransferApi } from '../../../../helpers/transfer/getTransfer.api.js';
-import TransferTable from '../../tablesWallet/TransferTable/PaymentsTable.jsx';
+import TransferTable from '../../tablesWallet/TransferTable/TransferTable.jsx';
 
 const TransferPayments = ({ wallet, setLoading }) => {
 
