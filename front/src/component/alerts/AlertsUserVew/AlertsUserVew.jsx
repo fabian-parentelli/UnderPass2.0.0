@@ -31,7 +31,7 @@ const AlertsUserVew = ({ userId }) => {
             <table>
                 <thead>
                     <tr>
-                        <th>imgagen</th>
+                        <th>imgágen</th>
                         <th>Mensaje</th>
                         <th>Nombre</th>
                         <th>Alerta</th>
@@ -41,11 +41,17 @@ const AlertsUserVew = ({ userId }) => {
                     {alerts && alerts.docs.map((alert) => (
                         <tr key={alert._id}>
                             <td>
-                                {alert.data.img && <BigImg img={alert.data?.img[0].imgUrl} />}
-                                {alert.data.imgUrl && <BigImg img={alert.data?.imgUrl[0]} border={false} />}
+                                {alert?.data?.img?.[0]?.imgUrl && <BigImg img={alert.data.img[0].imgUrl} />}
+                                {alert?.data?.imgUrl?.[0] && <BigImg img={alert.data.imgUrl[0]} border={false} />}
                             </td>
-                            <td>{typeAlert(alert.type)}</td>
-                            <td> {alert.data?.name} {alert.data?.title} </td>
+
+                            <td>{alert.type && typeAlert(alert.type)}</td>
+                            <td>
+                                {alert.data?.name ? alert.data.name : ''}
+                                {alert.data?.title && ` ${alert.data.title}`}
+                                {!alert.data?.title && !alert.data?.name && 'Información'}
+                            </td>
+
                             <td>{new Date(alert.date).toLocaleDateString()}</td>
                         </tr>
                     ))}
@@ -64,6 +70,8 @@ function typeAlert(types) {
         'publicityOff': () => { return 'Ha finalizado tu publicidad' },
         'publicityOn': () => { return 'Ha iniciado tu publicidad' },
         'sold_product': () => { return 'Has vendido un producto' },
+        'newAplication': () => { return 'Solicitud de publicidad' },
+        'weHaveSeenYourRequest': () => { return 'Estamos viendo tu solicitud' },
     };
-    return (alert[types])();
+    return alert[types] ? alert[types]() : '';
 };

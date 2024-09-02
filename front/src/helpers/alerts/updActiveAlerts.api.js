@@ -1,11 +1,10 @@
 const url = import.meta.env.VITE_API_URL;
 
-async function updActiveAlertsApi(alerts) {
+async function updActiveAlertsApi(id) {
 
     const token = localStorage.getItem('token');
-    const response = await fetch(`${url}/api/alerts`, {
+    const response = await fetch(`${url}/api/alerts/${id}`, {
         method: 'PUT',
-        body: JSON.stringify(alerts),
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',

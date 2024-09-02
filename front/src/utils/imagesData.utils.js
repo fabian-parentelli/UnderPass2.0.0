@@ -8,7 +8,6 @@ const imgages = {
     menTv: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1724617267/images/yynqq6ze8psjod5kjt2b.png',
     weAreLooking: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1725130129/images/nj3aygb2da45an9zwk5v.png',
     infoLogo: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1725140758/images/dwvpd16wf6ccg9upoy2e.png',
-     
 };
 
 const imagesHelp = {
@@ -42,4 +41,10 @@ const imagesHelp = {
     textAreaApplication: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1724966984/help/lwdczciji4cn99ojfxif.png',
 };
 
-export { imgages, imagesHelp };
+const alertImages = {
+    application_cards: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1725314428/images/tqrrecumjhvson6zp7jq.png',
+    application_banners: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1725314428/images/jjr6ulzinhgpc503wumi.png',
+
+};
+
+export { imgages, imagesHelp, alertImages };

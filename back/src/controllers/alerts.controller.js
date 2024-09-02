@@ -1,17 +1,6 @@
 import * as alertsServices from '../services/alerts.service.js';
 import { AllertsNotFound } from '../utils/custom-exceptions.utils.js';
 
-const getAll = async (req, res) => {
-    const { user } = req.user;
-    try {
-        const result = await alertsServices.getAll(user);
-        if (result) return res.sendSuccess(result);
-    } catch (error) {
-        if (error instanceof AllertsNotFound) return res.sendClientError(error.message);
-        res.sendServerError(error.message);
-    };
-};
-
 const amount = async (req, res) => {
     try {
         const result = await alertsServices.amount();
@@ -33,9 +22,21 @@ const getByUser = async (req, res) => {
     };
 };
 
-const updActive = async (req, res) => {
+const getAll = async (req, res) => {
+    const { user } = req.user;
     try {
-        const result = await alertsServices.updActive({ ...req.body });
+        const result = await alertsServices.getAll(user);
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof AllertsNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
+const updActive = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const result = await alertsServices.updActive(id);
         if (result) return res.sendSuccess(result);
     } catch (error) {
         if (error instanceof AllertsNotFound) return res.sendClientError(error.message);

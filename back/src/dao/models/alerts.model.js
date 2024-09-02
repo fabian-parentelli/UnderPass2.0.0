@@ -14,3 +14,6 @@ const alertSchema = new mongoose.Schema({
 alertSchema.plugin(mongoosePaginate);
 
 export const alertsModel = mongoose.model(alertCollection, alertSchema);
+
+// type: application_{cards} => Solicitud de publicidad.
+// type: sold_{product} => Vendiste un producto.

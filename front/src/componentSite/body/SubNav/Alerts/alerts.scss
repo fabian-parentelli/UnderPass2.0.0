@@ -1,14 +1,44 @@
 .alerts {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    margin-top: 6px;
 
-    .alertsLink {
-        color: #fff;
-        transition: .3s;
-        
-        &:hover {
-            color: gray;
+    .alertsFather {
+        position: relative;
+
+        &:hover .alertsChildren {
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+        }
+    }
+
+    .alertsChildren {
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+        position: absolute;
+        background-color: #afafaf;
+        top: 35px;
+        right: 0;
+        z-index: 3;
+        color: black;
+        transition: .3s ease-in-out;
+        width: 250px;
+
+        .alertsChildrenDiv {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px;
+            transition: .3s ease-in-out;
+            cursor: pointer;
+            text-decoration: none;
+            color: black;
+
+            img {
+                width: 30px;
+            }
+
+            &:hover {
+                background-color: rgb(204, 204, 204);
+            }
         }
     }
 }

@@ -1,6 +1,6 @@
 import {
     userRepository, productRepository, alertsRepository,
-    publicityRepository
+    publicityRepository, appliRepository
 } from "../repositories/index.repositories.js";
 import { AllertsNotFound } from '../utils/custom-exceptions.utils.js';
 
@@ -14,14 +14,8 @@ const getAll = async (user) => {
     const result = {};
     const alerts = await alertsRepository.getAlerts({ userId: user._id, active: true });
     if (!alerts) return { status: 'success', result: '' };
-    const alertTypes = new Set();
-    alerts.forEach(alert => alertTypes.add(alert.type));
-    alertTypes.forEach((type) => {
-        result[type] = {
-            count: alerts.filter(alert => alert.type === type).length,
-            data: alerts.filter(alert => alert.type === type)
-        };
-    });
+    result.count = alerts.length;
+    result.alerts = alerts;
     return { status: 'success', result };
 };
 
@@ -37,7 +31,7 @@ const amount = async () => {
         products: await productRepository.productAmount('UY') || 0,
         publicity: await publicityRepository.getAmountInPortal({ country: 'UY', active: true }) || 0
 
-    };    
+    };
     return { status: 'success', result };
 };
 
@@ -47,16 +41,12 @@ const getByUser = async (limit, page, user) => {
     return { status: 'success', result };
 };
 
-const updActive = async (ids) => {
-    const results = await Promise.all(
-        Object.keys(ids).map(async (key) => {
-            const alert = await alertsRepository.getById(ids[key]);
-            if (!alert) throw new AllertsNotFound(`no se encuentra la alerta ${ids[key]}`);
-            alert.active = false;
-            return await alertsRepository.update(alert);
-        })
-    );
-    return { status: 'success', results };
+const updActive = async (id) => {
+    const alert = await alertsRepository.getById(id);
+    if (!alert) throw new AllertsNotFound(`no se encuentra la alerta`);
+    alert.active = false;
+    const result = await alertsRepository.update(alert);
+    return { status: 'success', result };
 };
 
 const updateOneActive = async (id) => {
@@ -64,6 +54,13 @@ const updateOneActive = async (id) => {
     if (alert) {
         alert.active = false;
         await alertsRepository.update(alert);
+        const event = await appliRepository.getAppById(alert.eventId);
+        const userAlert = {
+            eventId: alert.eventId,
+            userId: event.userId,
+            type: 'weHaveSeenYourRequest',
+        };
+        await alertsRepository.newAlert(userAlert);
     };
 };
 

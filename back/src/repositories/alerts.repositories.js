@@ -14,6 +14,9 @@ export default class AlertsRepository {
             if (alert.type === 'publicityOn') alert.data = await publicityManager.getById(alert.eventId);
             if (alert.type === 'newAplication') alert.data = await appliManager.getAppById(alert.eventId);
             if (alert.type === 'sold_product') alert.data = await productManager.getProdById(alert.eventId);
+            
+            if (alert.type === 'application_cards') alert.data = await appliManager.getAppById(alert.eventId);
+            if (alert.type === 'application_banners') alert.data = await appliManager.getAppById(alert.eventId);
             //
             // Seguir agregando distintos tipos de tipos de avisos...
             //
@@ -29,6 +32,9 @@ export default class AlertsRepository {
             if (alert.type === 'publicityOn') alert.data = await publicityManager.getById(alert.eventId);
             if (alert.type === 'newAplication') alert.data = await publicityManager.getById(alert.eventId);
             if (alert.type === 'sold_product') alert.data = await productManager.getProdById(alert.eventId);
+
+            if (alert.type === 'application_cards') alert.data = await appliManager.getAppById(alert.eventId);
+            if (alert.type === 'application_banners') alert.data = await appliManager.getAppById(alert.eventId);
             //
             // Seguir agregando distintos tipos de tipos de avisos...
             //

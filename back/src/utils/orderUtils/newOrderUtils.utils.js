@@ -16,8 +16,12 @@ const updateStock = async (order) => {
     const products = order.filter(prod => prod.is === 'product');
     for (const prod of products) {
         const product = await productRepository.getProdById(prod.typeId);
-        product.quantity -= prod.quantity;
-        await productRepository.update(product);
+        if(product.quantity >= prod.quantity) {
+            product.quantity -= prod.quantity;
+            await productRepository.update(product);
+        } else {
+            // Calcular a aver que pasa si hay menos yo que se...
+        }
     };
 };
 
@@ -28,11 +32,10 @@ const newOrders = async (order, userId) => {
     return result;
 };
 
-const orederSllerResult = [];
+const orderSellerResult = [];
 
 const orderSeller = async (order, userId, orderId) => {
     const orders = [];
-
     for (const ord of order.cart) {
         if (ord.is === 'product') {
             const product = await productRepository.getProdById(ord.typeId);
@@ -55,12 +58,22 @@ const orderSeller = async (order, userId, orderId) => {
     for (const ord of orders) {
         const result = await orderSellerRepository.newOrder(ord);
         if (!result) throw new OrderNotFound('No se puede crear la orden vendedora');
-        orederSllerResult.push(result);
+        orderSellerResult.push(result);
     };
 };
 
-const alertsSend = async () => {
-    for (const ord of orederSllerResult) {
+const alertsSend = async (order) => {
+    for(const ord of order) {
+        if(ord.is !== 'product' && ord.is !== 'evenet' && ord.is !== 'shift') {
+            const alert ={
+                eventId: ord.typeId,
+                userId: '668d9529cf8bde76a0dc3adb',
+                type: `application_${ord.is}`,
+            };
+            await alertsRepository.newAlert(alert);    
+        };
+    };
+    for (const ord of orderSellerResult) {
         ord.cart.map(async (prod) => {
             const alert = {
                 eventId: prod.typeId,

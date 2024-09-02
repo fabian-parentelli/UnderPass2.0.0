@@ -5,12 +5,12 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import UserComplete from '../UserComplete/UserComplete';
 import { useCartContext } from '../../../../../context/CartContext';
-import { newOrdersApi } from '../../../../../helpers/orders/newOrder.api';
+import { newOrdersApi } from '../../../../../helpers/orders/newOrder.api.js';
 import UnderMoney from '../../../../../component/pay/UnderMoney/UnderMoney';
 
 const IsUserCart = ({ user, setLoading }) => {
 
-    const { cart, totalCart } = useCartContext();
+    const { cart, totalCart, emptyCart } = useCartContext();
     const [values, setValues] = useState({ user: {}, cart: null, typePay: '' });
     const [type, setType] = useState(null);
     const [isUnderPay, setIsUnderPay] = useState(null);
@@ -31,30 +31,9 @@ const IsUserCart = ({ user, setLoading }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
-        // const response = await newOrdersApi(values);
-        const response = {      // Objeto quemado para hacer Puebasssssssssssss
-            "status": "success",
-            "result": {
-                "active": true,
-                "cart": [
-                    {},
-                    {},
-                    {},
-                    {}
-                ],
-                "date": "2024-08-28T18:11:24.111Z",
-                "pay": {
-                    "isPay": false,
-                    "typePay": "Transferencia"
-                },
-                "total": 31621,
-                "userId": "6696b1b4a18c066e4ebfbc0c",
-                "__v": 0,
-                "_id": "66cf684c7576312f1a4b7990",
-                "mercadopago": "https://google.com"
-            }
-        }
+        const response = await newOrdersApi(values);
         if (response.status === 'success') {
+            // emptyCart();
             if (response.result.pay.typePay === 'UnderPay') navigate(`/underpay/cart/${response.result._id}`);
             if (response.result.pay.typePay === 'Transferencia') navigate(`/transfer/${response.result._id}`);
             if (response.result.pay.typePay === 'Mercado Pago') window.open(response.result.mercadopago, '_blank');
@@ -78,7 +57,6 @@ const IsUserCart = ({ user, setLoading }) => {
             </div>
             {type && <p>{typeMessage(type)}</p>}
             <button className='btn btnD' disabled={!type || (type === 'UnderPay' && totalCart() > isUnderPay)}>Comprar</button>
-
         </form>
     );
 };

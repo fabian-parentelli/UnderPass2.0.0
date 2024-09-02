@@ -16,7 +16,7 @@ const newOrder = async (order, { user }) => {
     // Si el order.typePay es Mercado pago hacer el llamado acá para devolver linck en esta respuesta.......
 
     await newOrderUtils.orderSeller(order, user._id, result._id);
-    await newOrderUtils.alertsSend();
+    await newOrderUtils.alertsSend(order.cart);
     return { status: 'success', result };
 };
 

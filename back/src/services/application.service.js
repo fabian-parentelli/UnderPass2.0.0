@@ -6,7 +6,6 @@ const newApplication = async (application, imgUrl) => {
     application.img = imgUrl;
     const result = await appliRepository.newApplication(application);
     if (!result) throw new AppliNotFound('No se puede guardar la solicitud');
-    if (result.userId) await newAlert({ eventId: result._id, userId: '668d9529cf8bde76a0dc3adb', type: 'newAplication' });
     return { status: 'success', result };
 };
 
