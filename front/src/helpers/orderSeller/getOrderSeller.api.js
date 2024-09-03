@@ -9,6 +9,7 @@ async function getOrderSellerApi(obj) {
     if (obj.active) urlData += `active=${obj.active}&`;
     if (obj.payIn) urlData += `payIn=${obj.payIn}&`;
     if (obj.payOut) urlData += `payOut=${obj.payOut}&`;
+    if (obj.id) urlData += `id=${obj.id}&`;
 
     const token = localStorage.getItem('token');
     const response = await fetch(urlData, {

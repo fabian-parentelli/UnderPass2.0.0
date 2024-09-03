@@ -20,6 +20,8 @@ import VewTheProduct from "../componentSite/product/VewTheProduct/VewTheProduct.
 import BodyCart from "../componentSite/cart/BodyCart/BodyCart.jsx";
 import UnderPay from "../componentSite/pay/UnderPay/UnderPay.jsx";
 import TransferPay from "../componentSite/pay/transfer/TransferPay/TransferPay.jsx";
+import SellerOrders from "../componentSite/alerts/SellerOrders/SellerOrders.jsx";
+import TransferVewAlert from "../componentSite/alerts/TransferVewAlert/TransferVewAlert.jsx";
 
 const RoutesComp = () => {
 
@@ -48,6 +50,8 @@ const RoutesComp = () => {
                             <Route path="/profile/*" element={<Profile />} />
                             <Route path="/underpay/:type/:id" element={<UnderPay />} />
                             <Route path="/transfer/:id" element={<TransferPay />} />
+                            <Route path="/order/:id" element={<SellerOrders />} />
+                            <Route path="/transfer_vew_alert/:id" element={<TransferVewAlert />} />
                         </>
                     }
 

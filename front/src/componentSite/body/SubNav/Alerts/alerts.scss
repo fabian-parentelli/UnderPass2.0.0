@@ -20,7 +20,7 @@
         z-index: 3;
         color: black;
         transition: .3s ease-in-out;
-        width: 250px;
+        min-width: 250px;
 
         .alertsChildrenDiv {
             display: flex;

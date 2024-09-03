@@ -66,3 +66,16 @@
         }
     }
 }
+
+.dataUserSeller {
+    font-size: 10px;
+}
+
+.sellerTableCallToUser {
+    color: $colorB;
+    text-decoration: none;
+    
+    &:hover {
+        color: $colorF;
+    }
+}

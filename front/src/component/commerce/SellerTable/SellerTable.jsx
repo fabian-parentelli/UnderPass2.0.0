@@ -3,6 +3,7 @@ import { Fragment, useState } from 'react';
 import BigImg from '../../utils/BigImg/BigImg.jsx';
 import typeCart from '../../../utils/typeCart.utils.js';
 import { useLoginContext } from '../../../context/LoginContext.jsx';
+import { Link } from 'react-router-dom';
 
 const SellerTable = ({ values }) => {
 
@@ -20,6 +21,7 @@ const SellerTable = ({ values }) => {
                         {user.data.role !== 'user' && <th>Cliente</th>}
                         <th>Pagado</th>
                         {user.data.role !== 'user' && <th>Proveedor</th>}
+                        <th>Acreditado</th>
                         <th>Cobrado</th>
                         <th>Orden</th>
                         <th>Total</th>
@@ -35,9 +37,9 @@ const SellerTable = ({ values }) => {
 
                                 {user.data.role !== 'user' &&
                                     <td>
-                                        <p>{ord.buyerUserData.name}</p>
-                                        <p>{ord.buyerUserData._id}</p>
-                                        <p>{ord.buyerUserData.email}</p>
+                                        <p className='dataUserSeller'>{ord.buyerUserData.name}</p>
+                                        <p className='dataUserSeller'>{ord.buyerUserData._id}</p>
+                                        <p className='dataUserSeller'>{ord.buyerUserData.email}</p>
                                     </td>
                                 }
 
@@ -48,9 +50,9 @@ const SellerTable = ({ values }) => {
 
                                 {user.data.role !== 'user' &&
                                     <td>
-                                        <p>{ord.sellerUserData.name}</p>
-                                        <p>{ord.sellerUserData._id}</p>
-                                        <p>{ord.sellerUserData.email}</p>
+                                        <p className='dataUserSeller'>{ord.sellerUserData.name}</p>
+                                        <p className='dataUserSeller'>{ord.sellerUserData._id}</p>
+                                        <p className='dataUserSeller'>{ord.sellerUserData.email}</p>
                                     </td>
                                 }
 
@@ -58,13 +60,19 @@ const SellerTable = ({ values }) => {
                                     <p>{ord.pay.payOut.isPayOut ? 'SI' : 'NO'}</p>
                                     {ord.pay.payOut.datePayOut && <p>{new Date(ord.pay.payIn.datePayOut).toLocaleDateString()}</p>}
                                 </td>
+
+                                <td style={{ color: ord.pay.payCredited.isPayCredited ? 'green' : 'red' }}>
+                                    <p>{ord.pay.payCredited.isPayCredited ? 'SI' : 'NO'}</p>
+                                    {ord.pay.payCredited.datePayCredited && <p>{new Date(ord.pay.payCredited.datePayCredited).toLocaleDateString()}</p>}
+                                </td>
+
                                 <td>{ord._id}</td>
                                 <td>${ord.total}</td>
                                 <td style={{ color: ord.active ? 'green' : 'red' }}>{ord.active ? 'SI' : 'NO'}</td>
                             </tr>
                             {vew === ord._id &&
                                 <tr className="scale-up-animation">
-                                    <td colSpan='6'>
+                                    <td colSpan='7'>
                                         <table>
                                             <thead>
                                                 <tr className='nonTr'>
@@ -87,13 +95,20 @@ const SellerTable = ({ values }) => {
                                                         </td>
                                                         <td>{item.data?.name} {item.data?.title}</td>
                                                         <td>{typeCart(item.is)}</td>
-                                                        <td>${item.price}</td>
+                                                        <td>${item.data.price}</td>
                                                         <td>{item.quantity}</td>
-                                                        <td>${item.quantity * item.price}</td>
+                                                        <td>${item.quantity * item.data.price}</td>
                                                     </tr>
                                                 ))}
                                             </tbody>
                                         </table>
+                                    </td>
+                                </tr>
+                            }
+                            {ord.pay.payIn.isPayIn && user.data.role === 'user' &&
+                                <tr>
+                                    <td colSpan={'7'}>
+                                        <Link className='sellerTableCallToUser'>Comunicarte con el cliente</Link>
                                     </td>
                                 </tr>
                             }

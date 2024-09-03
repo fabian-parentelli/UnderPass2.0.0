@@ -44,6 +44,7 @@ const imagesHelp = {
 const alertImages = {
     application_cards: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1725314428/images/tqrrecumjhvson6zp7jq.png',
     application_banners: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1725314428/images/jjr6ulzinhgpc503wumi.png',
+    transfer_in: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1725395128/images/fzxdxsbldnniekmycfgw.png',
 
 };
 

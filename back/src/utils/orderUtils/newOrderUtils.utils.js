@@ -42,14 +42,14 @@ const orderSeller = async (order, userId, orderId) => {
             const prod = orders.findIndex((prod) => prod.sellerUserId == product.userId);
             if (prod !== -1) {
                 orders[prod].cart.push(ord);
-                orders[prod].total += ord.price * ord.quantity;
+                orders[prod].total += product.price * ord.quantity;
             } else {
                 const obj = {
                     orderId: orderId,
                     buyerUserId: userId,
                     sellerUserId: product.userId,
                     cart: [ord],
-                    total: ord.price * ord.quantity
+                    total: product.price * ord.quantity
                 };
                 orders.push(obj);
             };
@@ -69,7 +69,7 @@ const alertsSend = async (order) => {
                 eventId: ord.typeId,
                 userId: '668d9529cf8bde76a0dc3adb',
                 type: `application_${ord.is}`,
-            };
+            };            
             await alertsRepository.newAlert(alert);    
         };
     };
@@ -78,7 +78,8 @@ const alertsSend = async (order) => {
             const alert = {
                 eventId: prod.typeId,
                 userId: ord.sellerUserId,
-                type: `sold_${prod.is}`
+                type: `sold_${prod.is}`,
+                orderSellerId: ord._id
             };
             await alertsRepository.newAlert(alert);
         });

@@ -33,7 +33,7 @@ const IsUserCart = ({ user, setLoading }) => {
         setLoading(true);
         const response = await newOrdersApi(values);
         if (response.status === 'success') {
-            // emptyCart();
+            emptyCart();
             if (response.result.pay.typePay === 'UnderPay') navigate(`/underpay/cart/${response.result._id}`);
             if (response.result.pay.typePay === 'Transferencia') navigate(`/transfer/${response.result._id}`);
             if (response.result.pay.typePay === 'Mercado Pago') window.open(response.result.mercadopago, '_blank');

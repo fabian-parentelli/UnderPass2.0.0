@@ -1,17 +1,12 @@
 import './alerts.scss';
 import { Link } from 'react-router-dom';
 import { Fragment, useEffect, useState } from 'react';
-import BadgeIcon from '@mui/icons-material/Badge';
-import LiveTvIcon from '@mui/icons-material/LiveTv';
-import FiberNewIcon from '@mui/icons-material/FiberNew';
 import Load from '../../../../component/utils/Load.jsx';
-import StorefrontIcon from '@mui/icons-material/Storefront';
 import BadgeComp from '../../../../component/utils/BadgeComp/BadgeComp';
 import EndPublicity from '../../../alerts/EndPublicity/EndPublicity.jsx';
 import StartPublicity from '../../../alerts/StartPublicity/StartPublicity.jsx';
 import { getAllAlertsApi } from '../../../../helpers/alerts/getAllAlerts.api.js';
 import { updActiveAlertsApi } from '../../../../helpers/alerts/updActiveAlerts.api.js';
-import CottageIcon from '@mui/icons-material/Cottage';
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import { alertImages } from '../../../../utils/imagesData.utils.js';
 
@@ -42,6 +37,9 @@ const Alerts = ({ user }) => {
 
     const handleOff = async (id) => await updActiveAlertsApi(id);
 
+    console.log(alerts);
+
+
     return (
         <div className='alerts'>
 
@@ -57,12 +55,35 @@ const Alerts = ({ user }) => {
                     <div className='alertsChildren'>
                         {alerts.alerts && alerts.alerts.map((ale, index) => (
                             <Fragment key={index}>
+
                                 {(ale.type === 'application_cards' || ale.type === 'application_banners') &&
                                     <Link to={getTypeToLink(ale.type)} className='alertsChildrenDiv' onClick={() => handleOff(ale._id)}>
                                         <img src={alertImages[ale.type]} lt="img" />
                                         <p>{getType(ale.type)}</p>
                                     </Link>
                                 }
+
+                                {(ale.type === 'sold_product') &&
+                                    <Link to={`/order/${ale.orderSellerId}`} className='alertsChildrenDiv' onClick={() => handleOff(ale._id)}>
+                                        <img src={ale.data.img[0].imgUrl} lt="img" />
+                                        <p>{getType(ale.type)}</p>
+                                    </Link>
+                                }
+
+                                {(ale.type === 'transfer_in') &&
+                                    <Link to={`/transfer_vew_alert/${ale.eventId}`} className='alertsChildrenDiv' onClick={() => handleOff(ale._id)}>
+                                        <img src={alertImages[ale.type]} lt="img" />
+                                        <p>{getType(ale.type)}</p>
+                                    </Link>
+                                }
+                                
+                                {(ale.type === 'transfer_confirm') &&
+                                    <Link to={`/transfer_vew_alert/${ale.eventId}`} className='alertsChildrenDiv' >
+                                        <img src={alertImages.transfer_in} lt="img" />
+                                        <p>{getType(ale.type)}</p>
+                                    </Link>
+                                }
+
                             </Fragment>
                         ))}
                     </div>
@@ -154,6 +175,9 @@ function getType(types) {
     const data = {
         'application_cards': () => { return 'Solicitud de Cards' },
         'application_banners': () => { return 'Solicitud de Banners' },
+        'sold_product': () => { return 'Vendiste un producto' },
+        'transfer_in': () => { return 'Recibiste una transferencia' },
+        'transfer_confirm': () => { return 'Transferencia confirmada' },
         'default': () => { return 'otro' },
     };
 
@@ -164,7 +188,8 @@ function getTypeToLink(types) {
     const data = {
         'application_cards': () => { return '/dashboard/vewapplicattion' },
         'application_banners': () => { return '/dashboard/vewapplicattion' },
-        'default': () => { return 'otro' },
+
+        'default': () => { return '/' },
     };
 
     return (data[types] || data['default'])();

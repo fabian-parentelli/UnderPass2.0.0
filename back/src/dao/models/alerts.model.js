@@ -8,7 +8,8 @@ const alertSchema = new mongoose.Schema({
     userId: { type: String },
     type: { type: String },
     active: { type: Boolean, default: true },
-    date: { type: Date, default: Date.now }
+    date: { type: Date, default: Date.now },
+    orderSellerId: { type: String },
 });
 
 alertSchema.plugin(mongoosePaginate);

@@ -65,9 +65,9 @@ const TransferTable = ({ transfers, handleConfirm, setTransfers, setLoading }) =
                                 }
                                 <td
                                     onClick={user.data.role !== 'user' && handleConfirm ? () => handleConfirm(trans._id) : undefined}
-                                    style={{ color: trans.confim ? 'green' : 'red', cursor: user.data.role !== 'user' && 'pointer' }}
+                                    style={{ color: trans.confirm ? 'green' : 'red', cursor: user.data.role !== 'user' && 'pointer' }}
                                 >
-                                    {trans.confim ? 'SI' : 'NO'}
+                                    {trans.confirm ? 'SI' : 'NO'}
                                 </td>
                             </tr>
 

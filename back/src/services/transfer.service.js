@@ -1,5 +1,6 @@
-import { transferRepository } from "../repositories/index.repositories.js";
+import { transferRepository, alertsRepository } from "../repositories/index.repositories.js";
 import { TransferNotFound } from '../utils/custom-exceptions.utils.js';
+import * as payTransfer from '../utils/transferUtils/paytransfer.utils.js';
 
 const newTransfer = async (imgUrl, data, { user }) => {
     if (imgUrl) data.imgUrl = imgUrl[0];
@@ -20,20 +21,39 @@ const newTransfer = async (imgUrl, data, { user }) => {
     data.country = user.location.country;
     const result = await transferRepository.newTransfer(data);
     if (!result) throw new TransferNotFound('No se puede guardar el comprobante');
+    const alert = {
+        eventId: result._id,
+        userId: '668d9529cf8bde76a0dc3adb',
+        type: 'transfer_in'
+    };
+    await alertsRepository.newAlert(alert);
     return { status: 'success', result };
 };
 
-const getTrasfer = async (confirm, user, page, country, type) => {
+const getTrasfer = async (confirm, user, page, country, type, id) => {
     const query = {};
-    
-    console.log(confirm);
-    
     if (confirm !== undefined) query.confirm = confirm;
     if (user) query.userId = user;
     if (country) query.country = country;
     if (type) query.type = type;
+    if (id) query._id = id;
     const result = await transferRepository.getTrasfer(query, page);
     if (!result) throw new TransferNotFound('No se puede encontrar el comprobante');
+    return { status: 'success', result };
+};
+
+const confirm = async (id) => {
+    const tranfer = await transferRepository.getById(id);
+    tranfer.confirm = true;
+    const result = await transferRepository.updTransfer(tranfer);
+    if (!result) throw new TransferNotFound('No se puede confirmar la transferencia');
+
+    // await payTransfer.updOrderBuyer(tranfer);  
+
+    // Actualizar orden del vendedor.
+    // Genero un ticket y paso el dinero a la cuenta del vendedor 
+    // me fijo si quiere la plata al momento o si quiere que se la gire al momento 
+
     return { status: 'success', result };
 };
 
@@ -51,6 +71,6 @@ const updTransfer = async (imgUrl, data, id) => {
     const result = await transferRepository.updTransfer(tranfer);
     if (!result) throw new TransferNotFound('La actualización no se pudo realizar');
     return { status: 'success', result };
-}
+};
 
-export { newTransfer, getTrasfer, updTransfer };
+export { newTransfer, getTrasfer, confirm, updTransfer };

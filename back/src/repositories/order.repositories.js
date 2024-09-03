@@ -7,17 +7,22 @@ export default class OrderRepository {
         const result = await orderManager.newOrders(order);
         return result;
     };
-    
+
     getOrderById = async (id) => {
         const result = await orderManager.getOrderById(id);
         return result;
     };
 
     getOrders = async (query, limit, page, user) => {
-        const result = await orderManager.getOrders(query, limit, page);   
+        const result = await orderManager.getOrders(query, limit, page);
         const orders = await getOrdersUtil.getCart(result.docs, user);
         result.docs = orders;
         return result;
     };
 
+    update = async (order) => {
+        const result = await orderManager.update(order);
+        return result;
+    };
+    
 };
