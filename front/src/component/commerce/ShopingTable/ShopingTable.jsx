@@ -5,12 +5,16 @@ import BigImg from '../../utils/BigImg/BigImg.jsx';
 import typeCart from '../../../utils/typeCart.utils.js';
 import { imgages } from '../../../utils/imagesData.utils.js';
 import { useLoginContext } from '../../../context/LoginContext.jsx';
+import { useNavigate } from 'react-router-dom';
 
 const ShopingTable = ({ orders }) => {
 
     const { user } = useLoginContext();
     const [vew, setVew] = useState(null);
     const handleInfo = (id) => setVew(vew === id ? null : id);
+    const navigate = useNavigate();
+
+    const handleTicket = (id) => navigate(`/ticket_by_order/${id}`);
 
     return (
         <div className='shopingTable'>
@@ -38,13 +42,21 @@ const ShopingTable = ({ orders }) => {
                                 </td>
                                 <td>{new Date(ord.date).toLocaleDateString()}</td>
                                 <td>{ord._id}</td>
-                                <td>
+
+                                <td
+                                    className={ord.pay.isPay ? 'shopingTableActive' : ''}
+                                    onClick={ord.pay.isPay ? () => handleTicket(ord._id) : undefined}
+                                >
                                     <p style={{ color: ord.pay.isPay ? 'green' : 'red' }} >{ord.pay.isPay ? 'SI' : 'NO'}</p>
                                     {ord.pay.datePay && <p>{new Date(ord.pay.datePay).toLocaleDateString()}</p>}
                                     <p>{ord.pay?.typePay}</p>
                                 </td>
+
+
                                 <td>${ord.total}</td>
+
                                 <td style={{ color: ord.active ? 'green' : 'red' }} >{ord.active ? 'SI' : 'NO'}</td>
+
                                 {user.data.role !== 'user' &&
                                     <td>
                                         <p>{ord.userData.name} <Copy values={ord.userData.name} /></p>

@@ -8,6 +8,7 @@ const imgages = {
     menTv: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1724617267/images/yynqq6ze8psjod5kjt2b.png',
     weAreLooking: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1725130129/images/nj3aygb2da45an9zwk5v.png',
     infoLogo: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1725140758/images/dwvpd16wf6ccg9upoy2e.png',
+    logo: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1720368314/images/wdai77ft9i6ydwoqr1sz.png'
 };
 
 const imagesHelp = {

@@ -11,4 +11,26 @@ const newUnderPayTicket = async (req, res) => {
     };
 };
 
-export { newUnderPayTicket };
+const getTicketByOrder = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const result = await ticketService.getTicketByOrder(id);
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof TicketNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
+const getTicketById = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const result = await ticketService.getTicketById(id);
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof TicketNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
+export { newUnderPayTicket, getTicketByOrder, getTicketById };

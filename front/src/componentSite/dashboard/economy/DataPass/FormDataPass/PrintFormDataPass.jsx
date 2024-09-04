@@ -8,6 +8,7 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import ApartmentIcon from '@mui/icons-material/Apartment';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import flagsIcon from '../../../../../utils/flagsIcon.utils.js';
+import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 
 const PrintFormDataPass = ({ country, values, setValues }) => {
@@ -58,7 +59,7 @@ const PrintFormDataPass = ({ country, values, setValues }) => {
 
             <div className='line'></div>
 
-            <h4>Teléfono</h4>
+            <h4>Contacto</h4>
 
             <div className='printFormDataPassInputsDiv'>
                 <div className='printFormDataPassInputsDivIn'>
@@ -66,6 +67,14 @@ const PrintFormDataPass = ({ country, values, setValues }) => {
                     <label>Teléfono</label>
                 </div>
                 <input type="phone" name='phone' onChange={handleChange} value={values.phone} />
+            </div>
+            
+            <div className='printFormDataPassInputsDiv'>
+                <div className='printFormDataPassInputsDivIn'>
+                    <AlternateEmailIcon style={{ color: '#0072C6', fontSize: '23px' }} />
+                    <label>Email</label>
+                </div>
+                <input type="text" name='email' onChange={handleChange} value={values.email} />
             </div>
 
             <div className='line'></div>

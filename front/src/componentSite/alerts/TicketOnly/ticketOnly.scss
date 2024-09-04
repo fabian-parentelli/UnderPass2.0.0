@@ -1,0 +1,42 @@
+@import '../../../style/colors.scss';
+
+.ticketOnly {
+    width: 300px;
+    background-color: rgb(218, 214, 214);
+    padding: 1rem;
+    border-radius: 6px;
+    margin-bottom: 2rem;
+
+    h2 {
+        text-align: center;
+        margin-bottom: 12px;
+    }
+
+    .ticketOnlyData {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+
+        .ticketOnlyDataPsmall {
+            font-size: 12px;
+
+            strong {
+                font-size: 16px;
+                color: $colorB;
+            }
+        }
+
+        strong {
+            color: $colorB;
+        }
+
+        .ticketOnlyDataInf {
+            font-size: 10px;
+            margin-top: 1rem;
+        }
+    }
+
+    h4 {
+        margin: 1rem 0;
+    }
+}

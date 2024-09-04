@@ -13,7 +13,7 @@ const FormDataPass = ({ country, setLoading }) => {
     const [values, setValues] = useState({
         bankingAlias: '', accountHolder: '', bank: '',
         perfomance: '', phone: '', instagrame: '',
-        facebook: '', youtube: '', twitter: '', country: country
+        facebook: '', youtube: '', twitter: '', country: country, email: ''
     });
 
     const handleSubmit = async (e) => {

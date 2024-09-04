@@ -1,3 +1,4 @@
+import LastCash from '../../../../../component/cash/LastCash/LastCash';
 import TransferDas from '../body/transfers/TransferDas/TransferDas';
 import './bodyCashDas.scss';
 import { useState } from 'react';
@@ -9,7 +10,7 @@ const BodyCashDas = ({ country, setLoading }) => {
     return (
         <div className='bodyCashDas'>
 
-            <p>Aqui iría la caja y el tesoro</p>
+            <LastCash />
 
             <div className='bodyCashDasSelect'>
                 <label>Acciones</label>
@@ -22,6 +23,7 @@ const BodyCashDas = ({ country, setLoading }) => {
                     }
                 </select>
             </div>
+            
             {!country && <p>Elige un país</p>}
             {type === 'transfer' && <TransferDas country={country} setLoading={setLoading} />}
         </div>

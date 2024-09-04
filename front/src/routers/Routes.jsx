@@ -22,6 +22,7 @@ import UnderPay from "../componentSite/pay/UnderPay/UnderPay.jsx";
 import TransferPay from "../componentSite/pay/transfer/TransferPay/TransferPay.jsx";
 import SellerOrders from "../componentSite/alerts/SellerOrders/SellerOrders.jsx";
 import TransferVewAlert from "../componentSite/alerts/TransferVewAlert/TransferVewAlert.jsx";
+import TicketUnique from "../component/pay/TicketUnique/TicketUnique.jsx";
 
 const RoutesComp = () => {
 
@@ -52,6 +53,7 @@ const RoutesComp = () => {
                             <Route path="/transfer/:id" element={<TransferPay />} />
                             <Route path="/order/:id" element={<SellerOrders />} />
                             <Route path="/transfer_vew_alert/:id" element={<TransferVewAlert />} />
+                            <Route path="ticket_by_order/:id" element={<TicketUnique />} />
                         </>
                     }
 

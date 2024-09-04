@@ -24,6 +24,7 @@ import AllOrders from '../orders/AllOrders/AllOrders';
 import WalletDas from '../economy/WalletDas/WalletDas';
 import DataPass from '../economy/DataPass/DataPass';
 import Cash from '../economy/Cash/Cash';
+import Configuration from '../configuration/Configuration/Configuration';
 
 const Dashboard = () => {
 
@@ -71,6 +72,11 @@ const Dashboard = () => {
                     title={'Ordenes'}
                     category={[{ name: 'Usuarios', path: 'userorders' }, { name: 'Todas las ordenes', path: 'alloreders' }]}
                 />
+                
+                <Fields
+                    title={'Configuraciones'}
+                    category={[{ name: 'Generales', path: 'configuration' }]}
+                />
             </div>
             <Routes>
                 <Route path='/' element={<Panel />} />
@@ -104,6 +110,8 @@ const Dashboard = () => {
 
                 <Route path='/userorders' element={<UserOrders />} />
                 <Route path='/alloreders' element={<AllOrders />} />
+
+                <Route path='/configuration' element={<Configuration />} />
             </Routes>
         </div>
     );

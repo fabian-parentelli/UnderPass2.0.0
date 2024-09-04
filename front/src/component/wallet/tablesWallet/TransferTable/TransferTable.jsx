@@ -1,5 +1,6 @@
 import './transferTable.scss';
 import { Fragment, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import TimePass from '../../../utils/TimePass';
 import { imgages } from '../../../../utils/imagesData.utils';
 import ModalCustom from '../../../utils/ModalCustom/ModalCustom';
@@ -12,10 +13,16 @@ const TransferTable = ({ transfers, handleConfirm, setTransfers, setLoading }) =
     const [open, setOpen] = useState(false);
     const [whatOpen, setWhatOpen] = useState(null);
     const [vewUpd, setVewUpd] = useState(null);
+    const navigate = useNavigate();
 
     const closeModal = () => { setOpen(false); setWhatOpen(null) };
     const openModal = (id) => { setWhatOpen(id); setOpen(true) };
     const handleVew = (id) => setVewUpd(vewUpd === id ? null : id)
+
+    const handleTicket = (id) => navigate(`/ticket_by_order/${id}`);
+
+    console.log(transfers);
+
 
     return (
         <div className='paymentsTable'>
@@ -53,7 +60,14 @@ const TransferTable = ({ transfers, handleConfirm, setTransfers, setLoading }) =
                                     <p>{trans.userId}</p>
                                 </td>
                                 <td>{trans.orderId}</td>
-                                <td>{trans.type}</td>
+
+                                <td
+                                    onClick={() => trans.confirm && handleTicket(trans.orderId)}
+                                    className={trans.confirm ? 'paymentsTableOrderConfirm' : ''}
+                                >
+                                    {trans.type}
+                                </td>
+
                                 <td>
                                     <p>{new Date(trans.date).toLocaleDateString()}</p>
                                     <p>Horas hábiles pasadas:<TimePass startDate={trans.date} /></p>
@@ -64,7 +78,8 @@ const TransferTable = ({ transfers, handleConfirm, setTransfers, setLoading }) =
                                     </td>
                                 }
                                 <td
-                                    onClick={user.data.role !== 'user' && handleConfirm ? () => handleConfirm(trans._id) : undefined}
+                                    className={trans.confirm ? 'paymentsTableOrderConfirm' : ''}
+                                    onClick={user.data.role !== 'user' && trans.confirm && handleConfirm ? () => handleConfirm(trans._id) : undefined}
                                     style={{ color: trans.confirm ? 'green' : 'red', cursor: user.data.role !== 'user' && 'pointer' }}
                                 >
                                     {trans.confirm ? 'SI' : 'NO'}

@@ -37,9 +37,6 @@ const Alerts = ({ user }) => {
 
     const handleOff = async (id) => await updActiveAlertsApi(id);
 
-    console.log(alerts);
-
-
     return (
         <div className='alerts'>
 
@@ -78,7 +75,7 @@ const Alerts = ({ user }) => {
                                 }
                                 
                                 {(ale.type === 'transfer_confirm') &&
-                                    <Link to={`/transfer_vew_alert/${ale.eventId}`} className='alertsChildrenDiv' >
+                                    <Link to={`/transfer_vew_alert/${ale.eventId}`} className='alertsChildrenDiv' onClick={() => handleOff(ale._id)}>
                                         <img src={alertImages.transfer_in} lt="img" />
                                         <p>{getType(ale.type)}</p>
                                     </Link>
@@ -188,7 +185,6 @@ function getTypeToLink(types) {
     const data = {
         'application_cards': () => { return '/dashboard/vewapplicattion' },
         'application_banners': () => { return '/dashboard/vewapplicattion' },
-
         'default': () => { return '/' },
     };
 

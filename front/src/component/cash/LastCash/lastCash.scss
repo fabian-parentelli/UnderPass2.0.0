@@ -1,0 +1,34 @@
+.lastCash {
+    width: 350px;
+    background-color: rgb(196, 196, 196);
+    padding: 1rem;
+    border-radius: 6px;
+
+    .lastCashLoad {
+        width: 300px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .lastCashCont {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+
+        .lastCashContL {
+            display: flex;
+            gap: .6rem;
+            flex-direction: column;
+            align-items: start;
+        }
+        
+        .lastCashContR {
+            display: flex;
+            gap: .6rem;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+    }
+}

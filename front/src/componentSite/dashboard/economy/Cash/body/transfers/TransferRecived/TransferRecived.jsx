@@ -29,7 +29,7 @@ const TransferRecived = ({ country, setLoading, values }) => {
     const HandleChangePage = (page) => setPage(page);
 
     const handleConfirm = async (id) => {
-        setLoading(true);
+        // setLoading(true);
         const response = await confirmTransferApi(id);
         if (response.status === 'success') {
             const tranfersCopy = { ...transfers };
@@ -37,7 +37,7 @@ const TransferRecived = ({ country, setLoading, values }) => {
             tranfersCopy.docs[index] = response.result;
             setTransfers(tranfersCopy);
         } else console.error(response.error);
-        setLoading(false);
+        // setLoading(false);
     };
 
     return (

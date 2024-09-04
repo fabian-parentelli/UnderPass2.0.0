@@ -1,0 +1,16 @@
+@import '../../../style/colors.scss';
+
+.spinner {
+    width: 36px;
+    height: 36px;
+
+    border: 5px solid rgb(204, 203, 203);
+    border-top-color: $colorA;
+    border-radius: 100%;
+
+    animation: spin 1s infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg) }
+}

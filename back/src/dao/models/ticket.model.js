@@ -9,7 +9,8 @@ const ticketSchema = new mongoose.Schema({
     to: { type: String },
     total: { type: Number },
     country: { type: String },
-    date: { type: Date, default: Date.now }
+    date: { type: Date, default: Date.now },
+    type: { type: String },
 });
 
 ticketSchema.plugin(mongoosePaginate);

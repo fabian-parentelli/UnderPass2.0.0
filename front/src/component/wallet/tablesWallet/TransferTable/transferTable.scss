@@ -52,3 +52,12 @@
     }
     
 }
+
+.paymentsTableOrderConfirm {
+    cursor: pointer;
+    transition: .3s ease-in-out;
+   
+    &:hover {
+        background-color: rgb(185, 185, 185);
+    }
+}

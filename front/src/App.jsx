@@ -1,5 +1,6 @@
 import CartProvider from "./context/CartContext";
 import LoginProvider from "./context/LoginContext";
+import UnderProvider from "./context/UnderContext";
 import RoutesComp from "./routers/Routes";
 
 function App() {
@@ -7,7 +8,9 @@ function App() {
   return (
     <LoginProvider>
       <CartProvider>
-        <RoutesComp />
+        <UnderProvider>
+          <RoutesComp />
+        </UnderProvider>
       </CartProvider>
     </LoginProvider>
   );

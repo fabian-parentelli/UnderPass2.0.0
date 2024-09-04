@@ -1,6 +1,6 @@
-// import { publicityRepository } from "../repositories/index.repositories.js";
+import { ticketRepository, userRepository } from "../repositories/index.repositories.js";
+import { TicketNotFound } from '../utils/custom-exceptions.utils.js';
 import * as postUnderPay from '../utils/tickets/postUnderPay.utils.js';
-// import { PublicityNotFound } from '../utils/custom-exceptions.utils.js';
 
 const newUnderPayTicket = async (ticket, { user }) => {
     const result = await postUnderPay.newTicket(ticket, user);
@@ -17,4 +17,16 @@ const newUnderPayTicket = async (ticket, { user }) => {
 
 };
 
-export { newUnderPayTicket };
+const getTicketByOrder = async (id) => {
+    const result = await ticketRepository.getByOrderId(id);
+    if (!result) throw new TicketNotFound('No se puede encontrar el ticket');
+    return { status: 'success', result };
+};
+
+const getTicketById = async (id) => {
+    const result = await ticketRepository.getById(id);
+    if (!result) throw new TicketNotFound('No se puede encontrar el ticket');
+    return { status: 'success', result };
+};
+
+export { newUnderPayTicket, getTicketByOrder, getTicketById };

@@ -13,6 +13,7 @@ const dataSchema = new mongoose.Schema({
     youtube: { type: String },
     twitter: { type: String },
     country: { type: String },
+    email: { type: String },
 });
 
 export const dataModel = mongoose.model(dataCollection, dataSchema);
