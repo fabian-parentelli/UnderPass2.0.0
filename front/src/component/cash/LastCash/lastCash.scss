@@ -1,3 +1,5 @@
+@import '../../../style/colors.scss';
+
 .lastCash {
     width: 350px;
     background-color: rgb(196, 196, 196);
@@ -22,6 +24,10 @@
             gap: .6rem;
             flex-direction: column;
             align-items: start;
+
+            p span {
+                color: $colorB;
+            }
         }
         
         .lastCashContR {
@@ -29,6 +35,10 @@
             gap: .6rem;
             flex-direction: column;
             align-items: flex-end;
+
+            p span {
+                color: $colorB;
+            }
         }
     }
 }

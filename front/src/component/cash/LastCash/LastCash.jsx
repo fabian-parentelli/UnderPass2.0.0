@@ -21,12 +21,12 @@ const LastCash = () => {
                 ? <div className='lastCashLoad'><LoadSmallB /></div>
                 : <div className='lastCashCont'>
                     <div className='lastCashContL'>
-                        <p>Caja: ${cash.AR.cash} ar</p>
-                        <p>Tesoro: ${cash.AR.treasure} ar</p>
+                        <p>Caja: <span>${cash.AR.cash}</span> ar</p>
+                        <p>Tesoro: <span>${cash.AR.treasure}</span> ar</p>
                     </div>
                     <div className='lastCashContR'>
-                        <p>Caja: ${cash.UY.cash} uy</p>
-                        <p>Tesoro: ${cash.UY.treasure} uy</p>
+                        <p>Caja: <span>${cash.UY.cash}</span> uy</p>
+                        <p>Tesoro: <span>${cash.UY.treasure}</span> uy</p>
                     </div>
                 </div>
             }

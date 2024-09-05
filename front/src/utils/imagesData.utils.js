@@ -40,6 +40,8 @@ const imagesHelp = {
     activeApplication: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1724966983/help/hj8bcq245hyp9axjaipk.png',
     newApplication: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1724966983/help/viqgzrce7ql5qsglhydr.png',
     textAreaApplication: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1724966984/help/lwdczciji4cn99ojfxif.png',
+
+    vewPublicty: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1725565093/help/uwrqbuscncs6gh6f1c45.png',
 };
 
 const alertImages = {

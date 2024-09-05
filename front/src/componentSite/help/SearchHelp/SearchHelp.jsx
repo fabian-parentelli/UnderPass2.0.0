@@ -26,5 +26,6 @@ const data = [
     { label: 'Crear un producto', data: 'newProductHelp' },
     { label: 'Ver y modificar un producto', data: 'vewProductHelp' },
     { label: 'Menu publicitario', data: 'publicityHelp' },
-    { label: 'Solicitudes publicitarias', data: 'applicationHelp' },
+    { label: 'Ver y crear solicitudes publicitarias', data: 'applicationHelp' },
+    { label: 'Ver mis publicidades', data: 'publicityVewHelp' },
 ];

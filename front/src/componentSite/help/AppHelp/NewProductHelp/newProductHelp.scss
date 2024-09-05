@@ -19,9 +19,13 @@
         div {
             width: 50%;
 
-            ol li {
-                margin-top: 1rem;
-                margin-left: 1rem;
+            ol {
+                list-style-type: none;
+                li {
+                    margin-top: 1rem;
+                    
+                    list-style-type: none;
+                }
             }
         }
     }
@@ -35,14 +39,12 @@
         }
 
         ol {
-            margin: 1rem 0 0 1.2rem;
+            margin: 1rem 0;
+            list-style-type: none;
 
             li {
                 margin-top: .8rem;
-
-                ul {
-                    margin: 0 0 0 2rem;
-                }
+                list-style-type: none;
             }
         }
     }
@@ -66,7 +68,7 @@
 
 @media (max-width: 767px) {
     #newProductHelp {
-        width: 100%;
+        width: 95%;
         padding: 1rem;
 
         .newProductHelpA {
@@ -86,6 +88,10 @@
         .newProductHelpC {
             margin-top: 2rem;
             gap: 2rem;
+
+            img {
+                width: 250px;
+            }
         }
     }
 }
