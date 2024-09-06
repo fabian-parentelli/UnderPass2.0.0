@@ -10,4 +10,12 @@ export default class wallet {
         return await walletModel.findOne({ userId: id }).lean();
     };
 
+    getById = async (id) => {
+        return await walletModel.findById(id).lean();
+    };
+
+    update = async (wallet) => {
+        return await walletModel.findByIdAndUpdate(wallet._id, wallet, { new: true, lean: true });
+    };
+
 };

@@ -1,8 +1,9 @@
 import {
-    orderRepository, ticketRepository, alertsRepository
+    orderRepository, ticketRepository, alertsRepository, auditRepository, orderSellerRepository, walletRepository,
+    orderPayRepository
 } from "../../repositories/index.repositories.js";
-import updateCashTotal from "../cash/updateCash.utils.js";
-import { TransferNotFound } from '../custom-exceptions.utils.js';
+import { updateCashTotal } from "../cash/updateCash.utils.js";
+import { CashNotFound, TransferNotFound } from '../custom-exceptions.utils.js';
 
 let userOrder;
 let ticketBuyer;
@@ -33,10 +34,6 @@ const updOrderBuyer = async (tranfer) => {
     };
 };
 
-// Borrar esto es solo para las pruebas.. --------------------------------------- // -------------------
-ticketBuyer = { total: 5750, _id: '66d79edee69f2434d2a6f158', type: 'transfer', country: 'UY' }; // ----
-// ------------------------------------------------------------------------------ // -------------------
-
 const updateCash = async () => {
     const cash = {
         difCash: ticketBuyer.total,
@@ -46,17 +43,85 @@ const updateCash = async () => {
         type: ticketBuyer.type,
         country: ticketBuyer.country
     };
-    await updateCashTotal(cash);
+    const result = await updateCashTotal(cash);
+    const { difCash, difTreasure, _id, ...audit } = result._doc;
+    audit.cashId = result._id;
+    const resultAudit = await auditRepository.newAudit(audit);
+    if (!resultAudit) throw new CashNotFound('No se puede crear el archivo de audición');
 };
 
 const updOrderBySeller = async (tranfer) => {
+    const orders = await orderSellerRepository.getOrdersUpdate({ orderId: tranfer.orderId });
+    for (const ord of orders) {
+        ord.pay.payIn = {
+            isPayIn: true,
+            datePayIn: new Date(),
+            statusPay: 'success'
+        };
+        await orderSellerRepository.update(ord);
+        const result = await updateCashSeller(ord, tranfer.country);
+        if (result.status === 'success') {
+            ord.pay.payCredited = {
+                isPayCredited: true,
+                datePayCredited: new Date()
+            }
+            await orderSellerRepository.update(ord);
+        };
+    };
+};
 
-    console.log(tranfer);
-    // Primero busco las ordenes
-    // por cada una de ellas
-    // actualizao la orden segun configuracion paga ya o no
-    // deposito la plata en las billeteras, en la caja
+const updateCashSeller = async (order, country) => {
+    const ticket = {
+        orderId: order._id,
+        by: 'underPass',
+        to: order.sellerUserId,
+        total: order.total,
+        country: country,
+        type: 'underPay'
+    };
+    const ticketSeller = await ticketRepository.newTicket(ticket);
+    const cash = {
+        difCash: order.total,
+        difTreasure: 0,
+        inOut: 'out',
+        ticketId: ticketSeller._id,
+        type: 'underPay',
+        country: country
+    };
+    const result = await updateCashTotal(cash);
+    const { _id, ...audit } = result._doc;
+    audit.cashId = result._id;
+    const resultAudit = await auditRepository.newAudit(audit);
+    if (!resultAudit) throw new CashNotFound('No se puede crear el archivo de audición');
+    const wallet = await walletRepository.getByUserId(order.sellerUserId);
+    wallet.total += order.total;
+    const wall = {
+        type: true,
+        byTo: 'underPass',
+        TypeMotion: 'transfer',
+        ticket: ticketSeller._id,
+        status: 'success'
+    };
+    wallet.money.push(wall);
+    await walletRepository.update(wallet);
+    if (!wallet.inWallet) {
+        const orderPay = {
+            userId: wallet.userId,
+            orderId: order._id,
+            total: wallet.total,
+        };
+        await orderPayRepository.newOrders(orderPay);
+        // Crear alarma que me avisa de la nueva orden
+        // Trabajar sobre ver las ordenes a pagar............
 
+
+
+
+
+
+        
+    };
+    return { status: 'success' };
 };
 
 export { updOrderBuyer, updateCash, updOrderBySeller };

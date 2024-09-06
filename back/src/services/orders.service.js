@@ -28,10 +28,9 @@ const getOrderById = async (id) => {
 
 const getOrders = async (page, limit, userid, active, pay, { user }) => {
     const query = {};
-    if (active !== undefined) query.active = active;
     if (userid) query.userId = userid;
-    if (active !== undefined) query.active = active;
-    if (pay !== undefined) query['pay.isPay'] = pay;
+    if (active) query.active = active;
+    pay !== undefined ? query['pay.isPay'] = pay : query['pay.isPay'] = 'false';
     const result = await orderRepository.getOrders(query, limit, page, user);
     if (!result) throw new OrderNotFound('No se puede encontrar la orden');
     return { status: 'success', result };

@@ -25,4 +25,12 @@ const getMoneyByUserId = async (id) => {
     return { status: 'success', result };
 };
 
-export { newWallet, getByUserId, getMoneyByUserId };
+const updIsWallet = async (id, isWallet) => {
+    const wallet = await walletRepository.getById(id);
+    wallet.inWallet = isWallet.wallet;
+    const result = await walletRepository.update(wallet);
+    if(!result) throw new WalletNotFound('No se puede actualizar la configuración');
+    return { status: 'success', result };
+};
+
+export { newWallet, getByUserId, getMoneyByUserId, updIsWallet };

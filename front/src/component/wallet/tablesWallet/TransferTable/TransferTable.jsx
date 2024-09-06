@@ -78,8 +78,8 @@ const TransferTable = ({ transfers, handleConfirm, setTransfers, setLoading }) =
                                     </td>
                                 }
                                 <td
-                                    className={trans.confirm ? 'paymentsTableOrderConfirm' : ''}
-                                    onClick={user.data.role !== 'user' && trans.confirm && handleConfirm ? () => handleConfirm(trans._id) : undefined}
+                                    className={!trans.confirm ? 'paymentsTableOrderConfirm' : ''}
+                                    onClick={user.data.role !== 'user' && !trans.confirm && handleConfirm ? () => handleConfirm(trans._id) : undefined}
                                     style={{ color: trans.confirm ? 'green' : 'red', cursor: user.data.role !== 'user' && 'pointer' }}
                                 >
                                     {trans.confirm ? 'SI' : 'NO'}

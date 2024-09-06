@@ -1,0 +1,32 @@
+@import '../../../../style/colors.scss';
+
+.walletConf {
+    margin-top: 1rem;
+    margin-left: .8rem;
+
+    .walletConfSwitch {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+        background-color: rgb(199, 199, 199);
+        padding: 12px;
+        width: 43%;
+        border-radius: 6px;
+    }
+
+    .walletConfSwitchText {
+        margin-top: .6rem;
+        width: 80%;
+
+        p {
+            font-size: 14px;
+            margin-top: 0.4rem;
+            line-height: 1.5;
+
+            strong {
+                color: $colorA;
+            }
+        }
+    }
+}

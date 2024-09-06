@@ -19,6 +19,7 @@ const AllOrders = () => {
                 <button className='btn btnA' onClick={() => handleInfo(1)}>Compra</button>
                 <button className='btn btnB' onClick={() => handleInfo(2)}>Venta</button>
             </div>
+            
             {vew === 1 && <ShopingAllOrder setLoading={setLoading} />}
             {vew === 2 && <SellerOrders setLoading={setLoading} />}
             <Load loading={loading} />

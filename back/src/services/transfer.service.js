@@ -44,18 +44,16 @@ const getTrasfer = async (confirm, user, page, country, type, id) => {
 
 const confirm = async (id) => {
     const tranfer = await transferRepository.getById(id);
-    // tranfer.confirm = true;
-    // const result = await transferRepository.updTransfer(tranfer); 
-    // if (!result) throw new TransferNotFound('No se puede confirmar la transferencia');
-    // await payTransfer.updOrderBuyer(tranfer);  
-    // await payTransfer.updateCash();
+    tranfer.confirm = true;
+    const result = await transferRepository.updTransfer(tranfer); 
+    if (!result) throw new TransferNotFound('No se puede confirmar la transferencia');
+    await payTransfer.updOrderBuyer(tranfer);  
+    await payTransfer.updateCash();
+    await payTransfer.updOrderBySeller(tranfer); 
 
-    // await payTransfer.updOrderBySeller(tranfer);
-
-    // Actualizar orden del vendedor.
-    // Genero un ticket y paso el dinero a la cuenta del vendedor 
     // me fijo si quiere la plata al momento o si quiere que se la gire al momento 
 
+    
     return { status: 'success', result };
 };
 

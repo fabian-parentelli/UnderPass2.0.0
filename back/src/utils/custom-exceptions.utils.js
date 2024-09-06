@@ -102,3 +102,10 @@ export class CashNotFound extends Error {
         this.name = this.constructor.name;
     };
 };
+
+export class AuditNotFound extends Error {
+    constructor(message) {
+        super(message);
+        this.name = this.constructor.name;
+    };
+};

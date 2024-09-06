@@ -33,4 +33,15 @@ const getMoneyByUserId = async (req, res) => {
     };
 };
 
-export { newWallet, getByUserId, getMoneyByUserId };
+const updIsWallet = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const result = await walletService.updIsWallet(id, { ...req.body });
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof WalletNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
+export { newWallet, getByUserId, getMoneyByUserId, updIsWallet };

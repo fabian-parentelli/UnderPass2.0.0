@@ -14,4 +14,14 @@ export default class OrderSellerRepository {
         result.docs = orders;
         return result;
     };
+
+    getOrdersUpdate = async (query) => {
+        const result = await orderSellerManager.getOrdersUpdate(query);
+        return result;
+    };
+
+    update = async (order) => {
+        const result = await orderSellerManager.update(order);
+        return result;
+    };
 };

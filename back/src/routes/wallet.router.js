@@ -7,5 +7,6 @@ export default class WalleTRouter extends Router {
         this.post('/', ['MASTER', 'ADMIN'], passportEnum.JWT, walletController.newWallet);
         this.get('/user/:id', ['USER', 'MASTER', 'ADMIN'], passportEnum.JWT, walletController.getByUserId);
         this.get('/money/:id', ['USER', 'MASTER', 'ADMIN'], passportEnum.JWT, walletController.getMoneyByUserId);
+        this.put('/iswallet/:id', ['USER', 'MASTER', 'ADMIN'], passportEnum.JWT, walletController.updIsWallet);
     };
 };

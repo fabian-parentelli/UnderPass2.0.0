@@ -32,7 +32,9 @@ const updateCashTotal = async (data) => {
 
     cash.active = false;
     await cashRepository.update(cash);
-    await cashRepository.newCash(newCash);
+    const result = await cashRepository.newCash(newCash);
+    if(!result) throw new CashNotFound('No se puede generar un nuevo movimiento de caja');  
+    return result;
 };
 
-export default updateCashTotal;
+export { updateCashTotal };

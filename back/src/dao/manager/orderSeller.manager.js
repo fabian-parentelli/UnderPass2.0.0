@@ -9,4 +9,13 @@ export default class OrderSeller {
     getOrders = async (query, limit, page) => {
         return await orderSellerModel.paginate(query, { limit, page, lean: true, sort: { date: -1 } })
     };
+
+    getOrdersUpdate = async (query) => {
+        return await orderSellerModel.find(query).lean();
+    };
+
+    update = async (order) => {
+        return await orderSellerModel.findByIdAndUpdate(order._id, order, { new: true, lean: true });
+    };
+    
 };

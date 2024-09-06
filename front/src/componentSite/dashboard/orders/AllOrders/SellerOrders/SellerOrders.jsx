@@ -31,7 +31,8 @@ const SellerOrders = ({ setLoading }) => {
     };
 
     return (
-        <div className='sellerOrders'>
+        <div className='sellerOrderss'>
+
             <div className='sellerOrdersTop'>
                 <h2>Ordenes de venta</h2>
                 <div>
@@ -53,6 +54,7 @@ const SellerOrders = ({ setLoading }) => {
                     <p>SI</p>
                 </div>
             </div>
+
             <div style={{ marginTop: '1rem' }}></div>
             {values && <SellerTable values={values} />}
             <div className='sellerOrdersPager'><Pager users={values} HandleChangePage={handleChangePage} /></div>

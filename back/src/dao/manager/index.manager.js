@@ -14,6 +14,8 @@ import Ticket from './ticket.manager.js';
 import Data from './data.manager.js';
 import Transfer from './transfer.manager.js';
 import Cash from './cash.manager.js';
+import Audit from './audit.manager.js';
+import OrderPay from './orderPay.manager.js';
 
 export const userManager = new User();
 export const tutorialsManager = new Tutorials();
@@ -31,3 +33,5 @@ export const ticketManager = new Ticket();
 export const dataManager = new Data();
 export const transferManager = new Transfer();
 export const cashManager = new Cash();
+export const auditManager = new Audit();
+export const orderPayManager = new OrderPay();

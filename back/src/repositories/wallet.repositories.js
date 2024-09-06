@@ -11,5 +11,15 @@ export default class WalletRepository {
         const result = await walletManager.getByUserId(id);
         return result;
     };
+    
+    getById = async (id) => {
+        const result = await walletManager.getById(id);
+        return result;
+    };
+    
+    update = async (wallet) => {
+        const result = await walletManager.update(wallet);
+        return result;
+    };
 
 };
