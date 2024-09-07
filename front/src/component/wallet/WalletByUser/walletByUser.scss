@@ -35,12 +35,25 @@
         }
     }
 
+    .walletByUserTotalDiv {
+        background-color: $colorC;
+        padding: 6px;
+        border-radius: 3px;
 
+        p {
+            color: #ffff;
+
+            span {
+                color: $underPay;
+            }
+        }
+    }
 }
 
 @media (max-width: 767px) {
     .walletByUser {
         gap: 0;
+
         .walletByUserData {
             flex-direction: column;
         }

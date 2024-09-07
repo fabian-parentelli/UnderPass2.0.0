@@ -1,7 +1,7 @@
 import './ticketUnique.scss';
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { getTicketByOrderApi } from '../../../helpers/ticket/getTicketByOrder.api';
+import { getTicketByOrderApi } from '../../../helpers/ticket/getTicketByOrder.api.js';
 import TicketOnly from '../../../componentSite/alerts/TicketOnly/TicketOnly';
 
 const TicketUnique = () => {

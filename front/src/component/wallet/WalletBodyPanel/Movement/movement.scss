@@ -1,0 +1,30 @@
+@import '../../../../style/colors.scss';
+
+@media (max-width: 767px) {
+
+    .movement {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        width: 90%;
+    }
+    
+    .movement::-webkit-scrollbar {
+        height: 6px;
+    }
+    
+    .movement::-webkit-scrollbar-thumb {
+        background-color: $colorB; 
+        border-radius: 6px; 
+    }
+    
+}
+
+.movementTicket {
+    font-size: 12px;
+    cursor: pointer;
+    transition: .3s ease-in-out;
+    
+    &:hover {
+        color: $colorA;
+    }
+}

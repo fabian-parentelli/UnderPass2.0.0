@@ -1,8 +1,19 @@
 import * as orderPayService from '../services/orderPay.service.js';
 import { OrderNotFound } from '../utils/custom-exceptions.utils.js';
 
+
+const newOrder = async (req, res) => {
+    try {
+        const result = await orderPayService.newOrder({ ...req.body });
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof OrderNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
 const getOrderById = async (req, res) => {
-    const {id } = req.params;
+    const { id } = req.params;
     try {
         const result = await orderPayService.getOrderById(id);
         if (result) return res.sendSuccess(result);
@@ -23,4 +34,4 @@ const getOrdersPay = async (req, res) => {
     };
 };
 
-export { getOrdersPay, getOrderById };
+export { newOrder, getOrdersPay, getOrderById };

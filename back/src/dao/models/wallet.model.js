@@ -7,7 +7,8 @@ const walletSchema = new mongoose.Schema({
     userId: { type: String },
     country: { type: String },
     total: { type: Number, default: 0 },
-    inWallet: { type: Boolean, default: false },
+    inWallet: { type: Boolean, default: true }, // false cobrar - true en billetera
+    reqMoney: { type: Boolean, default: false }, // false '' - solicita cobrar.....
     money: [
         {
             date: { type: Date, default: Date.now }, // - Fecha de la transacción.

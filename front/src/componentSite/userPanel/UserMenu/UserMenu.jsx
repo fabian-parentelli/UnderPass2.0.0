@@ -27,6 +27,11 @@ const UserMenu = () => {
                 <p>Billetera</p>
             </Link>
 
+            <Link to={'/profile/commerce_home'} className='userMen'>
+                <ListAltIcon className='icon' />
+                <p>Ordenes</p>
+            </Link>
+
             <Link to={'/profile/datauser'} className='userMen'>
                 <AccountBoxIcon className='icon' />
                 <p>Tus Datos</p>
@@ -65,11 +70,6 @@ const UserMenu = () => {
             <Link to={'/profile/alerts'} className='userMen'>
                 <AccessAlarmsIcon className='icon' />
                 <p>Alertas</p>
-            </Link>
-            
-            <Link to={'/profile/commerce_home'} className='userMen'>
-                <ListAltIcon className='icon' />
-                <p>Ordenes</p>
             </Link>
             
         </div>

@@ -15,6 +15,10 @@ const OrderPayDas = ({ country, setLoading }) => {
             const query = { country: country, pay: false };
             if (page) query.page = page;
             const response = await getOrderPayApi(query);
+
+            console.log(response);
+            
+
             if (response.status === 'success') setOrders(response.result);
             else console.error(response.error);
             setLoading(false);

@@ -14,7 +14,7 @@ export default function Checkboxes({ labels, setType }) {
     return (
         <>
             {labels && labels.map((label, index) => (
-                <div key={index} style={{ display: 'flex', alignItems: 'center' }}>
+                <div key={index} style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
                     <Checkbox
                         checked={selectedIdx === index}
                         onChange={() => handleCheckboxChange(index, label)}

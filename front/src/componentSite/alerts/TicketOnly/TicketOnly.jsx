@@ -1,5 +1,4 @@
 import './ticketOnly.scss';
-import { useEffect, useState } from 'react';
 import { useUnderContext } from '../../../context/UnderContext.jsx';
 import NumToString from '../../../component/utils/NumToString.jsx';
 
