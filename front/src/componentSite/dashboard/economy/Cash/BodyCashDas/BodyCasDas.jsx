@@ -1,4 +1,5 @@
 import LastCash from '../../../../../component/cash/LastCash/LastCash';
+import OrderPayDas from '../body/orderPay/OrderPayDas/OrderPayDas';
 import TransferDas from '../body/transfers/TransferDas/TransferDas';
 import './bodyCashDas.scss';
 import { useState } from 'react';
@@ -19,6 +20,7 @@ const BodyCashDas = ({ country, setLoading }) => {
                         <>
                             <option value=""></option>
                             <option value="transfer">Transferencias</option>
+                            <option value="orderPay">Orden de pago</option>
                         </>
                     }
                 </select>
@@ -26,6 +28,7 @@ const BodyCashDas = ({ country, setLoading }) => {
             
             {!country && <p>Elige un país</p>}
             {type === 'transfer' && <TransferDas country={country} setLoading={setLoading} />}
+            {type === 'orderPay' && <OrderPayDas country={country} setLoading={setLoading} />}
         </div>
     );
 };

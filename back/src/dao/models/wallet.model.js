@@ -15,7 +15,8 @@ const walletSchema = new mongoose.Schema({
             byTo: { type: String }, // ------------------ Viene de ... o va para ....
             TypeMotion: { type: String }, // ------------ Transferencia, Credito, Debito, Cash. 
             ticket: { type: String }, // ---------------- Numero de la transacción de mercado pago.
-            status: { type: String }, // ---------------- Estado en el cual se encuentra la transacción.    
+            status: { type: String }, // ---------------- Estado en el cual se encuentra la transacción.   
+            cash: { type: Number, default: 0 },     
         }
     ]
 });

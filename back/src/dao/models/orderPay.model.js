@@ -12,7 +12,8 @@ const orderPaySchema = new mongoose.Schema({
         datePay: { type: Date },
     },
     active: { type: Boolean, default: true },
-    date: { type: Date, default: Date.now }
+    date: { type: Date, default: Date.now },
+    country: { type: String },
 });
 
 orderPaySchema.plugin(mongoosePaginate);

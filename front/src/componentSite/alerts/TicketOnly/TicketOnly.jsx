@@ -25,7 +25,7 @@ const TicketOnly = ({ ticket }) => {
                         <p><strong>Nombre:</strong> {ticket.userBy?.name || 'UnderPass'}</p>
                         {ticket.userBy?.dni && <p><strong>{ticket.country === 'UY' ? 'C.I' : 'DNI'}:</strong> {ticket.userBy.dni || ''}</p>}
                         {ticket.userBy?.phone && <p><strong>Teléfono:</strong> {ticket.userBy.phone || underData.phone}</p>}
-                        <p><strong>Email:</strong> {ticket.userBy.email || underData.email}</p>
+                        <p><strong>Email:</strong> {ticket.userBy?.email || underData.email}</p>
                     </div>
 
                     <div className='line' style={{ marginTop: '1.4rem' }}></div>

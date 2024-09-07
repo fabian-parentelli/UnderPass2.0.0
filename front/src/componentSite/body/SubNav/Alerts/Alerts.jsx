@@ -9,6 +9,7 @@ import { getAllAlertsApi } from '../../../../helpers/alerts/getAllAlerts.api.js'
 import { updActiveAlertsApi } from '../../../../helpers/alerts/updActiveAlerts.api.js';
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import { alertImages } from '../../../../utils/imagesData.utils.js';
+import getTypeAlerts from '../../../../utils/alertTypeText.utils.js';
 
 const Alerts = ({ user }) => {
 
@@ -23,6 +24,9 @@ const Alerts = ({ user }) => {
         setSelectedAlert(alert);
         setNumberModal(number);
     };
+
+    console.log(alerts);
+
 
     useEffect(() => {
         const fetchData = async () => {
@@ -56,28 +60,44 @@ const Alerts = ({ user }) => {
                                 {(ale.type === 'application_cards' || ale.type === 'application_banners') &&
                                     <Link to={getTypeToLink(ale.type)} className='alertsChildrenDiv' onClick={() => handleOff(ale._id)}>
                                         <img src={alertImages[ale.type]} lt="img" />
-                                        <p>{getType(ale.type)}</p>
+                                        <p>{getTypeAlerts(ale.type)}</p>
+                                    </Link>
+                                }
+
+                                {/* Mejorado de aquí para abajo */}
+
+                                {(ale.type === 'havePay') &&
+                                    <Link to={`/vewalert/${ale.type}/${ale.eventId}`} className='alertsChildrenDiv' onClick={() => handleOff(ale._id)}>
+                                        <img src={alertImages[ale.type]} lt="img" />
+                                        <p>{getTypeAlerts(ale.type)}</p>
                                     </Link>
                                 }
 
                                 {(ale.type === 'sold_product') &&
-                                    <Link to={`/order/${ale.orderSellerId}`} className='alertsChildrenDiv' onClick={() => handleOff(ale._id)}>
+                                    <Link to={`/vewalert/${ale.type}/${ale.orderSellerId}`} className='alertsChildrenDiv' onClick={() => handleOff(ale._id)} >
                                         <img src={ale.data.img[0].imgUrl} lt="img" />
-                                        <p>{getType(ale.type)}</p>
+                                        <p>{getTypeAlerts(ale.type)}</p>
+                                    </Link>
+                                }
+
+                                {(ale.type === 'youMoneyInWallet') &&
+                                    <Link to={`/vewalert/${ale.type}/${ale.eventId}`} className='alertsChildrenDiv' onClick={() => handleOff(ale._id)}>
+                                        <img src={alertImages.underPay} lt="img" />
+                                        <p>{getTypeAlerts(ale.type)}</p>
                                     </Link>
                                 }
 
                                 {(ale.type === 'transfer_in') &&
-                                    <Link to={`/transfer_vew_alert/${ale.eventId}`} className='alertsChildrenDiv' onClick={() => handleOff(ale._id)}>
+                                    <Link to={`/vewalert/${ale.type}/${ale.eventId}`} className='alertsChildrenDiv' onClick={() => handleOff(ale._id)}>
                                         <img src={alertImages[ale.type]} lt="img" />
-                                        <p>{getType(ale.type)}</p>
+                                        <p>{getTypeAlerts(ale.type)}</p>
                                     </Link>
                                 }
-                                
+
                                 {(ale.type === 'transfer_confirm') &&
-                                    <Link to={`/transfer_vew_alert/${ale.eventId}`} className='alertsChildrenDiv' onClick={() => handleOff(ale._id)}>
+                                    <Link to={`/vewalert/${ale.type}/${ale.eventId}`} className='alertsChildrenDiv' onClick={() => handleOff(ale._id)}>
                                         <img src={alertImages.transfer_in} lt="img" />
-                                        <p>{getType(ale.type)}</p>
+                                        <p>{getTypeAlerts(ale.type)}</p>
                                     </Link>
                                 }
 
@@ -167,19 +187,6 @@ const Alerts = ({ user }) => {
 
 export default Alerts;
 // primary - secundary - error - warning - info - success
-
-function getType(types) {
-    const data = {
-        'application_cards': () => { return 'Solicitud de Cards' },
-        'application_banners': () => { return 'Solicitud de Banners' },
-        'sold_product': () => { return 'Vendiste un producto' },
-        'transfer_in': () => { return 'Recibiste una transferencia' },
-        'transfer_confirm': () => { return 'Transferencia confirmada' },
-        'default': () => { return 'otro' },
-    };
-
-    return (data[types] || data['default'])();
-};
 
 function getTypeToLink(types) {
     const data = {

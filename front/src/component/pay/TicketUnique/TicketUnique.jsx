@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
 import './ticketUnique.scss';
-import { useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import { getTicketByOrderApi } from '../../../helpers/ticket/getTicketByOrder.api';
 import TicketOnly from '../../../componentSite/alerts/TicketOnly/TicketOnly';
 
@@ -8,6 +8,7 @@ const TicketUnique = () => {
 
     const { id } = useParams();
     const [ticket, setTicket] = useState(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -22,6 +23,7 @@ const TicketUnique = () => {
             {ticket &&
                 <TicketOnly ticket={ticket} />
             }
+            <button className='btn btnB' onClick={() => navigate(-1)}>Volver</button>
         </div>
     );
 };

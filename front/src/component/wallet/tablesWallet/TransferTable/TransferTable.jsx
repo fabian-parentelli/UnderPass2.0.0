@@ -20,10 +20,7 @@ const TransferTable = ({ transfers, handleConfirm, setTransfers, setLoading }) =
     const handleVew = (id) => setVewUpd(vewUpd === id ? null : id)
 
     const handleTicket = (id) => navigate(`/ticket_by_order/${id}`);
-
-    console.log(transfers);
-
-
+    
     return (
         <div className='paymentsTable'>
             <table>

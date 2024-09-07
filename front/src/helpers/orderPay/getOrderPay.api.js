@@ -1,15 +1,14 @@
 const url = import.meta.env.VITE_API_URL;
 
-async function getOrderSellerApi(obj) {
+async function getOrderPayApi(obj) {
 
-    let urlData = `${url}/api/order_seller?`;
+    let urlData = `${url}/api/orderpay?`;
     if (obj.page) urlData += `page=${obj.page}&`;
     if (obj.limit) urlData += `limit=${obj.limit}&`;
     if (obj.userid) urlData += `userid=${obj.userid}&`;
+    if (obj.country) urlData += `country=${obj.country}&`;
     if (obj.active !== undefined) urlData += `active=${obj.active}&`;
-    if (obj.payIn !== undefined) urlData += `payIn=${obj.payIn}&`;
-    if (obj.payOut !== undefined) urlData += `payOut=${obj.payOut}&`;
-    if (obj.id) urlData += `id=${obj.id}&`;
+    if (obj.pay !== undefined) urlData += `pay=${obj.pay}&`;
 
     if (urlData.endsWith('&')) urlData = urlData.slice(0, -1);
 
@@ -27,4 +26,4 @@ async function getOrderSellerApi(obj) {
     if (content.data) return content.data;
 };
 
-export { getOrderSellerApi };
+export { getOrderPayApi };

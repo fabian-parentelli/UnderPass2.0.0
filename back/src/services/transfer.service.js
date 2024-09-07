@@ -49,11 +49,7 @@ const confirm = async (id) => {
     if (!result) throw new TransferNotFound('No se puede confirmar la transferencia');
     await payTransfer.updOrderBuyer(tranfer);  
     await payTransfer.updateCash();
-    await payTransfer.updOrderBySeller(tranfer); 
-
-    // me fijo si quiere la plata al momento o si quiere que se la gire al momento 
-
-    
+    await payTransfer.updOrderBySeller(tranfer);     
     return { status: 'success', result };
 };
 

@@ -1,0 +1,28 @@
+@import '../../../../../../../style/colors.scss';
+
+.orderPayTable {
+    
+    .orderPayTableFlags {
+        width: 50px;
+    }
+
+    .orderPayTablePointer {
+        cursor: pointer;
+        transition: .3s ease-in-out;
+
+        &:hover {
+            color: $colorA;
+        }
+    }
+
+    strong {
+        color: $colorB;
+    }
+
+    .orderPayTableFinance {
+        background-color: rgb(243, 253, 198);
+        p {
+            margin-top: 12px;
+        }
+    }
+}

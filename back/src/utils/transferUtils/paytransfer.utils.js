@@ -100,7 +100,8 @@ const updateCashSeller = async (order, country) => {
         byTo: 'underPass',
         TypeMotion: 'transfer',
         ticket: ticketSeller._id,
-        status: 'success'
+        status: 'success',
+        cash: order.total
     };
     wallet.money.push(wall);
     await walletRepository.update(wallet);
@@ -109,18 +110,17 @@ const updateCashSeller = async (order, country) => {
             userId: wallet.userId,
             orderId: order._id,
             total: wallet.total,
+            country: wallet.country
         };
         await orderPayRepository.newOrders(orderPay);
-        // Crear alarma que me avisa de la nueva orden
-        // Trabajar sobre ver las ordenes a pagar............
-
-
-
-
-
-
-        
-    };
+    } else {
+        const alerts = {
+            eventId: ticketSeller._id,
+            userId: wallet.userId,
+            type: 'youMoneyInWallet'
+        };
+        await alertsRepository.newAlert(alerts);
+    }; 
     return { status: 'success' };
 };
 
