@@ -1,12 +1,12 @@
 import './cash.scss';
 import UnderMoney from '../../pay/UnderMoney/UnderMoney';
 
-const Cash = () => {
+const Cash = ({ userId }) => {
 
     return (
         <div className='cash'>
             <p>Under<span>Pay</span></p>
-            <UnderMoney />
+            <UnderMoney userId={userId} />
         </div>
     );
 };

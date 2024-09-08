@@ -4,17 +4,20 @@ import { Fragment, useState } from 'react';
 import BigImg from '../../utils/BigImg/BigImg.jsx';
 import typeCart from '../../../utils/typeCart.utils.js';
 import { imgages } from '../../../utils/imagesData.utils.js';
+import GetTicketByOrder from '../../ticket/GetTicketByOrder.jsx';
+import ModalCustom from '../../utils/ModalCustom/ModalCustom.jsx';
 import { useLoginContext } from '../../../context/LoginContext.jsx';
-import { useNavigate } from 'react-router-dom';
 
 const ShopingTable = ({ orders }) => {
 
     const { user } = useLoginContext();
     const [vew, setVew] = useState(null);
-    const handleInfo = (id) => setVew(vew === id ? null : id);
-    const navigate = useNavigate();
+    const [vewModal, setVewModal] = useState(null);
+    const [open, setOpen] = useState(false);
 
-    const handleTicket = (id) => navigate(`/ticket_by_order/${id}`);
+    const handleInfo = (id) => setVew(vew === id ? null : id);
+    const closeModal = () => { setOpen(false); setVewModal(null) };
+    const openModal = (id) => { setVewModal(id); setOpen(true) };
 
     return (
         <div className='shopingTable'>
@@ -45,7 +48,7 @@ const ShopingTable = ({ orders }) => {
 
                                 <td
                                     className={ord.pay.isPay ? 'shopingTableActive' : ''}
-                                    onClick={ord.pay.isPay ? () => handleTicket(ord._id) : undefined}
+                                    onClick={ord.pay.isPay ? () => openModal(ord._id) : undefined}
                                 >
                                     <p style={{ color: ord.pay.isPay ? 'green' : 'red' }} >{ord.pay.isPay ? 'SI' : 'NO'}</p>
                                     {ord.pay.datePay && <p>{new Date(ord.pay.datePay).toLocaleDateString()}</p>}
@@ -99,6 +102,12 @@ const ShopingTable = ({ orders }) => {
                                         </table>
                                     </td>
                                 </tr>
+                            }
+
+                            {vewModal === ord._id &&
+                                <ModalCustom modalIsOpen={open} closeModal={closeModal}>
+                                    <GetTicketByOrder orderId={ord._id} />
+                                </ModalCustom>
                             }
                         </Fragment>
                     ))}

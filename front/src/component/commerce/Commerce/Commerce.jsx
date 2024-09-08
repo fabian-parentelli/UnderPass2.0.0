@@ -17,7 +17,7 @@ const Commerce = ({ user }) => {
 
     return (
         <div className='commerce'>
-            <Cash />
+            <Cash userId={user._id} />
             <div className='commerceButtons'>
                 <button className='btn btnC' onClick={() => handleVew('shopping')}>Compras</button>
                 <button className='btn btnC' onClick={() => handleVew('sales')}>ventas</button>
