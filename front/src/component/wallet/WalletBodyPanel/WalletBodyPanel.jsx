@@ -1,10 +1,10 @@
 import './walletBodyPanel.scss';
 import { useState } from 'react';
-import Checkboxes from '../../utils/Checkboxes';
-import Payments from './Payments/Payments';
-import WalletConf from './WalletConf/WalletConf';
-import Movement from './Movement/Movement';
 import Yield from './Yield/Yield';
+import Payments from './Payments/Payments';
+import Movement from './Movement/Movement';
+import Checkboxes from '../../utils/Checkboxes';
+import WalletConf from './WalletConf/WalletConf';
 
 const WalletBodyPanel = ({ wallet, setLoading }) => {
 

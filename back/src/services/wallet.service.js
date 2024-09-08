@@ -25,12 +25,22 @@ const getMoneyByUserId = async (id) => {
     return { status: 'success', result };
 };
 
+const getWallets = async (page, limit, country, inWallet, reqMoney) => {
+    const query = {};
+    if (country) query.country = country;
+    if (inWallet !== undefined) query.inWallet = inWallet;
+    if (reqMoney !== undefined) query.reqMoney = reqMoney;
+    const result = await walletRepository.getWallets(query, limit, page);
+    if (!result) throw new WalletNotFound('no se encuentran las billeteras');
+    return { status: 'success', result };
+};
+
 const updIsWallet = async (id, isWallet) => {
     const wallet = await walletRepository.getById(id);
     wallet.inWallet = isWallet.wallet;
     const result = await walletRepository.update(wallet);
-    if(!result) throw new WalletNotFound('No se puede actualizar la configuración');
+    if (!result) throw new WalletNotFound('No se puede actualizar la configuración');
     return { status: 'success', result };
 };
 
-export { newWallet, getByUserId, getMoneyByUserId, updIsWallet };
+export { newWallet, getByUserId, getMoneyByUserId, getWallets, updIsWallet };

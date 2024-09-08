@@ -33,6 +33,17 @@ const getMoneyByUserId = async (req, res) => {
     };
 };
 
+const getWallets = async (req, res) => {
+    const { page = 1, limit = 12, country, inWallet, reqMoney } = req.query;
+    try {
+        const result = await walletService.getWallets(page, limit, country , inWallet, reqMoney);
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof OrderSellerNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
 const updIsWallet = async (req, res) => {
     const { id } = req.params;
     try {
@@ -44,4 +55,4 @@ const updIsWallet = async (req, res) => {
     };
 };
 
-export { newWallet, getByUserId, getMoneyByUserId, updIsWallet };
+export { newWallet, getByUserId, getMoneyByUserId, getWallets, updIsWallet };

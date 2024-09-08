@@ -14,6 +14,10 @@ export default class wallet {
         return await walletModel.findById(id).lean();
     };
 
+    getWallets = async (query, limit, page) => {
+        return await walletModel.paginate(query, { limit, page, lean: true });
+    };
+
     update = async (wallet) => {
         return await walletModel.findByIdAndUpdate(wallet._id, wallet, { new: true, lean: true });
     };

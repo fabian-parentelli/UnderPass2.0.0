@@ -1,0 +1,17 @@
+.getAllWalletTable {
+    
+    .getAllWalletTablePointer {
+        cursor: pointer;
+        transition: .3s ease-in-out;
+
+        &:hover {
+            background-color: rgb(211, 207, 207);
+        }
+    }
+
+    .getAllWalletTableFlags img {
+        border-radius: .1px;
+        width: 40px;
+        object-fit: contain;
+    }
+}
