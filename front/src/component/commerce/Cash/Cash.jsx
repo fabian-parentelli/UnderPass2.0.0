@@ -1,12 +1,12 @@
 import './cash.scss';
+import UnderMoney from '../../pay/UnderMoney/UnderMoney';
 
 const Cash = () => {
 
     return (
         <div className='cash'>
-            <p>Credito $100</p>
-            <p>Haber $200</p>
-            <p>Saldo $100</p>
+            <p>Under<span>Pay</span></p>
+            <UnderMoney />
         </div>
     );
 };

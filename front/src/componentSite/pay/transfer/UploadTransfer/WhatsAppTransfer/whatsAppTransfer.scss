@@ -30,6 +30,11 @@
                 font-size: 2rem;
                 text-decoration: none;
                 color: #25D366;
+                transition: .3s ease-in-out;
+
+                &:hover {
+                    color: $colorB;
+                }
             }
 
             .whatsAppTransferIcon {

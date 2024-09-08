@@ -6,9 +6,10 @@ async function getOrdersApi(obj) {
     if (obj.page) urlData += `page=${obj.page}&`;
     if (obj.limit) urlData += `limit=${obj.limit}&`;
     if (obj.userid) urlData += `userid=${obj.userid}&`;
-    if (obj.active) urlData += `active=${obj.active}&`;
+    if (obj.active !== undefined) urlData += `active=${obj.active}&`;
     if (obj.pay) urlData += `pay=${obj.pay}&`;
 
+    if (urlData.endsWith('&')) urlData = urlData.slice(0, -1);
     const token = localStorage.getItem('token');
     const response = await fetch(urlData, {
         method: 'GET',

@@ -42,7 +42,7 @@ const WalletByUser = ({ userId, setLoading }) => {
                         </div>
 
                         <div>
-                            {wallet.inWallet &&
+                            {wallet.inWallet && wallet.total > 0 &&
                                 <RequestMoneyWallet wallet={wallet} setWallet={setWallet} setLoading={setLoading} />
                             }
                         </div>

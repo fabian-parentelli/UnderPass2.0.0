@@ -1,9 +1,9 @@
 import './shopingAllOrder.scss';
 import Switch from '@mui/material/Switch';
 import { useEffect, useState } from 'react';
-import { getOrdersApi } from '../../../../../helpers/orders/getOrderByUser.api.js';
-import ShopingTable from '../../../../../component/commerce/ShopingTable/ShopingTable.jsx';
 import Pager from '../../../../../component/utils/Pager/Pager.jsx';
+import { getOrdersApi } from '../../../../../helpers/orders/getOrders.api.js';
+import ShopingTable from '../../../../../component/commerce/ShopingTable/ShopingTable.jsx';
 
 const ShopingAllOrder = ({ setLoading }) => {
 

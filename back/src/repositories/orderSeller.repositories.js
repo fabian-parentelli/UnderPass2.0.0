@@ -8,8 +8,8 @@ export default class OrderSellerRepository {
         return result;
     };
     
-    getOrders = async (order, user) => {
-        const result = await orderSellerManager.getOrders(order);
+    getOrders = async (query, limit, page, user) => {
+        const result = await orderSellerManager.getOrders(query, limit, page, user);
         const orders = await getOrdersUtil.getCart(result.docs, user);        
         result.docs = orders;
         return result;

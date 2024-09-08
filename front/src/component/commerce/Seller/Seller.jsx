@@ -14,14 +14,14 @@ const Seller = ({ userId, setLoading }) => {
             setLoading(true);
             const query = { userid: userId, active: true }
             if (page) query.page = page;
-            const response = await getOrderSellerApi(query);            
+            const response = await getOrderSellerApi(query);               
             if (response.status === 'success') setValues(response.result);
             else console.log(response);
             setLoading(false);
         }; fetchData();
     }, [page]);
 
-    const HandleChangePage = async (page) => setPage(page);
+    const HandleChangePage = async (newPage) =>{ if (newPage !== page) setPage(newPage)}
 
     return (
         <div className='seller'>

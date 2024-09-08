@@ -47,7 +47,7 @@ const updateCash = async () => {
     const { difCash, difTreasure, _id, ...audit } = result._doc;
     audit.cashId = result._id;
     const resultAudit = await auditRepository.newAudit(audit);
-    if (!resultAudit) throw new CashNotFound('No se puede crear el archivo de audición');
+    if (!resultAudit) throw new CashNotFound('No se puede crear el archivo de audición');    
 };
 
 const updOrderBySeller = async (tranfer) => {
@@ -93,7 +93,7 @@ const updateCashSeller = async (order, country) => {
     audit.cashId = result._id;
     const resultAudit = await auditRepository.newAudit(audit);
     if (!resultAudit) throw new CashNotFound('No se puede crear el archivo de audición');
-    const wallet = await walletRepository.getByUserId(order.sellerUserId);
+    const wallet = await walletRepository.getByUserId(order.sellerUserId);    
     wallet.total += order.total;
     const wall = {
         type: true,

@@ -37,6 +37,15 @@
         transform-origin: top;
         overflow: hidden;
     }
+
+    .sellerTableBackPoint {
+        transition: .3s ease-in;
+        cursor: pointer;
+        
+        &:hover {
+            background-color: rgb(197, 193, 193);
+        }
+    }
 }
 
 @media (max-width: 767px) {

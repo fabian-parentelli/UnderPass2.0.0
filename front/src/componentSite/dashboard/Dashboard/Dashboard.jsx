@@ -34,26 +34,29 @@ const Dashboard = () => {
                 <Link to={'/dashboard'} className='dashboardH2'><h2>Panel</h2></Link>
 
                 <Fields
-                    title={'Imágenes'}
-                    category={[{ name: 'Avatares', path: 'newavatar' }, { name: 'Nuevo Evento', path: 'newimgevent' }, { name: 'Videos tutoriales', path: 'videotut' }]}
+                    title={'Economía'}
+                    category={[{ name: 'Caja', path: 'cash' }, { name: 'Precios', path: 'pricelist' }, { name: 'Billeteras', path: 'walletdas' }, { name: 'UnderDatos', path: 'datapass' }]}
                 />
+
+                <Fields
+                    title={'Ordenes'}
+                    category={[{ name: 'Usuarios', path: 'userorders' }, { name: 'Todas las ordenes', path: 'alloreders' }]}
+                />
+
                 <Fields
                     title={'Usuarios'}
                     category={[{ name: 'Ver', path: 'vewusers' }, { name: 'Buscar', path: 'userdashboard' }, { name: 'Avatar', path: 'avatardas' }]}
                 />
-                <Fields title={'Mensajes'} category={[{ name: 'Contactos sin ver', path: 'vewcontact' }, { name: 'Enviar email', path: 'newcontact' }]} />
-                <Fields title={'Eventos'} category={[{ name: 'Ver eventos', path: 'getevent' }, { name: 'Crear evento', path: 'newevent' }]} />
-                <Fields title={'Sitios'} category={[{ name: 'Nuevo sitio', path: 'newsite' }, { name: 'Ver sitios', path: 'vewsite' }]} />
 
                 <Fields
                     title={'Productos'}
                     category={[{ name: 'Usuario', path: 'productuser' }, { name: 'Ver todo', path: 'vewproducts' }]}
                 />
 
-                <Fields
-                    title={'Economía'}
-                    category={[{ name: 'Caja', path: 'cash' }, { name: 'Precios', path: 'pricelist' }, { name: 'Billeteras', path: 'walletdas' }, { name: 'UnderDatos', path: 'datapass' }]}
-                />
+                <Fields title={'Eventos'} category={[{ name: 'Ver eventos', path: 'getevent' }, { name: 'Crear evento', path: 'newevent' }]} />
+                <Fields title={'Sitios'} category={[{ name: 'Nuevo sitio', path: 'newsite' }, { name: 'Ver sitios', path: 'vewsite' }]} />
+                <Fields title={'Mensajes'} category={[{ name: 'Contactos sin ver', path: 'vewcontact' }, { name: 'Enviar email', path: 'newcontact' }]} />
+
                 <Fields
                     title={'Solicitudes'}
                     category={[{ name: 'Crear', path: 'newapplication' }, { name: 'Ver', path: 'vewapplicattion' }, { name: 'Como usuario', path: 'vewapplicattionuser' }]}
@@ -67,12 +70,12 @@ const Dashboard = () => {
                     title={'Alertas'}
                     category={[{ name: 'Mis Alertas', path: 'mayalert' }, { name: 'Usuario', path: 'useralert' }]}
                 />
-                
+
                 <Fields
-                    title={'Ordenes'}
-                    category={[{ name: 'Usuarios', path: 'userorders' }, { name: 'Todas las ordenes', path: 'alloreders' }]}
+                    title={'Imágenes'}
+                    category={[{ name: 'Avatares', path: 'newavatar' }, { name: 'Nuevo Evento', path: 'newimgevent' }, { name: 'Videos tutoriales', path: 'videotut' }]}
                 />
-                
+
                 <Fields
                     title={'Configuraciones'}
                     category={[{ name: 'Generales', path: 'configuration' }]}

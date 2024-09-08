@@ -44,7 +44,7 @@ const getTrasfer = async (confirm, user, page, country, type, id) => {
 
 const confirm = async (id) => {
     const tranfer = await transferRepository.getById(id);
-    tranfer.confirm = true;
+    tranfer.confirm = false; // Modificar esto -------------------------------------------------
     const result = await transferRepository.updTransfer(tranfer); 
     if (!result) throw new TransferNotFound('No se puede confirmar la transferencia');
     await payTransfer.updOrderBuyer(tranfer);  
