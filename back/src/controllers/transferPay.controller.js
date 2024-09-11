@@ -12,6 +12,17 @@ const newTransferPay = async (req, res) => {
     };
 };
 
+const getById = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const result = await transferPayService.getById(id);
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof TransferNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
 const getTransfer = async (req, res) => {
     const { page = 1, limit = 12, userid, pay, country } = req.query;
     try {
@@ -23,4 +34,4 @@ const getTransfer = async (req, res) => {
     };
 };
 
-export { newTransferPay, getTransfer };
+export { newTransferPay, getTransfer, getById };

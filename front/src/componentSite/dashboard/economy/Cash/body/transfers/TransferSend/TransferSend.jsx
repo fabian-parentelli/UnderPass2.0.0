@@ -23,9 +23,9 @@ const TransferSend = ({ country, setLoading }) => {
 
     return (
         <div className='transferSend'>
-            
-            {transfers && <TransferSendTable transfers={transfers.docs} />
-}
+
+            {transfers && <TransferSendTable transfers={transfers.docs} />}
+
             <div className='transferSendPager'>
                 <Pager users={transfers} HandleChangePage={HandleChangePage} />
             </div>

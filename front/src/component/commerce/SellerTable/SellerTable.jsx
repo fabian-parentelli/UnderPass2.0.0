@@ -76,7 +76,7 @@ const SellerTable = ({ values }) => {
 
                                 <td style={{ color: ord.pay.payOut.isPayOut ? 'green' : 'red' }}>
                                     <p>{ord.pay.payOut.isPayOut ? 'SI' : 'NO'}</p>
-                                    {ord.pay.payOut.datePayOut && <p>{new Date(ord.pay.payIn.datePayOut).toLocaleDateString()}</p>}
+                                    {ord.pay.payOut.datePayOut && <p>{new Date(ord.pay.payOut.datePayOut).toLocaleDateString()}</p>}
                                 </td>
 
                                 <td>{ord._id}</td>

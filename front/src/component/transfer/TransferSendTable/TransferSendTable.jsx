@@ -2,13 +2,18 @@ import './transferSendTable.scss';
 import { Fragment, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import flagsIcon from '../../../utils/flagsIcon.utils.js';
+import ModalCustom from '../../utils/ModalCustom/ModalCustom.jsx';
 
 const TransferSendTable = ({ transfers }) => {
 
+    const [open, setOpen] = useState(false);
+    const [vewTicket, setVewTicket] = useState(null);
     const [vew, setVew] = useState(null);
     const navigate = useNavigate();
 
     const hamdleVew = (id) => setVew(vew === id ? null : id);
+    const closedModal = () => { setOpen(false); setVewTicket(null) };
+    const openModal = (id) => { setVewTicket(id); setOpen(true) };
 
     return (
         <div className='TransferSendTable'>
@@ -27,7 +32,7 @@ const TransferSendTable = ({ transfers }) => {
                     {transfers && transfers.map((tra) => (
                         <Fragment key={tra._id}>
                             <tr>
-                                <td className='TransferSendTableBack'>
+                                <td className='TransferSendTableBack' onClick={() => openModal(tra._id)}>
                                     <img style={{ borderRadius: '1px' }} src={tra.imgUrl} alt="img" />
                                 </td>
 
@@ -40,7 +45,10 @@ const TransferSendTable = ({ transfers }) => {
                                     <p><span>Para:</span>{tra.data.customer}</p>
                                 </td>
 
-                                <td>{tra.data.operation}</td>
+                                <td>
+                                    <p>{tra.data.operation}</p>
+                                    <p style={{ fontSize: '10px' }}><span>ID:</span> {tra._id}</p>
+                                </td>
                                 <td>${tra.data.total}</td>
                                 <td className='TransferSendTableBack' onClick={() => hamdleVew(tra._id)}>Ver</td>
                             </tr>
@@ -49,7 +57,7 @@ const TransferSendTable = ({ transfers }) => {
                                 <tr >
                                     <td colSpan='6' className='TransferSendTableOrders'>
                                         {tra.orderId.map((ord) => (
-                                            <p key={ord} onClick={()=> navigate(`/vewtransferpay/${ord}`)}> 
+                                            <p key={ord} onClick={() => navigate(`/vewtransferpay/${ord}`)}>
                                                 <span>Orden:</span> {ord}
                                             </p>
                                         ))}
@@ -57,6 +65,11 @@ const TransferSendTable = ({ transfers }) => {
                                 </tr>
                             }
 
+                            {vewTicket === tra._id &&
+                                <ModalCustom modalIsOpen={open} closeModal={closedModal}>
+                                    <img src={tra.imgUrl} alt="img" style={{width: '300px'}} />
+                                </ModalCustom>
+                            }
                         </Fragment>
                     ))}
                 </tbody>

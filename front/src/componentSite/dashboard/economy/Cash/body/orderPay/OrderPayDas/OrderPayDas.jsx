@@ -2,9 +2,9 @@ import './orderPayDas.scss';
 import { useEffect, useState } from 'react';
 import OrderPayTable from '../OrderPayTable/OrderPayTable.jsx';
 import FilterOrderPay from '../FilterOrderPay/FilterOrderPay.jsx';
+import UploadOrderPay from '../UploadOrdrePay/UploadOrderPay.jsx';
 import Pager from '../../../../../../../component/utils/Pager/Pager.jsx';
 import { getOrderPayApi } from '../../../../../../../helpers/orderPay/getOrderPay.api.js';
-import UploadOrderPay from '../UploadOrdrePay/UploadOrderPay.jsx';
 
 const OrderPayDas = ({ country, setLoading }) => {
 

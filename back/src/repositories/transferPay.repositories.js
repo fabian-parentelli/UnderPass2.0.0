@@ -11,4 +11,9 @@ export default class TransferPayRepository {
         const result = await transferPayManager.getTransfer(query, limit, page);
         return result;
     };
+
+    getById = async (id) => {
+        const result = await transferPayManager.getById(id);
+        return result;
+    };
 }

@@ -7,6 +7,13 @@ const newTransferPay = async (imgUrl, data) => {
     await transferPayUtils.updateTreasure(result);
     await transferPayUtils.updateWallet(result);
     await transferPayUtils.newAlerts(result);
+    await transferPayUtils.updOrderSellers(result);
+    return { status: 'success', result };
+};
+
+const getById = async (id) => {
+    const result = await transferPayRepository.getById(id);
+    if (!result) throw new TransferNotFound('No se puede obtener la transferencia');    
     return { status: 'success', result };
 };
 
@@ -20,4 +27,4 @@ const getTransfer = async (page, limit, userid, pay, country) => {
     return { status: 'success', result };
 };
 
-export { newTransferPay, getTransfer };
+export { newTransferPay, getTransfer, getById };

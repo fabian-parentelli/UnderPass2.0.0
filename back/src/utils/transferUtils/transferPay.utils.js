@@ -1,6 +1,8 @@
 import {
-    transferPayRepository, orderPayRepository, auditRepository, walletRepository, alertsRepository
+    transferPayRepository, orderPayRepository, auditRepository, walletRepository, alertsRepository,
+    orderSellerRepository
 } from "../../repositories/index.repositories.js";
+import mongoose from "mongoose";
 import { TransferNotFound } from '../custom-exceptions.utils.js';
 import { updateCashTotal } from '../cash/updateCash.utils.js';
 
@@ -59,7 +61,7 @@ const updateWallet = async (data) => {
         cash: data.data.total
     };
     wallet.money.push(wall);
-    if(wallet.inWallet) wallet.reqMoney = false;
+    if (wallet.inWallet) wallet.reqMoney = false;
     await walletRepository.update(wallet);
 };
 
@@ -72,4 +74,41 @@ const newAlerts = async (data) => {
     await alertsRepository.newAlert(alerts);
 };
 
-export { createOrder, updateTreasure, updateWallet, newAlerts };
+const updOrderSellers = async (data) => {
+    let shouldUpdateAllOrders = false;
+    for (const ord of data.orderId) {
+        const orderPay = await orderPayRepository.getById(ord);
+        if(mongoose.Types.ObjectId.isValid(orderPay.orderId)) {
+            const orderSeller = await orderSellerRepository.getOrderById(orderPay.orderId);
+            orderSeller.pay.payOut = {
+                isPayOut: true,
+                datePayOut: new Date(),
+                statusPayOut: 'success',
+                payOutData: {
+                    ticketNumber: data._id,
+                    ticketImg: data.imgUrl,
+                }
+            };
+            await orderSellerRepository.update(orderSeller);
+        } else {
+            shouldUpdateAllOrders = true;
+        };
+    };
+    if (shouldUpdateAllOrders) {
+        const orderSellerUser = await orderSellerRepository.getOrderByUserId(data.userId);
+        for (const order of orderSellerUser) {
+            order.pay.payOut = {
+                isPayOut: true,
+                datePayOut: new Date(),
+                statusPayOut: 'success',
+                payOutData: {
+                    ticketNumber: data._id,
+                    ticketImg: data.imgUrl,
+                }
+            };
+            await orderSellerRepository.update(order);
+        };
+    };
+};
+
+export { createOrder, updateTreasure, updateWallet, newAlerts, updOrderSellers };

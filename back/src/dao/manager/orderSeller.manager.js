@@ -14,6 +14,10 @@ export default class OrderSeller {
         return await orderSellerModel.findById(id).lean();
     };
 
+    getOrderByUserId = async (id) => {
+        return await orderSellerModel.find({ sellerUserId: id, 'pay.payOut.isPayOut': false });
+    };
+
     getOrdersUpdate = async (query) => {
         return await orderSellerModel.find(query).lean();
     };
@@ -21,5 +25,5 @@ export default class OrderSeller {
     update = async (order) => {
         return await orderSellerModel.findByIdAndUpdate(order._id, order, { new: true, lean: true });
     };
-    
+
 };

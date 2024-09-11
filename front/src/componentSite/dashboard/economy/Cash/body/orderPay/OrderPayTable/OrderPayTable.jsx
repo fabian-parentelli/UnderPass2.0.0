@@ -4,11 +4,13 @@ import Checkbox from '@mui/material/Checkbox';
 import Copy from '../../../../../../../component/utils/Copy';
 import flagsIcon from '../../../../../../../utils/flagsIcon.utils';
 import TimePass from '../../../../../../../component/utils/TimePass';
+import { useLoginContext } from '../../../../../../../context/LoginContext';
 
 const OrderPayTable = ({ orders, selectedIds, setSelectedIds }) => {
 
     const [vew, setVew] = useState(null)
     const handleVew = (id) => setVew(vew === id ? null : id);
+    const { user } = useLoginContext();
 
     const handleCheckboxChange = (id) => {
         setSelectedIds(prevSelectedIds =>
@@ -29,7 +31,7 @@ const OrderPayTable = ({ orders, selectedIds, setSelectedIds }) => {
                         <th>Total</th>
                         <th>Fecha</th>
                         <th>Pago</th>
-                        <th>Check</th>
+                        {user.data.role !== 'user' && <th>Check</th>}
                     </tr>
                 </thead>
                 <tbody>
@@ -54,13 +56,16 @@ const OrderPayTable = ({ orders, selectedIds, setSelectedIds }) => {
                                 </td>
                                 <td style={{ color: ord.pay.isPay ? 'green' : 'red' }}>
                                     {ord.pay.isPay ? 'SI' : 'NO'}
+                                    {ord.pay.isPay && <p>{new Date(ord.pay.datePay).toLocaleDateString()}</p>}
                                 </td>
-                                <td>
-                                    <Checkbox
-                                        checked={Array.isArray(selectedIds) && selectedIds.includes(ord._id)}
-                                        onChange={() => handleCheckboxChange(ord._id)}
-                                    />
-                                </td>
+                                {user.data.role !== 'user' &&
+                                    <td>
+                                        <Checkbox
+                                            checked={Array.isArray(selectedIds) && selectedIds.includes(ord._id)}
+                                            onChange={() => handleCheckboxChange(ord._id)}
+                                        />
+                                    </td>
+                                }
                             </tr>
                             {vew === ord._id &&
                                 <tr>

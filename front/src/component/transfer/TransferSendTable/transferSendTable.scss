@@ -33,3 +33,20 @@
         }
     }
 }
+
+@media (max-width: 767px) {
+
+    .TransferSendTable {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .TransferSendTable::-webkit-scrollbar {
+        height: 6px;
+    }
+    
+    .TransferSendTable::-webkit-scrollbar-thumb {
+        background-color: $colorB; 
+        border-radius: 6px; 
+    }
+}

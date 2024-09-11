@@ -7,6 +7,7 @@ import getTypeAlerts from '../../../utils/alertTypeText.utils.js';
 import SoldProductAlert from './SoldProductAlert/SoldProductAlert';
 import HaveMoneyAlerts from './HaveMoneyAlerts/HaveMoneyAlerts.jsx';
 import ReqTranferAlert from './ReqTransferAlert/ReqTransferAlert.jsx';
+import HaveAPay from './HaveAPay/HaveAPay.jsx';
 
 const VewAlertsBody = () => {
 
@@ -23,6 +24,7 @@ const VewAlertsBody = () => {
             {type === 'youMoneyInWallet' && <HaveMoneyAlerts id={id} setLoading={setLoading} />}
             {type === 'transfer_in' && <ReqTranferAlert id={id} setLoading={setLoading} />}
             {type === 'transfer_confirm' && <HaveMoneyAlerts id={id} setLoading={setLoading} />}
+            {type === 'payTranferToCustomer' && <HaveAPay id={id} setLoading={setLoading} />}
 
             <Load loading={loading} />
         </div>

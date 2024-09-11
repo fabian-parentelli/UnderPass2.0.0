@@ -10,4 +10,8 @@ export default class TransferPay {
         return await transferPayModel.paginate(query, { limit, page, lean: true, sort: { date: -1 } })
     };
 
+    getById = async (id) => {
+        return await transferPayModel.findById(id).lean();
+    };
+
 };

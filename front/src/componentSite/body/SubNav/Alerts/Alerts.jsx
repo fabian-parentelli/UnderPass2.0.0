@@ -25,9 +25,6 @@ const Alerts = ({ user }) => {
         setNumberModal(number);
     };
 
-    console.log(alerts);
-
-
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
@@ -95,6 +92,13 @@ const Alerts = ({ user }) => {
                                 }
 
                                 {(ale.type === 'transfer_confirm') &&
+                                    <Link to={`/vewalert/${ale.type}/${ale.eventId}`} className='alertsChildrenDiv' onClick={() => handleOff(ale._id)}>
+                                        <img src={alertImages.transfer_in} lt="img" />
+                                        <p>{getTypeAlerts(ale.type)}</p>
+                                    </Link>
+                                }
+                                
+                                {(ale.type === 'payTranferToCustomer') &&
                                     <Link to={`/vewalert/${ale.type}/${ale.eventId}`} className='alertsChildrenDiv' onClick={() => handleOff(ale._id)}>
                                         <img src={alertImages.transfer_in} lt="img" />
                                         <p>{getTypeAlerts(ale.type)}</p>

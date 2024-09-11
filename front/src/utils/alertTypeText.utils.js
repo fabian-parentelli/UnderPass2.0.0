@@ -7,6 +7,7 @@ function getTypeAlerts(types) {
         'transfer_confirm': () => { return 'Transferencia confirmada' },
         'havePay': () => { return 'Pago pendiente por hacer' },
         'youMoneyInWallet': () => { return 'Tienes dinero acreditado en tu billetera' },
+        'payTranferToCustomer': () => { return 'Recibiste un deposito' },
         'default': () => { return 'otro' },
     };
 
