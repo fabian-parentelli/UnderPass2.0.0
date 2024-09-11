@@ -1,8 +1,8 @@
 import './transferTable.scss';
 import { Fragment, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import TimePass from '../../../utils/TimePass';
 import { imgages } from '../../../../utils/imagesData.utils';
+import GetTicketByOrder from '../../../ticket/GetTicketByOrder';
 import ModalCustom from '../../../utils/ModalCustom/ModalCustom';
 import { useLoginContext } from '../../../../context/LoginContext';
 import TransferUpdTable from '../TransferUpdTable/TransferUpdTable';
@@ -11,16 +11,17 @@ const TransferTable = ({ transfers, handleConfirm, setTransfers, setLoading }) =
 
     const { user } = useLoginContext();
     const [open, setOpen] = useState(false);
+    const [topen, setTopen] = useState(false);
     const [whatOpen, setWhatOpen] = useState(null);
     const [vewUpd, setVewUpd] = useState(null);
-    const navigate = useNavigate();
+    const [vewTicket, setVewTicket] = useState(null);
 
     const closeModal = () => { setOpen(false); setWhatOpen(null) };
     const openModal = (id) => { setWhatOpen(id); setOpen(true) };
     const handleVew = (id) => setVewUpd(vewUpd === id ? null : id)
+    const closedTicket = () => { setTopen(false), setVewTicket(null) };
+    const openTicket = (id) => { setVewTicket(id), setTopen(true) };
 
-    const handleTicket = (id) => navigate(`/ticket_by_order/${id}`);
-    
     return (
         <div className='paymentsTable'>
             <table>
@@ -59,7 +60,7 @@ const TransferTable = ({ transfers, handleConfirm, setTransfers, setLoading }) =
                                 <td>{trans.orderId}</td>
 
                                 <td
-                                    onClick={() => trans.confirm && handleTicket(trans.orderId)}
+                                    onClick={() => trans.confirm && openTicket(trans._id)}
                                     className={trans.confirm ? 'paymentsTableOrderConfirm' : ''}
                                 >
                                     {trans.type}
@@ -115,6 +116,12 @@ const TransferTable = ({ transfers, handleConfirm, setTransfers, setLoading }) =
                                         />
                                     </td>
                                 </tr>
+                            }
+
+                            {vewTicket == trans._id &&
+                                <ModalCustom modalIsOpen={topen} closeModal={closedTicket}>
+                                    <GetTicketByOrder orderId={trans.orderId} />
+                                </ModalCustom>
                             }
                         </Fragment>
                     ))}

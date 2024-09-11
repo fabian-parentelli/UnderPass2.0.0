@@ -1,16 +1,22 @@
 import './orderPayTable.scss';
 import { Fragment, useState } from 'react';
-import { useLoginContext } from '../../../../../../../context/LoginContext';
+import Checkbox from '@mui/material/Checkbox';
+import Copy from '../../../../../../../component/utils/Copy';
 import flagsIcon from '../../../../../../../utils/flagsIcon.utils';
 import TimePass from '../../../../../../../component/utils/TimePass';
-import Copy from '../../../../../../../component/utils/Copy';
 
-const OrderPayTable = ({ orders }) => {
+const OrderPayTable = ({ orders, selectedIds, setSelectedIds }) => {
 
-    const { user } = useLoginContext();
     const [vew, setVew] = useState(null)
-
     const handleVew = (id) => setVew(vew === id ? null : id);
+
+    const handleCheckboxChange = (id) => {
+        setSelectedIds(prevSelectedIds =>
+            prevSelectedIds.includes(id)
+                ? prevSelectedIds.filter(selectedId => selectedId !== id)
+                : [...prevSelectedIds, id]
+        );
+    };
 
     return (
         <div className='orderPayTable'>
@@ -23,6 +29,7 @@ const OrderPayTable = ({ orders }) => {
                         <th>Total</th>
                         <th>Fecha</th>
                         <th>Pago</th>
+                        <th>Check</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -47,6 +54,12 @@ const OrderPayTable = ({ orders }) => {
                                 </td>
                                 <td style={{ color: ord.pay.isPay ? 'green' : 'red' }}>
                                     {ord.pay.isPay ? 'SI' : 'NO'}
+                                </td>
+                                <td>
+                                    <Checkbox
+                                        checked={Array.isArray(selectedIds) && selectedIds.includes(ord._id)}
+                                        onChange={() => handleCheckboxChange(ord._id)}
+                                    />
                                 </td>
                             </tr>
                             {vew === ord._id &&

@@ -15,6 +15,15 @@ export default class OrderSellerRepository {
         return result;
     };
 
+    getById = async (id, user) => {
+        const result = await orderSellerManager.getById(id);
+        const order = [];
+        order.push(result);        
+        const orders = await getOrdersUtil.getCart(order, user); 
+        const newResult = orders[0];
+        return newResult;
+    };
+
     getOrdersUpdate = async (query) => {
         const result = await orderSellerManager.getOrdersUpdate(query);
         return result;

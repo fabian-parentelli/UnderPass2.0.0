@@ -24,6 +24,7 @@ import SellerOrders from "../componentSite/alerts/SellerOrders/SellerOrders.jsx"
 import TransferVewAlert from "../componentSite/alerts/TransferVewAlert/TransferVewAlert.jsx";
 import TicketUnique from "../component/pay/TicketUnique/TicketUnique.jsx";
 import VewAlertsBody from "../componentSite/alerts/VewAlertsBody/VewAlertsBody.jsx";
+import VewTransferPay from "../component/transfer/VewTransferPay/VewTransferPay.jsx";
 
 const RoutesComp = () => {
 
@@ -52,10 +53,11 @@ const RoutesComp = () => {
                             <Route path="/profile/*" element={<Profile />} />
                             <Route path="/underpay/:type/:id" element={<UnderPay />} />
                             <Route path="/transfer/:id" element={<TransferPay />} />
+                            
                             <Route path="/order/:id" element={<SellerOrders />} />
                             
                             {/* <Route path="/transfer_vew_alert/:id" element={<TransferVewAlert />} /> */}
-
+                            <Route path="/vewtransferpay/:id" element={<VewTransferPay />} />
                             <Route path="/ticket_by_order/:id" element={<TicketUnique />} />
                             <Route path="/vewalert/:type/:id" element={<VewAlertsBody />} />
                         </>

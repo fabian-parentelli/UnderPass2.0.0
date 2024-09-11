@@ -1,0 +1,35 @@
+@import '../../../style/colors.scss';
+
+.TransferSendTable {
+
+    span {
+        color: $colorB;
+    }
+
+    .TransferSendTableFlags {
+        width: 30px;
+        object-fit: contain;
+        border-radius: 1px;
+    }
+
+    .TransferSendTableBack {
+        cursor: pointer;
+        transition: .3s ease-in-out;
+
+        &:hover {
+            background-color: rgb(199, 198, 198);
+        }
+    }
+
+    .TransferSendTableOrders {
+        p {
+            cursor: pointer;
+            transition: .3s ease-in-out;
+            margin-top: 1rem;
+
+            &:hover {
+                color: black;
+            }
+        }
+    }
+}

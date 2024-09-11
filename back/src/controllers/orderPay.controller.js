@@ -12,6 +12,28 @@ const newOrder = async (req, res) => {
     };
 };
 
+const getData = async (req, res) => {
+    const { country } = req.params;
+    try {
+        const result = await orderPayService.getData(country);
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof OrderNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
+const getOrderSellerByPay = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const result = await orderPayService.getOrderSellerByPay(id, { ...req.user });
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof OrderNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
 const getOrderById = async (req, res) => {
     const { id } = req.params;
     try {
@@ -34,4 +56,4 @@ const getOrdersPay = async (req, res) => {
     };
 };
 
-export { newOrder, getOrdersPay, getOrderById };
+export { newOrder, getData, getOrdersPay, getOrderById, getOrderSellerByPay };

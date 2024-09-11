@@ -25,7 +25,7 @@ const SellerOrders = () => {
 
     return (
         <div className='sellerOrders'>
-            <Title Icon={ViewStreamIcon} name='Orden de Compra' goTo={'/help'} />
+            <Title Icon={ViewStreamIcon} name='Orden de venta' goTo={'/help'} />
             <div style={{marginTop: '2rem'}}>
                 <SellerTable values={order} />
             </div>

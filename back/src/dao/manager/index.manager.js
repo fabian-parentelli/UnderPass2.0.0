@@ -16,6 +16,7 @@ import Transfer from './transfer.manager.js';
 import Cash from './cash.manager.js';
 import Audit from './audit.manager.js';
 import OrderPay from './orderPay.manager.js';
+import TransferPay from './transferPay.manager.js';
 
 export const userManager = new User();
 export const tutorialsManager = new Tutorials();
@@ -35,3 +36,4 @@ export const transferManager = new Transfer();
 export const cashManager = new Cash();
 export const auditManager = new Audit();
 export const orderPayManager = new OrderPay();
+export const transferPayManager = new TransferPay();

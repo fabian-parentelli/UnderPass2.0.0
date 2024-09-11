@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Checkboxes from '../../../../../../../component/utils/Checkboxes';
 import TransferRecived from '../TransferRecived/TransferRecived';
 import TransferFilter from '../TransferFilter/TransferFilter';
+import TransferSend from '../TransferSend/TransferSend';
 
 const TransferDas = ({ country, setLoading }) => {
 
@@ -20,7 +21,7 @@ const TransferDas = ({ country, setLoading }) => {
             </div>
 
             {type === 'Recibidas' && <TransferRecived country={country} setLoading={setLoading} values={values} />}
-            {type === 'Enviadas' && <p>Transferencias enviadas</p>}
+            {type === 'Enviadas' && <TransferSend country={country} setLoading={setLoading} />}
 
         </div>
     );

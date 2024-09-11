@@ -109,7 +109,7 @@ const updateCashSeller = async (order, country) => {
         const orderPay = {
             userId: wallet.userId,
             orderId: order._id,
-            total: wallet.total,
+            total: order.total,
             country: wallet.country
         };
         await orderPayRepository.newOrders(orderPay);

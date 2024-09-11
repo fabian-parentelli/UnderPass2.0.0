@@ -1,0 +1,27 @@
+.uploadOrderPay{
+    display: flex;
+    margin: 2rem 0;
+    gap: 6rem;
+
+    .uploadOrderPayFile {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 2rem;
+    }
+
+    .uploadOrderPayData {
+        margin-top: 6px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        div {
+            display: flex;
+            flex-direction: column;
+            label {
+                font-size: 12px;
+            }
+        }
+    }
+}

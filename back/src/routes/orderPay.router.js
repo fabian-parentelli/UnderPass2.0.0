@@ -5,6 +5,8 @@ import { passportEnum } from '../config/enums.config.js';
 export default class OrderPayRouter extends Router {
     init() {
         this.post('/', ['USER', 'ADMIN', 'MASTER'], passportEnum.JWT, orderPayController.newOrder);
+        this.get('/data/:country', ['ADMIN', 'MASTER'], passportEnum.JWT, orderPayController.getData);
+        this.get('/orderpayseller/:id', ['USER', 'ADMIN', 'MASTER'], passportEnum.JWT, orderPayController.getOrderSellerByPay);
         this.get('/:id', ['ADMIN', 'MASTER'], passportEnum.JWT, orderPayController.getOrderById);
         this.get('/', ['ADMIN', 'MASTER'], passportEnum.JWT, orderPayController.getOrdersPay);
     };
