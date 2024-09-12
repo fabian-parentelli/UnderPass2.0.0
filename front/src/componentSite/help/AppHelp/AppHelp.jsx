@@ -1,6 +1,8 @@
 import SearchHelp from "../SearchHelp/SearchHelp";
 import ApplicationHelp from "./ApplicationHelp/ApplicationHelp";
 import NewProductHelp from "./NewProductHelp/NewProductHelp";
+import OrderBuyHelp from "./OrderBuyHelp/OrderBuyHelp";
+import OrderSellerHelp from "./OrderSellerHelp/OrderSellerHelp";
 import PublicityHelp from "./PublicityHelp/PublicityHelp";
 import PublicityVewHelp from "./PublicityVewHelp/PublicityVewHelp";
 import VewProductHelp from "./VewProductHelp/VewProductHrlp";
@@ -19,6 +21,8 @@ const AppHelp = () => {
             <PublicityHelp />
             <ApplicationHelp />
             <PublicityVewHelp />
+            <OrderBuyHelp />
+            <OrderSellerHelp />
         </div>
     );
 };

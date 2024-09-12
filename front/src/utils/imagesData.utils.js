@@ -42,6 +42,15 @@ const imagesHelp = {
     textAreaApplication: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1724966984/help/lwdczciji4cn99ojfxif.png',
 
     vewPublicty: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1725565093/help/uwrqbuscncs6gh6f1c45.png',
+
+    // ordenes de compra
+    orderBuyImg1: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1726174120/help/xaqbr9sjrvniooqerikl.png',
+    orderBuyImg2: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1726174120/help/eevhsholluxt76gjda0p.png',
+    orderBuyImg3: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1726174120/help/clbatmkd7x0ws8nt7qqg.png',
+    orderBuyImg4: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1726174120/help/smezn3f4zh2qxdqzmjsm.png',
+
+    orderSellerImg1: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1726180853/help/bawznl5woqapfwdg6bo8.png',
+    
 };
 
 const alertImages = {
@@ -50,7 +59,6 @@ const alertImages = {
     transfer_in: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1725395128/images/fzxdxsbldnniekmycfgw.png',
     havePay: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1725718015/images/jfbb8kbtsnelbrv2gwfv.png',
     underPay: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1725721458/images/qs0fuwe6qak5ikrjic5f.png'
-
 };
 
 export { imgages, imagesHelp, alertImages };

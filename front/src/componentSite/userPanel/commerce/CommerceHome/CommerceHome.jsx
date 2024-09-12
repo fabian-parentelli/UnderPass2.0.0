@@ -10,7 +10,7 @@ const CommerceHome = () => {
 
     return (
         <div className='commerceHome'>
-            <Title Icon={ListAltIcon} name='Ordenes' goTo='/help' />
+            <Title Icon={ListAltIcon} name='Ordenes' goTo='/help#orderBuyHelp' />
             <Commerce user={user.data} />
         </div>
     );
