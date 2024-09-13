@@ -50,6 +50,7 @@ const confirm = async (id) => {
     await payTransfer.updOrderBuyer(tranfer);
     await payTransfer.updateCash();
     await payTransfer.updOrderBySeller(tranfer);
+    await payTransfer.updApplication();
     return { status: 'success', result };
 };
 

@@ -1,9 +1,9 @@
 import './sellerTable.scss';
+import { Link } from 'react-router-dom';
 import { Fragment, useState } from 'react';
 import BigImg from '../../utils/BigImg/BigImg.jsx';
 import typeCart from '../../../utils/typeCart.utils.js';
 import { useLoginContext } from '../../../context/LoginContext.jsx';
-import { Link } from 'react-router-dom';
 import ModalCustom from '../../utils/ModalCustom/ModalCustom.jsx';
 import GetTicketByOrder from '../../ticket/GetTicketByOrder.jsx';
 
@@ -11,14 +11,17 @@ const SellerTable = ({ values }) => {
 
     const { user } = useLoginContext();
     const [vew, setVew] = useState(null);
-
     const [vewModal, setVewModal] = useState(null);
     const [open, setOpen] = useState(false);
+    const [vewMpModal, setVewMpModal] = useState(null);
+    const [mpOpen, setMpOpen] = useState(false);
 
     const handleInfo = (id) => setVew(vew === id ? null : id);
-
     const closeModal = () => { setOpen(false); setVewModal(null) };
     const openModal = (id) => { setVewModal(id); setOpen(true) };
+
+    const closeMpModal = () => { setMpOpen(false); setVewMpModal(null) };
+    const openMpModal = (id) => { setVewMpModal(id); setMpOpen(true) };
 
     return (
         <div className='sellerTable'>
@@ -74,9 +77,13 @@ const SellerTable = ({ values }) => {
                                     {ord.pay.payCredited.datePayCredited && <p>{new Date(ord.pay.payCredited.datePayCredited).toLocaleDateString()}</p>}
                                 </td>
 
-                                <td style={{ color: ord.pay.payOut.isPayOut ? 'green' : 'red' }}>
-                                    <p>{ord.pay.payOut.isPayOut ? 'SI' : 'NO'}</p>
-                                    {ord.pay.payOut.datePayOut && <p>{new Date(ord.pay.payOut.datePayOut).toLocaleDateString()}</p>}
+                                <td
+                                    className={ord?.pay?.payOut?.isPayOut ? 'sellerTableBackPoint' : ''}
+                                    onClick={ord?.pay?.payOut?.isPayOut ? () => openMpModal(ord._id) : undefined}
+                                    style={{ color: ord?.pay?.payOut?.isPayOut ? 'green' : 'red' }}
+                                >
+                                    <p>{ord?.pay?.payOut?.isPayOut ? 'SI' : 'NO'}</p>
+                                    {ord?.pay?.payOut?.datePayOut && <p>{new Date(ord.pay.payOut.datePayOut).toLocaleDateString()}</p>}
                                 </td>
 
                                 <td>{ord._id}</td>
@@ -127,8 +134,14 @@ const SellerTable = ({ values }) => {
                             }
 
                             {vewModal === ord._id &&
-                                <ModalCustom  modalIsOpen={open} closeModal={closeModal}>
+                                <ModalCustom modalIsOpen={open} closeModal={closeModal}>
                                     <GetTicketByOrder orderId={ord._id} />
+                                </ModalCustom>
+                            }
+
+                            {vewMpModal === ord._id && ord.pay.payOut.payOutData.ticketImg &&
+                                <ModalCustom modalIsOpen={mpOpen} closeModal={closeMpModal}>
+                                    <img style={{width: '280px'}} src={ord.pay.payOut.payOutData.ticketImg} alt="img" />
                                 </ModalCustom>
                             }
                         </Fragment>

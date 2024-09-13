@@ -12,7 +12,7 @@ const Seller = ({ userId, setLoading }) => {
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
-            const query = { userid: userId, active: true }
+            const query = { userid: userId, active: true };
             if (page) query.page = page;
             const response = await getOrderSellerApi(query);               
             if (response.status === 'success') setValues(response.result);

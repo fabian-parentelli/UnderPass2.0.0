@@ -29,4 +29,5 @@ const data = [
     { label: 'Ver y crear solicitudes publicitarias', data: 'applicationHelp' },
     { label: 'Ver mis publicidades', data: 'publicityVewHelp' },
     { label: 'Ordenes de compra', data: 'orderBuyHelp' },
+    { label: 'Ordenes de venta', data: 'orderSellerHelp' },
 ];

@@ -1,6 +1,6 @@
 import {
     orderRepository, ticketRepository, alertsRepository, auditRepository, orderSellerRepository, walletRepository,
-    orderPayRepository
+    orderPayRepository, appliRepository
 } from "../../repositories/index.repositories.js";
 import { updateCashTotal } from "../cash/updateCash.utils.js";
 import { CashNotFound, TransferNotFound } from '../custom-exceptions.utils.js';
@@ -47,25 +47,29 @@ const updateCash = async () => {
     const { difCash, difTreasure, _id, ...audit } = result._doc;
     audit.cashId = result._id;
     const resultAudit = await auditRepository.newAudit(audit);
-    if (!resultAudit) throw new CashNotFound('No se puede crear el archivo de audición');    
+    if (!resultAudit) throw new CashNotFound('No se puede crear el archivo de audición');
 };
 
 const updOrderBySeller = async (tranfer) => {
     const orders = await orderSellerRepository.getOrdersUpdate({ orderId: tranfer.orderId });
-    for (const ord of orders) {
-        ord.pay.payIn = {
-            isPayIn: true,
-            datePayIn: new Date(),
-            statusPay: 'success'
-        };
-        await orderSellerRepository.update(ord);
-        const result = await updateCashSeller(ord, tranfer.country);
-        if (result.status === 'success') {
-            ord.pay.payCredited = {
-                isPayCredited: true,
-                datePayCredited: new Date()
-            }
+    if (orders) {
+        for (const ord of orders) {
+            ord.pay = {
+                payIn: {
+                    isPayIn: true,
+                    datePayIn: new Date(),
+                    statusPay: 'success'
+                },
+                payCredited: {
+                    isPayCredited: true,
+                    datePayCredited: new Date()
+                },
+                payOut: {
+                    isPayOut: false
+                }
+            };
             await orderSellerRepository.update(ord);
+            await updateCashSeller(ord, tranfer.country);
         };
     };
 };
@@ -93,7 +97,7 @@ const updateCashSeller = async (order, country) => {
     audit.cashId = result._id;
     const resultAudit = await auditRepository.newAudit(audit);
     if (!resultAudit) throw new CashNotFound('No se puede crear el archivo de audición');
-    const wallet = await walletRepository.getByUserId(order.sellerUserId);    
+    const wallet = await walletRepository.getByUserId(order.sellerUserId);
     wallet.total += order.total;
     const wall = {
         type: true,
@@ -120,8 +124,20 @@ const updateCashSeller = async (order, country) => {
             type: 'youMoneyInWallet'
         };
         await alertsRepository.newAlert(alerts);
-    }; 
+    };
     return { status: 'success' };
 };
 
-export { updOrderBuyer, updateCash, updOrderBySeller };
+const updApplication = async () => {
+    if(userOrder) {
+        for(const ord of userOrder.cart) {
+            const app = await appliRepository.getAppById(ord.typeId);
+            if(app) {
+                app.pay = true;
+                await appliRepository.update(app);
+            };
+        };
+    };
+};
+
+export { updOrderBuyer, updateCash, updOrderBySeller, updApplication };

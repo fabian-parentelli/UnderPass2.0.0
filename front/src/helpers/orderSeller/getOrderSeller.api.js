@@ -7,7 +7,7 @@ async function getOrderSellerApi(obj) {
     if (obj.limit) urlData += `limit=${obj.limit}&`;
     if (obj.userid) urlData += `userid=${obj.userid}&`;
     if (obj.active !== undefined) urlData += `active=${obj.active}&`;
-    if (obj.payIn !== undefined) urlData += `payIn=${obj.payIn}&`;
+    if (obj.payIn !== undefined) urlData += `payIn=${obj.payIn}&`; 
     if (obj.payOut !== undefined) urlData += `payOut=${obj.payOut}&`;
     if (obj.id) urlData += `id=${obj.id}&`;
 

@@ -16,7 +16,7 @@ const updateStock = async (order) => {
     const products = order.filter(prod => prod.is === 'product');
     for (const prod of products) {
         const product = await productRepository.getProdById(prod.typeId);
-        if(product.quantity >= prod.quantity) {
+        if (product.quantity >= prod.quantity) {
             product.quantity -= prod.quantity;
             await productRepository.update(product);
         } else {
@@ -49,7 +49,12 @@ const orderSeller = async (order, userId, orderId) => {
                     buyerUserId: userId,
                     sellerUserId: product.userId,
                     cart: [ord],
-                    total: product.price * ord.quantity
+                    total: product.price * ord.quantity,
+                    pay: {
+                        payIn: {},  // Dejar que Mongoose asigne los valores por defecto
+                        payCredited: {},
+                        payOut: {}  // Este campo será inicializado con isPayOut: false por Mongoose
+                    }
                 };
                 orders.push(obj);
             };
@@ -63,14 +68,14 @@ const orderSeller = async (order, userId, orderId) => {
 };
 
 const alertsSend = async (order) => {
-    for(const ord of order) {
-        if(ord.is !== 'product' && ord.is !== 'evenet' && ord.is !== 'shift') {
-            const alert ={
+    for (const ord of order) {
+        if (ord.is !== 'product' && ord.is !== 'evenet' && ord.is !== 'shift') {
+            const alert = {
                 eventId: ord.typeId,
                 userId: '668d9529cf8bde76a0dc3adb',
                 type: `application_${ord.is}`,
-            };            
-            await alertsRepository.newAlert(alert);    
+            };
+            await alertsRepository.newAlert(alert);
         };
     };
     for (const ord of orderSellerResult) {

@@ -7,10 +7,10 @@ export default class OrderSellerRepository {
         const result = await orderSellerManager.newOrder(order);
         return result;
     };
-    
+
     getOrders = async (query, limit, page, user) => {
         const result = await orderSellerManager.getOrders(query, limit, page, user);
-        const orders = await getOrdersUtil.getCart(result.docs, user);        
+        const orders = await getOrdersUtil.getCart(result.docs, user);
         result.docs = orders;
         return result;
     };
@@ -18,8 +18,8 @@ export default class OrderSellerRepository {
     getById = async (id, user) => {
         const result = await orderSellerManager.getById(id);
         const order = [];
-        order.push(result);        
-        const orders = await getOrdersUtil.getCart(order, user); 
+        order.push(result);
+        const orders = await getOrdersUtil.getCart(order, user);
         const newResult = orders[0];
         return newResult;
     };
@@ -28,7 +28,7 @@ export default class OrderSellerRepository {
         const result = await orderSellerManager.getById(id);
         return result;
     };
-    
+
     getOrderByUserId = async (id) => {
         const result = await orderSellerManager.getOrderByUserId(id);
         return result;
