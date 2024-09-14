@@ -7,7 +7,7 @@ import { newTransferPayApi } from '../../../../../../../helpers/transferPay/newT
 const UploadOrderPay = ({ selectedIds, setLoading }) => {
 
     const [values, setValues] = useState({
-        ordersId: selectedIds, operation: '', accountHolder: '', customer: '', bank: '', date: '', total: ''
+        ordersId: selectedIds, operation: '', accountHolder: '', customer: '', bank: 'Mercado Pago', date: '', total: ''
     });
     const [formData, setFormData] = useState(null);
     const navigate = useNavigate();

@@ -6,5 +6,6 @@ export default class CashRouter extends Router {
     init() {
         this.post('/', ['MASTER'], passportEnum.JWT, cashController.newCash);
         this.get('/last', ['ADMIN', 'MASTER'], passportEnum.JWT, cashController.getLast);
+        this.get('/', ['ADMIN', 'MASTER'], passportEnum.JWT, cashController.getAll);
     };
 };

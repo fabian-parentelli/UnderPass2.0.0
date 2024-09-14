@@ -7,7 +7,7 @@ const GetAllWalletTable = ({ wallets }) => {
 
     const [vew, setVew] = useState(null);
     const handleVew = (id) => setVew(vew === id ? null : id);
-
+    
     return (
         <div className='getAllWalletTable'>
             <table>
@@ -24,7 +24,10 @@ const GetAllWalletTable = ({ wallets }) => {
                     {wallets && wallets.map((wallet) => (
                         <Fragment key={wallet._id}>
                             <tr>
-                                <td onClick={() => handleVew(wallet._id)} className='getAllWalletTablePointer'>
+                                <td
+                                    onClick={wallet.money.length > 0 ? () => handleVew(wallet._id) : undefined}
+                                    className='getAllWalletTablePointer'
+                                >
                                     <p>{wallet.userData.name}</p>
                                     <p>{wallet.userData.email}</p>
                                     <p>{wallet.userData?.phone}</p>

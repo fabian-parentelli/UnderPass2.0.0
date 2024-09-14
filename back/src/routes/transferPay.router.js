@@ -8,6 +8,6 @@ export default class TransferPayRouter extends Router {
     init() {
         this.post('/', ['ADMIN', 'MASTER'], passportEnum.JWT, multipleUploader, uploadToCloudinary, transferPayController.newTransferPay);
         this.get('/:id', ['USER', 'ADMIN', 'MASTER'], passportEnum.JWT, transferPayController.getById);
-        this.get('/', ['ADMIN', 'MASTER'], passportEnum.JWT, transferPayController.getTransfer);
+        this.get('/', ['USER', 'ADMIN', 'MASTER'], passportEnum.JWT, transferPayController.getTransfer);
     };
 };

@@ -1,6 +1,12 @@
 .bodyCashDas {
     margin-top: 1rem;
 
+    .bodyCashDasBody {
+        display: flex;
+        align-items: flex-end;
+        gap: 40%;
+    }
+
     .bodyCashDasSelect {
         margin-top: 1rem;
         display: flex;

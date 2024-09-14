@@ -1,0 +1,13 @@
+.movementCashFilter {
+    margin-bottom: 1rem;
+    display: flex;
+    gap: 1rem;
+
+    select {
+        width: 150px;
+    }
+
+    input {
+        width: 150px;
+    }
+}

@@ -20,6 +20,11 @@
     .payCartYourMoney {
         display: flex;
         gap: .4rem;
+
+        .payCartYourMoneyNUmber {
+            padding: 0 3px;
+            border-radius: 3px;
+        }
     }
 
     .payCartYourCart {

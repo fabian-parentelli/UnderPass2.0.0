@@ -1,0 +1,28 @@
+@import '../../../../style/colors.scss';
+
+.collection {
+    margin-top: .4rem;
+
+    .collectionPager {
+        margin-top: 3rem;
+    }
+
+}
+
+@media (max-width: 767px) {
+
+    .collection {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        width: 90%;
+    }
+    
+    .collection::-webkit-scrollbar {
+        height: 6px;
+    }
+    
+    .collection::-webkit-scrollbar-thumb {
+        background-color: $colorB; 
+        border-radius: 6px; 
+    }
+}

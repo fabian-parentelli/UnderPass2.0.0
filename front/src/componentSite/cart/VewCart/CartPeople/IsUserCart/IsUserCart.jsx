@@ -51,7 +51,7 @@ const IsUserCart = ({ user, setLoading }) => {
                 <div className='isUserCartTypeMoney'>
                     <p>Saldo:</p>
                     <div style={{ color: isUnderPay && totalCart() < isUnderPay ? 'green' : 'red' }}>
-                        <UnderMoney setIsUnderPay={setIsUnderPay} />
+                        <UnderMoney userId={user._id} setIsUnderPay={setIsUnderPay} />
                     </div>
                 </div>
             </div>

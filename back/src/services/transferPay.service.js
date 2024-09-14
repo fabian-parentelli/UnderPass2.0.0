@@ -13,7 +13,7 @@ const newTransferPay = async (imgUrl, data) => {
 
 const getById = async (id) => {
     const result = await transferPayRepository.getById(id);
-    if (!result) throw new TransferNotFound('No se puede obtener la transferencia');    
+    if (!result) throw new TransferNotFound('No se puede obtener la transferencia');
     return { status: 'success', result };
 };
 

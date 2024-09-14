@@ -20,7 +20,7 @@ const UnderPay = () => {
 
             <div className='underPayTitle'>
                 <h2>Under<span>Pay</span></h2>
-                <p>UnderPay es la moneda de nuestra plataforma, que te permite utilizar tu saldo disponible para comprar entradas, productos, publicidad, turnos y más. Con UnderPay, puedes acceder a todo lo que ofrecemos dentro de la plataforma de manera sencilla y conveniente.</p>
+                <p>UnderPay es la billetera de nuestra plataforma, que te permite utilizar tu saldo disponible para comprar entradas, productos, publicidad, turnos y más. Con UnderPay, puedes acceder a todo lo que ofrecemos dentro de la plataforma de manera sencilla y conveniente.</p>
             </div>
 
             {type === 'cart' && <PayCart orderId={id} setLoading={setLoading} />}

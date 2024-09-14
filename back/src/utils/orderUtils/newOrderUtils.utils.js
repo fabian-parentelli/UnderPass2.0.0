@@ -50,11 +50,7 @@ const orderSeller = async (order, userId, orderId) => {
                     sellerUserId: product.userId,
                     cart: [ord],
                     total: product.price * ord.quantity,
-                    pay: {
-                        payIn: {},  // Dejar que Mongoose asigne los valores por defecto
-                        payCredited: {},
-                        payOut: {}  // Este campo será inicializado con isPayOut: false por Mongoose
-                    }
+                    pay: { payIn: {}, payCredited: {}, payOut: {} }
                 };
                 orders.push(obj);
             };

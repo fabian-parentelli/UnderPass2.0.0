@@ -7,7 +7,7 @@ import { getOrderByIdApi } from '../../../../helpers/orders/getOrderById.api.js'
 
 const PayCart = ({ orderId, setLoading }) => {
 
-    const [order, setOrder] = useState();
+    const [order, setOrder] = useState(null);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -19,16 +19,26 @@ const PayCart = ({ orderId, setLoading }) => {
         }; fetchData();
     }, []);
 
+    console.log(order);
+
     const handleClick = async () => {
         // const response = await postUnderPayApi({ orderId: order._id, byTo: 'underpass', total: order.total });
-        
+        // Entender como hacer esto 
+        // Entender como hacer esto 
+        // Entender como hacer esto 
+        // Entender como hacer esto 
+        // Entender como hacer esto 
+        // Entender como hacer esto 
+        // Entender como hacer esto 
+        // Entender como hacer esto 
+
     };
 
     return (
         <div className='payCart'>
             <div className='payCartYourMoney'>
                 <p>Tu dinero:</p>
-                <UnderMoney />
+                {order && <p className='payCartYourMoneyNUmber'><UnderMoney userId={order.userId} /></p>}
             </div>
             {order &&
                 <>

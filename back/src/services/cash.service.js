@@ -24,4 +24,20 @@ const getLast = async () => {
     return { status: 'success', result };
 };
 
-export { newCash, getLast };
+const getAll = async (page, limit, userid, country, inOut, type, date) => {
+    const query = {};
+    if (userid) query.userId = userid;
+    if (inOut) query.inOut = inOut;
+    if (type) query.type = type;
+    if (country) query.country = country;
+    if (date) {
+        const starDate = new Date(date).setUTCHours(0, 0, 0, 0);
+        const endDate = new Date(date).setUTCHours(23, 59, 59, 999);
+        query.date = { $gte: starDate, $lte: endDate };
+    };
+    const result = await cashRepository.getAll(query, limit, page);
+    if (!result) throw new CashNotFound('No se puede obtener la caja');
+    return { status: 'success', result };
+};
+
+export { newCash, getLast, getAll };

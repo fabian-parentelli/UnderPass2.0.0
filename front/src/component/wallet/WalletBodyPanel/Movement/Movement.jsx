@@ -1,7 +1,8 @@
 import './movement.scss';
 import { Fragment, useState } from 'react';
-import ModalCustom from '../../../utils/ModalCustom/ModalCustom';
 import MovementTicket from './MovementTicket/MovementTicket';
+import ModalCustom from '../../../utils/ModalCustom/ModalCustom';
+import GetTicketByTransferPay from '../../../ticket/GetTicketByTransferPay';
 
 const Movement = ({ wallet }) => {
 
@@ -45,7 +46,10 @@ const Movement = ({ wallet }) => {
                                 </tr>
                                 {vew === mon._id &&
                                     <ModalCustom modalIsOpen={open} closeModal={closeModal}>
-                                        <MovementTicket ticketId={mon.ticket} />
+                                        {mon.status === 'success'
+                                            ? <MovementTicket ticketId={mon.ticket} />
+                                            : <GetTicketByTransferPay ticketId={mon.ticket} />
+                                        }
                                     </ModalCustom>
                                 }
                             </Fragment>

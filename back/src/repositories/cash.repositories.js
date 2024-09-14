@@ -12,9 +12,14 @@ export default class CashRepository {
         return result;
     };
 
+    getAll = async (query, limit, page) => {
+        const result = await cashManager.getAll(query, limit, page);
+        return result;
+    };
+
     update = async (cash) => {
         const result = await cashManager.update(cash);
         return result;
     };
-    
+
 };

@@ -57,7 +57,7 @@ const updateWallet = async (data) => {
         byTo: 'underPass',
         TypeMotion: 'transfer',
         ticket: data._id,
-        status: 'success',
+        status: 'payOut',
         cash: data.data.total
     };
     wallet.money.push(wall);

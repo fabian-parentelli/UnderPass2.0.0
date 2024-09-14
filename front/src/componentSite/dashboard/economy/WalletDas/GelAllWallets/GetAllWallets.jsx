@@ -19,10 +19,6 @@ const GetAllWallets = ({ setLoading }) => {
             if(querys.country) query.country = querys.country;
             if(querys.inWallet) query.inWallet = querys.inWallet;
             if(querys.reqMoney) query.reqMoney = querys.reqMoney;
-
-            console.log(query);
-            
-
             const response = await getWalletsApi(query);
             if (response.status === 'success') setWallets(response.result);
             else console.error(response.error);

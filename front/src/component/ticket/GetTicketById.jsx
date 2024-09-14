@@ -3,7 +3,7 @@ import LoadSmallB from "../utils/LoadSmallB/LoadSmallB.jsx";
 import { getTicketByIdApi } from '../../helpers/ticket/getTicketById.api.js'
 import TicketOnly from "../../componentSite/alerts/TicketOnly/TicketOnly.jsx";
 
-const GetTicketById = () => {
+const GetTicketById = ({ ticketId }) => {
 
     const [ticket, setTicket] = useState(null);
 
@@ -17,7 +17,7 @@ const GetTicketById = () => {
 
     return (
         <>
-           {ticket
+            {ticket
                 ? <TicketOnly ticket={ticket} />
                 : <LoadSmallB />
             }

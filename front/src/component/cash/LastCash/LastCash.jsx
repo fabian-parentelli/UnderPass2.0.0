@@ -23,10 +23,12 @@ const LastCash = () => {
                     <div className='lastCashContL'>
                         <p>Caja: <span>${cash.AR.cash}</span> ar</p>
                         <p>Tesoro: <span>${cash.AR.treasure}</span> ar</p>
+                        <p>Credito: <span style={{ color: 'red' }}>${cash.AR.treasure - cash.AR.cash}</span> ar</p>
                     </div>
                     <div className='lastCashContR'>
                         <p>Caja: <span>${cash.UY.cash}</span> uy</p>
                         <p>Tesoro: <span>${cash.UY.treasure}</span> uy</p>
+                        <p>Credito: <span style={{ color: 'red' }}>${cash.UY.treasure - cash.UY.cash}</span> uy</p>
                     </div>
                 </div>
             }

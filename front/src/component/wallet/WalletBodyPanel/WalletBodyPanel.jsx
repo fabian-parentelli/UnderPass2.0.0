@@ -5,6 +5,7 @@ import Payments from './Payments/Payments';
 import Movement from './Movement/Movement';
 import Checkboxes from '../../utils/Checkboxes';
 import WalletConf from './WalletConf/WalletConf';
+import Collection from './Collection/Collection';
 
 const WalletBodyPanel = ({ wallet, setLoading }) => {
 
@@ -20,7 +21,7 @@ const WalletBodyPanel = ({ wallet, setLoading }) => {
             {type === 'Configuración' && <WalletConf wallet={wallet} setLoading={setLoading} />}
             {type === 'Movimientos' && <Movement wallet={wallet} />}
             {type === 'Pagos' && <Payments wallet={wallet} setLoading={setLoading} />}
-            {type === 'Cobros' && <p>Cobros</p>}
+            {type === 'Cobros' && <Collection wallet={wallet} setLoading={setLoading} />}
             {type === 'Rendimiento' && <Yield wallet={wallet} setLoading={setLoading} />}
 
         </div>
