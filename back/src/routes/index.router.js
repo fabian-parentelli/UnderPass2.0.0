@@ -16,6 +16,7 @@ import CashRouter from "./cash.router.js";
 import AuditRouter from "./audit.router.js";
 import OrderPayRouter from "./orderPay.router.js";
 import TransferPayRouter from "./transferPay.router.js";
+import PayRouter from "./pay.router.js";
 
 export const userRouter = new UserRouter().getRouter();
 export const imagenRouter = new ImagenRouter().getRouter();
@@ -35,3 +36,4 @@ export const cashRouter = new CashRouter().getRouter();
 export const auditRouter = new AuditRouter().getRouter();
 export const orderPayRouter = new OrderPayRouter().getRouter();
 export const transferPayRouter = new TransferPayRouter().getRouter();
+export const payRouter = new PayRouter().getRouter();

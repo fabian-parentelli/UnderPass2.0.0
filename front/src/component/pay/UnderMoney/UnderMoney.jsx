@@ -17,9 +17,9 @@ const UnderMoney = ({ userId, setIsUnderPay }) => {
     }, []);
 
     return (
-        <p>
+        <>
             ${money}
-        </p>
+        </>
     );
 };
 

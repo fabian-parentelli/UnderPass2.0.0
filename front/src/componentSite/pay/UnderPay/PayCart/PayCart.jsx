@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import UnderMoney from '../../../../component/pay/UnderMoney/UnderMoney';
 import { getOrderByIdApi } from '../../../../helpers/orders/getOrderById.api.js';
-// import { postUnderPayApi } from '../../../../helpers/ticket/postUnderPay.api.js';
+import { newUnderPayApi } from '../../../../helpers/pay/newUnderPay.api.js';
 
 const PayCart = ({ orderId, setLoading }) => {
 
@@ -19,18 +19,13 @@ const PayCart = ({ orderId, setLoading }) => {
         }; fetchData();
     }, []);
 
-    console.log(order);
-
     const handleClick = async () => {
-        // const response = await postUnderPayApi({ orderId: order._id, byTo: 'underpass', total: order.total });
-        // Entender como hacer esto 
-        // Entender como hacer esto 
-        // Entender como hacer esto 
-        // Entender como hacer esto 
-        // Entender como hacer esto 
-        // Entender como hacer esto 
-        // Entender como hacer esto 
-        // Entender como hacer esto 
+        const response = await newUnderPayApi({ orderId: orderId });
+        console.log(response);
+        
+
+        // Volvemos .........
+
 
     };
 
