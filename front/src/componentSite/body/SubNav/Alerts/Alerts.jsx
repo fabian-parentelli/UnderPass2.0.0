@@ -104,6 +104,13 @@ const Alerts = ({ user }) => {
                                         <p>{getTypeAlerts(ale.type)}</p>
                                     </Link>
                                 }
+                                
+                                {(ale.type === 'success_pay') &&
+                                    <Link to={`/vewalert/${ale.type}/${ale.eventId}`} className='alertsChildrenDiv' onClick={() => handleOff(ale._id)}>
+                                        <img src={alertImages.transfer_in} lt="img" />
+                                        <p>{getTypeAlerts(ale.type)}</p>
+                                    </Link>
+                                }
 
                             </Fragment>
                         ))}

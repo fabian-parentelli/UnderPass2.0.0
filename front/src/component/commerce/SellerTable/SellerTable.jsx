@@ -7,7 +7,7 @@ import { useLoginContext } from '../../../context/LoginContext.jsx';
 import ModalCustom from '../../utils/ModalCustom/ModalCustom.jsx';
 import GetTicketByOrder from '../../ticket/GetTicketByOrder.jsx';
 
-const SellerTable = ({ values }) => {
+const SellerTable = ({ values, inWallet = false, generateOrdenPay }) => {
 
     const { user } = useLoginContext();
     const [vew, setVew] = useState(null);
@@ -38,6 +38,7 @@ const SellerTable = ({ values }) => {
                         <th>Orden</th>
                         <th>Total</th>
                         <th>Activo</th>
+                        {inWallet && <th>Pagar</th>}
                     </tr>
                 </thead>
                 <tbody>
@@ -86,9 +87,17 @@ const SellerTable = ({ values }) => {
                                     {ord?.pay?.payOut?.datePayOut && <p>{new Date(ord.pay.payOut.datePayOut).toLocaleDateString()}</p>}
                                 </td>
 
-                                <td>{ord._id}</td>
+                                <td style={{ fontSize: '10px' }}>{ord._id}</td>
                                 <td>${ord.total}</td>
                                 <td style={{ color: ord.active ? 'green' : 'red' }}>{ord.active ? 'SI' : 'NO'}</td>
+                                {inWallet &&
+                                    <td
+                                        onClick={!ord.inWallet ? () => generateOrdenPay(ord._id) : undefined}
+                                        className={!ord?.inWallet ? 'sellerTableBackPoint' : ''}
+                                        style={{ color: ord?.inWallet ? 'green' : 'red' }}>
+                                        {ord.inWallet ? 'Billetera' : 'Pagar'}
+                                    </td>
+                                }
                             </tr>
                             {vew === ord._id &&
                                 <tr className="scale-up-animation">
@@ -141,7 +150,7 @@ const SellerTable = ({ values }) => {
 
                             {vewMpModal === ord._id && ord.pay.payOut.payOutData.ticketImg &&
                                 <ModalCustom modalIsOpen={mpOpen} closeModal={closeMpModal}>
-                                    <img style={{width: '280px'}} src={ord.pay.payOut.payOutData.ticketImg} alt="img" />
+                                    <img style={{ width: '280px' }} src={ord.pay.payOut.payOutData.ticketImg} alt="img" />
                                 </ModalCustom>
                             }
                         </Fragment>

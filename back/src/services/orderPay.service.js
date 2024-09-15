@@ -3,6 +3,20 @@ import { getByUserId } from "./wallet.service.js";
 import { OrderNotFound } from '../utils/custom-exceptions.utils.js';
 import { v4 as uuidv4 } from 'uuid';
 
+const generateOrder = async (ord) => {
+    const orderSeller = await orderSellerRepository.getOrderById(ord.id);
+    const order = {
+        userId: orderSeller.sellerUserId,
+        orderId: ord.id,
+        total: orderSeller.total,
+        pay: { isPay: false },
+        country: ord.country,
+    };
+    const result = await orderPayRepository.generateOrder(order);
+    if (!result) throw new OrderNotFound('No se puede generar la orden');
+    return { status: 'success' };
+};
+
 const newOrder = async (order) => {
     order.orderId = uuidv4();
     const data = await orderPayRepository.newOrders(order);
@@ -49,4 +63,4 @@ const getOrdersPay = async (page, limit, userid, active, pay, country) => {
     return { status: 'success', result };
 };
 
-export { newOrder, getData, getOrdersPay, getOrderById, getOrderSellerByPay };
+export { newOrder, getData, getOrdersPay, getOrderById, getOrderSellerByPay, generateOrder };

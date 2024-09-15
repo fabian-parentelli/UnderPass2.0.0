@@ -13,6 +13,11 @@ export default class OrderPayRepository {
         return result;
     };
 
+    generateOrder = async (order) => {
+        const result = await orderPayManager.newOrders(order);
+        return result;
+    };
+
     getData = async (country) => {
         const result = await orderPayManager.getData(country);
         const users = [];

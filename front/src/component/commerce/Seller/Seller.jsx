@@ -26,7 +26,7 @@ const Seller = ({ userId, setLoading }) => {
     return (
         <div className='seller'>
             {values && <SellerTable values={values} />}
-            <div className='sellerPage'><Pager users={values} HandleChangePage={HandleChangePage} /></div>
+            <Pager users={values} HandleChangePage={HandleChangePage} />
         </div>
     );
 };

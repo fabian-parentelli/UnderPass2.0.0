@@ -1,13 +1,18 @@
 import './payCart.scss';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import UnderMoney from '../../../../component/pay/UnderMoney/UnderMoney';
-import { getOrderByIdApi } from '../../../../helpers/orders/getOrderById.api.js';
+import SnackbarAlert from '../../../../component/utils/SnackbarAlert.jsx';
 import { newUnderPayApi } from '../../../../helpers/pay/newUnderPay.api.js';
+import { getOrderByIdApi } from '../../../../helpers/orders/getOrderById.api.js';
 
 const PayCart = ({ orderId, setLoading }) => {
 
     const [order, setOrder] = useState(null);
+    const [message, setMessage] = useState({ status: '', mess: '' });
+    const [open, setOpen] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -20,13 +25,18 @@ const PayCart = ({ orderId, setLoading }) => {
     }, []);
 
     const handleClick = async () => {
+        setLoading(true);
         const response = await newUnderPayApi({ orderId: orderId });
-        console.log(response);
-        
-
-        // Volvemos .........
-
-
+        if (response.status === 'success') {
+            setMessage({ status: 'success', mess: 'Compra exitosa' });
+            setLoading(false);
+            setOpen(true);
+        } else {
+            setMessage({ status: 'error', mess: response.error });
+            setLoading(false);
+            setOpen(true);
+        };
+        setTimeout(() => { setOpen(false); navigate('/') }, 2000);
     };
 
     return (
@@ -46,6 +56,7 @@ const PayCart = ({ orderId, setLoading }) => {
                     <button className='btn btnE' onClick={handleClick}>Pagar</button>
                 </>
             }
+            <SnackbarAlert message={message} open={open} />
         </div>
     );
 };

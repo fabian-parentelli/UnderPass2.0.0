@@ -2,7 +2,7 @@ import './filterOrderPay.scss';
 import { useEffect, useState } from 'react';
 import { getDataOrderPayApi } from '../../../../../../../helpers/orderPay/getDataOrderPay.api.js';
 
-const FilterOrderPay = ({ country, setQuerys, setVew, selectedIds, orders }) => {
+const FilterOrderPay = ({ country, setQuerys, setVew, selectedIds, orders, setGenerate, generate }) => {
 
     const [users, setUsers] = useState([]);
     const handleChange = (e) => setQuerys(e.target.value);
@@ -20,7 +20,7 @@ const FilterOrderPay = ({ country, setQuerys, setVew, selectedIds, orders }) => 
         let result = 0;
         selectedIds.forEach((selec) => {
             const sum = orders.filter(ord => ord._id == selec);
-            if (sum.length > 0)result += sum[0].total;
+            if (sum.length > 0) result += sum[0].total;
         });
         setTotal(result);
     }, [selectedIds]);
@@ -28,12 +28,15 @@ const FilterOrderPay = ({ country, setQuerys, setVew, selectedIds, orders }) => 
     return (
         <div className='filterOrderPay'>
 
-            <select name='user' onChange={handleChange}>
-                <option value="">Filtrar por usuario</option>
-                {users && users.map((user) => (
-                    <option key={user.userId} value={user.userId} >{user.name}</option>
-                ))}
-            </select>
+            <div className='filterOrderPayDiv'>
+                <select name='user' onChange={handleChange}>
+                    <option value="">Filtrar por usuario</option>
+                    {users && users.map((user) => (
+                        <option key={user.userId} value={user.userId} >{user.name}</option>
+                    ))}
+                </select>
+                <button className='btn btnC' onClick={() => setGenerate(!generate)}>Generar</button>
+            </div>
 
             {total > 0 && <p>${total}</p>}
 

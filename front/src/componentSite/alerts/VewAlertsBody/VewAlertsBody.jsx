@@ -25,6 +25,7 @@ const VewAlertsBody = () => {
             {type === 'transfer_in' && <ReqTranferAlert id={id} setLoading={setLoading} />}
             {type === 'transfer_confirm' && <HaveMoneyAlerts id={id} setLoading={setLoading} />}
             {type === 'payTranferToCustomer' && <HaveAPay id={id} setLoading={setLoading} />}
+            {type === 'success_pay' && <HaveMoneyAlerts id={id} setLoading={setLoading} /> }
 
             <Load loading={loading} />
         </div>
