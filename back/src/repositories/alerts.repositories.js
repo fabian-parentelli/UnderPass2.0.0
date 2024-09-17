@@ -58,4 +58,9 @@ export default class AlertsRepository {
         const result = await alertsManager.getByEventId(id);
         return result;
     };
+    
+    deleteAlert = async (id) => {
+        const result = await alertsManager.deleteAlert(id);
+        return result;
+    };
 }

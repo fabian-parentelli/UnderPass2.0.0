@@ -11,7 +11,8 @@ export default class Product {
     };
 
     getByTipsSearch = async (query = {}, name) => {
-        const nameQuery = { name: { $regex: name, $options: 'i' } };
+        let nameQuery;
+        if (name) nameQuery = { name: { $regex: name, $options: 'i' } };
         const combinedQuery = { ...query, ...nameQuery };
         return await productModel.paginate(combinedQuery, { limit: 40, page: 1, lean: true });
     };

@@ -25,10 +25,9 @@ const getByUserId = async (req, res) => {
 };
 
 const getByTipsSearch = async (req, res) => {
-    const { name } = req.params;
-    const { favorite } = req.params
+    const { name, favorite, country, pid } = req.query;
     try {
-        const result = await productService.getByTipsSearch(name, favorite);
+        const result = await productService.getByTipsSearch(name, favorite, country, pid);
         if (result) return res.sendSuccess(result);
     } catch (error) {
         if (error instanceof ProductNotFound) return res.sendClientError(error.message);

@@ -1,0 +1,21 @@
+.userVewSmall {
+    width: 280px;
+    min-height: 280px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .userVewSmallUser {
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        img {
+            width: 200px;
+        }
+
+
+    }
+}

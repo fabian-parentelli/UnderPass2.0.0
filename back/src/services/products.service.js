@@ -26,12 +26,14 @@ const getByUserId = async (id) => {
     return { status: 'success', result };
 };
 
-const getByTipsSearch = async (name, favorite) => {
+const getByTipsSearch = async (name, favorite, country, pid) => {
     let favorites = [];
     const query = {};
     if (favorite !== 'false') favorites = await userRepository.getFavorite(favorite);
     if (favorites.length > 0) query._id = { $in: favorites };
     query.active = true;
+    if(pid) query._id = pid;
+    if(country) query['location.country'] = country;
     const result = await productRepository.getByTipsSearch(query, name)
     if (!result) throw new ProductNotFound('No se encuentra el producto');
     return { status: 'success', result };

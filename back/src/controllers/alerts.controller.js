@@ -44,4 +44,15 @@ const updActive = async (req, res) => {
     };
 };
 
-export { getAll, amount, updActive, getByUser };
+const deleteAlert = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const result = await alertsServices.deleteAlert(id);
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof AllertsNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
+export { getAll, amount, updActive, getByUser, deleteAlert };

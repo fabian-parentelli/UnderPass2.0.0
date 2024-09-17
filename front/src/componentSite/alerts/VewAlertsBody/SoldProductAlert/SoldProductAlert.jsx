@@ -1,11 +1,13 @@
-import { useEffect, useState } from 'react';
 import './soldProductAlert.scss';
-import { getOrderSellerApi } from '../../../../helpers/orderSeller/getOrderSeller.api';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import SellerTable from '../../../../component/commerce/SellerTable/SellerTable';
+import { getOrderSellerApi } from '../../../../helpers/orderSeller/getOrderSeller.api.js';
 
 const SoldProductAlert = ({ id, setLoading }) => {
 
     const [order, setOrder] = useState(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -20,6 +22,12 @@ const SoldProductAlert = ({ id, setLoading }) => {
     return (
         <div className='soldProductAlert'>
             {order && <SellerTable values={order} />}
+            <button
+                className='btn btnA'
+                style={{ marginTop: '2rem' }}
+                onClick={() => navigate(-1)}
+            >
+                Volver</button>
         </div>
     );
 };

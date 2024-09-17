@@ -64,4 +64,10 @@ const updateOneActive = async (id) => {
     };
 };
 
-export { getAll, amount, newAlert, updActive, getByUser, updateOneActive };
+const deleteAlert = async (id) => {
+    const result = await alertsRepository.deleteAlert(id);
+    if (!result) throw new AllertsNotFound(`No se puede eliminar la alerta`);
+    return { status: 'success', result };
+};
+
+export { getAll, amount, newAlert, updActive, getByUser, updateOneActive, deleteAlert };

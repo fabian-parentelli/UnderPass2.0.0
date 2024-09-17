@@ -1,0 +1,10 @@
+.aeleteAlert {
+    color: rgb(110, 110, 110);
+    cursor: pointer;
+    transition: .3s ease-in-out;
+
+    &:hover {
+        background-color: rgb(221, 221, 221);
+        color: red;
+    }
+}

@@ -1,9 +1,8 @@
 import './subNav.scss';
+import Alerts from './Alerts/Alerts';
 import { Link } from 'react-router-dom';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import { useLoginContext } from '../../../context/LoginContext';
-import Alerts from './Alerts/Alerts';
-
 
 const SubNav = () => {
 

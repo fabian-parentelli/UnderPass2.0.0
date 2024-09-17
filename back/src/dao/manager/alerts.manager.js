@@ -26,4 +26,8 @@ export default class Alerts {
         return await alertsModel.findOne({ eventId: id });
     };
 
+    deleteAlert = async (id) => {
+        return await alertsModel.findByIdAndDelete(id);
+    };
+
 };

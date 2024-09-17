@@ -1,8 +1,30 @@
-.SearchProduct {
-    display: flex;
-    gap: 1rem;
+@import '../../../style/colors.scss';
 
-    select {
-        width: 150px;
-    } 
+.SearchProductDIV {
+    display: flex;
+    justify-content: space-between;
+    
+    .SearchProduct {
+        display: flex;
+        gap: 1rem;
+
+        select {
+            width: 150px;
+        }
+    }
+
+    .SearchProductIdentification {
+        display: flex;
+        gap: .4rem;
+
+        .identificationBtn {
+            width: 60px;
+            background-color: $colorC;
+            color: #ffff;
+            font-size: 10px;
+            cursor: pointer;
+            border-radius: 3px;
+            border: none;
+        }
+    }
 }

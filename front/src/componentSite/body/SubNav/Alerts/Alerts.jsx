@@ -72,7 +72,7 @@ const Alerts = ({ user }) => {
 
                                 {(ale.type === 'sold_product') &&
                                     <Link to={`/vewalert/${ale.type}/${ale.orderSellerId}`} className='alertsChildrenDiv' onClick={() => handleOff(ale._id)} >
-                                        <img src={ale.data.img[0].imgUrl} lt="img" />
+                                        <img src={ale?.data?.img[0].imgUrl} lt="img" />
                                         <p>{getTypeAlerts(ale.type)}</p>
                                     </Link>
                                 }

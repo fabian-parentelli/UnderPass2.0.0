@@ -7,14 +7,14 @@
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
     }
-    
+
     .alertsUserVew::-webkit-scrollbar {
         height: 6px;
     }
-    
+
     .alertsUserVew::-webkit-scrollbar-thumb {
-        background-color: $colorB; 
-        border-radius: 6px; 
+        background-color: $colorB;
+        border-radius: 6px;
     }
-    
+
 }

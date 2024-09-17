@@ -1,0 +1,11 @@
+@import '../../../style/colors.scss';
+
+.vewAlertMessage {
+    cursor: pointer;
+    transition: .3s ease-in-out;
+
+    &:hover {
+        background-color: rgb(226, 226, 226);
+        color: $colorA;
+    }
+}

@@ -72,7 +72,7 @@ const SellerTable = ({ values, inWallet = false, generateOrdenPay }) => {
                                 <td
                                     className={ord.pay.payCredited.isPayCredited ? 'sellerTableBackPoint' : ''}
                                     style={{ color: ord.pay.payCredited.isPayCredited ? 'green' : 'red' }}
-                                    onClick={ord.pay.payCredited.isPayCredited ? () => openModal(ord._id) : ''}
+                                    onClick={ord.pay.payCredited.isPayCredited ? () => openModal(ord._id) : null}
                                 >
                                     <p>{ord.pay.payCredited.isPayCredited ? 'SI' : 'NO'}</p>
                                     {ord.pay.payCredited.datePayCredited && <p>{new Date(ord.pay.payCredited.datePayCredited).toLocaleDateString()}</p>}
@@ -80,7 +80,7 @@ const SellerTable = ({ values, inWallet = false, generateOrdenPay }) => {
 
                                 <td
                                     className={ord?.pay?.payOut?.isPayOut ? 'sellerTableBackPoint' : ''}
-                                    onClick={ord?.pay?.payOut?.isPayOut ? () => openMpModal(ord._id) : undefined}
+                                    onClick={ord?.pay?.payOut?.isPayOut ? () => openMpModal(ord._id) : null}
                                     style={{ color: ord?.pay?.payOut?.isPayOut ? 'green' : 'red' }}
                                 >
                                     <p>{ord?.pay?.payOut?.isPayOut ? 'SI' : 'NO'}</p>
@@ -92,7 +92,7 @@ const SellerTable = ({ values, inWallet = false, generateOrdenPay }) => {
                                 <td style={{ color: ord.active ? 'green' : 'red' }}>{ord.active ? 'SI' : 'NO'}</td>
                                 {inWallet &&
                                     <td
-                                        onClick={!ord.inWallet ? () => generateOrdenPay(ord._id) : undefined}
+                                        onClick={!ord.inWallet ? () => generateOrdenPay(ord._id) : null}
                                         className={!ord?.inWallet ? 'sellerTableBackPoint' : ''}
                                         style={{ color: ord?.inWallet ? 'green' : 'red' }}>
                                         {ord.inWallet ? 'Billetera' : 'Pagar'}

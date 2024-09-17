@@ -8,5 +8,6 @@ export default class AlertsRouter extends Router {
         this.get('/userid', ['USER', 'ADMIN', 'MASTER'], passportEnum.JWT, alertsController.getByUser);
         this.get('/', ['PUBLIC'], passportEnum.JWT, alertsController.getAll);
         this.put('/:id', ['USER', 'ADMIN', 'MASTER'], passportEnum.JWT, alertsController.updActive);
+        this.delete('/:id', ['ADMIN', 'MASTER'], passportEnum.JWT, alertsController.deleteAlert);
     };
 };

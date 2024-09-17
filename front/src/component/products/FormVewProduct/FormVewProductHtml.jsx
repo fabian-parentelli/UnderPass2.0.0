@@ -2,14 +2,22 @@ import './formVewProductHtml.scss';
 import Switch from '@mui/material/Switch';
 import { Fragment, useState } from 'react';
 import BigImg from '../../utils/BigImg/BigImg';
-import { useLoginContext } from '../../../context/LoginContext';
 import CloudFile from '../../utils/CloudFile/CloudFile';
+import { useLoginContext } from '../../../context/LoginContext';
+import ModalCustom from '../../utils/ModalCustom/ModalCustom';
+import UserVewSmall from '../../user/UserVewSmall/UserVewSmall';
 
 const FormVewProductHtml = ({ products, handleChange, setFormData, handleActive,
     handleDescription, handleLocation, handleSwitchChange, handleUpdate, handleImgInactive }) => {
 
     const { user } = useLoginContext();
     const [vew, setVew] = useState(null);
+    const [vewModal, setVewModal] = useState(null);
+    const [open, setOpen] = useState(false);
+
+    const closeModal = () => { setOpen(false); setVewModal(null) };
+    const openModal = (id) => { setVewModal(id); setOpen(true) };
+
     const handleInfo = (id) => setVew(vew === id ? null : id);
     const handleFileChange = (data) => setFormData(data);
 
@@ -70,11 +78,16 @@ const FormVewProductHtml = ({ products, handleChange, setFormData, handleActive,
                                     {prod.active ? 'SI' : 'NO'}
                                 </td>
                             </tr>
+
                             {vew === prod._id && (
                                 <tr className='expandRow'>
                                     <td colSpan="6">
 
                                         <p style={{ fontSize: '12px' }}><strong>ID:</strong> {prod._id}</p>
+
+                                        <p className='expandRowUserId' onClick={() => openModal(prod._id)}>
+                                            <strong>Usuario:</strong> {prod.userId}
+                                        </p>
 
                                         <p><strong>Fecha de creación:</strong> {new Date(prod.date).toLocaleDateString()}</p>
 
@@ -155,6 +168,12 @@ const FormVewProductHtml = ({ products, handleChange, setFormData, handleActive,
                                     </td>
                                 </tr>
                             )}
+
+                            {vewModal === prod._id &&
+                                <ModalCustom modalIsOpen={open} closeModal={closeModal}>
+                                    <UserVewSmall userId={prod.userId} />
+                                </ModalCustom>
+                            }
                         </Fragment>
                     ))}
                 </tbody>

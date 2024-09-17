@@ -28,7 +28,7 @@ const FilterProduct = ({ setProducts, setLoading, page }) => {
                 if (star) updatedQuery.user = user.data._id;
                 else delete updatedQuery.user;
             };
-            if(page) updatedQuery.page = page;
+            if (page) updatedQuery.page = page;
             if (type) {
                 if (type === 'Merchandising') updatedQuery.inSite = 'true';
                 else if (type === 'Productos') updatedQuery.inSite = 'false';
@@ -40,7 +40,7 @@ const FilterProduct = ({ setProducts, setLoading, page }) => {
                 if (response.status === 'success') setProducts(response.result);
                 else console.log(response);
             } else {
-                const data = await getByTipsSearchApi(values, star ? user.data._id : false);
+                const data = await getByTipsSearchApi({ name: values, favorite: star ? user.data._id : false, country: localStorage.getItem('country') });
                 if (data.status === 'success') setProducts(data.result);
                 else console.log(data);
             };

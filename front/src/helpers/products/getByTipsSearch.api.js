@@ -1,8 +1,16 @@
 const url = import.meta.env.VITE_API_URL;
 
-const getByTipsSearchApi = async (name, favorite) => {
+const getByTipsSearchApi = async (obj) => {
 
-    const response = await fetch(`${url}/api/product/tips_search/${name}/favorite/${favorite}`, {
+    let urlData = `${url}/api/product/tips_search?`;
+    if (obj.name) urlData += `name=${obj.name}&`;
+    if (obj.favorite) urlData += `favorite=${obj.favorite}&`;
+    if (obj.country) urlData += `country=${obj.country}&`;
+    if (obj.pid) urlData += `pid=${obj.pid}&`;
+
+    if (urlData.endsWith('&')) urlData = urlData.slice(0, -1);
+    
+    const response = await fetch(urlData, {
         method: 'GET',
         headers: {
             'Accept': 'application/json',
