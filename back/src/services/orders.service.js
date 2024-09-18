@@ -20,6 +20,12 @@ const newOrder = async (order, { user }) => {
     return { status: 'success', result };
 };
 
+const getByArticle = async (id, { user }) => {
+    const result = await orderRepository.getByArticle(id, user);
+    if (!result) throw new OrderNotFound('No se puede encontrar la orden');
+    return { status: 'success', result };
+};
+
 const getOrderById = async (id) => {
     const result = await orderRepository.getOrderById(id);
     if (!result) throw new OrderNotFound('No se puede encontrar la orden');
@@ -36,4 +42,13 @@ const getOrders = async (page, limit, userid, active, pay, { user }) => {
     return { status: 'success', result };
 };
 
-export { newOrder, getOrderById, getOrders };
+const updTypePay = async (id, type) => {
+    const order = await orderRepository.getOrderById(id);
+    if(!order) throw new OrderNotFound('No se encuentra la orden');
+    order.pay.typePay = type;
+    const result = await orderRepository.update(order);
+    if(!result) throw new OrderNotFound('No se puede actualizar la orden');
+    return { status: 'success', result };
+};
+
+export { newOrder, getOrderById, getOrders, getByArticle, updTypePay };

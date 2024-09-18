@@ -7,8 +7,9 @@ import { imgages } from '../../../utils/imagesData.utils.js';
 import GetTicketByOrder from '../../ticket/GetTicketByOrder.jsx';
 import ModalCustom from '../../utils/ModalCustom/ModalCustom.jsx';
 import { useLoginContext } from '../../../context/LoginContext.jsx';
+import SellerPay from '../SellerPay/SellerPay.jsx';
 
-const ShopingTable = ({ orders }) => {
+const ShopingTable = ({ orders, isUnderPay }) => {
 
     const { user } = useLoginContext();
     const [vew, setVew] = useState(null);
@@ -44,17 +45,9 @@ const ShopingTable = ({ orders }) => {
                                     {ord.cart.length} item
                                 </td>
                                 <td>{new Date(ord.date).toLocaleDateString()}</td>
-                                <td>{ord._id}</td>
-
-                                <td
-                                    className={ord.pay.isPay ? 'shopingTableActive' : ''}
-                                    onClick={ord.pay.isPay ? () => openModal(ord._id) : undefined}
-                                >
-                                    <p style={{ color: ord.pay.isPay ? 'green' : 'red' }} >{ord.pay.isPay ? 'SI' : 'NO'}</p>
-                                    {ord.pay.datePay && <p>{new Date(ord.pay.datePay).toLocaleDateString()}</p>}
-                                    <p>{ord.pay?.typePay}</p>
-                                </td>
-
+                                <td style={{ fontSize: '12px' }}>{ord._id}</td>
+                                
+                                <SellerPay ord={ord} openModal={openModal} isUnderPay={isUnderPay} />
 
                                 <td>${ord.total}</td>
 

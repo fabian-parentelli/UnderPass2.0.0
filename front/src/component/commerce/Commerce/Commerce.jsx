@@ -9,6 +9,7 @@ const Commerce = ({ user }) => {
 
     const [vew, setVew] = useState('');
     const [loading, setLoading] = useState(false);
+    const [isUnderPay, setIsUnderPay] = useState(null);
 
     const handleVew = (isVew) => {
         if (isVew === vew) setVew('');
@@ -17,12 +18,12 @@ const Commerce = ({ user }) => {
 
     return (
         <div className='commerce'>
-            <Cash userId={user._id} />
+            <Cash userId={user._id} setIsUnderPay={setIsUnderPay} />
             <div className='commerceButtons'>
                 <button className='btn btnC' onClick={() => handleVew('shopping')}>Compras</button>
                 <button className='btn btnC' onClick={() => handleVew('sales')}>ventas</button>
             </div>
-            {vew == 'shopping' && <Shopping userId={user._id} setLoading={setLoading} />}
+            {vew == 'shopping' && <Shopping userId={user._id} setLoading={setLoading} isUnderPay={isUnderPay} />}
             {vew == 'sales' && <Seller userId={user._id} setLoading={setLoading} />}
             <Load loading={loading} />
         </div>

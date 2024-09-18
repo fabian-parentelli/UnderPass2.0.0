@@ -6,8 +6,12 @@ export default class Order {
         return await orderModel.create(order);
     };
 
-    getOrderById = async (id) => {
+    getOrderById = async (id) => {        
         return await orderModel.findById(id).lean();
+    };
+
+    getByArticle = async (id) => {
+        return await orderModel.find({ cart: { $elemMatch: { typeId: id } } }).lean();
     };
 
     getOrders = async (query, limit, page) => {

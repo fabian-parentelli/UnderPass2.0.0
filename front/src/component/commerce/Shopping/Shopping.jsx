@@ -5,7 +5,7 @@ import Pager from '../../utils/Pager/Pager.jsx';
 import ShopingTable from '../ShopingTable/ShopingTable.jsx';
 import { getOrdersApi } from '../../../helpers/orders/getOrders.api.js';
 
-const Shopping = ({ userId, setLoading }) => {
+const Shopping = ({ userId, setLoading, isUnderPay }) => {
 
     const [orders, setOrders] = useState(null);
     const [isPaid, setIsPaid] = useState(false);
@@ -33,7 +33,7 @@ const Shopping = ({ userId, setLoading }) => {
                 <Switch onChange={handleSwitchChange} />
                 <p>SI</p>
             </div>
-            {orders && <ShopingTable orders={orders} />}
+            {orders && <ShopingTable orders={orders} isUnderPay={isUnderPay} />}
             <div className='shoppingPagger'><Pager users={orders} HandleChangePage={HandleChangePage} /></div>
         </div>
     );

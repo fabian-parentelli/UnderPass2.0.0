@@ -1,6 +1,6 @@
 import './newProductHelp.scss';
 import TitleHelp from '../../TitleHelp/TitleHelp';
-import { imagesHelp } from '../../../../utils/imagesData.utils';
+import { imagesHelp } from '../../../../utils/imagesData.utils.js';
 
 const NewProductHelp = () => {
 
@@ -14,7 +14,7 @@ const NewProductHelp = () => {
             />
 
             <div className='newProductHelpA'>
-                <img src={imagesHelp.newProductA} alt="img" />
+                <img className='newProductHelpAImg' src={imagesHelp.newProductA} alt="img" />
                 <div>
                     <h2>Guía para Crear un Producto</h2>
                     <p>Para crear un producto en nuestra plataforma, tienes tres opciones:</p>

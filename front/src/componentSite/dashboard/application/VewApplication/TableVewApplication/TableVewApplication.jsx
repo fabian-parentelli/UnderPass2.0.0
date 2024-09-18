@@ -1,17 +1,22 @@
 import './tableVewApplication.scss';
 import React, { Fragment, useState } from 'react';
-import flagsIcon from '../../../../../utils/flagsIcon.utils';
-import ExpandApplication from '../ExpandApplicattion/ExpandApplication';
+import typeCart from '../../../../../utils/typeCart.utils.js';
+import flagsIcon from '../../../../../utils/flagsIcon.utils.js';
 import { useLoginContext } from '../../../../../context/LoginContext';
-import { Link } from 'react-router-dom';
-import typeCart from '../../../../../utils/typeCart.utils';
+import ExpandApplication from '../ExpandApplicattion/ExpandApplication';
+import ModalCustom from '../../../../../component/utils/ModalCustom/ModalCustom.jsx';
+import PayApplication from '../PayApplication/PayApplication.jsx';
 
 const TableVewApplication = ({ appli, handleActive, handeleVew }) => {
 
     const [vew, setVew] = useState(null);
+    const [open, setOpen] = useState(null);
+    const [vewModal, setVewModal] = useState(false);
     const { user } = useLoginContext();
 
     const handleInfo = (id) => setVew(vew === id ? null : id);
+    const closeModal = () => { setOpen(false); setVewModal(null) };
+    const openModal = (id) => { setVewModal(id); setOpen(true) };
 
     return (
         <div className='tableVewApplication'>
@@ -65,11 +70,14 @@ const TableVewApplication = ({ appli, handleActive, handeleVew }) => {
                                     }}
                                 >{typeCart(app.type)}</td>
 
-                                <td className='tdActive'>
-                                    <Link to={'/cart'} style={{ color: app.pay ? 'green' : 'red', textDecoration: 'none' }}>
-                                        {app.pay ? 'Sí' : 'No'}
-                                    </Link>
+                                <td
+                                    onClick={!app.pay ? () => openModal(app._id) : null}
+                                    style={{ color: app.pay ? 'green' : 'red' }}
+                                    className={!app.pay ? 'tdActive' : ''}
+                                >
+                                    {app.pay ? 'Sí' : 'No'}
                                 </td>
+
                                 <td
                                     style={{ color: app.active ? 'green' : 'red' }}
                                     className='tdActive'
@@ -77,6 +85,7 @@ const TableVewApplication = ({ appli, handleActive, handeleVew }) => {
                                 >
                                     {app.active ? 'Sí' : 'No'}
                                 </td>
+
                                 {user && user.data.role !== 'user' ?
                                     <td
                                         style={{ color: !app.underVew ? 'green' : 'red' }}
@@ -97,6 +106,12 @@ const TableVewApplication = ({ appli, handleActive, handeleVew }) => {
                                     <td colSpan="9"><ExpandApplication app={app} /></td>
                                 </tr>
                             )}
+
+                            {vewModal === app._id &&
+                                <ModalCustom modalIsOpen={open} closeModal={closeModal}>
+                                    <PayApplication app={app} />
+                                </ModalCustom>
+                            }
                         </Fragment>
                     ))}
                 </tbody>
