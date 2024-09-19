@@ -25,8 +25,11 @@ import WalletDas from '../economy/WalletDas/WalletDas';
 import DataPass from '../economy/DataPass/DataPass';
 import Cash from '../economy/Cash/Cash';
 import Configuration from '../configuration/Configuration/Configuration';
+import { useLoginContext } from '../../../context/LoginContext';
 
 const Dashboard = () => {
+
+    const { user } = useLoginContext();
 
     return (
         <div className='dashboard'>
@@ -76,10 +79,12 @@ const Dashboard = () => {
                     category={[{ name: 'Avatares', path: 'newavatar' }, { name: 'Nuevo Evento', path: 'newimgevent' }, { name: 'Videos tutoriales', path: 'videotut' }]}
                 />
 
-                <Fields
-                    title={'Configuraciones'}
-                    category={[{ name: 'Generales', path: 'configuration' }]}
-                />
+                {user.data.role === 'master' &&
+                    <Fields
+                        title={'Configuraciones'}
+                        category={[{ name: 'Generales', path: 'configuration' }]}
+                    />
+                }
             </div>
             <Routes>
                 <Route path='/' element={<Panel />} />

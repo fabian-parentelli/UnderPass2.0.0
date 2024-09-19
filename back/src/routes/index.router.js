@@ -17,6 +17,7 @@ import AuditRouter from "./audit.router.js";
 import OrderPayRouter from "./orderPay.router.js";
 import TransferPayRouter from "./transferPay.router.js";
 import PayRouter from "./pay.router.js";
+import TokenRouter from "./tokens.router.js";
 
 export const userRouter = new UserRouter().getRouter();
 export const imagenRouter = new ImagenRouter().getRouter();
@@ -37,3 +38,4 @@ export const auditRouter = new AuditRouter().getRouter();
 export const orderPayRouter = new OrderPayRouter().getRouter();
 export const transferPayRouter = new TransferPayRouter().getRouter();
 export const payRouter = new PayRouter().getRouter();
+export const tokenRouter = new TokenRouter().getRouter();

@@ -10,10 +10,6 @@ const newWallet = async (user) => {
 };
 
 const getByUserId = async (id) => {
-
-    console.log(id);
-    
-
     const result = await walletRepository.getByUserId(id);
     if (!result) throw new WalletNotFound('No se encuentra la billetera');
     const user = await userRepository.getUserById(id);

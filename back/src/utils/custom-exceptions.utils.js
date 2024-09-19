@@ -109,7 +109,15 @@ export class AuditNotFound extends Error {
         this.name = this.constructor.name;
     };
 };
+
 export class PayNotFound extends Error {
+    constructor(message) {
+        super(message);
+        this.name = this.constructor.name;
+    };
+};
+
+export class TokenNotFound extends Error {
     constructor(message) {
         super(message);
         this.name = this.constructor.name;

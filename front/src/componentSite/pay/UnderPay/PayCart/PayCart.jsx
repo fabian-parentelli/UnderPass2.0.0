@@ -6,12 +6,15 @@ import UnderMoney from '../../../../component/pay/UnderMoney/UnderMoney';
 import SnackbarAlert from '../../../../component/utils/SnackbarAlert.jsx';
 import { newUnderPayApi } from '../../../../helpers/pay/newUnderPay.api.js';
 import { getOrderByIdApi } from '../../../../helpers/orders/getOrderById.api.js';
+import ConfirmPassword from '../../../../component/utils/ConfirmPassword/ConfirmPassword.jsx';
 
 const PayCart = ({ orderId, setLoading }) => {
 
     const [order, setOrder] = useState(null);
     const [message, setMessage] = useState({ status: '', mess: '' });
     const [open, setOpen] = useState(false);
+    const [password, setPassword] = useState(null);
+    const [modalOpen, setModalOpen] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -25,18 +28,22 @@ const PayCart = ({ orderId, setLoading }) => {
     }, []);
 
     const handleClick = async () => {
-        setLoading(true);
-        const response = await newUnderPayApi({ orderId: orderId });
-        if (response.status === 'success') {
-            setMessage({ status: 'success', mess: 'Compra exitosa' });
-            setLoading(false);
-            setOpen(true);
-        } else {
-            setMessage({ status: 'error', mess: response.error });
-            setLoading(false);
-            setOpen(true);
+        if (password) {
+            setModalOpen(false);
+            setLoading(true);
+            const response = await newUnderPayApi({ orderId: orderId, password: password });
+            if (response.status === 'success') {
+                setMessage({ status: 'success', mess: 'Compra exitosa' });
+                setLoading(false);
+                setOpen(true);
+            } else {
+                setMessage({ status: 'error', mess: response.error });
+                setLoading(false);
+                setOpen(true);
+                setTimeout(() => { setOpen(false) }, 2000);
+            };
+            setTimeout(() => { setOpen(false); navigate('/') }, 2000);
         };
-        setTimeout(() => { setOpen(false); navigate('/') }, 2000);
     };
 
     return (
@@ -53,9 +60,10 @@ const PayCart = ({ orderId, setLoading }) => {
                     </div>
                     <p className='payCartYourId'>{order._id}</p>
                     <p>Monto a pagar: <span style={{ color: 'red' }}>${order.total}</span></p>
-                    <button className='btn btnE' onClick={handleClick}>Pagar</button>
+                    <button className='btn btnE' onClick={() => setModalOpen(true)}>Pagar</button>
                 </>
             }
+            <ConfirmPassword modalOpen={modalOpen} setModalOpen={setModalOpen} setPassword={setPassword} handleClick={handleClick} />
             <SnackbarAlert message={message} open={open} />
         </div>
     );

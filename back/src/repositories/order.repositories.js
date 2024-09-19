@@ -10,8 +10,6 @@ export default class OrderRepository {
 
     getOrderById = async (id) => {
         const result = await orderManager.getOrderById(id);
-        console.log(result);
-        
         return result;
     };
     

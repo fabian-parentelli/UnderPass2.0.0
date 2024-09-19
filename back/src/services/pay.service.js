@@ -1,13 +1,19 @@
 import {
     orderRepository, walletRepository, orderSellerRepository, ticketRepository, alertsRepository,
-    orderPayRepository, appliRepository
+    orderPayRepository, appliRepository, userRepository
 } from "../repositories/index.repositories.js";
 import { updateCashTotal } from "../utils/cash/updateCash.utils.js";
-import { PayNotFound } from "../utils/custom-exceptions.utils.js";
+import { OrderNotFound, PayNotFound } from "../utils/custom-exceptions.utils.js";
+import { isValidPassword } from "../utils/hashedPassword.utils.js";
 
-const newUnderPay = async ({ orderId }, { user }) => {
-    const buyerOrder = await orderRepository.getOrderById(orderId);
+const newUnderPay = async (order, { user }) => {
+    const buyerOrder = await orderRepository.getOrderById(order.orderId);
     if (!buyerOrder) throw new PayNotFound('No se encuentra la orden del cliente');
+    const userDb = await userRepository.getUserById(buyerOrder.userId);
+    if (!userDb) throw new PayNotFound('No se puede obtener al usuario');
+    const comparePassword = isValidPassword(userDb, order.password);
+    if(!comparePassword) throw new OrderNotFound('La contraseña es incorrecta');
+    
     const buyerWallet = await walletRepository.getByUserId(buyerOrder.userId);
     if (!buyerWallet) throw new PayNotFound('No se encuentra la billetera del cliente');
     if (+buyerOrder.total > +buyerWallet.total) throw new PayNotFound('Saldo insuficiente');
@@ -27,7 +33,7 @@ const newUnderPay = async ({ orderId }, { user }) => {
         };
     };
     const buyerTicket = {
-        orderId: orderId, by: buyerOrder.userId, to: 'underPass', country: user.location.country, type: 'underPay',
+        orderId: order.orderId, by: buyerOrder.userId, to: 'underPass', country: user.location.country, type: 'underPay',
         total: buyerOrder.total
     };
     const buyTicket = await ticketRepository.newTicket(buyerTicket);
@@ -41,7 +47,7 @@ const newUnderPay = async ({ orderId }, { user }) => {
     buyerWallet.money.push(buyWallet);
     const walletResult = await walletRepository.update(buyerWallet);
     if (!walletResult) throw new PayNotFound('Error al actualizar la billetera de compra');
-    const ordersSellers = await orderSellerRepository.getOrdersUpdate({ orderId: orderId });
+    const ordersSellers = await orderSellerRepository.getOrdersUpdate({ orderId: order.orderId });
     const totalSeller = ordersSellers.reduce((acc, ord) => acc + ord.total, 0) || 0;
     const cashUpd = {
         difCash: buyerOrder.total - totalSeller,
