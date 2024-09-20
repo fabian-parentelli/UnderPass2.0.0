@@ -26,7 +26,7 @@ const getTrasfer = async (req, res) => {
 const confirm = async (req, res) => {
     const { id } = req.params;
     try {
-        const result = await transferService.confirm(id);
+        const result = await transferService.confirm(id, { ...req.body }, { ...req.user });
         if (result) return res.sendSuccess(result);
     } catch (error) {
         if (error instanceof TransferNotFound) return res.sendClientError(error.message);

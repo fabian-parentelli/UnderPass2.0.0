@@ -7,7 +7,7 @@ import ModalCustom from '../../../utils/ModalCustom/ModalCustom';
 import { useLoginContext } from '../../../../context/LoginContext';
 import TransferUpdTable from '../TransferUpdTable/TransferUpdTable';
 
-const TransferTable = ({ transfers, handleConfirm, setTransfers, setLoading }) => {
+const TransferTable = ({ transfers, handleOpenModal, setTransfers, setLoading }) => {
 
     const { user } = useLoginContext();
     const [open, setOpen] = useState(false);
@@ -77,7 +77,7 @@ const TransferTable = ({ transfers, handleConfirm, setTransfers, setLoading }) =
                                 }
                                 <td
                                     className={!trans.confirm ? 'paymentsTableOrderConfirm' : ''}
-                                    onClick={user.data.role !== 'user' && !trans.confirm && handleConfirm ? () => handleConfirm(trans._id) : undefined}
+                                    onClick={user.data.role !== 'user' && !trans.confirm && handleOpenModal ? () => handleOpenModal(trans._id) : undefined}
                                     style={{ color: trans.confirm ? 'green' : 'red', cursor: user.data.role !== 'user' && 'pointer' }}
                                 >
                                     {trans.confirm ? 'SI' : 'NO'}

@@ -1,12 +1,20 @@
 import {
     orderRepository, ticketRepository, alertsRepository, auditRepository, orderSellerRepository, walletRepository,
-    orderPayRepository, appliRepository
+    orderPayRepository, appliRepository, userRepository
 } from "../../repositories/index.repositories.js";
 import { updateCashTotal } from "../cash/updateCash.utils.js";
 import { CashNotFound, TransferNotFound } from '../custom-exceptions.utils.js';
+import { isValidPassword } from "../hashedPassword.utils.js";
 
 let userOrder;
 let ticketBuyer;
+
+const confirmUser = async (password, user) => {
+    const userDb = await userRepository.getByEmail(user.email);
+    const comparePassword = isValidPassword(userDb, password);
+    if (!comparePassword) throw new TransferNotFound('Contraseña incorrecta');
+    return comparePassword;
+};
 
 const updOrderBuyer = async (tranfer) => {
     userOrder = await orderRepository.getOrderById(tranfer.orderId);
@@ -129,10 +137,10 @@ const updateCashSeller = async (order, country) => {
 };
 
 const updApplication = async () => {
-    if(userOrder) {
-        for(const ord of userOrder.cart) {
+    if (userOrder) {
+        for (const ord of userOrder.cart) {
             const app = await appliRepository.getAppById(ord.typeId);
-            if(app) {
+            if (app) {
                 app.pay = true;
                 await appliRepository.update(app);
             };
@@ -140,4 +148,4 @@ const updApplication = async () => {
     };
 };
 
-export { updOrderBuyer, updateCash, updOrderBySeller, updApplication };
+export { updOrderBuyer, updateCash, updOrderBySeller, updApplication, confirmUser };

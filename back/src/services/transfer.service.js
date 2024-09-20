@@ -42,7 +42,9 @@ const getTrasfer = async (confirm, user, page, country, type, id) => {
     return { status: 'success', result };
 };
 
-const confirm = async (id) => {
+const confirm = async (id, { password }, { user }) => {
+    const confUser = await payTransfer.confirmUser(password, user);
+    if (!confUser) throw new TransferNotFound('No estas autorizado');
     const tranfer = await transferRepository.getById(id);
     tranfer.confirm = true;
     const result = await transferRepository.updTransfer(tranfer);

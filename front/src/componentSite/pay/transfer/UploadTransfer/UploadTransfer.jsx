@@ -7,7 +7,6 @@ import WhatsAppTransfer from './WhatsAppTransfer/WhatsAppTransfer';
 import { getDataPassApi } from '../../../../helpers/dataPass/getDataPass.api.js';
 import WriteTransfer from './WriteTranfer/WriteTransfer.jsx';
 
-
 const UploadTransfer = ({ order, setLoading }) => {
 
     const [dataPass, setDataPass] = useState(null);

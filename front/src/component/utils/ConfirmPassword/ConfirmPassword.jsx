@@ -2,7 +2,7 @@ import './confirmPassword.scss';
 import ModalCustom from '../ModalCustom/ModalCustom';
 import { useState } from 'react';
 
-const ConfirmPassword = ({ modalOpen, setModalOpen, setPassword, handleClick }) => {
+const ConfirmPassword = ({ modalOpen, setModalOpen, setPassword, handleClick, id }) => {
 
     const [values, setValues] = useState('');
 
@@ -20,7 +20,9 @@ const ConfirmPassword = ({ modalOpen, setModalOpen, setPassword, handleClick }) 
                 <div className='line confirmPasswordLine'></div>
                 <input type="text" placeholder='Contraseña' onChange={handleChange} value={values} />
 
-                <button className='btn btnB' onClick={handleClick}>Pagar</button>
+                <button className='btn btnB' onClick={id ? () => handleClick(id) : handleClick} >
+                    Pagar
+                </button>
             </div>
         </ModalCustom>
     );

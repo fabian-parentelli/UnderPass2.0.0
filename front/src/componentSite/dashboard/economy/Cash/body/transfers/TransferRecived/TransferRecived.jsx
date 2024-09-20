@@ -4,11 +4,23 @@ import Pager from '../../../../../../../component/utils/Pager/Pager.jsx';
 import { getTransferApi } from '../../../../../../../helpers/transfer/getTransfer.api.js';
 import { confirmTransferApi } from '../../../../../../../helpers/transfer/confirmTransfer.api.js';
 import TransferTable from '../../../../../../../component/wallet/tablesWallet/TransferTable/TransferTable.jsx';
+import ConfirmPassword from '../../../../../../../component/utils/ConfirmPassword/ConfirmPassword.jsx';
+import SnackbarAlert from '../../../../../../../component/utils/SnackbarAlert.jsx';
 
 const TransferRecived = ({ country, setLoading, values }) => {
 
     const [transfers, setTransfers] = useState(null);
     const [page, setPage] = useState(null);
+    const [modalOpen, setModalOpen] = useState(false);
+    const [password, setPassword] = useState(null);
+    const [tif, setTif] = useState(null);
+    const [message, setMessage] = useState({ status: '', mess: '' });
+    const [open, setOpen] = useState(false);
+
+    const handleOpenModal = (id) => {
+        setModalOpen(true);
+        setTif(id);
+    };
 
     useEffect(() => {
         const fetchdata = async () => {
@@ -29,14 +41,20 @@ const TransferRecived = ({ country, setLoading, values }) => {
     const HandleChangePage = (page) => setPage(page);
 
     const handleConfirm = async (id) => {
+        setModalOpen(false)
         setLoading(true);
-        const response = await confirmTransferApi(id);
+        const response = await confirmTransferApi(id, { password: password });
         if (response.status === 'success') {
             const tranfersCopy = { ...transfers };
             const index = tranfersCopy.docs.findIndex(tra => tra._id === response.result._id);
             tranfersCopy.docs[index] = response.result;
             setTransfers(tranfersCopy);
-        } else console.error(response.error);
+        } else {
+            setMessage({ status: 'error', mess: response.error });
+            setLoading(false);
+            setOpen(true);
+            setTimeout(() => { setOpen(false) }, 2000);
+        };
         setLoading(false);
     };
 
@@ -44,11 +62,13 @@ const TransferRecived = ({ country, setLoading, values }) => {
         <div className='transferRecived'>
             <TransferTable
                 transfers={transfers}
-                handleConfirm={handleConfirm}
+                handleOpenModal={handleOpenModal}
                 setTransfers={setTransfers}
                 setLoading={setLoading}
             />
             <Pager users={transfers} HandleChangePage={HandleChangePage} />
+            <ConfirmPassword modalOpen={modalOpen} setModalOpen={setModalOpen} setPassword={setPassword} handleClick={handleConfirm} id={tif && tif} />
+            <SnackbarAlert message={message} open={open} />
         </div>
     );
 };
