@@ -1,0 +1,9 @@
+.nonStock {
+    display: flex;
+    flex-direction: column;
+    gap: .6rem;
+
+    .nonStockRed {
+        color: red;
+    }
+}

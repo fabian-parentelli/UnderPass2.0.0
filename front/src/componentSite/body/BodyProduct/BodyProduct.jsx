@@ -21,7 +21,7 @@ const BodyProduct = () => {
         <div className='bodyProduct'>
             <Link to={'/themarket'} className='theMarkets'><h2>El mercado</h2></Link>
             {!products ? <LoadSmall />
-                : <CardProducts products={products} />
+                : <div className='bodyProductIn'><CardProducts products={products} /></div>
             }
             <Link to={'/themarket'} className='theMarkets'><p className='bodyProductP'>Ver mas productos</p></Link>
         </div>

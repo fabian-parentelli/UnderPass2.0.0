@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import SweetAlert from '../../../../component/utils/SweetAlert';
 import { useCartContext } from '../../../../context/CartContext';
 import { getLastPriceApi } from '../../../../helpers/prices/getLastPrice.api.js';
+import NonStock from '../NonStock/NonStock.jsx';
 
 const VewDataprod = ({ product }) => {
 
@@ -24,7 +25,6 @@ const VewDataprod = ({ product }) => {
     }, []);
 
     const handleAddToCart = (product, nav) => {
-
         const inCart = isInCart(product._id);
         setIsSweet(true);
         if (inCart) {
@@ -41,8 +41,7 @@ const VewDataprod = ({ product }) => {
                 img: product.img[0].imgUrl
             });
         };
-        if (nav === 'nav') setTimeout(() => { navigate('/') }, 2000);
-        else setTimeout(() => { navigate('/cart') }, 2000);
+        setTimeout(() => { navigate(nav) }, 2000);
     };
 
     return (
@@ -63,13 +62,10 @@ const VewDataprod = ({ product }) => {
             <div className='vewDataprovBtn'>
                 {product.quantity > 0
                     ? <>
-                        <button className='btn btnB bbProd' onClick={() => handleAddToCart(product, 'cart')}>Comprar ahora</button>
-                        <button className='btn btnD bbProd' onClick={() => handleAddToCart(product, 'nav')}>Agregar al carrito</button>
+                        <button className='btn btnB bbProd' onClick={() => handleAddToCart(product, '/cart')}>Comprar ahora</button>
+                        <button className='btn btnD bbProd' onClick={() => handleAddToCart(product, '/')}>Agregar al carrito</button>
                     </>
-                    : <>
-                        <p>No hay stock</p>
-                        <button className='btn btnA bbProd'>Reservar</button>
-                    </>
+                    : <NonStock product={product} />
                 }
             </div>
             {isSweet && <SweetAlert onClose={() => setIsSweet(false)} message={'Producto agregado al carrito'} />}
