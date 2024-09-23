@@ -1,8 +1,21 @@
 import './bookingTable.scss';
 import { Link } from 'react-router-dom';
-import BigImg from '../utils/BigImg/BigImg';
+import BigImg from '../../utils/BigImg/BigImg';
+import { updActiveBookingApi } from '../../../helpers/booking/updActiveBooking.api.js';
 
-const BookingTable = ({ products, handleActive }) => {
+const BookingTable = ({ products, setProducts, setLoading }) => {
+
+    const handleActive = async (id) => {
+        setLoading(true);
+        const response = await updActiveBookingApi(id);
+        if (response.status === 'success') {
+            const newProducts = [...products];
+            const index = newProducts.findIndex(book => book._id === response.result._id);
+            newProducts[index] = response.result
+            setProducts(prevState => ({ ...prevState, docs: newProducts }));
+        } else console.error(response.error);
+        setLoading(false);
+    };
 
     return (
         <div className='bookingTable'>

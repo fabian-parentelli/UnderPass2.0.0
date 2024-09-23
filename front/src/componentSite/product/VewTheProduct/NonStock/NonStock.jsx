@@ -31,7 +31,9 @@ const NonStock = ({ product }) => {
             localStorage.setItem('path', `product/${product._id}`);
             setTimeout(() => { navigate('/login') }, 2000);
         };
-        const response = await newBookingApi({ pid: product._id, uid: user.data._id, type: 'product' });
+        const response = await newBookingApi({ 
+            pid: product._id, uid: user.data._id, type: 'product',  country: localStorage.getItem('country') 
+        });
         if (response.status === 'success') {
             setBooking(true);
             setMessage({ status: 'success', mess: 'Producto reservado' });

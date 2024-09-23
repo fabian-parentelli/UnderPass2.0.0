@@ -13,6 +13,7 @@ const bookingSchema = new mongoose.Schema({
     date: { type: Date, default: Date.now },
     type: { type: String },
     active: { type: Boolean, default: true },
+    country: { type: String },
 });
 
 const autoPopulateProduct = function (next) {

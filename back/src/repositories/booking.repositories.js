@@ -12,6 +12,11 @@ export default class BookingRepository {
         return result;
     };
 
+    getToAdmin = async (query, page) => {
+        const result = await bookingManager.getToAdmin(query, page);
+        return result;
+    };
+
     getBookings = async (query, page) => {
         const result = await bookingManager.getBookings(query, page);
         return result;

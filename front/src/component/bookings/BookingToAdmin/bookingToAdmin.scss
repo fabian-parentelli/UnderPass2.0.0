@@ -1,32 +1,30 @@
-@import '../../style/colors.scss';
+@import '../../../style/colors.scss';
 
-.bookingTable {
-    margin-top: 1rem;
+.bookingToAdmin {
 
-    .bookingTableBack {
+    .bookingToAdminBack {
         cursor: pointer;
         transition: .3s ease-in-out;
 
         &:hover {
-            background-color: rgb(207, 203, 203);
-        }
-
-        .bookingTableLink {
-            text-decoration: none;
-            color: gray;
-            transition: .3s ease-in-out;
-
-            &:hover {
-                color: $colorA;
-            }
+            background-color: rgb(201, 201, 201);
         }
     }
 
+    .bookingToAdminLink {
+        text-decoration: none;
+        color: gray;
+        transition: .3s ease-in-out;
+
+        &:hover {
+            color: green;
+        }
+    }
 }
 
 @media (max-width: 767px) {
     
-    .bookingTable {
+    .bookingToAdmin {
         width: 90%;
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
@@ -40,7 +38,7 @@
             border-radius: 6px;
         }
 
-        .bookingTable {
+        .bookingToAdmin {
             cursor: pointer;
             transition: .3s;
 

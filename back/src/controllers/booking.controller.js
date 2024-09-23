@@ -11,6 +11,17 @@ const newBooking = async (req, res) => {
     };
 };
 
+const getToAdmin = async (req, res) => {
+    const { page = 1, type, active } = req.query;
+    try {
+        const result = await bookingService.getToAdmin(page, type, active);
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof BookingNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
 const getBookings = async (req, res) => {
     const { page = 1, userid, type, active } = req.query;
     try {
@@ -44,4 +55,4 @@ const updActive = async (req, res) => {
     };
 };
 
-export { newBooking, getByUserAndType, getBookings, updActive };
+export { newBooking, getByUserAndType, getBookings, updActive, getToAdmin };

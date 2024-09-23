@@ -26,6 +26,7 @@ import DataPass from '../economy/DataPass/DataPass';
 import Cash from '../economy/Cash/Cash';
 import Configuration from '../configuration/Configuration/Configuration';
 import { useLoginContext } from '../../../context/LoginContext';
+import BookingDas from '../product/BookingDas/BookingDas';
 
 const Dashboard = () => {
 
@@ -53,7 +54,7 @@ const Dashboard = () => {
 
                 <Fields
                     title={'Productos'}
-                    category={[{ name: 'Usuario', path: 'productuser' }, { name: 'Ver todo', path: 'vewproducts' }]}
+                    category={[{ name: 'Usuario', path: 'productuser' }, { name: 'Ver todo', path: 'vewproducts' }, { name: 'Reservas', path: 'bookingdas' }]}
                 />
 
                 <Fields title={'Eventos'} category={[{ name: 'Ver eventos', path: 'getevent' }, { name: 'Crear evento', path: 'newevent' }]} />
@@ -99,6 +100,7 @@ const Dashboard = () => {
 
                 <Route path='/productuser' element={<ProductUserDas />} />
                 <Route path='/vewproducts' element={<VewProductsDas />} />
+                <Route path='/bookingdas' element={<BookingDas />} />
 
                 <Route path='/cash' element={<Cash />} />
                 <Route path='/pricelist' element={<PriceList />} />

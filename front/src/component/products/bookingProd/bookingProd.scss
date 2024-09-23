@@ -1,0 +1,39 @@
+@import '../../../style/colors.scss';
+
+.bookingProd {
+
+    .bookingProdBtns {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+
+    .bookingProdMessage {
+        margin-top: .6rem;
+
+        h3 {
+            margin-bottom: .6rem;
+        }
+
+        p {
+            text-wrap: balance;
+            margin-top: .4rem;
+            color: gray;
+
+            span {
+                color: $colorB;
+            }
+        }
+
+        .bookingProdLink {
+            text-decoration: none;
+            color: $colorA;
+            cursor: pointer;
+            transition: .3s ease-in-out;
+
+            &:hover {
+                color: $colorE;
+            }
+        }
+    }
+}

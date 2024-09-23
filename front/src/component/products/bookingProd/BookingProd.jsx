@@ -1,44 +1,30 @@
 import './bookingProd.scss';
-import { useEffect, useState } from 'react';
-import Pager from '../../utils/Pager/Pager.jsx';
-import BookingTable from '../../bookings/BookingTable.jsx';
-import { getBookingApi } from '../../../helpers/booking/getBookingByUserId.api.js';
-import { updActiveBookingApi } from '../../../helpers/booking/updActiveBooking.api.js';
+import { useState } from 'react';
+import YourBookings from './YourBookings';
+import { Link } from 'react-router-dom';
 
 const BookingProd = ({ userId, setLoading }) => {
 
-    const [products, setProducts] = useState(null);
-    const [page, setPage] = useState(null);
-
-    useEffect(() => {
-        const fetchData = async () => {
-            setLoading(true);
-            const query = { userid: userId, type: 'product', active: true };
-            if (page) query.page = page;
-            const response = await getBookingApi(query);
-            if (response.status === 'success') setProducts(response.result);
-            else console.error(response.error);
-            setLoading(false);
-        }; fetchData();
-    }, [page]);
-
-    const handleChangePage = (page) => setPage(page);
-
-    const handleActive = async (id) => {
-        setLoading(true);
-        const response = await updActiveBookingApi(id);
-        if (response.status === 'success') {
-            const newProducts = [...products.docs];
-            const filteredProducts = newProducts.filter(prod => prod._id !== response.result._id);
-            setProducts(prevState => ({ ...prevState, docs: filteredProducts }));
-        } else console.error(response.error);
-        setLoading(false);
-    };
+    const [vew, setVew] = useState(null);
+    const handleVew = (id) => setVew(vew === id ? null : id);
 
     return (
         <div className='bookingProd'>
-            {products && <BookingTable products={products.docs} handleActive={handleActive} />}
-            <Pager users={products} HandleChangePage={handleChangePage} />
+            <div className='bookingProdBtns'>
+                <button className='btnCard' style={{ color: vew === 'post' ? '#00bf63' : '' }} onClick={() => handleVew('post')}>Tus reservas</button>
+                <button className='btnCard' style={{ color: vew === 'get' ? '#00bf63' : '' }} onClick={() => handleVew('get')}>Te reservaron</button>
+            </div>
+
+            {vew === 'post' && <YourBookings userId={userId} setLoading={setLoading} />}
+            {vew === 'get' && <p>get</p>}
+            {!vew &&
+                <div className='bookingProdMessage'>
+                    <h3>Aquí podras ver las reservas de tus productos.</h3>
+                    <p>Al seleccionar <span>"tus reservas"</span>, podras ver aquellos productos que estas esperando que vuelvan a tener stock.</p>
+                    <p>Si seleccionas <span>"Te reservaron"</span> podras ver a esas personas que estan esperando los productos que se te agotaron.</p>
+                    <p>Aquí te dejamos una <Link to={'/help'} className='bookingProdLink'>ayudita</Link>.</p>
+                </div>
+            }
         </div>
     );
 };
