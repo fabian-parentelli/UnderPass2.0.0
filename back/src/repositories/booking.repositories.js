@@ -1,4 +1,5 @@
-import { bookingManager } from '../dao/manager/index.manager.js';
+import { bookingManager, productManager, userManager } from '../dao/manager/index.manager.js';
+import { BookingNotFound } from '../utils/custom-exceptions.utils.js';
 
 export default class BookingRepository {
 
@@ -14,6 +15,18 @@ export default class BookingRepository {
 
     getToAdmin = async (query, page) => {
         const result = await bookingManager.getToAdmin(query, page);
+        if (!result) throw new BookingNotFound('No hay reservas');
+        for (const book of result.docs) {
+            book.total = book.users.length;
+            for (const user of book.users) {
+                const userDb = await userManager.getUserById(user.uid);
+                user.data = { name: userDb.name, email: userDb.email };
+            };
+            const product = await productManager.getProdById(book._id);
+            book.product = {
+                img: product.img[0].imgUrl, name: product.name, userId: product.userId
+            };
+        };
         return result;
     };
 
@@ -21,12 +34,12 @@ export default class BookingRepository {
         const result = await bookingManager.getBookings(query, page);
         return result;
     };
-    
+
     getById = async (id) => {
         const result = await bookingManager.getById(id);
         return result;
     };
-   
+
     update = async (booking) => {
         const result = await bookingManager.update(booking);
         return result;

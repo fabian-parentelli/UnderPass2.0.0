@@ -28,7 +28,7 @@ const SelectedProd = ({ userId }) => {
             {vew === 'create' &&
                 <NewProductC userId={userId} setOpen={setOpen} setMessage={setMessage} setLoading={setLoading} />
             }
-            {vew === 'booking' && <BookingProd userId={userId} setLoading={setLoading} />}
+            {vew === 'booking' && <BookingProd userId={userId} setLoading={setLoading} type='product' />}
 
             <SnackbarAlert open={open} message={message} />
             <Load loading={loading} />

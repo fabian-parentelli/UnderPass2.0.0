@@ -1,14 +1,26 @@
-import { userManager } from "../dao/manager/index.manager.js";
 import { productRepository, bookingRepository } from "../repositories/index.repositories.js";
 import { BookingNotFound } from '../utils/custom-exceptions.utils.js';
 
 const newBooking = async (booking) => {
     if (booking.type === 'product') {
         const product = await productRepository.getProdById(booking.pid);
-        if (!product.inSite) throw new BookingNotFound('Los producto particulares no se pueden reservar');
+        if (!product.inSite) throw new BookingNotFound('Los productos particulares no se pueden reservar');
     };
     const result = await bookingRepository.newBooking(booking);
     if (!result) throw new BookingNotFound('No se puede hacer la reserva');
+    return { status: 'success', result };
+};
+
+const getBySeller = async (page, type, userid) => {
+    if (!userid) throw new BookingNotFound('Falta el userId');
+    const query = {};
+    if (type === 'product') {
+        const productsId = await productRepository.getProductIdByUserId(userid);
+        query.pid = { $in: productsId };
+    };
+    if (type) query.type = type;
+    const result = await bookingRepository.getToAdmin(query, page);
+    if (!result) throw new BookingNotFound('No se puede mostrar las reservas');
     return { status: 'success', result };
 };
 
@@ -18,17 +30,6 @@ const getToAdmin = async (page, type, active) => {
     if (active !== undefined) query.active = active;
     const result = await bookingRepository.getToAdmin(query, page);
     if (!result) throw new BookingNotFound('No hay reservas');
-    for (const book of result.docs) {
-        book.total = book.users.length;
-        for (const user of book.users) {
-            const userDb = await userManager.getUserById(user.uid);
-            user.data = { name: userDb.name, email: userDb.email };
-        };
-        const product = await productRepository.getProdById(book._id);
-        book.product = {
-            img: product.img[0].imgUrl, name: product.name
-        };
-    };
     return { status: 'success', result };
 };
 
@@ -59,4 +60,4 @@ const updActive = async (id) => {
     return { status: 'success', result };
 };
 
-export { newBooking, getByUserAndType, getBookings, updActive, getToAdmin };
+export { newBooking, getByUserAndType, getBookings, updActive, getToAdmin, getBySeller };

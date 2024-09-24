@@ -26,7 +26,7 @@ export default class Booking {
                 }
             }, { $skip: skip }, { $limit: limit }
         ]);
-        const totalDocs = await bookingModel.countDocuments(query); // Total de documentos
+        const totalDocs = await bookingModel.countDocuments(query);
         const pagination = {
             docs: result,
             totalDocs: totalDocs,

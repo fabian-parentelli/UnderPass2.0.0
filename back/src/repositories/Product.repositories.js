@@ -11,7 +11,7 @@ export default class ProductRepository {
         const result = await productManager.getByUserId(id);
         return result;
     };
-    
+
     getByTipsSearch = async (query, name) => {
         const result = await productManager.getByTipsSearch(query, name);
         return result;
@@ -21,8 +21,8 @@ export default class ProductRepository {
         const result = await productManager.getProdById(id);
         return result;
     };
-    
-    getRandom = async (country) => {                
+
+    getRandom = async (country) => {
         const result = await productManager.getRandom(country);
         return result;
     };
@@ -50,6 +50,11 @@ export default class ProductRepository {
 
     productAmount = async (country) => {
         const result = await productManager.productAmount(country);
+        return result;
+    };
+
+    getProductIdByUserId = async (userId) => {
+        const result = await productManager.getProductIdByUserId(userId);
         return result;
     };
 

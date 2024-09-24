@@ -2,6 +2,7 @@ import './bookingDasComp.scss';
 import { useState } from 'react';
 import BookingVewAll from './BookingVewAll/BookingVewAll';
 import Load from '../../utils/Load';
+import BookingByUser from './BookinByUser/BookingByUser';
 
 const BookingDasComp = ({ type }) => {
 
@@ -18,7 +19,7 @@ const BookingDasComp = ({ type }) => {
             </div>
 
             {vew === 'all' && <BookingVewAll type={type} setLoading={setLoading} />}
-            {vew === 'user' && <p>Usuarios</p>}
+            {vew === 'user' && <BookingByUser type={type} setLoading={setLoading} />}
 
             <Load loading={loading} />
         </div>

@@ -6,6 +6,7 @@ export default class BookingRouter extends Router {
 
     init() {
         this.post('/', ['USER', 'ADMIN', 'MASTER'], passportEnum.JWT, bookingController.newBooking);
+        this.get('/seller', ['USER', 'ADMIN', 'MASTER'], passportEnum.JWT, bookingController.getBySeller);
         this.get('/admin', ['ADMIN', 'MASTER'], passportEnum.JWT, bookingController.getToAdmin);
         this.get('/user', ['USER', 'ADMIN', 'MASTER'], passportEnum.JWT, bookingController.getBookings);
         this.get('/:uid/:id/:type', ['PUBLIC'], passportEnum.NOTHING, bookingController.getByUserAndType);

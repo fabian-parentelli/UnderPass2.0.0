@@ -22,7 +22,7 @@ export default class Product {
     };
 
     getRandom = async (country, limit = 11) => {
-        return await productModel.aggregate([{ $match: { 'location.country': country } }, { $sample: { size: limit } }]).exec();
+        return await productModel.aggregate([{ $match: { 'location.country': country, active: true } }, { $sample: { size: limit } }]).exec();
     };
 
     update = async (product) => {
@@ -39,6 +39,11 @@ export default class Product {
             active: true
         };
         return await productModel.countDocuments(filter);
+    };
+
+    getProductIdByUserId = async (userId) => {
+        const products = await productModel.find({ userId: userId },{ _id: 1 }).lean();                  
+        return products.map(product => product._id);
     };
 
 };

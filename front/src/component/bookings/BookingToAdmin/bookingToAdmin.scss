@@ -20,6 +20,16 @@
             color: green;
         }
     }
+
+    .bookingToAdminCursor {
+        margin-top: 0.4rem;
+        cursor: pointer;
+        transition: .3s ease-in-out;
+
+        &:hover {
+            color: $colorA;
+        }
+    }
 }
 
 @media (max-width: 767px) {

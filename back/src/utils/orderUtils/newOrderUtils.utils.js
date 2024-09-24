@@ -18,6 +18,7 @@ const updateStock = async (order) => {
         const product = await productRepository.getProdById(prod.typeId);
         if (product.quantity >= prod.quantity) {
             product.quantity -= prod.quantity;
+            if (!product.inSite && product.quantity < 1) product.active = false;
             await productRepository.update(product);
         } else {
             // Calcular a aver que pasa si hay menos yo que se...
