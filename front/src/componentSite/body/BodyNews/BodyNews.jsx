@@ -1,10 +1,11 @@
 import './bodyNews.scss';
+import UnderNewsLog from '../../../component/fonts/UnderNewsLog/UnderNewsLog';
 
 const BodyNews = () => {
 
     return (
         <div className='bodyNews'>
-            <p className='bodyNewsP'>Under<span>News</span></p>
+            <UnderNewsLog size='4' />
         </div>
     );
 };

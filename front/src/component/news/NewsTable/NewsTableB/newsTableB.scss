@@ -1,0 +1,15 @@
+.newsTableB {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    .newsTableCdiv {
+        display: flex;
+        align-items: flex-end;
+        gap: .2rem;
+
+        .iconNews {
+            font-size: 2rem;
+        }
+    }
+}

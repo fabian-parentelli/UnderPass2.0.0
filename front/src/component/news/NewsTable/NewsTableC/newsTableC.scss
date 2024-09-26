@@ -1,0 +1,28 @@
+.newsTableC {
+    display: flex;
+    flex-direction: column;
+    gap: .6rem;
+    width: 300px;
+
+    .countryss {
+        display: flex;
+        gap: 1rem;
+
+        .btnFlags {
+            width: 50px;
+            object-fit: contain;
+            cursor: pointer;
+            transition: .3s ease-in-out;
+
+            &:hover {
+                transform: scale(1.15);
+            }
+        }
+    }
+
+    .newsTableRDiv {
+        display: flex;
+        flex-direction: column;
+        width: 250px;
+    }
+}

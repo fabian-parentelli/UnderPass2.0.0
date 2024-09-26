@@ -27,6 +27,7 @@ import Cash from '../economy/Cash/Cash';
 import Configuration from '../configuration/Configuration/Configuration';
 import { useLoginContext } from '../../../context/LoginContext';
 import BookingDas from '../product/BookingDas/BookingDas';
+import NewNews from '../news/NewNews/NewNews';
 
 const Dashboard = () => {
 
@@ -79,6 +80,11 @@ const Dashboard = () => {
                     title={'Imágenes'}
                     category={[{ name: 'Avatares', path: 'newavatar' }, { name: 'Nuevo Evento', path: 'newimgevent' }, { name: 'Videos tutoriales', path: 'videotut' }]}
                 />
+                
+                <Fields
+                    title={'UnderNews'}
+                    category={[{ name: 'Crear noticia', path: 'newscreate' }]}
+                />
 
                 {user.data.role === 'master' &&
                     <Fields
@@ -120,6 +126,8 @@ const Dashboard = () => {
 
                 <Route path='/userorders' element={<UserOrders />} />
                 <Route path='/alloreders' element={<AllOrders />} />
+
+                <Route path='/newscreate' element={<NewNews />} />
 
                 <Route path='/configuration' element={<Configuration />} />
             </Routes>
