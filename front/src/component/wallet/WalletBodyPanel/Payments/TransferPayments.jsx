@@ -11,7 +11,7 @@ const TransferPayments = ({ wallet, setLoading }) => {
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
-            const query = { user: wallet.userId };
+            const query = { user: wallet };
             if (page) query.page = page;
             const response = await getTransferApi(query);
             if (response.status === 'success') setTransfers(response.result);

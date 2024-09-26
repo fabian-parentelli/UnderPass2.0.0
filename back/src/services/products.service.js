@@ -1,6 +1,7 @@
 import { productRepository, userRepository, publicityRepository } from "../repositories/index.repositories.js";
 import { ProductNotFound } from '../utils/custom-exceptions.utils.js';
 import { joinPublicity } from "../utils/joinPublicity.utils.js";
+import { callBooking } from "./booking.service.js";
 
 const newProduct = async (images, imagesUrl, product) => {
     product.description = JSON.parse(product.description);
@@ -32,8 +33,8 @@ const getByTipsSearch = async (name, favorite, country, pid) => {
     if (favorite !== 'false') favorites = await userRepository.getFavorite(favorite);
     if (favorites.length > 0) query._id = { $in: favorites };
     query.active = true;
-    if(pid) query._id = pid;
-    if(country) query['location.country'] = country;
+    if (pid) query._id = pid;
+    if (country) query['location.country'] = country;
     const result = await productRepository.getByTipsSearch(query, name)
     if (!result) throw new ProductNotFound('No se encuentra el producto');
     return { status: 'success', result };
@@ -96,6 +97,9 @@ const updImgActive = async (data) => {
 const updData = async (id, data) => {
     const product = await productRepository.getProdById(id);
     if (!product) throw new ProductNotFound('No se encuentra el producto');
+    if (product.inSite && product.quantity === 0 && data.quantity > 0) {
+        await callBooking(product._id, +data.quantity);
+    };
     const newProduct = { ...product, ...data };
     const result = await productRepository.update(newProduct);
     if (!result) throw new ProductNotFound('No se puede actualizar el producto');

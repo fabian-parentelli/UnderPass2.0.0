@@ -1,6 +1,7 @@
 import './payments.scss';
-import TransferPayments from "./TransferPayments";
 import { useState } from 'react';
+import UnderPayments from './UnderPayments';
+import TransferPayments from "./TransferPayments";
 
 const Payments = ({ wallet, setLoading }) => {
 
@@ -19,9 +20,9 @@ const Payments = ({ wallet, setLoading }) => {
                 </select>
             </div>
 
-            {type === 'transfer' && <TransferPayments wallet={wallet} setLoading={setLoading} />}
+            {type === 'transfer' && <TransferPayments wallet={wallet.userId} setLoading={setLoading} />}
             {type === 'mp' && <p>{type}</p>}
-            {type === 'underpay' && <p>{type}</p>}
+            {type === 'underpay' && <UnderPayments wallet={wallet} setLoading={setLoading} />}
         </div>
     );
 };

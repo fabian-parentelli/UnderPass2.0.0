@@ -65,6 +65,7 @@ export default Movement;
 function transaction(types) {
     const data = {
         'transfer': () => { return 'Transferencia' },
+        'underPay': () => { return 'UnderPay' },
         'default': () => { return 'otro' },
     };
     return (data[types] || data['default'])();

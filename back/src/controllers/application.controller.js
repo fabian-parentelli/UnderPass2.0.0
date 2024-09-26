@@ -23,6 +23,17 @@ const getAll = async (req, res) => {
     };
 };
 
+const getById = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const result = await appliService.getById(id);
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof AppliNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
 const getByUserId = async (req, res) => {
     const { id } = req.params;
     try {
@@ -56,4 +67,4 @@ const updVew = async (req, res) => {
     };
 };
 
-export { newApplication, getAll, getByUserId, updActive, updVew };
+export { newApplication, getAll, getByUserId, updActive, updVew, getById };

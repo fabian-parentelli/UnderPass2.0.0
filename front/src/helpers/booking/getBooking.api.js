@@ -6,6 +6,7 @@ async function getBookingApi(obj) {
     if (obj.page) urlData += `page=${obj.page}&`;
     if (obj.userid) urlData += `userid=${obj.userid}&`;
     if (obj.type) urlData += `type=${obj.type}&`;
+    if (obj.id) urlData += `id=${obj.id}&`;
     if (obj.active !== undefined) urlData += `active=${obj.active}&`;
 
     if (urlData.endsWith('&')) urlData = urlData.slice(0, -1);

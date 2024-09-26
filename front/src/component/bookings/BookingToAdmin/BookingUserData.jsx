@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import { useLoginContext } from "../../../context/LoginContext";
 
 const BookingUserData = ({ book }) => {
@@ -17,18 +18,21 @@ const BookingUserData = ({ book }) => {
                 </thead>
                 <tbody>
                     {book && book.users.map((boo, index) => (
-                        <tr key={index}>
-                            <td>
-                                <p>{boo.data.name}</p>
-                                <p style={{ fontSize: '12px' }}>{boo.data.email}</p>
-                                {user.data.role !== 'user' && <p style={{ fontSize: '10px' }}>{boo.uid}</p>}
-                            </td>
-                            <td>{new Date(boo.date).toLocaleDateString()}</td>
-                            <td>{getType(boo.type)}</td>
-                            <td style={{color: boo.active ? 'green' : 'red'}}>
-                                {boo.active ? 'SI' : 'NO'}
-                            </td>
-                        </tr>
+                        boo.active &&
+                        <Fragment key={index}>
+                            <tr >
+                                <td>
+                                    <p>{boo.data.name}</p>
+                                    <p style={{ fontSize: '12px' }}>{boo.data.email}</p>
+                                    {user.data.role !== 'user' && <p style={{ fontSize: '10px' }}>{boo.uid}</p>}
+                                </td>
+                                <td>{new Date(boo.date).toLocaleDateString()}</td>
+                                <td>{getType(boo.type)}</td>
+                                <td style={{ color: boo.active ? 'green' : 'red' }}>
+                                    {boo.active ? 'SI' : 'NO'}
+                                </td>
+                            </tr>
+                        </Fragment>
                     ))}
                 </tbody>
             </table>

@@ -6,6 +6,7 @@ async function getBookingBySeller(obj) {
     if (obj.page) urlData += `page=${obj.page}&`;
     if (obj.type) urlData += `type=${obj.type}&`;
     if (obj.userid) urlData += `userid=${obj.userid}&`;
+    if (obj.active !== undefined) urlData += `active=${obj.active}&`;
 
     if (urlData.endsWith('&')) urlData = urlData.slice(0, -1);
     

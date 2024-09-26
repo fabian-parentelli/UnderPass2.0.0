@@ -9,6 +9,8 @@ function getTypeAlerts(types) {
         'youMoneyInWallet': () => { return 'Tienes dinero acreditado en tu billetera' },
         'payTranferToCustomer': () => { return 'Recibiste un deposito' },
         'success_pay': () => { return 'Pago exitoso' },
+        'weHaveSeenYourRequest': () => { return 'Hemos visto tu solicitud' },
+        'productInStock': () => { return 'El producto reservado ya tiene stock' },
         'default': () => { return 'otro' },
     };
 

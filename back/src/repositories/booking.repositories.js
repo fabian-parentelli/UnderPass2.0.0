@@ -17,8 +17,9 @@ export default class BookingRepository {
         const result = await bookingManager.getToAdmin(query, page);
         if (!result) throw new BookingNotFound('No hay reservas');
         for (const book of result.docs) {
-            book.total = book.users.length;
+            book.total = 0;
             for (const user of book.users) {
+                if(user.active) book.total += 1;
                 const userDb = await userManager.getUserById(user.uid);
                 user.data = { name: userDb.name, email: userDb.email };
             };
@@ -45,4 +46,8 @@ export default class BookingRepository {
         return result;
     };
 
+    getAllPid = async (pid) => {
+        const result = await bookingManager.getAllPid(pid);
+        return result;
+    };
 };

@@ -34,9 +34,9 @@ const getToAdmin = async (req, res) => {
 };
 
 const getBookings = async (req, res) => {
-    const { page = 1, userid, type, active } = req.query;
+    const { page = 1, userid, type, active, id } = req.query;
     try {
-        const result = await bookingService.getBookings(page, userid, type, active);
+        const result = await bookingService.getBookings(page, userid, type, active, id);
         if (result) return res.sendSuccess(result);
     } catch (error) {
         if (error instanceof BookingNotFound) return res.sendClientError(error.message);

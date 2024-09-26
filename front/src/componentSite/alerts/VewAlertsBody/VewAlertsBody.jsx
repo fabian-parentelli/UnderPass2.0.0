@@ -8,6 +8,8 @@ import SoldProductAlert from './SoldProductAlert/SoldProductAlert';
 import HaveMoneyAlerts from './HaveMoneyAlerts/HaveMoneyAlerts.jsx';
 import ReqTranferAlert from './ReqTransferAlert/ReqTransferAlert.jsx';
 import HaveAPay from './HaveAPay/HaveAPay.jsx';
+import WeHaveSeeYourReq from './WeHaveSeeYourReq/WeHaveSeeYourReq.jsx';
+import ProductInStock from './ProductInStock/ProductInStock.jsx';
 
 const VewAlertsBody = () => {
 
@@ -26,6 +28,8 @@ const VewAlertsBody = () => {
             {type === 'transfer_confirm' && <HaveMoneyAlerts id={id} setLoading={setLoading} />}
             {type === 'payTranferToCustomer' && <HaveAPay id={id} setLoading={setLoading} />}
             {type === 'success_pay' && <HaveMoneyAlerts id={id} setLoading={setLoading} /> }
+            {type === 'weHaveSeenYourRequest' && <WeHaveSeeYourReq id={id} setLoading={setLoading} /> }
+            {type === 'productInStock' && <ProductInStock id={id} setLoading={setLoading} /> }
 
             <Load loading={loading} />
         </div>

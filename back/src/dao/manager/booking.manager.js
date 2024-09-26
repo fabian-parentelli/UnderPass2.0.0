@@ -53,4 +53,8 @@ export default class Booking {
         return await bookingModel.findByIdAndUpdate(booking._id, booking, { lean: true, new: true });
     };
 
+    getAllPid = async (pid) => {
+        return await bookingModel.find({ pid: pid }).lean();
+    };
+
 };

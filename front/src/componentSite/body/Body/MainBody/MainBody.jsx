@@ -2,6 +2,7 @@ import SubNav from "../../SubNav/SubNav";
 import { useLoginContext } from "../../../../context/LoginContext";
 import BannerBody from "../../BannerBody/BannerBody";
 import BodyProduct from "../../BodyProduct/BodyProduct";
+import BodyNews from "../../BodyNews/BodyNews";
 
 const MainBody = () => {
 
@@ -12,6 +13,7 @@ const MainBody = () => {
             {user.logged && <SubNav />}
             <BannerBody />
             <BodyProduct />
+            <BodyNews />
         </>
     );
 };

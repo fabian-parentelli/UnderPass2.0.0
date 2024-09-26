@@ -27,6 +27,12 @@ const getAll = async (limit, page, active, country, category, type, pay, underVe
     return { status: 'success', result };
 };
 
+const getById = async (id) => {
+    const result = await appliRepository.getAppById(id);
+    if (!result) throw new AppliNotFound('No se encuentran la solicitud');
+    return { status: 'success', result };
+};
+
 const getByUserId = async (id) => {
     let result = await appliRepository.getByUserId(id);
     if (!result) throw new AppliNotFound('No se encuentran la solicitud');
@@ -56,4 +62,4 @@ const updVew = async (id) => {
     return { status: 'success', result };
 };
 
-export { newApplication, getAll, getByUserId, updActive, updVew };
+export { newApplication, getAll, getByUserId, updActive, updVew, getById };

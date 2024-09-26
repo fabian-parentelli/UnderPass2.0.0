@@ -5,7 +5,6 @@ const RequestMoneyWallet = ({ wallet, setWallet, setLoading }) => {
     const handleClik = async () => {
         setLoading(true);
         const response = await newOrderPayApi({ userId: wallet.userId, total: wallet.total, country: wallet.country });
-        console.log(response); //---------------------Borrar ---------------------
         if(response.status === 'success') setWallet(response.result);
         else console.error(response.error);
         setLoading(false);

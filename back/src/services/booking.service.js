@@ -1,4 +1,4 @@
-import { productRepository, bookingRepository } from "../repositories/index.repositories.js";
+import { productRepository, bookingRepository, alertsRepository } from "../repositories/index.repositories.js";
 import { BookingNotFound } from '../utils/custom-exceptions.utils.js';
 
 const newBooking = async (booking) => {
@@ -33,10 +33,11 @@ const getToAdmin = async (page, type, active) => {
     return { status: 'success', result };
 };
 
-const getBookings = async (page, userid, type, active) => {
+const getBookings = async (page, userid, type, active, id) => {
     const query = {};
     if (userid) query.uid = userid;
     if (type) query.type = type;
+    if (id) query._id = id;
     if (active !== undefined) query.active = active;
     const result = await bookingRepository.getBookings(query, page);
     if (!result) throw new BookingNotFound('No se puese hacer la reserva');
@@ -60,4 +61,19 @@ const updActive = async (id) => {
     return { status: 'success', result };
 };
 
-export { newBooking, getByUserAndType, getBookings, updActive, getToAdmin, getBySeller };
+const callBooking = async (pid, quantity) => {
+    const bookings = await bookingRepository.getAllPid(pid);
+    const totalbookings = bookings.length;
+    for (let i = 0; i < quantity && i < totalbookings; i++) {
+        await alertsRepository.newAlert({
+            eventId: bookings[i]._id,
+            userId: bookings[i].uid,
+            type: 'productInStock'
+        });
+        bookings[i].active = false;
+        const update = await bookingRepository.update(bookings[i]);
+        if (!update) throw new BookingNotFound('No se puede actializar el estado de la reserva');
+    };
+};
+
+export { newBooking, getByUserAndType, getBookings, updActive, getToAdmin, getBySeller, callBooking };

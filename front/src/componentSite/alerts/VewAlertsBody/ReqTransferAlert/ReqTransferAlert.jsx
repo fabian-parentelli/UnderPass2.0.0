@@ -32,12 +32,14 @@ const ReqTranferAlert = ({ id, setLoading }) => {
 
     return (
         <div className='reqTranferAlert'>
-            <TransferTable 
-                transfers={transfers}
-                handleConfirm={handleConfirm}
-                setTransfers={setTransfers}
-                setLoading={setLoading}
-            />
+            {transfers &&
+                <TransferTable
+                    transfers={transfers}
+                    handleConfirm={handleConfirm}
+                    setTransfers={setTransfers}
+                    setLoading={setLoading}
+                />
+            }
         </div>
     );
 };

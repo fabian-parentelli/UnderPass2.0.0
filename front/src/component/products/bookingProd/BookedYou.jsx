@@ -11,8 +11,8 @@ const BookedYou = ({ userId, setLoading, type }) => {
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
-            const query = { userid: userId, type: type };
-            if(pager) query.page = pager;
+            const query = { userid: userId, type: type};
+            if (pager) query.page = pager;
             const response = await getBookingBySeller(query);
             if (response.status === 'success') setBookings(response.result);
             else console.error(response.error);
@@ -21,9 +21,9 @@ const BookedYou = ({ userId, setLoading, type }) => {
     }, [pager]);
 
     const HandleChangePage = (page) => setPager(page);
-    
+
     return (
-        <div style={{marginTop: '1rem'}}>
+        <div style={{ marginTop: '1rem' }}>
             {bookings && <BookingToAdmin bookings={bookings.docs} />}
             <Pager users={bookings} HandleChangePage={HandleChangePage} />
         </div>
