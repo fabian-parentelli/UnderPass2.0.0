@@ -18,6 +18,7 @@ import OrderPayRouter from "./orderPay.router.js";
 import TransferPayRouter from "./transferPay.router.js";
 import PayRouter from "./pay.router.js";
 import BookingRouter from "./booking.router.js";
+import NewsRouter from "./news.router.js";
 
 export const userRouter = new UserRouter().getRouter();
 export const imagenRouter = new ImagenRouter().getRouter();
@@ -39,3 +40,4 @@ export const orderPayRouter = new OrderPayRouter().getRouter();
 export const transferPayRouter = new TransferPayRouter().getRouter();
 export const payRouter = new PayRouter().getRouter();
 export const bookingRouter = new BookingRouter().getRouter();
+export const newsRouter = new NewsRouter().getRouter();

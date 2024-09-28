@@ -3,6 +3,7 @@ import XIcon from '@mui/icons-material/X';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import LanguageIcon from '@mui/icons-material/Language';
 import InstagramIcon from '@mui/icons-material/Instagram';
+import FacebookIcon from '@mui/icons-material/Facebook';
 
 const NewsTableB = ({  handleValues }) => {
 
@@ -26,7 +27,7 @@ const NewsTableB = ({  handleValues }) => {
             </div>
 
             <div className='newsTableCdiv'>
-                <InstagramIcon className='iconNews' style={{ color: '#1877F2' }} />
+                <FacebookIcon className='iconNews' style={{ color: '#1877F2' }} />
                 <input
                     type="text" name='facebook' placeholder='Facebook'
                     onChange={handleValues}

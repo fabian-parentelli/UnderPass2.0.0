@@ -17,7 +17,7 @@ const TheMarket = () => {
         <div className='theMarket'>
             <h2>El Mercado</h2>
             <FilterProduct setProducts={setProducts} setLoading={setLoading} page={page} />
-            {products && <CardProducts products={products.docs} />}
+            {products && <div className='bodyProductIn'><CardProducts products={products.docs} /></div>}
             {products && <div style={{ marginTop: '4rem' }}><Pager users={products} HandleChangePage={HandleChangePage} /></div>}
             <Load loading={loadin} />
         </div>

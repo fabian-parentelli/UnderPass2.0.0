@@ -1,34 +1,40 @@
 import './newNews.scss';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Load from '../../../../component/utils/Load';
 import NewspaperIcon from '@mui/icons-material/Newspaper';
 import Title from '../../../../component/dashboard/Title/Title';
 import NewsTable from '../../../../component/news/NewsTable/NewsTable';
-import { useState } from 'react';
+import { createNewsApi } from '../../../../helpers/news/createNews.api.js';
+import SnackbarAlert from '../../../../component/utils/SnackbarAlert.jsx';
 
 const NewNews = () => {
 
+    const [loading, setLoading] = useState(false);
     const [formData, setFormData] = useState(null);
     const [values, setValues] = useState({});
+    const [open, setOpen] = useState(false);
+    const [message, setMessage] = useState({ status: '', mess: '' });
+
     const handleValues = (e) => setValues({ ...values, [e.target.name]: e.target.value });
     const handleFileChange = (data) => setFormData(data);
+    const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        setLoading(true);
         for (const field in values) formData.set(field, values[field]);
-
-        formData.forEach((value, key) => {
-            console.log(`${key}:`, value);
-        });
-        
-        // Ahora tengo que construir el back
-        // de las noticias y conectarlos, 
-        // esta parte ya funciona
-        // ------------------------------------
-        // ------------------------------------
-        // ------------------------------------
-        // ------------------------------------
-        // ------------------------------------
-        // ------------------------------------
-        // ------------------------------------
+        const response = await createNewsApi(formData);
+        if (response.status === 'success') {
+            setOpen(true);
+            setMessage({ status: 'success', mess: 'Artículo creado correctamaente' });
+            setTimeout(() => { navigate('/dashboard/vewnews') }, 2000);
+        } else {
+            setLoading(false);
+            setOpen(true);
+            setMessage({ status: 'error', mess: response.error });
+            setTimeout(() => { setOpen(false) }, 2000);
+        };
     };
 
     return (
@@ -45,6 +51,8 @@ const NewNews = () => {
                 handleFileChange={handleFileChange}
             />
 
+            <SnackbarAlert message={message} open={open} />
+            <Load loading={loading} />
         </div>
     );
 };

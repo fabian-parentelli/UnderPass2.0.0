@@ -25,6 +25,7 @@ import TransferVewAlert from "../componentSite/alerts/TransferVewAlert/TransferV
 import TicketUnique from "../component/pay/TicketUnique/TicketUnique.jsx";
 import VewAlertsBody from "../componentSite/alerts/VewAlertsBody/VewAlertsBody.jsx";
 import VewTransferPay from "../component/transfer/VewTransferPay/VewTransferPay.jsx";
+import UniqueNews from "../componentSite/news/UniqueNews/UniqueNews.jsx";
 
 const RoutesComp = () => {
 
@@ -47,6 +48,7 @@ const RoutesComp = () => {
                     <Route path="/newproduct" element={<NewProduct />} />
                     <Route path="/themarket" element={<TheMarket />} />
                     <Route path="/product/:id" element={<VewTheProduct />} />
+                    <Route path="/uniquenews/:id" element={<UniqueNews />} />
 
                     {user.logged &&
                         <>

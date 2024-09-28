@@ -28,6 +28,7 @@ import Configuration from '../configuration/Configuration/Configuration';
 import { useLoginContext } from '../../../context/LoginContext';
 import BookingDas from '../product/BookingDas/BookingDas';
 import NewNews from '../news/NewNews/NewNews';
+import VewNewsDas from '../news/VewNewsDas/VewNewsDas';
 
 const Dashboard = () => {
 
@@ -83,7 +84,7 @@ const Dashboard = () => {
                 
                 <Fields
                     title={'UnderNews'}
-                    category={[{ name: 'Crear noticia', path: 'newscreate' }]}
+                    category={[{ name: 'Crear noticia', path: 'newscreate' }, { name: 'Ver noticias', path: 'vewnews' }]}
                 />
 
                 {user.data.role === 'master' &&
@@ -128,6 +129,7 @@ const Dashboard = () => {
                 <Route path='/alloreders' element={<AllOrders />} />
 
                 <Route path='/newscreate' element={<NewNews />} />
+                <Route path='/vewnews' element={<VewNewsDas />} />
 
                 <Route path='/configuration' element={<Configuration />} />
             </Routes>

@@ -31,9 +31,13 @@ const NewsTable = ({ values, setValues, handleValues, handleSubmit, handleFileCh
 
             <div className='newsTableButtons'>
                 <button className='btn btnD' >Enviar</button>
-                <input type="text" className='newsTableButtonsInput' placeholder='Video de youtube' />
+                <input
+                    type="text" className='newsTableButtonsInput' placeholder='Video de youtube'
+                    onChange={handleValues} name='video'
+                    style={{ backgroundColor: '#a8b39c' }}
+                />
             </div>
-            
+
         </form>
     );
 };

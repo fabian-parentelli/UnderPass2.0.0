@@ -2,12 +2,13 @@ import './today.scss';
 import { format } from 'date-fns';
 import { es } from 'date-fns/locale';
 
-const Today = () => {
+const Today = ({ date }) => {
 
-    const currentDate = format(new Date(), "eeee d 'de' MMMM 'de' yyyy", { locale: es });
+    const isData = date ? new Date(date) : new Date();
+    const currentDate = format(isData, "eeee d 'de' MMMM 'de' yyyy", { locale: es });
 
     return (
-        <p className='today'>
+        <p className={!date ? 'today' : 'noToday'}>
             {currentDate ? currentDate : ''}
         </p>
     );

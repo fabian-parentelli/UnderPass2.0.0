@@ -1,0 +1,12 @@
+.newsVewTable {
+    margin-top: 1rem;
+
+    .newsVewTableBack {
+        cursor: pointer;
+        transition: .3s ease-in-out;
+
+        &:hover {
+            background-color: rgb(219, 219, 219);
+        }
+    }
+}

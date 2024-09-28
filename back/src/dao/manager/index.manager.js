@@ -18,6 +18,7 @@ import Audit from './audit.manager.js';
 import OrderPay from './orderPay.manager.js';
 import TransferPay from './transferPay.manager.js';
 import Booking from './booking.manager.js';
+import News from './news.manager.js';
 
 export const userManager = new User();
 export const tutorialsManager = new Tutorials();
@@ -39,3 +40,4 @@ export const auditManager = new Audit();
 export const orderPayManager = new OrderPay();
 export const transferPayManager = new TransferPay();
 export const bookingManager = new Booking();
+export const newsManager = new News();

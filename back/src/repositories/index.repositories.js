@@ -15,6 +15,7 @@ import AuditRepository from './audit.repositories.js';
 import OrderPayRepository from './orderPay.repositories.js';
 import TransferPayRepository from './transferPay.repositories.js';
 import BookingRepository from './booking.repositories.js';
+import NewsRepository from './news.repositories.js';
 
 export const userRepository = new UserRepository();
 export const imagenRepository = new ImagenRepository();
@@ -33,3 +34,4 @@ export const auditRepository = new AuditRepository();
 export const orderPayRepository = new OrderPayRepository();
 export const transferPayRepository = new TransferPayRepository();
 export const bookingRepository = new BookingRepository();
+export const newsRepository = new NewsRepository();
