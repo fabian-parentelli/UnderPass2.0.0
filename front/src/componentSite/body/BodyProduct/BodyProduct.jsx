@@ -4,10 +4,12 @@ import { useEffect, useState } from 'react';
 import LoadSmall from '../../../component/utils/LoadSmall/LoadSmall.jsx';
 import CardProducts from '../../../component/products/CardProducts/Cardproducts.jsx';
 import { getProductsRandomApi } from '../../../helpers/products/getProductRandom.api.js';
+import UnderMarketLog from '../../../component/fonts/UnderMarketLog/UnderMarketLog.jsx';
 
 const BodyProduct = () => {
 
     const [products, setProducts] = useState([]);
+    const broad = window.innerWidth > 767 ? 4 : 3;
 
     useEffect(() => {
         const fetchData = async () => {
@@ -19,7 +21,9 @@ const BodyProduct = () => {
 
     return (
         <div className='bodyProduct'>
-            <Link to={'/themarket'} className='theMarkets'><h2>El mercado</h2></Link>
+
+            <div className='bodyProductTile'><UnderMarketLog size={broad} /></div>
+
             {!products ? <LoadSmall />
                 : <div className='bodyProductIn'><CardProducts products={products} /></div>
             }

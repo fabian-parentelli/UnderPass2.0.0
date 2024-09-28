@@ -1,5 +1,6 @@
 import CartProvider from "./context/CartContext";
 import LoginProvider from "./context/LoginContext";
+import NewsProvider from "./context/NewsContext";
 import UnderProvider from "./context/UnderContext";
 import RoutesComp from "./routers/Routes";
 
@@ -8,9 +9,15 @@ function App() {
   return (
     <LoginProvider>
       <CartProvider>
+
         <UnderProvider>
-          <RoutesComp />
+          <NewsProvider>
+
+            <RoutesComp />
+            
+          </NewsProvider>
         </UnderProvider>
+
       </CartProvider>
     </LoginProvider>
   );

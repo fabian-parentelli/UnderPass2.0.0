@@ -1,0 +1,17 @@
+.newsSeparator {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 1rem 2rem;
+    margin-top: 2rem;
+}
+
+@media (max-width: 1024px) {
+    
+    .newsSeparator {
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
+    }
+}

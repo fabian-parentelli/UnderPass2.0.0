@@ -3,21 +3,13 @@
 .bodyProduct {
     margin-top: 5%;
 
+    .bodyProductTile {
+        display: grid;
+        place-items: center;
+    }
+
     .theMarkets {
         text-decoration: none;
-
-        h2 {
-            text-align: center;
-            font-size: 4rem;
-            margin-top: 2rem;
-            cursor: pointer;
-            color: $colorC;
-            transition: .3s ease-in-out;
-
-            &:hover {
-                color: $colorE;
-            }
-        }
     }
 
     .bodyProductIn {
@@ -30,18 +22,11 @@
         margin-top: 4rem;
         color: $colorB;
         transition: .3s ease-in-out;
-        
+
         &:hover {
             color: $colorD;
         }
     }
 }
 
-@media (max-width: 767px) {
-    .bodyProduct {
-
-        h2 {
-            font-size: 3rem;
-        }
-    }
-}
+@media (max-width: 767px) {}

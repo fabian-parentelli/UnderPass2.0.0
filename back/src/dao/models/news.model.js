@@ -23,7 +23,8 @@ const newsSchema = new mongoose.Schema({
     },
     video: { type: String },
     date: { type: Date, default: Date.now },
-    active: { type: Boolean, default: true }
+    active: { type: Boolean, default: true },
+    sign: { type: String }
 });
 
 newsSchema.plugin(mongoosePaginate);

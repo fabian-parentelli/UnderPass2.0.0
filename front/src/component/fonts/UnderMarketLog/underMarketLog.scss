@@ -1,0 +1,21 @@
+.underMarketLog {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: .3s ease-in-out;
+
+    &:hover {
+        transform: scale(1.05);
+    }
+
+    .underNewsLog {
+        position: relative;
+
+        .underNewsText {
+            position: absolute;
+            top: 26%;
+            left: -16%;
+        }
+    }
+}

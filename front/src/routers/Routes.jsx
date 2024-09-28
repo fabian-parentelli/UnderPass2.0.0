@@ -69,8 +69,10 @@ const RoutesComp = () => {
                         <Route path="/dashboard/*" element={<Dashboard />} />
                     }
                 </Routes>
+                
                 <BodyCart />
                 <Footer />
+
             </ScrollToTop>
         </BrowserRouter>
     );

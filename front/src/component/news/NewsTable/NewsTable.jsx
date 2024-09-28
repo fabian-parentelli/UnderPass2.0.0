@@ -24,20 +24,23 @@ const NewsTable = ({ values, setValues, handleValues, handleSubmit, handleFileCh
                 </div>
             </div>
 
+            <div className='newsTableButtons'>
+                <input
+                    type="text" name='sign' placeholder='Entrevistador' className='newsTableSign' onChange={handleValues}
+                    required
+                />
+                <input
+                    type="text" className='newsTableButtonsInput' placeholder='Video de youtube'
+                    onChange={handleValues} name='video' required
+                />
+            </div>
+
             <div className='newsTableRDiv'>
                 <label>Texto</label>
                 <textarea name="text" className='newsTableRDivText' placeholder='Texto' onChange={handleValues}></textarea>
             </div>
 
-            <div className='newsTableButtons'>
-                <button className='btn btnD' >Enviar</button>
-                <input
-                    type="text" className='newsTableButtonsInput' placeholder='Video de youtube'
-                    onChange={handleValues} name='video'
-                    style={{ backgroundColor: '#a8b39c' }}
-                />
-            </div>
-
+            <button className='btn btnD' >Enviar</button>
         </form>
     );
 };

@@ -1,10 +1,122 @@
+@import '../../../style/colors.scss';
+
 .uniqueNewsVew {
     width: 100%;
-    
+    text-align: center;
+
     .uniqueNewsVewTop {
         padding: 0 4rem;
         display: flex;
         justify-content: space-between;
         color: gray;
+    }
+
+    h2 {
+        margin-top: 2rem;
+        font-size: 4rem;
+        font-family: 'Times New Roman', Times, serif;
+    }
+
+    .uniqueNewsVewSubText {
+        width: 60%;
+        margin: 1rem auto;
+        font-family: Georgia, serif;
+    }
+
+    .uniqueNewsVewImg0 {
+        width: 50%;
+        margin-top: 1rem;
+    }
+
+    .uniqueNewsVewText {
+        margin-top: 3rem;
+        column-count: 3;
+        column-gap: 20px;
+        text-align: justify;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+    }
+
+    .uniqueNewsVewVideo {
+        display: flex;
+        margin-top: 4rem;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 3rem;
+
+        .uniqueNewsVewImg1 {
+            width: 40%;
+        }
+    }
+
+    .uniqueNewsVewSocialMedia {
+        margin: 4rem auto;
+        display: flex;
+        justify-content: space-between;
+        width: 300px;
+
+        .uniqueNewsVewIcon {
+            font-size: 2rem;
+            cursor: pointer;
+            transition: .3s ease-in-out;
+
+            &:hover {
+                transform: scale(1.2);
+                color: $underNews;
+            }
+        }
+    }
+
+    .uniqueNewsVewBy {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 767px) {
+    .uniqueNewsVew {
+        padding-top: 1rem;
+
+        .uniqueNewsVewTop {
+            flex-direction: column;
+            gap: .4rem;
+            p {
+                font-size: 13px;
+            }
+        }
+
+        h2 {
+            margin-top: 1rem;
+            font-size: 2rem;
+            padding: 0 10px;
+        }
+
+        .uniqueNewsVewSubText {
+            width: 90%;
+        }
+
+        .uniqueNewsVewImg0 {
+            width: 80%;
+        }
+
+        .uniqueNewsVewText {
+            column-count: 1;
+            text-align: justify;
+            width: 90%;
+            margin: 2rem auto;
+        }
+
+        .uniqueNewsVewVideo {
+            flex-direction: column;
+            align-items: center;
+
+            .uniqueNewsVewImg1 {
+                width: 80%;
+            }
+        }
+
+        .uniqueNewsVewSocialMedia {
+            width: 250px;
+        }
     }
 }
