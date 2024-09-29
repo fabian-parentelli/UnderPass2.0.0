@@ -11,7 +11,7 @@ const NewsProvider = ({ children }) => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await getAllNewsApi({ country: country, active: true });
+            const response = await getAllNewsApi({ country: country, active: true, publicity: 'false' });
             if (response.status === 'success') setNews(response.result);
             else console.error(response.error);
         }; fetchData();

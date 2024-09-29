@@ -4,6 +4,7 @@ import Load from '../../../component/utils/Load';
 import Pager from '../../../component/utils/Pager/Pager';
 import FilterProduct from './FilterProduct/FilterProduct';
 import CardProducts from '../../../component/products/CardProducts/Cardproducts';
+import UnderMarketFont from '../../../component/fonts/UnderMarketFont/UnderMarketFont';
 
 const TheMarket = () => {
 
@@ -15,7 +16,9 @@ const TheMarket = () => {
 
     return (
         <div className='theMarket'>
-            <h2>El Mercado</h2>
+            <div className='theMarketTitle'>
+                <UnderMarketFont size={4} />
+            </div>
             <FilterProduct setProducts={setProducts} setLoading={setLoading} page={page} />
             {products && <div className='bodyProductIn'><CardProducts products={products.docs} /></div>}
             {products && <div style={{ marginTop: '4rem' }}><Pager users={products} HandleChangePage={HandleChangePage} /></div>}

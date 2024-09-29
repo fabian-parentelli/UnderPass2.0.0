@@ -66,13 +66,13 @@ const Footer = () => {
                     </div>
 
                     <div className='footCards_children'>
-                        <h2>Mercado</h2>
+                        <h2>Secciones</h2>
                         <ul>
                             <li><a href='#'>Ver el mercado</a></li>
                             <li><a href='#'>Publicar</a></li>
                             <li><a href='#'>Tus ventas</a></li>
                             <li><a href='#'>Tus compras</a></li>
-                            <li><a href='#'>Mensajes</a></li>
+                            <li><Link to={'/undernews'} >UnderNews</Link></li>
                             <li><a href='#'>Información</a></li>
                         </ul>
                     </div>

@@ -1,0 +1,9 @@
+@import '../../../style/colors.scss';
+
+.underNewsprint {
+    display: flex;
+    justify-content: space-around;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+}

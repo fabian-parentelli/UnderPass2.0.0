@@ -27,9 +27,9 @@ const NewsVewTable = ({ news }) => {
                 <tbody>
                     {news && news.map((ne) => (
                         <Fragment key={ne._id}>
-                            <tr onClick={() => handlevew(ne._id)}>
+                            <tr>
                                 <td><BigImg img={ne.img[0]} border={false} /></td>
-                                <td className='newsVewTableBack'>{ne.title}</td>
+                                <td className='newsVewTableBack'  onClick={() => handlevew(ne._id)}>{ne.title}</td>
                                 <td>{ne.location.city} - {ne.location.province}</td>
                                 <td>{new Date(ne.date).toLocaleDateString()}</td>
                                 <td className='newsVewTableBack'>{<AppRegistrationIcon />}</td>

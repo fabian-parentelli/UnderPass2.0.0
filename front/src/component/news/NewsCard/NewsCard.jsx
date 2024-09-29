@@ -1,34 +1,25 @@
-import './uniqueNewsVew.scss';
+import './newsCard.scss';
 import { Link } from 'react-router-dom';
+import InstagramIcon from '@mui/icons-material/Instagram';
 import XIcon from '@mui/icons-material/X';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import LanguageIcon from '@mui/icons-material/Language';
-import Today from '../../../component/utils/Today/Today';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import VideosVew from '../../../component/utils/VideosVew';
-import UnderNewsLog from '../../../component/fonts/UnderNewsLog/UnderNewsLog';
 
-const UniqueNewsVew = ({ news }) => {
+const NewsCard = ({ news }) => {
 
     return (
-        <div className='uniqueNewsVew'>
-            <div className='uniqueNewsVewTop'>
-                <Today date={news.date} />
-                <p>{news.location.city} - {news.location.province}</p>
-            </div>
-            <h2>{news.title}</h2>
-            <p className='uniqueNewsVewSubText'>{news.subText}</p>
-            <img className='uniqueNewsVewImg0' src={news.img[0]} alt="img" />
-            <p className='uniqueNewsVewText'>{news.text}</p>
-            <div className='uniqueNewsVewVideo'>
-                <img className='uniqueNewsVewImg1' src={news.img[1]} alt="img" />
-                {news.video
-                    ? <div className='uniqueNewsVewImg1'><VideosVew url={news.video} /></div>
-                    : <img className='uniqueNewsVewImg1' src={news.img[2]} alt="img" />
-                }
-            </div>
-            <div className='uniqueNewsVewSocialMedia'>
+        <div className='newsCard'>
+
+            <Link to={`/uniquenews/${news._id}`} className='newsCardLink'>
+                <h2>{news.title}</h2>
+                <div className='newsCardImgDiv'>
+                    <img src={news.img[0]} alt="img" />
+                </div>
+                <p className='newsCardSubText'>{news.subText}</p>
+            </Link>
+
+            <div className='newsCardSocialMedia'>
                 {news.webSite &&
                     <Link to={`/site/${news.webSite}`} style={{ color: 'gray' }} >
                         <LanguageIcon className='uniqueNewsVewIcon' />
@@ -56,18 +47,8 @@ const UniqueNewsVew = ({ news }) => {
                     </a>
                 }
             </div>
-
-            {/* Componente de mensjaes */}
-
-            <div className='uniqueNewsVewBy'>
-                <div style={{textDecoration: 'none'}}>
-                    <UnderNewsLog size={2} />
-                    <p style={{color: 'gray'}}>Por {news.sign}.</p>
-                </div>
-            </div>
-
         </div>
     );
 };
 
-export default UniqueNewsVew;
+export default NewsCard;

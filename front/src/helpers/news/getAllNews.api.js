@@ -10,6 +10,8 @@ const getAllNewsApi = async (obj) => {
     if (obj.city) urlData += `city=${obj.city}&`; 
     if (obj.province) urlData += `province=${obj.province}&`;
     if (obj.id) urlData += `id=${obj.id}&`;
+    if (obj.publicity) urlData += `publicity=${obj.publicity}&`;
+    if (obj.title) urlData += `title=${obj.title}&`;
 
     if (urlData.endsWith('&')) urlData = urlData.slice(0, -1);
 

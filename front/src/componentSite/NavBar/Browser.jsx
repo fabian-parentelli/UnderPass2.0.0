@@ -58,13 +58,13 @@ const Browser = ({ handleMenuClick, menuVisible, listElementsRef, setMenuVisible
                         <li className='menu_inside' onClick={handleInsideClick}><Link to={'/themarket'} className='menu_link menu_link--inside'>Ver Mercado</Link></li>
 
                         <li className='menu_inside' onClick={handleInsideClick}><Link to={'/newsite'} className='menu_link menu_link--inside' href='#'>Tu Página</Link></li>
-                        <li className='menu_inside' onClick={handleInsideClick}><Link to={'/'} className='menu_link menu_link--inside' href='#'>UnderNews</Link></li>
+                        <li className='menu_inside' onClick={handleInsideClick}><Link to={'/undernews'} className='menu_link menu_link--inside' href='#'>UnderNews</Link></li>
 
                     </ul>
                 </li>
 
                 <li className={`menu_item menu_item--show`} onClick={handleItemClick}>
-                    <a href='#' className='menu_link'>Usuario <img src="arrow.png" className="menu_arrow" /></a>
+                    <a href='#' className='menu_link'>Usuario<img src="arrow.png" className="menu_arrow" /></a>
                     <ul className={`menu_nesting`}>
                         {!user.logged &&
                             <>

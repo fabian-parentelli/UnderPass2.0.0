@@ -24,9 +24,9 @@ const getById = async (req, res) => {
 };
 
 const getAll = async (req, res) => {
-    const { page = 1, limit = 12, active, id, country, province, city } = req.query;
+    const { page = 1, limit = 12, active, id, country, province, city, publicity, title } = req.query;
     try {
-        const result = await newsService.getAll(page, limit, active, id, country, province, city);
+        const result = await newsService.getAll(page, limit, active, id, country, province, city, publicity, title);
         if (result) return res.sendSuccess(result);
     } catch (error) {
         if (error instanceof NewsNotFound) return res.sendClientError(error.message);

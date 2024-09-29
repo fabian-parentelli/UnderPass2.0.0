@@ -19,7 +19,8 @@ const NewsTable = ({ values, setValues, handleValues, handleSubmit, handleFileCh
                         <NewsTableC values={values} setValues={setValues} handleValues={handleValues} setArchive={setArchive} />
                     </div>
                     <div className='newsTableRDiv'>
-                        <textarea name="subText" className='newsTableRDivSub' placeholder='Encabezado' onChange={handleValues}></textarea>
+                        <p className='countText'>Caracteres: {values.subText ? values.subText.length : 0}</p>
+                        <textarea name="subText" className='newsTableRDivSub' placeholder='Encabezado 140 caracteres' onChange={handleValues}></textarea>
                     </div>
                 </div>
             </div>

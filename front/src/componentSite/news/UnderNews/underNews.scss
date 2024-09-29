@@ -1,0 +1,11 @@
+.underNews {
+    margin-top: 70px;
+    min-height: 70vh;
+    padding: 1rem;
+
+    .underNewsTitle {
+        display: grid;
+        place-items: center;
+        margin-top: 2rem;
+    }
+}

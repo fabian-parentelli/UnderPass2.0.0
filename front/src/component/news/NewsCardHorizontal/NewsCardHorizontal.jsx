@@ -27,23 +27,23 @@ const NewsCardsHorizontal = ({ news }) => {
                         <LanguageIcon className='uniqueNewsVewIcon' />
                     </Link>
                 }
-                {news.socialMedia.instagrame &&
+                {news.socialMedia?.instagrame &&
                     <a href={news.socialMedia.instagrame} target='_blank' style={{ color: 'gray' }}>
                         <InstagramIcon className='uniqueNewsVewIcon' />
                     </a>
                 }
-                {news.socialMedia.facebook &&
+                {news.socialMedia?.facebook &&
                     <a href={news.socialMedia.facebook} target='_blank' style={{ color: 'gray' }}>
                         <FacebookIcon className='uniqueNewsVewIcon' />
                     </a>
                 }
 
-                {news.socialMedia.twetter &&
+                {news.socialMedia?.twetter &&
                     <a href={news.socialMedia.twetter} target='_blank' style={{ color: 'gray' }}>
                         <XIcon className='uniqueNewsVewIcon' />
                     </a>
                 }
-                {news.socialMedia.youtube &&
+                {news.socialMedia?.youtube &&
                     <a href={news.socialMedia.youtube} target='_blank' style={{ color: 'gray' }}>
                         <YouTubeIcon className='uniqueNewsVewIcon' />
                     </a>
