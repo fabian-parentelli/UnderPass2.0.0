@@ -13,11 +13,6 @@ const NewsTableA = ({ handleFileChange, archive }) => {
                     <p className='NewsTableAError'>Primero poner el nombre de la carpeta</p>
                 </div>
             }
-
-            <div className='newsTableImgs'>
-                <div className='newsTableNew'>IMG</div>
-                <div className='newsTableNew'>IMG</div>
-            </div>
         </div>
     );
 };

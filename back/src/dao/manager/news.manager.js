@@ -13,4 +13,9 @@ export default class News {
     getAll = async (query, limit, page) => {
         return await newsModel.paginate(query, { limit, page, lean: true, sort: { date: -1 } });
     };
+
+    update = async (news) => {
+        return await newsModel.findByIdAndUpdate(news._id, news, { lean: true, new: true });
+    };
+    
 };

@@ -18,17 +18,17 @@ const getById = async (id) => {
     return { status: 'success', result };
 };
 
-const getAll = async (page, limit, active, id, country, province, city, publicity, title) => {
+const getAll = async (page, limit, active, id, country, province, city, publicity, title, provinceSort, citySort) => {
     const query = {};
-    if(title) query.title = title;
+    if (title) query.title = title;
     if (country) query['location.country'] = { $regex: country, $options: "i" };
     if (province) query['location.province'] = { $regex: province, $options: "i" };
     if (city) query['location.city'] = { $regex: city, $options: "i" };
     if (active !== undefined) query.active = active;
     if (id) query._id = id;
-    const result = await newsRepository.getAll(query, limit, page);
+    const result = await newsRepository.getAll(query, limit, page, { provinceSort, citySort });
     if (!result) throw new NewsNotFound('No se puede generar el nuevo documento');
-    if(publicity == 'false') return { status: 'success', result };
+    if (publicity == 'false') return { status: 'success', result };
     const querys = {
         country: { $in: [country, 'all'] },
         active: 'true',
@@ -39,4 +39,24 @@ const getAll = async (page, limit, active, id, country, province, city, publicit
     return { status: 'success', result };
 };
 
-export { createNews, getById, getAll };
+const updActive = async (id) => {
+    const news = await newsRepository.getById(id);
+    news.active = !news.active;
+    const result = await newsRepository.update(news);
+    if (!result) throw new NewsNotFound('No se puede modificar el documento');
+    return { status: 'success', result };
+};
+
+const updNews = async (imagesUrl, news) => {
+    const { country, province, city, instagrame, facebook, twetter, youtube, ...newData } = news;
+    newData.location = { country, province, city };
+    newData.socialMedia = { instagrame, facebook, twetter, youtube };
+    const imgArray = newData.img.split(',');
+    const updatedImgArray = [...imgArray, ...imagesUrl];
+    newData.img = updatedImgArray;
+    const result = await newsRepository.update(newData);
+    if (!result) throw new NewsNotFound('No se puede modificar el documento');
+    return { status: 'success', result };
+};
+
+export { createNews, getById, getAll, updActive, updNews };

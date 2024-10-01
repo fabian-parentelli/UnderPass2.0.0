@@ -23,10 +23,20 @@
         display: flex;
         gap: 1rem;
 
-        .newsTableNew {
+        .newsTableNewDivImg {
             width: 80px;
             height: 80px;
-            background-color: gray;
+            overflow: hidden;
+
+            img {
+                height: 80px;
+                object-fit: cover;
+                transition: .3s ease-in-out;
+            }
+
+            &:hover img {
+                transform: scale(1.15);
+            }
         }
     }
 }

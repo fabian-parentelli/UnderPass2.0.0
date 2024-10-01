@@ -2,7 +2,7 @@ import './newsFilterTitle.scss';
 import { useEffect, useState } from 'react';
 
 const NewsFilterTitle = ({ news, setQuery }) => {
-    
+
     const [options, setOptions] = useState([]);
 
     useEffect(() => {
@@ -13,7 +13,8 @@ const NewsFilterTitle = ({ news, setQuery }) => {
 
     const handleChange = (e) => {
         const value = e.target.value;
-        if (value === '' || options.includes(value)) setQuery((prevQuery) => ({ ...prevQuery, title: value }));
+        if (options.includes(value)) setQuery((prevQuery) => ({ ...prevQuery, title: value, publicity: 'false' }));
+        if (value === '') setQuery((prevQuery) => ({ ...prevQuery, title: value, publicity: 'true' }));
     };
 
     return (

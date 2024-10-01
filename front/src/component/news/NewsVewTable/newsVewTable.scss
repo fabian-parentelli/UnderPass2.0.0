@@ -11,5 +11,21 @@
             background-color: rgb(219, 219, 219);
             color: $underNews;
         }
+
+        .newsVewTableLink {
+            text-decoration: none;
+            color: gray;
+            transition: .3s ease-in-out;
+
+            &:hover {
+                color: $underNews;
+            }
+        }
+    }
+
+    .newsVewTableImg {
+        width: 30px;
+        object-fit: contain;
+        border-radius: 1px;
     }
 }

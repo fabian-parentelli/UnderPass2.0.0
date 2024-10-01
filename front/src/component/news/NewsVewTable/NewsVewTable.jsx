@@ -2,10 +2,11 @@ import './newsVewTable.scss';
 import { Link } from 'react-router-dom';
 import { Fragment, useState } from 'react';
 import BigImg from '../../utils/BigImg/BigImg';
+import flagsIcon from '../../../utils/flagsIcon.utils';
 import { useLoginContext } from '../../../context/LoginContext';
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 
-const NewsVewTable = ({ news }) => {
+const NewsVewTable = ({ news, handleActive }) => {
 
     const { user } = useLoginContext();
     const [vew, setVew] = useState(null);
@@ -19,9 +20,10 @@ const NewsVewTable = ({ news }) => {
                         <th>Imágen</th>
                         <th>Título</th>
                         <th>Locación</th>
+                        {user.data.role !== 'usee' && <th>País</th>}
                         <th>Fecha</th>
-                        {user.data.role !== 'usee' && <th>Modificar</th>}
-                        {user.data.role !== 'usee' && <th>Activo</th>}
+                        {user.logged && user.data.role !== 'usee' && <th>Modificar</th>}
+                        {user.logged && user.data.role !== 'usee' && <th>Activo</th>}
                     </tr>
                 </thead>
                 <tbody>
@@ -29,11 +31,33 @@ const NewsVewTable = ({ news }) => {
                         <Fragment key={ne._id}>
                             <tr>
                                 <td><BigImg img={ne.img[0]} border={false} /></td>
-                                <td className='newsVewTableBack'  onClick={() => handlevew(ne._id)}>{ne.title}</td>
+                                <td className='newsVewTableBack' onClick={() => handlevew(ne._id)}>{ne.title}</td>
                                 <td>{ne.location.city} - {ne.location.province}</td>
+
+                                {user.logged && user.data.role !== 'user' &&
+                                    <td>
+                                        <img className='newsVewTableImg' src={ne.location.country === 'UY' ? flagsIcon.uy : flagsIcon.ar} alt="img" />
+                                    </td>
+                                }
+
                                 <td>{new Date(ne.date).toLocaleDateString()}</td>
-                                <td className='newsVewTableBack'>{<AppRegistrationIcon />}</td>
-                                <td className='newsVewTableBack' style={{ color: ne.active ? 'green' : 'red' }}>{ne.active ? 'SI' : 'NO'}</td>
+
+                                {user.logged && user.data?.role !== 'user' &&
+                                    <>
+                                        <td className='newsVewTableBack'>
+                                            <Link className='newsVewTableLink' to={`/dashboard/updnews/${ne._id}`}>
+                                                {<AppRegistrationIcon />}
+                                            </Link>
+                                        </td>
+                                        <td
+                                            className='newsVewTableBack'
+                                            style={{ color: ne.active ? 'green' : 'red' }}
+                                            onClick={user.logged && user.data?.role !== 'user' ? () => handleActive(ne._id) : null}
+                                        >
+                                            {ne.active ? 'SI' : 'NO'}
+                                        </td>
+                                    </>
+                                }
                             </tr>
 
                             {vew === ne._id &&

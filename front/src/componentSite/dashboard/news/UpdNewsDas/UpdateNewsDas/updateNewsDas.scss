@@ -1,0 +1,96 @@
+.updateNewsDas {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin: 2rem 0;
+
+    .updateNewsDasTop {
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 1rem;
+
+        .updateNewsDasTopDiv {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 1rem;
+
+            div {
+                display: flex;
+                flex-direction: column;
+                width: 350px;
+
+                p {
+                    background-color: #Fff;
+                    padding: 3px;
+                    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                    border: solid rgb(209, 209, 209) 1px;
+
+                    &:hover {
+                        border: solid black 1px;
+                    }
+                }
+            }
+
+            .updateNewsDasTopDivHor {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                gap: 1rem;
+            }
+        }
+
+        .updateNewsDasTopLocation {
+            display: flex;
+            flex-direction: column;
+            width: 300px;
+        }
+    }
+
+    .updateNewsDasVideo {
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        width: 600px;
+    }
+
+    .updateNewsDasText {
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        width: 600px;
+        
+        textarea {
+            height: 400px;
+        }
+    }
+
+    .updateNewsDasImgs {
+        display: flex;
+        justify-content: space-around;
+
+        .updateNewsDasImg {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: .4rem;
+
+            img {
+                height: 200px;
+            }
+
+            p {
+                color: red;
+                cursor: pointer;
+            }
+        }
+    }
+
+    .updateNewsDasCloud {
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+    }
+}

@@ -29,6 +29,7 @@ import { useLoginContext } from '../../../context/LoginContext';
 import BookingDas from '../product/BookingDas/BookingDas';
 import NewNews from '../news/NewNews/NewNews';
 import VewNewsDas from '../news/VewNewsDas/VewNewsDas';
+import UpdNewsDas from '../news/UpdNewsDas/UpdNewsDas';
 
 const Dashboard = () => {
 
@@ -130,6 +131,7 @@ const Dashboard = () => {
 
                 <Route path='/newscreate' element={<NewNews />} />
                 <Route path='/vewnews' element={<VewNewsDas />} />
+                <Route path='/updnews/:id' element={<UpdNewsDas />} />
 
                 <Route path='/configuration' element={<Configuration />} />
             </Routes>

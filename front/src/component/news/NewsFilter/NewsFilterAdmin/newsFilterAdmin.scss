@@ -1,8 +1,20 @@
+@import '../../../../style/colors.scss';
+
 .newsFilterAdmin {
     display: flex;
     gap: 1rem;
+    align-items: center;
 
     select {
         width: 250px;
+    }
+
+    .newsFilterAdminIcon {
+        cursor: pointer;
+        transition: .3s ease-in-out;
+
+        &:hover {
+            color: $underNews;
+        }
     }
 }

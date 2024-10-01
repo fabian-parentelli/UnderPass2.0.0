@@ -1,11 +1,10 @@
 const url = import.meta.env.VITE_API_URL;
 
-const updImgActiveProductApi = async (data) => {
+const updActiveNewsApi = async (id) => {
 
     const token = localStorage.getItem('token');
-    const response = await fetch(`${url}/api/product/imgactive`, {
+    const response = await fetch(`${url}/api/news/${id}`, {
         method: 'PUT',
-        body: JSON.stringify(data),
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
@@ -17,4 +16,4 @@ const updImgActiveProductApi = async (data) => {
     if (content.data) return content.data;
 };
 
-export { updImgActiveProductApi };
+export { updActiveNewsApi };

@@ -9,5 +9,7 @@ export default class NewsRouter extends Router {
         this.post('/', ['ADMIN', 'MASTER'], passportEnum.JWT, multipleUploader, uploadToCloudinary, newsController.createNews);
         this.get('/:id', ['PUBLIC'], passportEnum.NOTHING, newsController.getById);
         this.get('/', ['PUBLIC'], passportEnum.NOTHING, newsController.getAll);
+        this.put('/:id', ['ADMIN', 'MASTER'], passportEnum.JWT, newsController.updActive);
+        this.put('/', ['ADMIN', 'MASTER'], passportEnum.JWT, multipleUploader, uploadToCloudinary, newsController.updNews);
     };
 };
