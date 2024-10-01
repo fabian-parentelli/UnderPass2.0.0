@@ -137,3 +137,10 @@ export class NewsNotFound extends Error {
         this.name = this.constructor.name;
     };
 };
+
+export class MessageNotFound extends Error {
+    constructor(message) {
+        super(message);
+        this.name = this.constructor.name;
+    };
+};
