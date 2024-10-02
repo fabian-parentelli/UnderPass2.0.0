@@ -7,6 +7,7 @@ import LanguageIcon from '@mui/icons-material/Language';
 import Today from '../../../component/utils/Today/Today';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import VideosVew from '../../../component/utils/VideosVew';
+import Messages from '../../../component/messages/Messages/Messages';
 import UnderNewsLog from '../../../component/fonts/UnderNewsLog/UnderNewsLog';
 
 const UniqueNewsVew = ({ news }) => {
@@ -65,6 +66,8 @@ const UniqueNewsVew = ({ news }) => {
                     <p style={{color: 'gray'}}>Por {news.sign}.</p>
                 </div>
             </div>
+
+            <Messages type='news' typeId={news._id} />
 
         </div>
     );

@@ -25,9 +25,9 @@ const UpdNewsDas = () => {
                 const { result } = response;
                 setNews({
                     ...obj, country: result.location.country,
-                    province: result.location.country, city: result.location.city,
-                    instagrame: result.socialMedia.instagrame, facebook: result.socialMedia.facebook, 
-                    youtube: result.socialMedia.youtube, twetter: result.socialMedia.twetter,    
+                    province: result.location.province, city: result.location.city,
+                    instagrame: result.socialMedia?.instagrame || '', facebook: result.socialMedia?.facebook || '', 
+                    youtube: result.socialMedia?.youtube || '', twetter: result.socialMedia?.twetter || '',    
                 });
             }
             else console.error(response.error);

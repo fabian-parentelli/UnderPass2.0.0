@@ -11,4 +11,35 @@ const newMessage = async (req, res) => {
     };
 };
 
-export { newMessage };
+const getByTypeId = async (req, res) => {
+    const { type, typeid } = req.params;
+    try {
+        const result = await messageService.getByTypeId(type, typeid);
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof MessageNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
+const allAmounts = async (req, res) => {
+    try {
+        const result = await messageService.allAmounts();
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof MessageNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
+const report = async (req, res) => {
+    try {
+        const result = await messageService.report({ ...req.body });
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof MessageNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
+export { newMessage, getByTypeId, allAmounts, report };

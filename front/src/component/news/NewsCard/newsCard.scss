@@ -12,6 +12,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    overflow: hidden;
 
     &:hover {
         transform: translateY(-6px);
@@ -31,7 +32,9 @@
     
         .newsCardImgDiv {
             overflow: hidden; 
-            position: relative; 
+            width: 218px;
+            height: 210px; 
+
             img {
                 width: 100%;
                 transition: transform 0.3s ease; 

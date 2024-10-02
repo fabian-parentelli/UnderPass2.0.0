@@ -37,6 +37,9 @@ const Alerts = ({ user }) => {
     }, [modalIsOpen]);
 
     const handleOff = async (id) => await updActiveAlertsApi(id);
+
+    console.log(alerts);
+    
     
     return (
         <div className='alerts'>
@@ -122,6 +125,13 @@ const Alerts = ({ user }) => {
                                 {(ale.type === 'productInStock') &&
                                     <Link to={`/vewalert/${ale.type}/${ale.eventId}`} className='alertsChildrenDiv' onClick={() => handleOff(ale._id)}>
                                         <img src={alertImages.application_cards} lt="img" />
+                                        <p>{getTypeAlerts(ale.type)}</p>
+                                    </Link>
+                                }
+                                
+                                {(ale.type === 'newReport') &&
+                                    <Link to={`/vewalert/${ale.type}/${ale.eventId}`} className='alertsChildrenDiv' >
+                                        <img src={alertImages.coop} lt="img" />
                                         <p>{getTypeAlerts(ale.type)}</p>
                                     </Link>
                                 }

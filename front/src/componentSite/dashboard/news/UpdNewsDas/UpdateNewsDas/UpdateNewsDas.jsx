@@ -75,14 +75,17 @@ const UpdateNewsDas = ({
             </div>
 
             <div className='updateNewsDasTop'>
+
                 <div className='updateNewsDasTopLocation'>
                     <label>Provincia/Departamento</label>
                     <input type="text" name='province' value={news.province || ''} onChange={handleChange} />
                 </div>
+
                 <div className='updateNewsDasTopLocation'>
                     <label>Ciudad</label>
                     <input type="text" name='city' value={news.city || ''} onChange={handleChange} />
                 </div>
+
                 <div className='updateNewsDasTopLocation'>
                     <label>Pais</label>
                     <select name="country" value={news.country} onChange={handleChange}>
@@ -90,6 +93,7 @@ const UpdateNewsDas = ({
                         <option value="AR">Argentina</option>
                     </select>
                 </div>
+                
             </div>
 
             <div className='updateNewsDasImgs'>

@@ -2,6 +2,7 @@ import './alertsPanel.scss';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import BadgeIcon from '@mui/icons-material/Badge';
+import ReportIcon from '@mui/icons-material/Report';
 import MessageIcon from '@mui/icons-material/Message';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import DeleteCountry from './DeleteCountry/DeleteCountry.jsx';
@@ -11,12 +12,15 @@ import { getAllAlertsApi } from '../../../../helpers/alerts/getAllAlerts.api.js'
 const AlertsPanel = () => {
 
     const [values, setValues] = useState(null);
+    const [hasNewReport, setHasNewReport] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
             const response = await getAllAlertsApi();
-            if (response.status === 'success') setValues(response.result);
-            else console.log(response);
+            if (response.status === 'success') {
+                setValues(response.result);
+                setHasNewReport(response.result.alerts.some(alert => alert.type === 'newReport'));
+            } else console.log(response);
         }; fetchData();
     }, []);
 
@@ -54,6 +58,14 @@ const AlertsPanel = () => {
                     >
                         <HelpOutlineIcon className='icon' />
                         <p>Ayudas</p>
+                    </Link>
+
+                    <Link to={'/dashboard/comments'}
+                        className='alertsPanelDiv'
+                        style={{ backgroundColor: hasNewReport ? '#fd6135' : '#CACACA' }}
+                    >
+                        <ReportIcon className='icon' />
+                        <p>Denucnias</p>
                     </Link>
 
                     <DeleteCountry />

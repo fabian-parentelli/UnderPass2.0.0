@@ -1,0 +1,19 @@
+@import '../../../style/colors.scss';
+
+.messageNotLogged {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+
+    .messageNotLoggedLink {
+        color: $underNews;
+        cursor: pointer;
+        transition: .3s ease-in-out;
+
+        &:hover {
+            color: $colorB;
+        }
+    }
+}

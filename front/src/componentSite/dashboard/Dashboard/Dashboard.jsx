@@ -30,6 +30,7 @@ import BookingDas from '../product/BookingDas/BookingDas';
 import NewNews from '../news/NewNews/NewNews';
 import VewNewsDas from '../news/VewNewsDas/VewNewsDas';
 import UpdNewsDas from '../news/UpdNewsDas/UpdNewsDas';
+import Comment from '../mensager/comments/Comment/Comment';
 
 const Dashboard = () => {
 
@@ -62,7 +63,10 @@ const Dashboard = () => {
 
                 <Fields title={'Eventos'} category={[{ name: 'Ver eventos', path: 'getevent' }, { name: 'Crear evento', path: 'newevent' }]} />
                 <Fields title={'Sitios'} category={[{ name: 'Nuevo sitio', path: 'newsite' }, { name: 'Ver sitios', path: 'vewsite' }]} />
-                <Fields title={'Mensajes'} category={[{ name: 'Contactos sin ver', path: 'vewcontact' }, { name: 'Enviar email', path: 'newcontact' }]} />
+
+                <Fields
+                    title={'Mensajes'} category={[{ name: 'Contactos sin ver', path: 'vewcontact' }, { name: 'Enviar email', path: 'newcontact' }, { name: 'Comentarios', path: 'comments' }]}
+                />
 
                 <Fields
                     title={'Solicitudes'}
@@ -82,7 +86,7 @@ const Dashboard = () => {
                     title={'Imágenes'}
                     category={[{ name: 'Avatares', path: 'newavatar' }, { name: 'Nuevo Evento', path: 'newimgevent' }, { name: 'Videos tutoriales', path: 'videotut' }]}
                 />
-                
+
                 <Fields
                     title={'UnderNews'}
                     category={[{ name: 'Crear noticia', path: 'newscreate' }, { name: 'Ver noticias', path: 'vewnews' }]}
@@ -114,6 +118,8 @@ const Dashboard = () => {
                 <Route path='/pricelist' element={<PriceList />} />
                 <Route path='/walletdas' element={<WalletDas />} />
                 <Route path='/datapass' element={<DataPass />} />
+
+                <Route path='/comments' element={<Comment />} />
 
                 <Route path='/newapplication' element={<NewApplication />} />
                 <Route path='/vewapplicattion' element={<VewApplication />} />

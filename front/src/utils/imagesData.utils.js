@@ -58,7 +58,8 @@ const alertImages = {
     application_banners: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1725314428/images/jjr6ulzinhgpc503wumi.png',
     transfer_in: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1725395128/images/fzxdxsbldnniekmycfgw.png',
     havePay: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1725718015/images/jfbb8kbtsnelbrv2gwfv.png',
-    underPay: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1725721458/images/qs0fuwe6qak5ikrjic5f.png'
+    underPay: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1725721458/images/qs0fuwe6qak5ikrjic5f.png',
+    coop: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1727909249/images/fukmhxzb3o9ltu3jlkgn.png'
 };
 
 export { imgages, imagesHelp, alertImages };

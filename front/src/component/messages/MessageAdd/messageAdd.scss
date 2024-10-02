@@ -1,0 +1,48 @@
+.messageAdd {
+    width: 90%;
+    margin: auto;
+
+    .messageAddDiv {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+        .messageAddImg {
+            width: 50px;
+            height: auto;
+            border-radius: 50%;
+        }
+
+        .messageAddInput {
+            width: 100%;
+            border: none;
+            background-color: #EAEBEF;
+            border-bottom: 1px solid #bdbdbd;
+        }
+    }
+
+    .messageAddBottom {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+
+        .messageAddP {
+            color: gray;
+            font-size: 10px;
+            text-align: left;
+            margin-left: 65px;
+        }
+
+        .messageAddButton {
+            width: 100px;
+            background-color: #dbd9d9;
+            border: none;
+            cursor: pointer;
+            transition: .3s ease-in-out;
+
+            &:hover {
+                background-color: #cecece;
+            }
+        }
+    }
+}
