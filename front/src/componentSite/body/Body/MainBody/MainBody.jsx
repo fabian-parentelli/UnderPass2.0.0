@@ -5,6 +5,8 @@ import BodyProduct from "../../BodyProduct/BodyProduct";
 import { useLoginContext } from "../../../../context/LoginContext";
 import BodyEvents from "../../BodyEvents/BodyEvents";
 import NewsSeparator from "../../NewsSeparator/NewsSeparator";
+import BodyShifts from "../../BodyShifts/BodyShifts";
+import BodySite from "../../BodySite/BodySite";
 
 const MainBody = () => {
 
@@ -21,10 +23,10 @@ const MainBody = () => {
             <BodyProduct />
             <NewsSeparator start={3} end={4} />
 
-            <BodyEvents text={'Sitios'} />
+            <BodySite />
             <NewsSeparator start={5} end={6} />
 
-            <BodyEvents text={'Turnos'} />
+            <BodyShifts />
             <BodyNews />
         </>
     );

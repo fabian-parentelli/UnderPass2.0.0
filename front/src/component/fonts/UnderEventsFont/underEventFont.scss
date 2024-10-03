@@ -1,0 +1,12 @@
+@import '../../../style/colors.scss';
+
+.underEventFont {
+    color: #fbdca8;
+    font-family: 'Mistrully';
+    text-decoration: none;
+    
+    span {
+        font-family: 'Mistrully';
+        color: $underEvent;
+    }
+}

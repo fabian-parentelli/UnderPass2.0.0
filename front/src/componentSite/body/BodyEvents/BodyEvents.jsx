@@ -1,10 +1,11 @@
 import './bodyEvents.scss';
+import UnderEventsLog from '../../../component/fonts/UnderEventsLog/UnderEventsLog';
 
 const BodyEvents = ({ text }) => {
 
     return (
         <div className='bodyEvents'>
-            {text}
+            <UnderEventsLog size={4} />
         </div>
     );
 };
