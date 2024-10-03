@@ -1,0 +1,142 @@
+@import '../../../../style/colors.scss';
+
+#bookingHelp {
+    border-top: 1px solid gray;
+    width: 80%;
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    span {
+        color: $colorB;
+    }
+
+    .bookingHelp1 {
+        margin-top: 2rem;
+        width: 80%;
+        text-align: center;
+
+        p {
+            margin-top: .4rem;
+            line-height: 2;
+        }
+    }
+
+    .bookingHelpA {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        align-items: center;
+        margin-top: 4rem;
+        gap: 2rem;
+
+        img {
+            width: 200px;
+            box-shadow: 5px 5px 15px;
+            border-radius: 6px;
+            transition: .3s ease-in-out;
+
+            &:hover {
+                transform: translateY(-5px);
+            }
+        }
+    }
+
+    h3 {
+        margin-top: 4rem;
+    }
+
+    .bookingHelpB {
+        margin-top: 4rem;
+        display: grid;
+        place-items: center;
+
+        img {
+            width: 60%;
+            box-shadow: 5px 5px 15px;
+            border-radius: 6px;
+            transition: .3s ease-in-out;
+
+            &:hover {
+                transform: translateY(-5px);
+            }
+        }
+    }
+
+    .bookingHelpC {
+        margin-top: 4rem;
+
+        img {
+            width: 90%;
+            box-shadow: 5px 5px 15px;
+            border-radius: 6px;
+            transition: .3s ease-in-out;
+
+            &:hover {
+                transform: translateY(-5px);
+            }
+        }
+    }
+
+    .bookingHelpD {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        align-items: center;
+        margin-top: 4rem;
+        gap: 2rem;
+
+        img {
+            height: 120px;
+            box-shadow: 5px 5px 15px;
+            border-radius: 6px;
+            transition: .3s ease-in-out;
+
+            &:hover {
+                transform: translateY(-5px);
+            }
+        }
+    }
+
+    .bookingHelp2 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 4rem;
+
+        span {
+            color: $underMark;
+        }
+
+        strong {
+            color: $colorB;
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    #bookingHelp {
+        width: 100%;
+
+        .bookingHelp1 {
+            text-align: center;
+
+            p {
+                text-wrap: balance;
+            }
+        }
+
+        .bookingHelpB img {
+            width: 80%;
+
+        }
+
+        .bookingHelpD img {
+            height: 90px;
+        }
+    }
+}

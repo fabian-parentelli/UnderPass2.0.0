@@ -43,14 +43,22 @@ const imagesHelp = {
 
     vewPublicty: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1725565093/help/uwrqbuscncs6gh6f1c45.png',
 
-    // ordenes de compra
+    // orders
     orderBuyImg1: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1726174120/help/xaqbr9sjrvniooqerikl.png',
     orderBuyImg2: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1726174120/help/eevhsholluxt76gjda0p.png',
     orderBuyImg3: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1726174120/help/clbatmkd7x0ws8nt7qqg.png',
     orderBuyImg4: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1726174120/help/smezn3f4zh2qxdqzmjsm.png',
-
     orderSellerImg1: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1726180853/help/bawznl5woqapfwdg6bo8.png',
-    
+
+    // product bookings
+    pbComercialProduct: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1727986172/help/ekaz9eh8ujy5aivolapo.png', 
+    pbMerchProduct: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1727986172/help/gdigtn08ar7msqehsnqt.png', 
+    pbNonStock: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1727986172/help/uxt4mqssvurlx1gitipv.png',
+    pbYourBooking: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1727986172/help/w9rq9gknqpdymt5lvky2.png',
+    pbBookinPanel: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1727986172/help/tltkypkhmccqzj7ejiov.png',
+    pbYouAreBooking: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1727986171/help/mudnr5j9djibk4zvg5az.png',
+    pbWhoAreTYouBooking: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1727986172/help/nvui4uimkqwuphwj7qk5.png',
+    pbProductStock: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1727986530/help/cyta2svmywoeyiiew5qt.png'
 };
 
 const alertImages = {

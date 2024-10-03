@@ -40,7 +40,7 @@ const NewProductHelp = () => {
                         </ul>
                         <p>Recuerda que puedes modificar esta información más adelante.</p>
                     </li>
-                    <li>Utiliza el interruptor de visibilidad. Por defecto, tu producto será visible solo en el marketPass (el mercado). Si deseas que sea visible también en tu sitio web, selecciona "Mercado y Mi Sitio".</li>
+                    <li>Utiliza el interruptor de visibilidad. Por defecto, tu producto será visible solo en underMarket (el mercado). Si deseas que sea visible también en tu sitio web, selecciona "Mercado y Mi Sitio".</li>
                     <li>Completa la descripción larga del producto. Te recomendamos incluir todas las especificaciones relevantes, como colores, tamaños, funcionalidad, etc.</li>
                 </ol>
             </div>

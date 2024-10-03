@@ -3,6 +3,7 @@ import { useState } from 'react';
 import YourBookings from './YourBookings';
 import { Link } from 'react-router-dom';
 import BookedYou from './BookedYou';
+import UnderMarketLog from '../../fonts/UnderMarketLog/UnderMarketLog';
 
 const BookingProd = ({ userId, setLoading, type }) => {
 
@@ -25,6 +26,10 @@ const BookingProd = ({ userId, setLoading, type }) => {
                     <p>Al seleccionar <span>"Tus reservas"</span>, podras ver aquellos productos que estas esperando que vuelvan a tener stock.</p>
                     <p>Si seleccionas <span>"Te reservaron"</span> podras ver a esas personas que estan esperando los productos que se te agotaron.</p>
                     <p>Aquí te dejamos una <Link to={'/help'} className='bookingProdLink'>ayudita</Link>.</p>
+
+                    <div style={{marginTop: '1rem'}}>
+                        <UnderMarketLog size={3} />
+                    </div>
                 </div>
             }
 

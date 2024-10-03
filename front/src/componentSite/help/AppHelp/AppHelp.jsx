@@ -1,5 +1,6 @@
 import SearchHelp from "../SearchHelp/SearchHelp";
 import ApplicationHelp from "./ApplicationHelp/ApplicationHelp";
+import BookingHelp from "./BookingHelp/BookingHelp";
 import NewProductHelp from "./NewProductHelp/NewProductHelp";
 import OrderBuyHelp from "./OrderBuyHelp/OrderBuyHelp";
 import OrderSellerHelp from "./OrderSellerHelp/OrderSellerHelp";
@@ -18,6 +19,7 @@ const AppHelp = () => {
 
             <NewProductHelp />
             <VewProductHelp />
+            <BookingHelp />
             <PublicityHelp />
             <ApplicationHelp />
             <PublicityVewHelp />

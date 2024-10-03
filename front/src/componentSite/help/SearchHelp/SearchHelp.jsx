@@ -25,6 +25,7 @@ const data = [
     { label: 'Modificar avatar', data: 'avatarHelp' },
     { label: 'Crear un producto', data: 'newProductHelp' },
     { label: 'Ver y modificar un producto', data: 'vewProductHelp' },
+    { label: 'Reservar un producto', data: 'bookingHelp' },
     { label: 'Menu publicitario', data: 'publicityHelp' },
     { label: 'Ver y crear solicitudes publicitarias', data: 'applicationHelp' },
     { label: 'Ver mis publicidades', data: 'publicityVewHelp' },
