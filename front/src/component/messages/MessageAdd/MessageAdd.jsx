@@ -5,12 +5,13 @@ import { newMessageApi } from '../../../helpers/message/newMessage.api.js';
 const MessageAdd = ({ type, typeId, user, messages, setMessages }) => {
 
     const [value, setValue] = useState('');
+    const country = localStorage.getItem('country');
 
     const handleChange = (e) => setValue(e.target.value);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const response = await newMessageApi({ type, typeId, userId: user._id, text: value });
+        const response = await newMessageApi({ type, typeId, userId: user._id, text: value, country: country });
         if (response.status === 'success') {
             const comments = [...messages];
             const comment = response.result;

@@ -11,10 +11,10 @@ const newMessage = async (req, res) => {
     };
 };
 
-const getByTypeId = async (req, res) => {
-    const { type, typeid } = req.params;
+const getByType = async (req, res) => {
+    const { type, country } = req.params;
     try {
-        const result = await messageService.getByTypeId(type, typeid);
+        const result = await messageService.getByType(type, country);
         if (result) return res.sendSuccess(result);
     } catch (error) {
         if (error instanceof MessageNotFound) return res.sendClientError(error.message);
@@ -22,9 +22,10 @@ const getByTypeId = async (req, res) => {
     };
 };
 
-const allAmounts = async (req, res) => {
+const getByTypeId = async (req, res) => {
+    const { type, typeid } = req.params;
     try {
-        const result = await messageService.allAmounts();
+        const result = await messageService.getByTypeId(type, typeid);
         if (result) return res.sendSuccess(result);
     } catch (error) {
         if (error instanceof MessageNotFound) return res.sendClientError(error.message);
@@ -42,4 +43,4 @@ const report = async (req, res) => {
     };
 };
 
-export { newMessage, getByTypeId, allAmounts, report };
+export { newMessage, getByTypeId, report, getByType };

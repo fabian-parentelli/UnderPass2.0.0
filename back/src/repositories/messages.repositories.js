@@ -8,18 +8,18 @@ export default class MessageRepository {
         return result;
     };
 
+    getByType = async  (type, country) => {
+        const messageManager = MessageFactory.getManager(type); 
+        const result = await messageManager.getByType(country);
+        return result;
+    };
+
     getByTypeId = async  (type, typeid) => {
         const messageManager = MessageFactory.getManager(type); 
         const result = await messageManager.getByTypeId(typeid);
         return result;
     };
     
-    allAmounts = async  (type) => {
-        const messageManager = MessageFactory.getManager(type); 
-        const result = await messageManager.allAmounts();
-        return result;
-    };
-
     getById = async (id, type) => {
         const messageManager = MessageFactory.getManager(type); 
         const result = await messageManager.getById(id);

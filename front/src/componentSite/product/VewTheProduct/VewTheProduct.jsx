@@ -7,6 +7,8 @@ import Load from '../../../component/utils/Load';
 import VewDataprod from './VewDataprod/VewDataprod';
 import OtherProducts from './OtherProducts/OtherProducts';
 import { getProductByIdApi } from '../../../helpers/products/getProductById.api.js';
+import Messages from '../../../component/messages/Messages/Messages.jsx';
+import UnderMarketLog from '../../../component/fonts/UnderMarketLog/UnderMarketLog.jsx';
 
 const VewTheProduct = () => {
 
@@ -41,6 +43,14 @@ const VewTheProduct = () => {
                     <p className='logDescription'>
                         <span>Ubicación:</span> {product.location.city} - {product.location.province} - {product.location.country === 'UY' ? 'Uruguay' : 'Argentina'}
                     </p>
+
+                    <div className='vewTheProductLog'>
+                        <UnderMarketLog size={3} />
+                    </div>
+
+                    <div className='vewTheProductMessage'>
+                        <Messages type='product' typeId={product._id} />
+                    </div>
                 </div>
             }
             <OtherProducts setLoading={setLoading} />

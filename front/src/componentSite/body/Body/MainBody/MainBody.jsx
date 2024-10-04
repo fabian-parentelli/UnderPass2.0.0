@@ -7,6 +7,7 @@ import BodyEvents from "../../BodyEvents/BodyEvents";
 import NewsSeparator from "../../NewsSeparator/NewsSeparator";
 import BodyShifts from "../../BodyShifts/BodyShifts";
 import BodySite from "../../BodySite/BodySite";
+import BodyFooter from "../../BodyFooter/BodyFooter";
 
 const MainBody = () => {
 
@@ -28,6 +29,8 @@ const MainBody = () => {
 
             <BodyShifts />
             <BodyNews />
+
+            <BodyFooter />
         </>
     );
 };

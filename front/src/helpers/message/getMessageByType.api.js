@@ -1,9 +1,9 @@
 const url = import.meta.env.VITE_API_URL;
 
-const getAllAmountMessagesApi = async () => {
+const getMessageByTypeApi = async (type, country) => {
 
     const token = localStorage.getItem('token');
-    const response = await fetch(`${url}/api/message/amount`, {
+    const response = await fetch(`${url}/api/message/type/${type}/country/${country}`, {
         method: 'GET',
         headers: {
             'Accept': 'application/json',
@@ -16,4 +16,4 @@ const getAllAmountMessagesApi = async () => {
     if (content.data) return content.data;
 };
 
-export { getAllAmountMessagesApi };
+export { getMessageByTypeApi };

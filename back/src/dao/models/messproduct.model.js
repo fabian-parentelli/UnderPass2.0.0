@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 
-const messnewsCollection = 'messnews';
+const messproductCollection = 'messproduct';
 
-const messnewsSchema = new mongoose.Schema({
+const messproductSchema = new mongoose.Schema({
     text: { type: String },
     userId: { type: mongoose.Schema.Types.ObjectId, ref: 'users', required: true },
     typeId: { type: String },
@@ -24,6 +24,6 @@ const autoPopulateUser = function (next) {
     next();
 };
 
-messnewsSchema.pre('find', autoPopulateUser);
+messproductSchema.pre('find', autoPopulateUser);
 
-export const messnewsModel = mongoose.model(messnewsCollection, messnewsSchema);
+export const messproductModel = mongoose.model(messproductCollection, messproductSchema);

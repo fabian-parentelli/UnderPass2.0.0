@@ -5,8 +5,8 @@ import { passportEnum } from '../config/enums.config.js';
 export default class MessageRouter extends Router {
     init() {
         this.post('/', ['USER', 'ADMIN', 'MASTER'], passportEnum.JWT, messageController.newMessage);
+        this.get('/type/:type/country/:country', ['ADMIN', 'MASTER'], passportEnum.JWT, messageController.getByType)
         this.get('/type/:type/typeid/:typeid', ['PUBLIC'], passportEnum.NOTHING, messageController.getByTypeId);
-        this.get('/amount', ['ADMIN', 'MASTER'], passportEnum.JWT, messageController.allAmounts);
         this.put('/report', ['USER', 'ADMIN', 'MASTER'], passportEnum.JWT, messageController.report);
     };
 };

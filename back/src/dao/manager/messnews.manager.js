@@ -6,12 +6,12 @@ export default class Messnews {
         return await messnewsModel.create(message);
     };
 
-    getByTypeId = async (typeid) => {
-        return await messnewsModel.find({ typeId: typeid }).sort({ date: -1 }).lean();
+    getByType = async (country) => {
+        return await messnewsModel.find({ country: country }).lean().sort({ date: -1 });
     };
 
-    allAmounts = async () => {
-        return await messnewsModel.countDocuments().lean();
+    getByTypeId = async (typeid) => {
+        return await messnewsModel.find({ typeId: typeid }).sort({ date: -1 }).lean();
     };
 
     getById = async (id) => {

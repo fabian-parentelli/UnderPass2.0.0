@@ -36,9 +36,7 @@ const OtherProducts = ({ setLoading }) => {
     return (
         <div className='otherProducts'>
             {products && <CardProducts products={products.docs} />}
-            <div style={{ marginTop: '4rem' }}>
-                {products && <Pager users={products} HandleChangePage={HandleChangePage} />}
-            </div>
+            {products && <Pager users={products} HandleChangePage={HandleChangePage} />}
         </div>
     );
 };

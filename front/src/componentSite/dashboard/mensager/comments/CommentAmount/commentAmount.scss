@@ -1,4 +1,19 @@
 .commentAmount {
+    width: 100%;
     display: flex;
     gap: 1rem;
+    align-items: flex-end;
+
+    .commentAmountButtons {
+        display: flex;
+        gap: 1rem;
+    }
+
+    select {
+        width: 200px;
+    }
+
+    .commentAmountP {
+        color: red;
+    }
 }

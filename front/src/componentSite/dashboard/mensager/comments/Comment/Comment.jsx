@@ -8,7 +8,7 @@ const Comment = () => {
     return (
         <div className='comment'>
             <Title Icon={ChatBubbleIcon} name='Comentarios' />
-            <CommentAmount />
+            <CommentAmount vew={vew} setVew={setVew} />
         </div>
     );
 };
