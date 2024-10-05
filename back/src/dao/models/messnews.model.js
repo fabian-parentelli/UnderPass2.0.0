@@ -26,6 +26,8 @@ const autoPopulateUser = function (next) {
 };
 
 messnewsSchema.pre('find', autoPopulateUser);
+messnewsSchema.pre('findOne', autoPopulateUser);
+messnewsSchema.pre('findById', autoPopulateUser);
 
 messnewsSchema.plugin(mongoosePaginate);
 

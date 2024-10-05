@@ -2,7 +2,7 @@ import './commentAmount.scss';
 import { useEffect, useState } from 'react';
 import { getMessageByTypeApi } from '../../../../../helpers/message/getMessageByType.api.js';
 
-const CommentAmount = ({ setComments, setLoading, pager, type, setType }) => {
+const CommentAmount = ({ setComments, setLoading, pager, type, setType, isActive, onlyReport }) => {
 
     const [country, setCountry] = useState(null);
 
@@ -11,14 +11,14 @@ const CommentAmount = ({ setComments, setLoading, pager, type, setType }) => {
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
-            const query = { country: country, type: type };
+            const query = { country: country, type: type, active: isActive, report: onlyReport };
             if (pager) query.page = pager;
             const response = await getMessageByTypeApi(query);
             if (response.status === 'success') setComments(response.result);
             else console.error(response.error);
             setLoading(false);
         }; if (type && country) fetchData();
-    }, [type]);
+    }, [type, country, isActive, onlyReport]);
 
     return (
         <div className='commentAmount'>

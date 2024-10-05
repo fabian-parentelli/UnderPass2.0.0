@@ -33,6 +33,12 @@ const getAmountInPortal = async () => {
     return { status: 'success', result };
 };
 
+const getById = async (id) => {
+    const result = await publicityRepository.getById(id);   
+    if(!result) throw new PublicityNotFound('No se encuentra ninguna publicidad');
+    return { status: 'success', result };
+};
+
 const getAll = async (limit, page, active, country, category, type, inPortal, id) => {
     const query = {};
     if (id) query._id = id;
@@ -85,5 +91,5 @@ const updPublicity = async (upd, id) => {
 
 export {
     newPublicity, getAll, updPublicity, updActive, updPortal, updUserVew, getByUserId,
-    getAmountInPortal, getBanner
+    getAmountInPortal, getBanner, getById
 };

@@ -12,9 +12,9 @@ const newMessage = async (req, res) => {
 };
 
 const getByType = async (req, res) => {
-    const { page = 1, type, country, report } = req.query;
+    const { page = 1, type, country, report, active } = req.query;
     try {
-        const result = await messageService.getByType(page, type, country, report);
+        const result = await messageService.getByType(page, type, country, report, active);
         if (result) return res.sendSuccess(result);
     } catch (error) {
         if (error instanceof MessageNotFound) return res.sendClientError(error.message);
@@ -26,6 +26,17 @@ const getByTypeId = async (req, res) => {
     const { type, typeid } = req.params;
     try {
         const result = await messageService.getByTypeId(type, typeid);
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof MessageNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
+const getById = async (req, res) => {
+    const { id, type } = req.params;
+    try {
+        const result = await messageService.getById(id, type);
         if (result) return res.sendSuccess(result);
     } catch (error) {
         if (error instanceof MessageNotFound) return res.sendClientError(error.message);
@@ -63,4 +74,4 @@ const active = async (req, res) => {
     };
 };
 
-export { newMessage, getByTypeId, report, getByType, rejects, active };
+export { newMessage, getByTypeId, report, getByType, rejects, active, getById };

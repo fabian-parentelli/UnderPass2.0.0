@@ -1,46 +1,28 @@
 import './alerts.scss';
 import { Link } from 'react-router-dom';
 import { Fragment, useEffect, useState } from 'react';
-import Load from '../../../../component/utils/Load.jsx';
-import BadgeComp from '../../../../component/utils/BadgeComp/BadgeComp';
-import EndPublicity from '../../../alerts/EndPublicity/EndPublicity.jsx';
-import StartPublicity from '../../../alerts/StartPublicity/StartPublicity.jsx';
-import { getAllAlertsApi } from '../../../../helpers/alerts/getAllAlerts.api.js';
-import { updActiveAlertsApi } from '../../../../helpers/alerts/updActiveAlerts.api.js';
-import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import { alertImages } from '../../../../utils/imagesData.utils.js';
 import getTypeAlerts from '../../../../utils/alertTypeText.utils.js';
+import BadgeComp from '../../../../component/utils/BadgeComp/BadgeComp';
+import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
+import { getAllAlertsApi } from '../../../../helpers/alerts/getAllAlerts.api.js';
+import { updActiveAlertsApi } from '../../../../helpers/alerts/updActiveAlerts.api.js';
 
-const Alerts = ({ user }) => {
+const Alerts = () => {
 
     const [alerts, setAlerts] = useState([]);
-    const [selectedAlert, setSelectedAlert] = useState(null);
-    const [modalIsOpen, setModalIsOpen] = useState(false);
-    const [loading, setLoading] = useState(false);
-    const [numberModal, setNumberModal] = useState(0);
-
-    const openModal = (number, alert) => {
-        setModalIsOpen(true);
-        setSelectedAlert(alert);
-        setNumberModal(number);
-    };
 
     useEffect(() => {
         const fetchData = async () => {
-            setLoading(true);
             const response = await getAllAlertsApi();
             if (response.status === 'success') {
                 setAlerts(response.result);
             } else console.log(response);
-            setLoading(false);
         }; fetchData();
-    }, [modalIsOpen]);
+    }, []);
 
     const handleOff = async (id) => await updActiveAlertsApi(id);
 
-    console.log(alerts);
-    
-    
     return (
         <div className='alerts'>
 
@@ -100,38 +82,45 @@ const Alerts = ({ user }) => {
                                         <p>{getTypeAlerts(ale.type)}</p>
                                     </Link>
                                 }
-                                
+
                                 {(ale.type === 'payTranferToCustomer') &&
                                     <Link to={`/vewalert/${ale.type}/${ale.eventId}`} className='alertsChildrenDiv' onClick={() => handleOff(ale._id)}>
                                         <img src={alertImages.transfer_in} lt="img" />
                                         <p>{getTypeAlerts(ale.type)}</p>
                                     </Link>
                                 }
-                                
+
                                 {(ale.type === 'success_pay') &&
                                     <Link to={`/vewalert/${ale.type}/${ale.eventId}`} className='alertsChildrenDiv' onClick={() => handleOff(ale._id)}>
                                         <img src={alertImages.transfer_in} lt="img" />
                                         <p>{getTypeAlerts(ale.type)}</p>
                                     </Link>
                                 }
-                                
+
                                 {(ale.type === 'weHaveSeenYourRequest') &&
                                     <Link to={`/vewalert/${ale.type}/${ale.eventId}`} className='alertsChildrenDiv' onClick={() => handleOff(ale._id)}>
                                         <img src={alertImages.application_cards} lt="img" />
                                         <p>{getTypeAlerts(ale.type)}</p>
                                     </Link>
                                 }
-                                
+
                                 {(ale.type === 'productInStock') &&
                                     <Link to={`/vewalert/${ale.type}/${ale.eventId}`} className='alertsChildrenDiv' onClick={() => handleOff(ale._id)}>
                                         <img src={alertImages.application_cards} lt="img" />
                                         <p>{getTypeAlerts(ale.type)}</p>
                                     </Link>
                                 }
-                                
-                                {(ale.type === 'newReport') &&
-                                    <Link to={`/vewalert/${ale.type}/${ale.eventId}`} className='alertsChildrenDiv' >
+
+                                {(ale.type === 'newReport_news') &&
+                                    <Link to={`/vewalert/${ale.type}/${ale.eventId}`} className='alertsChildrenDiv' onClick={() => handleOff(ale._id)}>
                                         <img src={alertImages.coop} lt="img" />
+                                        <p>{getTypeAlerts(ale.type)}</p>
+                                    </Link>
+                                }
+                                
+                                {(ale.type === 'publicityOff') &&
+                                    <Link to={`/vewalert/${ale.type}/${ale.eventId}`} className='alertsChildrenDiv' >
+                                        <img src={alertImages.application_cards} lt="img" />
                                         <p>{getTypeAlerts(ale.type)}</p>
                                     </Link>
                                 }
@@ -141,87 +130,11 @@ const Alerts = ({ user }) => {
                     </div>
                 </div>
             }
-
-            {/* {alerts && alerts.publicityOff &&
-                <div className='alertsLink' onClick={() => openModal(1, alerts.publicityOff.data)} >
-                    <BadgeComp
-                        Icon={BadgeIcon}
-                        data={alerts.publicityOff.count}
-                        color='error'
-                    />
-                </div>
-            } */}
-
-            {/* {alerts && alerts.publicityOn &&
-                <div className='alertsLink' onClick={() => openModal(2, alerts.publicityOn.data)} >
-                    <BadgeComp
-                        Icon={LiveTvIcon}
-                        data={alerts.publicityOn.count}
-                        color='success'
-                    />
-                </div>
-            } */}
-
-            {/* {alerts && alerts.newAplication &&
-                <Link to={'/dashboard/vewapplicattion'} className='alertsLink' onClick={() => openModal(2, alerts.newAplication.data)} >
-                    <BadgeComp
-                        Icon={FiberNewIcon}
-                        data={alerts.newAplication.count}
-                        color='success'
-                    />
-                </Link>
-            } */}
-
-            {/* {alerts && alerts.sold_product &&
-                <Link to={'/profile'} className='alertsLink' onClick={() => handleOff(alerts.sold_product.data)} >
-                    <BadgeComp
-                        Icon={StorefrontIcon}
-                        data={alerts.sold_product.count}
-                        color='success'
-                    />
-                </Link>
-            } */}
-
-            {/* {alerts && alerts.application_cards &&
-                <Link to={'/profile/alerts'} className='alertsLink' onClick={() => handleOff(alerts.application_cards.data)} >
-                    <div className='alertsFather'>
-                        <BadgeComp
-                            Icon={FiberNewIcon}
-                            data={alerts.application_cards.count}
-                            color='success'
-                        />
-                    </div>
-                    <div className='alertsChildrn'>
-                        <p>Cosa </p>
-                        <p>Cosa </p>
-                        <p>Cosa </p>
-                    </div>
-                </Link>
-            } */}
-
-            {/* Modales */}
-
-            {/* {numberModal === 1 &&
-                <EndPublicity
-                    modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen} data={selectedAlert}
-                    setNumberModal={setNumberModal}
-                />
-            } */}
-
-            {/* {numberModal === 2 &&
-                <StartPublicity
-                    modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen} data={selectedAlert}
-                    setNumberModal={setNumberModal}
-                />
-            } */}
-
-            {/* <Load loading={loading} /> */}
         </div >
     );
 };
 
 export default Alerts;
-// primary - secundary - error - warning - info - success
 
 function getTypeToLink(types) {
     const data = {
@@ -229,6 +142,5 @@ function getTypeToLink(types) {
         'application_banners': () => { return '/dashboard/vewapplicattion' },
         'default': () => { return '/' },
     };
-
     return (data[types] || data['default'])();
 };

@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import { Tooltip } from '@mui/material';
 import { Fragment, useState } from 'react';
 import CommentsVew from '../CommentsVew/CommentsVew';
+import CommentsReport from '../CommentsReport/CommentsReport';
 import BigImg from '../../../../../component/utils/BigImg/BigImg';
 import ModalCustom from '../../../../../component/utils/ModalCustom/ModalCustom';
-import CommentsReport from '../CommentsReport/CommentsReport';
 
 const CommentsTable = ({ comments, type, setLoading }) => {
 
@@ -74,7 +74,7 @@ const CommentsTable = ({ comments, type, setLoading }) => {
 
                             {modal === com._id &&
                                 <ModalCustom modalIsOpen={open} closeModal={closedModal}>
-                                    <CommentsReport comments={com.comments.filter(rep => rep.report && rep.report.length > 0)} type={type} setLoading={setLoading} />
+                                    <CommentsReport comments={com.comments.filter(rep => rep.report && rep.report.length > 0)} type={type} />
                                 </ModalCustom>
                             }
 

@@ -10,6 +10,7 @@ export default class PublicitynRouter extends Router {
         this.get('/userid/:id/active/:active', ['USER', 'ADMIN', 'MASTER'], passportEnum.JWT, publicityController.getByUserId);
         this.get('/banner/:country', ['PUBLIC'], passportEnum.NOTHING, publicityController.getBanner);
         this.get('/inportal', ['USER', 'ADMIN', 'MASTER'], passportEnum.JWT, publicityController.getAmountInPortal);
+        this.get('/:id', ['USER', 'ADMIN', 'MASTER'], passportEnum.JWT, publicityController.getById);
         this.get('/', ['PUBLIC'], passportEnum.NOTHING, publicityController.getAll);
         this.put('/uservew', ['USER'], passportEnum.JWT, publicityController.updUserVew);
         this.put('/active/:id', ['ADMIN', 'MASTER'], passportEnum.JWT, publicityController.updActive);

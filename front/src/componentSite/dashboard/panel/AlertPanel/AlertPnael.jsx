@@ -19,7 +19,7 @@ const AlertsPanel = () => {
             const response = await getAllAlertsApi();
             if (response.status === 'success') {
                 setValues(response.result);
-                setHasNewReport(response.result.alerts.some(alert => alert.type === 'newReport'));
+                setHasNewReport(response.result.alerts.some(alert => alert.type === 'newReport_news'));
             } else console.log(response);
         }; fetchData();
     }, []);

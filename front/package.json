@@ -17,6 +17,7 @@
     "@mui/x-charts": "^7.10.0",
     "date-fns": "^3.6.0",
     "faradaycomp": "^0.0.3",
+    "faradayfunctions": "^1.0.2",
     "numeros_a_palabras": "^1.0.8",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",

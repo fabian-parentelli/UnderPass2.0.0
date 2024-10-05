@@ -36,7 +36,7 @@ export default class PublicityRepository {
                         publicity.active = false;
                         publicity.inPortal = false;
                         await publicityManager.update(publicity);
-                        continue
+                        continue;
                     };
                 };
             };

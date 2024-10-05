@@ -26,6 +26,7 @@ const autoPopulateUser = function (next) {
 };
 
 messproductSchema.pre('find', autoPopulateUser);
+messproductSchema.pre('findOne', autoPopulateUser);
 messproductSchema.pre('findById', autoPopulateUser);
 
 messproductSchema.plugin(mongoosePaginate);

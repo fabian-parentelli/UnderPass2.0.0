@@ -11,7 +11,8 @@ function getTypeAlerts(types) {
         'success_pay': () => { return 'Pago exitoso' },
         'weHaveSeenYourRequest': () => { return 'Hemos visto tu solicitud' },
         'productInStock': () => { return 'El producto reservado ya tiene stock' },
-        'newReport': () => { return 'Denunciaron un comentario' },
+        'newReport_news': () => { return 'Denunciaron un comentario - Noticia' },
+        'publicityOff': () => { return 'Fin de la publicidad' },
         'default': () => { return 'otro' },
     };
 

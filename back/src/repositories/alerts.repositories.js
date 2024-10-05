@@ -10,7 +10,6 @@ export default class AlertsRepository {
     getAlerts = async (query) => {
         const result = await alertsManager.getAlerts(query);
         const updatedAlerts = await Promise.all(result.map(async (alert) => {
-            if (alert.type === 'publicityOff') alert.data = await publicityManager.getById(alert.eventId);
             if (alert.type === 'publicityOn') alert.data = await publicityManager.getById(alert.eventId);
             if (alert.type === 'newAplication') alert.data = await appliManager.getAppById(alert.eventId);
             if (alert.type === 'sold_product') alert.data = await productManager.getProdById(alert.eventId);
