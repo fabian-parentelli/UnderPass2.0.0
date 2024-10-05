@@ -9,7 +9,7 @@ const MessageReport = ({ mes, userId, type: isType }) => {
     const [loading, setLoading] = useState(false);
 
     const handleSubmit = async () => {
-        const response = await reportMessageApi({ userId, type: isType, id: mes._id, rason: type })
+        const response = await reportMessageApi({ userId, type: isType, id: mes._id, reason: type })
         if (response.status === 'success') setLoading(true);
         else console.error(response.error);
     };

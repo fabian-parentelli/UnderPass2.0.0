@@ -1,15 +1,11 @@
 const url = import.meta.env.VITE_API_URL;
 
-const getMessageByTypeApi = async (obj) => {
-
-    let urlData = `${url}/api/message?`;
-    if (obj.page) urlData += `page=${obj.page}&`;
-    if (obj.country) urlData += `country=${obj.country}&`;
-    if (obj.type) urlData += `type=${obj.type}&`;
+async function updRejectMessageApi(rejects) {
 
     const token = localStorage.getItem('token');
-    const response = await fetch(urlData, {
-        method: 'GET',
+    const response = await fetch(`${url}/api/message/rejects`, {
+        method: 'PUT',
+        body: JSON.stringify(rejects),
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
@@ -21,4 +17,4 @@ const getMessageByTypeApi = async (obj) => {
     if (content.data) return content.data;
 };
 
-export { getMessageByTypeApi };
+export { updRejectMessageApi };

@@ -12,9 +12,9 @@ const newMessage = async (req, res) => {
 };
 
 const getByType = async (req, res) => {
-    const { type, country } = req.params;
+    const { page = 1, type, country, report } = req.query;
     try {
-        const result = await messageService.getByType(type, country);
+        const result = await messageService.getByType(page, type, country, report);
         if (result) return res.sendSuccess(result);
     } catch (error) {
         if (error instanceof MessageNotFound) return res.sendClientError(error.message);
@@ -43,4 +43,24 @@ const report = async (req, res) => {
     };
 };
 
-export { newMessage, getByTypeId, report, getByType };
+const rejects = async (req, res) => {
+    try {
+        const result = await messageService.rejects({ ...req.body });
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof MessageNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
+const active = async (req, res) => {
+    try {
+        const result = await messageService.active({ ...req.body });
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof MessageNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
+export { newMessage, getByTypeId, report, getByType, rejects, active };

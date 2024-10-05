@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import mongoosePaginate from 'mongoose-paginate-v2';
 
 const messnewsCollection = 'messnews';
 
@@ -11,7 +12,7 @@ const messnewsSchema = new mongoose.Schema({
     report: [
         {
             userId: { type: mongoose.Schema.Types.ObjectId, ref: 'users' },
-            date: { type: Date, default: Date.now },
+            date: { type: Date },
             reason: { type: String },
         }
     ],
@@ -25,5 +26,7 @@ const autoPopulateUser = function (next) {
 };
 
 messnewsSchema.pre('find', autoPopulateUser);
+
+messnewsSchema.plugin(mongoosePaginate);
 
 export const messnewsModel = mongoose.model(messnewsCollection, messnewsSchema);

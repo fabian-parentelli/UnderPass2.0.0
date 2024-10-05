@@ -8,9 +8,9 @@ export default class MessageRepository {
         return result;
     };
 
-    getByType = async  (type, country) => {
+    getByType = async  (page, type, query) => {
         const messageManager = MessageFactory.getManager(type); 
-        const result = await messageManager.getByType(country);
+        const result = await messageManager.getByType(query, page);
         return result;
     };
 

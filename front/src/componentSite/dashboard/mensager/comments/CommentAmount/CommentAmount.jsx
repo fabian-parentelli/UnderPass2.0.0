@@ -1,19 +1,24 @@
-import { getMessageByTypeApi } from '../../../../../helpers/message/getMessageByType.api';
 import './commentAmount.scss';
 import { useEffect, useState } from 'react';
+import { getMessageByTypeApi } from '../../../../../helpers/message/getMessageByType.api.js';
 
-const CommentAmount = () => {
+const CommentAmount = ({ setComments, setLoading, pager, type, setType }) => {
 
-    const [vew, setVew] = useState(null);
     const [country, setCountry] = useState(null);
-    const handdleVew = (set) => setVew(vew === set ? null : set);
+
+    const handleSetType = (set) => setType(type === set ? null : set);
 
     useEffect(() => {
-        const fetchData = async () => {            
-            const response = await getMessageByTypeApi(vew, country);
-
-        }; if (vew) fetchData();
-    }, [vew]);
+        const fetchData = async () => {
+            setLoading(true);
+            const query = { country: country, type: type };
+            if (pager) query.page = pager;
+            const response = await getMessageByTypeApi(query);
+            if (response.status === 'success') setComments(response.result);
+            else console.error(response.error);
+            setLoading(false);
+        }; if (type && country) fetchData();
+    }, [type]);
 
     return (
         <div className='commentAmount'>
@@ -25,10 +30,10 @@ const CommentAmount = () => {
             </select>
 
             <div className='commentAmountButtons'>
-                <button disabled={!country} className='btn btnC' onClick={() => handdleVew('news')}>Noticias</button>
-                <button disabled={!country} className='btn btnC' onClick={() => handdleVew('site')}>Sitios</button>
-                <button disabled={!country} className='btn btnC' onClick={() => handdleVew('event')}>Eventos</button>
-                <button disabled={!country} className='btn btnC' onClick={() => handdleVew('product')}>Productos</button>
+                <button disabled={!country} className='btn btnC' onClick={() => handleSetType('news')}>Noticias</button>
+                <button disabled={!country} className='btn btnC' onClick={() => handleSetType('site')}>Sitios</button>
+                <button disabled={!country} className='btn btnC' onClick={() => handleSetType('event')}>Eventos</button>
+                <button disabled={!country} className='btn btnC' onClick={() => handleSetType('product')}>Productos</button>
             </div>
 
             {!country && <p className='commentAmountP'>Selecciona un país</p>}

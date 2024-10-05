@@ -1,0 +1,23 @@
+.commentsTable {
+    margin-top: 2rem;
+
+    .commentsTableLink {
+        text-decoration: none;
+        color: rgb(104, 102, 102);
+        transition: .3s ease-in-out;
+
+        &:hover {
+            color: black;
+        }
+    }
+
+    .commentsTableHover {
+        cursor: pointer;
+        transition: .3s ease-in-out;
+       
+        &:hover {
+            background-color: rgb(214, 212, 212);
+            color: black;
+        }
+    }
+}
