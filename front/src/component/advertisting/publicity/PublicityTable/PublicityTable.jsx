@@ -2,13 +2,22 @@ import './publicityTable.scss';
 import { Fragment, useState } from 'react';
 import { restDays } from 'faradayfunctions';
 import BigImg from '../../../utils/BigImg/BigImg';
+import WantToFront from '../WantToFront/WantToFront.jsx';
+import ModalCustom from '../../../utils/ModalCustom/ModalCustom.jsx';
 import { updPublicityApi } from '../../../../helpers/publicity/updPublicity.api.js';
+import MoreTimeBuy from '../MoreTimeBuy/MoreTimeBuy.jsx';
 
 const PublicityTable = ({ publicity, setLoading }) => {
 
     const [values, setValues] = useState({});
+    const [inPortal, setInPortal] = useState({ open: false, vew: null });
+    const [moreTime, setMoreTime] = useState({ open: false, vew: null });
 
     const handleChange = (e, id) => setValues(prevValues => ({ ...prevValues, [id]: { links: e.target.value } }));
+    const handleClosed = () => setInPortal({ open: false, vew: null });
+    const handleOpen = (id) => setInPortal({ open: true, vew: id });
+    const handleMoreTClosed = () => setMoreTime({ open: false, vew: null });
+    const handleMoreTOpen = (id) => setMoreTime({ open: true, vew: id });
 
     const handleBlur = async (id) => {
         setLoading(true);
@@ -42,7 +51,9 @@ const PublicityTable = ({ publicity, setLoading }) => {
                                 <td>{pub.type}</td>
 
                                 <td
+                                    className='publicityTablesBG'
                                     style={{ color: pub.inPortal ? 'green' : 'red' }}
+                                    onClick={() => handleOpen(pub._id)}
                                 >
                                     {pub.inPortal ? 'SI' : 'NO'}
                                 </td>
@@ -62,8 +73,26 @@ const PublicityTable = ({ publicity, setLoading }) => {
                                         <p>{restDays(new Date(pub.end))} días restantes</p>
                                     }
                                 </td>
-                                <td>Solicitar</td>
+                                <td
+                                    onClick={() => handleMoreTOpen(pub._id)}
+                                    className='publicityTablesBG'
+                                >
+                                    Solicitar
+                                </td>
                             </tr>
+
+                            {inPortal.vew === pub._id &&
+                                <ModalCustom modalIsOpen={inPortal.open} closeModal={handleClosed}>
+                                    <WantToFront data={pub} setInPortal={setInPortal} />
+                                </ModalCustom>
+                            }
+
+                            {moreTime.vew === pub._id &&
+                                <ModalCustom modalIsOpen={moreTime.open} closeModal={handleMoreTClosed}>
+                                    <MoreTimeBuy data={pub} setMoreTime={setMoreTime} />
+                                </ModalCustom>
+                            }
+
                         </Fragment>
                     ))}
                 </tbody>

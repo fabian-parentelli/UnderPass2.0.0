@@ -1,5 +1,5 @@
 function typeCart(type) {
-
+    
     const typeCart = {
         'cards': () => { return 'Tarjeta publicitaria' },
         'product': () => { return 'Producto' },
@@ -9,10 +9,11 @@ function typeCart(type) {
         'shift': () => { return 'Turno' },
         'cardsMoreTime': () => { return 'Tarjeta más tiempo' },
         'separatorMoreTime': () => { return 'Separador más tiempo' },
+        'separatorToPortal': () => { return 'Separador en el portal' },
+        'toPortal': () => { return 'Agregar a la portada' },
         'default': () => { return type },
     };
-
-    return (typeCart[type] || typeCart['deafult'])();
+    return (typeCart[type] || typeCart['default'])();
 };
 
 export default typeCart;

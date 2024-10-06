@@ -1,4 +1,13 @@
 .publicityTables {
     margin-top: 1rem;
     text-align: left;
+
+    .publicityTablesBG {
+        cursor: pointer;
+        transition: .3s ease-in-out;
+
+        &:hover {
+            background-color: rgb(214, 214, 214);
+        }
+    }
 }
