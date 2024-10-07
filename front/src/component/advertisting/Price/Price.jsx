@@ -4,7 +4,7 @@ import RequestQuoteIcon from '@mui/icons-material/RequestQuote';
 import { getLastPriceApi } from '../../../helpers/prices/getLastPrice.api.js';
 
 const Price = ({
-    country, handleChange, values, setDataPrice, name, dataPrice, setCostPerDay, costPerDay }) => {
+    country, handleChange, values, setDataPrice, name, dataPrice, setCostPerDay, costPerDay, scss }) => {
 
     const [price, setPrice] = useState(null);
     const [sale, setSale] = useState(0);
@@ -37,7 +37,7 @@ const Price = ({
     }, [price, dataPrice, sale]);
 
     return (
-        <div className='price'>
+        <div className='price' style={{justifyContent: scss ? scss : null}}>
             <div>
                 <p>Mostrar</p>
                 <input

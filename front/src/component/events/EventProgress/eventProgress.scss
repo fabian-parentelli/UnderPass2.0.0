@@ -1,0 +1,78 @@
+@import '../../../style/colors.scss';
+
+.eventProgress {
+    width: 80%;
+    margin: auto;
+    padding-top: 1rem;
+
+    .eventProgressDivIcon {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: rgb(207, 204, 204);
+        padding: 1rem;
+        border-radius: 6px 6px 0 0;
+
+        .eventProgressArrow {
+            cursor: pointer;
+            transition: .3s ease-in-out;
+
+            &:hover {
+                transform: scale(1.15);
+            }
+        }
+
+        .eventProgressDivDivIcon {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            padding: 0 1rem;
+
+            div {
+                width: 80px;
+                text-align: center;
+                padding: .4rem;
+                border-radius: 6px;
+                background-color: #EAEBEF;
+
+                .eventProgressIcon {
+                    font-size: 1.4rem;
+                }
+
+                p {
+                    font-size: 12px;
+                }
+            }
+        }
+    }
+
+    .eventProgressStepper {
+        background-color: $underEvent;
+        height: 2px;
+        transition: .3s ease-in-out;
+    }
+}
+
+@media (max-width: 767px) {
+
+    .eventProgress {
+        width: 100%;
+
+        .eventProgressDivIcon {
+            padding: 10px 1px;
+
+            .eventProgressDivDivIcon {
+                width: 100%;
+
+                div {
+                    width: 40px;
+                    padding: .4rem;
+
+                    p {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+}

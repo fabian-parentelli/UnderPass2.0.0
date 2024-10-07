@@ -8,7 +8,8 @@ import typeCart from '../../../../utils/typeCart.utils';
 const CartCards = ({ item }) => {
 
     const { removeItem, totalProduct } = useCartContext();
-
+    console.log(item);
+    
     return (
         <tr>
             <td className='tdBanner'>

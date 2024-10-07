@@ -117,10 +117,17 @@ const Alerts = () => {
                                         <p>{getTypeAlerts(ale.type)}</p>
                                     </Link>
                                 }
-                                
+
                                 {(ale.type === 'publicityOff') &&
-                                    <Link to={`/vewalert/${ale.type}/${ale.eventId}`} className='alertsChildrenDiv' >
+                                    <Link to={`/vewalert/${ale.type}/${ale.eventId}`} className='alertsChildrenDiv' onClick={() => handleOff(ale._id)}>
                                         <img src={alertImages.application_cards} lt="img" />
+                                        <p>{getTypeAlerts(ale.type)}</p>
+                                    </Link>
+                                }
+
+                                {(ale.type === 'newReport_product') &&
+                                    <Link to={`/vewalert/${ale.type}/${ale.eventId}`} className='alertsChildrenDiv' onClick={() => handleOff(ale._id)} >
+                                        <img src={alertImages.coop} lt="img" />
                                         <p>{getTypeAlerts(ale.type)}</p>
                                     </Link>
                                 }

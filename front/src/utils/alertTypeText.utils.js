@@ -1,4 +1,5 @@
 function getTypeAlerts(types) {
+    
     const data = {
         'application_cards': () => { return 'Solicitud de Cards' },
         'application_banners': () => { return 'Solicitud de Banners' },
@@ -12,6 +13,7 @@ function getTypeAlerts(types) {
         'weHaveSeenYourRequest': () => { return 'Hemos visto tu solicitud' },
         'productInStock': () => { return 'El producto reservado ya tiene stock' },
         'newReport_news': () => { return 'Denunciaron un comentario - Noticia' },
+        'newReport_product': () => { return 'Denunciaron un comentario - Producto' },
         'publicityOff': () => { return 'Fin de la publicidad' },
         'default': () => { return 'otro' },
     };

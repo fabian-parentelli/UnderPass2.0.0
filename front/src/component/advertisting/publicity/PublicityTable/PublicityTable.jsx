@@ -1,11 +1,12 @@
 import './publicityTable.scss';
 import { Fragment, useState } from 'react';
 import { restDays } from 'faradayfunctions';
+import Tooltip from '@mui/material/Tooltip';
 import BigImg from '../../../utils/BigImg/BigImg';
 import WantToFront from '../WantToFront/WantToFront.jsx';
+import MoreTimeBuy from '../MoreTimeBuy/MoreTimeBuy.jsx';
 import ModalCustom from '../../../utils/ModalCustom/ModalCustom.jsx';
 import { updPublicityApi } from '../../../../helpers/publicity/updPublicity.api.js';
-import MoreTimeBuy from '../MoreTimeBuy/MoreTimeBuy.jsx';
 
 const PublicityTable = ({ publicity, setLoading }) => {
 
@@ -50,13 +51,15 @@ const PublicityTable = ({ publicity, setLoading }) => {
                                 <td>{pub.title}</td>
                                 <td>{pub.type}</td>
 
-                                <td
-                                    className='publicityTablesBG'
-                                    style={{ color: pub.inPortal ? 'green' : 'red' }}
-                                    onClick={() => handleOpen(pub._id)}
-                                >
-                                    {pub.inPortal ? 'SI' : 'NO'}
-                                </td>
+                                <Tooltip title='Solicitar estar en la portada' >
+                                    <td
+                                        className='publicityTablesBG'
+                                        style={{ color: pub.inPortal ? 'green' : 'red' }}
+                                        onClick={() => handleOpen(pub._id)}
+                                    >
+                                        {pub.inPortal ? 'SI' : 'NO'}
+                                    </td>
+                                </Tooltip>
 
                                 <td>
                                     <input
@@ -73,12 +76,15 @@ const PublicityTable = ({ publicity, setLoading }) => {
                                         <p>{restDays(new Date(pub.end))} días restantes</p>
                                     }
                                 </td>
-                                <td
-                                    onClick={() => handleMoreTOpen(pub._id)}
-                                    className='publicityTablesBG'
-                                >
-                                    Solicitar
-                                </td>
+                                
+                                <Tooltip title='Solicitar mas tiempo' >
+                                    <td
+                                        onClick={() => handleMoreTOpen(pub._id)}
+                                        className='publicityTablesBG'
+                                    >
+                                        Solicitar
+                                    </td>
+                                </Tooltip>
                             </tr>
 
                             {inPortal.vew === pub._id &&

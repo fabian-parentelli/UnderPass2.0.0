@@ -51,7 +51,7 @@ const Browser = ({ handleMenuClick, menuVisible, listElementsRef, setMenuVisible
                     <a href='#' className='menu_link'>Plataforma <img src="arrow.png" className="menu_arrow" /></a>
                     <ul className={`menu_nesting`}>
 
-                        <li className='menu_inside' onClick={handleInsideClick}><Link to={'/newevent_user'} className='menu_link menu_link--inside' href='#'>Crear Evento</Link></li>
+                        <li className='menu_inside' onClick={handleInsideClick}><Link to={'/newevent'} className='menu_link menu_link--inside' >Crear Evento</Link></li>
                         <li className='menu_inside' onClick={handleInsideClick}><Link to={'/'} className='menu_link menu_link--inside' href='#'>Ver Eventos</Link></li>
 
                         <li className='menu_inside' onClick={handleInsideClick}><Link to={'/newProduct'} className='menu_link menu_link--inside'>Crear producto</Link></li>

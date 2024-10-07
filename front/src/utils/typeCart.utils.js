@@ -1,4 +1,7 @@
 function typeCart(type) {
+
+    console.log(type);
+    
     
     const typeCart = {
         'cards': () => { return 'Tarjeta publicitaria' },
@@ -11,6 +14,7 @@ function typeCart(type) {
         'separatorMoreTime': () => { return 'Separador más tiempo' },
         'separatorToPortal': () => { return 'Separador en el portal' },
         'toPortal': () => { return 'Agregar a la portada' },
+        'moreTime': () => { return 'Agregar más tiempo' },
         'default': () => { return type },
     };
     return (typeCart[type] || typeCart['default'])();
