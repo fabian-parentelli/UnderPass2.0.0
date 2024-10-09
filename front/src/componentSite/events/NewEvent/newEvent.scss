@@ -1,7 +1,25 @@
+@import '../../../style/colors.scss';
+
 .newEvent {
     margin-top: 70px;
     padding: 1rem;
     min-height: 70vh;
+
+    .newEventHelp {
+        text-decoration: none;
+
+        p {
+            text-align: end;
+            color: $colorA;
+            padding-right: 2rem;
+            cursor: pointer;
+            transition: .3s ease-in-out;
+
+            &:hover {
+                color: $colorE;
+            }
+        }
+    }
 
     h2 {
         text-align: center;
@@ -13,6 +31,11 @@
 
     .newEvent {
         padding: 3px;
+
+        .newEventHelp p {
+            padding-right: 1rem;
+            cursor: pointer;
+        }
 
         h2 {
             text-align: center;

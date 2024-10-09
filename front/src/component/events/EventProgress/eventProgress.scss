@@ -3,74 +3,52 @@
 .eventProgress {
     width: 80%;
     margin: auto;
-    padding-top: 1rem;
+    padding-top: .6rem;
 
     .eventProgressDivIcon {
+        width: 100%;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        background-color: rgb(207, 204, 204);
-        padding: 1rem;
-        border-radius: 6px 6px 0 0;
 
-        .eventProgressArrow {
-            cursor: pointer;
-            transition: .3s ease-in-out;
-
-            &:hover {
-                transform: scale(1.15);
+        .eventProgressDivDivIcon {
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            p {
+                transition: .3s ease-in-out;
+                color: gray;
             }
         }
 
-        .eventProgressDivDivIcon {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-            padding: 0 1rem;
+        .eventProgressArrow {
+            color: gray;
+            cursor: pointer;
+            transition: .3s;
 
-            div {
-                width: 80px;
-                text-align: center;
-                padding: .4rem;
-                border-radius: 6px;
-                background-color: #EAEBEF;
-
-                .eventProgressIcon {
-                    font-size: 1.4rem;
-                }
-
-                p {
-                    font-size: 12px;
-                }
+            &:hover {
+                transform: scale(1.2);
+                color: $underEvent;
             }
         }
     }
 
     .eventProgressStepper {
-        background-color: $underEvent;
         height: 2px;
+        background-color: $underEvent;
         transition: .3s ease-in-out;
     }
 }
 
 @media (max-width: 767px) {
-
     .eventProgress {
         width: 100%;
+        padding-top: 0;
 
         .eventProgressDivIcon {
-            padding: 10px 1px;
-
             .eventProgressDivDivIcon {
-                width: 100%;
-
-                div {
-                    width: 40px;
-                    padding: .4rem;
-
-                    p {
-                        display: none;
-                    }
+                p {
+                    font-size: 10px;
                 }
             }
         }

@@ -144,3 +144,10 @@ export class MessageNotFound extends Error {
         this.name = this.constructor.name;
     };
 };
+
+export class EventNotFound extends Error {
+    constructor(message) {
+        super(message);
+        this.name = this.constructor.name;
+    };
+};

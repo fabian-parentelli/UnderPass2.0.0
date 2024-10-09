@@ -8,7 +8,8 @@ import env from './config/dotEnv.config.js';
 import {
     userRouter, imagenRouter, priceRouter, pdfRouter, graphRouter, aplliRouter, alertsRouter, productRouter,
     publicityRouter, orderRouter, orderSellerRouter, walletRouter, ticketRouter, transferRouter, cashRouter,
-    auditRouter, orderPayRouter, transferPayRouter, payRouter, bookingRouter, newsRouter, messageRouter
+    auditRouter, orderPayRouter, transferPayRouter, payRouter, bookingRouter, newsRouter, messageRouter,
+    eventRouter
 } from './routes/index.router.js';
 
 const app = express();
@@ -43,5 +44,6 @@ app.use('/api/pay', payRouter);
 app.use('/api/booking', bookingRouter);
 app.use('/api/news', newsRouter);
 app.use('/api/message', messageRouter);
+app.use('/api/event', eventRouter);
 
 app.listen(env.port, () => console.log('Server conected'));
