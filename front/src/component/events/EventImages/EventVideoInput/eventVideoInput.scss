@@ -1,0 +1,42 @@
+@import '../../../../style/colors.scss';
+
+.eventVideoInput {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+
+    h4 {
+        color: $underEvent;
+    }
+
+    .eventImagesVideo {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        input {
+            width: 400px;
+        }
+
+        p {
+            color: gray;
+            font-size: 12px;
+            margin-top: .4rem;
+        }
+
+    }
+}
+
+@media (max-width: 767px) {
+    .eventVideoInput {
+        text-align: center;
+
+        .eventImagesVideo {
+
+            input {
+                width: 280px;
+            }
+        }
+    }
+}

@@ -10,4 +10,12 @@ export default class Event {
         return await eventModel.findOne(query).lean();
     };
 
+    getById = async (id) => {
+        return await eventModel.findById(id).lean();
+    };
+
+    update = async (event) => {
+        return await eventModel.findByIdAndUpdate(event._id, event, { lean: true, new: true });
+    };
+
 };

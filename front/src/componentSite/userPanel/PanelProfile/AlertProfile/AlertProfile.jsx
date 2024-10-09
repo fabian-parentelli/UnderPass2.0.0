@@ -1,24 +1,18 @@
 import './alertProfile.scss';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-
-import { getAllAlertsApi } from '../../../../helpers/alerts/getAllAlerts.api';
-
 import BadgeIcon from '@mui/icons-material/Badge';
 import MessageIcon from '@mui/icons-material/Message';
 import ConfirmationNumberIcon from '@mui/icons-material/ConfirmationNumber';
 
 const AlertProfile = ({ user }) => {
 
-    const [alerts, setAlerts] = useState(null);
+    const [alerts, setAlerts] = useState();
+    const eventHave = localStorage.getItem('event');
 
     useEffect(() => {
-        const fetchData = async () => {
-            const response = await getAllAlertsApi();
-            if (response.status === 'success') setAlerts(response.result);
-            else console.log(response);
-        }; if (user) fetchData();
-    }, []);
+        if (eventHave) setAlerts({ ...alerts, events: eventHave });
+    }, [eventHave]);
 
     return (
         <div className='alertProfile'>
@@ -32,7 +26,7 @@ const AlertProfile = ({ user }) => {
                         <p>Solicitudes</p>
                     </Link>
 
-                    <Link to={'/'}
+                    <Link to={'/newevent'}
                         className='alertsPanelDiv'
                         style={{ backgroundColor: alerts.events ? '#00756F' : '#CACACA' }}
                     >

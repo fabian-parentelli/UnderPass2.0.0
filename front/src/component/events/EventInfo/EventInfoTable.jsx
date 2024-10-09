@@ -3,7 +3,7 @@ import Switch from '@mui/material/Switch';
 import EventCategory from '../EventCategory/EventCategory';
 import EventType from './EventType';
 
-const EventInfoTable = ({ values, handleChangue, handleSubmit, handleMinors, handleTicket, handleType }) => {
+const EventInfoTable = ({ values, handleChangue, handleSubmit, handleMinors, handleTicket, handleType, lsEvent }) => {
 
     return (
         <div className='eventInfoTable'>
@@ -14,7 +14,7 @@ const EventInfoTable = ({ values, handleChangue, handleSubmit, handleMinors, han
                 <div className='eventInfoTableForm'>
                     <div>
                         <label>Título</label>
-                        <input type="text" name='title' onChange={handleChangue} required />
+                        <input type="text" name='title' onChange={handleChangue} value={values.title} required />
                     </div>
 
                     <div>
@@ -28,17 +28,17 @@ const EventInfoTable = ({ values, handleChangue, handleSubmit, handleMinors, han
 
                     <div>
                         <label>Día del evento</label>
-                        <input type="date" name='startDate' onChange={handleChangue} required />
+                        <input type="date" name='startDate' onChange={handleChangue} value={values.startDate} required />
                     </div>
 
                     <div>
                         <label>Horario del evento</label>
-                        <input type="time" name='startHour' onChange={handleChangue} required />
+                        <input type="time" name='startHour' onChange={handleChangue} value={values.startHour} required />
                     </div>
 
                     <div>
                         <label>Horario fin del evento</label>
-                        <input type="time" name='endHour' onChange={handleChangue} required />
+                        <input type="time" name='endHour' onChange={handleChangue} value={values.endHour} required />
                     </div>
 
                     <EventType values={values} handleType={handleType} handleChangue={handleChangue} />
@@ -61,13 +61,13 @@ const EventInfoTable = ({ values, handleChangue, handleSubmit, handleMinors, han
 
                     <div>
                         <label>Descripción</label>
-                        <textarea name='description' className='eventInfoTableDes' onChange={handleChangue} />
+                        <textarea name='description' className='eventInfoTableDes' onChange={handleChangue} value={values.description} />
                     </div>
 
                     <div>
                         <label>Invitados</label>
-                        <input type="text" name='guests' onChange={handleChangue} 
-                            placeholder='Invitado1,Invitado2,Invitado3'
+                        <input type="text" name='guests' onChange={handleChangue}
+                            placeholder='Invitado1,Invitado2,Invitado3' value={values.guests}
                         />
                         <p className='eventInfoTablePP'>Escribir los invitados separados por comas, pero <strong>SIN ESPACIOS</strong></p>
                     </div>
@@ -75,8 +75,13 @@ const EventInfoTable = ({ values, handleChangue, handleSubmit, handleMinors, han
             </form>
 
             <div className='eventInfoTableBtn'>
+
+                <button className='btn btnD'>
+                    Eliminar
+                </button>
+
                 <button form='eventInfoTableForm' className='btn btnD'>
-                    Continuar
+                    {lsEvent ? 'Actualizar' : 'Guardar'}
                 </button>
             </div>
 

@@ -1,0 +1,41 @@
+.eventHelpIn {
+    margin: auto;
+    text-align: center;
+    padding-top: 2rem;
+    width: 60%;
+
+    .eventHelpInImgs {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        gap: 2rem;
+        margin-top: 2rem;
+        flex-wrap: wrap;
+
+        img {
+            box-shadow: 5px 5px 15px;
+            transition: .3s ease-in-out;
+            border-radius: 6px;
+
+            &:hover {
+                transform: translateY(-5px);
+            }
+        }
+    }
+
+    .eventHelpInPBootom {
+        margin: 2rem;
+    }
+
+    .eventHelpInLogo {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 767px) {
+    .eventHelpIn {
+        width: 100%;
+    }
+}

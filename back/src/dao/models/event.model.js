@@ -12,7 +12,7 @@ const eventSchema = new mongoose.Schema({
     startDate: { type: String },
     guests: [{ type: String }],
     minors: { type: Boolean },
-    type: { type: String },
+    type: { type: Boolean },
     userId: { type: String },
     video: { type: String },
     tickets: { type: Boolean },

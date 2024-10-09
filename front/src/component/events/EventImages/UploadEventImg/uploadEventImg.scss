@@ -1,0 +1,26 @@
+.uploadEventImg {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding-top: 2rem;
+
+    .uploadEventImgDivButton {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 2rem;
+        margin-bottom: 2rem;
+
+        .uploadEventImgB {
+            text-align: center;
+            cursor: pointer;
+            transition: .3s ease-in-out;
+
+            &:hover {
+                background-color: rgb(75, 75, 75);
+            }
+        }
+    }
+}

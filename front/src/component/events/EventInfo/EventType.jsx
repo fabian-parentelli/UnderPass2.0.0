@@ -16,7 +16,7 @@ const EventType = ({ values, handleType, handleChangue }) => {
             {!values.type &&
                 <div>
                     <label>Contraseña del evento</label>
-                    <input type="text" name='password' onChange={handleChangue} required={!values.type}/>
+                    <input type="text" name='password' onChange={handleChangue} value={values.password} required={!values.type}/>
                 </div>
             }
         </>

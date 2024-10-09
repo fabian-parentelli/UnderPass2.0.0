@@ -2,9 +2,9 @@ import './eventProgress.scss';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 
-const EventProgress = ({ progres, setProgres }) => {
+const EventProgress = ({ progres, setProgres, lsEvent }) => {
 
-    const handleMoreProgres = () => { if (progres < 100) setProgres(progres + 20) };
+    const handleMoreProgres = () => { if (lsEvent && progres < 100) setProgres(progres + 20) };
     const handleMinorProgres = () => { if (progres > 25) setProgres(progres - 20) };
 
     return (

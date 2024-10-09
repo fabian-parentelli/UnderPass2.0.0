@@ -1,0 +1,12 @@
+.haveEvent {
+    text-decoration: none;
+    color: #fff;
+
+    .haveEventIcon {
+        transition: .3s ease-in-out;
+
+        &:hover {
+            color: gray;
+        }
+    }
+}
