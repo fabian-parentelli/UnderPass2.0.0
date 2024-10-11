@@ -1,0 +1,82 @@
+@import '../../../style/colors.scss';
+
+.eventCard {
+    width: 250px;
+    height: 400px;
+    box-shadow: 5px 5px 15px;
+    border-radius: 6px;
+    transition: .3s ease-in-out;
+
+    &:hover {
+        transform: translateY(-5px);
+    }
+
+    img {
+        width: 250px;
+        height: 250px;
+        object-fit: contain;
+    }
+
+    .eventCardContainer {
+        height: 150px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: .4rem;
+
+        .eventCardText {
+
+            .eventCardLocation {
+                display: flex;
+                align-items: center;
+                color: gray;
+
+                .eventCardIcon {
+                    font-size: 16px;
+                }
+
+                p {
+                    font-size: 12px;
+                }
+            }
+
+            h3 {
+                color: $underEvent;
+                margin-top: .2rem;
+            }
+        }
+
+        .eventCardTime {
+            display: flex;
+            align-items: center;
+            gap: .4rem;
+
+            .eventCardDate {
+                display: flex;
+                align-items: end;
+                gap: .2rem;
+                
+                p {
+                    font-size: 2rem;
+                    font-weight: 600;
+                    color: $underEvent;
+                }
+
+                div {
+                    margin-bottom: .4rem;
+
+                    p {
+                        font-size: .7rem;
+                        font-weight: 400;
+                    }
+                }
+            }
+
+            .lineVert {
+                width: 1px;
+                height: 30px;
+                background-color: $underEvent;
+            }
+        }
+    }
+}

@@ -3,6 +3,7 @@ import { useState } from 'react';
 import EventHelpIn from './EventHelpIn/EventHelpIn';
 import UploadEventImg from './UploadEventImg/UploadEventImg';
 import EventVideoInput from './EventVideoInput/EventVideoInput';
+import EventCard from '../EventCard/EventCard';
 
 const EventImages = ({ values, setValues, setLoading, setProgres }) => {
 
@@ -26,9 +27,7 @@ const EventImages = ({ values, setValues, setLoading, setProgres }) => {
             {vew === null && (
                 !values.photo?.img
                     ? <EventHelpIn />
-                    : <div className='eventImagesIMG'>
-                        <img src={values.photo.img} alt="img" />
-                    </div>
+                    : <div className='eventImagesImgDiv'><EventCard card={values} /></div>
             )}
         </div>
     );

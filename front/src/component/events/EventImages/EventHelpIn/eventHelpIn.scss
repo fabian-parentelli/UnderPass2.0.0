@@ -17,6 +17,8 @@
             box-shadow: 5px 5px 15px;
             transition: .3s ease-in-out;
             border-radius: 6px;
+            width: 250px;
+            height: auto;
 
             &:hover {
                 transform: translateY(-5px);

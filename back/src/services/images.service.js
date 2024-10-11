@@ -14,9 +14,22 @@ const newAvatar = async (avatar, imgUrl) => {
     return { status: 'success', result };
 };
 
+const newPresets = async (preset, imgUrl) => {
+    preset.img = imgUrl[0];
+    const result = await imagenRepository.newPresets(preset)
+    if (!result) throw new ImagenNotFound('No se puede guardar el Presets');
+    return { status: 'success', result };
+};
+
 const getAllVideos = async () => {
     const result = await imagenRepository.getAllVideos();
     if (!result) throw new ImagenNotFound('No se puede encontrar los video tutoriales');
+    return { status: 'success', result };
+};
+
+const getPreset = async () => {
+    const result = await imagenRepository.getPreset();
+    if (!result) throw new ImagenNotFound('No se puede obtener los presets');
     return { status: 'success', result };
 };
 
@@ -52,6 +65,16 @@ const activeVideo = async ({ id }) => {
     return { status: 'success', result };
 };
 
+const presetActive = async (id) => {
+    const preset = await imagenRepository.getPresetById(id);
+    if (!preset) throw new ImagenNotFound('No se puede encontrar el preset');
+    preset.active = !preset.active
+    const result = await imagenRepository.updatePreset(preset);
+    if (!result) throw new ImagenNotFound('No se puede actualizar el preset');
+    return { status: 'success', result };
+};
+
 export {
-    newVideoTut, getAllVideos, getVideoTutByName, activeVideo, newAvatar, getAvatars, avatarActive
+    newVideoTut, getAllVideos, getVideoTutByName, activeVideo, newAvatar,
+    getAvatars, avatarActive, newPresets, getPreset, presetActive
 };

@@ -10,21 +10,9 @@
         gap: 1rem;
     }
 
-    .eventImagesIMG {
-        margin-top: 2rem;
+    .eventImagesImgDiv {
         display: flex;
         justify-content: center;
-        
-        img {
-            box-shadow: 5px 5px 15px;
-            transition: .3s ease-in-out;
-            width: 250px;
-            object-fit: contain;
-            border-radius: 6px;
-
-            &:hover {
-                transform: translateY(-5px);
-            }
-        }
+        margin-top: 2rem;
     }
 }

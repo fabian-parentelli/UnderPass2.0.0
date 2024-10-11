@@ -20,6 +20,7 @@ import TransferPay from './transferPay.manager.js';
 import Booking from './booking.manager.js';
 import News from './news.manager.js';
 import Event from './event.manager.js';
+import Preset from './preset.manager.js';
 
 export const userManager = new User();
 export const tutorialsManager = new Tutorials();
@@ -43,3 +44,4 @@ export const transferPayManager = new TransferPay();
 export const bookingManager = new Booking();
 export const newsManager = new News();
 export const eventManager = new Event();
+export const presetManager = new Preset();

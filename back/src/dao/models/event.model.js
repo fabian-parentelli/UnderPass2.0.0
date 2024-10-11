@@ -9,7 +9,7 @@ const eventSchema = new mongoose.Schema({
     description: { type: String },
     endHour: { type: String },
     startHour: { type: String },
-    startDate: { type: String },
+    startDate: { type: Date },
     guests: [{ type: String }],
     minors: { type: Boolean },
     type: { type: Boolean },

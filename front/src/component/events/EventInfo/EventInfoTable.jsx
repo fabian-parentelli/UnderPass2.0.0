@@ -3,7 +3,7 @@ import Switch from '@mui/material/Switch';
 import EventCategory from '../EventCategory/EventCategory';
 import EventType from './EventType';
 
-const EventInfoTable = ({ values, handleChangue, handleSubmit, handleMinors, handleTicket, handleType, lsEvent }) => {
+const EventInfoTable = ({ values, handleChangue, handleSubmit, handleMinors, handleTicket, handleType, lsEvent, isChange }) => {
 
     return (
         <div className='eventInfoTable'>
@@ -28,7 +28,10 @@ const EventInfoTable = ({ values, handleChangue, handleSubmit, handleMinors, han
 
                     <div>
                         <label>Día del evento</label>
-                        <input type="date" name='startDate' onChange={handleChangue} value={values.startDate} required />
+                        <input type="date" name='startDate' onChange={handleChangue}
+                            value={values.startDate ? new Date(values.startDate).toISOString().split('T')[0] : ''}
+                            required
+                        />
                     </div>
 
                     <div>
@@ -81,7 +84,7 @@ const EventInfoTable = ({ values, handleChangue, handleSubmit, handleMinors, han
                 </button>
 
                 <button form='eventInfoTableForm' className='btn btnD'>
-                    {lsEvent ? 'Actualizar' : 'Guardar'}
+                    {!isChange ? 'Continuar' : (lsEvent ? 'Actualizar' : 'Guardar')}
                 </button>
             </div>
 

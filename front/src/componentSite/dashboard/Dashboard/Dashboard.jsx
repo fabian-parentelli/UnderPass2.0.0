@@ -31,6 +31,7 @@ import NewNews from '../news/NewNews/NewNews';
 import VewNewsDas from '../news/VewNewsDas/VewNewsDas';
 import UpdNewsDas from '../news/UpdNewsDas/UpdNewsDas';
 import Comment from '../mensager/comments/Comment/Comment';
+import PresetDas from '../images/preset/PresetDas/PresetDas';
 
 const Dashboard = () => {
 
@@ -84,7 +85,7 @@ const Dashboard = () => {
 
                 <Fields
                     title={'Imágenes'}
-                    category={[{ name: 'Avatares', path: 'newavatar' }, { name: 'Nuevo Evento', path: 'newimgevent' }, { name: 'Videos tutoriales', path: 'videotut' }]}
+                    category={[{ name: 'Avatares', path: 'newavatar' }, { name: 'Presets', path: 'presetdas' }, { name: 'Videos tutoriales', path: 'videotut' }]}
                 />
 
                 <Fields
@@ -102,9 +103,6 @@ const Dashboard = () => {
             <Routes>
                 <Route path='/' element={<Panel />} />
                 <Route path='/helpdas' element={<HelpDas />} />
-
-                <Route path='/newavatar' element={<Avatars />} />
-                <Route path='/videotut' element={<VideoTut />} />
 
                 <Route path='/vewusers' element={<VewUsersDashboards />} />
                 <Route path='/userdashboard' element={<UserDashboard />} />
@@ -134,6 +132,10 @@ const Dashboard = () => {
 
                 <Route path='/userorders' element={<UserOrders />} />
                 <Route path='/alloreders' element={<AllOrders />} />
+
+                <Route path='/newavatar' element={<Avatars />} />
+                <Route path='/videotut' element={<VideoTut />} />
+                <Route path='/presetdas' element={<PresetDas />} />
 
                 <Route path='/newscreate' element={<NewNews />} />
                 <Route path='/vewnews' element={<VewNewsDas />} />

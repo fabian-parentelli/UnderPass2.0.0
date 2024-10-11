@@ -22,9 +22,30 @@ const newAvatar = async (req, res) => {
     };
 };
 
+const newPresets = async (req, res) => {
+    const imagesUrl = req.cloudinaryUrls;
+    try {
+        const result = await imagenService.newPresets({ ...req.body }, imagesUrl);
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof ImagenNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
 const getAllVideos = async (req, res) => {
     try {
         const result = await imagenService.getAllVideos();
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof ImagenNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
+const getPreset = async (req, res) => {
+    try {
+        const result = await imagenService.getPreset();
         if (result) return res.sendSuccess(result);
     } catch (error) {
         if (error instanceof ImagenNotFound) return res.sendClientError(error.message);
@@ -75,6 +96,18 @@ const activeVideo = async (req, res) => {
     };
 };
 
+const presetActive = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const result = await imagenService.presetActive(id);
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof ImagenNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
 export {
-    newVideoTut, getAllVideos, getVideoTutByName, activeVideo, newAvatar, getAvatars, avatarActive
+    newVideoTut, getAllVideos, getVideoTutByName, activeVideo, newAvatar,
+    getAvatars, avatarActive, newPresets, getPreset, presetActive
 };

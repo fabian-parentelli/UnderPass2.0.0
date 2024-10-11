@@ -1,0 +1,18 @@
+.createPresets {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    p {
+        color: gray;
+    }
+
+    input {
+        width: 250px;
+    }
+
+    button {
+        margin-left: 5%;
+    }
+}
