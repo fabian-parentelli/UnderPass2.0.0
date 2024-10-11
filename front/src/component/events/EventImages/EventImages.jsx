@@ -4,6 +4,7 @@ import EventHelpIn from './EventHelpIn/EventHelpIn';
 import UploadEventImg from './UploadEventImg/UploadEventImg';
 import EventVideoInput from './EventVideoInput/EventVideoInput';
 import EventCard from '../EventCard/EventCard';
+import EventPreset from './EventPreSet/EventPreset';
 
 const EventImages = ({ values, setValues, setLoading, setProgres }) => {
 
@@ -22,7 +23,7 @@ const EventImages = ({ values, setValues, setLoading, setProgres }) => {
             </div>
 
             {vew === 'img' && <UploadEventImg values={values} video={video} setValues={setValues} setLoading={setLoading} setProgres={setProgres} />}
-            {vew === 'pre' && <p>pre</p>}
+            {vew === 'pre' && <EventPreset values={values} video={video} setValues={setValues} setLoading={setLoading} setProgres={setProgres} />}
 
             {vew === null && (
                 !values.photo?.img

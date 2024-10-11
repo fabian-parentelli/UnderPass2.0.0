@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import mongossePaginate from 'mongoose-paginate-v2';
+import mongoosePaginate from 'mongoose-paginate-v2';
 
 const eventCollection = 'event';
 
@@ -28,7 +28,8 @@ const eventSchema = new mongoose.Schema({
     },
     photo: {
         img: { type: String },
-        isFlyer: { type: Boolean }
+        isPreset: { type: Boolean, default: false },
+        presetId: { type: mongoose.Schema.Types.ObjectId, ref: 'preset' },
     },
     active: { type: Boolean, default: false },
     ticketInfo: [
@@ -45,6 +46,15 @@ const eventSchema = new mongoose.Schema({
     confirm: { type: Boolean, default: false }
 });
 
-eventSchema.plugin(mongossePaginate);
+const autoPopulatePreset = function (next) {
+    this.populate('photo.presetId')
+    next();
+};
+
+eventSchema.pre('find', autoPopulatePreset);
+eventSchema.pre('findOne', autoPopulatePreset);
+eventSchema.pre('findById', autoPopulatePreset);
+
+eventSchema.plugin(mongoosePaginate);
 
 export const eventModel = mongoose.model(eventCollection, eventSchema);
