@@ -22,6 +22,16 @@ const newImg = async (req, res) => {
     };
 };
 
+const newPreset = async (req, res) => {
+    try {
+        const result = await eventService.newPreset({ ...req.body });
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof EventNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
 const getNotConfirm = async (req, res) => {
     const { uid } = req.params;
     try {
@@ -43,4 +53,4 @@ const putEvent = async (req, res) => {
     };
 };
 
-export { newEvent, newImg, getNotConfirm, putEvent };
+export { newEvent, newImg, getNotConfirm, putEvent, newPreset };

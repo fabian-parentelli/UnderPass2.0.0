@@ -1,0 +1,48 @@
+@import '../../../../style/colors.scss';
+
+.eventLocationForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2rem;
+    gap: 1.4rem;
+
+    span {
+        color: gray;
+        font-size: 12px;
+    }
+
+    .eventlocationSect {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: end;
+        justify-content: space-between;
+        min-width: 50%;
+        gap: 1rem;
+
+        div {
+            display: flex;
+            flex-direction: column;
+            width: 290px;
+        }
+
+        .eventLocationFormBtn {
+            background-color: $underEvent;
+            color: aliceblue;
+            
+            &:hover {
+                background-color: #245ca5;
+            }
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    .eventlocation {
+        
+        .eventlocationSect {
+            width: 100%;
+            justify-content: center;
+        }
+    }
+}

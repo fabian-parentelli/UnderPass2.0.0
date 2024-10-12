@@ -26,10 +26,15 @@ const EventImages = ({ values, setValues, setLoading, setProgres }) => {
             {vew === 'pre' && <EventPreset values={values} video={video} setValues={setValues} setLoading={setLoading} setProgres={setProgres} />}
 
             {vew === null && (
-                !values.photo?.img
+                !values.photo
                     ? <EventHelpIn />
                     : <div className='eventImagesImgDiv'><EventCard card={values} /></div>
             )}
+
+            <div className='eventImagesBtnsBotton'>
+                <button className='btn btnD' onClick={()=> setProgres(20)}>Volver</button>
+                <button className='btn btnD' onClick={()=> setProgres(60)}>Continuar</button>
+            </div>
         </div>
     );
 };

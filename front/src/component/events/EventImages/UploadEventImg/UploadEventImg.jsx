@@ -27,10 +27,7 @@ const UploadEventImg = ({ values, video, setValues, setLoading, setProgres }) =>
             <p>Subir Imágen</p>
             <CloudFile onChange={handleFileChange} folderName={`event/${values._id}`} contClass='cfRect' />
             <p>Medidas 220px por 220px (Medidas de un post de Instagrame)</p>
-            <div className='uploadEventImgDivButton'>
-                <p className='btn btnD uploadEventImgB'>Eliminar</p>
-                <button className='btn btnB'>Subir Img</button>
-            </div>
+            <button className='btn btnB' disabled={!formData || !formData.has('file')}>Subir Img</button>
         </form>
     );
 };

@@ -2,6 +2,7 @@ import './eventPreset.scss';
 import { useEffect, useState } from 'react';
 import { getPresetApi } from '../../../../helpers/images/preset/getPresets.api.js';
 import EventCard from '../../EventCard/EventCard.jsx';
+import { newPresetEventApi } from '../../../../helpers/event/newPresetEvent.api.js';
 
 const EventPreset = ({ values, video, setValues, setLoading, setProgres }) => {
 
@@ -22,16 +23,15 @@ const EventPreset = ({ values, video, setValues, setLoading, setProgres }) => {
     }, []);
 
     const handleClick = async (card) => {
-
-        console.log(card.presetId._id);
-
-        // Conectar con la base de datos !!!!!
-        // Conectar con la base de datos !!!!!
-        // Conectar con la base de datos !!!!!
-        // Conectar con la base de datos !!!!!
-        // Conectar con la base de datos !!!!!
-        // Conectar con la base de datos !!!!!
-
+        setLoading(true);
+        const obj = { presetId: card.presetId._id, eventId: values._id }
+        if (values) obj.video = video;
+        const response = await newPresetEventApi(obj);
+        if (response.status === 'success') {
+            setValues(response.result);
+            setProgres(60);
+        } else console.error(response.error);
+        setLoading(false);
     };
 
     return (

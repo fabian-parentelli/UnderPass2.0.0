@@ -12,9 +12,21 @@ const newImg = async (imagesUrl, event) => {
     const eventdb = await eventRepository.getById(event._id)
     if (!eventdb) throw new EventNotFound('No se puede encontrar el evento');
     eventdb.video = event.video;
-    eventdb.photo = { img: imagesUrl[0], isFlyer: false };
+    eventdb.photo = { img: imagesUrl[0], isPreset: false };
     const result = await eventRepository.update(eventdb);
     if (!result) throw new EventNotFound('No se puede actualizar el evento');
+    result.guests = result.guests.join(',');
+    return { status: 'success', result };
+};
+
+const newPreset = async (preset) => {
+    const eventdb = await eventRepository.getById(preset.eventId);
+    if (!eventdb) throw new EventNotFound('No se puede encontrar el evento');
+    if (preset.video) eventdb.video = preset.video;
+    eventdb.photo = { isPreset: true, presetId: preset.presetId };
+    const updates = await eventRepository.update(eventdb);
+    if (!updates) throw new EventNotFound('No se puede actualizar el evento');
+    const result = await eventRepository.getById(preset.eventId);
     result.guests = result.guests.join(',');
     return { status: 'success', result };
 };
@@ -38,4 +50,4 @@ const putEvent = async (event) => {
     return { status: 'success', result };
 };
 
-export { newEvent, newImg, getNotConfirm, putEvent };
+export { newEvent, newImg, getNotConfirm, putEvent, newPreset };

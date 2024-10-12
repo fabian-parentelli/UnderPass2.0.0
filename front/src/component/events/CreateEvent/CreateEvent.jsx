@@ -2,9 +2,10 @@ import './createEvent.scss';
 import Load from '../../utils/Load';
 import { useEffect, useState } from 'react';
 import EventInfo from '../EventInfo/EventInfo';
-import EventProgress from '../EventProgress/EventProgress';
-import { getConfirmEventApi } from '../../../helpers/event/getEventConfirm.api.js';
 import EventImages from '../EventImages/EventImages.jsx';
+import EventProgress from '../EventProgress/EventProgress';
+import Eventlocation from '../EventLocation/EventLocation.jsx';
+import { getConfirmEventApi } from '../../../helpers/event/getEventConfirm.api.js';
 
 const CreateEvent = ({ user }) => {
 
@@ -29,9 +30,9 @@ const CreateEvent = ({ user }) => {
     return (
         <div className='createEvent'>
             <EventProgress progres={progres} setProgres={setProgres} lsEvent={lsEvent} />
-
             {progres === 20 && <EventInfo setProgres={setProgres} setLoading={setLoading} values={values} setValues={setValues} lsEvent={lsEvent} />}
-            {progres === 40 && <EventImages values={values} setValues={setValues} setLoading={setLoading} setProgres={setProgres} /> }
+            {progres === 40 && <EventImages values={values} setValues={setValues} setLoading={setLoading} setProgres={setProgres} />}
+            {progres === 60 && <Eventlocation values={values} setValues={setValues} setLoading={setLoading} setProgres={setProgres} />}
             <Load loading={loading} />
         </div>
     );
