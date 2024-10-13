@@ -4,9 +4,6 @@ import 'leaflet/dist/leaflet.css';
 
 const MapView = ({ coordinates }) => {
 
-    console.log(coordinates);
-    
-    
     const [position, setPosition] = useState([coordinates.lat, coordinates.lon]);
 
     useEffect(() => {

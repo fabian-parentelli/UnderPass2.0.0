@@ -6,7 +6,7 @@ const getCoordinatesApi = async (coordinate) => {
     const door = coordinate.door.replace(/ /g, '+');
     const city = coordinate.city.replace(/ /g, '+');
     const province = coordinate.province.replace(/ /g, '+');
-    const country = coordinate.country === 'Uy' ? 'uruguay' : 'argentina';
+    const country = coordinate.country === 'UY' ? 'uruguay' : 'argentina';
     
     const response = await fetch(`${url}${address}+${door}+${city}+${province}+${country}&format=json`, {
         method: 'GET',

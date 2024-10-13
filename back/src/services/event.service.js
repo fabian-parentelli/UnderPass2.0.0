@@ -39,13 +39,14 @@ const getNotConfirm = async (uid) => {
 };
 
 const putEvent = async (event) => {
-    const eventdb = await eventRepository.getById(event._id)
+    const eventdb = await eventRepository.getById(event._id);
     if (!eventdb) throw new EventNotFound('No se puede encontrar el evento');
     const objEvent = { ...eventdb, ...event };
     if (objEvent.type) objEvent.password = '';
     objEvent.guests = event.guests.split(',');
-    const result = await eventRepository.update(objEvent);
-    if (!result) throw new EventNotFound('No se puede actualizar el evento');
+    const upd = await eventRepository.update(objEvent);
+    if (!upd) throw new EventNotFound('No se puede actualizar el evento');
+    const result = await eventRepository.getById(event._id);
     result.guests = result.guests.join(',');
     return { status: 'success', result };
 };

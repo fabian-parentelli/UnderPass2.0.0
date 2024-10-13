@@ -1,0 +1,43 @@
+@import '../../../../../style/colors.scss';
+
+.ticketsTrueVew {
+    margin-top: 2rem;
+
+    .ticketsTrueVewBack {
+        text-align: center;
+        cursor: pointer;
+        transition: .3s ease-in-out;
+
+        &:hover {
+            background-color: rgb(219, 219, 219);
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    
+    .ticketsTrueVew {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+
+        &::-webkit-scrollbar {
+            height: 3px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: $underEvent;
+            border-radius: 6px;
+        }
+
+        .ticketsTrueVew {
+            cursor: pointer;
+            transition: .3s;
+
+            &:hover {
+                color: black;
+                background-color: $colorB;
+            }
+        }
+    }
+}

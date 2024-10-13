@@ -1,20 +1,20 @@
 import { useEffect, useState } from 'react';
 import * as provinces from '../../utils/provinces.utils.js';
 
-const SelectedProvince = ({ handleChange, required = true, coun }) => {
+const SelectedProvince = ({ handleChange, required = true, coun, value }) => {
 
     const [defaultOption, setDefaultOption] = useState(null)
     const [country, setCountry] = useState(coun ? coun : localStorage.getItem('country'))
 
     useEffect(() => {
         setCountry(coun ? coun : localStorage.getItem('country'));
-        !coun 
+        !coun
             ? setDefaultOption(country === 'UY' ? 'Departamento' : 'Provincia')
             : setDefaultOption(coun === 'UY' ? 'Departamento' : 'Provincia')
     }, [coun]);
 
     return (
-        <select name="province" style={{ width: '100%' }} onChange={handleChange} required={required} defaultValue="">
+        <select name="province" style={{ width: '100%' }} onChange={handleChange} required={required} defaultValue={value ? value : ''}>
             <option value="" >
                 {defaultOption}
             </option>

@@ -17,7 +17,7 @@ const EventVideoInput = ({ video, setVideo }) => {
                     onChange={handleChangue}
                     value={video || ''}
                 />
-                <p>Sube un video en donde promocionas el evento, no es obligatorio.</p>
+                <p>Sube un video en donde promocionas el evento, es opcional.</p>
             </div>
 
         </div>

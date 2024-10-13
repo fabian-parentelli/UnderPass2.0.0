@@ -1,39 +1,63 @@
 import './eventlocation.scss';
 import { useState } from 'react';
+import MapView from '../../utils/MapVew.jsx';
+import { updEventApi } from '../../../helpers/event/updEvent.api.js';
 import EventLocationForm from './EventLocationForm/Eventlocationform.jsx';
 import { getCoordinatesApi } from '../../../helpers/maps/getCoordinates.api.js';
-import MapView from '../../utils/MapVew.jsx';
 
 const Eventlocation = ({ values, setValues, setLoading, setProgres }) => {
 
     const country = localStorage.getItem('country');
-    const [locations, setLocations] = useState({ country });
+    const [location, setLocation] = useState({
+        province: values?.location?.province || '', city: values?.location?.city || '',
+        address: values?.location?.address || '', place: values?.location?.place || '',
+        door: values?.location?.door || '', country: values?.location?.country || country,
+        coordinates: {
+            lat: values?.location?.coordinates?.lat || '',
+            lon: values?.location?.coordinates?.lon || ''
+        }
+    });
 
-    const handleChange = (e) => setLocations({ ...locations, [e.target.name]: e.target.value });
+    const handleChange = (e) => setLocation({ ...location, [e.target.name]: e.target.value });
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
-        const response = await getCoordinatesApi(locations);
+        const response = await getCoordinatesApi(location);
         if (response.length > 0) {
-            // guardar en la base de datos.......
-            setLocations({ ...locations, coordinates: { lat: response[0].lat, lon: response[0].lon } });
+            setLocation({ ...location, coordinates: { lat: response[0].lat, lon: response[0].lon } });
         };
+        setLoading(false);
+    };
+
+    const handleSave = async () => {
+        setLoading(true);
+        const obj = { ...values, location };
+        const resp = await updEventApi(obj);
+        if (resp.status === 'success') { setValues(resp.result); setProgres(80) }
+        else console.error(response.error);
         setLoading(false);
     };
 
     return (
         <div className='eventlocation'>
             <p className='eventlocationpp'>Primero brinda la información de localización, luego confirma el mapa.</p>
-            <EventLocationForm handleChange={handleChange} country={country} handleSubmit={handleSubmit} />
+            <EventLocationForm handleChange={handleChange} country={country} handleSubmit={handleSubmit} location={location} />
 
-            {locations.coordinates &&
-                <div className='mapVew' style={{marginTop: '3rem'}}>
-                    <MapView coordinates={locations.coordinates} />
+            {location.coordinates.lat !== '' && location.coordinates.lon !== '' &&
+                <div className='mapVew' style={{ marginTop: '3rem' }}>
+                    <MapView coordinates={location.coordinates} />
                 </div>
             }
 
-            
+            {location.coordinates.lat !== '' && location.coordinates.lon !== '' &&
+                <button className='btn eventlocationBtn' onClick={handleSave}>Confirmar</button>
+            }
+
+            <div className='eventImagesBtnsBotton'>
+                <button className='btn btnD' onClick={() => setProgres(40)}>Volver</button>
+                <button className='btn btnD' onClick={() => setProgres(80)}>Continuar</button>
+            </div>
         </div>
     );
 };

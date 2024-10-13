@@ -69,3 +69,12 @@
         background-color: $colorD;
     }
 }
+
+.btnUE {
+    background-color: $underEvent;
+    color: #fff;
+
+    &:hover {
+        background-color: #515683;
+    }
+}

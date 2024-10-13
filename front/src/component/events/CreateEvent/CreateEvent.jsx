@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react';
 import EventInfo from '../EventInfo/EventInfo';
 import EventImages from '../EventImages/EventImages.jsx';
 import EventProgress from '../EventProgress/EventProgress';
+import ConfirmEvent from '../ConfirmEvent/ConfirmEvent.jsx';
+import TicketCreate from '../TicketsCreate/TicketsCreate.jsx';
 import Eventlocation from '../EventLocation/EventLocation.jsx';
 import { getConfirmEventApi } from '../../../helpers/event/getEventConfirm.api.js';
 
@@ -26,13 +28,15 @@ const CreateEvent = ({ user }) => {
             setLoading(false);
         }; if (lsEvent) fetchData();
     }, []);
-
+    
     return (
         <div className='createEvent'>
             <EventProgress progres={progres} setProgres={setProgres} lsEvent={lsEvent} />
             {progres === 20 && <EventInfo setProgres={setProgres} setLoading={setLoading} values={values} setValues={setValues} lsEvent={lsEvent} />}
             {progres === 40 && <EventImages values={values} setValues={setValues} setLoading={setLoading} setProgres={setProgres} />}
             {progres === 60 && <Eventlocation values={values} setValues={setValues} setLoading={setLoading} setProgres={setProgres} />}
+            {progres === 80 && <TicketCreate values={values} setValues={setValues} setLoading={setLoading} setProgres={setProgres} />}
+            {progres === 100 && <ConfirmEvent values={values} setValues={setValues} setLoading={setLoading} setProgres={setProgres} />}
             <Load loading={loading} />
         </div>
     );
