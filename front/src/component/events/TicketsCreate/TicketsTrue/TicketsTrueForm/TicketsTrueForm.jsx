@@ -1,7 +1,7 @@
 import './ticketsTrueForm.scss';
 import Switch from '@mui/material/Switch';
 
-const TicketsTrueForm = ({ values, handleSubmit, ticket, setTicket }) => {
+const TicketsTrueForm = ({ values, handleSubmit, ticket, setTicket, tic }) => {
 
     const handleChange = (e) => setTicket({ ...ticket, [e.target.name]: e.target.value });
     const handleSwitch = (e) => setTicket({ ...ticket, active: e.target.checked });
@@ -37,10 +37,13 @@ const TicketsTrueForm = ({ values, handleSubmit, ticket, setTicket }) => {
                 </div>
                 <div>
                     <label>Precios <span>en moneda local.</span></label>
-                    <input
-                        type="number" name='price' placeholder='$' onChange={handleChange}
-                        value={ticket.price || ''} required
-                    />
+                    {tic
+                        ? <p style={{textAlign: 'left'}}>Entradas libres</p>
+                        : <input
+                            type="number" name='price' placeholder='$' onChange={handleChange}
+                            value={ticket.price || ''} required
+                        />
+                    }
                 </div>
             </section>
 

@@ -4,6 +4,7 @@ import MapView from '../../utils/MapVew.jsx';
 import { updEventApi } from '../../../helpers/event/updEvent.api.js';
 import EventLocationForm from './EventLocationForm/Eventlocationform.jsx';
 import { getCoordinatesApi } from '../../../helpers/maps/getCoordinates.api.js';
+import UnderEventsLog from '../../fonts/UnderEventsLog/UnderEventsLog.jsx';
 
 const Eventlocation = ({ values, setValues, setLoading, setProgres }) => {
 
@@ -57,6 +58,10 @@ const Eventlocation = ({ values, setValues, setLoading, setProgres }) => {
             <div className='eventImagesBtnsBotton'>
                 <button className='btn btnD' onClick={() => setProgres(40)}>Volver</button>
                 <button className='btn btnD' onClick={() => setProgres(80)}>Continuar</button>
+            </div>
+
+            <div style={{marginTop: '2rem'}}>
+                <UnderEventsLog size={3} />
             </div>
         </div>
     );

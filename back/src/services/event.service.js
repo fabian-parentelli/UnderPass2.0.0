@@ -38,6 +38,15 @@ const getNotConfirm = async (uid) => {
     return { status: 'success', result };
 };
 
+const confirm = async (id) => {
+    const eventdb = await eventRepository.getById(id);
+    if (!eventdb) throw new EventNotFound('No se puede encontrar el evento');
+    eventdb.confirm = true;
+    const result = await eventRepository.update(eventdb);
+    if (!result) throw new EventNotFound('No se puede actualizar el evento');
+    return { status: 'success', result };
+};
+
 const putEvent = async (event) => {
     const eventdb = await eventRepository.getById(event._id);
     if (!eventdb) throw new EventNotFound('No se puede encontrar el evento');
@@ -51,4 +60,4 @@ const putEvent = async (event) => {
     return { status: 'success', result };
 };
 
-export { newEvent, newImg, getNotConfirm, putEvent, newPreset };
+export { newEvent, newImg, getNotConfirm, putEvent, newPreset, confirm };

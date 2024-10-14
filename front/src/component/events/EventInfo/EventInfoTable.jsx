@@ -1,7 +1,7 @@
 import './eventInfoTable.scss';
+import EventType from './EventType';
 import Switch from '@mui/material/Switch';
 import EventCategory from '../EventCategory/EventCategory';
-import EventType from './EventType';
 
 const EventInfoTable = ({ values, handleChangue, handleSubmit, handleMinors, handleTicket, handleType, lsEvent, isChange }) => {
 

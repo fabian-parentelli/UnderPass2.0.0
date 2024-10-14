@@ -28,7 +28,7 @@ const CreateEvent = ({ user }) => {
             setLoading(false);
         }; if (lsEvent) fetchData();
     }, []);
-    
+
     return (
         <div className='createEvent'>
             <EventProgress progres={progres} setProgres={setProgres} lsEvent={lsEvent} />
@@ -36,7 +36,7 @@ const CreateEvent = ({ user }) => {
             {progres === 40 && <EventImages values={values} setValues={setValues} setLoading={setLoading} setProgres={setProgres} />}
             {progres === 60 && <Eventlocation values={values} setValues={setValues} setLoading={setLoading} setProgres={setProgres} />}
             {progres === 80 && <TicketCreate values={values} setValues={setValues} setLoading={setLoading} setProgres={setProgres} />}
-            {progres === 100 && <ConfirmEvent values={values} setValues={setValues} setLoading={setLoading} setProgres={setProgres} />}
+            {progres === 100 && <ConfirmEvent setProgres={setProgres} setLoading={setLoading} values={values} />}
             <Load loading={loading} />
         </div>
     );

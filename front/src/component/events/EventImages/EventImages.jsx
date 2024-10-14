@@ -5,6 +5,7 @@ import UploadEventImg from './UploadEventImg/UploadEventImg';
 import EventVideoInput from './EventVideoInput/EventVideoInput';
 import EventCard from '../EventCard/EventCard';
 import EventPreset from './EventPreSet/EventPreset';
+import UnderEventsLog from '../../fonts/UnderEventsLog/UnderEventsLog';
 
 const EventImages = ({ values, setValues, setLoading, setProgres }) => {
 
@@ -34,6 +35,10 @@ const EventImages = ({ values, setValues, setLoading, setProgres }) => {
             <div className='eventImagesBtnsBotton'>
                 <button className='btn btnD' onClick={()=> setProgres(20)}>Volver</button>
                 <button className='btn btnD' onClick={()=> setProgres(60)}>Continuar</button>
+            </div>
+
+            <div className='eventImagesLogo'>
+                <UnderEventsLog size={3} />
             </div>
         </div>
     );

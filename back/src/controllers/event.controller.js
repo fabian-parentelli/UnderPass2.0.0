@@ -43,6 +43,17 @@ const getNotConfirm = async (req, res) => {
     };
 };
 
+const confirm = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const result = await eventService.confirm(id);
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof EventNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
 const putEvent = async (req, res) => {
     try {
         const result = await eventService.putEvent({ ...req.body });
@@ -53,4 +64,4 @@ const putEvent = async (req, res) => {
     };
 };
 
-export { newEvent, newImg, getNotConfirm, putEvent, newPreset };
+export { newEvent, newImg, getNotConfirm, putEvent, newPreset, confirm };

@@ -1,8 +1,5 @@
 function typeCart(type) {
 
-    console.log(type);
-    
-    
     const typeCart = {
         'cards': () => { return 'Tarjeta publicitaria' },
         'product': () => { return 'Producto' },

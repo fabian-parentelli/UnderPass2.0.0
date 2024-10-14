@@ -1,0 +1,78 @@
+.confirmEvent {
+    margin: 2rem auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    span {
+        color: #383f84;
+    }
+
+    section {
+        display: flex;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+        gap: 2rem;
+        width: 100%;
+        margin: 2rem 0;
+
+        .confirmEventDivImg {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .confirmEventDiv {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 445px;
+            gap: .4rem;
+
+            h3 {
+                margin-bottom: 0.6rem;
+            }
+        }
+    }
+
+    .confirmEventpp {
+        width: 80%;
+        line-height: 2;
+    }
+
+    .confirmEventVideo {
+        margin-top: 2rem;
+        width: 600px;
+        height: 300px;
+    }
+
+    .confirmEventBTNEND {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-top: 6rem;
+    }
+}
+
+@media (max-width: 767px) {
+
+    .confirmEvent {
+
+        .confirmEventpp {
+            width: 90%;
+        }
+
+        .confirmEventVideo {
+            width: 90%;
+            height: auto;
+        }
+
+        .confirmEventBTNEND {
+            margin-top: 3rem;
+        }
+    }
+
+}

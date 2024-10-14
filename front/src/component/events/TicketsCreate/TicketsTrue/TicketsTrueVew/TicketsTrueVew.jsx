@@ -6,7 +6,7 @@ import SyncAltIcon from '@mui/icons-material/SyncAlt';
 import TicketsTrueForm from '../TicketsTrueForm/TicketsTrueForm';
 import ModalCustom from '../../../../utils/ModalCustom/ModalCustom';
 
-const TicketsTrueVew = ({ tickets, setTickets, values }) => {
+const TicketsTrueVew = ({ tickets, setTickets, values, tic }) => {
 
     const [vew, setVew] = useState({ index: null, open: false });
     const [ticket, setTicket] = useState({ active: true });
@@ -44,7 +44,7 @@ const TicketsTrueVew = ({ tickets, setTickets, values }) => {
                     <tr>
                         <th>Descripción</th>
                         <th>Stock</th>
-                        <th>Precio</th>
+                        {!tic && <th>Precio</th>}
                         <th>Hora Ven.</th>
                         <th>Día Ven.</th>
                         <th>Activo</th>
@@ -58,7 +58,7 @@ const TicketsTrueVew = ({ tickets, setTickets, values }) => {
                             <tr >
                                 <td>{tick.description}</td>
                                 <td>{tick.quantity}</td>
-                                <td>${tick.price}</td>
+                                {!tic && <td>${tick.price}</td>}
                                 <td>{tick.hourEnd}hs</td>
                                 <td>{new Date(tick.dateEnd).toLocaleDateString('es-ES', { timeZone: 'UTC' })}</td>
 
