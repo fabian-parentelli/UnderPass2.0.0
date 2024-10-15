@@ -43,6 +43,28 @@ const getNotConfirm = async (req, res) => {
     };
 };
 
+const getEventPublic = async (req, res) => {
+    const { page = 1, limit = 12, active, country, publicity } = req.query;
+    try {
+        const result = await eventService.getEventPublic(page, limit, active, country, publicity);
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof EventNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
+const getEvent = async (req, res) => {
+    const { page = 1, limit = 12, active, country, publicity } = req.query;
+    try {
+        const result = await eventService.getEvent({ ...req.user }, page, limit, active, country, publicity);
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof EventNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
 const confirm = async (req, res) => {
     const { id } = req.params;
     try {
@@ -64,4 +86,4 @@ const putEvent = async (req, res) => {
     };
 };
 
-export { newEvent, newImg, getNotConfirm, putEvent, newPreset, confirm };
+export { newEvent, newImg, getEvent, getNotConfirm, putEvent, newPreset, confirm, getEventPublic };

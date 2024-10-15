@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const UnderEventFont = ({ size, color }) => {
 
     return (
-        <Link to={'/themarket'}
+        <Link to={'/event'}
             className='underEventFont'
             style={{ fontSize: `${size}rem`, color: color === 'true' ? '#fbdca8' : '#242424' }}
         >

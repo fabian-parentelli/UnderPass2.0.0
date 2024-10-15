@@ -8,15 +8,15 @@ const EventType = ({ values, handleType, handleChangue }) => {
                 <label>Evento público</label>
                 <div className='eventInfoTableFormSwitch'>
                     <p>No</p>
-                    <Switch checked={values.type} onChange={handleType} />
+                    <Switch checked={values.typePublic} onChange={handleType} />
                     <p>Si</p>
                 </div>
             </div>
 
-            {!values.type &&
+            {!values.typePublic &&
                 <div>
                     <label>Contraseña del evento</label>
-                    <input type="text" name='password' onChange={handleChangue} value={values.password} required={!values.type}/>
+                    <input type="text" name='password' onChange={handleChangue} value={values.password} required={!values.typePublic}/>
                 </div>
             }
         </>

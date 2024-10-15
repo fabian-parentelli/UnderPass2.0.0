@@ -52,7 +52,7 @@ const Browser = ({ handleMenuClick, menuVisible, listElementsRef, setMenuVisible
                     <ul className={`menu_nesting`}>
 
                         <li className='menu_inside' onClick={handleInsideClick}><Link to={'/newevent'} className='menu_link menu_link--inside' >Crear Evento</Link></li>
-                        <li className='menu_inside' onClick={handleInsideClick}><Link to={'/'} className='menu_link menu_link--inside' href='#'>Ver Eventos</Link></li>
+                        <li className='menu_inside' onClick={handleInsideClick}><Link to={'/event'} className='menu_link menu_link--inside'>Ver Eventos</Link></li>
 
                         <li className='menu_inside' onClick={handleInsideClick}><Link to={'/newProduct'} className='menu_link menu_link--inside'>Crear producto</Link></li>
                         <li className='menu_inside' onClick={handleInsideClick}><Link to={'/themarket'} className='menu_link menu_link--inside'>Ver Mercado</Link></li>

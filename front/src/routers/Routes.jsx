@@ -27,6 +27,7 @@ import VewTransferPay from "../component/transfer/VewTransferPay/VewTransferPay.
 import UniqueNews from "../componentSite/news/UniqueNews/UniqueNews.jsx";
 import UnderNews from "../componentSite/news/UnderNews/UnderNews.jsx";
 import NewEvent from "../componentSite/events/NewEvent/NewEvent.jsx";
+import UnderEvent from "../componentSite/events/UnderEvent/UnderEvent.jsx";
 
 const RoutesComp = () => {
 
@@ -52,6 +53,7 @@ const RoutesComp = () => {
                     <Route path="/uniquenews/:id" element={<UniqueNews />} />
                     <Route path="/undernews" element={<UnderNews />} />
                     <Route path="/newevent" element={<NewEvent />} />
+                    <Route path="/event" element={<UnderEvent />} />
 
                     {user.logged &&
                         <>

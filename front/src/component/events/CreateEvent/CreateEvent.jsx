@@ -16,7 +16,7 @@ const CreateEvent = ({ user }) => {
     const [loading, setLoading] = useState(false);
     const [values, setValues] = useState({
         title: '', category: '', minors: false, tickets: true, userId: user._id, startDate: '', startHour: '',
-        endHour: '', description: '', type: true, password: '', guests: ''
+        endHour: '', description: '', typePublic: true, password: '', guests: ''
     });
     useEffect(() => { window.scrollTo(0, 0) }, [progres]);
 

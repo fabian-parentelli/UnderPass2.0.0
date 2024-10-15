@@ -1,5 +1,6 @@
-import { eventRepository } from "../repositories/index.repositories.js";
+import { eventRepository, publicityRepository } from "../repositories/index.repositories.js";
 import { EventNotFound } from '../utils/custom-exceptions.utils.js';
+import { joinPublicity } from "../utils/joinPublicity.utils.js";
 
 const newEvent = async (event) => {
     event.guests = event.guests.split(',');
@@ -38,10 +39,51 @@ const getNotConfirm = async (uid) => {
     return { status: 'success', result };
 };
 
+const getEventPublic = async (page, limit, active, country, publicity) => {
+    const query = {};
+    if (active !== undefined) query.active = active;
+    if (country) query['location.country'] = { $regex: country, $options: "i" };
+    const result = await eventRepository.getEvent(query, limit, page);
+    if (!result) throw new EventNotFound('No se pueden encontrar los eventos');
+    if (publicity === undefined) return { status: 'success', result };
+    const querys = {
+        country: { $in: [country, 'all'] },
+        active: 'true',
+        type: { $in: ['cards', 'separator'] }
+    };
+    const cards = await publicityRepository.getAll(querys, limit, page);
+    result.docs = joinPublicity(result.docs, cards.docs);
+    result.totalDocs = result.docs.length;
+    return { status: 'success', result };
+};
+
+const getEvent = async ({ user }, page, limit, active, country, publicity) => {
+    const query = {};
+    let sort = {};
+    if (user && user.role === 'user') {
+        sort.provinceSort = user.location.province; sort.citySort = user.location.city
+    }
+    if (active !== undefined) query.active = active;
+    if (country) query['location.country'] = { $regex: country, $options: "i" };
+    const result = await eventRepository.getEvent(query, limit, page, sort);
+    if (!result) throw new EventNotFound('No se pueden encontrar los eventos');
+    if (publicity === undefined) return { status: 'success', result };
+    const querys = {
+        country: { $in: [country, 'all'] },
+        active: 'true',
+        type: { $in: ['cards', 'separator'] }
+    };
+    const cards = await publicityRepository.getAll(querys, limit, page);
+    result.docs = joinPublicity(result.docs, cards.docs);
+    result.totalDocs = result.docs.length;
+    return { status: 'success', result };
+};
+
 const confirm = async (id) => {
     const eventdb = await eventRepository.getById(id);
     if (!eventdb) throw new EventNotFound('No se puede encontrar el evento');
     eventdb.confirm = true;
+    eventdb.active = true;
     const result = await eventRepository.update(eventdb);
     if (!result) throw new EventNotFound('No se puede actualizar el evento');
     return { status: 'success', result };
@@ -60,4 +102,4 @@ const putEvent = async (event) => {
     return { status: 'success', result };
 };
 
-export { newEvent, newImg, getNotConfirm, putEvent, newPreset, confirm };
+export { newEvent, newImg, getEvent, getNotConfirm, putEvent, newPreset, confirm, getEventPublic };

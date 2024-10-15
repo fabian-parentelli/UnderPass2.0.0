@@ -45,8 +45,8 @@ const ConfirmEvent = ({ values, setLoading, setProgres }) => {
                     <p><span>Dia del evento:</span> {values.startDate && new Date(values.startDate).toLocaleDateString()}</p>
                     <p><span>Hora del evento:</span> {values.startHour && values.startHour}hs</p>
                     <p><span>Fin del evento:</span> {values.startHour && values.endHour}hs</p>
-                    <p><span>Evento:</span> {values.type && values.type ? 'Público' : 'Privado'}</p>
-                    {values?.type === false &&
+                    <p><span>Evento:</span> {values.typePublic && values.typePublic ? 'Público' : 'Privado'}</p>
+                    {values?.typePublic === false &&
                         <p><span>Contraseña:</span> {values?.password}</p>
                     }
                     <p><span>Invitados:</span> {values.guests && values.guests}</p>

@@ -18,7 +18,7 @@ const MainBody = () => {
             {user.logged && <SubNav />}
             <BannerBody />
 
-            <BodyEvents text={'Eventos'} />
+            <BodyEvents />
             <NewsSeparator start={1} end={2} />
 
             <BodyProduct />

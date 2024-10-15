@@ -2,7 +2,16 @@
     margin-top: 1rem;
     padding: 2rem 0;
     display: flex;
-    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 
-    min-height: 40vh;
+    .bodyEventsLink {
+        margin-top: 2rem;
+        color: #383f84;
+        text-decoration: none;
+
+        &:hover {
+            color: #1f2980;
+        } 
+    }
 }

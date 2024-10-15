@@ -10,6 +10,10 @@ export default class Event {
         return await eventModel.findOne(query).lean();
     };
 
+    getEvent = async (query, limit, page) => {
+        return await eventModel.paginate(query, { limit, page, lean: true, sort: { startDate: 1 } });
+    };
+
     getById = async (id) => {
         return await eventModel.findById(id).lean();
     };
