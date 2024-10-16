@@ -1,7 +1,6 @@
 import './profile.scss';
 import { useEffect } from "react";
 import UserMenu from '../UserMenu/UserMenu';
-
 import { Route, Routes } from 'react-router-dom';
 import PanelProfile from '../PanelProfile/PanelProfile';
 import { useLoginContext } from "../../../context/LoginContext";
@@ -12,6 +11,7 @@ import ProductPanel from '../product/ProductPanel/ProductPanel';
 import AlertProfil from '../AlertProfil/AlertProfil';
 import CommerceHome from '../commerce/CommerceHome/CommerceHome';
 import Wallet from '../Wallet/Wallet';
+import Eventmenu from '../EventMenu/EventMenu';
 
 const Profile = () => {
 
@@ -30,6 +30,7 @@ const Profile = () => {
                 <Route path='/alerts' element={<AlertProfil />} />
                 <Route path='/commerce_home' element={<CommerceHome />} />
                 <Route path='/wallet' element={<Wallet />} />
+                <Route path='/eventmenu' element={<Eventmenu />} />
             </Routes>
         </div>
     );

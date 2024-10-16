@@ -1,0 +1,31 @@
+.eventPanelNotVew {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    flex-wrap: wrap;
+
+    .eventPanelNotVewText {
+        width: 60%;
+        color: gray;
+        line-height: 2;
+
+        p {
+            margin-top: 1rem;
+            font-size: 14px;
+        }
+    }
+}
+
+@media (max-width: 767px) {
+
+    .eventPanelNotVew {
+        width: 100%;
+        justify-content: center;
+
+        .eventPanelNotVewText {
+            width: 100%;
+            text-align: center;
+        }
+    }
+}

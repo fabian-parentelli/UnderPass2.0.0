@@ -45,9 +45,9 @@ const EventCard = ({ card }) => {
                     <div className='lineVert'></div>
 
                     <div className='eventCardDate'>
-                        <p>{card.startHour.split(':')[0]}</p>
+                        {card.startHour && <p>{card.startHour.split(':')[0]}</p>}
                         <div>
-                            <p>{card.startHour.split(':')[1]}</p>
+                            {card.startHour && <p>{card.startHour.split(':')[1]}</p>}
                             <p>hrs</p>
                         </div>
                     </div>

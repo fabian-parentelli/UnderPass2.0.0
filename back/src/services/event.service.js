@@ -12,8 +12,8 @@ const newEvent = async (event) => {
 const newImg = async (imagesUrl, event) => {
     const eventdb = await eventRepository.getById(event._id)
     if (!eventdb) throw new EventNotFound('No se puede encontrar el evento');
-    eventdb.video = event.video;
-    eventdb.photo = { img: imagesUrl[0], isPreset: false };
+    if(event.video) eventdb.video = event.video;
+    eventdb.photo = { img: imagesUrl[0], isPreset: false, presetId: '' };
     const result = await eventRepository.update(eventdb);
     if (!result) throw new EventNotFound('No se puede actualizar el evento');
     result.guests = result.guests.join(',');
@@ -93,7 +93,7 @@ const putEvent = async (event) => {
     const eventdb = await eventRepository.getById(event._id);
     if (!eventdb) throw new EventNotFound('No se puede encontrar el evento');
     const objEvent = { ...eventdb, ...event };
-    if (objEvent.type) objEvent.password = '';
+    if (objEvent.typePublic) objEvent.password = '';
     objEvent.guests = event.guests.split(',');
     const upd = await eventRepository.update(objEvent);
     if (!upd) throw new EventNotFound('No se puede actualizar el evento');
