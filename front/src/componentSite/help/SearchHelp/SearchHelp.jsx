@@ -31,4 +31,5 @@ const data = [
     { label: 'Ver mis publicidades', data: 'publicityVewHelp' },
     { label: 'Ordenes de compra', data: 'orderBuyHelp' },
     { label: 'Ordenes de venta', data: 'orderSellerHelp' },
+    { label: 'Crear un evento', data: 'newEventHelp' },
 ];

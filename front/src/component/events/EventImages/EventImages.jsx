@@ -27,7 +27,7 @@ const EventImages = ({ values, setValues, setLoading, setProgres }) => {
             {vew === 'pre' && <EventPreset values={values} video={video} setValues={setValues} setLoading={setLoading} setProgres={setProgres} />}
 
             {vew === null && (
-                !values.photo
+                !values.photo.img && !values.photo.presetId
                     ? <EventHelpIn />
                     : <div className='eventImagesImgDiv'><EventCard card={values} /></div>
             )}

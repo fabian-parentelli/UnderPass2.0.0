@@ -58,7 +58,19 @@ const imagesHelp = {
     pbBookinPanel: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1727986172/help/tltkypkhmccqzj7ejiov.png',
     pbYouAreBooking: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1727986171/help/mudnr5j9djibk4zvg5az.png',
     pbWhoAreTYouBooking: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1727986172/help/nvui4uimkqwuphwj7qk5.png',
-    pbProductStock: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1727986530/help/cyta2svmywoeyiiew5qt.png'
+    pbProductStock: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1727986530/help/cyta2svmywoeyiiew5qt.png',
+
+    // New Events
+    eventProgress : 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1729203892/help/fresvf3q41lr2rmxnvtr.png',
+    eventInfo: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1729203893/help/vlskdn3xa5nir5fbs7th.png',
+    eventVideo: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1729203893/help/xp9nv7tkpmor3owdquzv.png',
+    eventUpload: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1729203893/help/bh0nwqiewsaoaoccygpy.png',
+    eventPreset: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1729203894/help/np8qalyyqsghjoqcuhjc.png',
+    eventLocation: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1729203893/help/ko5qgxh0dieej7uqy1k3.png',
+    eventTicket: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1729203892/help/ya0ixakjhvskqhevrhwi.png',
+    eventConfirm: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1729203893/help/aoefays3jojpgvsmp59h.png',
+
+    
 };
 
 const alertImages = {

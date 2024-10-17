@@ -9,12 +9,13 @@ const UploadEventImg = ({ values, video, setValues, setLoading, setProgres }) =>
     const handleFileChange = (data) => setFormData(data);
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
+        e.preventDefault();        
         setLoading(true);
         const obj = { _id: values._id };
         if (video) obj.video = video;
         for (const field in obj) formData.set(field, obj[field]);
         const response = await postEventImgApi(formData);
+        console.log(response);
         if (response.status === 'success') {
             setValues(response.result);
             setProgres(60);
@@ -27,7 +28,7 @@ const UploadEventImg = ({ values, video, setValues, setLoading, setProgres }) =>
             <p>Subir Imágen</p>
             <CloudFile onChange={handleFileChange} folderName={`event/${values._id}`} contClass='cfRect' />
             <p>Medidas 220px por 220px (Medidas de un post de Instagrame)</p>
-            <button className='btn btnB' disabled={!formData || !formData.has('file')}>Subir Img</button>
+            <button className='btn btnB' disabled={!formData} >Subir Img</button>
         </form>
     );
 };

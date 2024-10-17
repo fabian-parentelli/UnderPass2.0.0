@@ -22,6 +22,7 @@ const EventInfo = ({ setProgres, setLoading, values, setValues, lsEvent }) => {
                 const response = await newEventApi(values);
                 if (response.status === 'success') {
                     localStorage.setItem('event', response.result._id);
+                    setValues(response.result);
                     setProgres(40);
                 } else console.error(response.error);
             } else {

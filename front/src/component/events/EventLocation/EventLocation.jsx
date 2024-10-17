@@ -52,7 +52,10 @@ const Eventlocation = ({ values, setValues, setLoading, setProgres }) => {
             }
 
             {location.coordinates.lat !== '' && location.coordinates.lon !== '' &&
-                <button className='btn eventlocationBtn' onClick={handleSave}>Confirmar</button>
+                <div className='eventImagesBtnsBotton'>
+                    <button className='btn eventlocationBtn' onClick={handleSave}>No coincide</button>
+                    <button className='btn eventlocationBtn' onClick={handleSave}>Confirmar</button>
+                </div>
             }
 
             <div className='eventImagesBtnsBotton'>
@@ -60,7 +63,7 @@ const Eventlocation = ({ values, setValues, setLoading, setProgres }) => {
                 <button className='btn btnD' onClick={() => setProgres(80)}>Continuar</button>
             </div>
 
-            <div style={{marginTop: '2rem'}}>
+            <div style={{ marginTop: '2rem' }}>
                 <UnderEventsLog size={3} />
             </div>
         </div>

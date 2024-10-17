@@ -13,7 +13,7 @@ const eventSchema = new mongoose.Schema({
     guests: [{ type: String }],
     minors: { type: Boolean },
     typePublic: { type: Boolean },
-    type: { type: String, default: 'evenet' },
+    type: { type: String, default: 'event' },
     userId: { type: String },
     video: { type: String },
     tickets: { type: Boolean },

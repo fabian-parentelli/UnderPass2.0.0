@@ -31,7 +31,7 @@ const PrintUsers = ({ users, handleRole, handleActive }) => {
                     {users && users.docs.map((us) => (
                         <Fragment key={us._id}>
                             <tr>
-                                <td><BigImg img={us.avatar[0]} /> </td>
+                                <td><BigImg img={us.avatar[0]} border={true} /> </td>
                                 <td className='printUsersName' onClick={() => handleInfo(us._id)} >
                                     <p>{us.name}</p>
                                     <p style={{ fontSize: '12px' }}>{us._id}</p>

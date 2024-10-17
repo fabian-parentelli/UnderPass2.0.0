@@ -10,10 +10,10 @@ const newEvent = async (event) => {
 };
 
 const newImg = async (imagesUrl, event) => {
-    const eventdb = await eventRepository.getById(event._id)
+    const eventdb = await eventRepository.getById(event._id);
     if (!eventdb) throw new EventNotFound('No se puede encontrar el evento');
     if(event.video) eventdb.video = event.video;
-    eventdb.photo = { img: imagesUrl[0], isPreset: false, presetId: '' };
+    eventdb.photo = { img: imagesUrl[0], isPreset: false, presetId: null };
     const result = await eventRepository.update(eventdb);
     if (!result) throw new EventNotFound('No se puede actualizar el evento');
     result.guests = result.guests.join(',');
