@@ -6,8 +6,12 @@ import EventTypeImg from '../EventTypeImg/EventTypeImg';
 import UpdEventImg from '../UpdEventImg/UpdEventImg.jsx';
 import ModalCustom from '../../utils/ModalCustom/ModalCustom.jsx';
 import typeEventCategory from '../../../utils/typeEventCategory.utils.js';
+import UpdEventInfo from '../UpdInfoEvent/UpdInfoEvent.jsx';
+import ConfirmationNumberIcon from '@mui/icons-material/ConfirmationNumber';
+import UpdTicketEvent from '../UpdTicketEvent/UpdTicketEvent.jsx';
 
-const EventTableHtml = ({ events, closedImg, openImg, vewImg, setLoading, setEvents }) => {
+const EventTableHtml = ({ events, closedImg, openImg, vewImg, setLoading, setEvents,
+    vewInfo, closedInfo, openInfo, vewTicket, closedTicket, openTicket }) => {
 
     return (
         <div className='eventTableHtml'>
@@ -23,6 +27,7 @@ const EventTableHtml = ({ events, closedImg, openImg, vewImg, setLoading, setEve
                         <th>Hora</th>
                         <th>Público</th>
                         <th>Actualizar</th>
+                        <th>Entradas</th>
                         <th>Activo</th>
                     </tr>
                 </thead>
@@ -53,9 +58,19 @@ const EventTableHtml = ({ events, closedImg, openImg, vewImg, setLoading, setEve
 
                                 <Tooltip title='Actualizar' placement="left-start">
                                     <td
+                                        onClick={() => openInfo(eve._id)}
                                         className='eventTableBack'
                                     >
                                         {<SyncAltIcon />}
+                                    </td>
+                                </Tooltip>
+
+                                <Tooltip title='Entradas' placement="left-start">
+                                    <td
+                                        onClick={() => openTicket(eve._id)}
+                                        className='eventTableBack'
+                                    >
+                                        <ConfirmationNumberIcon />
                                     </td>
                                 </Tooltip>
 
@@ -72,6 +87,18 @@ const EventTableHtml = ({ events, closedImg, openImg, vewImg, setLoading, setEve
                             {vewImg.vew === eve._id &&
                                 <ModalCustom modalIsOpen={vewImg.open} closeModal={closedImg}>
                                     <UpdEventImg event={eve} closedImg={closedImg} setEvents={setEvents} events={events} />
+                                </ModalCustom>
+                            }
+
+                            {vewInfo.vew === eve._id &&
+                                <ModalCustom modalIsOpen={vewInfo.open} closeModal={closedInfo}>
+                                    <UpdEventInfo event={eve} closedInfo={closedInfo} setEvents={setEvents} events={events} />
+                                </ModalCustom>
+                            }
+
+                            {vewTicket.vew === eve._id &&
+                                <ModalCustom modalIsOpen={vewTicket.open} closeModal={closedTicket}>
+                                    <UpdTicketEvent event={eve} closedInfo={closedInfo} setEvents={setEvents} events={events} />
                                 </ModalCustom>
                             }
                         </Fragment>

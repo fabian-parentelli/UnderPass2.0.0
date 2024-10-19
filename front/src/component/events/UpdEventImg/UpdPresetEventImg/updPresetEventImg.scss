@@ -1,0 +1,13 @@
+.updPresetEventImg {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 2rem;
+
+    .eventPresetBTN {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}

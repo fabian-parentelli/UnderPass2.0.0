@@ -94,7 +94,7 @@ const putEvent = async (event) => {
     if (!eventdb) throw new EventNotFound('No se puede encontrar el evento');
     const objEvent = { ...eventdb, ...event };
     if (objEvent.typePublic) objEvent.password = '';
-    objEvent.guests = event.guests.split(',');
+    if(typeof objEvent.guests === 'string') objEvent.guests = event.guests.split(',');
     const upd = await eventRepository.update(objEvent);
     if (!upd) throw new EventNotFound('No se puede actualizar el evento');
     const result = await eventRepository.getById(event._id);

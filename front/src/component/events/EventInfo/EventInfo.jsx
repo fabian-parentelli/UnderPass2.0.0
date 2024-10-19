@@ -12,7 +12,7 @@ const EventInfo = ({ setProgres, setLoading, values, setValues, lsEvent }) => {
     const handleChangue = (e) => { setValues({ ...values, [e.target.name]: e.target.value }); setIsChange(true) };
     const handleMinors = (e) => { setValues({ ...values, minors: e.target.checked }); setIsChange(true) };
     const handleTicket = (e) => { setValues({ ...values, tickets: e.target.checked }); setIsChange(true) };
-    const handleType = (e) => { setValues({ ...values, type: e.target.checked }); setIsChange(true) };
+    const handleType = (e) => { setValues({ ...values, typePublic: e.target.checked }); setIsChange(true) };
 
     const handleSubmit = async (e) => {
         e.preventDefault();

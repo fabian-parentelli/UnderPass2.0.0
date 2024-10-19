@@ -1,0 +1,38 @@
+.updEventInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+
+    span {
+        color: gray;
+        font-size: 12px;
+    }
+
+    div {
+        display: flex;
+        flex-direction: column;
+        width: 260px;
+
+        .updEventInfoSwitch {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        p {
+            font-size: 12px;
+            color: gray;
+        }
+
+        .eventInfoTableFormSwitch {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        .eventInfoTableDes {
+            height: 300px;
+        }
+    }
+}

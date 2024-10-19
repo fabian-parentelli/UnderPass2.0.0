@@ -1,6 +1,8 @@
 import './updEventImg.scss';
 import { useState } from 'react';
 import UpdUploadEventImg from './UpdUploadEventImg/UpdUploadEventImg';
+import UpdPresetEventImg from './UpdPresetEventImg/UpdPresetEventImg';
+import EventCard from '../EventCard/EventCard';
 
 const UpdEventImg = ({ event, closedImg, setEvents, events }) => {
 
@@ -15,6 +17,8 @@ const UpdEventImg = ({ event, closedImg, setEvents, events }) => {
                 <button className='btn btnC' onClick={() => handlevew('pre')}>Pre-set</button>
             </div>
             {vew === 'img' && <UpdUploadEventImg event={event} closedImg={closedImg} setEvents={setEvents} events={events} />}
+            {vew === 'pre' && <UpdPresetEventImg event={event} closedImg={closedImg} setEvents={setEvents} events={events} /> }
+            {vew === null && <EventCard card={event} /> }
         </div>
     );
 };
