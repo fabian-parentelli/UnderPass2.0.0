@@ -12,6 +12,8 @@ const getEventsApi = async (obj) => {
     if (obj.publicity) urlData += `publicity=${obj.publicity}&`;
     if (obj.provinceSort) urlData += `provinceSort=${obj.provinceSort}&`;
     if (obj.citySort) urlData += `citySort=${obj.citySort}&`; 
+    if (obj.userid) urlData += `userid=${obj.userid}&`; 
+    if (obj.category) urlData += `category=${obj.category}&`; 
 
     if (urlData.endsWith('&')) urlData = urlData.slice(0, -1);
 

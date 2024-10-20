@@ -16,7 +16,7 @@
     background: white;
     border-radius: 4px;
     padding: 20px;
-    max-width: 600px; 
+    max-width: 800px; 
     margin: auto;
 }
 
@@ -30,6 +30,6 @@
 }
 @media (max-width: 767px) {
     .modalCustom { 
-        max-width: 280px;
+        max-width: 96%;
     }
 }

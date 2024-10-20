@@ -19,8 +19,8 @@ const EventPanel = ({ user }) => {
                 <button className='btn btnUE' onClick={() => handleVew('new')}>Crear</button>
             </div>
             {vew === null && <EventPanelNotVew />}
-            {vew === 'new' && user && <CreateEvent user={user} />}
             {vew === 'vew' && user && <EventPanelVew user={user} setLoading={setLoading} />}
+            {vew === 'new' && user && <CreateEvent user={user} />}
             <Load loading={loading} />
         </div>
     );

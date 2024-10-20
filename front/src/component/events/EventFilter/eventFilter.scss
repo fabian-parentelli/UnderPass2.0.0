@@ -1,0 +1,15 @@
+.eventFilter {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    background-color: rgb(216, 216, 216);
+    padding: 6px;
+
+    div {
+        width: 150px;
+
+        select {
+            width: 100%;
+        }
+    }
+}

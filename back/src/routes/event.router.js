@@ -12,6 +12,7 @@ export default class EventRouter extends Router {
         this.get('/public', ['PUBLIC'], passportEnum.NOTHING, eventController.getEventPublic);
         this.get('/:uid', ['USER', 'ADMIN', 'MASTER'], passportEnum.JWT, eventController.getNotConfirm);
         this.get('/', ['USER', 'ADMIN', 'MASTER'], passportEnum.JWT, eventController.getEvent);
+        this.put('/active/:id', ['USER', 'ADMIN', 'MASTER'], passportEnum.JWT, eventController.updActive);
         this.put('/confirm/:id', ['USER', 'ADMIN', 'MASTER'], passportEnum.JWT, eventController.confirm);
         this.put('/', ['USER', 'ADMIN', 'MASTER'], passportEnum.JWT, eventController.putEvent);
     };

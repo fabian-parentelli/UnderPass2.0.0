@@ -12,7 +12,7 @@ const newEvent = async (event) => {
 const newImg = async (imagesUrl, event) => {
     const eventdb = await eventRepository.getById(event._id);
     if (!eventdb) throw new EventNotFound('No se puede encontrar el evento');
-    if(event.video) eventdb.video = event.video;
+    if (event.video) eventdb.video = event.video;
     eventdb.photo = { img: imagesUrl[0], isPreset: false, presetId: null };
     const result = await eventRepository.update(eventdb);
     if (!result) throw new EventNotFound('No se puede actualizar el evento');
@@ -57,12 +57,14 @@ const getEventPublic = async (page, limit, active, country, publicity) => {
     return { status: 'success', result };
 };
 
-const getEvent = async ({ user }, page, limit, active, country, publicity) => {
+const getEvent = async ({ user }, page, limit, active, country, publicity, userid, category) => {
     const query = {};
     let sort = {};
     if (user && user.role === 'user') {
         sort.provinceSort = user.location.province; sort.citySort = user.location.city
-    }
+    };
+    if (userid) query.userId = userid;
+    if (category) query.category = category;
     if (active !== undefined) query.active = active;
     if (country) query['location.country'] = { $regex: country, $options: "i" };
     const result = await eventRepository.getEvent(query, limit, page, sort);
@@ -76,6 +78,18 @@ const getEvent = async ({ user }, page, limit, active, country, publicity) => {
     const cards = await publicityRepository.getAll(querys, limit, page);
     result.docs = joinPublicity(result.docs, cards.docs);
     result.totalDocs = result.docs.length;
+    return { status: 'success', result };
+};
+
+const updActive = async (id) => {
+    const eventdb = await eventRepository.getById(id);
+    if (!eventdb) throw new EventNotFound('No se puede encontrar el evento');
+    eventdb.active = !eventdb.active;
+    if (typeof eventdb.guests === 'string') eventdb.guests = event.guests.split(',');
+    const upd = await eventRepository.update(eventdb);
+    if (!upd) throw new EventNotFound('No se puede actualizar el evento');
+    const result = await eventRepository.getById(id);
+    result.guests = result.guests.join(',');
     return { status: 'success', result };
 };
 
@@ -94,7 +108,7 @@ const putEvent = async (event) => {
     if (!eventdb) throw new EventNotFound('No se puede encontrar el evento');
     const objEvent = { ...eventdb, ...event };
     if (objEvent.typePublic) objEvent.password = '';
-    if(typeof objEvent.guests === 'string') objEvent.guests = event.guests.split(',');
+    if (typeof objEvent.guests === 'string') objEvent.guests = event.guests.split(',');
     const upd = await eventRepository.update(objEvent);
     if (!upd) throw new EventNotFound('No se puede actualizar el evento');
     const result = await eventRepository.getById(event._id);
@@ -102,4 +116,4 @@ const putEvent = async (event) => {
     return { status: 'success', result };
 };
 
-export { newEvent, newImg, getEvent, getNotConfirm, putEvent, newPreset, confirm, getEventPublic };
+export { newEvent, newImg, getEvent, getNotConfirm, putEvent, newPreset, confirm, getEventPublic, updActive };

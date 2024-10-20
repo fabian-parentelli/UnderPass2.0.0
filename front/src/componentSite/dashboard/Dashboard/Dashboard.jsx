@@ -32,6 +32,7 @@ import VewNewsDas from '../news/VewNewsDas/VewNewsDas';
 import UpdNewsDas from '../news/UpdNewsDas/UpdNewsDas';
 import Comment from '../mensager/comments/Comment/Comment';
 import PresetDas from '../images/preset/PresetDas/PresetDas';
+import GetEvents from '../events/GetEvents/GetEvents';
 
 const Dashboard = () => {
 
@@ -111,6 +112,8 @@ const Dashboard = () => {
                 <Route path='/productuser' element={<ProductUserDas />} />
                 <Route path='/vewproducts' element={<VewProductsDas />} />
                 <Route path='/bookingdas' element={<BookingDas />} />
+
+                <Route path='/getevent' element={<GetEvents />} />
 
                 <Route path='/cash' element={<Cash />} />
                 <Route path='/pricelist' element={<PriceList />} />

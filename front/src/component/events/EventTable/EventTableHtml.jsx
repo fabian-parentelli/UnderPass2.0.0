@@ -1,5 +1,6 @@
 import './eventTable.scss';
 import { Fragment } from 'react';
+import PersonIcon from '@mui/icons-material/Person';
 import Tooltip from '@mui/material/Tooltip';
 import SyncAltIcon from '@mui/icons-material/SyncAlt';
 import EventTypeImg from '../EventTypeImg/EventTypeImg';
@@ -9,9 +10,14 @@ import typeEventCategory from '../../../utils/typeEventCategory.utils.js';
 import UpdEventInfo from '../UpdInfoEvent/UpdInfoEvent.jsx';
 import ConfirmationNumberIcon from '@mui/icons-material/ConfirmationNumber';
 import UpdTicketEvent from '../UpdTicketEvent/UpdTicketEvent.jsx';
+import { useLoginContext } from '../../../context/LoginContext.jsx';
+import UserVewSmall from '../../user/UserVewSmall/UserVewSmall.jsx';
 
-const EventTableHtml = ({ events, closedImg, openImg, vewImg, setLoading, setEvents,
-    vewInfo, closedInfo, openInfo, vewTicket, closedTicket, openTicket }) => {
+const EventTableHtml = ({ events, closedImg, openImg, vewImg, setEvents, vewInfo,
+    closedInfo, openInfo, vewTicket, closedTicket, openTicket, handleActive,
+    vewUser, closedUser, openUser }) => {
+
+    const { user } = useLoginContext();
 
     return (
         <div className='eventTableHtml'>
@@ -26,6 +32,7 @@ const EventTableHtml = ({ events, closedImg, openImg, vewImg, setLoading, setEve
                         <th>Día</th>
                         <th>Hora</th>
                         <th>Público</th>
+                        {user.data.role !== 'user' && <th>Usuario</th>}
                         <th>Actualizar</th>
                         <th>Entradas</th>
                         <th>Activo</th>
@@ -56,6 +63,17 @@ const EventTableHtml = ({ events, closedImg, openImg, vewImg, setLoading, setEve
 
                                 <td>{eve.typePublic ? 'SI' : 'NO'}</td>
 
+                                {user.data.role !== 'user' &&
+                                    <Tooltip title='Ver usuario' placement="left-start">
+                                        <td
+                                            onClick={() => openUser(eve._id)}
+                                            className='eventTableBack'
+                                        >
+                                            <PersonIcon />
+                                        </td>
+                                    </Tooltip>
+                                }
+
                                 <Tooltip title='Actualizar' placement="left-start">
                                     <td
                                         onClick={() => openInfo(eve._id)}
@@ -78,6 +96,7 @@ const EventTableHtml = ({ events, closedImg, openImg, vewImg, setLoading, setEve
                                     <td
                                         className='eventTableBack'
                                         style={{ color: eve.active ? 'green' : 'red' }}
+                                        onClick={() => handleActive(eve._id)}
                                     >
                                         {eve.active ? 'SI' : 'NO'}
                                     </td>
@@ -98,7 +117,13 @@ const EventTableHtml = ({ events, closedImg, openImg, vewImg, setLoading, setEve
 
                             {vewTicket.vew === eve._id &&
                                 <ModalCustom modalIsOpen={vewTicket.open} closeModal={closedTicket}>
-                                    <UpdTicketEvent event={eve} closedInfo={closedInfo} setEvents={setEvents} events={events} />
+                                    <UpdTicketEvent event={eve} closedTicket={closedTicket} setEvents={setEvents} events={events} />
+                                </ModalCustom>
+                            }
+
+                            {vewUser.vew === eve._id &&
+                                <ModalCustom modalIsOpen={vewUser.open} closeModal={closedUser}>
+                                    <UserVewSmall userId={eve.userId} />
                                 </ModalCustom>
                             }
                         </Fragment>

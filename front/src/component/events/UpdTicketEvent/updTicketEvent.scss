@@ -1,0 +1,30 @@
+@import '../../../style/colors.scss';
+
+.updTicketEvent {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+
+    &::-webkit-scrollbar {
+        height: 6px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: $underEvent;
+        border-radius: 6px;
+    }
+
+    .updTicketEvent {
+        cursor: pointer;
+        transition: .3s;
+
+        &:hover {
+            color: black;
+            background-color: $colorB;
+        }
+    }
+
+    button {
+        margin-top: 1rem;
+    }
+}

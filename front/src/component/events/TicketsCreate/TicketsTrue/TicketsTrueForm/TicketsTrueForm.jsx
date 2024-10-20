@@ -59,7 +59,7 @@ const TicketsTrueForm = ({ values, handleSubmit, ticket, setTicket, tic }) => {
                     <label>Día de vencimiento</label>
                     <input
                         type="date" name='dateEnd' placeholder='$' onChange={handleChange}
-                        value={ticket.dateEnd || ''} required
+                        value={ticket.dateEnd ? new Date(ticket.dateEnd).toISOString().split('T')[0] : ''} required
                     />
                 </div>
             </section>
