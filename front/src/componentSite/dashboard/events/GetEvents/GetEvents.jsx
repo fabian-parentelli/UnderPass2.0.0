@@ -4,12 +4,12 @@ import Load from '../../../../component/utils/Load';
 import StadiumIcon from '@mui/icons-material/Stadium';
 import Pager from '../../../../component/utils/Pager/Pager';
 import Title from '../../../../component/dashboard/Title/Title';
-import EventFilter from '../../../../component/events/EventFilter/EventFilter';
 import EventTable from '../../../../component/events/EventTable/EventTable';
+import EventFilter from '../../../../component/events/EventFilter/EventFilter';
 
 const GetEvents = () => {
 
-    const [query, setQuery] = useState({ country: null });
+    const [query, setQuery] = useState({ country: null, active: 'true' });
     const [events, setEvents] = useState(null);
     const [loading, setLoading] = useState(false);
 
@@ -25,7 +25,7 @@ const GetEvents = () => {
                 <p>{query.country ? query.country : 'Selecciona un país'}</p>
             </div>
             {query.country && <EventFilter query={query} setQuery={setQuery} setEvents={setEvents} setLoading={setLoading} />}
-            {events && <EventTable events={events} setEvents={setEvents} loading={loading} />}
+            {events && <EventTable events={events} setEvents={setEvents} setLoading={setLoading} />}
             <Pager users={events} HandleChangePage={handleChangePage} />
             <Load loading={loading} />
         </div>

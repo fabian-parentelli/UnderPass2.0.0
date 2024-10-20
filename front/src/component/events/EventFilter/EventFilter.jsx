@@ -1,11 +1,13 @@
 import './eventFilter.scss';
 import { useEffect, useState } from 'react';
+import CloseIcon from '@mui/icons-material/Close';
+import SelectedProvince from '../../utils/SelectedProvince.jsx';
 import { getEventsApi } from '../../../helpers/event/getEvents.api.js';
-import EventFilterLocation from './EventFilterLocation.jsx';
+import { eventCategorysArray } from '../../../utils/typeEventCategory.utils.js';
 
-const EventFilter = ({ query, setQuery, setEvents, setLoading }) => {
+const EventFilter = ({ query, setQuery, setEvents, setLoading, isActive = true }) => {
 
-    const [values, setValues] = useState(null);
+    const [prequery, setPrequery] = useState({ category: '', province: '', startDate: '', title: '', active: 'true' });
 
     useEffect(() => {
         const fetchData = async () => {
@@ -13,40 +15,64 @@ const EventFilter = ({ query, setQuery, setEvents, setLoading }) => {
             const response = await getEventsApi(query);
             if (response.status === 'success') {
                 setEvents(response.result);
-                setValues(response.result.docs);
             } else console.error(response.error);
             setLoading(false);
         }; fetchData();
     }, [query]);
 
-    const handleChangue = (e) => setQuery({ ...query, [e.target.name]: e.target.value });
+    const handleChangue = (e) => setPrequery({ ...prequery, [e.target.name]: e.target.value });
+    const handleProvince = (e) => setPrequery({ ...prequery, province: e.target.value });
+    const handleSearch = (e) => {
+        if (e.target.value === '') setQuery({ ...query, title: null });
+        if (e.target.value.length > 4) setQuery({ ...query, title: e.target.value });
+    }
 
-    // console.log(query);
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setQuery({ ...query, ...prequery });
+    };
+
+    const handleDelete = () => {
+        setPrequery({ category: '', province: '', startDate: '', active: 'true' });
+        setQuery({ ...query, category: null, province: null, startDate: null, active: 'true' });
+    };
 
     return (
-        <div className='eventFilter'>
-            <div>
-                <select name="category" onChange={handleChangue} >
-                    <option value="">Elige una categoría</option>
-                    {categorys.map((cat, i) => (
-                        <option key={i} value={cat.val}>{cat.name}</option>
-                    ))}
-                </select>
+        <form className='eventFilter' onSubmit={handleSubmit}>
+
+            <div className='eventFilterL'>
+                <div>
+                    <select name="category" onChange={handleChangue} value={prequery.category} >
+                        <option value="">Elige una categoría</option>
+                        {eventCategorysArray.map((cat, i) => (
+                            <option key={i} value={cat.val}>{cat.name}</option>
+                        ))}
+                    </select>
+                </div>
+                <div><SelectedProvince handleChange={handleProvince} required={false} value={prequery.province} /></div>
+                <div>
+                    <input type="date" name='startDate' onChange={handleChangue} value={prequery.startDate} />
+                </div>
+
+                {isActive &&
+                    <div>
+                        <select name="active" onChange={handleChangue} value={prequery.active}>
+                            <option value="true">Si</option>
+                            <option value="false">No</option>
+                        </select>
+                    </div>
+                }
+
+                <button className='btn btnUE'>Filtrar</button>
+                <CloseIcon className='eventFilterIcon' onClick={handleDelete} />
             </div>
-           {values && <EventFilterLocation values={values} />}
-            
-        </div>
+
+            <div className='eventFilterR'>
+                <input type="search" placeholder='Buscar, al menos 4 letras' name='title' onChange={handleSearch} />
+            </div>
+
+        </form>
     );
 };
 
 export default EventFilter;
-
-const categorys = [
-    { val: 'concert', name: 'Concierto' },
-    { val: "theater", name: 'Teatro' },
-    { val: 'filmmaker', name: 'Filmmaker' },
-    { val: 'standup', name: 'Stand Up' },
-    { val: 'Conference', name: 'conferencia' },
-    { val: 'art', name: 'Artística' },
-    { val: 'dance', name: 'Danza' },
-];

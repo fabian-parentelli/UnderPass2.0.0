@@ -5,7 +5,6 @@ import EventTypeImg from '../EventTypeImg/EventTypeImg';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 
 const EventCard = ({ card }) => {
-
     const date = new Date(card.startDate);
     const day = date.toLocaleDateString('en-GB', { day: '2-digit', timeZone: 'UTC' });
     const month = date.toLocaleDateString('es-ES', { month: 'short', timeZone: 'UTC' });

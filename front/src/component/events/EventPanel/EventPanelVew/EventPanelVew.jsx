@@ -6,7 +6,7 @@ import EventTable from '../../EventTable/EventTable';
 
 const EventPanelVew = ({ user, setLoading }) => {
 
-    const [query, setQuery] = useState({ userid: user._id || null });
+    const [query, setQuery] = useState({ userid: user._id || null, active: 'true' });
     const [events, setEvents] = useState(null);
 
     const handleChangePage = (page) => setQuery({ ...query, page: page });

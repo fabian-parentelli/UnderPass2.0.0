@@ -15,10 +15,12 @@ const UpdPresetEventImg = ({ event, closedImg, setEvents, events }) => {
             setLoading(true)
             const response = await getPresetApi();
             if (response.status === 'success') {
-                const result = response.result.map((resp) => {
-                    return { ...events, photo: { isPreset: true, presetId: resp } };
+                const newArray = response.result.map(photo => {
+                    return {
+                        ...event, photo: { isPreset: true, presetId: photo }
+                    };
                 });
-                setPresets(result);
+                setPresets(newArray);
             } else console.error(response.error);
             setLoading(false);
         }; fetchData();
@@ -37,21 +39,22 @@ const UpdPresetEventImg = ({ event, closedImg, setEvents, events }) => {
         };
         setLoading(false);
     };
-
+    
     return (
         <div className='updPresetEventImg'>
-            {loading ? <div><Spinner color={'#383f84'} /> </div> : presets && presets.map((pre, index) => (
-                <div key={index} className='eventPresetBTN'>
-                    <EventCard card={pre} />
-                    <button
-                        className='btn btnUE'
-                        onClick={() => handleClick(pre.photo)}
-                        style={{ marginTop: '12px' }}
-                    >
-                        Elegir
-                    </button>
-                </div>
-            ))}
+            {loading ? <div><Spinner color={'#383f84'} /></div>
+                : presets && presets.map((pre, index) => (
+                    <div key={index} className='eventPresetBTN'>
+                        <EventCard card={pre} />
+                        <button
+                            className='btn btnUE'
+                            onClick={() => handleClick(pre.photo)}
+                            style={{ marginTop: '12px' }}
+                        >
+                            Elegir
+                        </button>
+                    </div>
+                ))}
         </div>
     );
 };

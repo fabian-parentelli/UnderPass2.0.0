@@ -14,7 +14,7 @@ const SelectedProvince = ({ handleChange, required = true, coun, value }) => {
     }, [coun]);
 
     return (
-        <select name="province" style={{ width: '100%' }} onChange={handleChange} required={required} defaultValue={value ? value : ''}>
+        <select name="province" style={{ width: '100%' }} onChange={handleChange} required={required} value={value ? value : ''}>
             <option value="" >
                 {defaultOption}
             </option>

@@ -55,10 +55,10 @@ const getEventPublic = async (req, res) => {
 };
 
 const getEvent = async (req, res) => {
-    const { page = 1, limit = 12, active, country, publicity, userid, category } = req.query;
+    const { page = 1, limit = 12, active, country, publicity, userid, category, province, startdate, title } = req.query;
     try {
         const result = await eventService.getEvent(
-            { ...req.user }, page, limit, active, country, publicity, userid, category
+            { ...req.user }, page, limit, active, country, publicity, userid, category, province, startdate, title
         );
         if (result) return res.sendSuccess(result);
     } catch (error) {

@@ -73,7 +73,7 @@ const SearchProduct = ({ setProducts, setPaginate, setLoading }) => {
                 </select>
 
                 <div style={{ width: '150px' }}>
-                    <SelectedProvince handleChange={handleChange} required={false} />
+                    <SelectedProvince handleChange={handleChange} required={false} value={values.province} />
                 </div>
 
                 <button className='btn btnB'>Filtrar</button>
