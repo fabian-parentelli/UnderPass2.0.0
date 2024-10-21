@@ -13,6 +13,7 @@ const getEventsApi = async (obj) => {
     if (obj.category) urlData += `category=${obj.category}&`; 
     if (obj.startDate) urlData += `startdate=${obj.startDate}&`; 
     if (obj.title) urlData += `title=${obj.title}&`; 
+    if (obj.favorite !== undefined) urlData += `favorite=${obj.favorite}&`;
 
     if (urlData.endsWith('&')) urlData = urlData.slice(0, -1);
 

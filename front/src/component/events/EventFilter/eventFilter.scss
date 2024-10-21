@@ -1,3 +1,5 @@
+@import '../../../style/colors.scss';
+
 .eventFilter {
     display: flex;
     flex-direction: row;
@@ -41,9 +43,18 @@
 
     .eventFilterR {
         width: 200px;
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
 
         input {
             width: 100%;
+        }
+
+        .iconStar {
+            cursor: pointer;
+            transition: .3s ease-in-out;
+            color: $underEvent;
         }
     }
 }

@@ -44,9 +44,9 @@ const getNotConfirm = async (req, res) => {
 };
 
 const getEventPublic = async (req, res) => {
-    const { page = 1, limit = 12, active, country, publicity } = req.query;
+    const { page = 1, limit = 12, active, country, publicity, category, province, startdate, title } = req.query;
     try {
-        const result = await eventService.getEventPublic(page, limit, active, country, publicity);
+        const result = await eventService.getEventPublic(page, limit, active, country, publicity, category, province, startdate, title);
         if (result) return res.sendSuccess(result);
     } catch (error) {
         if (error instanceof EventNotFound) return res.sendClientError(error.message);
@@ -55,10 +55,10 @@ const getEventPublic = async (req, res) => {
 };
 
 const getEvent = async (req, res) => {
-    const { page = 1, limit = 12, active, country, publicity, userid, category, province, startdate, title } = req.query;
+    const { page = 1, limit = 12, active, country, publicity, userid, category, province, startdate, title, favorite } = req.query;
     try {
         const result = await eventService.getEvent(
-            { ...req.user }, page, limit, active, country, publicity, userid, category, province, startdate, title
+            { ...req.user }, page, limit, active, country, publicity, userid, category, province, startdate, title, favorite
         );
         if (result) return res.sendSuccess(result);
     } catch (error) {

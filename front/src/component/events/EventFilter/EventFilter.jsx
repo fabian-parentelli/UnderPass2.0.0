@@ -1,18 +1,27 @@
 import './eventFilter.scss';
 import { useEffect, useState } from 'react';
+import StarIcon from '@mui/icons-material/Star';
 import CloseIcon from '@mui/icons-material/Close';
+import StarBorderIcon from '@mui/icons-material/StarBorder';
 import SelectedProvince from '../../utils/SelectedProvince.jsx';
+import { useLoginContext } from '../../../context/LoginContext.jsx';
 import { getEventsApi } from '../../../helpers/event/getEvents.api.js';
 import { eventCategorysArray } from '../../../utils/typeEventCategory.utils.js';
+import { getEventsPublicApi } from '../../../helpers/event/getEventsPublic.api.js';
 
-const EventFilter = ({ query, setQuery, setEvents, setLoading, isActive = true }) => {
+const EventFilter = ({ query, setQuery, setEvents, setLoading, isActive = true, isFavorite = false }) => {
 
+    const { user } = useLoginContext();
     const [prequery, setPrequery] = useState({ category: '', province: '', startDate: '', title: '', active: 'true' });
+    const [data, setData] = useState(query.publicity ? true : false);
+    const [star, setStar] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
-            const response = await getEventsApi(query);
+            let response;
+            if (localStorage.getItem('token')) response = await getEventsApi(query);
+            else response = await getEventsPublicApi(query);
             if (response.status === 'success') {
                 setEvents(response.result);
             } else console.error(response.error);
@@ -23,23 +32,28 @@ const EventFilter = ({ query, setQuery, setEvents, setLoading, isActive = true }
     const handleChangue = (e) => setPrequery({ ...prequery, [e.target.name]: e.target.value });
     const handleProvince = (e) => setPrequery({ ...prequery, province: e.target.value });
     const handleSearch = (e) => {
-        if (e.target.value === '') setQuery({ ...query, title: null });
-        if (e.target.value.length > 4) setQuery({ ...query, title: e.target.value });
-    }
+        if (e.target.value === '') setQuery({ ...query, title: null, publicity: data });
+        if (e.target.value.length > 4) setQuery({ ...query, title: e.target.value, publicity: false });
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setQuery({ ...query, ...prequery });
+        setQuery({ ...query, ...prequery, publicity: false });
     };
 
     const handleDelete = () => {
-        setPrequery({ category: '', province: '', startDate: '', active: 'true' });
-        setQuery({ ...query, category: null, province: null, startDate: null, active: 'true' });
+        setPrequery({ category: '', province: '', startDate: '', active: 'true', publicity: data });
+        setQuery({ ...query, category: null, province: null, startDate: null, active: 'true', publicity: data });
+    };
+
+    const handleStar = () => {
+        setStar(!star);
+        if (!star) setQuery({ ...query, favorite: true, publicity: false });
+        else setQuery({ ...query, favorite: undefined, publicity: data });
     };
 
     return (
         <form className='eventFilter' onSubmit={handleSubmit}>
-
             <div className='eventFilterL'>
                 <div>
                     <select name="category" onChange={handleChangue} value={prequery.category} >
@@ -69,8 +83,13 @@ const EventFilter = ({ query, setQuery, setEvents, setLoading, isActive = true }
 
             <div className='eventFilterR'>
                 <input type="search" placeholder='Buscar, al menos 4 letras' name='title' onChange={handleSearch} />
-            </div>
 
+                {isFavorite && user && user.logged && user.data.favorites.length > 0 && (
+                    star
+                        ? <StarIcon className='iconStar' onClick={handleStar} />
+                        : <StarBorderIcon className='iconStar' onClick={handleStar} />
+                )}
+            </div>
         </form>
     );
 };

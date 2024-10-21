@@ -7,12 +7,12 @@ const getEventsPublicApi = async (obj) => {
     if (obj.limit) urlData += `limit=${obj.limit}&`;
     if (obj.active !== undefined) urlData += `active=${obj.active}&`;
     if (obj.country) urlData += `country=${obj.country}&`;
-    if (obj.city) urlData += `city=${obj.city}&`; 
     if (obj.province) urlData += `province=${obj.province}&`;
-    if (obj.publicity) urlData += `publicity=${obj.publicity}&`;
-    if (obj.provinceSort) urlData += `provinceSort=${obj.provinceSort}&`;
-    if (obj.citySort) urlData += `citySort=${obj.citySort}&`; 
-
+    if (obj.publicity) urlData += `publicity=${obj.publicity}&`; 
+    if (obj.category) urlData += `category=${obj.category}&`; 
+    if (obj.startDate) urlData += `startdate=${obj.startDate}&`; 
+    if (obj.title) urlData += `title=${obj.title}&`; 
+    
     if (urlData.endsWith('&')) urlData = urlData.slice(0, -1);
 
     const response = await fetch(urlData, {
