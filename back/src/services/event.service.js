@@ -39,14 +39,20 @@ const getNotConfirm = async (uid) => {
     return { status: 'success', result };
 };
 
+const getEventById = async (id) => {
+    const result = await eventRepository.getById(id);
+    if (!result) throw new EventNotFound('No se puede encontrar el evento');
+    return { status: 'success', result };
+};
+
 const getEventPublic = async (page, limit, active, country, publicity, category, province, startdate, title) => {
     const query = {};
     if (category) query.category = category;
     if (active !== undefined) query.active = active;
     if (country) query['location.country'] = { $regex: country, $options: "i" };
     if (province) query['location.province'] = { $regex: province, $options: "i" };
-    if(startdate) query.startDate = new Date(startdate);
-    if(title) query.title = { $regex: title, $options: "i" };
+    if (startdate) query.startDate = new Date(startdate);
+    if (title) query.title = { $regex: title, $options: "i" };
     const result = await eventRepository.getEvent(query, limit, page);
     if (!result) throw new EventNotFound('No se pueden encontrar los eventos');
     if (publicity === undefined) return { status: 'success', result };
@@ -64,17 +70,17 @@ const getEventPublic = async (page, limit, active, country, publicity, category,
 const getEvent = async ({ user }, page, limit, active, country, publicity, userid, category, province, startdate, title, favorite) => {
     const query = {};
     let sort = {};
-    if(favorite && user.favorites && user.favorites.length > 0) query._id = { $in: user.favorites };
+    if (favorite && user.favorites && user.favorites.length > 0) query._id = { $in: user.favorites };
     if (user && user.role === 'user') {
         sort.provinceSort = user.location.province; sort.citySort = user.location.city
     };
     if (userid) query.userId = userid;
     if (category) query.category = category;
     if (active !== undefined) query.active = active;
-    if (country) query['location.country'] = { $regex: country, $options: "i" };    
+    if (country) query['location.country'] = { $regex: country, $options: "i" };
     if (province) query['location.province'] = { $regex: province, $options: "i" };
-    if(startdate) query.startDate = new Date(startdate);
-    if(title) query.title = { $regex: title, $options: "i" };
+    if (startdate) query.startDate = new Date(startdate);
+    if (title) query.title = { $regex: title, $options: "i" };
     const result = await eventRepository.getEvent(query, limit, page, sort);
     if (!result) throw new EventNotFound('No se pueden encontrar los eventos');
     if (publicity === undefined) return { status: 'success', result };
@@ -124,4 +130,6 @@ const putEvent = async (event) => {
     return { status: 'success', result };
 };
 
-export { newEvent, newImg, getEvent, getNotConfirm, putEvent, newPreset, confirm, getEventPublic, updActive };
+export {
+    newEvent, newImg, getEvent, getNotConfirm, putEvent, newPreset, confirm, getEventPublic, updActive, getEventById
+};

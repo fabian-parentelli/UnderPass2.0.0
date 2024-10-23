@@ -9,6 +9,7 @@ export default class EventRouter extends Router {
         this.post('/', ['USER', 'ADMIN', 'MASTER'], passportEnum.JWT, eventController.newEvent);
         this.post('/img', ['USER', 'ADMIN', 'MASTER'], passportEnum.JWT, multipleUploader, uploadToCloudinary, eventController.newImg);
         this.post('/preset', ['USER', 'ADMIN', 'MASTER'], passportEnum.JWT, eventController.newPreset);
+        this.get('/id/:id', ['PUBLIC'], passportEnum.NOTHING, eventController.getEventById);
         this.get('/public', ['PUBLIC'], passportEnum.NOTHING, eventController.getEventPublic);
         this.get('/:uid', ['USER', 'ADMIN', 'MASTER'], passportEnum.JWT, eventController.getNotConfirm);
         this.get('/', ['USER', 'ADMIN', 'MASTER'], passportEnum.JWT, eventController.getEvent);

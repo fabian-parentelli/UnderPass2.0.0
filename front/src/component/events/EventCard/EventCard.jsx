@@ -17,7 +17,7 @@ const EventCard = ({ card }) => {
                 <Favorite id={card._id} />
             </div>
 
-            <Link to={`/event/${card._id}`}>
+            <Link to={`/eventpage/${card._id}`}>
                 <EventTypeImg card={card} />
             </Link>
 

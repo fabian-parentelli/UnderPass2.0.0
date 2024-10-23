@@ -28,6 +28,7 @@ import UniqueNews from "../componentSite/news/UniqueNews/UniqueNews.jsx";
 import UnderNews from "../componentSite/news/UnderNews/UnderNews.jsx";
 import NewEvent from "../componentSite/events/NewEvent/NewEvent.jsx";
 import UnderEvent from "../componentSite/events/UnderEvent/UnderEvent.jsx";
+import EventPage from "../componentSite/events/EventPage/EventPage.jsx";
 
 const RoutesComp = () => {
 
@@ -54,6 +55,7 @@ const RoutesComp = () => {
                     <Route path="/undernews" element={<UnderNews />} />
                     <Route path="/newevent" element={<NewEvent />} />
                     <Route path="/event" element={<UnderEvent />} />
+                    <Route path="/eventpage/:id" element={<EventPage />} />
 
                     {user.logged &&
                         <>

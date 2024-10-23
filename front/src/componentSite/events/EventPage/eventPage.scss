@@ -1,0 +1,177 @@
+@import '../../../style/colors.scss';
+
+.eventPage {
+    margin: 70px 0;
+    min-height: 70vh;
+    overflow: hidden;
+
+    .eventPageTop {
+        display: flex;
+        align-items: flex-start;
+
+        .eventPageL {
+            width: 70%;
+            padding-top: 2rem;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .eventPageTitle {
+                text-align: center;
+
+                h2 {
+                    font-size: 2rem;
+                }
+
+                .eventPageSubTitle {
+                    color: $underEvent;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 6px;
+                }
+            }
+
+            .eventPageB {
+                margin-top: 1rem;
+                width: 60%;
+                display: flex;
+                align-items: flex-end;
+                justify-content: flex-end;
+            }
+        }
+
+        .eventPageR {
+            width: 30%;
+            padding-top: 1rem;
+            display: flex;
+            flex-direction: column;
+
+            .eventPageLocation {
+                display: flex;
+                align-items: center;
+                padding-top: 1rem;
+
+                .eventPageLocationIcon {
+                    color: $underEvent;
+                    font-size: 2.6rem;
+                }
+            }
+
+            .eventPageMap {
+                width: 300px;
+                height: 300px;
+                margin-top: 3rem;
+                border: solid 2px gray;
+            }
+        }
+    }
+
+    .eventPageSecond {
+        margin-top: 2rem;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+
+        .eventPageDescription {
+            width: 80%;
+            color: gray;
+            line-height: 2;
+        }
+
+        .eventPageGuests {
+            margin-top: 1rem;
+            display: flex;
+            gap: 2rem;
+            color: $underEvent;
+        }
+
+        .eventPageImgs {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            width: 80%;
+            margin-top: 3rem;
+
+            .eventPageImg {
+                img {
+                    width: 290px;
+                    height: 290px;
+                    box-shadow: 5px 5px 15px;
+                }
+            }
+
+            .eventPageVid {
+                width: 40%;
+                height: 240px;
+                box-shadow: 5px 5px 15px;
+            }
+        }
+
+        .eventPageMinorsPP {
+            margin-top: 3rem;
+            color: green;
+        }
+
+        .eventPageMinors {
+            margin-top: 3rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            
+            img {
+                width: 30px;
+            }
+        }
+    }
+}
+
+@media (max-width: '767px') {
+    .eventPage {
+
+        .eventPageTop {
+            flex-direction: column;
+
+            .eventPageL {
+                width: 100%;
+
+                .eventPageB {
+                    width: 90%;
+                }
+            }
+
+            .eventPageR {
+                width: 100%;
+                align-items: center;
+                padding-top: .4rem;
+
+                .eventPageMap {
+                    width: 260px;
+                    height: 260px;
+                    margin-top: 2rem;
+                }
+            }
+        }
+
+        .eventPageSecond {
+
+            .eventPageDescription {
+                width: 90%;
+                text-align: center;
+            }
+
+            .eventPageImgs {
+                width: 90%;
+                margin-top: 2rem;
+    
+                .eventPageVid {
+                    width: 96%;
+                    height: 210px;
+                }
+            }
+        }
+    }
+}
