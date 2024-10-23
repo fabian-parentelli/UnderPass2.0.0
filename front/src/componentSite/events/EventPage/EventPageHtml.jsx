@@ -1,9 +1,12 @@
 import './eventPage.scss';
+import EmailIcon from '@mui/icons-material/Email';
+import EventOthers from './EventOthers/EventOthers';
 import MapView from '../../../component/utils/MapVew';
 import EventPageTick from './EventPageTick/EventPageTick';
 import VideosVew from '../../../component/utils/VideosVew';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import Messages from '../../../component/messages/Messages/Messages';
 import EventTypeImg from '../../../component/events/EventTypeImg/EventTypeImg';
 
 const EventPageHtml = ({ event }) => {
@@ -52,6 +55,7 @@ const EventPageHtml = ({ event }) => {
                 <p className='eventPageDescription'>{event.description}</p>
 
                 <div className='eventPageGuests'>
+                    <p style={{ color: 'gray' }}>Invitados: </p>
                     {event && event.guests && event.guests.map((g, i) => (
                         <p key={i}>{g} </p>
                     ))}
@@ -70,16 +74,27 @@ const EventPageHtml = ({ event }) => {
                     }
                 </div>
 
-                {!event.minors ?
-                    <p className='eventPageMinorsPP'>Apto Todo Público.</p>
-                    : <div className='eventPageMinors'>
-                        <img src="https://res.cloudinary.com/dtzy75wyt/image/upload/v1728683588/images/gqdohvswtpihjshbvcwk.png" alt="img" />
-                        <p>Apto solo mayores de 18 años.</p>
+                <div className='sectionMinors'>
+                    <div className='eventPageInfo'>
+                        <EmailIcon className='eventPageInfoIcon' />
+                        <p>Recibir información adicional</p>
                     </div>
-                }
+                    {!event.minors ?
+                        <p className='eventPageMinorsPP'>Apto Todo Público.</p>
+                        : <div className='eventPageMinors'>
+                            <img src="https://res.cloudinary.com/dtzy75wyt/image/upload/v1728683588/images/gqdohvswtpihjshbvcwk.png" alt="img" />
+                            <p>Apto solo mayores de 18 años.</p>
+                        </div>
+                    }
+                </div>
 
             </section>
 
+            <section className='eventpageMessage'>
+                <Messages type={'event'} typeId={event._id} />
+            </section>
+
+            <EventOthers />
         </div>
     );
 };

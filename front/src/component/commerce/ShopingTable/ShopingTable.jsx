@@ -80,7 +80,7 @@ const ShopingTable = ({ orders, isUnderPay }) => {
                                                     <tr key={index}>
                                                         <td>
                                                             <BigImg
-                                                                img={item.data.img[0] ? item.data.img[0].imgUrl : imgages.menTv}
+                                                                img={item?.data?.img[0] ? item?.data?.img[0].imgUrl : imgages.menTv}
                                                                 border={false}
                                                             />
                                                         </td>

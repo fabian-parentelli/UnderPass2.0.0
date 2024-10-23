@@ -19,13 +19,13 @@ const EventPage = () => {
             else console.error(response.error);
             setLoading(false);
         }; fetchData();
-    }, []);
+    }, [id]);
 
     return (
-        <>
+        <div className='eventPageMaster'>
             {event && <EventPageHtml event={event} />}
             <Load loading={loading} />
-        </>
+        </div>
     );
 };
 

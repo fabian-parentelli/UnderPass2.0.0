@@ -93,8 +93,7 @@ const ConfirmEvent = ({ values, setLoading, setProgres }) => {
                     </thead>
                     <tbody>
                         {values.ticketInfo && values.ticketInfo.map((tick, ind) => (
-
-                            <tr >
+                            <tr key={ind}>
                                 <td>{tick.description}</td>
                                 <td>{tick.quantity}</td>
                                 <td>${tick.price}</td>

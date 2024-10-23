@@ -83,6 +83,8 @@
         .eventPageGuests {
             margin-top: 1rem;
             display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
             gap: 2rem;
             color: $underEvent;
         }
@@ -111,21 +113,43 @@
             }
         }
 
-        .eventPageMinorsPP {
-            margin-top: 3rem;
-            color: green;
-        }
-
-        .eventPageMinors {
+        .sectionMinors {
             margin-top: 3rem;
             display: flex;
-            align-items: center;
-            gap: 6px;
-            
-            img {
-                width: 30px;
+            justify-content: space-evenly;
+            width: 100%;
+
+            .eventPageInfo {
+                display: flex;
+                color: gray;
+                gap: 6px;
+                cursor: pointer;
+                transition: .3s ease-in-out;
+
+                &:hover {
+                    color: $underEvent;
+                }
+            }
+
+            .eventPageMinorsPP {
+                color: green;
+            }
+
+            .eventPageMinors {
+                display: flex;
+                align-items: center;
+                gap: 6px;
+
+                img {
+                    width: 30px;
+                }
             }
         }
+    }
+
+    .eventpageMessage {
+        width: 80%;
+        margin: 4rem auto;
     }
 }
 
@@ -166,12 +190,16 @@
             .eventPageImgs {
                 width: 90%;
                 margin-top: 2rem;
-    
+
                 .eventPageVid {
                     width: 96%;
                     height: 210px;
                 }
             }
+        }
+
+        .eventpageMessage {
+            width: 100%;
         }
     }
 }
