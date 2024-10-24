@@ -2,8 +2,10 @@ import './eventInfoTable.scss';
 import EventType from './EventType';
 import Switch from '@mui/material/Switch';
 import EventCategory from '../EventCategory/EventCategory';
+import ChooseSites from '../../sites/ChooseSites/ChooseSites';
 
-const EventInfoTable = ({ values, handleChangue, handleSubmit, handleMinors, handleTicket, handleType, lsEvent, isChange }) => {
+const EventInfoTable = ({ values, handleChangue, handleSubmit, handleMinors, handleTicket, handleType,
+    lsEvent, isChange, handleInSite, handleInPerson }) => {
 
     return (
         <div className='eventInfoTable'>
@@ -45,6 +47,15 @@ const EventInfoTable = ({ values, handleChangue, handleSubmit, handleMinors, han
                     </div>
 
                     <EventType values={values} handleType={handleType} handleChangue={handleChangue} />
+
+                    <div>
+                        <label>El evento es:</label>
+                        <div className='eventInfoTableFormSwitch'>
+                            <p>Digital</p>
+                            <Switch checked={values.inPerson} onChange={handleInPerson} />
+                            <p>Presencial</p>
+                        </div>
+                    </div>
                 </div>
 
                 <div className='eventInfoTableForm'>
@@ -70,10 +81,12 @@ const EventInfoTable = ({ values, handleChangue, handleSubmit, handleMinors, han
                     <div>
                         <label>Invitados</label>
                         <input type="text" name='guests' onChange={handleChangue}
-                            placeholder='Invitado1,Invitado2,Invitado3' value={values.guests}
+                            placeholder='Invitado 1,Invitado 2,Invitado 3' value={values.guests}
                         />
                         <p className='eventInfoTablePP'>Escribir los invitados separados por comas, pero <strong>SIN ESPACIOS</strong></p>
                     </div>
+
+                    <ChooseSites values={values} handleInSite={handleInSite} type='evento' />
                 </div>
             </form>
 

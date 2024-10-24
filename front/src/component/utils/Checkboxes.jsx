@@ -1,13 +1,17 @@
-import * as React from 'react';
-import Checkbox from '@mui/material/Checkbox';
 import { useState } from 'react';
+import Checkbox from '@mui/material/Checkbox';
 
-export default function Checkboxes({ labels, setType }) {
-
-    const [selectedIdx, setSelectedIdx] = useState(null);
+export default function Checkboxes({ labels, setType, multiSelect = false }) {
+    
+    const [selectedIdx, setSelectedIdx] = useState([]);
 
     const handleCheckboxChange = (index, label) => {
-        setSelectedIdx(index);
+        let updatedSelection;
+        if (multiSelect) {
+            if (selectedIdx.includes(index)) updatedSelection = selectedIdx.filter(i => i !== index); 
+            else updatedSelection = [...selectedIdx, index];
+        } else updatedSelection = [index];
+        setSelectedIdx(updatedSelection);
         setType(label);
     };
 
@@ -16,7 +20,7 @@ export default function Checkboxes({ labels, setType }) {
             {labels && labels.map((label, index) => (
                 <div key={index} style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
                     <Checkbox
-                        checked={selectedIdx === index}
+                        checked={selectedIdx.includes(index)}
                         onChange={() => handleCheckboxChange(index, label)}
                     />
                     <p>{label}</p>

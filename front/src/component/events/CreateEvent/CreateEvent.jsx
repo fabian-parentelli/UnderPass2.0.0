@@ -3,6 +3,7 @@ import Load from '../../utils/Load';
 import { useEffect, useState } from 'react';
 import EventInfo from '../EventInfo/EventInfo';
 import EventImages from '../EventImages/EventImages.jsx';
+import EventStream from '../EventStream/EventStream.jsx';
 import EventProgress from '../EventProgress/EventProgress';
 import ConfirmEvent from '../ConfirmEvent/ConfirmEvent.jsx';
 import TicketCreate from '../TicketsCreate/TicketsCreate.jsx';
@@ -16,7 +17,7 @@ const CreateEvent = ({ user }) => {
     const [loading, setLoading] = useState(false);
     const [values, setValues] = useState({
         title: '', category: '', minors: false, tickets: true, userId: user._id, startDate: '', startHour: '',
-        endHour: '', description: '', typePublic: true, password: '', guests: ''
+        endHour: '', description: '', typePublic: true, password: '', guests: '', inSite: true, inPerson: true
     });
     useEffect(() => { window.scrollTo(0, 0) }, [progres]);
 
@@ -31,10 +32,14 @@ const CreateEvent = ({ user }) => {
 
     return (
         <div className='createEvent'>
-            <EventProgress progres={progres} setProgres={setProgres} lsEvent={lsEvent} />
+            <EventProgress progres={progres} setProgres={setProgres} lsEvent={lsEvent} values={values} />
             {progres === 20 && <EventInfo setProgres={setProgres} setLoading={setLoading} values={values} setValues={setValues} lsEvent={lsEvent} />}
             {progres === 40 && <EventImages values={values} setValues={setValues} setLoading={setLoading} setProgres={setProgres} />}
-            {progres === 60 && <Eventlocation values={values} setValues={setValues} setLoading={setLoading} setProgres={setProgres} />}
+            {progres === 60 &&
+                values.inPerson 
+                ? <Eventlocation values={values} setValues={setValues} setLoading={setLoading} setProgres={setProgres} />
+                : <EventStream values={values} setValues={setValues} setLoading={setLoading} setProgres={setProgres} />
+            }
             {progres === 80 && <TicketCreate values={values} setValues={setValues} setLoading={setLoading} setProgres={setProgres} />}
             {progres === 100 && <ConfirmEvent setProgres={setProgres} setLoading={setLoading} values={values} />}
             <Load loading={loading} />

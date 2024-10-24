@@ -59,7 +59,7 @@ const ConfirmEvent = ({ values, setLoading, setProgres }) => {
 
             <section>
                 <div className='confirmEventDiv'>
-                    {values?.location?.lat !== '' && values?.location?.lon !== '' &&
+                    {values.location?.coordinates?.lat && values.location?.coordinates?.lon &&
                         <div className='mapVew' style={{ marginTop: '3rem' }}>
                             <MapView coordinates={values.location.coordinates} />
                         </div>
@@ -79,34 +79,36 @@ const ConfirmEvent = ({ values, setLoading, setProgres }) => {
                 </div>
             </section>
 
-            <div className='ticketsTrueVew'>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Descripción</th>
-                            <th>Stock</th>
-                            <th>Precio</th>
-                            <th>Hora Ven.</th>
-                            <th>Día Ven.</th>
-                            <th>Activo</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {values.ticketInfo && values.ticketInfo.map((tick, ind) => (
-                            <tr key={ind}>
-                                <td>{tick.description}</td>
-                                <td>{tick.quantity}</td>
-                                <td>${tick.price}</td>
-                                <td>{tick.hourEnd}hs</td>
-                                <td>{new Date(tick.dateEnd).toLocaleDateString('es-ES', { timeZone: 'UTC' })}</td>
-                                <td style={{ color: tick.active ? 'green' : 'red' }}                                >
-                                    {tick.active ? 'SI' : 'NO'}
-                                </td>
+            {values && values.ticketInfo.length > 0 &&
+                <div className='ticketsTrueVew'>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Descripción</th>
+                                <th>Stock</th>
+                                <th>Precio</th>
+                                <th>Hora Ven.</th>
+                                <th>Día Ven.</th>
+                                <th>Activo</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
+                        </thead>
+                        <tbody>
+                            {values.ticketInfo.map((tick, ind) => (
+                                <tr key={ind}>
+                                    <td>{tick.description}</td>
+                                    <td>{tick.quantity}</td>
+                                    <td>${tick.price}</td>
+                                    <td>{tick.hourEnd}hs</td>
+                                    <td>{new Date(tick.dateEnd).toLocaleDateString('es-ES', { timeZone: 'UTC' })}</td>
+                                    <td style={{ color: tick.active ? 'green' : 'red' }}                                >
+                                        {tick.active ? 'SI' : 'NO'}
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            }
 
             <button className='btn btnUE' onClick={() => setProgres(80)} style={{ marginTop: '1rem' }}>
                 Tickets

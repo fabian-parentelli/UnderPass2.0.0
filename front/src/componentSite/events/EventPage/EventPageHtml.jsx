@@ -8,6 +8,7 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import Messages from '../../../component/messages/Messages/Messages';
 import EventTypeImg from '../../../component/events/EventTypeImg/EventTypeImg';
+import UnderEventsLog from '../../../component/fonts/UnderEventsLog/UnderEventsLog';
 
 const EventPageHtml = ({ event }) => {
 
@@ -87,7 +88,10 @@ const EventPageHtml = ({ event }) => {
                         </div>
                     }
                 </div>
+            </section>
 
+            <section className='evnetPageLogo'>
+                    <UnderEventsLog size={3} />
             </section>
 
             <section className='eventpageMessage'>

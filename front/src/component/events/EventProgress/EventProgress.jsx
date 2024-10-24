@@ -2,7 +2,7 @@ import './eventProgress.scss';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 
-const EventProgress = ({ progres, setProgres, lsEvent }) => {
+const EventProgress = ({ progres, setProgres, lsEvent, values }) => {
 
     const handleMoreProgres = () => { if (lsEvent && progres < 100) setProgres(progres + 20) };
     const handleMinorProgres = () => { if (progres > 25) setProgres(progres - 20) };
@@ -17,11 +17,16 @@ const EventProgress = ({ progres, setProgres, lsEvent }) => {
                 </div>
 
                 <div className='eventProgressDivDivIcon'>
-                    <p style={{color: progres >= 20 && '#383f84'}}>Info.</p>
-                    <p style={{color: progres >= 40 && '#383f84'}}>Imágen</p>
-                    <p style={{color: progres >= 60 && '#383f84'}}>Localización</p>
-                    <p style={{color: progres >= 80 && '#383f84'}}>Entradas</p>
-                    <p style={{color: progres === 100 && '#383f84'}}>Confirmar</p>
+                    <p style={{ color: progres >= 20 && '#383f84' }}>Info.</p>
+                    <p style={{ color: progres >= 40 && '#383f84' }}>Imágen</p>
+                    <p style={{ color: progres >= 60 && '#383f84' }}>
+                        {!values
+                            ? 'Localización'
+                            : (values.inPerson ? 'Localización' : 'Stream')
+                        }
+                    </p>
+                    <p style={{ color: progres >= 80 && '#383f84' }}>Entradas</p>
+                    <p style={{ color: progres === 100 && '#383f84' }}>Confirmar</p>
                 </div>
 
                 <div onClick={handleMoreProgres} className='eventProgressArrow'>

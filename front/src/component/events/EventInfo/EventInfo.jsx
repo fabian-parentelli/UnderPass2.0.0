@@ -13,6 +13,8 @@ const EventInfo = ({ setProgres, setLoading, values, setValues, lsEvent }) => {
     const handleMinors = (e) => { setValues({ ...values, minors: e.target.checked }); setIsChange(true) };
     const handleTicket = (e) => { setValues({ ...values, tickets: e.target.checked }); setIsChange(true) };
     const handleType = (e) => { setValues({ ...values, typePublic: e.target.checked }); setIsChange(true) };
+    const handleInSite = (e) => { setValues({ ...values, inSite: e.target.checked }); setIsChange(true) };
+    const handleInPerson = (e) => { setValues({ ...values, inPerson: e.target.checked }); setIsChange(true) };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -47,6 +49,8 @@ const EventInfo = ({ setProgres, setLoading, values, setValues, lsEvent }) => {
                 handleType={handleType}
                 lsEvent={lsEvent}
                 isChange={isChange}
+                handleInSite={handleInSite}
+                handleInPerson={handleInPerson}
             />
 
             <UnderEventsLog size={3} />

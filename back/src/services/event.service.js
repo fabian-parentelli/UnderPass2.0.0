@@ -6,6 +6,12 @@ const newEvent = async (event) => {
     event.guests = event.guests.split(',');
     const result = await eventRepository.newEvent(event);
     if (!result) throw new EventNotFound('No se puede guardar el nuevo evento');
+
+    // Acá lo que voy a hacer es cuando viene, el array con los sitios
+    // actualizar el sitio con los id de los eventos, pensar esto luego para los 
+    // productos también... *Y cuanod elimino un evento por algun motico hacerlo 
+    // tambien en el sitio.
+
     return { status: 'success', result };
 };
 
