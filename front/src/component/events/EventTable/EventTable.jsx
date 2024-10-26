@@ -8,6 +8,7 @@ const EventTable = ({ events, setEvents, setLoading }) => {
     const [vewInfo, setVewInfo] = useState({ vew: null, open: false });
     const [vewTicket, setTicket] = useState({ vew: null, open: false });
     const [vewUser, setVewUser] = useState({ vew: null, open: false });
+    const [vewDelete, setVewDelete] = useState({ vew: null, open: false })
 
     const closedImg = () => setVewImg({ vew: null, open: false });
     const openImg = (id) => setVewImg({ vew: id, open: true });
@@ -17,16 +18,19 @@ const EventTable = ({ events, setEvents, setLoading }) => {
 
     const closedTicket = () => setTicket({ vew: null, open: false });
     const openTicket = (id) => setTicket({ vew: id, open: true });
-    
+
     const closedUser = () => setVewUser({ vew: null, open: false });
     const openUser = (id) => setVewUser({ vew: id, open: true });
+
+    const closedDelete = () => setVewDelete({ vew: null, open: false });
+    const openDelete = (id) => setVewDelete({ vew: id, open: true });
 
     const handleActive = async (id) => {
         setLoading(true);
         const response = await updActiveEventApi(id);
         if (response.status === 'success') {
             const data = { ...events };
-            const index = data.docs.findIndex(i => i._id === response.result._id );
+            const index = data.docs.findIndex(i => i._id === response.result._id);
             data.docs[index] = response.result;
             setEvents(data);
         } else console.error(response.error);
@@ -50,6 +54,9 @@ const EventTable = ({ events, setEvents, setLoading }) => {
             vewUser={vewUser}
             closedUser={closedUser}
             openUser={openUser}
+            vewDelete={vewDelete}
+            closedDelete={closedDelete}
+            openDelete={openDelete}
         />
     );
 };

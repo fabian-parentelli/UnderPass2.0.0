@@ -5,10 +5,6 @@ import EventPageTick from '../EventPageTick/EventPageTick';
 
 const EventIsPerson = ({ event, pass }) => {
 
-    console.log('typePublic', event.typePublic);
-    console.log('tickets', event.tickets);
-    
-
     return (
         <div className='eventIsPerson'>
             {event.typePublic && event.tickets &&

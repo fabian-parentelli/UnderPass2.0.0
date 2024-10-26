@@ -12,10 +12,11 @@ import ConfirmationNumberIcon from '@mui/icons-material/ConfirmationNumber';
 import UpdTicketEvent from '../UpdTicketEvent/UpdTicketEvent.jsx';
 import { useLoginContext } from '../../../context/LoginContext.jsx';
 import UserVewSmall from '../../user/UserVewSmall/UserVewSmall.jsx';
+import EventDelete from '../EventDelete/EventDelete.jsx';
 
 const EventTableHtml = ({ events, closedImg, openImg, vewImg, setEvents, vewInfo,
     closedInfo, openInfo, vewTicket, closedTicket, openTicket, handleActive,
-    vewUser, closedUser, openUser }) => {
+    vewUser, closedUser, openUser, vewDelete, closedDelete, openDelete }) => {
 
     const { user } = useLoginContext();
 
@@ -50,7 +51,16 @@ const EventTableHtml = ({ events, closedImg, openImg, vewImg, setEvents, vewInfo
                                     </td>
                                 </Tooltip>
 
-                                <td>{eve.title}</td>
+                                <Tooltip
+                                    title={user.data.role !== 'user' && 'Eliminar este evento'}
+                                    placement="right-start"
+                                >
+                                    <td
+                                        className={user.data.role !== 'user' && 'eventTableBack'}
+                                        onClick={user.data.role !== 'user' && eve.dateCreate ? () => openDelete(eve._id) : undefined}
+                                    >{eve.title}</td>
+                                </Tooltip>
+
                                 <td>{typeEventCategory(eve.category)}</td>
                                 <td>
                                     {!eve.inPerson
@@ -107,6 +117,12 @@ const EventTableHtml = ({ events, closedImg, openImg, vewImg, setEvents, vewInfo
                                     </td>
                                 </Tooltip>
                             </tr>
+
+                            {vewDelete.vew === eve._id &&
+                                <ModalCustom modalIsOpen={vewDelete.open} closeModal={closedDelete}>
+                                    <EventDelete event={eve} closedDelete={closedDelete} setEvents={setEvents} events={events} />
+                                </ModalCustom>
+                            }
 
                             {vewImg.vew === eve._id &&
                                 <ModalCustom modalIsOpen={vewImg.open} closeModal={closedImg}>

@@ -1,11 +1,19 @@
 import './eventInfoTable.scss';
+import { useState } from 'react';
 import EventType from './EventType';
 import Switch from '@mui/material/Switch';
+import EventDelete from '../EventDelete/EventDelete';
 import EventCategory from '../EventCategory/EventCategory';
 import ChooseSites from '../../sites/ChooseSites/ChooseSites';
+import ModalCustom from '../../utils/ModalCustom/ModalCustom';
 
 const EventInfoTable = ({ values, handleChangue, handleSubmit, handleMinors, handleTicket, handleType,
     lsEvent, isChange, handleInSite, handleInPerson }) => {
+
+    const [vew, setVew] = useState(false);
+
+    const hanldeClosed = () => setVew(false);
+    const hanldeOpen = () => setVew(true);
 
     return (
         <div className='eventInfoTable'>
@@ -92,7 +100,7 @@ const EventInfoTable = ({ values, handleChangue, handleSubmit, handleMinors, han
 
             <div className='eventInfoTableBtn'>
 
-                <button className='btn btnD'>
+                <button className='btn btnD' onClick={hanldeOpen} disabled={!values._id}>
                     Eliminar
                 </button>
 
@@ -100,6 +108,10 @@ const EventInfoTable = ({ values, handleChangue, handleSubmit, handleMinors, han
                     {!isChange ? 'Imágenes >' : (lsEvent ? 'Actualizar' : 'Guardar')}
                 </button>
             </div>
+
+            <ModalCustom modalIsOpen={vew} closeModal={hanldeClosed} >
+                <EventDelete event={values} />
+            </ModalCustom>
 
         </div>
     );

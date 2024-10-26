@@ -22,4 +22,8 @@ export default class Event {
         return await eventModel.findByIdAndUpdate(event._id, event, { lean: true, new: true });
     };
 
+    eventDelete = async (id) => {
+        return await eventModel.findByIdAndDelete(id);
+    };
+
 };

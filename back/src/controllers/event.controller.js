@@ -110,6 +110,18 @@ const putEvent = async (req, res) => {
     };
 };
 
+const eventDelete = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const result = await eventService.eventDelete(id);
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof EventNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
 export {
-    newEvent, newImg, getEvent, getNotConfirm, putEvent, newPreset, confirm, getEventPublic, updActive, getEventById
+    newEvent, newImg, getEvent, getNotConfirm, putEvent, newPreset, confirm, getEventPublic, 
+    updActive, getEventById, eventDelete
 };

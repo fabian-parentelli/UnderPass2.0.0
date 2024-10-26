@@ -30,15 +30,16 @@ const ChooseSites = ({ values, handleInSite, type: texto }) => {
                     </div>
 
                     {values.inSite &&
-                        <details>
-                            <summary>Tus sitios</summary>
-                            <div className='chooseSitesYourSites'>
-                                <Checkboxes labels={['La sala de ensayo', 'La pastafrola']} setType={setType} multiSelect={true} />
-                            </div>
-                        </details>
+                        <>
+                            <details>
+                                <summary>Tus sitios</summary>
+                                <div className='chooseSitesYourSites'>
+                                    <Checkboxes labels={['La sala de ensayo', 'La pastafrola']} setType={setType} multiSelect={true} />
+                                </div>
+                            </details>
+                            <p className='chooseSitesMessage'>Selecciona el o los sitios en donde quieres que aparezca tu {texto}.</p>
+                        </>
                     }
-                    <p className='chooseSitesMessage'>Selecciona el o los sitios en donde quieres que aparezca tu {texto}.</p>
-
                 </>
             }
         </div>

@@ -1,4 +1,4 @@
-import { eventRepository, publicityRepository } from "../repositories/index.repositories.js";
+import { alertsRepository, eventRepository, publicityRepository } from "../repositories/index.repositories.js";
 import { EventNotFound } from '../utils/custom-exceptions.utils.js';
 import { joinPublicity } from "../utils/joinPublicity.utils.js";
 
@@ -127,6 +127,13 @@ const confirm = async (id) => {
 const putEvent = async (event) => {
     const eventdb = await eventRepository.getById(event._id);
     if (!eventdb) throw new EventNotFound('No se puede encontrar el evento');
+    if (event.noMatch) {
+        await alertsRepository.newAlert({
+            eventId: eventdb._id,
+            userId: '668d9529cf8bde76a0dc3adb',
+            type: 'mapNoMatch',
+        });
+    };
     const objEvent = { ...eventdb, ...event };
     if (objEvent.typePublic) objEvent.password = '';
     if (typeof objEvent.guests === 'string') objEvent.guests = event.guests.split(',');
@@ -137,6 +144,13 @@ const putEvent = async (event) => {
     return { status: 'success', result };
 };
 
+const eventDelete = async (id) => {
+    const result = await eventRepository.eventDelete(id);
+    if (!result) throw new EventNotFound('No se puede eliminar el evento');
+    return { status: 'success', result };
+};
+
 export {
-    newEvent, newImg, getEvent, getNotConfirm, putEvent, newPreset, confirm, getEventPublic, updActive, getEventById
+    newEvent, newImg, getEvent, getNotConfirm, putEvent, newPreset, confirm, getEventPublic, updActive,
+    getEventById, eventDelete
 };

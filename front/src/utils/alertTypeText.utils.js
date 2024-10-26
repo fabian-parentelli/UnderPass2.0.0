@@ -15,9 +15,10 @@ function getTypeAlerts(types) {
         'newReport_news': () => { return 'Denunciaron un comentario - Noticia' },
         'newReport_product': () => { return 'Denunciaron un comentario - Producto' },
         'publicityOff': () => { return 'Fin de la publicidad' },
+        'mapNoMatch': () => { return 'El mapa no coincide con la dirección' },
         'default': () => { return 'otro' },
     };
-
+    
     return (data[types] || data['default'])();
 };
 

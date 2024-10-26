@@ -9,7 +9,7 @@ import UnderEventsLog from '../../../component/fonts/UnderEventsLog/UnderEventsL
 const BodyEvents = () => {
 
     const [events, setEvents] = useState(null);
-    const query = { active: true, country: localStorage.getItem('country'), publicity: true };
+    const query = { active: true, country: localStorage.getItem('country'), publicity: true, limit: 11 };
 
     useEffect(() => {
         const fetchData = async () => {

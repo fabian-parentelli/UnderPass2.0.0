@@ -16,5 +16,6 @@ export default class EventRouter extends Router {
         this.put('/active/:id', ['USER', 'ADMIN', 'MASTER'], passportEnum.JWT, eventController.updActive);
         this.put('/confirm/:id', ['USER', 'ADMIN', 'MASTER'], passportEnum.JWT, eventController.confirm);
         this.put('/', ['USER', 'ADMIN', 'MASTER'], passportEnum.JWT, eventController.putEvent);
+        this.delete('/:id', ['USER', 'ADMIN', 'MASTER'], passportEnum.JWT, eventController.eventDelete);
     };
 };

@@ -12,6 +12,7 @@ import SoldProductAlert from './SoldProductAlert/SoldProductAlert';
 import HaveMoneyAlerts from './HaveMoneyAlerts/HaveMoneyAlerts.jsx';
 import ReqTranferAlert from './ReqTransferAlert/ReqTransferAlert.jsx';
 import WeHaveSeeYourReq from './WeHaveSeeYourReq/WeHaveSeeYourReq.jsx';
+import MapNoMatch from './MapNoMatch/MapNoMatch.jsx';
 
 const VewAlertsBody = () => {
 
@@ -35,6 +36,7 @@ const VewAlertsBody = () => {
             {type === 'newReport_news' && <ReportComment id={id} setLoading={setLoading} type={type} />}
             {type === 'newReport_product' && <ReportComment id={id} setLoading={setLoading} type={type} />}
             {type === 'publicityOff' && <PublicityOff id={id} setLoading={setLoading} />}
+            {type === 'mapNoMatch' && <MapNoMatch id={id} setLoading={setLoading} />}
 
             <Load loading={loading} />
         </div>

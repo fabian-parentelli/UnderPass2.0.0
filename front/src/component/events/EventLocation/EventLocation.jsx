@@ -31,9 +31,10 @@ const Eventlocation = ({ values, setValues, setLoading, setProgres }) => {
         setLoading(false);
     };
 
-    const handleSave = async () => {
+    const handleSave = async (noMatch) => {
         setLoading(true);
         const obj = { ...values, location };
+        if(noMatch) obj.noMatch = noMatch;
         const resp = await updEventApi(obj);
         if (resp.status === 'success') { setValues(resp.result); setProgres(80) }
         else console.error(response.error);
@@ -53,8 +54,8 @@ const Eventlocation = ({ values, setValues, setLoading, setProgres }) => {
 
             {location.coordinates.lat !== '' && location.coordinates.lon !== '' &&
                 <div className='eventImagesBtnsBotton'>
-                    <button className='btn eventlocationBtn' onClick={handleSave}>No coincide</button>
-                    <button className='btn eventlocationBtn' onClick={handleSave}>Confirmar</button>
+                    <button className='btn eventlocationBtn' onClick={()=>handleSave('noMatch')}>No coincide</button>
+                    <button className='btn eventlocationBtn' onClick={()=>handleSave()}>Confirmar</button>
                 </div>
             }
 

@@ -42,5 +42,10 @@ export default class EventRepository {
         const result = await eventManager.update(event);
         return result;
     };
+    
+    eventDelete = async (id) => {
+        const result = await eventManager.eventDelete(id);
+        return result;
+    };
 
 };

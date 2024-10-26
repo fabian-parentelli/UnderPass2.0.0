@@ -26,7 +26,8 @@ const CreateEvent = ({ user }) => {
         const fetchData = async () => {
             setLoading(true);
             const response = await getConfirmEventApi(user._id);
-            if (response.status === 'success') setValues(response.result);
+            if (response.status === 'notEvent') localStorage.removeItem('event');
+            if (response.status === 'success') setValues(response.result);            
             setLoading(false);
         }; if (lsEvent) fetchData();
     }, []);
