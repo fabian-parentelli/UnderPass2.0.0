@@ -20,7 +20,7 @@
         gap: 1rem;
 
         div {
-            width: 150px;
+            width: 140px;
 
             select {
                 width: 100%;
@@ -38,6 +38,11 @@
             &:hover {
                 transform: rotate(90deg);
             }
+        }
+
+        .eventFilterConfirm {
+            transition: .3s ease-in-out;
+            cursor: pointer;
         }
     }
 

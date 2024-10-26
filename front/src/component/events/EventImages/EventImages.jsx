@@ -33,8 +33,10 @@ const EventImages = ({ values, setValues, setLoading, setProgres }) => {
             )}
 
             <div className='eventImagesBtnsBotton'>
-                <button className='btn btnD' onClick={()=> setProgres(20)}>Volver</button>
-                <button className='btn btnD' onClick={()=> setProgres(60)}>Continuar</button>
+                <button className='btn btnD' onClick={() => setProgres(20)}>{'< Info'}</button>
+                <button className='btn btnD' onClick={() => setProgres(60)}>
+                    {values.inPerson ? 'Locación >' : 'Stream >'}
+                </button>
             </div>
 
             <div className='eventImagesLogo'>

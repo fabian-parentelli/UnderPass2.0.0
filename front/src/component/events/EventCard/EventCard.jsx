@@ -2,6 +2,7 @@ import './eventCard.scss';
 import { Link } from 'react-router-dom';
 import Favorite from '../../utils/Favorite/Favorite';
 import EventTypeImg from '../EventTypeImg/EventTypeImg';
+import VideocamIcon from '@mui/icons-material/Videocam';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 
 const EventCard = ({ card }) => {
@@ -9,7 +10,7 @@ const EventCard = ({ card }) => {
     const day = date.toLocaleDateString('en-GB', { day: '2-digit', timeZone: 'UTC' });
     const month = date.toLocaleDateString('es-ES', { month: 'short', timeZone: 'UTC' });
     const year = date.toLocaleDateString('es-ES', { year: 'numeric', timeZone: 'UTC' });
-    
+
     return (
         <div className='eventCard'>
 
@@ -24,10 +25,16 @@ const EventCard = ({ card }) => {
             <div className='eventCardContainer'>
 
                 <div className='eventCardText'>
-                    <div className='eventCardLocation'>
-                        <LocationOnIcon className='eventCardIcon' />
-                        <p>{card?.location?.city || 'ciuadad'} - {card?.location?.province || 'provincia'}</p>
-                    </div>
+                    {card.inPerson
+                        ? <div className='eventCardLocation'>
+                            <LocationOnIcon className='eventCardIcon' />
+                            <p>{card?.location?.city || 'ciuadad'} - {card?.location?.province || 'provincia'}</p>
+                        </div>
+                        : <div className='eventCardLocation'>
+                            <VideocamIcon className='eventCardIcon' />
+                            <p>Stream</p>
+                        </div>
+                    }
                     <h3>{card.title}</h3>
                 </div>
 

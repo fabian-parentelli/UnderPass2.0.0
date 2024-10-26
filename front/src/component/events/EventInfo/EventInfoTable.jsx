@@ -97,7 +97,7 @@ const EventInfoTable = ({ values, handleChangue, handleSubmit, handleMinors, han
                 </button>
 
                 <button form='eventInfoTableForm' className='btn btnD'>
-                    {!isChange ? 'Continuar' : (lsEvent ? 'Actualizar' : 'Guardar')}
+                    {!isChange ? 'Imágenes >' : (lsEvent ? 'Actualizar' : 'Guardar')}
                 </button>
             </div>
 

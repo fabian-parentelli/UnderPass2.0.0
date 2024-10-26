@@ -3,6 +3,7 @@ const url = import.meta.env.VITE_API_URL;
 const getEventsApi = async (obj) => {
 
     let urlData = `${url}/api/event?`;
+    
     if (obj.page) urlData += `page=${obj.page}&`;
     if (obj.limit) urlData += `limit=${obj.limit}&`;
     if (obj.active !== undefined) urlData += `active=${obj.active}&`;
@@ -14,6 +15,7 @@ const getEventsApi = async (obj) => {
     if (obj.startDate) urlData += `startdate=${obj.startDate}&`; 
     if (obj.title) urlData += `title=${obj.title}&`; 
     if (obj.favorite !== undefined) urlData += `favorite=${obj.favorite}&`;
+    if (obj.confirm) urlData += `confirm=${obj.confirm}&`; 
 
     if (urlData.endsWith('&')) urlData = urlData.slice(0, -1);
 

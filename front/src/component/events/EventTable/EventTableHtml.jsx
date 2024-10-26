@@ -53,10 +53,15 @@ const EventTableHtml = ({ events, closedImg, openImg, vewImg, setEvents, vewInfo
                                 <td>{eve.title}</td>
                                 <td>{typeEventCategory(eve.category)}</td>
                                 <td>
-                                    <p>{eve.location.city}</p>
-                                    <p>{eve.location.province}</p>
+                                    {!eve.inPerson
+                                        ? <p className='colUE'>Stream</p>
+                                        : <>
+                                            <p>{eve.location.city}</p>
+                                            <p>{eve.location.province}</p>
+                                        </>
+                                    }
                                 </td>
-                                <td>{eve.location.place}</td>
+                                <td>{eve.location.place ? eve.location.place : ''}</td>
 
                                 <td>{new Date(eve.startDate).toLocaleDateString('es-ES', { timeZone: 'UTC' })}</td>
                                 <td>{eve.startHour}hs</td>

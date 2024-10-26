@@ -1,5 +1,90 @@
+@import '../../../style/colors.scss';
+
 .eventStream {
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
     margin-top: 1rem;
+
+    .Inputss {
+        width: 300px;
+        margin-top: 1rem;
+
+        .eventStreamInput {
+            display: flex;
+            align-items: center;
+
+            input {
+                width: 280px;
+            }
+
+            .eventStreamIcon {
+                color: $underEvent;
+                font-size: 2.3rem;
+                cursor: pointer;
+                transition: .3s ease-in-out;
+
+                &:hover {
+                    color: rgb(35, 57, 90);
+                }
+            }
+        }
+
+        select {
+            width: 99%;
+        }
+    }
+
+    .eventStreamTable {
+        margin: 1rem 0;
+        max-width: 600px;
+        width: 100%;
+
+        .eventStreamTableIcon {
+            cursor: pointer;
+            transition: .3s ease-in-out;
+
+            &:hover {
+                transform: rotate(90deg);
+            }
+        }
+    }
+
+    .eventStreamButtons {
+        margin: 4rem 0;
+        max-width: 600px;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+@media (max-width: 767px) {
+
+    .eventStreamTable {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+
+        &::-webkit-scrollbar {
+            height: 3px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: $underEvent;
+            border-radius: 6px;
+        }
+
+        .eventStreamTable {
+            cursor: pointer;
+            transition: .3s;
+
+            &:hover {
+                color: black;
+                background-color: $underEvent;
+            }
+        }
+    }
 }

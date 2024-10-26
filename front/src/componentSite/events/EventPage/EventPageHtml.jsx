@@ -1,4 +1,5 @@
 import './eventPage.scss';
+import { useState } from 'react';
 import EmailIcon from '@mui/icons-material/Email';
 import EventOthers from './EventOthers/EventOthers';
 import MapView from '../../../component/utils/MapVew';
@@ -12,11 +13,20 @@ import UnderEventsLog from '../../../component/fonts/UnderEventsLog/UnderEventsL
 
 const EventPageHtml = ({ event }) => {
 
+    const [viewport, setViewport] = useState(window.innerWidth);
+
     return (
         <div className='eventPage'>
 
             <section className='eventPageTop'>
-                <div className='eventPageL'>
+
+                <div
+                    style={{
+                        width: viewport > 767 ? (event.ticketInfo.length > 0 ? '70%' : '100%') :
+                            (event.ticketInfo.length > 0 && '100%')
+                    }}
+                    className='eventPageL'
+                >
 
                     <div className='eventPageTitle'>
                         <h2>{event.title}</h2>
@@ -27,28 +37,34 @@ const EventPageHtml = ({ event }) => {
                         </div>
                     </div>
 
-                    <EventPageTick event={event} />
-                    <div className='eventPageB'>
-                        <button className='btn btnUE'>Comprar</button>
-                    </div>
+                    {event.ticketInfo.length > 0 &&
+                        <>
+                            <EventPageTick event={event} />
+                            <div className='eventPageB'>
+                                <button className='btn btnUE'>Comprar</button>
+                            </div>
+                        </>
+                    }
 
                 </div>
 
-                <div className='eventPageR'>
+                {event.inPerson &&
+                    <div className='eventPageR'>
 
-                    <div className='eventPageLocation'>
-                        <LocationOnIcon className='eventPageLocationIcon' />
-                        <div>
-                            <p>{event.location.place}</p>
-                            <p>{event.location.address} {event.location.door} - {event.location.province}</p>
+                        <div className='eventPageLocation'>
+                            <LocationOnIcon className='eventPageLocationIcon' />
+                            <div>
+                                <p>{event.location.place}</p>
+                                <p>{event.location.address} {event.location.door} - {event.location.province}</p>
+                            </div>
                         </div>
-                    </div>
 
-                    <div className='eventPageMap'>
-                        <MapView coordinates={event.location.coordinates} />
-                    </div>
+                        <div className='eventPageMap'>
+                            <MapView coordinates={event.location.coordinates} />
+                        </div>
 
-                </div>
+                    </div>
+                }
             </section>
 
             <section className='eventPageSecond'>
@@ -91,7 +107,7 @@ const EventPageHtml = ({ event }) => {
             </section>
 
             <section className='evnetPageLogo'>
-                    <UnderEventsLog size={3} />
+                <UnderEventsLog size={3} />
             </section>
 
             <section className='eventpageMessage'>

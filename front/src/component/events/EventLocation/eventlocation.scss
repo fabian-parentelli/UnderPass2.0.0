@@ -13,7 +13,8 @@
 
     .eventImagesBtnsBotton {
         margin-top: 3rem;
-        width: 50%;
+        max-width: 600px;
+        width: 100%;
         display: flex;
         justify-content: space-between;
     }
@@ -25,14 +26,6 @@
 
         &:hover {
             background-color: #245ca5;
-        }
-    }
-}
-
-@media (max-width: 767px) {
-    .eventlocation {
-        .eventImagesBtnsBotton {
-            width: 100%;
         }
     }
 }

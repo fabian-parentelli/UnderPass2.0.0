@@ -23,7 +23,7 @@ const ChooseSites = ({ values, handleInSite, type: texto }) => {
                         <label>Ver en tu sitio</label>
                         <div className='chooseSitesSwitch'>
                             <p>NO</p>
-                            <Switch checked={values.inSite ? values.inSite : null} onChange={handleInSite} />
+                            <Switch checked={values.inSite} onChange={handleInSite} />
                             <p>SI</p>
                         </div>
                         <p className='chooseSitesMessage'>¿Quieres que se muestre este {texto} en tu sitio?</p>

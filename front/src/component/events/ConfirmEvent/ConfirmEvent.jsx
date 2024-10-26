@@ -4,6 +4,7 @@ import MapView from '../../utils/MapVew.jsx';
 import { useNavigate } from 'react-router-dom';
 import EventCard from '../EventCard/EventCard';
 import VideosVew from '../../utils/VideosVew.jsx';
+import VideocamIcon from '@mui/icons-material/Videocam';
 import SnackbarAlert from '../../utils/SnackbarAlert.jsx';
 import typeEventCategory from '../../../utils/typeEventCategory.utils.js';
 import { updEventConfirmApi } from '../../../helpers/event/updConfirm.api.js';
@@ -57,27 +58,29 @@ const ConfirmEvent = ({ values, setLoading, setProgres }) => {
 
             <button className='btn btnUE' onClick={() => setProgres(20)}>Información</button>
 
-            <section>
-                <div className='confirmEventDiv'>
-                    {values.location?.coordinates?.lat && values.location?.coordinates?.lon &&
-                        <div className='mapVew' style={{ marginTop: '3rem' }}>
-                            <MapView coordinates={values.location.coordinates} />
-                        </div>
-                    }
-                    <button className='btn btnUE' onClick={() => setProgres(60)}>Locación</button>
-                </div>
+            {values.location && values.location.coordinates &&
+                <section>
+                    <div className='confirmEventDiv'>
+                        {values.location?.coordinates?.lat && values.location?.coordinates?.lon &&
+                            <div className='mapVew' style={{ marginTop: '3rem' }}>
+                                <MapView coordinates={values.location.coordinates} />
+                            </div>
+                        }
+                        <button className='btn btnUE' onClick={() => setProgres(60)}>Locación</button>
+                    </div>
 
-                <div className='confirmEventDiv'>
-                    <p><span>{country === 'UY' ? 'Departamento:' : 'Provincia:'}</span> {values?.location?.province}</p>
-                    <p><span>Ciudad:</span> {values?.location?.city}</p>
-                    <p><span>Dirección:</span> {values?.location?.address}</p>
-                    <p><span>N° de puerta:</span> {values?.location?.door}</p>
-                    <p><span>Lugar:</span> {values?.location?.place}</p>
-                    <p><span>Latitud:</span> {values?.location?.coordinates?.lat}</p>
-                    <p><span>Longitud:</span> {values?.location?.coordinates?.lon}</p>
-                    <button className='btn btnUE' onClick={() => setProgres(60)}>Locación</button>
-                </div>
-            </section>
+                    <div className='confirmEventDiv'>
+                        <p><span>{country === 'UY' ? 'Departamento:' : 'Provincia:'}</span> {values?.location?.province}</p>
+                        <p><span>Ciudad:</span> {values?.location?.city}</p>
+                        <p><span>Dirección:</span> {values?.location?.address}</p>
+                        <p><span>N° de puerta:</span> {values?.location?.door}</p>
+                        <p><span>Lugar:</span> {values?.location?.place}</p>
+                        <p><span>Latitud:</span> {values?.location?.coordinates?.lat}</p>
+                        <p><span>Longitud:</span> {values?.location?.coordinates?.lon}</p>
+                        <button className='btn btnUE' onClick={() => setProgres(60)}>Locación</button>
+                    </div>
+                </section>
+            }
 
             {values && values.ticketInfo.length > 0 &&
                 <div className='ticketsTrueVew'>
@@ -110,9 +113,11 @@ const ConfirmEvent = ({ values, setLoading, setProgres }) => {
                 </div>
             }
 
-            <button className='btn btnUE' onClick={() => setProgres(80)} style={{ marginTop: '1rem' }}>
-                Tickets
-            </button>
+            {values && values.ticketInfo.length > 0 &&
+                <button className='btn btnUE' onClick={() => setProgres(80)} style={{ marginTop: '1rem' }}>
+                    Tickets
+                </button>
+            }
 
             {values.video &&
                 <div className='confirmEventVideo'>
@@ -121,8 +126,27 @@ const ConfirmEvent = ({ values, setLoading, setProgres }) => {
                 </div>
             }
 
+            {!values.inPerson &&
+                <section className='confirmEventInPersons'>
+                    <h4>Links del Stream.</h4>
+                    <div className='confirmEventInPersonsSections'>
+                        {values.links && values.links.length > 0 && values.links.map((lin, index) => (
+                            <div key={index} className='confirmEventInPersonsDIV'>
+                                <div>
+                                    <VideocamIcon />
+                                    <p>{lin.channel}</p>
+                                </div>
+                                <p>{lin.link}</p>
+                            </div>
+                        ))}
+
+                        <button className='btn btnUE' onClick={() => setProgres(60)}>Stream</button>
+                    </div>
+                </section>
+            }
+
             <div className='confirmEventBTNEND'>
-                <button className='btn btnD' onClick={() => setProgres(80)}>Volver</button>
+                <button className='btn btnD' onClick={() => setProgres(80)}>{'< Entradas'}</button>
                 <button className='btn btnA' onClick={handleConfirm}>Confirmar</button>
             </div>
 

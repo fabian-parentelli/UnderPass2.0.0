@@ -10,7 +10,6 @@
         align-items: flex-start;
 
         .eventPageL {
-            width: 70%;
             padding-top: 2rem;
 
             display: flex;
@@ -117,6 +116,8 @@
             margin-top: 3rem;
             display: flex;
             justify-content: space-evenly;
+            flex-wrap: wrap;
+            gap: 1rem;
             width: 100%;
 
             .eventPageInfo {

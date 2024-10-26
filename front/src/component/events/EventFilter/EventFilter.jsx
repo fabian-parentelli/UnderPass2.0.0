@@ -2,17 +2,19 @@ import './eventFilter.scss';
 import { useEffect, useState } from 'react';
 import StarIcon from '@mui/icons-material/Star';
 import CloseIcon from '@mui/icons-material/Close';
+import InventoryIcon from '@mui/icons-material/Inventory';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import SelectedProvince from '../../utils/SelectedProvince.jsx';
 import { useLoginContext } from '../../../context/LoginContext.jsx';
 import { getEventsApi } from '../../../helpers/event/getEvents.api.js';
 import { eventCategorysArray } from '../../../utils/typeEventCategory.utils.js';
 import { getEventsPublicApi } from '../../../helpers/event/getEventsPublic.api.js';
+import { Tooltip } from '@mui/material';
 
 const EventFilter = ({ query, setQuery, setEvents, setLoading, isActive = true, isFavorite = false }) => {
 
     const { user } = useLoginContext();
-    const [prequery, setPrequery] = useState({ category: '', province: '', startDate: '', title: '', active: 'true' });
+    const [prequery, setPrequery] = useState({ category: '', province: '', startDate: '', title: '', active: 'true', confirm: '' });
     const [data, setData] = useState(query.publicity ? true : false);
     const [star, setStar] = useState(false);
 
@@ -42,14 +44,25 @@ const EventFilter = ({ query, setQuery, setEvents, setLoading, isActive = true, 
     };
 
     const handleDelete = () => {
-        setPrequery({ category: '', province: '', startDate: '', active: 'true', publicity: data });
-        setQuery({ ...query, category: null, province: null, startDate: null, active: 'true', publicity: data });
+        setPrequery({ category: '', province: '', startDate: '', active: 'true', publicity: data, favorite: '', confirm: '' });
+        setQuery({ ...query, category: null, province: null, startDate: null, active: true, publicity: data, favorite: '', confirm: null });
     };
 
     const handleStar = () => {
         setStar(!star);
         if (!star) setQuery({ ...query, favorite: true, publicity: false });
         else setQuery({ ...query, favorite: undefined, publicity: data });
+    };
+
+    const hanldeConfirm = () => {
+        if (prequery.confirm === 'false') {
+            setPrequery({ ...prequery, confirm: '', active: true });
+            setQuery({ ...query, confirm: null, active: true });
+        };
+        if (prequery.confirm === '') {
+            setPrequery({ ...prequery, confirm: 'false', active: false });
+            setQuery({ ...query, confirm: 'false', active: false });
+        };
     };
 
     return (
@@ -79,6 +92,17 @@ const EventFilter = ({ query, setQuery, setEvents, setLoading, isActive = true, 
 
                 <button className='btn btnUE'>Filtrar</button>
                 <CloseIcon className='eventFilterIcon' onClick={handleDelete} />
+
+                {user.data.role !== 'user' && !isFavorite &&
+                    <Tooltip title='Sin Confirmar' placement="top">
+                        <InventoryIcon
+                            onClick={hanldeConfirm}
+                            className='eventFilterConfirm'
+                            style={{ color: prequery.confirm === 'false' ? '#383f84' : 'gray' }}
+                        />
+                    </Tooltip>
+                }
+
             </div>
 
             <div className='eventFilterR'>

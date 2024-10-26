@@ -36,7 +36,7 @@ const TicketsStrue = ({ values, setValues, setLoading, setProgres, tic }) => {
         <div className='ticketstrue'>
             <h3>Crear entradas.</h3>
             {tic
-                ? <p>Las entradas son gratis, pero puedes crear varios tipos, y los usuarios se pueden registrar</p>
+                ? <p>Las entradas son <span className='colUE'>gratis</span>, pero puedes crear varios tipos, y los usuarios se pueden registrar</p>
                 : <p>Existen tres etapas, la primera es crear la entrada, la siguiente es agregarla y por último confirmar todas las entradas que has creado.</p>
             }
 
@@ -61,11 +61,13 @@ const TicketsStrue = ({ values, setValues, setLoading, setProgres, tic }) => {
             }
 
             <div className='eventImagesBtnsBotton'>
-                <button className='btn btnD' onClick={() => setProgres(60)}>Volver</button>
-                <button className='btn btnD' onClick={() => setProgres(100)}>Continuar</button>
+                <button className='btn btnD' onClick={() => setProgres(60)}>
+                    {values.inPerson ? '< Locación' : '< Stream'}
+                </button>
+                <button className='btn btnD' onClick={() => setProgres(100)}>{'Confirmar >'}</button>
             </div>
 
-            <div style={{marginTop: '2rem'}}>
+            <div style={{ marginTop: '2rem' }}>
                 <UnderEventsLog size={3} />
             </div>
         </div>

@@ -59,8 +59,8 @@ const Eventlocation = ({ values, setValues, setLoading, setProgres }) => {
             }
 
             <div className='eventImagesBtnsBotton'>
-                <button className='btn btnD' onClick={() => setProgres(40)}>Volver</button>
-                <button className='btn btnD' onClick={() => setProgres(80)}>Continuar</button>
+                <button className='btn btnD' onClick={() => setProgres(40)}>{'< Imágnes'}</button>
+                <button className='btn btnD' onClick={() => setProgres(80)}>{'Entradas >'}</button>
             </div>
 
             <div style={{ marginTop: '2rem' }}>

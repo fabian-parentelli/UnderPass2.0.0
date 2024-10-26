@@ -93,31 +93,34 @@ const UpdInfoEventHtml = ({ values, handleChange, handleSubmit, handleMinors, ha
                 <input type="text" name='city' onChange={handleLocation} value={values.location.city} />
             </div>
 
-            <div>
-                <label>Direccón</label>
-                <input type="text" name='address' onChange={handleLocation} value={values.location.address} />
-            </div>
+            {values.location.address && values.location.door && values.location.place && values.location.coordinates.lat && values.location.coordinates.lon &&
+                <>
+                    <div>
+                        <label>Direccón</label>
+                        <input type="text" name='address' onChange={handleLocation} value={values?.location?.address} />
+                    </div>
 
-            <div>
-                <label>Número de Puerta</label>
-                <input type="text" name='door' onChange={handleLocation} value={values.location.door} />
-            </div>
+                    <div>
+                        <label>Número de Puerta</label>
+                        <input type="text" name='door' onChange={handleLocation} value={values?.location?.door} />
+                    </div>
 
-            <div>
-                <label>Lugar <span>Teatro, bar, centro cultural, etc</span></label>
-                <input type="text" name='place' onChange={handleLocation} value={values.location.place} />
-            </div>
+                    <div>
+                        <label>Lugar <span>Teatro, bar, centro cultural, etc</span></label>
+                        <input type="text" name='place' onChange={handleLocation} value={values?.location?.place} />
+                    </div>
 
-            <div>
-                <label>Latitud</label>
-                <input type="text" name='lat' onChange={handleCoordenates} value={values.location.coordinates.lat} />
-            </div>
-            
-            <div>
-                <label>Longitud</label>
-                <input type="text" name='lon' onChange={handleCoordenates} value={values.location.coordinates.lon} />
-            </div>
+                    <div>
+                        <label>Latitud</label>
+                        <input type="text" name='lat' onChange={handleCoordenates} value={values?.location?.coordinates?.lat} />
+                    </div>
 
+                    <div>
+                        <label>Longitud</label>
+                        <input type="text" name='lon' onChange={handleCoordenates} value={values?.location?.coordinates?.lon} />
+                    </div>
+                </>
+            }
             <button className='btn btnUE'>Actualizar</button>
         </form>
     );

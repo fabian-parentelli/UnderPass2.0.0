@@ -17,7 +17,8 @@ const CreateEvent = ({ user }) => {
     const [loading, setLoading] = useState(false);
     const [values, setValues] = useState({
         title: '', category: '', minors: false, tickets: true, userId: user._id, startDate: '', startHour: '',
-        endHour: '', description: '', typePublic: true, password: '', guests: '', inSite: true, inPerson: true
+        endHour: '', description: '', typePublic: true, password: '', guests: '', inSite: true, inPerson: true,
+        location: { country: localStorage.getItem('country') }
     });
     useEffect(() => { window.scrollTo(0, 0) }, [progres]);
 
@@ -35,10 +36,10 @@ const CreateEvent = ({ user }) => {
             <EventProgress progres={progres} setProgres={setProgres} lsEvent={lsEvent} values={values} />
             {progres === 20 && <EventInfo setProgres={setProgres} setLoading={setLoading} values={values} setValues={setValues} lsEvent={lsEvent} />}
             {progres === 40 && <EventImages values={values} setValues={setValues} setLoading={setLoading} setProgres={setProgres} />}
-            {progres === 60 &&
-                values.inPerson 
-                ? <Eventlocation values={values} setValues={setValues} setLoading={setLoading} setProgres={setProgres} />
-                : <EventStream values={values} setValues={setValues} setLoading={setLoading} setProgres={setProgres} />
+            {(progres === 60) && (
+                values.inPerson
+                    ? <Eventlocation values={values} setValues={setValues} setLoading={setLoading} setProgres={setProgres} />
+                    : <EventStream values={values} setValues={setValues} setLoading={setLoading} setProgres={setProgres} />)
             }
             {progres === 80 && <TicketCreate values={values} setValues={setValues} setLoading={setLoading} setProgres={setProgres} />}
             {progres === 100 && <ConfirmEvent setProgres={setProgres} setLoading={setLoading} values={values} />}

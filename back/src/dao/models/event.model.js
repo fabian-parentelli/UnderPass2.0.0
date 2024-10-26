@@ -48,7 +48,13 @@ const eventSchema = new mongoose.Schema({
     password: { type: String },
     confirm: { type: Boolean, default: false },
     inSite: { type: Boolean },
-    inPerson: { type: Boolean, default: true }
+    inPerson: { type: Boolean, default: true },
+    links: [
+        {
+            channel: { type: String },
+            link: { type: String },
+        }
+    ]
 });
 
 const autoPopulatePreset = function (next) {
