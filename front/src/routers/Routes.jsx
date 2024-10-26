@@ -29,6 +29,7 @@ import UnderNews from "../componentSite/news/UnderNews/UnderNews.jsx";
 import NewEvent from "../componentSite/events/NewEvent/NewEvent.jsx";
 import UnderEvent from "../componentSite/events/UnderEvent/UnderEvent.jsx";
 import EventPage from "../componentSite/events/EventPage/EventPage.jsx";
+import VewStream from "../componentSite/stream/VewStream/VewStream.jsx";
 
 const RoutesComp = () => {
 
@@ -56,6 +57,7 @@ const RoutesComp = () => {
                     <Route path="/newevent" element={<NewEvent />} />
                     <Route path="/event" element={<UnderEvent />} />
                     <Route path="/eventpage/:id" element={<EventPage />} />
+                    <Route path="/stream/:id/:channel" element={<VewStream />} />
 
                     {user.logged &&
                         <>
@@ -73,7 +75,7 @@ const RoutesComp = () => {
                         <Route path="/dashboard/*" element={<Dashboard />} />
                     }
                 </Routes>
-                
+
                 <BodyCart />
                 <Footer />
 

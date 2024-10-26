@@ -1,0 +1,20 @@
+.eventFree {
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    p {
+        font-size: 3rem;
+        text-align: center;
+    }
+
+    img {
+        height: 300px;
+        mask-image: linear-gradient(
+        black 80%,
+        transparent
+    );
+    }
+}

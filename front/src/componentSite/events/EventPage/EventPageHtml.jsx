@@ -10,10 +10,14 @@ import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import Messages from '../../../component/messages/Messages/Messages';
 import EventTypeImg from '../../../component/events/EventTypeImg/EventTypeImg';
 import UnderEventsLog from '../../../component/fonts/UnderEventsLog/UnderEventsLog';
+import EventFree from './EventFree/EventFree';
+import EventIsPerson from './EventIsPerson/EventIsPerson';
 
 const EventPageHtml = ({ event }) => {
 
     const [viewport, setViewport] = useState(window.innerWidth);
+    const [vew, setVew] = useState(false);
+    const handleVew = (e) => setVew(e.target.value);
 
     return (
         <div className='eventPage'>
@@ -22,8 +26,10 @@ const EventPageHtml = ({ event }) => {
 
                 <div
                     style={{
-                        width: viewport > 767 ? (event.ticketInfo.length > 0 ? '70%' : '100%') :
-                            (event.ticketInfo.length > 0 && '100%')
+                        width:
+                            viewport > 767
+                                ? (event.tickets ? (event.inPerson ? '70%' : '100%') : (event.inPerson ? '70%' : '100%'))
+                                : '100%'
                     }}
                     className='eventPageL'
                 >
@@ -37,15 +43,25 @@ const EventPageHtml = ({ event }) => {
                         </div>
                     </div>
 
-                    {event.ticketInfo.length > 0 &&
-                        <>
-                            <EventPageTick event={event} />
-                            <div className='eventPageB'>
-                                <button className='btn btnUE'>Comprar</button>
-                            </div>
-                        </>
+                    {event.inPerson ? 
+                        (event.typePublic && event.tickets
+                            ? <EventPageTick event={event} />
+                            : (!event.typePublic ? '' : <EventFree />))
+                        : <EventIsPerson event={event} />
                     }
 
+                    {!event.typePublic &&
+                        <>
+                            <div className='eventPageIsNotPublic'>
+                                <label>Escribe la contraseña</label>
+                                <input type="text" onChange={handleVew} />
+                            </div>
+                            {event.tickets 
+                                ? event.password == vew && <EventPageTick event={event} />
+                                : vew === event.password && <EventIsPerson event={event} pass={true} /> 
+                            }
+                        </>
+                    }
                 </div>
 
                 {event.inPerson &&
@@ -71,12 +87,14 @@ const EventPageHtml = ({ event }) => {
 
                 <p className='eventPageDescription'>{event.description}</p>
 
-                <div className='eventPageGuests'>
-                    <p style={{ color: 'gray' }}>Invitados: </p>
-                    {event && event.guests && event.guests.map((g, i) => (
-                        <p key={i}>{g} </p>
-                    ))}
-                </div>
+                {event.guests[0] !== '' &&
+                    <div className='eventPageGuests'>
+                        <p style={{ color: 'gray' }}>Invitados: </p>
+                        {event && event.guests && event.guests.map((g, i) => (
+                            <p key={i}>{g} </p>
+                        ))}
+                    </div>
+                }
 
                 <div className='eventPageImgs'>
 

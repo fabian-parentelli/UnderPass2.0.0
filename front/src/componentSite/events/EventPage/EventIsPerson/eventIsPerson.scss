@@ -1,0 +1,49 @@
+.eventIsPerson {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 2rem auto;
+
+    .eventIsPersonA {
+        margin: auto;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .eventIsPersonB {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+
+        .eventIsPersonTitle {
+            font-size: 1.4rem;
+        }
+
+        .eventIsPersonLinksCont {
+            display: flex;
+            flex-direction: column;
+
+            .eventIsPersonDiv {
+                display: flex;
+                align-items: start;
+            }
+
+            .eventIsPersonLink {
+                color: gray;
+                font-size: 12px;
+                text-decoration: none;
+                cursor: pointer;
+                transition: .3s ease-in-out;
+
+                &:hover {
+                    color: #383f84;
+                }
+            }
+        }
+    }
+}

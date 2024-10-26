@@ -54,7 +54,8 @@ const eventSchema = new mongoose.Schema({
             channel: { type: String },
             link: { type: String },
         }
-    ]
+    ],
+    dateCreate: { type: Date, default: Date.now },
 });
 
 const autoPopulatePreset = function (next) {

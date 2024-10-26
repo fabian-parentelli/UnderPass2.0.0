@@ -1,13 +1,15 @@
 import './updEventInfo.scss'
 import Switch from '@mui/material/Switch';
 import EventType from '../EventInfo/EventType';
-import SelectedProvince from '../../utils/SelectedProvince';
 import EventCategory from '../EventCategory/EventCategory';
+import SelectedProvince from '../../utils/SelectedProvince';
+import { useLoginContext } from '../../../context/LoginContext';
 
 const UpdInfoEventHtml = ({ values, handleChange, handleSubmit, handleMinors, handleTicket, handleType,
     handleLocation, handleCoordenates }) => {
 
     const country = localStorage.getItem('country');
+    const { user } = useLoginContext();
 
     return (
         <form className='updEventInfo' onSubmit={handleSubmit}>
@@ -121,6 +123,14 @@ const UpdInfoEventHtml = ({ values, handleChange, handleSubmit, handleMinors, ha
                     </div>
                 </>
             }
+
+            {user.data.role !== 'user' && values.dateCreate &&
+                <div>
+                    <label>Feha de creación</label>
+                    <p>{new Date(values.dateCreate).toLocaleDateString()}</p>
+                </div>
+            }
+
             <button className='btn btnUE'>Actualizar</button>
         </form>
     );
