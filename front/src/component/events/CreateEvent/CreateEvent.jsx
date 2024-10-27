@@ -18,7 +18,7 @@ const CreateEvent = ({ user }) => {
     const [values, setValues] = useState({
         title: '', category: '', minors: false, tickets: true, userId: user._id, startDate: '', startHour: '',
         endHour: '', description: '', typePublic: true, password: '', guests: '', inSite: true, inPerson: true,
-        location: { country: localStorage.getItem('country') }
+        location: { country: localStorage.getItem('country') }, typeGuest: ''
     });
     useEffect(() => { window.scrollTo(0, 0) }, [progres]);
 

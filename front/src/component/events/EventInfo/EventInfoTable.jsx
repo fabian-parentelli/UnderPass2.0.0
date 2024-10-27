@@ -54,6 +54,15 @@ const EventInfoTable = ({ values, handleChangue, handleSubmit, handleMinors, han
                         <input type="time" name='endHour' onChange={handleChangue} value={values.endHour} required />
                     </div>
 
+                    <div>
+                        <label>Tipo, invitados o elenco:</label>
+                        <select name="typeGuest" onChange={handleChangue} value={values.typeGuest}>
+                                <option value="">Elegir</option>
+                                <option value="guests">Invitados</option>
+                                <option value="cast">Elenco</option>
+                        </select>
+                    </div>
+
                     <EventType values={values} handleType={handleType} handleChangue={handleChangue} />
 
                     <div>
@@ -87,7 +96,7 @@ const EventInfoTable = ({ values, handleChangue, handleSubmit, handleMinors, han
                     </div>
 
                     <div>
-                        <label>Invitados</label>
+                        <label>Invitados/elenco</label>
                         <input type="text" name='guests' onChange={handleChangue}
                             placeholder='Invitado 1,Invitado 2,Invitado 3' value={values.guests}
                         />

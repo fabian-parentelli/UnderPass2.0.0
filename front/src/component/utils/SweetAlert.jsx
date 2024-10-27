@@ -1,27 +1,27 @@
 import Swal from 'sweetalert2';
 import { useEffect } from 'react';
 
-const SweetAlert = ({ onClose, message }) => {
+const SweetAlert = ({ onClose, message, icon = 'success' }) => {
 
     useEffect(() => {
         const timer = setTimeout(() => {
-            onClose(); 
-        }, 2000); 
+            onClose();
+        }, 2000);
 
-        return () => clearTimeout(timer); 
+        return () => clearTimeout(timer);
     }, [onClose]);
 
     Swal.fire({
         title: message,
-        icon: 'success',
+        icon: icon,
         position: 'bottom-end',
-        timerProgressBar: true, 
-        showConfirmButton: false, 
-        toast: true, 
-        timer: 2000 
+        timerProgressBar: true,
+        showConfirmButton: false,
+        toast: true,
+        timer: 2000
     });
 
-    return null; 
+    return null;
 };
 
 export default SweetAlert;

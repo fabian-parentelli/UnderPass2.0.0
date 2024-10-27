@@ -4,7 +4,7 @@ import { getPresetApi } from '../../../../helpers/images/preset/getPresets.api.j
 import EventCard from '../../EventCard/EventCard.jsx';
 import { newPresetEventApi } from '../../../../helpers/event/newPresetEvent.api.js';
 
-const EventPreset = ({ values, video, setValues, setLoading, setProgres }) => {
+const EventPreset = ({ values, setValues, setLoading, setProgres }) => {
 
     const [presets, setPresets] = useState([]);
 
@@ -25,7 +25,6 @@ const EventPreset = ({ values, video, setValues, setLoading, setProgres }) => {
     const handleClick = async (card) => {
         setLoading(true);
         const obj = { presetId: card.presetId._id, eventId: values._id }
-        if (values) obj.video = video;
         const response = await newPresetEventApi(obj);
         if (response.status === 'success') {
             setValues(response.result);

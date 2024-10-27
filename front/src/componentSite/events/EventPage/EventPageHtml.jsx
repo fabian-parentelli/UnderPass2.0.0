@@ -1,8 +1,10 @@
 import './eventPage.scss';
 import { useState } from 'react';
+import EventFree from './EventFree/EventFree';
 import EmailIcon from '@mui/icons-material/Email';
 import EventOthers from './EventOthers/EventOthers';
 import MapView from '../../../component/utils/MapVew';
+import EventIsPerson from './EventIsPerson/EventIsPerson';
 import EventPageTick from './EventPageTick/EventPageTick';
 import VideosVew from '../../../component/utils/VideosVew';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
@@ -10,8 +12,6 @@ import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import Messages from '../../../component/messages/Messages/Messages';
 import EventTypeImg from '../../../component/events/EventTypeImg/EventTypeImg';
 import UnderEventsLog from '../../../component/fonts/UnderEventsLog/UnderEventsLog';
-import EventFree from './EventFree/EventFree';
-import EventIsPerson from './EventIsPerson/EventIsPerson';
 
 const EventPageHtml = ({ event }) => {
 
@@ -43,7 +43,7 @@ const EventPageHtml = ({ event }) => {
                         </div>
                     </div>
 
-                    {event.inPerson ? 
+                    {event.inPerson ?
                         (event.typePublic && event.tickets
                             ? <EventPageTick event={event} />
                             : (!event.typePublic ? '' : <EventFree />))
@@ -56,9 +56,9 @@ const EventPageHtml = ({ event }) => {
                                 <label>Escribe la contraseña</label>
                                 <input type="text" onChange={handleVew} />
                             </div>
-                            {event.tickets 
+                            {event.tickets
                                 ? event.password == vew && <EventPageTick event={event} />
-                                : vew === event.password && <EventIsPerson event={event} pass={true} /> 
+                                : vew === event.password && <EventIsPerson event={event} pass={true} />
                             }
                         </>
                     }
@@ -89,7 +89,7 @@ const EventPageHtml = ({ event }) => {
 
                 {event.guests[0] !== '' &&
                     <div className='eventPageGuests'>
-                        <p style={{ color: 'gray' }}>Invitados: </p>
+                        <p style={{ color: 'gray' }}>{typeGuestsText(event.typeGuest) || 'Invitados'}:</p>
                         {event && event.guests && event.guests.map((g, i) => (
                             <p key={i}>{g} </p>
                         ))}
@@ -138,3 +138,11 @@ const EventPageHtml = ({ event }) => {
 };
 
 export default EventPageHtml;
+
+function typeGuestsText(types) {
+    const data = {
+        'guests': () => { return 'Invitados' },
+        'cast': () => { return 'Elenco' },
+    };
+    return (data[types] || (() => types))();
+};

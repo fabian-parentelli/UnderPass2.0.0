@@ -24,7 +24,43 @@
         }
     }
 
-    button {
+    .updTicketEventSpinner {
+        max-width: 600px;
+        width: 100%;
+        max-height: 600px;
+        height: 100%;
+    }
+
+    .updTicketEventButtons {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
         margin-top: 1rem;
+
+        .updTicketEventMessage {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+
+            .updTicketEventToolTip {
+                display: none;
+                color: gray;
+            }
+
+            .updTicketEventIcon {
+                font-size: 2.4rem;
+                color: $underEvent;
+                cursor: pointer;
+                transition: .3s ease-in-out;
+
+                &:hover {
+                    color: rgb(37, 37, 161);
+                }
+            }
+
+            .updTicketEventIcon:hover+.updTicketEventToolTip {
+                display: block;
+            }
+        }
     }
 }

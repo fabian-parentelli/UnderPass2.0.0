@@ -38,7 +38,7 @@ const TicketsTrueForm = ({ values, handleSubmit, ticket, setTicket, tic }) => {
                 <div>
                     <label>Precios <span>en moneda local.</span></label>
                     {tic
-                        ? <p style={{textAlign: 'left'}}>Entradas libres</p>
+                        ? <p style={{ textAlign: 'left' }}>Entradas libres</p>
                         : <input
                             type="number" name='price' placeholder='$' onChange={handleChange}
                             value={ticket.price || ''} required

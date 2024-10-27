@@ -26,7 +26,6 @@ const EventTypeImg = ({ card }) => {
                             <p>{card.startHour}</p>
                         </div>
                     </div>
-
                 </div>
             }
         </>

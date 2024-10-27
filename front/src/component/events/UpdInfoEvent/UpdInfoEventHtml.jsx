@@ -68,6 +68,15 @@ const UpdInfoEventHtml = ({ values, handleChange, handleSubmit, handleMinors, ha
             </div>
 
             <div>
+                <label>Tipo, invitados, o elenco:</label>
+                <select name="typeGuest" value={values.typeGuest || ''} onChange={handleChange}>
+                    <option value="">Elegír</option>
+                    <option value="guests">Invitados</option>
+                    <option value="cast">Elenco</option>
+                </select>
+            </div>
+
+            <div>
                 <label>Invitados</label>
                 <input type="text" name='guests' onChange={handleChange}
                     placeholder='Invitado1,Invitado2,Invitado3' value={values.guests || ''}
@@ -82,7 +91,7 @@ const UpdInfoEventHtml = ({ values, handleChange, handleSubmit, handleMinors, ha
 
             <div>
                 <label>Video</label>
-                <input type="text" name='title' value={values.video || ''} onChange={handleChange} />
+                <input type="text" name='video' value={values.video || ''} onChange={handleChange} />
             </div>
 
             <div>

@@ -56,6 +56,7 @@ const eventSchema = new mongoose.Schema({
         }
     ],
     dateCreate: { type: Date, default: Date.now },
+    typeGuest: { type: String },
 });
 
 const autoPopulatePreset = function (next) {

@@ -1,4 +1,3 @@
-import './eventOthers.scss';
 import { useEffect, useState } from 'react';
 import Pager from '../../../../component/utils/Pager/Pager.jsx';
 import { getEventsApi } from '../../../../helpers/event/getEvents.api.js';
@@ -23,7 +22,7 @@ const EventOthers = () => {
     const handleChangePage = (page) => setQuery({ ...query, page });
 
     return (
-        <div className='eventOthers'>
+        <div>
             {events && <EventPrint events={events.docs} />}
             <Pager users={events} HandleChangePage={handleChangePage} />
         </div>

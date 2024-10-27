@@ -24,4 +24,5 @@ export const eventCategorysArray = [
     { val: 'conference', name: 'Conferencia' },
     { val: 'art', name: 'Artística' },
     { val: 'dance', name: 'Danza' },
+    { val: 'other', name: 'Otro' },
 ]; 

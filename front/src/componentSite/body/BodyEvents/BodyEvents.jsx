@@ -13,7 +13,7 @@ const BodyEvents = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            let response
+            let response;
             if(localStorage.getItem('token')) response = await getEventsApi(query);
             else response = await getEventsPublicApi(query);
             if (response.status === 'success') setEvents(response.result);

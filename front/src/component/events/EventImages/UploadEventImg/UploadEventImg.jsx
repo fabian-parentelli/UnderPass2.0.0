@@ -3,7 +3,7 @@ import { useState } from 'react';
 import CloudFile from '../../../utils/CloudFile/CloudFile';
 import { postEventImgApi } from '../../../../helpers/event/postEventImg.api.js';
 
-const UploadEventImg = ({ values, video, setValues, setLoading, setProgres }) => {
+const UploadEventImg = ({ values, setValues, setLoading, setProgres }) => {
 
     const [formData, setFormData] = useState(null);
     const handleFileChange = (data) => setFormData(data);
@@ -12,10 +12,8 @@ const UploadEventImg = ({ values, video, setValues, setLoading, setProgres }) =>
         e.preventDefault();        
         setLoading(true);
         const obj = { _id: values._id };
-        if (video) obj.video = video;
         for (const field in obj) formData.set(field, obj[field]);
         const response = await postEventImgApi(formData);
-        console.log(response);
         if (response.status === 'success') {
             setValues(response.result);
             setProgres(60);

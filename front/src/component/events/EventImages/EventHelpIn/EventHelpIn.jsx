@@ -14,10 +14,6 @@ const EventHelpIn = () => {
             </div>
 
             <p className='eventHelpInPBootom'>O puedes utilizar alguno de nuestros pre-set.</p>
-
-            <div className='eventHelpInLogo'>
-                <UnderEventsLog size={3} />
-            </div>
         </div>
     );
 };

@@ -19,8 +19,7 @@ export default class EventRepository {
         if (query.active === 'false') return data;
         const updateDocs = [];
         for (const event of data.docs) {
-            if (new Date(event.startDate) < new Date().setHours(0, 0, 0, 0)) {
-                console.log(event.startDate);
+            if (new Date(event.startDate) < new Date().setHours(0, 0, 0, 0)) {                
                 event.active = false;
                 await eventManager.update(event);
             } else updateDocs.push(event);
