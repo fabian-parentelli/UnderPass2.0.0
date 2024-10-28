@@ -93,7 +93,7 @@ const EventFilter = ({ query, setQuery, setEvents, setLoading, isActive = true, 
                 <button className='btn btnUE'>Filtrar</button>
                 <CloseIcon className='eventFilterIcon' onClick={handleDelete} />
 
-                {user.data.role !== 'user' && !isFavorite &&
+                {user.data && user.data.role !== 'user' && !isFavorite &&
                     <Tooltip title='Sin Confirmar' placement="top">
                         <InventoryIcon
                             onClick={hanldeConfirm}
