@@ -2,12 +2,12 @@ import './shopingTable.scss';
 import Copy from '../../utils/Copy.jsx';
 import { Fragment, useState } from 'react';
 import BigImg from '../../utils/BigImg/BigImg.jsx';
+import SellerPay from '../SellerPay/SellerPay.jsx';
 import typeCart from '../../../utils/typeCart.utils.js';
 import { imgages } from '../../../utils/imagesData.utils.js';
 import GetTicketByOrder from '../../ticket/GetTicketByOrder.jsx';
 import ModalCustom from '../../utils/ModalCustom/ModalCustom.jsx';
 import { useLoginContext } from '../../../context/LoginContext.jsx';
-import SellerPay from '../SellerPay/SellerPay.jsx';
 
 const ShopingTable = ({ orders, isUnderPay }) => {
 
@@ -19,6 +19,9 @@ const ShopingTable = ({ orders, isUnderPay }) => {
     const handleInfo = (id) => setVew(vew === id ? null : id);
     const closeModal = () => { setOpen(false); setVewModal(null) };
     const openModal = (id) => { setVewModal(id); setOpen(true) };
+
+    console.log(orders);
+    
 
     return (
         <div className='shopingTable'>
@@ -46,7 +49,7 @@ const ShopingTable = ({ orders, isUnderPay }) => {
                                 </td>
                                 <td>{new Date(ord.date).toLocaleDateString()}</td>
                                 <td style={{ fontSize: '12px' }}>{ord._id}</td>
-                                
+
                                 <SellerPay ord={ord} openModal={openModal} isUnderPay={isUnderPay} />
 
                                 <td>${ord.total}</td>
@@ -80,7 +83,7 @@ const ShopingTable = ({ orders, isUnderPay }) => {
                                                     <tr key={index}>
                                                         <td>
                                                             <BigImg
-                                                                img={item?.data?.img[0] ? item?.data?.img[0].imgUrl : imgages.menTv}
+                                                                img={item?.data?.img ? item.data.img : imgages.menTv}
                                                                 border={false}
                                                             />
                                                         </td>

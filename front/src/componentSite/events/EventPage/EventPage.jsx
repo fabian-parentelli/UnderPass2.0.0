@@ -23,7 +23,7 @@ const EventPage = () => {
 
     return (
         <div className='eventPageMaster'>
-            {event && <EventPageHtml event={event} />}
+            {event && <EventPageHtml event={event} setLoading={setLoading} />}
             <Load loading={loading} />
         </div>
     );

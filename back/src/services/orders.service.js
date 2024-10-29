@@ -7,7 +7,7 @@ const newOrder = async (order, { user }) => {
     await newOrderUtils.updateStock(order.cart);
     const result = await newOrderUtils.newOrders(order, user._id);
     if (!result) throw new OrderNotFound('No se puede generar la orden');
-
+    
     // Si el order.typePay es Mercado pago hacer el llamado acá para devolver linck en esta respuesta.......
     // Si el order.typePay es Mercado pago hacer el llamado acá para devolver linck en esta respuesta.......
     // Si el order.typePay es Mercado pago hacer el llamado acá para devolver linck en esta respuesta.......
@@ -44,10 +44,10 @@ const getOrders = async (page, limit, userid, active, pay, { user }) => {
 
 const updTypePay = async (id, type) => {
     const order = await orderRepository.getOrderById(id);
-    if(!order) throw new OrderNotFound('No se encuentra la orden');
+    if (!order) throw new OrderNotFound('No se encuentra la orden');
     order.pay.typePay = type;
     const result = await orderRepository.update(order);
-    if(!result) throw new OrderNotFound('No se puede actualizar la orden');
+    if (!result) throw new OrderNotFound('No se puede actualizar la orden');
     return { status: 'success', result };
 };
 

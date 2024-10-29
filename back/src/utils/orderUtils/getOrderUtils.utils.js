@@ -1,7 +1,7 @@
+import { imgages } from "../../../../front/src/utils/imagesData.utils.js";
 import {
-    productRepository, appliRepository, userRepository
+    productRepository, appliRepository, userRepository, eventRepository
 } from "../../repositories/index.repositories.js";
-import { OrderNotFound, UserNotFound } from "../custom-exceptions.utils.js";
 
 const getCart = async (order, user) => {
     for (const ord of order) {
@@ -23,10 +23,28 @@ const getCart = async (order, user) => {
             };
         };
         for (const type of ord.cart) {
+            if (type.is === 'product') {
+                const product = await productRepository.getProdById(type.typeId);
+                const productDb = { img: product.img[0].imgUrl, name: product.name, price: product.price };
+                type.data = productDb;
+            };
+            if (type.is === 'events') {
+                const event = await eventRepository.getById(type.eventId);
+                const ticket = event.ticketInfo.find(tick => tick._id == type.typeId);
+                const newEvent = {
+                    img: event.photo.isPreset ? imgages.underEvent : event.photo.img,
+                    name: `${event.title} - ${ticket.description}`,
+                    price: ticket.price
+                };
+                type.data = newEvent;
+            };
+            // if (!['product', 'events', 'shift'].includes(type.is)) {
+            //     const cards = await appliRepository.getAppById(type.typeId);
+            //     const obj = { title: cards.title, img: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1725314428/images/tqrrecumjhvson6zp7jq.png' };
+            //     type.data = obj;
+            // }            
 
-            if (type.is === 'product') type.data = await productRepository.getProdById(type.typeId);
-            if (type.is !== 'product') type.data = await appliRepository.getAppById(type.typeId);
-            // En el if anterior poner !== a event || shift, además de product..............
+            // Estoy aca no funicona la publicidad en las ordenes ......
         };
     };
     return order;

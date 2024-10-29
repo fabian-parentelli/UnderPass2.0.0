@@ -24,7 +24,10 @@ const Counter = ({ prod }) => {
         <div className='counter'>
             <RemoveCircleIcon className='icon' onClick={handelLess} disabled={count <= 1} />
             <p>{count && count}</p>
-            <AddCircleIcon className='icon' onClick={handleAdd} disabled={prod.is === 'event' && count >= 6} />
+            <AddCircleIcon
+                className={`icon ${prod.is === 'events' && count >= 6 ? 'disabled' : ''}`}
+                onClick={prod.is === 'events' && count >= 6 ? undefined : handleAdd}
+            />
         </div>
     );
 };

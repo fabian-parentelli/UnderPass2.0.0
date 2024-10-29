@@ -4,6 +4,7 @@ import CartCards from '../CartCards/CartCards';
 import CartBanner from '../CartBanner/CartBanner';
 import CartProduct from '../CartProduct/CartProduct';
 import CartAddToPortal from '../CartAddToportal/CartAddToPortal';
+import CartEvent from '../CartEvent/CartEvent';
 
 const CartItems = ({ cart }) => {
 
@@ -30,6 +31,7 @@ const CartItems = ({ cart }) => {
                             {item.is === 'separator' && <CartCards item={item} />}
                             {item.is === 'moreTime' && <CartCards item={item} />}
                             {item.is === 'toPortal' && <CartAddToPortal item={item} />}
+                            {item.is === 'events' && <CartEvent item={item} />}
                         </Fragment>
                     ))}
                 </tbody>

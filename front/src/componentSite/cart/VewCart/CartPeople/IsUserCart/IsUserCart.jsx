@@ -22,6 +22,7 @@ const IsUserCart = ({ user, setLoading }) => {
             is: car.is,
             quantity: car.quantity,
             price: car.price,
+            ...(car.is === 'events' && { eventId: car.description })
         }));
         setValues((prevValues) => ({ ...prevValues, cart: updatedOrder }));
     }, [cart]);

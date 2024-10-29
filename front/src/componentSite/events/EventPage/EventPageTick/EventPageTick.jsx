@@ -1,12 +1,14 @@
 import './eventPageTick.scss';
 import { useEffect, useState } from 'react';
-import { useCartContext } from '../../../../context/CartContext';
+import { useNavigate } from 'react-router-dom';
 import SweetAlert from '../../../../component/utils/SweetAlert';
-import { getLastPriceApi } from '../../../../helpers/prices/getLastPrice.api';
+import { useCartContext } from '../../../../context/CartContext';
+import { getLastPriceApi } from '../../../../helpers/prices/getLastPrice.api.js';
 
-const EventPageTick = ({ event }) => {
+const EventPageTick = ({ event, setLoading }) => {
 
     const { addToCart, isInCart, updateQuantity } = useCartContext();
+    const navigate = useNavigate();
     const [price, setPrice] = useState(0);
     const [alert, setAlert] = useState({ vew: false, message: 'Evento agrgado al carrito', icon: 'success' });
     const [tickets, setTickets] = useState([]);
@@ -28,12 +30,13 @@ const EventPageTick = ({ event }) => {
     };
 
     const handleConfirm = () => {
+        setLoading(true);
         tickets.forEach((tick) => {
             const ticketInfo = event.ticketInfo.find(ti => ti._id === tick._id);
             const inCart = isInCart(tick._id);
             if (inCart) updateQuantity(tick._id, inCart.quantity + 1);
             else {
-                const obj = {
+                addToCart({
                     _id: tick._id,
                     quantity: tick.quantity,
                     stock: ticketInfo.quantity,
@@ -42,17 +45,12 @@ const EventPageTick = ({ event }) => {
                     name: `${ticketInfo.description} - ${event.title}`,
                     description: event._id,
                     img: event.photo
-                };
-                console.log(obj);
-                // Estoy aca ahota la idea es que se agregue al carrito
-                // Estoy aca ahota la idea es que se agregue al carrito
-                // Estoy aca ahota la idea es que se agregue al carrito
-                // Estoy aca ahota la idea es que se agregue al carrito
-                // Estoy aca ahota la idea es que se agregue al carrito
-                // Estoy aca ahota la idea es que se agregue al carrito
-                // Estoy aca ahota la idea es que se agregue al carrito
+                });
             };
         });
+        setAlert({ vew: true, message: 'Evento agragdo al carrito' });
+        setLoading(false);
+        setTimeout(() => { navigate('/cart') }, 2000);
     };
 
     return (

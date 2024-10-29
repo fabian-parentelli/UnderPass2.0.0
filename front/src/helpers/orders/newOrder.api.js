@@ -1,7 +1,7 @@
 const url = import.meta.env.VITE_API_URL;
 
 async function newOrdersApi(order) {
-
+        
     const token = localStorage.getItem('token');
     const response = await fetch(`${url}/api/order`, {
         method: 'POST',

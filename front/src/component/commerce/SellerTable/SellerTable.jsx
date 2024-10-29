@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom';
 import { Fragment, useState } from 'react';
 import BigImg from '../../utils/BigImg/BigImg.jsx';
 import typeCart from '../../../utils/typeCart.utils.js';
-import { useLoginContext } from '../../../context/LoginContext.jsx';
-import ModalCustom from '../../utils/ModalCustom/ModalCustom.jsx';
+import { imgages } from '../../../utils/imagesData.utils.js';
 import GetTicketByOrder from '../../ticket/GetTicketByOrder.jsx';
+import ModalCustom from '../../utils/ModalCustom/ModalCustom.jsx';
+import { useLoginContext } from '../../../context/LoginContext.jsx';
 
 const SellerTable = ({ values, inWallet = false, generateOrdenPay }) => {
 
@@ -22,7 +23,7 @@ const SellerTable = ({ values, inWallet = false, generateOrdenPay }) => {
 
     const closeMpModal = () => { setMpOpen(false); setVewMpModal(null) };
     const openMpModal = (id) => { setVewMpModal(id); setMpOpen(true) };
-
+    
     return (
         <div className='sellerTable'>
             <table>
@@ -118,15 +119,15 @@ const SellerTable = ({ values, inWallet = false, generateOrdenPay }) => {
                                                     <tr key={index}>
                                                         <td>
                                                             <BigImg
-                                                                img={item.data.img[0] ? item.data.img[0].imgUrl : imgages.menTv}
+                                                                img={item.data.img ? item.data.img : imgages.menTv}
                                                                 border={false}
                                                             />
                                                         </td>
                                                         <td>{item.data?.name} {item.data?.title}</td>
-                                                        <td>{typeCart(item.is)}</td>
-                                                        <td>${item.data.price}</td>
-                                                        <td>{item.quantity}</td>
-                                                        <td>${item.quantity * item.data.price}</td>
+                                                        <td>{typeCart(item?.is)}</td>
+                                                        <td>${item?.data?.price}</td>
+                                                        <td>{item?.quantity}</td>
+                                                        <td>${item?.quantity * item?.data?.price}</td>
                                                     </tr>
                                                 ))}
                                             </tbody>

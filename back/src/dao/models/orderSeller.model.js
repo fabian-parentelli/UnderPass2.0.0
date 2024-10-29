@@ -12,7 +12,8 @@ const orderSellerSchema = new mongoose.Schema({
             typeId: { type: String },
             quantity: { type: Number },
             price: { type: Number },
-            is: { type: String }
+            is: { type: String },
+            eventId: { type: String },
         }
     ],
     pay: {
@@ -29,7 +30,7 @@ const orderSellerSchema = new mongoose.Schema({
             isPayOut: { type: Boolean, default: false },
             datePayOut: { type: Date },
             statusPayOut: { type: String },
-            payOutData : {
+            payOutData: {
                 ticketNumber: { type: String },
                 ticketImg: { type: String },
             }

@@ -23,6 +23,9 @@ const Alerts = () => {
 
     const handleOff = async (id) => await updActiveAlertsApi(id);
 
+    console.log(alerts);
+    
+
     return (
         <div className='alerts'>
 

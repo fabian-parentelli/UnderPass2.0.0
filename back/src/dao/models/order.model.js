@@ -10,7 +10,8 @@ const orderSchema = new mongoose.Schema({
             typeId: { type: String },
             quantity: { type: Number },
             price: { type: Number },
-            is: { type: String }
+            is: { type: String },
+            eventId: { type: String }
         }
     ],
     total: { type: Number },

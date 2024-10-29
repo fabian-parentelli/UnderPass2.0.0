@@ -13,7 +13,7 @@ import Messages from '../../../component/messages/Messages/Messages';
 import EventTypeImg from '../../../component/events/EventTypeImg/EventTypeImg';
 import UnderEventsLog from '../../../component/fonts/UnderEventsLog/UnderEventsLog';
 
-const EventPageHtml = ({ event }) => {
+const EventPageHtml = ({ event, setLoading }) => {
 
     const [viewport, setViewport] = useState(window.innerWidth);
     const [vew, setVew] = useState(false);
@@ -45,7 +45,7 @@ const EventPageHtml = ({ event }) => {
 
                     {event.inPerson ?
                         (event.typePublic && event.tickets
-                            ? <EventPageTick event={event} />
+                            ? <EventPageTick event={event} setLoading={setLoading} />
                             : (!event.typePublic ? '' : <EventFree />))
                         : <EventIsPerson event={event} />
                     }
@@ -57,7 +57,7 @@ const EventPageHtml = ({ event }) => {
                                 <input type="text" onChange={handleVew} />
                             </div>
                             {event.tickets
-                                ? event.password == vew && <EventPageTick event={event} />
+                                ? event.password == vew && <EventPageTick event={event} setLoading={setLoading} />
                                 : vew === event.password && <EventIsPerson event={event} pass={true} />
                             }
                         </>

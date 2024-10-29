@@ -1,5 +1,6 @@
 import {
-    userRepository, productRepository, orderRepository, orderSellerRepository, alertsRepository
+    userRepository, productRepository, orderRepository, orderSellerRepository, alertsRepository,
+    eventRepository
 } from "../../repositories/index.repositories.js";
 import { OrderNotFound, UserNotFound } from "../custom-exceptions.utils.js";
 
@@ -9,20 +10,37 @@ const updateUser = async (userId, data) => {
     if (data.address) user.location.address = data.address;
     if (data.postalCode) user.location.postalCode = data.postalCode;
     if (data.dni) user.dni = data.dni;
-    await userRepository.update(user);
+    if (data.address || data.postalCode || data.dni) await userRepository.update(user);
 };
 
 const updateStock = async (order) => {
     const products = order.filter(prod => prod.is === 'product');
-    for (const prod of products) {
-        const product = await productRepository.getProdById(prod.typeId);
-        if (product.quantity >= prod.quantity) {
-            product.quantity -= prod.quantity;
-            if (!product.inSite && product.quantity < 1) product.active = false;
-            await productRepository.update(product);
-        } else {
-            // Calcular a aver que pasa si hay menos yo que se...
-        }
+    if (products.length > 0) {
+        for (const prod of products) {
+            const product = await productRepository.getProdById(prod.typeId);
+            if (product.quantity >= prod.quantity) {
+                product.quantity -= prod.quantity;
+                if (!product.inSite && product.quantity < 1) product.active = false;
+                await productRepository.update(product);
+            } else {
+                // Calcular a aver que pasa si hay menos yo que se...
+            }
+        };
+    };
+    const events = order.filter(event => event.is === 'events');
+    if (events.length > 0) {
+        for (const eve of events) {
+            const event = await eventRepository.getById(eve.eventId);
+            if (event.tickets) {
+                for (const ev of event.ticketInfo) {
+                    if (ev._id == eve.typeId && ev.quantity >= eve.quantity) {
+                        ev.quantity -= eve.quantity;
+                        await eventRepository.update(event);
+                    };
+                    // acá hacer un else a ver que hago si hay menos, lo mismo que en productos
+                };
+            };
+        };
     };
 };
 
@@ -38,7 +56,7 @@ const orderSellerResult = [];
 const orderSeller = async (order, userId, orderId) => {
     const orders = [];
     for (const ord of order.cart) {
-        if (ord.is === 'product') {
+        if (ord.is === 'product') { 
             const product = await productRepository.getProdById(ord.typeId);
             const prod = orders.findIndex((prod) => prod.sellerUserId == product.userId);
             if (prod !== -1) {
@@ -56,6 +74,25 @@ const orderSeller = async (order, userId, orderId) => {
                 orders.push(obj);
             };
         };
+        if (ord.is === 'events') {
+            const event = await eventRepository.getById(ord.eventId);
+            const ticket = event.ticketInfo.find(tick => tick._id == ord.typeId);
+            const index = orders.findIndex(eve => eve.sellerUserId == event.userId);
+            if (index !== -1) {
+                orders[index].cart.push(ord);
+                orders[index].total += ticket.price * ord.quantity
+            } else {
+                const obj = {
+                    orderId,
+                    buyerUserId: userId,
+                    sellerUserId: event.userId,
+                    cart: [ord],
+                    total: ticket.price * ord.quantity,
+                    pay: { payIn: {}, payCredited: {}, payOut: {} }
+                };
+                orders.push(obj);
+            };
+        };
     };
     for (const ord of orders) {
         const result = await orderSellerRepository.newOrder(ord);
@@ -66,7 +103,7 @@ const orderSeller = async (order, userId, orderId) => {
 
 const alertsSend = async (order) => {
     for (const ord of order) {
-        if (ord.is !== 'product' && ord.is !== 'evenet' && ord.is !== 'shift') {
+        if (ord.is !== 'product' && ord.is !== 'evenets' && ord.is !== 'shift') {
             const alert = {
                 eventId: ord.typeId,
                 userId: '668d9529cf8bde76a0dc3adb',
