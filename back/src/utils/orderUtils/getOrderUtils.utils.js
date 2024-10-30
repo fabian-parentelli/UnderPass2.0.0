@@ -38,15 +38,16 @@ const getCart = async (order, user) => {
                 };
                 type.data = newEvent;
             };
-            // if (!['product', 'events', 'shift'].includes(type.is)) {
-            //     const cards = await appliRepository.getAppById(type.typeId);
-            //     const obj = { title: cards.title, img: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1725314428/images/tqrrecumjhvson6zp7jq.png' };
-            //     type.data = obj;
-            // }            
-
-            // Estoy aca no funicona la publicidad en las ordenes ......
+            if (!['product', 'events', 'shift'].includes(type.is)) {
+                const cards = await appliRepository.getAppById(type.typeId);
+                if(cards) {
+                    const obj = { title: cards.title || type.is, img: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1725314428/images/tqrrecumjhvson6zp7jq.png' };
+                    type.data = obj;
+                };
+            };
         };
     };
+
     return order;
 };
 

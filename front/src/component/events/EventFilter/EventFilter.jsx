@@ -84,8 +84,8 @@ const EventFilter = ({ query, setQuery, setEvents, setLoading, isActive = true, 
                 {isActive &&
                     <div>
                         <select name="active" onChange={handleChangue} value={prequery.active}>
-                            <option value="true">Si</option>
-                            <option value="false">No</option>
+                            <option value="true">Activo</option>
+                            <option value="false">Inactivo</option>
                         </select>
                     </div>
                 }

@@ -4,9 +4,10 @@ import EventType from '../EventInfo/EventType';
 import EventCategory from '../EventCategory/EventCategory';
 import SelectedProvince from '../../utils/SelectedProvince';
 import { useLoginContext } from '../../../context/LoginContext';
+import ChooseSites from '../../sites/ChooseSites/ChooseSites';
 
 const UpdInfoEventHtml = ({ values, handleChange, handleSubmit, handleMinors, handleTicket, handleType,
-    handleLocation, handleCoordenates }) => {
+    handleLocation, handleCoordenates, handleInSite }) => {
 
     const country = localStorage.getItem('country');
     const { user } = useLoginContext();
@@ -65,6 +66,15 @@ const UpdInfoEventHtml = ({ values, handleChange, handleSubmit, handleMinors, ha
 
             <div>
                 <EventType values={values} handleType={handleType} handleChangue={handleChange} />
+            </div>
+
+            <div>
+                <label>Tipo, invitados o elenco:</label>
+                <select name="typeGuest" onChange={handleChange} value={values.typeGuest}>
+                    <option value="">Elegir</option>
+                    <option value="guests">Invitados</option>
+                    <option value="cast">Elenco</option>
+                </select>
             </div>
 
             <div>
@@ -132,6 +142,8 @@ const UpdInfoEventHtml = ({ values, handleChange, handleSubmit, handleMinors, ha
                     </div>
                 </>
             }
+
+            <ChooseSites values={values} handleInSite={handleInSite} type='evento' />
 
             {user.data.role !== 'user' && values.dateCreate &&
                 <div>

@@ -13,6 +13,7 @@ const UpdEventInfo = ({ event, closedInfo, setEvents, events }) => {
     const handleMinors = (e) => setValues({ ...values, minors: e.target.checked });
     const handleTicket = (e) => setValues({ ...values, tickets: e.target.checked });
     const handleType = (e) => setValues({ ...values, typePublic: e.target.checked });
+    const handleInSite = (e) => setValues({ ...values, inSite: e.target.checked });
     const handleLocation = (e) => setValues({ ...values, location: { ...values.location, [e.target.name]: e.target.value } });
     const handleCoordenates = (e) => {
         setValues({
@@ -50,6 +51,7 @@ const UpdEventInfo = ({ event, closedInfo, setEvents, events }) => {
                     handleType={handleType}
                     handleLocation={handleLocation}
                     handleCoordenates={handleCoordenates}
+                    handleInSite={handleInSite}
                 />
             }
         </>

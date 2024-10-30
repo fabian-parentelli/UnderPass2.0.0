@@ -1,16 +1,15 @@
-import './eventStream.scss';
+import './updEventStream.scss';
 import { useState } from 'react';
+import { Spinner } from 'faradaycomp';
 import ClearIcon from '@mui/icons-material/Clear';
 import AddBoxIcon from '@mui/icons-material/AddBox';
-import { useLoginContext } from '../../../context/LoginContext';
-import { updEventApi } from '../../../helpers/event/updEvent.api.js';
-import UnderEventsLog from '../../fonts/UnderEventsLog/UnderEventsLog';
+import { updEventApi } from '../../../helpers/event/updEvent.api';
 
-const EventStream = ({ values, setValues, setLoading, setProgres }) => {
+const UpdEventStream = ({ event, closedStream, events, setEvents }) => {
 
     const [link, setLink] = useState({ channel: '', link: '' });
-    const [links, setLinks] = useState(values.links || []);
-    const { user } = useLoginContext();
+    const [links, setLinks] = useState(event.links || []);
+    const [loadin, setLoading] = useState(false);
 
     const hanldechange = (e) => setLink({ ...link, [e.target.name]: e.target.value });
 
@@ -26,25 +25,20 @@ const EventStream = ({ values, setValues, setLoading, setProgres }) => {
     };
 
     const handleConfirm = async () => {
-        if (setLoading) setLoading(true);
-        const obj = {
-            _id: values._id, links: links,
-            location: {
-                country: localStorage.getItem('country'),
-                province: user.data.location.province,
-                city: user.data.location.city
-            }
-        };
-        const response = await updEventApi(obj);
+        setLoading(true);
+        const response = await updEventApi({ _id: event._id, links: links })
         if (response.status === 'success') {
-            if (setValues) setValues(response.result);
-            if (setProgres) setProgres(80);
+            const data = { ...events };
+            const index = data.docs.findIndex(eve => eve._id == response.result._id);
+            data.docs[index] = response.result;
+            setEvents(data);
+            closedStream();
         } else console.error(response.error);
-        if (setLoading) setLoading(false);
+        setLoading(false);
     };
 
     return (
-        <div className='eventStream'>
+        <div className='UpdEventStream'>
             <h3>Enlaces del evento.</h3>
 
             <div className='Inputss'>
@@ -56,7 +50,7 @@ const EventStream = ({ values, setValues, setLoading, setProgres }) => {
                 </select>
                 <div className='eventStreamInput'>
                     <input type="text" name='link' placeholder='Link del evento' onChange={hanldechange} value={link.link || ''} />
-                    <AddBoxIcon className='eventStreamIcon' onClick={handleAdd} />
+                    <AddBoxIcon className='eventStreamIcon colUE' onClick={handleAdd} />
                 </div>
             </div>
 
@@ -86,18 +80,12 @@ const EventStream = ({ values, setValues, setLoading, setProgres }) => {
                 </table>
             </div>
 
-            <button className='btn btnUE' onClick={handleConfirm}>Confirmar</button>
-
-            {setProgres &&
-                <div className='eventStreamButtons'>
-                    <button className='btn btnD' onClick={() => setProgres(40)}>{'< Imágnes'}</button>
-                    <button className='btn btnD' onClick={() => setProgres(80)}>{'Entradas >'}</button>
-                </div>
+            {loadin
+                ? <Spinner color={'#383f84'} />
+                : <button className='btn btnUE' onClick={handleConfirm}>Confirmar</button>
             }
-
-            <UnderEventsLog size={3} />
         </div>
     );
 };
 
-export default EventStream;
+export default UpdEventStream;

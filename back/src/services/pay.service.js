@@ -12,23 +12,20 @@ const newUnderPay = async (order, { user }) => {
     const userDb = await userRepository.getUserById(buyerOrder.userId);
     if (!userDb) throw new PayNotFound('No se puede obtener al usuario');
     const comparePassword = isValidPassword(userDb, order.password);
-    if(!comparePassword) throw new OrderNotFound('La contraseña es incorrecta');
-    
+    if (!comparePassword) throw new OrderNotFound('La contraseña es incorrecta');
     const buyerWallet = await walletRepository.getByUserId(buyerOrder.userId);
     if (!buyerWallet) throw new PayNotFound('No se encuentra la billetera del cliente');
     if (+buyerOrder.total > +buyerWallet.total) throw new PayNotFound('Saldo insuficiente');
-    buyerOrder.pay = {
-        ...buyerOrder.pay, isPay: true, datePay: new Date(), statusPay: 'success'
-    };
+    buyerOrder.pay = { ...buyerOrder.pay, isPay: true, datePay: new Date(), statusPay: 'success' };
     const result = await orderRepository.update(buyerOrder);
     if (!result) throw new PayNotFound('Error al actualizar la orden de compra');
     for (const ord of buyerOrder.cart) {
-        if (ord.is !== 'product' || ord.is !== 'event' || ord.is !== 'shift') {
+        if (ord.is !== 'product' || ord.is !== 'events' || ord.is !== 'shift') {
             const application = await appliRepository.getAppById(ord.typeId);
             if (application) {
                 application.pay = true;
                 const appResult = await appliRepository.update(application);
-                if(!appResult) throw new PayNotFound('No se puede modificar la solicitud'); 
+                if (!appResult) throw new PayNotFound('No se puede modificar la solicitud');
             };
         };
     };

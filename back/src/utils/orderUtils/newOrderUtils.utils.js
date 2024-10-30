@@ -1,6 +1,5 @@
 import {
-    userRepository, productRepository, orderRepository, orderSellerRepository, alertsRepository,
-    eventRepository
+    userRepository, productRepository, orderRepository, orderSellerRepository, alertsRepository, eventRepository
 } from "../../repositories/index.repositories.js";
 import { OrderNotFound, UserNotFound } from "../custom-exceptions.utils.js";
 
@@ -56,7 +55,7 @@ const orderSellerResult = [];
 const orderSeller = async (order, userId, orderId) => {
     const orders = [];
     for (const ord of order.cart) {
-        if (ord.is === 'product') { 
+        if (ord.is === 'product') {
             const product = await productRepository.getProdById(ord.typeId);
             const prod = orders.findIndex((prod) => prod.sellerUserId == product.userId);
             if (prod !== -1) {
@@ -115,7 +114,7 @@ const alertsSend = async (order) => {
     for (const ord of orderSellerResult) {
         ord.cart.map(async (prod) => {
             const alert = {
-                eventId: prod.typeId,
+                eventId: prod.is === 'events' ? prod.eventId : prod.typeId,
                 userId: ord.sellerUserId,
                 type: `sold_${prod.is}`,
                 orderSellerId: ord._id

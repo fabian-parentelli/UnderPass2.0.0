@@ -13,10 +13,12 @@ import UpdTicketEvent from '../UpdTicketEvent/UpdTicketEvent.jsx';
 import { useLoginContext } from '../../../context/LoginContext.jsx';
 import UserVewSmall from '../../user/UserVewSmall/UserVewSmall.jsx';
 import EventDelete from '../EventDelete/EventDelete.jsx';
+import EventStream from '../EventStream/EventStream.jsx';
+import UpdEventStream from '../UpdEventStream/UpdEventStream.jsx';
 
-const EventTableHtml = ({ events, closedImg, openImg, vewImg, setEvents, vewInfo,
-    closedInfo, openInfo, vewTicket, closedTicket, openTicket, handleActive,
-    vewUser, closedUser, openUser, vewDelete, closedDelete, openDelete }) => {
+const EventTableHtml = ({ events, closedImg, openImg, vewImg, setEvents, vewInfo, closedInfo, openInfo,
+    vewTicket, closedTicket, openTicket, handleActive, vewUser, closedUser, openUser, vewDelete, closedDelete,
+    openDelete, vewStream, openStream, closedStream }) => {
 
     const { user } = useLoginContext();
 
@@ -62,15 +64,22 @@ const EventTableHtml = ({ events, closedImg, openImg, vewImg, setEvents, vewInfo
                                 </Tooltip>
 
                                 <td>{typeEventCategory(eve.category)}</td>
-                                <td>
-                                    {!eve.inPerson
-                                        ? <p className='colUE'>Stream</p>
-                                        : <>
-                                            <p>{eve.location.city}</p>
-                                            <p>{eve.location.province}</p>
-                                        </>
-                                    }
-                                </td>
+
+                                <Tooltip title={!eve.inPerson && 'Actualizar links'} placement="left-start">
+                                    <td
+                                        className={!eve.inPerson && 'eventTableBack'}
+                                        onClick={!eve.inPerson ? () => openStream(eve._id) : undefined}
+                                    >
+                                        {!eve.inPerson
+                                            ? <p className='colUE'>Stream</p>
+                                            : <>
+                                                <p>{eve.location.city}</p>
+                                                <p>{eve.location.province}</p>
+                                            </>
+                                        }
+                                    </td>
+                                </Tooltip>
+
                                 <td>{eve.location.place ? eve.location.place : ''}</td>
 
                                 <td>{new Date(eve.startDate).toLocaleDateString('es-ES', { timeZone: 'UTC' })}</td>
@@ -118,40 +127,53 @@ const EventTableHtml = ({ events, closedImg, openImg, vewImg, setEvents, vewInfo
                                 </Tooltip>
                             </tr>
 
-                            {vewDelete.vew === eve._id &&
+                            {
+                                vewDelete.vew === eve._id &&
                                 <ModalCustom modalIsOpen={vewDelete.open} closeModal={closedDelete}>
                                     <EventDelete event={eve} closedDelete={closedDelete} setEvents={setEvents} events={events} />
                                 </ModalCustom>
                             }
 
-                            {vewImg.vew === eve._id &&
+                            {
+                                vewImg.vew === eve._id &&
                                 <ModalCustom modalIsOpen={vewImg.open} closeModal={closedImg}>
                                     <UpdEventImg event={eve} closedImg={closedImg} setEvents={setEvents} events={events} />
                                 </ModalCustom>
                             }
 
-                            {vewInfo.vew === eve._id &&
+                            {
+                                vewInfo.vew === eve._id &&
                                 <ModalCustom modalIsOpen={vewInfo.open} closeModal={closedInfo}>
                                     <UpdEventInfo event={eve} closedInfo={closedInfo} setEvents={setEvents} events={events} />
                                 </ModalCustom>
                             }
 
-                            {vewTicket.vew === eve._id &&
+                            {
+                                vewTicket.vew === eve._id &&
                                 <ModalCustom modalIsOpen={vewTicket.open} closeModal={closedTicket}>
                                     <UpdTicketEvent event={eve} closedTicket={closedTicket} setEvents={setEvents} events={events} />
                                 </ModalCustom>
                             }
 
-                            {vewUser.vew === eve._id &&
+                            {
+                                vewUser.vew === eve._id &&
                                 <ModalCustom modalIsOpen={vewUser.open} closeModal={closedUser}>
                                     <UserVewSmall userId={eve.userId} />
                                 </ModalCustom>
                             }
+
+                            {
+                                vewStream.vew === eve._id &&
+                                <ModalCustom modalIsOpen={vewStream.open} closeModal={closedStream}>
+                                    <UpdEventStream event={eve} closedStream={closedStream} events={events} setEvents={setEvents} />
+                                </ModalCustom>
+                            }
+
                         </Fragment>
                     ))}
                 </tbody>
             </table>
-        </div>
+        </div >
     );
 };
 

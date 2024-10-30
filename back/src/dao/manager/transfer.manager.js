@@ -17,4 +17,5 @@ export default class Transfer {
     updTransfer = async (transfer) => {
         return await transferModel.findByIdAndUpdate(transfer._id, transfer, { lean: true, new: true });
     };
+    
 };

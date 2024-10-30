@@ -5,16 +5,46 @@
     flex-wrap: wrap;
     justify-content: center;
 
-    p {
-        font-size: 3rem;
-        text-align: center;
-    }
-
     img {
         height: 300px;
-        mask-image: linear-gradient(
-        black 80%,
-        transparent
-    );
+        mask-image: linear-gradient(black 80%, transparent);
+    }
+
+    .eventFreeData {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        .eventFreeTitle {
+            font-size: 3rem;
+            text-align: center;
+        }
+
+        .eventFreeUser {
+
+            .eventFreeInputs {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+                margin-top: 1rem;
+
+                input {
+                    width: 290px;
+                }
+            }
+
+            .eventFreeSlect {
+                display: flex;
+                gap: 1rem;
+                margin-top: 1rem;
+                width: 100%;
+                justify-content: space-between;
+                
+                select {
+                    width: 100px;
+                }
+            }
+        }
     }
 }

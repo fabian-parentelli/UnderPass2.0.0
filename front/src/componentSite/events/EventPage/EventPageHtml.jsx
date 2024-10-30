@@ -46,7 +46,7 @@ const EventPageHtml = ({ event, setLoading }) => {
                     {event.inPerson ?
                         (event.typePublic && event.tickets
                             ? <EventPageTick event={event} setLoading={setLoading} />
-                            : (!event.typePublic ? '' : <EventFree />))
+                            : (!event.typePublic ? '' : <EventFree event={event} />))
                         : <EventIsPerson event={event} />
                     }
 

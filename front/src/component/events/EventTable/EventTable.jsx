@@ -8,7 +8,8 @@ const EventTable = ({ events, setEvents, setLoading }) => {
     const [vewInfo, setVewInfo] = useState({ vew: null, open: false });
     const [vewTicket, setTicket] = useState({ vew: null, open: false });
     const [vewUser, setVewUser] = useState({ vew: null, open: false });
-    const [vewDelete, setVewDelete] = useState({ vew: null, open: false })
+    const [vewDelete, setVewDelete] = useState({ vew: null, open: false });
+    const [vewStream, setVewStream] = useState({ vew: null, open: false });
 
     const closedImg = () => setVewImg({ vew: null, open: false });
     const openImg = (id) => setVewImg({ vew: id, open: true });
@@ -24,6 +25,9 @@ const EventTable = ({ events, setEvents, setLoading }) => {
 
     const closedDelete = () => setVewDelete({ vew: null, open: false });
     const openDelete = (id) => setVewDelete({ vew: id, open: true });
+
+    const closedStream = () => setVewStream({ vew: null, open: false });
+    const openStream = (id) => setVewStream({ vew: id, open: true });
 
     const handleActive = async (id) => {
         setLoading(true);
@@ -57,6 +61,9 @@ const EventTable = ({ events, setEvents, setLoading }) => {
             vewDelete={vewDelete}
             closedDelete={closedDelete}
             openDelete={openDelete}
+            vewStream={vewStream}
+            openStream={openStream}
+            closedStream={closedStream}
         />
     );
 };

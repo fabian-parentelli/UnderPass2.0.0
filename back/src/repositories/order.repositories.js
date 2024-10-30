@@ -22,9 +22,6 @@ export default class OrderRepository {
     getOrders = async (query, limit, page, user) => {
         const result = await orderManager.getOrders(query, limit, page);
         const orders = await getOrdersUtil.getCart(result.docs, user);
-        
-        console.log(orders);
-        
         result.docs = orders;
         return result;
     };
