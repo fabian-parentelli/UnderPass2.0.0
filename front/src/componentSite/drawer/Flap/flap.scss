@@ -1,0 +1,17 @@
+@import '../../../style/colors.scss';
+
+.flap {
+    writing-mode: vertical-rl;
+    padding: .6rem 0;
+    transform: rotate(180deg);
+    cursor: pointer;
+    background-color: $colorA;
+    height: 60px;
+    margin-top: 50px;
+    transition: .3s ease-in-out;
+    border-radius: 0 6px 6px 0;
+
+    &:hover {
+        background-color: $colorE;
+    }
+}

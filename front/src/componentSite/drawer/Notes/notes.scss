@@ -1,0 +1,70 @@
+@import '../../../style/colors.scss';
+
+.notes {
+    margin-top: 6px;
+    padding: 6px 12px;
+    color: #ffff;
+    height: 100%;
+
+    .notesAdd {
+        display: flex;
+        align-items: center;
+        gap: .4rem;
+        background-color: $colorC;
+        padding-left: 12px;
+        border-radius: 20px;
+        margin-top: .6rem;
+        cursor: pointer;
+        transition: .3s ease-in-out;
+
+        &:hover {
+            background-color: rgb(51, 51, 51);
+        }
+
+        p:nth-child(1) {
+            font-size: 2rem;
+            color: $colorA;
+        }
+    }
+
+    .notesInputs {
+        margin-top: .6rem;
+        background-color: #ffff;
+        border-radius: 6px;
+
+        input {
+            width: 100%;
+            border: none;
+        }
+
+        textarea {
+            width: 100%;
+            border: none;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        div {
+            color: $colorC;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            padding: 0 1rem 6px 1rem;
+
+            .notesOk {
+                font-size: 12px;
+                cursor: pointer;
+                transition: .3s ease-in-out;
+
+                &:hover {
+                    color: $colorE;
+                }
+            }
+            
+            .notesNo {
+                cursor: pointer;
+                transition: .3s ease-in-out;
+            }
+        }
+    }
+}

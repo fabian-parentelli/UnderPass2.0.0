@@ -1,0 +1,17 @@
+.drawer {
+    position: fixed;
+    top: 70px;
+    right: -255px; 
+    width: 278px;
+    height: 100%;
+    transition: right 0.3s ease-in-out; 
+    z-index: 4;
+
+    .drawerIn {
+        display: flex;
+    }
+
+    &.open {
+        right: 0;
+    }
+}

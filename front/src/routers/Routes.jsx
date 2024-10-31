@@ -30,6 +30,7 @@ import NewEvent from "../componentSite/events/NewEvent/NewEvent.jsx";
 import UnderEvent from "../componentSite/events/UnderEvent/UnderEvent.jsx";
 import EventPage from "../componentSite/events/EventPage/EventPage.jsx";
 import VewStream from "../componentSite/stream/VewStream/VewStream.jsx";
+import Drawer from "../componentSite/drawer/Drawer/Drawer.jsx";
 
 const RoutesComp = () => {
 
@@ -76,6 +77,8 @@ const RoutesComp = () => {
                     }
                 </Routes>
 
+                <Drawer />    
+                
                 <BodyCart />
                 <Footer />
 
