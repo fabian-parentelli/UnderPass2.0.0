@@ -3,9 +3,14 @@
     top: 70px;
     right: -255px; 
     width: 278px;
-    height: 100%;
+    height: 570px;
     transition: right 0.3s ease-in-out; 
     z-index: 4;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
 
     .drawerIn {
         display: flex;

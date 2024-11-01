@@ -1,6 +1,5 @@
 import './textAreas.scss';
-import { useRef } from 'react';
-
+import { useRef, useEffect } from 'react';
 
 const TextAreas = ({ placeholder, value, handleChange, name }) => {
 
@@ -8,9 +7,13 @@ const TextAreas = ({ placeholder, value, handleChange, name }) => {
 
     const adjustHeight = () => {
         const textarea = textareaRef.current;
-        textarea.style.height = 'auto';
-        textarea.style.height = `${textarea.scrollHeight}px`;
+        if (textarea) {
+            textarea.style.height = 'auto'; 
+            textarea.style.height = `${textarea.scrollHeight}px`;
+        }
     };
+
+    useEffect(() => { adjustHeight() }, [value]);
 
     return (
         <textarea

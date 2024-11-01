@@ -77,11 +77,10 @@ const RoutesComp = () => {
                     }
                 </Routes>
 
-                <Drawer />    
-                
+                {user.logged && <Drawer />}
                 <BodyCart />
                 <Footer />
-
+                
             </ScrollToTop>
         </BrowserRouter>
     );

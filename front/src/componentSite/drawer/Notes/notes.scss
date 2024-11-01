@@ -32,6 +32,10 @@
         background-color: #ffff;
         border-radius: 6px;
 
+        &:hover {
+            box-shadow: 1px 1px 15px black;
+        }
+
         input {
             width: 100%;
             border: none;
@@ -60,7 +64,7 @@
                     color: $colorE;
                 }
             }
-            
+
             .notesNo {
                 cursor: pointer;
                 transition: .3s ease-in-out;

@@ -18,6 +18,7 @@ import BookingRepository from './booking.repositories.js';
 import NewsRepository from './news.repositories.js';
 import MessageRepository from './messages.repositories.js';
 import EventRepository from './event.repositories.js';
+import NotesRepository from './notes.repositories.js';
 
 export const userRepository = new UserRepository();
 export const imagenRepository = new ImagenRepository();
@@ -39,3 +40,4 @@ export const bookingRepository = new BookingRepository();
 export const newsRepository = new NewsRepository();
 export const messageRepository = new MessageRepository();
 export const eventRepository = new EventRepository();
+export const notesRepository = new NotesRepository();
