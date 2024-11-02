@@ -1,0 +1,23 @@
+@import '../../../style/colors.scss';
+
+.newSites {
+    margin-top: 70px;
+    min-height: 70vh;
+    padding: 1rem;
+    width: 100%;
+
+    .newSitesHelp {
+        text-decoration: none;
+        color: $colorA;
+        text-align: right;
+        
+        p {
+            padding-right: 2rem;
+        }
+    }
+
+    h2 {
+        text-align: center;
+        font-size: 2rem;
+    }
+}

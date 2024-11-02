@@ -57,7 +57,7 @@ const Browser = ({ handleMenuClick, menuVisible, listElementsRef, setMenuVisible
                         <li className='menu_inside' onClick={handleInsideClick}><Link to={'/newProduct'} className='menu_link menu_link--inside'>Crear producto</Link></li>
                         <li className='menu_inside' onClick={handleInsideClick}><Link to={'/themarket'} className='menu_link menu_link--inside'>Ver Mercado</Link></li>
 
-                        <li className='menu_inside' onClick={handleInsideClick}><Link to={'/newsite'} className='menu_link menu_link--inside' href='#'>Tu Página</Link></li>
+                        <li className='menu_inside' onClick={handleInsideClick}><Link to={'/sites'} className='menu_link menu_link--inside' href='#'>Tu Página</Link></li>
                         <li className='menu_inside' onClick={handleInsideClick}><Link to={'/undernews'} className='menu_link menu_link--inside' href='#'>UnderNews</Link></li>
 
                     </ul>

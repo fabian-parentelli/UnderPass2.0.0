@@ -1,0 +1,89 @@
+@import '../../../style/colors.scss';
+
+.sitesManagger {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+
+    .sitesManaggerCards {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        box-shadow: 5px 5px 15px;
+        padding: .4rem;
+        border-radius: 6px;
+        width: 175px;
+        height: 250px;
+        transition: .3s ease-in-out;
+
+        p {
+            margin-top: 3px;
+            width: 100%;
+            text-align: center;
+            cursor: pointer;
+            transition: .3s ease-in-out;
+
+            &:hover {
+                background-color: #058d4e65;
+            }
+        }
+
+        .sitesManagger2 {
+            background-color: $underSite;
+        }
+
+        .sitesManagger1 {
+            border: 1px solid $underSite;
+        }
+
+        &:hover {
+            transform: translateY(-3px);
+        }
+    }
+
+
+    .sitesManaggerNew {
+        text-decoration: none;
+        box-shadow: 5px 5px 15px black;
+        border-radius: 6px;
+        width: 175px;
+        height: 250px;
+        color: black;
+        transition: .3s ease-in-out;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        .sitesManaggerNewCircule {
+            background-color: #058d4e65;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: .3s ease-in-out;
+
+            &:hover {
+                background-color:rgba(23, 136, 83, 0.733);
+            }
+
+            .sitesManaggerNewIcon {
+                color: $underSite;
+            }
+        }
+
+        &:hover {
+            transform: translateY(-3px);
+        }
+
+        p {
+            color: $underSite;
+        }
+    }
+
+}

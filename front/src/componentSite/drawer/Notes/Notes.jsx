@@ -75,7 +75,7 @@ const Notes = () => {
             {notes && (notes.hasPrevPage || notes.hasNextPage) &&
                 <Pager users={notes} HandleChangePage={handleChangePage} />
             }
-            
+
         </div>
     );
 };

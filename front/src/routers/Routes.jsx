@@ -31,6 +31,8 @@ import UnderEvent from "../componentSite/events/UnderEvent/UnderEvent.jsx";
 import EventPage from "../componentSite/events/EventPage/EventPage.jsx";
 import VewStream from "../componentSite/stream/VewStream/VewStream.jsx";
 import Drawer from "../componentSite/drawer/Drawer/Drawer.jsx";
+import Sites from "../componentSite/sites/Sites/Sites.jsx";
+import NewSites from "../component/sites/NewSites/NewSites.jsx";
 
 const RoutesComp = () => {
 
@@ -59,6 +61,7 @@ const RoutesComp = () => {
                     <Route path="/event" element={<UnderEvent />} />
                     <Route path="/eventpage/:id" element={<EventPage />} />
                     <Route path="/stream/:id/:channel" element={<VewStream />} />
+                    <Route path="/sites" element={<Sites />} />
 
                     {user.logged &&
                         <>
@@ -69,6 +72,7 @@ const RoutesComp = () => {
                             <Route path="/vewtransferpay/:id" element={<VewTransferPay />} />
                             <Route path="/ticket_by_order/:id" element={<TicketUnique />} />
                             <Route path="/vewalert/:type/:id" element={<VewAlertsBody />} />
+                            <Route path="/newsites/:userid" element={<NewSites />} />
                         </>
                     }
 
@@ -80,7 +84,7 @@ const RoutesComp = () => {
                 {user.logged && <Drawer />}
                 <BodyCart />
                 <Footer />
-                
+
             </ScrollToTop>
         </BrowserRouter>
     );

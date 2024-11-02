@@ -78,3 +78,12 @@
         background-color: #515683;
     }
 }
+
+.btnUS {
+    background-color: $underSite;
+    color: #fff;
+
+    &:hover {
+        background-color: $underSiteHover;
+    }
+}

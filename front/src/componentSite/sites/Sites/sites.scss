@@ -1,0 +1,35 @@
+@import '../../../style/colors.scss';
+
+.sites {
+    margin-top: 70px;
+    min-height: 70vh;
+    padding: 1rem;
+
+    .newEventHelp {
+        text-decoration: none;
+
+        p {
+            text-align: end;
+            color: $colorA;
+            padding-right: 2rem;
+            cursor: pointer;
+            transition: .3s ease-in-out;
+
+            &:hover {
+                color: $colorE;
+            }
+        }
+    }
+
+    h2 {
+        text-align: center;
+        font-size: 2rem;
+    }
+
+}
+
+@media (max-width: 767px) {
+    .sites {
+        min-height: 100vh;
+    }
+}

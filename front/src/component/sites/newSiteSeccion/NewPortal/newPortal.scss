@@ -1,0 +1,72 @@
+.newPortal {
+    position: relative;
+
+    .newPortalCont {
+        position: absolute;
+        max-width: 600px;
+        width: 100%;
+        height: 150px;
+        background-color: #EAEBEF;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+
+        .newPortalTitle {
+            width: 60%;
+        }
+
+        .newPortalCategories {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+
+            select {
+                width: 200px;
+            }
+        }
+    }
+
+    .newPortalLog {
+        position: absolute;
+        bottom: -20%;
+        left: 5%;
+    }
+}
+
+@media (max-width: 767px) {
+    .newPortal {
+        position: unset;
+
+        .newPortalCont {
+            position: unset;
+            transform: translateX(0);
+            height: 100%;
+            display: flex;
+            padding: 1rem;
+
+            .newPortalTitle {
+                width: 200px;
+                margin-bottom: 1rem;
+            }
+
+            .newPortalCategories {
+                input {
+                    margin-top: 1rem;
+                }
+            }
+        }
+
+        .newPortalLog {
+            position: unset;
+            display: flex;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+    }
+}

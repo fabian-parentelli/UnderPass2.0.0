@@ -60,7 +60,7 @@ const Footer = () => {
                             </li>
                             <li className="updateUserDiv"><Link to={'/profile'}>Tu Perfil</Link></li>
                             <li><Link to={'/newevent'}>Crear un evento</Link></li>
-                            {user.logged ? <li><Link to={'/newsite'}>Tu Página</Link> </li> : ''}
+                            {user.logged ? <li><Link to={'/sites'}>Tu Página</Link> </li> : ''}
                             <li><Link to={'/contactus'}>Contacto</Link></li>
                         </ul>
                     </div>
