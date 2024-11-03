@@ -1,8 +1,9 @@
 .newSitesComp {
-    margin: 2rem 0;
+    margin: 2rem auto;
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 75%;
 
     .newSitesButton {
         display: flex;
@@ -16,7 +17,10 @@
 }
 
 @media (max-width: 767px) {
-    .newSitesComp .newSitesButton button {
-        margin-right: 0;
+    .newSitesComp {
+     width: 100%;
+        .newSitesButton button {
+            margin-right: 0;
+        }
     }
 }

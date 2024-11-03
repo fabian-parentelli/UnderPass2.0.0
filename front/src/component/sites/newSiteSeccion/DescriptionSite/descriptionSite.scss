@@ -1,0 +1,58 @@
+.descriptionSite {
+    margin-top: 1rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .pLabel {
+        text-align: center;
+        margin: 1rem 0 2rem 0;
+    }
+
+    section {
+        display: flex;
+        gap: 2rem;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+
+        textarea {
+            margin-top: 0;
+            width: 460px;
+            height: 204px;
+        }
+    }
+
+    .descriptionSiteText2 {
+        width: 97%;
+    }
+
+    textarea {
+        margin-top: 2rem;
+        height: 100px;
+        width: 97%;
+    }
+
+}
+
+@media (max-width: 768px) {
+
+    .descriptionSite {
+        width: 100%;
+
+        .pLabel {
+            margin-bottom: 0;
+        }
+
+        section {
+            min-width: 290px;
+
+            textarea {
+                width: 100%;
+                max-width: 600px;
+                min-width: 290px;
+            }
+        }
+    }
+}

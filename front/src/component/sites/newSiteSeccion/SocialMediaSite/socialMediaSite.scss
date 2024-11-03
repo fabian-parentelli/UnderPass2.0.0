@@ -1,0 +1,48 @@
+.socialMediaSite {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+
+    h7 {
+        text-align: center;
+    }
+
+    .socialMediaSiteGray {
+        text-align: center;
+        margin-bottom: 1rem;
+        font-size: 12px;
+        color: gray;
+
+        span {
+            color: red;
+        }
+    }
+
+    .socialMediaSiteSect {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 2rem;
+        margin-top: 1rem;
+
+        .socialMediaSiteboth {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+
+            .socialMediaSiteDiv {
+                display: flex;
+                flex-direction: column;
+
+                div {
+                    display: flex;
+                    align-items: center;
+
+                    .socialMediaSiteIcon {
+                        font-size: 2rem;
+                    }
+                }
+            }
+        }
+    }
+}

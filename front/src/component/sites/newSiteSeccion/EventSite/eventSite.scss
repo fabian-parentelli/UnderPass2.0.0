@@ -1,0 +1,29 @@
+.eventSite {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+
+    .eventSiteSwitch {
+        display: flex;
+        align-items: center;
+    }
+
+    .eventSiteHelp {
+        font-size: 12px;
+        color: gray;
+    }
+}
+
+@media (max-width: 768px){
+    .eventSite {
+        margin-top: 4rem;
+    }
+}
+
+@media (max-width: 425px){
+    .eventSite {
+        margin-top: 2rem;
+    }
+}

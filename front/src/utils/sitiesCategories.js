@@ -34,8 +34,11 @@ const sitiesSubCategories = {
     ],
     stream: [
         { name: 'En vivo', value: 'live' },
+        { name: 'En vivo - Grupo', value: 'lives' },
         { name: 'Documentales', value: 'documental' },
+        { name: 'Documentales - Grupo', value: 'documentals' },
         { name: 'Publicaciones', value: 'publication' },
+        { name: 'Publicaciones - Grupo', value: 'publications' },
     ]
 };
 
