@@ -1,5 +1,5 @@
 import './imgUpload.scss';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 const ImgUpload = ({ width, height, name, radius, formData }) => {
 
@@ -11,13 +11,16 @@ const ImgUpload = ({ width, height, name, radius, formData }) => {
         const selectedFile = e.target.files[0];
         if (selectedFile) {
             setImage(URL.createObjectURL(selectedFile));
-            formData.append(`name_${name}`, selectedFile);
-            formData.append(`position_${name}`, position);
+            formData.set(`name_${name}`, selectedFile);
         };
     };
 
     const handleClick = () => fileInputRef.current.click();
     const handleChangue = (e) => setPosition(e.target.value);
+
+    useEffect(() => {
+        formData.set(`position_${name}`, position);
+    }, [position]);
 
     return (
         <div className='imgUploadTop'>
@@ -49,6 +52,8 @@ const ImgUpload = ({ width, height, name, radius, formData }) => {
                 <option value="top">Arriba</option>
                 <option value="center">Centro</option>
                 <option value="bottom">Abajo</option>
+                <option value="left">Izquierda</option>
+                <option value="right">Derecha</option>
             </select>
 
         </div>

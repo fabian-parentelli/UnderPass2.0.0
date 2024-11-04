@@ -1,0 +1,26 @@
+.productSite {
+    margin-top: 2rem;
+
+    .productSiteBody {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 2rem;
+        margin-top: 2rem;
+
+        .productSiteDiv {
+            display: flex;
+            flex-direction: column;
+
+            .productSiteSwitch {
+                display: flex;
+                align-items: center;
+            }
+
+            .productSitePhelp {
+                font-size: 12px;
+                color: gray;
+            }
+        }
+    }
+}

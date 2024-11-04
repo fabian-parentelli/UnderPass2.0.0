@@ -1,0 +1,29 @@
+.imagesSities {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .imagesSitiesSectA .imagesSitiesSwitch {
+        display: flex;
+        align-items: center;
+    }
+
+    .imagesSitiesGalery {
+        display: flex;
+        flex-direction: column;
+        margin-top: 2rem;
+        
+        .imagesSitiesGaleryTop {
+            display: flex;
+        }
+
+        .imagesSitiesGaleryBottom {
+            display: flex;
+
+            .imagesSitiesGaleryBottomIn .imagesSitiesGaleryIn {
+                display: flex;
+            }
+        }
+    }
+}

@@ -11,7 +11,7 @@ const SocialMediaSite = ({ values, handleValues }) => {
     return (
         <div className='socialMediaSite'>
 
-            <h7>Redes Sociales y comunicación.</h7>
+            <h6>Redes Sociales y comunicación.</h6>
             <p className='socialMediaSiteGray'>Estos datos no son obligatorios, y son <span>100% públicos</span>.</p>
 
             <section className='socialMediaSiteSect'>

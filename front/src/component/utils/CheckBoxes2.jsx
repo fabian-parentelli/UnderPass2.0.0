@@ -23,7 +23,7 @@ const CheckBoxes2 = ({ labels, setType, multiselect = false }) => {
                         checked={selected.includes(label._id)}
                         onChange={() => handleCheckboxChange(label)}
                     />
-                    <p>{label.title}</p>
+                    <p>{label.title || label.name}</p>
                 </div>
             ))}
         </>
