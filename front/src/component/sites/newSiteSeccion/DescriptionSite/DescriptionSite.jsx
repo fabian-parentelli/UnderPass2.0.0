@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import ImgUpload from '../ImgUpload/ImgUpload';
 import CharacterCounter from '../../../utils/CharacterCounter';
 
-const DescriptionSite = ({ formData, values, handleValues }) => {
+const DescriptionSite = ({ values, handleValues, setFiles, setValues }) => {
 
     const [isMobile, setIsMobile] = useState(window.innerWidth >= 510 ? 510 : window.innerWidth);
 
@@ -26,7 +26,7 @@ const DescriptionSite = ({ formData, values, handleValues }) => {
                     <CharacterCounter min={800} max={900} text={values.descriptionShort} />
                 </div>
 
-                <ImgUpload width={`${isMobile - 50}px`} height={`${isMobile * 40 / 100}px`} name={'photoDescription'} formData={formData} />
+                <ImgUpload width={`${isMobile - 50}px`} height={`${isMobile * 40 / 100}px`} name={'photoDescription'} setFiles={setFiles} setValues={setValues} />
             </section>
 
             <textarea

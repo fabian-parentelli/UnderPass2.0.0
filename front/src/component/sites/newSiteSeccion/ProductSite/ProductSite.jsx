@@ -16,8 +16,8 @@ const ProductSite = ({ values, setValues }) => {
             const response = await getProductByUserIdApi(values.userId);
             if (response.status === 'success') setProducts(response.result);
             else console.error(response.error);
-        }; if (values.userId) fetchData();
-    }, []);
+        }; if (values.userId && values.isProduct) fetchData();
+    }, [values.isProduct]);
 
     useEffect(() => { setValues({ ...values, products: [...selected] }) }, [selected]);
 

@@ -1,9 +1,9 @@
 import './imagesSities.scss';
-import { useState, useEffect } from 'react';
 import Switch from '@mui/material/Switch';
+import { useState, useEffect } from 'react';
 import ImgUpload from '../ImgUpload/ImgUpload';
 
-const ImagesSities = ({ formData }) => {
+const ImagesSities = ({ setFiles, setValues }) => {
 
     const [vew, setVew] = useState(false);
     const [isMobile, setIsMobile] = useState(window.innerWidth >= 900 ? 900 : window.innerWidth);
@@ -36,18 +36,18 @@ const ImagesSities = ({ formData }) => {
                 <section className='imagesSitiesGalery'>
 
                     <div className='imagesSitiesGaleryTop'>
-                        <ImgUpload width={`${isMobile / 3}px`} height={`${isMobile * 25 / 100}px`} name={'galery1'} formData={formData} />
-                        <ImgUpload width={`${isMobile / 3}px`} height={`${isMobile * 25 / 100}px`} name={'galery2'} formData={formData} />
-                        <ImgUpload width={`${isMobile / 3}px`} height={`${isMobile * 25 / 100}px`} name={'galery3'} formData={formData} />
+                        <ImgUpload width={`${isMobile / 3}px`} height={`${isMobile * 25 / 100}px`} name={'galery1'} setFiles={setFiles} setValues={setValues} />
+                        <ImgUpload width={`${isMobile / 3}px`} height={`${isMobile * 25 / 100}px`} name={'galery2'} setFiles={setFiles} setValues={setValues} />
+                        <ImgUpload width={`${isMobile / 3}px`} height={`${isMobile * 25 / 100}px`} name={'galery3'} setFiles={setFiles} setValues={setValues} />
                     </div>
 
                     <div className='imagesSitiesGaleryBottom'>
-                        <ImgUpload width={`${isMobile / 3}px`} height={`${isMobile * 50 / 100}px`} name={'glery4'} formData={formData} />
+                        <ImgUpload width={`${isMobile / 3}px`} height={`${isMobile * 50 / 100}px`} name={'glery4'} setFiles={setFiles} setValues={setValues} />
                         <div className='imagesSitiesGaleryBottomIn'>
-                            <ImgUpload width={`${isMobile / 1.5}px`} height={`${isMobile * 25 / 100}px`} name={'galery5'} formData={formData} />
+                            <ImgUpload width={`${isMobile / 1.5}px`} height={`${isMobile * 25 / 100}px`} name={'galery5'} setFiles={setFiles} setValues={setValues} />
                             <div className='imagesSitiesGaleryIn'>
-                                <ImgUpload width={`${isMobile / 3}px`} height={`${isMobile * 25 / 100}px`} name={'galery6'} formData={formData} />
-                                <ImgUpload width={`${isMobile / 3}px`} height={`${isMobile * 25 / 100}px`} name={'galery7'} formData={formData} />
+                                <ImgUpload width={`${isMobile / 3}px`} height={`${isMobile * 25 / 100}px`} name={'galery6'} setFiles={setFiles} setValues={setValues} />
+                                <ImgUpload width={`${isMobile / 3}px`} height={`${isMobile * 25 / 100}px`} name={'galery7'} setFiles={setFiles} setValues={setValues} />
                             </div>
                         </div>
                     </div>

@@ -158,3 +158,10 @@ export class NotesNotFound extends Error {
         this.name = this.constructor.name;
     };
 };
+
+export class SitesNotFound extends Error {
+    constructor(message) {
+        super(message);
+        this.name = this.constructor.name;
+    };
+};

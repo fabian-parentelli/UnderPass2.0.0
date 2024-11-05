@@ -9,7 +9,7 @@ import {
     userRouter, imagenRouter, priceRouter, pdfRouter, graphRouter, aplliRouter, alertsRouter, productRouter,
     publicityRouter, orderRouter, orderSellerRouter, walletRouter, ticketRouter, transferRouter, cashRouter,
     auditRouter, orderPayRouter, transferPayRouter, payRouter, bookingRouter, newsRouter, messageRouter,
-    eventRouter, notesRouter
+    eventRouter, notesRouter, sitesRouter
 } from './routes/index.router.js';
 
 const app = express();
@@ -46,5 +46,6 @@ app.use('/api/news', newsRouter);
 app.use('/api/message', messageRouter);
 app.use('/api/event', eventRouter);
 app.use('/api/notes', notesRouter);
+app.use('/api/sites', sitesRouter);
 
 app.listen(env.port, () => console.log('Server conected'));

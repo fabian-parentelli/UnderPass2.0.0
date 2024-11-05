@@ -4,7 +4,7 @@ import { sitiesCategories, sitiesSubCategories } from '../../../../utils/sitiesC
 import SelectedProvince from '../../../utils/SelectedProvince.jsx';
 import { useState, useEffect } from 'react';
 
-const NewPortal = ({ formData, values, handleValues }) => {
+const NewPortal = ({ values, handleValues, setFiles, setValues }) => {
 
     const [isMobile, setIsMobile] = useState(window.innerWidth >= 1000 ? 1000 : window.innerWidth);
 
@@ -20,7 +20,7 @@ const NewPortal = ({ formData, values, handleValues }) => {
 
     return (
         <div className='newPortal'>
-            <ImgUpload width={`${isMobile - 50}px`} height={`${isMobile * 40 / 100}px`} name={'banner'} formData={formData} />
+            <ImgUpload width={`${isMobile - 50}px`} height={`${isMobile * 40 / 100}px`} name={'banner'} setFiles={setFiles} setValues={setValues} />
 
             <section className='newPortalCont'>
 
@@ -66,7 +66,7 @@ const NewPortal = ({ formData, values, handleValues }) => {
             </section>
 
             <div className='newPortalLog'>
-                <ImgUpload width={'200px'} height={'200px'} radius={'50%'} name={'logo'} formData={formData} />
+                <ImgUpload width={'200px'} height={'200px'} radius={'50%'} name={'logo'} setFiles={setFiles} setValues={setValues} />
             </div>
         </div>
     );

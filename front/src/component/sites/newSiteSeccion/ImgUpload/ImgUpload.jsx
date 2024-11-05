@@ -1,33 +1,38 @@
 import './imgUpload.scss';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 
-const ImgUpload = ({ width, height, name, radius, formData }) => {
+const ImgUpload = ({ width, height, name, radius, setFiles, setValues }) => {
 
     const fileInputRef = useRef(null);
     const [image, setImage] = useState(null);
     const [position, setPosition] = useState('center');
 
     const handleImgChange = (e) => {
-        const selectedFile = e.target.files[0];
-        if (selectedFile) {
-            setImage(URL.createObjectURL(selectedFile));
-            formData.set(`name_${name}`, selectedFile);
+        const selectedFiles = Array.from(e.target.files);
+        const renamedFiles = selectedFiles.map((file) => {
+            const newName = `img_${name}`; 
+            return new File([file], newName, { type: file.type });
+        });
+        setFiles((prevFiles) => [...prevFiles, ...renamedFiles]);
+        if (renamedFiles.length > 0) {
+            const file = renamedFiles[0];
+            const imageURL = URL.createObjectURL(file);
+            setImage(imageURL);
         };
     };
-
+    
     const handleClick = () => fileInputRef.current.click();
-    const handleChangue = (e) => setPosition(e.target.value);
-
-    useEffect(() => {
-        formData.set(`position_${name}`, position);
-    }, [position]);
+    const handleChangue = (e) => {
+        setPosition(e.target.value);
+        setValues((prevValues) => ({ ...prevValues, [`position_${name}`]: e.target.value }));
+    };
 
     return (
-        <div className='imgUploadTop'>
+        <div className='imgUploadTop' style={{ width, height }}>
 
             <div
                 className='imgUpload'
-                style={{ width: width, height: height, borderRadius: radius }}
+                style={{ width: '100%', height: '100%', borderRadius: radius }}
                 onClick={handleClick}
             >
                 <input
@@ -40,9 +45,12 @@ const ImgUpload = ({ width, height, name, radius, formData }) => {
                 />
 
                 {image ? (
-                    <img src={image} alt="Selected"
+                    <img
+                        src={image}
+                        alt="Selected"
                         className='imgUploadImg'
-                        style={{ width: '100%', height: '100%', objectPosition: position, borderRadius: radius }} />
+                        style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: radius, objectPosition: position }}
+                    />
                 ) : (
                     <p>Haz clic para subir una imagen</p>
                 )}

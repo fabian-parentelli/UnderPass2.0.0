@@ -7,6 +7,25 @@ cloudinary.config({
     api_secret: config.apiSecret
 });
 
+async function deleteAllInFolder(folder) {
+    try {
+        const { resources } = await cloudinary.api.resources({
+            type: 'upload',
+            prefix: folder,      
+            max_results: 500   
+        });
+        for (const resource of resources) {
+            console.log(`Eliminando: ${resource.public_id}`);
+            await cloudinary.uploader.destroy(resource.public_id);
+        }
+        await cloudinary.api.delete_folder(folder);
+        console.log(`La carpeta ${folder} ha sido eliminada exitosamente.`);
+    } catch (error) {
+        console.error('Error al eliminar los archivos o la carpeta:', error);
+    }
+}
+
+
 const uploadToCloudinary = async (req, res, next) => {
     if (!req.files || req.files.length === 0) {
         req.cloudinaryUrls = [];
@@ -59,4 +78,4 @@ const getPublicIds = (urls) => {
     return publicIds;
 };
 
-export { uploadToCloudinary, deleteImgs, getPublicIds };
+export { uploadToCloudinary, deleteImgs, getPublicIds, deleteAllInFolder };

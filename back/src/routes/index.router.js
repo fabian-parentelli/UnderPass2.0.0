@@ -22,6 +22,7 @@ import NewsRouter from "./news.router.js";
 import MessageRouter from "./messages.router.js";
 import EventRouter from "./event.router.js";
 import NotesRouter from "./notes.router.js";
+import SitesRouter from "./sites.router.js";
 
 export const userRouter = new UserRouter().getRouter();
 export const imagenRouter = new ImagenRouter().getRouter();
@@ -47,3 +48,4 @@ export const newsRouter = new NewsRouter().getRouter();
 export const messageRouter = new MessageRouter().getRouter();
 export const eventRouter = new EventRouter().getRouter();
 export const notesRouter = new NotesRouter().getRouter();
+export const sitesRouter = new SitesRouter().getRouter();

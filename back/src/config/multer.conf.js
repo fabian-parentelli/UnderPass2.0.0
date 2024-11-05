@@ -10,6 +10,6 @@ const uploader = multer({
     }
 });
 
-const multipleUploader = uploader.array('files', 10);
+const multipleUploader = uploader.array('files', 15);
 
 export { multipleUploader };

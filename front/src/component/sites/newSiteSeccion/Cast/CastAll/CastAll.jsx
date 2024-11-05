@@ -3,7 +3,7 @@ import { useState } from 'react';
 import ImgUpload from '../../ImgUpload/ImgUpload';
 import CharacterCounter from '../../../../utils/CharacterCounter';
 
-const CastAll = ({ formData, values, handleValues }) => {
+const CastAll = ({ values, handleValues, setFiles, setValues }) => {
 
     const [cast, setCast] = useState([{}]);
     const addInput = () => setCast([...cast, {}]);
@@ -26,13 +26,13 @@ const CastAll = ({ formData, values, handleValues }) => {
                             />
 
                             <div>
-                                <ImgUpload width={'200px'} height={'200px'} name={`castImg_${index}`} radius={'50%'} formData={formData} />
+                                <ImgUpload width={'200px'} height={'200px'} name={`castImg_${index}`} radius={'50%'} setFiles={setFiles} setValues={setValues} />
                             </div>
                         </div>
 
                         <div>
                             <textarea
-                                style={{height: '220px', width: '200px'}}
+                                style={{ height: '220px', width: '200px' }}
                                 placeholder="Descripción"
                                 name={`castText_${index}`}
                                 onChange={handleValues}

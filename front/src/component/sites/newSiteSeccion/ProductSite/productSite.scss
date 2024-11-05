@@ -1,16 +1,19 @@
 .productSite {
     margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
     .productSiteBody {
         display: flex;
         justify-content: center;
         flex-wrap: wrap;
         gap: 2rem;
-        margin-top: 2rem;
 
         .productSiteDiv {
             display: flex;
             flex-direction: column;
+            align-items: center;
 
             .productSiteSwitch {
                 display: flex;
