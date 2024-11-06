@@ -1,5 +1,6 @@
 import './newSitesComp.scss';
 import { useState } from 'react';
+import Load from '../../utils/Load.jsx';
 import Cast from '../newSiteSeccion/Cast/Cast';
 import NewPortal from '../newSiteSeccion/NewPortal/NewPortal';
 import EventSite from '../newSiteSeccion/EventSite/EventSite';
@@ -8,10 +9,10 @@ import ProductSite from '../newSiteSeccion/ProductSite/ProductSite';
 import VideoSities from '../newSiteSeccion/VideoSities/VideoSities';
 import ShiftSities from '../newSiteSeccion/ShiftSities/ShiftSities';
 import StreamVideo from '../newSiteSeccion/StreamVideo/StreamVideo';
+import { newSitesApi } from '../../../helpers/sites/newSites.api.js';
 import ImagesSities from '../newSiteSeccion/ImagesSities/ImagesSities';
 import SocialMediaSite from '../newSiteSeccion/SocialMediaSite/SocialMediaSite';
 import DescriptionSite from '../newSiteSeccion/DescriptionSite/DescriptionSite';
-import { newSitesApi } from '../../../helpers/sites/newSites.api';
 
 const NewSitesComp = ({ userId }) => {
 
@@ -30,31 +31,32 @@ const NewSitesComp = ({ userId }) => {
         setLoading(true);
         e.preventDefault();
         formData.set('userId', userId);
-        formData.set('folderName', `/sites/${values.title}`);
-    
-        const addedFiles = new Set();  // Para llevar el control de los archivos agregados
+        const folderName = formatText(values.title);
+        formData.set('folderName', `sites/${folderName}`);
+        const addedFiles = new Set();
+
+        formData.delete('files');
+
+
         files.forEach((file) => {
-            // Verifica si el archivo ya fue agregado
             if (!addedFiles.has(file.name)) {
                 formData.append('files', file);
-                addedFiles.add(file.name);  // Marca el archivo como agregado
-            }
+                addedFiles.add(file.name);  
+            };
         });
-    
-        // Agregar otros campos de formData
         for (const field in values) formData.set(field, values[field]);
-    
-        // Para verificar que solo se agreguen los archivos correctamente
+
         for (const [key, value] of formData.entries()) {
             console.log(key, value);
         }
-    
-        // Enviar los datos con la API
+
+
         const response = await newSitesApi(formData);
+
 
         setLoading(false);
     };
-    
+
 
     return (
         <form className='newSitesComp' onSubmit={handleSubmit}>
@@ -75,10 +77,21 @@ const NewSitesComp = ({ userId }) => {
             <ShiftSities values={values} />
 
             <div className='newSitesButton'>
-                <button className='btn btnUS' disabled={loading}>Crear</button>
+                <button className='btn btnUS'>Crear</button>
             </div>
+
+            <Load loading={loading} />
         </form>
     );
 };
 
 export default NewSitesComp;
+
+function formatText(text) {
+
+    return text
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/\s+/g, "");
+};

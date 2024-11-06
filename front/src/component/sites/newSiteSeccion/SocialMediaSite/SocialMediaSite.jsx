@@ -47,7 +47,7 @@ const SocialMediaSite = ({ values, handleValues }) => {
                         <label>Instagrame</label>
                         <div>
                             <InstagramIcon className='socialMediaSiteIcon' />
-                            <input type="text" name='instragrame' placeholder='Opcional' onChange={handleValues} />
+                            <input type="text" name='instagrame' placeholder='Opcional' onChange={handleValues} />
                         </div>
                     </div>
 
@@ -63,7 +63,7 @@ const SocialMediaSite = ({ values, handleValues }) => {
                         <label>WhatsApp</label>
                         <div>
                             <WhatsAppIcon className='socialMediaSiteIcon' />
-                            <input type="text" name='WhatsApp' placeholder='Opcional' onChange={handleValues} />
+                            <input type="text" name='whatsApp' placeholder='Opcional' onChange={handleValues} />
                         </div>
                     </div>
                 </section>

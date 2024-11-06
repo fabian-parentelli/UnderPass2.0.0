@@ -7,7 +7,7 @@ cloudinary.config({
     api_secret: config.apiSecret
 });
 
-async function deleteAllInFolder(folder) {
+async function deleteAllInFolder(folder) { // Esto es para guardar en mi sitio de ayudas-----
     try {
         const { resources } = await cloudinary.api.resources({
             type: 'upload',
@@ -23,7 +23,7 @@ async function deleteAllInFolder(folder) {
     } catch (error) {
         console.error('Error al eliminar los archivos o la carpeta:', error);
     }
-}
+} // esto es pra guardar en mi sitio de ayudas -----------------------------------------------
 
 
 const uploadToCloudinary = async (req, res, next) => {

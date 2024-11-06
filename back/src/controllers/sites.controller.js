@@ -2,26 +2,19 @@ import * as sitesService from '../services/sites.service.js';
 import { SitesNotFound } from '../utils/custom-exceptions.utils.js';
 
 const newSite = async (req, res) => {
-
-    console.log('camina*********************');
-    
-
     const images = req.files;
     const imagesUrl = req.cloudinaryUrls;
-    const sites = req.body;
+    try {
+        const result = await sitesService.newSite(images, imagesUrl, { ...req.body });
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
 
-    console.log(images);
-    console.log(imagesUrl);
-    console.log(sites);
-    
 
-    // try {
-    //     const result = await ticketService.getTicketByOrder(id);
-    //     if (result) return res.sendSuccess(result);
-    // } catch (error) {
-    //     if (error instanceof TicketNotFound) return res.sendClientError(error.message);
-    //     res.sendServerError(error.message);
-    // };
+        console.log(error); //- Borrar ----------------------------------------------
+
+        if (error instanceof SitesNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
 };
 
 export { newSite };
