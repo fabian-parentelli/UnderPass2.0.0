@@ -71,7 +71,12 @@ const imagesHelp = {
     eventTicket: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1729203892/help/ya0ixakjhvskqhevrhwi.png',
     eventConfirm: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1729203893/help/aoefays3jojpgvsmp59h.png',
 
-    
+    // UpdEventes
+    eventPanel: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1731008600/help/rgggxm0i9qtivm1cfwz5.png',
+    eventImagePanel: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1731008600/help/xfo2gyd7gt3cc8tb7yci.png',
+    eventInfoPanel: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1731008600/help/bfhks4fiwwjgiuj5ucrm.png',
+    eventTicketsPanel3: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1731008600/help/qyrzzgfrj5xcdjkhlsul.png',
+
 };
 
 const alertImages = {

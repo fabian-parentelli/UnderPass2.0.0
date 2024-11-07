@@ -32,4 +32,5 @@ const data = [
     { label: 'Ordenes de compra', data: 'orderBuyHelp' },
     { label: 'Ordenes de venta', data: 'orderSellerHelp' },
     { label: 'Crear un evento', data: 'newEventHelp' },
+    { label: 'ver y modificar un evento', data: 'updEventHelp' },
 ];

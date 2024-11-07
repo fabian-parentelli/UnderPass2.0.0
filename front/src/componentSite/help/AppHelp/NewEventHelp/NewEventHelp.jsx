@@ -1,6 +1,7 @@
 import './newEventHelp.scss';
 import TitleHelp from '../../TitleHelp/TitleHelp';
 import { imagesHelp } from '../../../../utils/imagesData.utils';
+import UnderEventsLog from '../../../../component/fonts/UnderEventsLog/UnderEventsLog';
 
 const NewEventHelp = () => {
 
@@ -101,6 +102,10 @@ const NewEventHelp = () => {
                 </div>
             </section>
 
+            <section className='newEventHelpLog'>
+                <UnderEventsLog size={3} />
+                <p>Gracias por utilizar el módulo <span>UnderEvent</span> de <span>UnderPass</span>.</p>
+            </section>
         </div>
     );
 };
