@@ -32,8 +32,9 @@ const Discography = ({ handleValues, values, setFiles, setValues }) => {
                         {discs.map((disc, index) => (
                             <div key={index}>
                                 <div className='discographyDiv'>
-                                    <ImgUpload width={'300px'} height={'300px'} name={`disc_${index}`} setFiles={setFiles} setValues={setValues} />
+                                    <ImgUpload width={'300px'} height={'300px'} name={`disc${index+1}`} setFiles={setFiles} setValues={setValues} />
                                     <div className='discographyInputs'>
+                                        <input type="text" name={`discTitle_${index}`} placeholder='Título del album/ep' onChange={handleValues} style={{marginBottom: '1rem'}} required />
                                         <div className='discographyInputsDiv'>
                                             {sings.map((sing, ind) => (
                                                 <input

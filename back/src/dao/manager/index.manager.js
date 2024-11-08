@@ -22,6 +22,7 @@ import News from './news.manager.js';
 import Event from './event.manager.js';
 import Preset from './preset.manager.js';
 import Notes from './notes.manager.js';
+import Sites from './sites.manager.js';
 
 export const userManager = new User();
 export const tutorialsManager = new Tutorials();
@@ -47,3 +48,4 @@ export const newsManager = new News();
 export const eventManager = new Event();
 export const presetManager = new Preset();
 export const notesManager = new Notes();
+export const sitesManager = new Sites();

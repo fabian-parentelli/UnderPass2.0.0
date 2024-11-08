@@ -2,6 +2,7 @@ import './newSitesComp.scss';
 import { useState } from 'react';
 import Load from '../../utils/Load.jsx';
 import Cast from '../newSiteSeccion/Cast/Cast';
+import { useNavigate } from 'react-router-dom';
 import NewPortal from '../newSiteSeccion/NewPortal/NewPortal';
 import EventSite from '../newSiteSeccion/EventSite/EventSite';
 import Discography from '../newSiteSeccion/Discography/Discography';
@@ -22,8 +23,8 @@ const NewSitesComp = ({ userId }) => {
         isEvent: false, userId, events: [], isProduct: false, isDiscography: false, isVideo: false,
         isShift: false
     });
-
     const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
 
     const handleValues = (e) => setValues({ ...values, [e.target.name]: e.target.value });
 
@@ -34,10 +35,7 @@ const NewSitesComp = ({ userId }) => {
         const folderName = formatText(values.title);
         formData.set('folderName', `sites/${folderName}`);
         const addedFiles = new Set();
-
         formData.delete('files');
-
-
         files.forEach((file) => {
             if (!addedFiles.has(file.name)) {
                 formData.append('files', file);
@@ -45,18 +43,11 @@ const NewSitesComp = ({ userId }) => {
             };
         });
         for (const field in values) formData.set(field, values[field]);
-
-        for (const [key, value] of formData.entries()) {
-            console.log(key, value);
-        }
-
-
         const response = await newSitesApi(formData);
-
-
+        if(response.status === 'success') navigate('/') // Cambiar a la página ya creada.
+        else console.error(response.error);
         setLoading(false);
     };
-
 
     return (
         <form className='newSitesComp' onSubmit={handleSubmit}>

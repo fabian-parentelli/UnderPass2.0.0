@@ -7,5 +7,7 @@ import { uploadToCloudinary } from '../config/cloudinary.config.js';
 export default class SitesRouter extends Router {
     init() {
         this.post('/', ['USER', 'ADMIN', 'MASTER'], passportEnum.JWT, multipleUploader, uploadToCloudinary, sitesController.newSite);
+        this.get('/user/:uid', ['USER', 'ADMIN', 'MASTER'], passportEnum.JWT, sitesController.getByUserId);
+        this.get('/link/:link', ['PUBLIC'], passportEnum.NOTHING, sitesController.getByLinks);
     };
 };

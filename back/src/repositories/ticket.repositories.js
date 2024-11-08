@@ -21,7 +21,6 @@ export default class ticketRepository {
     };
 };
 
-
 const getUser = async (data) => {
     let user = {};
     if (data.by !== 'underPass') user.userBy = await userManager.getUserById(data.by);

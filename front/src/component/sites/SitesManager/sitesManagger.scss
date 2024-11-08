@@ -35,6 +35,16 @@
 
         .sitesManagger1 {
             border: 1px solid $underSite;
+            text-decoration: none;
+            color: $underSite;
+            width: 100%;
+            text-align: center;
+            margin-top: 3px;
+            transition: .3s ease-in-out;
+
+            &:hover {
+                background-color: #058d4e65;
+            }
         }
 
         &:hover {
