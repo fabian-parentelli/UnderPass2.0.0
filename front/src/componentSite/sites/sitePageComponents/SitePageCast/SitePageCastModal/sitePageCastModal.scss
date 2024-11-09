@@ -1,0 +1,26 @@
+@import '../../../../../style/colors.scss';
+
+.sitePageCastModal {
+    padding: 0 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .sitePageCastAllImg {
+        width: 200px;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: $underSite .2rem solid;
+    }
+
+    .sitePageCastModalTitle {
+        margin-top: 1rem;
+        font-size: 1.5rem;
+    }
+
+    p {
+        margin-top: 2rem;
+        line-height: 2;
+    }
+}

@@ -1,0 +1,47 @@
+@import '../../../../../style/colors.scss';
+
+.sitePageCastAll {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    section {
+        margin-top: 2rem;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 2rem;
+        width: 100%;
+
+        .sitePageCastAllCard {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .sitePageCastAllImg {
+                width: 200px;
+                height: 200px;
+                object-fit: cover;
+                border-radius: 50%;
+                box-shadow: 5px 5px 15px;
+                cursor: pointer;
+                transition: .3s ease-in-out;
+
+                &:hover {
+                    transform: translateY(-3px);
+                }
+                
+                &:hover + p {
+                    color: $underSite;
+                }
+            }
+
+            p {
+                margin-top: 1rem;
+                font-size: 1.5rem;
+                transition: .3s ease-in-out;
+            }
+        }
+    }
+}

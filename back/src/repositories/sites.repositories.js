@@ -1,4 +1,5 @@
 import { sitesManager } from '../dao/manager/index.manager.js';
+import { thereIsSmoething } from '../dao/DTOS/sities.dto.js';
 
 export default class SitesRepository {
 
@@ -18,7 +19,8 @@ export default class SitesRepository {
     };
     
     getByLinks = async (link) => {
-        const result = await sitesManager.getByLinks(link);
+        const preVew = await sitesManager.getByLinks(link);
+        const result = await thereIsSmoething(preVew);
         return result;
     };
 

@@ -1,0 +1,51 @@
+.sitePageDescription {
+    margin-top: 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h2 {
+        margin-bottom: 1rem;
+    }
+
+    .sitePageDescriptionTop {
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        gap: 2rem;
+        margin-top: 1rem;
+
+        p {
+            line-height: 2;
+        }
+
+        .sitePageDescriptionImg {
+            max-width: 400px;
+            width: 100%;
+            object-fit: contain;
+            box-shadow: 5px 5px 15px;
+        }
+    }
+
+    p {
+        line-height: 2;
+        margin-top: 1rem;
+    }
+}
+
+@media (max-width: 769px) {
+    .sitePageDescription {
+        text-align: center;
+
+        h2 {
+            margin-bottom: 0;
+        }
+
+        .sitePageDescriptionTop {
+            text-align: center;
+            flex-direction: column;
+            align-items: center;
+            width: 90%;
+        }
+    }
+}

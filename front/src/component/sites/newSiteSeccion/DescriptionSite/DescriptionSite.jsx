@@ -23,7 +23,7 @@ const DescriptionSite = ({ values, handleValues, setFiles, setValues }) => {
             <section>
                 <div className='descriptionSiteDiv'>
                     <textarea name="descriptionShort" onChange={handleValues} placeholder='Describe una descripción de tu proyecto.' required></textarea>
-                    <CharacterCounter min={800} max={900} text={values.descriptionShort} />
+                    <CharacterCounter min={480} max={520} text={values.descriptionShort} />
                 </div>
 
                 <ImgUpload width={`${isMobile - 50}px`} height={`${isMobile * 40 / 100}px`} name={'photoDescription'} setFiles={setFiles} setValues={setValues} />

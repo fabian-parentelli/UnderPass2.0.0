@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import StarIcon from '@mui/icons-material/Star';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import { useLoginContext } from '../../../context/LoginContext';
-import { newFavoriteApi } from '../../../helpers/users/newFavorite.api';
+import { newFavoriteApi } from '../../../helpers/users/newFavorite.api.js';
 
 const Favorite = ({ id }) => {
 

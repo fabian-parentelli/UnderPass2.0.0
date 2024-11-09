@@ -1,0 +1,126 @@
+.sitePagePortal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .sitePagePortalA {
+        position: relative;
+        width: 100%;
+        height: 400px;
+
+        .sitePagePortalBanner {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .sitePagePortalDiv {
+            position: absolute;
+            width: 60%;
+            height: 30%;
+            background-color: #EAEBEF;
+            bottom: 0;
+            left: 20%;
+            text-align: center;
+
+            h2 {
+                font-size: 3rem;
+            }
+        }
+
+        .sitePagePortalLogo {
+            width: 200px;
+            border-radius: 50%;
+            border: solid 2px #EAEBEF;
+            position: absolute;
+            bottom: -16%;
+            left: 5%;
+            box-shadow: 5px 5px 15px;
+        }
+    }
+
+    .sitePagePortalB {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
+        margin-top: 1rem;
+
+        .sitePagePortalButtons {
+            width: 120px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgb(218, 216, 216);
+            border-radius: 6px;
+            transition: .3s ease-in-out;
+
+            &:hover {
+                background-color: rgb(185, 185, 185);
+            }
+
+            .favorite {
+                position: unset;
+            }
+        }
+
+    }
+}
+
+@media (max-width: 999px) {
+    .sitePagePortal {
+
+        .sitePagePortalA .sitePagePortalDiv h2 {
+            font-size: 1.9rem;
+            margin-top: .5rem;
+        }
+
+        .sitePagePortalB {
+            margin-left: 6rem;
+            gap: .4rem;
+        }
+    }
+}
+
+@media (max-width: 710px) {
+
+    .sitePagePortal {
+
+        .sitePagePortalA {
+            height: 300px;
+
+            .sitePagePortalDiv {
+                width: 80%;
+                left: 10%;
+
+                h2 {
+                    font-size: 1.4rem;
+                    margin-top: .5rem;
+                }
+            }
+
+            .sitePagePortalLogo {
+                width: 100px;
+                border: none;
+
+            }
+        }
+    }
+}
+
+@media (max-width: 374px) {
+
+    .sitePagePortal {
+
+        .sitePagePortalA .sitePagePortalLogo {
+            display: none;
+        }
+
+        .sitePagePortalB {
+            margin-left: 0;
+            gap: 2rem;
+        }
+    }
+}

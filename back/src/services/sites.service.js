@@ -31,7 +31,7 @@ const newSite = async (images, imagesUrl, body) => {
         cast: [],
         castPerson: body.castPerson,
         discography: [],
-        events: body.products !== '' ? body.products.split(',') : undefined,
+        products: body.products !== '' ? body.products.split(',') : undefined,
         videos: [],
         stream: [],
         isEvent: body.isEvent,
