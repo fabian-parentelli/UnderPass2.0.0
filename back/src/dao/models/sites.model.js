@@ -33,6 +33,7 @@ const sitesSchema = new mongoose.Schema({
         whatsApp: { type: String }
     },
     events: [{ type: String }],
+    products: [{ type: String }],
     cast: [
         {
             castTitle: { type: String },
@@ -59,19 +60,10 @@ const sitesSchema = new mongoose.Schema({
     isDiscography: { type: Boolean },
     isVideo: { type: Boolean },
     isShift: { type: Boolean },
+    isGaley: { type: Boolean },
     active: { type: Boolean },
     date: { type: Date, default: Date.now },
 });
-
-// const autoPopulateUser = function (next) {
-//     this.populate('userId', 'name _id avatar')
-//         .populate('report.userId', 'name _id avatar');
-//     next();
-// };
-
-// sitesSchema.pre('find', autoPopulateUser);
-// sitesSchema.pre('findOne', autoPopulateUser);
-// sitesSchema.pre('findById', autoPopulateUser);
 
 sitesSchema.plugin(mongoosePaginate);
 

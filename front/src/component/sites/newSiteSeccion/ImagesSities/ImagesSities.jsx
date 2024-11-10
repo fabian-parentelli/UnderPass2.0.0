@@ -3,12 +3,12 @@ import Switch from '@mui/material/Switch';
 import { useState, useEffect } from 'react';
 import ImgUpload from '../ImgUpload/ImgUpload';
 
-const ImagesSities = ({ setFiles, setValues }) => {
+const ImagesSities = ({ setFiles, setValues, values }) => {
 
     const [vew, setVew] = useState(false);
     const [isMobile, setIsMobile] = useState(window.innerWidth >= 900 ? 900 : window.innerWidth);
 
-    const handleVew = (e) => setVew(e.target.checked);
+    const handleVew = (e) => setValues({...values, isGalery: e.target.checked});
 
     useEffect(() => {
         const handleResize = () => {
@@ -32,7 +32,7 @@ const ImagesSities = ({ setFiles, setValues }) => {
                 </div>
             </section>
 
-            {vew &&
+            {values.isGalery &&
                 <section className='imagesSitiesGalery'>
 
                     <div className='imagesSitiesGaleryTop'>
@@ -42,7 +42,7 @@ const ImagesSities = ({ setFiles, setValues }) => {
                     </div>
 
                     <div className='imagesSitiesGaleryBottom'>
-                        <ImgUpload width={`${isMobile / 3}px`} height={`${isMobile * 50 / 100}px`} name={'glery4'} setFiles={setFiles} setValues={setValues} />
+                        <ImgUpload width={`${isMobile / 3}px`} height={`${isMobile * 50 / 100}px`} name={'galery4'} setFiles={setFiles} setValues={setValues} />
                         <div className='imagesSitiesGaleryBottomIn'>
                             <ImgUpload width={`${isMobile / 1.5}px`} height={`${isMobile * 25 / 100}px`} name={'galery5'} setFiles={setFiles} setValues={setValues} />
                             <div className='imagesSitiesGaleryIn'>

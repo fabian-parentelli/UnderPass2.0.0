@@ -1,7 +1,8 @@
-import { eventRepository } from "../../repositories/index.repositories.js";
+import { eventRepository, productRepository } from "../../repositories/index.repositories.js";
 
 const thereIsSmoething = async (site) => {
     if (site.isEvent) site = await getEVents(site);
+    if (site.isProduct) site = await getProducts(site);
     return site;
 };
 
@@ -14,6 +15,17 @@ async function getEVents(site) {
     };
     site.events = events;
     return site;
-}
+};
+
+async function getProducts(site) {
+    const products = []
+    for (const prod of site.products) {
+        const product = await productRepository.getProdById(prod);
+        const { _id, name, description, price, img } = product;
+        products.push({ _id, name, description, price, img });
+    };
+    site.products = products;
+    return site;
+};
 
 export { thereIsSmoething };

@@ -12,7 +12,7 @@ const SitePageCastAll = ({ site }) => {
 
     return (
         <div className='sitePageCastAll'>
-            <h2>Elenco:</h2>
+            <h2>Quienes integramos {site.title}:</h2>
 
             <section>
                 {site.cast && site.cast.map((cast, ind) => (

@@ -1,9 +1,7 @@
-import SpotifyComp from '../../../../component/utils/SpotifyComp';
 import './sitePageDiscography.scss';
+import SpotifyComp from '../../../../component/utils/SpotifyComp';
 
 const SitePageDiscography = ({ site }) => {
-
-    console.log(site.discography);
 
     return (
         <div className='sitePageDiscography'>
@@ -16,7 +14,7 @@ const SitePageDiscography = ({ site }) => {
 
                         <p className='sitePageDiscographyTitle colUS'>{dis.discTitle}</p>
                         
-                        <di className='sitePageDiscographyCont'>
+                        <div className='sitePageDiscographyCont'>
                             <img
                                 src={site.images.find(i => i.name === `disc${ind + 1}`)?.url}
                                 alt="img" className='sitePageDiscographyImg'
@@ -27,7 +25,7 @@ const SitePageDiscography = ({ site }) => {
                                     <SpotifyComp key={ind} url={song} />
                                 ))}   
                             </div>
-                        </di>
+                        </div>
 
                     </div>
                 ))}

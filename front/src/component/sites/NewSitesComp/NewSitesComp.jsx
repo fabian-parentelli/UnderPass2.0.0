@@ -21,7 +21,7 @@ const NewSitesComp = ({ userId }) => {
     const [files, setFiles] = useState([]);
     const [values, setValues] = useState({
         isEvent: false, userId, events: [], isProduct: false, isDiscography: false, isVideo: false,
-        isShift: false
+        isShift: false, products: [], isGalery: false
     });
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
@@ -60,7 +60,7 @@ const NewSitesComp = ({ userId }) => {
                 <Discography handleValues={handleValues} values={values} setValues={setValues} setFiles={setFiles} />
             )}
             <ProductSite values={values} setValues={setValues} />
-            <ImagesSities setFiles={setFiles} setValues={setValues} />
+            <ImagesSities setFiles={setFiles} setValues={setValues} values={values} />
             {values.category && values.category === 'stream'
                 ? <StreamVideo values={values} handleValues={handleValues} />
                 : <VideoSities values={values} setValues={setValues} handleValues={handleValues} />
