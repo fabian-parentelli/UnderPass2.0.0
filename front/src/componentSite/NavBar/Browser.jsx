@@ -37,7 +37,7 @@ const Browser = ({ handleMenuClick, menuVisible, listElementsRef, setMenuVisible
             <ul className={`menu_links ${menuVisible ? 'menu_links--show' : ''}`} ref={listElementsRef}>
 
                 <li className={`menu_item menu_item--show`} onClick={handleItemClick}>
-                    <a href='#' className='menu_link'>Información <img src="arrow.png" className="menu_arrow" /></a>
+                    <a href='#' className='menu_link'>Información <img src="/arrow.png" className="menu_arrow" /></a>
                     <ul className={`menu_nesting`}>
                         <li className='menu_inside' onClick={handleInsideClick}><Link to='/help' className='menu_link menu_link--inside'>Información</Link></li>
                         <li className='menu_inside' onClick={handleInsideClick}><Link to='/' className='menu_link menu_link--inside'>Quienes somos</Link></li>
@@ -48,7 +48,7 @@ const Browser = ({ handleMenuClick, menuVisible, listElementsRef, setMenuVisible
                 </li>
 
                 <li className={`menu_item menu_item--show`} onClick={handleItemClick}>
-                    <a href='#' className='menu_link'>Plataforma <img src="arrow.png" className="menu_arrow" /></a>
+                    <a href='#' className='menu_link'>Plataforma <img src="/arrow.png" className="menu_arrow" /></a>
                     <ul className={`menu_nesting`}>
 
                         <li className='menu_inside' onClick={handleInsideClick}><Link to={'/newevent'} className='menu_link menu_link--inside' >Crear Evento</Link></li>
@@ -64,7 +64,7 @@ const Browser = ({ handleMenuClick, menuVisible, listElementsRef, setMenuVisible
                 </li>
 
                 <li className={`menu_item menu_item--show`} onClick={handleItemClick}>
-                    <a href='#' className='menu_link'>Usuario<img src="arrow.png" className="menu_arrow" /></a>
+                    <a href='#' className='menu_link'>Usuario<img src="/arrow.png" className="menu_arrow" /></a>
                     <ul className={`menu_nesting`}>
                         {!user.logged &&
                             <>

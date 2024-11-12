@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const VideosVew = ({ url }) => {
+const VideosVew = ({ url, isPlaying = false }) => {
 
     const [embedCode, setEmbedCode] = useState('');
 
@@ -18,8 +18,9 @@ const VideosVew = ({ url }) => {
                 <iframe
                     width="100%"
                     height="100%"
-                    src={`https://www.youtube.com/embed/${embedCode}`}
+                    src={`https://www.youtube.com/embed/${embedCode}${isPlaying ? '?autoplay=1' : ''}`}
                     style={{ border: "none" }}
+                    allow="autoplay"
                     allowFullScreen
                 ></iframe>
             )}

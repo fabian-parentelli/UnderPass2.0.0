@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const UnderSiteFont = ({ size, color }) => {
 
     return (
-        <Link to={'/themarket'}
+        <Link to={'/sitespage'}
             className='underSiteFont'
             style={{ fontSize: `${size}rem`, color: color === 'true' ? '#fbdca8' : '#242424' }}
         >
