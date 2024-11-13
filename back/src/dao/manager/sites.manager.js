@@ -21,5 +21,9 @@ export default class Sites {
     getRandom = async (country, limit = 16) => {
         return await sitesModel.aggregate([{ $match: { 'location.country': country, active: true } }, { $sample: { size: limit } }]).exec();
     };
+
+    getSites = async (query, page, limit) => {
+        return await sitesModel.paginate(query, { limit, page, lean: true, sort: { date: -1 } });
+    };
     
 };

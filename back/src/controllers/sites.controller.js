@@ -46,4 +46,15 @@ const getRandom = async (req, res) => {
     };
 };
 
-export { newSite, getByUserId, getByLinks, getRandom };
+const getSites = async (req, res) => {
+    const { page = 1, limit, country, active, province, category, title, favorite } = req.query;
+    try {
+        const result = await sitesService.getSites(page, limit, country, active, province, category, title, favorite);
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof SitesNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
+export { newSite, getByUserId, getByLinks, getRandom, getSites };

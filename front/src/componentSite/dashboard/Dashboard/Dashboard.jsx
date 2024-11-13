@@ -33,6 +33,9 @@ import UpdNewsDas from '../news/UpdNewsDas/UpdNewsDas';
 import Comment from '../mensager/comments/Comment/Comment';
 import PresetDas from '../images/preset/PresetDas/PresetDas';
 import GetEvents from '../events/GetEvents/GetEvents';
+import GetEventUser from '../events/GetEventUser/GetEventUser';
+import AllSitesDas from '../sites/AllSitesDas/AllSitesDas';
+import UserSiteDas from '../sites/UserSiteDas/UserSiteDas';
 
 const Dashboard = () => {
 
@@ -63,8 +66,9 @@ const Dashboard = () => {
                     category={[{ name: 'Usuario', path: 'productuser' }, { name: 'Ver todo', path: 'vewproducts' }, { name: 'Reservas', path: 'bookingdas' }]}
                 />
 
-                <Fields title={'Eventos'} category={[{ name: 'Ver eventos', path: 'getevent' }, { name: 'Crear evento', path: 'newevent' }]} />
-                <Fields title={'Sitios'} category={[{ name: 'Nuevo sitio', path: 'newsite' }, { name: 'Ver sitios', path: 'vewsite' }]} />
+                <Fields title={'Eventos'} category={[{ name: 'Ver eventos', path: 'getevent' }, { name: 'Usuarios', path: 'eventuser' }]} />
+
+                <Fields title={'Sitios'} category={[{ name: 'Ver sitios', path: 'allsitedas' }, { name: 'Sitio usuario', path: 'usersitedas' }]} />
 
                 <Fields
                     title={'Mensajes'} category={[{ name: 'Contactos sin ver', path: 'vewcontact' }, { name: 'Enviar email', path: 'newcontact' }, { name: 'Comentarios', path: 'comments' }]}
@@ -114,6 +118,10 @@ const Dashboard = () => {
                 <Route path='/bookingdas' element={<BookingDas />} />
 
                 <Route path='/getevent' element={<GetEvents />} />
+                <Route path='/eventuser' element={<GetEventUser />} />
+
+                <Route path='/allsitedas' element={<AllSitesDas />} />
+                <Route path='/usersitedas' element={<UserSiteDas />} />
 
                 <Route path='/cash' element={<Cash />} />
                 <Route path='/pricelist' element={<PriceList />} />

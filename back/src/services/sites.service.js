@@ -5,7 +5,6 @@ const newSite = async (images, imagesUrl, body) => {
 
     const nameIs = await sitesRepository.getByTitle(body.title);
     if (nameIs) throw new SitesNotFound('Este nombre ya está en uso');
-
     const site = {
         title: body.title,
         category: body.category,
@@ -91,4 +90,20 @@ const getRandom = async (country) => {
     return { status: 'success', result };
 };
 
-export { newSite, getByUserId, getByLinks, getRandom };
+const getSites = async (page, limit, country, active, province, category, title, favorite, userid) => {
+    const query = {};
+    if (category) query.category = category;
+    if (active !== undefined) query.active = active;
+    if (country) query['location.country'] = { $regex: country, $options: "i" };
+    if (province) query['location.province'] = { $regex: province, $options: "i" };
+    if (title) query.title = { $regex: title, $options: "i" };
+    if (favorite) {
+        const favorites = favorite.split(',');
+        query._id = { $in: favorites }
+    };
+    const result = await sitesRepository.getSites(query, page, limit);
+    if (!result) throw new SitesNotFound('No se encuentra el sitio');
+    return { status: 'success', result };
+};
+
+export { newSite, getByUserId, getByLinks, getRandom, getSites };

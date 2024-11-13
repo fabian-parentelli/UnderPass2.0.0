@@ -61,7 +61,7 @@ const sitesSchema = new mongoose.Schema({
     isDiscography: { type: Boolean },
     isVideo: { type: Boolean },
     isShift: { type: Boolean },
-    isGaley: { type: Boolean },
+    isGalery: { type: Boolean },
     active: { type: Boolean },
     date: { type: Date, default: Date.now },
     type: { type: String, default: 'site' },

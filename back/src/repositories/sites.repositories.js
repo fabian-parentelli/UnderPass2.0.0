@@ -28,4 +28,9 @@ export default class SitesRepository {
         const result = await sitesManager.getRandom(country);
         return result;
     };
+    
+    getSites = async (query, page, limit) => {
+        const result = await sitesManager.getSites(query, page, limit);
+        return result;
+    };
 };

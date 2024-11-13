@@ -1,0 +1,26 @@
+.sitesFilter {
+    padding: 6px;
+    min-height: 30px;
+    border-radius: 3px;
+    background-color: rgba(128, 128, 128, 0.178);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 6px;
+
+    .sitesFilterWidth {
+        width: 200px;
+    }
+
+    .sitesFilterFavorite {
+        cursor: pointer;
+    }
+}
+
+@media (max-width: 767px) {
+    .sitesFilter .sitesFilterFavorite {
+        width: 200px;
+    }
+    
+}
