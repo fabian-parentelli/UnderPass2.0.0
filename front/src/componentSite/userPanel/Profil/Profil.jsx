@@ -12,6 +12,7 @@ import AlertProfil from '../AlertProfil/AlertProfil';
 import CommerceHome from '../commerce/CommerceHome/CommerceHome';
 import Wallet from '../Wallet/Wallet';
 import Eventmenu from '../EventMenu/EventMenu';
+import SitesPanel from '../Sites/SitesPanel';
 
 const Profile = () => {
 
@@ -31,6 +32,7 @@ const Profile = () => {
                 <Route path='/commerce_home' element={<CommerceHome />} />
                 <Route path='/wallet' element={<Wallet />} />
                 <Route path='/eventmenu' element={<Eventmenu />} />
+                <Route path='/sitepanel' element={<SitesPanel />} />
             </Routes>
         </div>
     );

@@ -1,8 +1,31 @@
+@import '../../../style/colors.scss';
+
 .bodySite {
     margin-top: 1rem;
     padding: 2rem 0;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 
-    min-height: 40vh;
+    .bodySiteMap {
+        max-width: 1340px;
+        width: 100%;
+        margin-top: 2rem;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 2rem;
+    }
+
+    .bodySiteMore {
+        margin-top: 4rem;
+        text-decoration: none;
+        color: $underSite;
+        transition: .3s ease-in-out;
+
+        &:hover {
+            color: $colorA;
+        }
+    }
 }

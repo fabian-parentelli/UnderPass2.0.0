@@ -18,4 +18,8 @@ export default class Sites {
         return await sitesModel.findOne({ link: link }).lean();
     };
 
+    getRandom = async (country, limit = 16) => {
+        return await sitesModel.aggregate([{ $match: { 'location.country': country, active: true } }, { $sample: { size: limit } }]).exec();
+    };
+    
 };

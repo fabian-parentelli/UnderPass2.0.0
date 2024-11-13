@@ -1,0 +1,13 @@
+.sitePanal {
+
+    .sitePanalButtons {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .sitePanalBody {
+        margin-top: 1rem;
+    }
+}

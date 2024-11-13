@@ -47,7 +47,7 @@ const UserMenu = () => {
                 <p>Eventos</p>
             </Link>
 
-            <Link to={'/profile/sitemenu'} className='userMen'>
+            <Link to={'/profile/sitepanel'} className='userMen'>
                 <LanguageIcon className='icon' />
                 <p>Sitio</p>
             </Link>

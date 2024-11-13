@@ -12,7 +12,7 @@ const newSite = async (images, imagesUrl, body) => {
         subCategory: body.subCategory,
         userId: body.userId,
         link: body.folderName.split('/')[1],
-        location: { city: body.city, province: body.province },
+        location: { city: body.city, province: body.province, country: body.country },
         images: images.map((img, ind) => {
             const name = img.originalname.split('_')[1];
             const positionKey = `position_${name}`;
@@ -85,4 +85,10 @@ const getByLinks = async (link) => {
     return { status: 'success', result };
 };
 
-export { newSite, getByUserId, getByLinks };
+const getRandom = async (country) => {
+    const result = await sitesRepository.getRandom(country);
+    if (!result) throw new SitesNotFound('No se encuentra el sitio');
+    return { status: 'success', result };
+};
+
+export { newSite, getByUserId, getByLinks, getRandom };

@@ -21,7 +21,7 @@ const NewSitesComp = ({ userId }) => {
     const [files, setFiles] = useState([]);
     const [values, setValues] = useState({
         isEvent: false, userId, events: [], isProduct: false, isDiscography: false, isVideo: false,
-        isShift: false, products: [], isGalery: false
+        isShift: false, products: [], isGalery: false, country: localStorage.getItem('country')
     });
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
@@ -39,12 +39,12 @@ const NewSitesComp = ({ userId }) => {
         files.forEach((file) => {
             if (!addedFiles.has(file.name)) {
                 formData.append('files', file);
-                addedFiles.add(file.name);  
+                addedFiles.add(file.name);
             };
         });
         for (const field in values) formData.set(field, values[field]);
         const response = await newSitesApi(formData);
-        if(response.status === 'success') navigate('/') // Cambiar a la página ya creada.
+        if (response.status === 'success') navigate('/') // Cambiar a la página ya creada.
         else console.error(response.error);
         setLoading(false);
     };

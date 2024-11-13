@@ -12,6 +12,7 @@ const sitesSchema = new mongoose.Schema({
     location: {
         city: { type: String },
         province: { type: String },
+        country: { type: String },
     },
     images: [
         {
@@ -63,6 +64,8 @@ const sitesSchema = new mongoose.Schema({
     isGaley: { type: Boolean },
     active: { type: Boolean },
     date: { type: Date, default: Date.now },
+    type: { type: String, default: 'site' },
+    active: { type: Boolean, default: true },
 });
 
 sitesSchema.plugin(mongoosePaginate);

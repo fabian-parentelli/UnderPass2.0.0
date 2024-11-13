@@ -34,6 +34,7 @@ import Drawer from "../componentSite/drawer/Drawer/Drawer.jsx";
 import Sites from "../componentSite/sites/Sites/Sites.jsx";
 import NewSites from "../component/sites/NewSites/NewSites.jsx";
 import SitePage from "../componentSite/sites/SitePage/SitePage.jsx";
+import AllSites from "../componentSite/sites/AllSites/AllSites.jsx";
 
 const RoutesComp = () => {
 
@@ -64,6 +65,7 @@ const RoutesComp = () => {
                     <Route path="/stream/:id/:channel" element={<VewStream />} />
                     <Route path="/sites" element={<Sites />} />
                     <Route path="/site/:link" element={<SitePage />} />
+                    <Route path="/allsites" element={<AllSites />} />
 
                     {user.logged &&
                         <>

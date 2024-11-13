@@ -23,5 +23,9 @@ export default class SitesRepository {
         const result = await thereIsSmoething(preVew);
         return result;
     };
-
+    
+    getRandom = async (country) => {
+        const result = await sitesManager.getRandom(country);
+        return result;
+    };
 };

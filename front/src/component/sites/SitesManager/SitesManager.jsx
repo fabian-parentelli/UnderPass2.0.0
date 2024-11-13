@@ -20,6 +20,9 @@ const SitesManagger = ({ userId }) => {
         }; fetchData();
     }, [])
 
+    console.log(sites);
+    
+
     return (
         <div className='sitesManagger'>
             {sites && sites.length > 0 && sites.map((sit, ind) => (
