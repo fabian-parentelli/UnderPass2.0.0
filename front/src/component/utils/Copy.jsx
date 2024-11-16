@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import FileCopyIcon from '@mui/icons-material/FileCopy';
 
 const Copy = ({ values }) => {
+    
     const [open, setOpen] = useState(false);
 
     const copyToClipboard = () => {

@@ -16,7 +16,7 @@ const AllSitesDas = () => {
         <div className='allSitesDas'>
             <Title Icon={AdsClickIcon} name='Todos los sitios' />
             <SitesFilter setSites={setSites} query={query} setQuery={setQuery} setLoading={setLoading} />
-            {sites && <SitesForm sites={sites.docs} />}
+            {sites && <SitesForm sites={sites.docs} setSites={setSites} setLoading={setLoading} />}
             <Load loading={loading} />
         </div>
     );

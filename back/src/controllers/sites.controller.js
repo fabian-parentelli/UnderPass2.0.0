@@ -57,4 +57,15 @@ const getSites = async (req, res) => {
     };
 };
 
-export { newSite, getByUserId, getByLinks, getRandom, getSites };
+const updActive = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const result = await sitesService.updActive(id);
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof SitesNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
+export { newSite, getByUserId, getByLinks, getRandom, getSites, updActive };

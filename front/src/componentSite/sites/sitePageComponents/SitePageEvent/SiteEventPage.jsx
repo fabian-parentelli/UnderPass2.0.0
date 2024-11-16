@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import EventTypeImg from '../../../../component/events/EventTypeImg/EventTypeImg';
 
 const SiteEventPage = ({ site }) => {
-
+    
     return (
         <div className='siteEventPage'>
             <h2 className='colUE'>Próximos shows:</h2>

@@ -106,4 +106,12 @@ const getSites = async (page, limit, country, active, province, category, title,
     return { status: 'success', result };
 };
 
-export { newSite, getByUserId, getByLinks, getRandom, getSites };
+const updActive = async (id) => {
+    const site = await sitesRepository.getById(id);
+    site.active = !site.active;
+    const result = await sitesRepository.update(site);
+    if (!result) throw new SitesNotFound('No se encuentra el sitio');
+    return { status: 'success', result };
+};
+
+export { newSite, getByUserId, getByLinks, getRandom, getSites, updActive };

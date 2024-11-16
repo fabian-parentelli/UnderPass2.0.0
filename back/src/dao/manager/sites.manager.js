@@ -25,5 +25,12 @@ export default class Sites {
     getSites = async (query, page, limit) => {
         return await sitesModel.paginate(query, { limit, page, lean: true, sort: { date: -1 } });
     };
-    
+
+    getById = async (id) => {
+        return await sitesModel.findById(id).lean();
+    };
+
+    update = async (site) => {
+        return await sitesModel.findByIdAndUpdate(site._id, site, { lean: true, new: true });
+    };
 };

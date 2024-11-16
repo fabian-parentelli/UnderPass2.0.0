@@ -4,13 +4,13 @@ import { getSiteByUserIdApi } from '../../../../helpers/sites/getSiteByUserId.ap
 
 const SiteVewPanel = ({ userId, setLoading }) => {
 
-    const [sites, setSites] = useState([]);
+    const [sites, setSites] = useState({ docs: [] });
 
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
             const response = await getSiteByUserIdApi(userId);
-            if (response.status === 'success') setSites(response.result);
+            if (response.status === 'success') setSites({ docs: response.result });
             else console.error(response.error);
             setLoading(false);
         }; fetchData();
@@ -18,7 +18,7 @@ const SiteVewPanel = ({ userId, setLoading }) => {
 
     return (
         <>
-            {sites && <SitesForm sites={sites} />}
+            {sites && <SitesForm sites={sites.docs} setSites={setSites} setLoading={setLoading} />}
         </>
     );
 };

@@ -1,0 +1,35 @@
+.sitePageQr {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    img {
+        width: 300px;
+        height: 300px;
+        object-fit: contain;
+    }
+
+    .sitePageQrBtns {
+        display: flex;
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 321px) {
+    .sitePageQr {
+        
+        .sitePageQrBtns {
+            flex-direction: column;
+        }
+    }
+}
+
+@media print {
+
+    #sitePageQrPrint {
+        text-align: center;
+        font-size: 18px;
+        margin: 2rem auto;
+    }
+}

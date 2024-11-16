@@ -47,7 +47,8 @@
         align-items: center;
         justify-content: center;
         gap: 2rem;
-        margin-top: 1rem;
+        margin-top: 2rem;
+        margin-left: 1rem;
 
         .sitePagePortalButtons {
             width: 120px;
@@ -105,6 +106,7 @@
 
             .sitePagePortalLogo {
                 width: 100px;
+                height: 100px;
                 border: none;
 
             }
@@ -122,7 +124,8 @@
 
         .sitePagePortalB {
             margin-left: 0;
-            gap: 2rem;
+            margin-top: 1rem;
+            gap: 1rem;
         }
     }
 }

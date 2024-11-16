@@ -10,8 +10,10 @@ async function getEVents(site) {
     const events = [];
     for (const eventId of site.events) {
         const event = await eventRepository.getById(eventId);
-        const { _id, title, location, photo, startHour, startDate, minors, category } = event;
-        events.push({ _id, title, location, photo, startHour, startDate, minors, category })
+        if (event.active) {
+            const { _id, title, location, photo, startHour, startDate, minors, category } = event;
+            events.push({ _id, title, location, photo, startHour, startDate, minors, category })
+        };
     };
     site.events = events;
     return site;

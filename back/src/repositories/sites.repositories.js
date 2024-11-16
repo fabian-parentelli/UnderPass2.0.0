@@ -33,4 +33,14 @@ export default class SitesRepository {
         const result = await sitesManager.getSites(query, page, limit);
         return result;
     };
+    
+    getById = async (id) => {
+        const result = await sitesManager.getById(id);
+        return result;
+    };
+    
+    update = async (site) => {
+        const result = await sitesManager.update(site);
+        return result;
+    };
 };
