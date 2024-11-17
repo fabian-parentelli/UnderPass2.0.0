@@ -5,6 +5,9 @@ import SiteUpdateButtons from './SiteUpdateButtons.jsx';
 import { updSiteApi } from '../../../helpers/sites/updSite.api.js';
 import SiteUpdatePortal from '../siteUpdateComp/SiteUpdatePortal/SiteUpdatePortal';
 import SiteUpdateEvent from '../siteUpdateComp/SiteUpdateEvent/SiteUpdateEvent.jsx';
+import SiteUpdateDescription from '../siteUpdateComp/SiteUpdateDescription/SiteUpdateDescription.jsx';
+import SiteUpdateSocialMed from '../siteUpdateComp/SiteUpdateSocialMed/SiteUpdateSocialMedia.jsx';
+import SiteUpdateCastAll from '../siteUpdateComp/SiteUpdateCastAll/SiteUpdateCastAll.jsx';
 
 const SiteUpdate = ({ site, sites, setSites }) => {
 
@@ -15,7 +18,12 @@ const SiteUpdate = ({ site, sites, setSites }) => {
     const [values, setValues] = useState({
         _id: site._id, title: site.title, category: site.category, type: 'portal',
         subCategory: site.subCategory, city: site.location.city, province: site.location.province,
-        userId: site.userId, isEvent: site.isEvent, events: [...site.events] || []
+        userId: site.userId, isEvent: site.isEvent, events: [...site.events] || [],
+        descriptionLong: site.description.long, descriptionShort: site.description.short || '',
+        facebook: site.socialMedia.facebook || '', instagrame: site.socialMedia.instagrame || '',
+        twitter: site.socialMedia.twitter || '', spotify: site.socialMedia.spotify || '',
+        youtube: site.socialMedia.youtube || '', whatsApp: site.socialMedia.whatsApp || '',
+        cast: site.cast ? site.cast : []
     });
 
     const handleValues = (e) => setValues({ ...values, [e.target.name]: e.target.value });
@@ -32,20 +40,26 @@ const SiteUpdate = ({ site, sites, setSites }) => {
                 addedFiles.add(file.name);
             };
         });
-        for (const field in values) formData.set(field, values[field]);
+        formData.set('cast', JSON.stringify(values.cast));
+        for (const field in values) {
+            if (field !== 'cast') {
+                formData.set(field, values[field]);
+            }
+        }
 
-        formData.forEach((value, key) => {
-            console.log(`${key}:`, value);
-        });
+        formData.forEach((value, key) => { //--------Borrar
+            console.log(`${key}:`, value); //--------Borrar
+        });                                //--------Borrar
 
-        // const response = await updSiteApi(formData);
-        // if (response.status === 'success') {
-        //     const data = [...sites];
-        //     const index = data.findIndex(site => site._id == response.result._id);
-        //     data[index] = response.result;
-        //     setSites((preSite) => ({ ...preSite, docs: data }));
+        const response = await updSiteApi(formData);
+        if (response.status === 'success') {
+            const data = [...sites];
+            const index = data.findIndex(site => site._id == response.result._id);
+            data[index] = response.result;
+            setSites((preSite) => ({ ...preSite, docs: data }));
+        }
 
-        // } // Dar el mensjae por el titulo si no es el correcto.....
+        // Dar el mensjae por el titulo si no es el correcto.....
         setLoading(false);
     };
 
@@ -54,6 +68,9 @@ const SiteUpdate = ({ site, sites, setSites }) => {
             <SiteUpdateButtons site={site} vew={vew} setVew={setVew} />
             {vew === 'portal' && <SiteUpdatePortal site={site} setFiles={setFiles} handleSubmit={handleSubmit} handleValues={handleValues} values={values} setValues={setValues} />}
             {vew === 'events' && <SiteUpdateEvent values={values} setValues={setValues} handleSubmit={handleSubmit} />}
+            {vew === 'description' && <SiteUpdateDescription site={site} setFiles={setFiles} handleSubmit={handleSubmit} handleValues={handleValues} values={values} setValues={setValues} />}
+            {vew === 'socialMedia' && <SiteUpdateSocialMed values={values} setValues={setValues} handleSubmit={handleSubmit} handleValues={handleValues} />}
+            {vew === 'castAll' && <SiteUpdateCastAll site={site} setFiles={setFiles} handleSubmit={handleSubmit} handleValues={handleValues} values={values} setValues={setValues} setSites={setSites} />}
 
             <Load loading={loading} />
         </div>

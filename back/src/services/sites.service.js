@@ -26,11 +26,11 @@ const newSite = async (images, imagesUrl, body) => {
             youtube: body.youtube,
             whatsApp: body.whatsApp
         },
-        events: body.events !== '' ? body.events.split(',') : undefined,
+        events: body.events !== '' ? body.events.split(',') : [],
         cast: [],
         castPerson: body.castPerson,
         discography: [],
-        products: body.products !== '' ? body.products.split(',') : undefined,
+        products: body.products !== '' ? body.products.split(',') : [],
         videos: [],
         stream: [],
         isEvent: body.isEvent,
@@ -114,22 +114,51 @@ const updActive = async (id) => {
     return { status: 'success', result };
 };
 
+const deleteCast = async (toDelete) => {
+    const site = await sitesRepository.getById(toDelete._id);
+    if (!site) throw new SitesNotFound('Sitio no encontrado');
+    site.cast.splice(toDelete.index, 1);
+    const images = site.images.filter(img => img.name !== `castImg${toDelete.index}`);
+    const castImg = [];
+    const imagesAll = [];
+    images.forEach((img) => {
+        if (img.name.startsWith('castImg')) castImg.push(img);
+        else imagesAll.push(img)
+    });
+    castImg.forEach((img, ind) => img.name = `castImg${ind}`);
+    site.images = [...imagesAll, castImg];
+    const result = await sitesRepository.update(site);
+    if (!result) throw new SitesNotFound('No se puede actualizar el sitio');
+    return { status: 'success', result };
+};
+
 const updSite = async (images, imagesUrl, body) => {
     const title = await sitesRepository.getByTitle(body.title);
     const site = await sitesRepository.getById(body._id);
     if (title && body.title !== site.title) throw new SitesNotFound('Ya existe este titulo, prueba con otro');
-    let img;
-    if (images && imagesUrl) {
-        img = images.map((img, ind) => {
-            const name = img.originalname.split('_')[1];
-            const positionKey = `position_${name}`;
-            return { name, url: imagesUrl[ind], position: body[positionKey] };
-        });
-    };
+    // let img;
+    // if (images && imagesUrl) {
+    //     img = images.map((img, ind) => {
+    //         const name = img.originalname.split('_')[1];
+    //         const positionKey = `position_${name}`;
+    //         return { name, url: imagesUrl[ind], position: body[positionKey] };
+    //     });
+    // };
+
+    const img = [
+        {
+          name: 'castNewImg0',
+          url: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1731858391/sites/aborigenescachafaz/q359ca2ezbwdz3hf62vw.ppp',
+          position: 'center'
+        }
+      ]
+      
+    
+
     const siteToUpdate = updSitesOption(img, body, site);
     const result = await sitesRepository.update(siteToUpdate);
     if (!result) throw new SitesNotFound('No se puede actualizar el sitio');
     return { status: 'success', result };
 };
 
-export { newSite, getByUserId, getByLinks, getRandom, getSites, updActive, updSite };
+export { newSite, getByUserId, getByLinks, getRandom, getSites, updActive, deleteCast, updSite };

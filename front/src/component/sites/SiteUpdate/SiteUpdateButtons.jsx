@@ -24,11 +24,13 @@ const SiteUpdateButtons = ({ site, vew, setVew }) => {
                 <TheaterComedyIcon />
                 <p>Eventos</p>
             </div>
-            <div>
+
+            <div onClick={() => setVew('description')} style={{ color: vew === 'description' ? '#058d4d' : '' }}>
                 <DescriptionIcon />
                 <p>Descripción</p>
             </div>
-            <div>
+
+            <div onClick={() => setVew('socialMedia')} style={{ color: vew === 'socialMedia' ? '#058d4d' : '' }}>
                 <ConnectWithoutContactIcon />
                 <p>Redes s.</p>
             </div>
@@ -36,7 +38,7 @@ const SiteUpdateButtons = ({ site, vew, setVew }) => {
             {site?.category === 'art' &&
                 (site?.subCategory === 'musicalGroup' || site?.subCategory === 'play' ||
                     site?.subCategory === 'danceGroup'
-                    ? <div>
+                    ? <div onClick={() => setVew('castAll')} style={{ color: vew === 'castAll' ? '#058d4d' : '' }} >
                         <GroupsIcon />
                         <p>Elenco</p>
                     </div>
@@ -50,7 +52,7 @@ const SiteUpdateButtons = ({ site, vew, setVew }) => {
             {site?.category === 'stream' &&
                 (site?.subCategory === 'lives' || site?.subCategory === 'documentals' ||
                     site?.subCategory === 'publications'
-                    ? <div>
+                    ? <div onClick={() => setVew('castAll')} style={{ color: vew === 'castAll' ? '#058d4d' : '' }} >
                         <GroupsIcon />
                         <p>Elenco</p>
                     </div>

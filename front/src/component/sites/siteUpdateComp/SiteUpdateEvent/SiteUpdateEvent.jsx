@@ -10,7 +10,9 @@ const SiteUpdateEvent = ({ values, setValues, handleSubmit }) => {
     const [selected, setSelected] = useState(values.events || []);
 
     const handleEvent = (e) => setValues({ ...values, isEvent: e.target.checked });
-    useEffect(() => { setValues({ ...values, events: selected }) }, [selected])
+    useEffect(() => {
+        setValues({ ...values, events: selected, type: 'events' });
+    }, [selected]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -40,9 +42,7 @@ const SiteUpdateEvent = ({ values, setValues, handleSubmit }) => {
                     <CheckBoxes2 labels={events} setType={setSelected} multiselect={true} selecteds={selected} />
                 </section>
             }
-
             <button className='btn btnUS'>Actualizar</button>
-
         </form>
     );
 };

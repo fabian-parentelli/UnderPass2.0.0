@@ -68,6 +68,16 @@ const updActive = async (req, res) => {
     };
 };
 
+const deleteCast = async (req, res) => {
+    try {
+        const result = await sitesService.deleteCast({ ...req.body });
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof SitesNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
 const updSite = async (req, res) => {
     const images = req.files;
     const imagesUrl = req.cloudinaryUrls;
@@ -80,4 +90,4 @@ const updSite = async (req, res) => {
     };
 };
 
-export { newSite, getByUserId, getByLinks, getRandom, getSites, updActive, updSite };
+export { newSite, getByUserId, getByLinks, getRandom, getSites, updActive, deleteCast, updSite };
