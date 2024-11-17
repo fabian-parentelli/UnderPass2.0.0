@@ -1,9 +1,13 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Checkbox from '@mui/material/Checkbox';
 
-const CheckBoxes2 = ({ labels, setType, multiselect = false }) => {
+const CheckBoxes2 = ({ labels, setType, multiselect = false, selecteds = [] }) => {
 
     const [selected, setSelected] = useState([]);
+
+    useEffect(() => {
+        if (selecteds.length > 0) setSelected(selecteds);
+    }, [selecteds]);
 
     const handleCheckboxChange = (label) => {
         let updatedSelection;
@@ -11,7 +15,7 @@ const CheckBoxes2 = ({ labels, setType, multiselect = false }) => {
             if (selected.includes(label._id)) updatedSelection = selected.filter((i) => i !== label._id);
             else updatedSelection = [...selected, label._id];
         } else updatedSelection = [label._id];
-        setSelected(updatedSelection);
+        setSelected(updatedSelection);        
         setType(updatedSelection);
     };
 

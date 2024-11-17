@@ -1,0 +1,52 @@
+@import '../../../style/colors.scss';
+
+.siteUpdate {
+    width: 100%;
+    min-height: 80vh;
+
+    .siteUpdateButtons {
+        display: flex;
+        justify-content: space-between;
+
+        div {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            cursor: pointer;
+            transition: .3s ease-in-out;
+            padding: 12px;
+
+            p {
+                text-align: center;
+                white-space: nowrap;
+            }
+
+            &:hover {
+                background-color: rgba(0, 119, 0, 0.274);
+            }
+        }
+    }
+
+    button {
+        margin-top: 1rem;
+    }
+}
+
+@media (max-width: 767px) {
+
+    .siteUpdateButtons {
+        width: 90%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .siteUpdateButtons::-webkit-scrollbar {
+        height: 6px;
+    }
+    
+    .siteUpdateButtons::-webkit-scrollbar-thumb {
+        background-color: $underSite; 
+        border-radius: 6px; 
+    }
+}

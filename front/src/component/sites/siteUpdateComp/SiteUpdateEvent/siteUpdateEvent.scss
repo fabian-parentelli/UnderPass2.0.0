@@ -1,0 +1,16 @@
+.siteUpdateEvent {
+    
+    .siteUpdateEventSectA {
+        display: flex;
+        flex-direction: column;
+
+        div {
+            display: flex;
+            align-items: center;
+        }
+    }
+
+    .siteUpdateEventBoxes {
+        margin-top: 1rem;
+    }
+}

@@ -12,5 +12,6 @@ export default class SitesRouter extends Router {
         this.get('/random/:country', ['PUBLIC'], passportEnum.NOTHING, sitesController.getRandom);
         this.get('/', ['PUBLIC'], passportEnum.NOTHING, sitesController.getSites);
         this.put('/active/:id', ['USER', 'ADMIN', 'MASTER'], passportEnum.JWT, sitesController.updActive);
+        this.put('/', ['USER', 'ADMIN', 'MASTER'], passportEnum.JWT, multipleUploader, uploadToCloudinary, sitesController.updSite);
     };
 };

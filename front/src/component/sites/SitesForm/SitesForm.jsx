@@ -112,7 +112,7 @@ const SitesForm = ({ sites, setSites, setLoading }) => {
 
                             {update.id === site._id &&
                                 <ModalCustom modalIsOpen={update.open} closeModal={() => setUpdate({ id: null, open: false })}>
-                                    <SiteUpdate site={site} />
+                                    <SiteUpdate site={site} sites={sites} setSites={setSites} />
                                 </ModalCustom>
                             }
 

@@ -7,8 +7,8 @@ export default class Sites {
     };
 
     getByTitle = async (title) => {
-        return await sitesModel.findOne({ title: title }).lean();
-    };
+        return await sitesModel.findOne({ title: { $regex: new RegExp(`^${title}$`, 'i') } }).lean();
+    };    
 
     getByUserId = async (uid) => {
         return await sitesModel.find({ userId: uid }).lean();

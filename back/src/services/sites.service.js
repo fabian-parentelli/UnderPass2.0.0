@@ -1,8 +1,8 @@
 import { sitesRepository } from "../repositories/index.repositories.js";
 import { SitesNotFound } from '../utils/custom-exceptions.utils.js';
+import { updSitesOption } from "../utils/servicesUtils/sites.utils.js";
 
 const newSite = async (images, imagesUrl, body) => {
-
     const nameIs = await sitesRepository.getByTitle(body.title);
     if (nameIs) throw new SitesNotFound('Este nombre ya está en uso');
     const site = {
@@ -110,8 +110,26 @@ const updActive = async (id) => {
     const site = await sitesRepository.getById(id);
     site.active = !site.active;
     const result = await sitesRepository.update(site);
-    if (!result) throw new SitesNotFound('No se encuentra el sitio');
+    if (!result) throw new SitesNotFound('No se puede actualizar el sitio');
     return { status: 'success', result };
 };
 
-export { newSite, getByUserId, getByLinks, getRandom, getSites, updActive };
+const updSite = async (images, imagesUrl, body) => {
+    const title = await sitesRepository.getByTitle(body.title);
+    const site = await sitesRepository.getById(body._id);
+    if (title && body.title !== site.title) throw new SitesNotFound('Ya existe este titulo, prueba con otro');
+    let img;
+    if (images && imagesUrl) {
+        img = images.map((img, ind) => {
+            const name = img.originalname.split('_')[1];
+            const positionKey = `position_${name}`;
+            return { name, url: imagesUrl[ind], position: body[positionKey] };
+        });
+    };
+    const siteToUpdate = updSitesOption(img, body, site);
+    const result = await sitesRepository.update(siteToUpdate);
+    if (!result) throw new SitesNotFound('No se puede actualizar el sitio');
+    return { status: 'success', result };
+};
+
+export { newSite, getByUserId, getByLinks, getRandom, getSites, updActive, updSite };

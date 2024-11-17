@@ -1,3 +1,5 @@
+@import '../../../style/colors.scss';
+
 .sitesForm {
 
     .sitesFormBack {
@@ -7,5 +9,23 @@
         &:hover {
             background-color: rgb(202, 202, 202);
         }
+    }
+}
+
+@media (max-width: 767px) {
+
+    .sitesForm {
+        width: 90%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .sitesForm::-webkit-scrollbar {
+        height: 6px;
+    }
+    
+    .sitesForm::-webkit-scrollbar-thumb {
+        background-color: $underSite; 
+        border-radius: 6px; 
     }
 }
