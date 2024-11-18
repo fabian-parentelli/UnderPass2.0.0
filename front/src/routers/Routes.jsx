@@ -76,7 +76,7 @@ const RoutesComp = () => {
                             <Route path="/vewtransferpay/:id" element={<VewTransferPay />} />
                             <Route path="/ticket_by_order/:id" element={<TicketUnique />} />
                             <Route path="/vewalert/:type/:id" element={<VewAlertsBody />} />
-                            <Route path="/newsites/:userid" element={<NewSites />} />
+                            <Route path="/newsites" element={<NewSites />} />
                         </>
                     }
 

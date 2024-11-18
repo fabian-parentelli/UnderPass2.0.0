@@ -1,10 +1,18 @@
-import { eventRepository, productRepository } from "../../repositories/index.repositories.js";
+import { eventRepository, productRepository, sitesRepository } from "../../repositories/index.repositories.js";
+import { SitesNotFound } from "../../utils/custom-exceptions.utils.js";
 
 const thereIsSmoething = async (site) => {
     if (site.isEvent) site = await getEVents(site);
     if (site.isProduct) site = await getProducts(site);
     return site;
 };
+
+const existTitle = async (title) => {
+    const site = await sitesRepository.getByTitle(title);
+    if(site) throw new SitesNotFound('Ya existe este título'); 
+};
+
+export { thereIsSmoething, existTitle };
 
 async function getEVents(site) {
     const events = [];
@@ -29,5 +37,3 @@ async function getProducts(site) {
     site.products = products;
     return site;
 };
-
-export { thereIsSmoething };

@@ -1,77 +1,83 @@
 import './newSitesComp.scss';
-import { useState } from 'react';
-import Load from '../../utils/Load.jsx';
-import Cast from '../newSiteSeccion/Cast/Cast';
-import { useNavigate } from 'react-router-dom';
+import Load from '../../utils/Load';
+import { useEffect, useState } from 'react';
+import ScrollToTop from '../../utils/ScrollToTop.jsx';
 import NewPortal from '../newSiteSeccion/NewPortal/NewPortal';
-import EventSite from '../newSiteSeccion/EventSite/EventSite';
-import Discography from '../newSiteSeccion/Discography/Discography';
-import ProductSite from '../newSiteSeccion/ProductSite/ProductSite';
-import VideoSities from '../newSiteSeccion/VideoSities/VideoSities';
-import ShiftSities from '../newSiteSeccion/ShiftSities/ShiftSities';
-import StreamVideo from '../newSiteSeccion/StreamVideo/StreamVideo';
+import EventSite from '../newSiteSeccion/EventSite/EventSite.jsx';
 import { newSitesApi } from '../../../helpers/sites/newSites.api.js';
-import ImagesSities from '../newSiteSeccion/ImagesSities/ImagesSities';
-import SocialMediaSite from '../newSiteSeccion/SocialMediaSite/SocialMediaSite';
-import DescriptionSite from '../newSiteSeccion/DescriptionSite/DescriptionSite';
+import NewSiteButtom from '../newSiteSeccion/NewSiteButton/NewSiteBurron';
+import { getSiteByIdApi } from '../../../helpers/sites/getSiteById.api.js';
+import DescriptionSite from '../newSiteSeccion/DescriptionSite/DescriptionSite.jsx';
+import SocialMediaSite from '../newSiteSeccion/SocialMediaSite/SocialMediaSite.jsx';
+import Cast from '../newSiteSeccion/Cast/Cast.jsx';
 
-const NewSitesComp = ({ userId }) => {
+const NewSitesComp = ({ userId, id }) => {
 
-    const [formData, setFormData] = useState(new FormData());
-    const [files, setFiles] = useState([]);
-    const [values, setValues] = useState({
-        isEvent: false, userId, events: [], isProduct: false, isDiscography: false, isVideo: false,
-        isShift: false, products: [], isGalery: false, country: localStorage.getItem('country')
-    });
     const [loading, setLoading] = useState(false);
-    const navigate = useNavigate();
+    const [vew, setVew] = useState('portal');
+    const [files, setFiles] = useState([]);
+    const [values, setValues] = useState({ userId: userId || '', location: { country: localStorage.getItem('country') } });
 
     const handleValues = (e) => setValues({ ...values, [e.target.name]: e.target.value });
+
+    useEffect(() => {
+        const fetchData = async () => {
+            setLoading(true);
+            const response = await getSiteByIdApi(id);
+            if (response.status === 'success') setValues({ ...response.result, post: 'portal' });
+            else console.error(response.error);
+            setLoading(false);
+        }; if (id) fetchData();
+    }, []);
+
+    useEffect(() => { setValues({ ...values, post: vew }) }, [vew])
 
     const handleSubmit = async (e) => {
         setLoading(true);
         e.preventDefault();
-        formData.set('userId', userId);
+        let formdata = new FormData()
         const folderName = formatText(values.title);
-        formData.set('folderName', `sites/${folderName}`);
+        setValues({ ...values, link: folderName });
+        formdata.set('folderName', `sites/${folderName}`);
         const addedFiles = new Set();
-        formData.delete('files');
+        formdata.delete('files');
         files.forEach((file) => {
             if (!addedFiles.has(file.name)) {
-                formData.append('files', file);
+                formdata.append('files', file);
                 addedFiles.add(file.name);
             };
         });
-        for (const field in values) formData.set(field, values[field]);
-        const response = await newSitesApi(formData);
-        if (response.status === 'success') navigate('/') // Cambiar a la página ya creada.
-        else console.error(response.error);
+        formdata.set('values', JSON.stringify(values)); //---------------------------------------------
+        formdata.forEach((value, key) => {              //---------------------------------------------
+            console.log(`${key}:`, value);              //---------------------------------------------
+        });                                             //---------------------------------------------
+        const response = await newSitesApi(formdata);
+        if (response.status === 'success') {
+            setFiles([]);
+            setValues(response.result);
+            localStorage.setItem('site', response.result._id);
+            setVew(localStorage.getItem('to'));
+        } else console.error(response.error);
+        formdata = new FormData()
         setLoading(false);
     };
 
+    if (id && loading) return <Load loading={loading} />
+
     return (
         <form className='newSitesComp' onSubmit={handleSubmit}>
-            <NewPortal values={values} handleValues={handleValues} setFiles={setFiles} setValues={setValues} />
-            <EventSite values={values} setValues={setValues} />
-            <DescriptionSite values={values} handleValues={handleValues} setFiles={setFiles} setValues={setValues} />
-            <SocialMediaSite values={values} handleValues={handleValues} />
-            <Cast values={values} handleValues={handleValues} setFiles={setFiles} setValues={setValues} />
-            {values.category === 'art' && values.subCategory && (values.subCategory === 'musicalGroup' || values.subCategory === 'solist') && (
-                <Discography handleValues={handleValues} values={values} setValues={setValues} setFiles={setFiles} />
-            )}
-            <ProductSite values={values} setValues={setValues} />
-            <ImagesSities setFiles={setFiles} setValues={setValues} values={values} />
-            {values.category && values.category === 'stream'
-                ? <StreamVideo values={values} handleValues={handleValues} />
-                : <VideoSities values={values} setValues={setValues} handleValues={handleValues} />
-            }
-            <ShiftSities values={values} />
+            <ScrollToTop>
+                <NewSiteButtom vew={vew} setVew={setVew} values={values} />
+                {vew === 'portal' && <NewPortal values={values} handleValues={handleValues} setFiles={setFiles} setValues={setValues} />}
+                {vew === 'events' && <EventSite values={values} setValues={setValues} />}
+                {vew === 'description' && <DescriptionSite values={values} setFiles={setFiles} setValues={setValues} /> }
+                {vew === 'socialMedia' && <SocialMediaSite values={values} setValues={setValues} /> }
+                {vew === 'cast' && <Cast values={values} setValues={setValues} setFiles={setFiles} />}
 
-            <div className='newSitesButton'>
-                <button className='btn btnUS'>Crear</button>
-            </div>
 
-            <Load loading={loading} />
+                <button className='btn btnUS'>{id ? 'Actualizar' : 'Agragar'}</button>
+                <Load loading={loading} />
+            </ScrollToTop>
         </form>
     );
 };
@@ -79,7 +85,6 @@ const NewSitesComp = ({ userId }) => {
 export default NewSitesComp;
 
 function formatText(text) {
-
     return text
         .toLowerCase()
         .normalize("NFD")

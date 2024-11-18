@@ -7,7 +7,11 @@ import { useState, useEffect } from 'react';
 const NewPortal = ({ values, handleValues, setFiles, setValues }) => {
 
     const [isMobile, setIsMobile] = useState(window.innerWidth >= 1000 ? 1000 : window.innerWidth);
+    const handleLocation = (e) => setValues({
+        ...values, location: { ...values.location, [e.target.name]: e.target.value }
+    });
 
+    useEffect(() => { localStorage.setItem('to', 'events') }, []);
     useEffect(() => {
         const handleResize = () => {
             setIsMobile(window.innerWidth >= 1000 ? 1000 : window.innerWidth);
@@ -20,7 +24,7 @@ const NewPortal = ({ values, handleValues, setFiles, setValues }) => {
 
     return (
         <div className='newPortal'>
-            <ImgUpload width={`${isMobile - 50}px`} height={`${isMobile * 40 / 100}px`} name={'banner'} setFiles={setFiles} setValues={setValues} />
+            <ImgUpload width={`${isMobile - 50}px`} height={`${isMobile * 40 / 100}px`} name={'banner'} setFiles={setFiles} img={values?.imgPortal?.banner} setValues={setValues} />
 
             <section className='newPortalCont'>
 
@@ -29,18 +33,19 @@ const NewPortal = ({ values, handleValues, setFiles, setValues }) => {
                     placeholder='Título'
                     className='newPortalTitle'
                     onChange={handleValues}
+                    value={values?.title || ''}
                     required
                 />
 
                 <div className='newPortalCategories'>
-                    <select name="category" onChange={handleValues} required>
+                    <select name="category" onChange={handleValues} value={values?.category || ''} required>
                         <option value="">Catgeoría</option>
                         {sitiesCategories.map((sit, ind) => (
                             <option key={ind} value={sit.value}>{sit.name}</option>
                         ))}
                     </select>
 
-                    <select name="subCategory" onChange={handleValues} required>
+                    <select name="subCategory" onChange={handleValues} value={values?.subCategory || ''} required>
                         <option value="">Sub-Categoría</option>
                         {values.category === 'art' && sitiesSubCategories.art.map((cat, ind) => (
                             <option key={ind} value={cat.value}>{cat.name}</option>
@@ -58,15 +63,18 @@ const NewPortal = ({ values, handleValues, setFiles, setValues }) => {
                 </div>
 
                 <div className='newPortalCategories'>
-                    <input type="text" name='city' placeholder='Ciudad' onChange={handleValues} required />
+                    <input type="text" name='city' placeholder='Ciudad' onChange={handleLocation} value={values?.location.city || ''} required />
                     <div style={{ width: '200px' }}>
-                        <SelectedProvince handleChange={handleValues} value={values.province} />
+                        <SelectedProvince
+                            handleChange={handleLocation}
+                            value={values.location?.province || ''}
+                        />
                     </div>
                 </div>
             </section>
 
             <div className='newPortalLog'>
-                <ImgUpload width={'200px'} height={'200px'} radius={'50%'} name={'logo'} setFiles={setFiles} setValues={setValues} />
+                <ImgUpload width={'200px'} height={'200px'} radius={'50%'} name={'logo'} setFiles={setFiles} img={values?.imgPortal?.logo} setValues={setValues} />
             </div>
         </div>
     );

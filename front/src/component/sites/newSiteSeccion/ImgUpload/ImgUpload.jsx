@@ -1,16 +1,16 @@
 import './imgUpload.scss';
 import { useState, useRef } from 'react';
 
-const ImgUpload = ({ width, height, name, radius, setFiles, setValues }) => {
+const ImgUpload = ({ width, height, name, radius, setFiles, img, setValues }) => {
 
     const fileInputRef = useRef(null);
-    const [image, setImage] = useState(null);
-    const [position, setPosition] = useState('center');
+    const [image, setImage] = useState(img?.url ? img?.url : null);
+    const [position, setPosition] = useState(img?.position || 'center');
 
     const handleImgChange = (e) => {
         const selectedFiles = Array.from(e.target.files);
         const renamedFiles = selectedFiles.map((file) => {
-            const newName = `img_${name}`; 
+            const newName = name;
             return new File([file], newName, { type: file.type });
         });
         setFiles((prevFiles) => [...prevFiles, ...renamedFiles]);
@@ -20,7 +20,7 @@ const ImgUpload = ({ width, height, name, radius, setFiles, setValues }) => {
             setImage(imageURL);
         };
     };
-    
+
     const handleClick = () => fileInputRef.current.click();
     const handleChangue = (e) => {
         setPosition(e.target.value);

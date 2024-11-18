@@ -1,12 +1,15 @@
 import './socialMediaSite.scss';
+import { useEffect } from 'react';
 import XIcon from '@mui/icons-material/X';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import InstagramIcon from '@mui/icons-material/Instagram';
 
-const SocialMediaSite = ({ values, handleValues }) => {
+const SocialMediaSite = ({ values, setValues }) => {
 
+    useEffect(() => { localStorage.setItem('to', 'cast') }, []); 
+    const handleValues = (e) => setValues({ ...values, socialMedia: { ...values.socialMedia, [e.target.name]: e.target.value } });
 
     return (
         <div className='socialMediaSite'>
@@ -21,7 +24,7 @@ const SocialMediaSite = ({ values, handleValues }) => {
                         <label>Facebook</label>
                         <div>
                             <FacebookIcon className='socialMediaSiteIcon' />
-                            <input type="text" name='facebook' placeholder='Opcional' onChange={handleValues} value={values.facebook || ''} />
+                            <input type="text" name='facebook' placeholder='Opcional' onChange={handleValues} value={values.socialMedia.facebook || ''} />
                         </div>
                     </div>
 
@@ -29,7 +32,7 @@ const SocialMediaSite = ({ values, handleValues }) => {
                         <label>X (twitter)</label>
                         <div>
                             <XIcon className='socialMediaSiteIcon' />
-                            <input type="text" name='twitter' placeholder='Opcional' onChange={handleValues} value={values.twitter || ''} />
+                            <input type="text" name='twitter' placeholder='Opcional' onChange={handleValues} value={values.socialMedia.twitter || ''} />
                         </div>
                     </div>
 
@@ -37,7 +40,7 @@ const SocialMediaSite = ({ values, handleValues }) => {
                         <label>Youtube</label>
                         <div>
                             <YouTubeIcon className='socialMediaSiteIcon' />
-                            <input type="text" name='youtube' placeholder='Opcional' onChange={handleValues} value={values.youtube || ''} />
+                            <input type="text" name='youtube' placeholder='Opcional' onChange={handleValues} value={values.socialMedia.youtube || ''} />
                         </div>
                     </div>
                 </section>
@@ -47,7 +50,7 @@ const SocialMediaSite = ({ values, handleValues }) => {
                         <label>Instagrame</label>
                         <div>
                             <InstagramIcon className='socialMediaSiteIcon' />
-                            <input type="text" name='instagrame' placeholder='Opcional' onChange={handleValues} value={values.instagrame || ''} />
+                            <input type="text" name='instagrame' placeholder='Opcional' onChange={handleValues} value={values.socialMedia.instagrame || ''} />
                         </div>
                     </div>
 
@@ -55,7 +58,7 @@ const SocialMediaSite = ({ values, handleValues }) => {
                         <label>Spotify</label>
                         <div>
                             <img width="30" height="30" src="https://img.icons8.com/ios-filled/50/spotify.png" alt="spotify" />
-                            <input type="text" name='spotify' placeholder='Opcional' onChange={handleValues} value={values.spotify || ''} />
+                            <input type="text" name='spotify' placeholder='Opcional' onChange={handleValues} value={values.socialMedia.spotify || ''} />
                         </div>
                     </div>
 
@@ -63,7 +66,7 @@ const SocialMediaSite = ({ values, handleValues }) => {
                         <label>WhatsApp</label>
                         <div>
                             <WhatsAppIcon className='socialMediaSiteIcon' />
-                            <input type="text" name='whatsApp' placeholder='Opcional' onChange={handleValues} value={values.whatsApp || ''} />
+                            <input type="text" name='whatsApp' placeholder='Opcional' onChange={handleValues} value={values.socialMedia.whatsApp || ''} />
                         </div>
                     </div>
                 </section>

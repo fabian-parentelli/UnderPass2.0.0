@@ -1,0 +1,34 @@
+@import '../../../../style/colors.scss';
+
+.newSiteButtom {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    margin-top: 1rem;
+
+    div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        cursor: pointer;
+        transition: .3s;
+    }
+}
+
+@media (max-width: 767px) {
+
+    .newSiteButtom {
+        width: 90%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .newSiteButtom::-webkit-scrollbar {
+        height: 6px;
+    }
+    
+    .newSiteButtom::-webkit-scrollbar-thumb {
+        background-color: $underSite; 
+        border-radius: 6px; 
+    }
+}

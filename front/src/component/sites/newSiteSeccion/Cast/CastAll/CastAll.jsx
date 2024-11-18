@@ -3,10 +3,19 @@ import { useState } from 'react';
 import ImgUpload from '../../ImgUpload/ImgUpload';
 import CharacterCounter from '../../../../utils/CharacterCounter';
 
-const CastAll = ({ values, handleValues, setFiles, setValues }) => {
+const CastAll = ({ values, setFiles, setValues }) => {
 
-    const [cast, setCast] = useState([{}]);
-    const addInput = () => setCast([...cast, {}]);
+    console.log(values.cast);
+
+    const [cast, setCast] = useState(values?.cast.length > 0 ? values.cast : [{ title: '', text: '' }]);
+    const addInput = () => setCast([...cast, { title: '', text: '' }]);
+
+    const handleValues = (e, index) => {
+        const updatedCast = [...cast];
+        updatedCast[index] = { ...updatedCast[index], [e.target.name]: e.target.value };
+        setCast(updatedCast);
+        setValues({ ...values, cast: updatedCast });
+    };
 
     return (
         <div className='castAll'>
@@ -20,30 +29,33 @@ const CastAll = ({ values, handleValues, setFiles, setValues }) => {
                         <div className='castAllTitle'>
                             <input
                                 type="text"
-                                name={`castTitle${index}`}
+                                name="title"
                                 placeholder="Nombre"
-                                onChange={handleValues}
+                                value={values.cast[index]?.title || ''}
+                                onChange={(e) => handleValues(e, index)}
                             />
 
                             <div>
-                                <ImgUpload width={'200px'} height={'200px'} name={`castImg${index}`} radius={'50%'} setFiles={setFiles} setValues={setValues} />
+                                <ImgUpload width={'200px'} height={'200px'} name={cast[index]?.title} radius={'50%'} setFiles={setFiles} img={values?.cast[index]?.img || ''} setValues={setValues} />
                             </div>
                         </div>
 
                         <div>
                             <textarea
-                                style={{ height: '220px', width: '200px' }}
+                                style={{ height: '220px', width: '300px' }}
                                 placeholder="Descripción"
-                                name={`castText${index}`}
-                                onChange={handleValues}
+                                name="text"
+                                value={cast[index]?.text || ''}
+                                onChange={(e) => handleValues(e, index)}
                             />
-                            <CharacterCounter min={290} max={310} text={values[`castText_${index}`]} />
+                            <CharacterCounter min={400} max={450} text={values[`castText_${index}`]} />
                         </div>
                     </div>
                 ))}
             </section>
 
             <p className='btn btnUS castAllButton' onClick={addInput}>Agregar Elenco</p>
+            <div className='line castAllLine'></div>
         </div>
     );
 };

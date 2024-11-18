@@ -2,15 +2,16 @@ import './eventSite.scss';
 import Switch from '@mui/material/Switch';
 import { useEffect, useState } from 'react';
 import CheckBoxes2 from '../../../utils/CheckBoxes2';
-import { getEventsApi } from '../../../../helpers/event/getEvents.api';
+import { getEventsApi } from '../../../../helpers/event/getEvents.api.js';
 
 const EventSite = ({ values, setValues }) => {
 
     const [events, setEvents] = useState([]);
-    const [selected, setSelected] = useState([]);
+    const [selected, setSelected] = useState(values.events || []);
 
     const handleEvent = (e) => setValues({ ...values, isEvent: e.target.checked });
 
+    useEffect(() => { localStorage.setItem('to', 'description') }, []);
     useEffect(() => {
         const fetchData = async () => {
             const response = await getEventsApi({ userid: values.userId });
@@ -25,20 +26,22 @@ const EventSite = ({ values, setValues }) => {
     return (
         <div className='eventSite'>
 
-            <section className='eventSiteSect1'>
+            <section className='siteUpdateEventSectA'>
                 <label>Eventos:</label>
                 <div className='eventSiteSwitch'>
                     <p>NO</p>
-                    <Switch value={values.isEvent} onChange={handleEvent} />
+                    <Switch checked={values.isEvent} onChange={handleEvent} />
                     <p>SI</p>
                 </div>
-                <p className='eventSiteHelp'>Habilita la venta de entradas</p>
+                <p className='pgray'>Habilita la venta de entradas</p>
             </section>
 
+            <div className='line eventSiteLine'></div>
+
             {values.isEvent && events.length > 0 &&
-                <section>
+                <section className='siteUpdateEventBoxes'>
                     <p className='eventSiteHelp'>Eventos Disponibles:</p>
-                    <CheckBoxes2 labels={events} setType={setSelected} multiselect={true} />
+                    <CheckBoxes2 labels={events} setType={setSelected} multiselect={true} selecteds={selected} />
                 </section>
             }
         </div>

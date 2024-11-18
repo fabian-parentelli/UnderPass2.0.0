@@ -14,17 +14,38 @@ const sitesSchema = new mongoose.Schema({
         province: { type: String },
         country: { type: String },
     },
-    images: [
-        {
-            name: { type: String },
+    imgPortal: {
+        banner: {
             url: { type: String },
-            position: { type: String },
+            position: { type: String }
+        },
+        logo: {
+            url: { type: String },
+            position: { type: String }
         }
-    ],
+    },
+    isEvent: { type: Boolean, default: false },
+    events: [{ type: String }],
     description: {
         short: { type: String },
         long: { type: String },
+        img: {
+            url: { type: String },
+            name: { type: String },
+            position: { type: String }
+        }
     },
+    cast: [
+        {
+            title: { type: String },
+            text: { type: String },
+            img: {
+                url: { type: String },
+                name: { type: String },
+                position: { type: String },
+            }
+        }
+    ],
     socialMedia: {
         facebook: { type: String },
         instagrame: { type: String },
@@ -33,14 +54,11 @@ const sitesSchema = new mongoose.Schema({
         youtube: { type: String },
         whatsApp: { type: String }
     },
-    events: [{ type: String }],
+
+
+
     products: [{ type: String }],
-    cast: [
-        {
-            castTitle: { type: String },
-            castText: { type: String }
-        }
-    ],
+
     castPerson: { type: String },
     discography: [
         {
@@ -56,12 +74,15 @@ const sitesSchema = new mongoose.Schema({
             url: { type: String },
         }
     ],
-    isEvent: { type: Boolean },
     isProduct: { type: Boolean },
     isDiscography: { type: Boolean },
     isVideo: { type: Boolean },
     isShift: { type: Boolean },
     isGalery: { type: Boolean },
+
+
+
+
     active: { type: Boolean },
     date: { type: Date, default: Date.now },
     type: { type: String, default: 'site' },

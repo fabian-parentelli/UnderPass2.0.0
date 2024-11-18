@@ -4,10 +4,17 @@
     justify-content: center;
     flex-wrap: wrap;
     gap: 2rem;
+    text-align: center;
+    flex-direction: column;
 
     .eventSiteSwitch {
         display: flex;
         align-items: center;
+        justify-content: center;     
+    }
+
+    .eventSiteLine {
+        background-color: #058d4d;
     }
 
     .eventSiteHelp {

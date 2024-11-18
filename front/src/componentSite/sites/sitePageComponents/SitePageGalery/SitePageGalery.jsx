@@ -14,7 +14,7 @@ const SitePageGalery = ({ site }) => {
         <div className='sitePageGalery'>
             <h2>Galería</h2>
             <section>
-                {site.images && site.images.filter(img => img.name.startsWith('galery'))
+                {site?.images && site?.images.filter(img => img.name.startsWith('galery'))
                     .map((img, ind) => (
                         <Fragment key={ind}>
                             <img

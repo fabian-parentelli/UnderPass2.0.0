@@ -31,6 +31,15 @@
 
         .sitesManagger2 {
             background-color: $underSite;
+            width: 100%;
+            text-align: center;
+            text-decoration: none;
+            color: aliceblue;
+            transition: .3s ease-in-out;
+            
+            &:hover {
+                background-color: #058d4ea8;
+            }
         }
 
         .sitesManagger1 {
@@ -79,7 +88,7 @@
             transition: .3s ease-in-out;
 
             &:hover {
-                background-color:rgba(23, 136, 83, 0.733);
+                background-color: rgba(23, 136, 83, 0.733);
             }
 
             .sitesManaggerNewIcon {

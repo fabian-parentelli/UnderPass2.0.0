@@ -24,6 +24,17 @@ const getByUserId = async (req, res) => {
     };
 };
 
+const getById = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const result = await sitesService.getById(id);
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof SitesNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
 const getByLinks = async (req, res) => {
     const { link } = req.params;
     try {
@@ -90,4 +101,4 @@ const updSite = async (req, res) => {
     };
 };
 
-export { newSite, getByUserId, getByLinks, getRandom, getSites, updActive, deleteCast, updSite };
+export { newSite, getByUserId, getById, getByLinks, getRandom, getSites, updActive, deleteCast, updSite };

@@ -18,22 +18,19 @@ const SitesManagger = ({ userId }) => {
             else console.error(response.error);
             setLoading(false);
         }; fetchData();
-    }, [])
-
-    console.log(sites);
-    
+    }, []);    
 
     return (
         <div className='sitesManagger'>
             {sites && sites.length > 0 && sites.map((sit, ind) => (
                 <div key={ind} className='sitesManaggerCards'>
                     <h4>{sit.title}</h4>
-                    <img src={sit.images.find(i => i.name === 'logo').url} alt="img" width='160px' />
+                    <img src={sit.imgPortal.logo.url} alt="img" width='160px' />
                     <Link to={`/site/${sit.link}`} className='sitesManagger1'>Ver</Link>
-                    <p className='sitesManagger2'>Actualizar</p>
+                    <Link to={`/newsites?id=${sit._id}`} className='sitesManagger2'>Actualizar</Link>
                 </div>
             ))}
-            <Link to={`/newsites/${userId}`} className='sitesManaggerNew'>
+            <Link to={`/newsites?userid=${userId}`} className='sitesManaggerNew'>
                 <div className='sitesManaggerNewCircule'>
                     <AddIcon className='sitesManaggerNewIcon' />
                 </div>
