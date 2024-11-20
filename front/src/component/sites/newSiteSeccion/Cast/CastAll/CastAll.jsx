@@ -1,11 +1,12 @@
 import './castAll.scss';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import Tooltip from '@mui/material/Tooltip';
 import ImgUpload from '../../ImgUpload/ImgUpload';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import CharacterCounter from '../../../../utils/CharacterCounter';
+import { deleteCastSiteApi } from '../../../../../helpers/sites/deleteCastSite.api.js';
 
-const CastAll = ({ values, setFiles, setValues }) => {
-
-    console.log(values.cast);
+const CastAll = ({ values, setFiles, setValues, setVew }) => {
 
     const [cast, setCast] = useState(values?.cast.length > 0 ? values.cast : [{ title: '', text: '' }]);
     const addInput = () => setCast([...cast, { title: '', text: '' }]);
@@ -16,6 +17,23 @@ const CastAll = ({ values, setFiles, setValues }) => {
         setCast(updatedCast);
         setValues({ ...values, cast: updatedCast });
     };
+
+    const handleDelete = async (index) => {
+        const response = await deleteCastSiteApi({ index, id: values._id });
+        if (response.status === 'success') {
+            const updatedCast = cast.filter((_, i) => i !== index);
+            const updatedValues = { ...values, cast: updatedCast };
+            setValues(updatedValues);
+            setCast(updatedCast);
+            setVew(localStorage.getItem('to'))
+        } else console.error(response.error);
+    };
+
+    useEffect(() => { 
+        if(values.subCategory === 'musicalGroup' || values.subCategory === 'solist' ){
+            localStorage.setItem('to', 'discography'); 
+        } else localStorage.setItem('to', 'product');
+    }, []);
 
     return (
         <div className='castAll'>
@@ -50,6 +68,12 @@ const CastAll = ({ values, setFiles, setValues }) => {
                             />
                             <CharacterCounter min={400} max={450} text={values[`castText_${index}`]} />
                         </div>
+
+                        <Tooltip title='Eliminar' placement="top">
+                            <DeleteForeverIcon className='castAllSectionIcon' onClick={() => handleDelete(index)} />
+                        </Tooltip>
+
+                        <div className='line'></div>
                     </div>
                 ))}
             </section>

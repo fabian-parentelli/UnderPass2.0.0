@@ -1,6 +1,7 @@
 import './newSitesComp.scss';
 import Load from '../../utils/Load';
 import { useEffect, useState } from 'react';
+import Cast from '../newSiteSeccion/Cast/Cast.jsx';
 import ScrollToTop from '../../utils/ScrollToTop.jsx';
 import NewPortal from '../newSiteSeccion/NewPortal/NewPortal';
 import EventSite from '../newSiteSeccion/EventSite/EventSite.jsx';
@@ -9,10 +10,10 @@ import NewSiteButtom from '../newSiteSeccion/NewSiteButton/NewSiteBurron';
 import { getSiteByIdApi } from '../../../helpers/sites/getSiteById.api.js';
 import DescriptionSite from '../newSiteSeccion/DescriptionSite/DescriptionSite.jsx';
 import SocialMediaSite from '../newSiteSeccion/SocialMediaSite/SocialMediaSite.jsx';
-import Cast from '../newSiteSeccion/Cast/Cast.jsx';
 
 const NewSitesComp = ({ userId, id }) => {
 
+    const [vewButton, setVewButton] = useState(true);
     const [loading, setLoading] = useState(false);
     const [vew, setVew] = useState('portal');
     const [files, setFiles] = useState([]);
@@ -30,12 +31,20 @@ const NewSitesComp = ({ userId, id }) => {
         }; if (id) fetchData();
     }, []);
 
-    useEffect(() => { setValues({ ...values, post: vew }) }, [vew])
+    useEffect(() => { setValues({ ...values, post: vew }) }, [vew]);
+
+    useEffect(() => {
+        if (values.cast && values.cast.length > 0) {            
+            const titles = values.cast.map(item => item.title);
+            const areTitlesUnique = titles.length === new Set(titles).size;
+            setVewButton(areTitlesUnique);
+        };
+    }, [values.cast]);
 
     const handleSubmit = async (e) => {
         setLoading(true);
         e.preventDefault();
-        let formdata = new FormData()
+        let formdata = new FormData()        
         const folderName = formatText(values.title);
         setValues({ ...values, link: folderName });
         formdata.set('folderName', `sites/${folderName}`);
@@ -70,12 +79,13 @@ const NewSitesComp = ({ userId, id }) => {
                 <NewSiteButtom vew={vew} setVew={setVew} values={values} />
                 {vew === 'portal' && <NewPortal values={values} handleValues={handleValues} setFiles={setFiles} setValues={setValues} />}
                 {vew === 'events' && <EventSite values={values} setValues={setValues} />}
-                {vew === 'description' && <DescriptionSite values={values} setFiles={setFiles} setValues={setValues} /> }
-                {vew === 'socialMedia' && <SocialMediaSite values={values} setValues={setValues} /> }
-                {vew === 'cast' && <Cast values={values} setValues={setValues} setFiles={setFiles} />}
+                {vew === 'description' && <DescriptionSite values={values} setFiles={setFiles} setValues={setValues} />}
+                {vew === 'socialMedia' && <SocialMediaSite values={values} setValues={setValues} />}
+                {vew === 'cast' && <Cast values={values} setValues={setValues} setFiles={setFiles} setVew={setVew} />}
 
 
-                <button className='btn btnUS'>{id ? 'Actualizar' : 'Agragar'}</button>
+                <button className='btn btnUS' disabled={!vewButton}>{id ? 'Actualizar' : 'Agragar'}</button>
+                {!vewButton && <p className='newSitesCompAlert'>No se puede repetir los nombres del elenco</p>}
                 <Load loading={loading} />
             </ScrollToTop>
         </form>

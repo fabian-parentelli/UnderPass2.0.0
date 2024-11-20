@@ -1,14 +1,14 @@
 import CastAll from "./CastAll/CastAll";
 import CastOnly from "./CastOnly/CastOnly";
 
-const Cast = ({ values, setValues, setFiles }) => {
+const Cast = ({ values, setValues, setFiles, setVew }) => {
 
     return (
         <>
             {values?.category === 'art' &&
                 (values?.subCategory === 'musicalGroup' || values?.subCategory === 'play' ||
                     values?.subCategory === 'danceGroup'
-                    ? <CastAll values={values} setFiles={setFiles} setValues={setValues} />
+                    ? <CastAll values={values} setFiles={setFiles} setValues={setValues} setVew={setVew} />
                     : <CastOnly values={values} setFiles={setFiles} setValues={setValues} />
                 )
             }
@@ -16,7 +16,7 @@ const Cast = ({ values, setValues, setFiles }) => {
             {values?.category === 'stream' &&
                 (values?.subCategory === 'lives' || values?.subCategory === 'documentals' ||
                     values?.subCategory === 'publications'
-                    ? <CastAll values={values} setFiles={setFiles} setValues={setValues} />
+                    ? <CastAll values={values} setFiles={setFiles} setValues={setValues} setVew={setVew} />
                     : <CastOnly values={values} setFiles={setFiles} setValues={setValues} />
                 )
             }

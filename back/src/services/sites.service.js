@@ -63,18 +63,9 @@ const updActive = async (id) => {
 };
 
 const deleteCast = async (toDelete) => {
-    const site = await sitesRepository.getById(toDelete._id);
+    const site = await sitesRepository.getById(toDelete.id);
     if (!site) throw new SitesNotFound('Sitio no encontrado');
-    site.cast.splice(toDelete.index, 1);
-    const images = site.images.filter(img => img.name !== `castImg${toDelete.index}`);
-    const castImg = [];
-    const imagesAll = [];
-    images.forEach((img) => {
-        if (img.name.startsWith('castImg')) castImg.push(img);
-        else imagesAll.push(img)
-    });
-    castImg.forEach((img, ind) => img.name = `castImg${ind}`);
-    site.images = [...imagesAll, castImg];
+    site.cast.splice(toDelete.index, 1)
     const result = await sitesRepository.update(site);
     if (!result) throw new SitesNotFound('No se puede actualizar el sitio');
     return { status: 'success', result };

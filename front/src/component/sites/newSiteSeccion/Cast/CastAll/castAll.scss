@@ -21,6 +21,16 @@
                 flex-direction: column;
                 gap: 1rem;
             }
+
+            .castAllSectionIcon {
+                cursor: pointer;
+                color: gray;
+                transition: .3s ease-in-out;
+
+                &:hover {
+                    color: red;
+                }
+            }
         }
     }
 

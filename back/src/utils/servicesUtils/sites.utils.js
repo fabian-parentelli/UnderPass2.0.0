@@ -65,7 +65,7 @@ function isSocialMedia(sit, site) {
 };
 
 function isCast(images, imagesUrl, sit, site) {
-    site = { ...site, ...sit };    
+    site = { ...site, ...sit };
     if (imagesUrl.length > 0 && images.length > 0) {
         const bothImages = imagesUrl.map((img, ind) => {
             return {
@@ -79,9 +79,13 @@ function isCast(images, imagesUrl, sit, site) {
             site.cast[index].img = img;
         });
     };
-    
-    // Resolver los cambios .......
-    // resolver position ..........
-    
+    const positionKey = Object.keys(sit).filter(key => key.startsWith('position_'));
+    if (positionKey.length > 0 && imagesUrl.length == 0 && images.length == 0) {
+        positionKey.forEach((pos) => {
+            const namePosition = pos.split('_')[1];
+            const index = site.cast.findIndex(cas => cas.title === namePosition);
+            site.cast[index].img.position = sit[pos]; 
+        });
+    };
     return site;
 };
