@@ -54,19 +54,23 @@ const sitesSchema = new mongoose.Schema({
         youtube: { type: String },
         whatsApp: { type: String }
     },
-
+    isDiscography: { type: Boolean, default: false },
+    discography: [
+        {
+            title: { type: String },
+            text: { type: String },
+            songs: [{ type: String }],
+            img: {
+                url: { type: String },
+                name: { type: String },
+                position: { type: String }
+            } 
+        }
+    ],
 
 
     products: [{ type: String }],
-
     castPerson: { type: String },
-    discography: [
-        {
-            discTitle: { type: String },
-            discText: { type: String },
-            discUrls: [{ type: String }]
-        }
-    ],
     videos: [{ type: String }],
     stream: [
         {
@@ -75,12 +79,9 @@ const sitesSchema = new mongoose.Schema({
         }
     ],
     isProduct: { type: Boolean },
-    isDiscography: { type: Boolean },
     isVideo: { type: Boolean },
     isShift: { type: Boolean },
     isGalery: { type: Boolean },
-
-
 
 
     active: { type: Boolean },

@@ -28,6 +28,7 @@
 
     .discographyPHelp {
         color: orangered;
+        margin-top: 1rem;
     }
 
     section {
@@ -46,18 +47,62 @@
                 flex-wrap: wrap;
                 gap: 2rem;
 
+                .discographyText {
+                    width: 298px;
+                    height: 298px;
+                    background-color: #fff;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    p {
+                        text-align: center;
+                        font-size: 14px;
+                        color: gray;
+                    }
+                }
+
                 .discographyInputs {
                     display: flex;
                     flex-direction: column;
                     align-items: flex-start;
+
+                    .discographyTitleDiv {
+                        width: 100%;
+                        display: flex;
+                        justify-content: space-between;
+
+                        .discographyIcon {
+                            cursor: pointer;
+                            color: gray;
+                            transition: .3s ease-in-out;
+
+                            &:hover {
+                                color: red;
+                            }
+                        }
+                    }
 
                     .discographyInputsDiv {
                         display: flex;
                         flex-direction: column;
                         gap: 12px;
 
-                        input {
-                            width: 300px;
+                        .discographyUrl {
+                            display: flex;
+                            align-items: center;
+
+                            .discographyIcon {
+                                cursor: pointer;
+                                color: gray;
+                                transition: .3s ease-in-out;
+                                &:hover {
+                                    color: red;
+                                }
+                            }
+                            input {
+                                width: 300px;
+                            }
                         }
                     }
 
@@ -65,6 +110,13 @@
                         text-align: center;
                     }
                 }
+            }
+
+            .discographyAlert {
+                text-align: center;
+                margin: 1rem 0;
+                background-color: rgba(255, 0, 0, 0.308);
+                padding: 1rem 0;
             }
 
             .discographyTextArea {
@@ -77,6 +129,10 @@
     .btnDiscography {
         text-align: center;
         margin-top: 2rem;
+    }
+
+    .discographyLine {
+        margin-top: 1rem;
     }
 }
 

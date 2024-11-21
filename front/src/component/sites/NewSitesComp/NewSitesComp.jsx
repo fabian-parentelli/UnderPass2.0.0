@@ -10,6 +10,7 @@ import NewSiteButtom from '../newSiteSeccion/NewSiteButton/NewSiteBurron';
 import { getSiteByIdApi } from '../../../helpers/sites/getSiteById.api.js';
 import DescriptionSite from '../newSiteSeccion/DescriptionSite/DescriptionSite.jsx';
 import SocialMediaSite from '../newSiteSeccion/SocialMediaSite/SocialMediaSite.jsx';
+import Discography from '../newSiteSeccion/Discography/Discography.jsx';
 
 const NewSitesComp = ({ userId, id }) => {
 
@@ -34,17 +35,22 @@ const NewSitesComp = ({ userId, id }) => {
     useEffect(() => { setValues({ ...values, post: vew }) }, [vew]);
 
     useEffect(() => {
-        if (values.cast && values.cast.length > 0) {            
+        if (values.cast && values.cast.length > 0) {
             const titles = values.cast.map(item => item.title);
             const areTitlesUnique = titles.length === new Set(titles).size;
             setVewButton(areTitlesUnique);
         };
-    }, [values.cast]);
+        if (values.discography && values.discography.length > 0) {
+            const titles = values.discography.map(item => item.title);
+            const areTitlesUnique = titles.length === new Set(titles).size;
+            setVewButton(areTitlesUnique);
+        }
+    }, [values.cast, values.discography]);
 
     const handleSubmit = async (e) => {
         setLoading(true);
         e.preventDefault();
-        let formdata = new FormData()        
+        let formdata = new FormData()
         const folderName = formatText(values.title);
         setValues({ ...values, link: folderName });
         formdata.set('folderName', `sites/${folderName}`);
@@ -82,10 +88,10 @@ const NewSitesComp = ({ userId, id }) => {
                 {vew === 'description' && <DescriptionSite values={values} setFiles={setFiles} setValues={setValues} />}
                 {vew === 'socialMedia' && <SocialMediaSite values={values} setValues={setValues} />}
                 {vew === 'cast' && <Cast values={values} setValues={setValues} setFiles={setFiles} setVew={setVew} />}
-
+                {vew === 'discography' && <Discography values={values} setFiles={setFiles} setValues={setValues} />}
 
                 <button className='btn btnUS' disabled={!vewButton}>{id ? 'Actualizar' : 'Agragar'}</button>
-                {!vewButton && <p className='newSitesCompAlert'>No se puede repetir los nombres del elenco</p>}
+                {!vewButton && <p className='newSitesCompAlert'>No se puede repetir los nombres</p>}
                 <Load loading={loading} />
             </ScrollToTop>
         </form>

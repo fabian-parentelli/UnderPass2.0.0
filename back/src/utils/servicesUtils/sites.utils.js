@@ -4,6 +4,7 @@ const newSiteOptions = (images, imagesUrl, sit, site) => {
     if (sit.post === 'description') site = isDescription(images, imagesUrl, sit, site);
     if (sit.post === 'socialMedia') site = isSocialMedia(sit, site);
     if (sit.post === 'cast') site = isCast(images, imagesUrl, sit, site);
+    if (sit.post === 'discography') site = isDiscography(images, imagesUrl, sit, site);
 
     return site;
 };
@@ -84,7 +85,33 @@ function isCast(images, imagesUrl, sit, site) {
         positionKey.forEach((pos) => {
             const namePosition = pos.split('_')[1];
             const index = site.cast.findIndex(cas => cas.title === namePosition);
-            site.cast[index].img.position = sit[pos]; 
+            site.cast[index].img.position = sit[pos];
+        });
+    };
+    return site;
+};
+
+function isDiscography(images, imagesUrl, sit, site) {
+    site = { ...site, ...sit };
+    if (images.length > 0 && imagesUrl.length > 0) {
+        const bothImages = imagesUrl.map((img, ind) => {
+            return {
+                url: img,
+                name: images[ind].originalname,
+                position: sit[`position_${images[ind].originalname}`] || undefined
+            };
+        });
+        bothImages.forEach((img) => {
+            const index = site.discography.findIndex(dis => dis.title === img.name);
+            site.discography[index].img = img;
+        });
+    };
+    const positionKey = Object.keys(sit).filter(key => key.startsWith('position_'));
+    if (positionKey.length > 0 && imagesUrl.length == 0 && images.length == 0) {
+        positionKey.forEach((pos) => {
+            const namePosition = pos.split('_')[1];
+            const index = site.discography.findIndex(cas => cas.title === namePosition);
+            site.discography[index].img.position = sit[pos];
         });
     };
     return site;
