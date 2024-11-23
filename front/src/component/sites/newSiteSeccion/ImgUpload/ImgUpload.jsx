@@ -1,11 +1,16 @@
 import './imgUpload.scss';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 const ImgUpload = ({ width, height, name, radius, setFiles, img, setValues }) => {
 
     const fileInputRef = useRef(null);
     const [image, setImage] = useState(img?.url ? img?.url : null);
     const [position, setPosition] = useState(img?.position || 'center');
+
+    useEffect(() => {
+        setImage(img?.url || null); 
+        setPosition(img?.position || 'center');
+    }, [img]);
 
     const handleImgChange = (e) => {
         const selectedFiles = Array.from(e.target.files);

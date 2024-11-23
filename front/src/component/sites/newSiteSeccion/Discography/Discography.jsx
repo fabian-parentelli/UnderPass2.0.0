@@ -1,6 +1,7 @@
 import './discography.scss';
-import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import Switch from '@mui/material/Switch';
+import { useEffect, useState } from 'react';
 import Tooltip from '@mui/material/Tooltip';
 import ImgUpload from '../ImgUpload/ImgUpload';
 import CharacterCounter from '../../../utils/CharacterCounter';
@@ -9,7 +10,7 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 const Discography = ({ values, setFiles, setValues }) => {
 
     const [discs, setDiscs] = useState(values.discography.length > 0 ? values.discography : [{}]);
-    const [deleteSong, setDeleteSong] = useState(false);
+    const [deleteSong, setDeleteSong] = useState({ disc: false, song: false });
 
     const addDisc = () => setDiscs([...discs, { songs: ['', '', '', ''] }]);
 
@@ -46,7 +47,15 @@ const Discography = ({ values, setFiles, setValues }) => {
         const disc = val.discography[index];
         disc.songs.splice(ind, 1);
         setValues({ ...values, discography: [...val.discography] });
-        setDeleteSong(true);
+        setDeleteSong({ ...deleteSong, song: true });
+    };
+
+    const handleDeleteDisc = (index) => {
+        const val = { ...values };
+        val.discography.splice(index, 1);
+        setValues({ ...values, discography: val.discography });
+        setDiscs(val.discography);
+        setDeleteSong({ ...deleteSong, disc: true });
     };
 
     return (
@@ -63,7 +72,7 @@ const Discography = ({ values, setFiles, setValues }) => {
 
             {values.isDiscography && (
                 <>
-                    <p className='discographyPHelp'>Ayuda con la url de Spotify</p>
+                    <Link to='/help#spotifyHelp' className='discographyPHelp'>Ayuda con la url de Spotify</Link>
                     <section>
                         {discs.map((disc, index) => (
                             <div key={index}>
@@ -95,7 +104,7 @@ const Discography = ({ values, setFiles, setValues }) => {
                                             <Tooltip title='Eliminar disco' placement='top'>
                                                 <DeleteForeverIcon
                                                     className='discographyIcon'
-
+                                                    onClick={() => handleDeleteDisc(index)}
                                                 />
                                             </Tooltip>
                                         </div>
@@ -122,7 +131,12 @@ const Discography = ({ values, setFiles, setValues }) => {
                                         <p className='btn btnUS' onClick={() => addInput(index)}>Agregar tema</p>
                                     </div>
                                 </div>
-                                {deleteSong && <p className='discographyAlert'>Debes confirmar la eliminación de la canción con el botón actualizar</p>}
+                                {(deleteSong.song || deleteSong.disc) &&
+                                    <p className='discographyAlert'>Debes confirmar la eliminación
+                                        {deleteSong.song ? ' de la canción ' : ' del disco '}
+                                        con el botón actualizar
+                                    </p>
+                                }
                                 <textarea
                                     name='text'
                                     placeholder='Información sobre este material'

@@ -35,6 +35,7 @@ import Sites from "../componentSite/sites/Sites/Sites.jsx";
 import NewSites from "../component/sites/NewSites/NewSites.jsx";
 import SitePage from "../componentSite/sites/SitePage/SitePage.jsx";
 import AllSites from "../componentSite/sites/AllSites/AllSites.jsx";
+import Advances from "../componentSite/advances/Advances/Advances.jsx";
 
 const RoutesComp = () => {
 
@@ -66,6 +67,7 @@ const RoutesComp = () => {
                     <Route path="/sites" element={<Sites />} />
                     <Route path="/site/:link" element={<SitePage />} />
                     <Route path="/allsites" element={<AllSites />} />
+                    <Route path="/advance" element={<Advances />} />
 
                     {user.logged &&
                         <>

@@ -1,0 +1,16 @@
+.advances {
+    min-height: 70vh;
+    margin-top: 70px;
+
+    h2 {
+        text-align: center;
+        font-size: 2rem;
+        padding-top: 1rem;
+    }
+
+    p {
+        text-align: center;
+    }
+}
+
+@media (max-width: 767px) {}

@@ -35,17 +35,22 @@ const NewSitesComp = ({ userId, id }) => {
     useEffect(() => { setValues({ ...values, post: vew }) }, [vew]);
 
     useEffect(() => {
-        if (values.cast && values.cast.length > 0) {
-            const titles = values.cast.map(item => item.title);
-            const areTitlesUnique = titles.length === new Set(titles).size;
-            setVewButton(areTitlesUnique);
+        const checkUniqueTitles = () => {
+            let castUnique = true;
+            let discographyUnique = true;
+            if (values.cast && values.cast.length > 0) {
+                const castTitles = values.cast.map(item => item.title);
+                castUnique = castTitles.length === new Set(castTitles).size;
+            };
+            if (values.discography && values.discography.length > 0) {
+                const discographyTitles = values.discography.map(item => item.title);
+                discographyUnique = discographyTitles.length === new Set(discographyTitles).size;
+            };
+            setVewButton(castUnique && discographyUnique);
         };
-        if (values.discography && values.discography.length > 0) {
-            const titles = values.discography.map(item => item.title);
-            const areTitlesUnique = titles.length === new Set(titles).size;
-            setVewButton(areTitlesUnique);
-        }
+        checkUniqueTitles();
     }, [values.cast, values.discography]);
+    
 
     const handleSubmit = async (e) => {
         setLoading(true);

@@ -39,10 +39,10 @@ const Browser = ({ handleMenuClick, menuVisible, listElementsRef, setMenuVisible
                 <li className={`menu_item menu_item--show`} onClick={handleItemClick}>
                     <a href='#' className='menu_link'>Información <img src="/arrow.png" className="menu_arrow" /></a>
                     <ul className={`menu_nesting`}>
-                        <li className='menu_inside' onClick={handleInsideClick}><Link to='/help' className='menu_link menu_link--inside'>Información</Link></li>
+                        <li className='menu_inside' onClick={handleInsideClick}><Link to='/help' className='menu_link menu_link--inside'>Ayudas</Link></li>
                         <li className='menu_inside' onClick={handleInsideClick}><Link to='/' className='menu_link menu_link--inside'>Quienes somos</Link></li>
-                        <li className='menu_inside' onClick={handleInsideClick}><a className='menu_link menu_link--inside' href='#'>Videos Tutoriales</a></li>
-                        <li className='menu_inside' onClick={handleInsideClick}><a className='menu_link menu_link--inside' href='#'>Terminos y Condiciones</a></li>
+                        <li className='menu_inside' onClick={handleInsideClick}><Link to='/' className='menu_link menu_link--inside'>Videos Tutoriales</Link></li>
+                        <li className='menu_inside' onClick={handleInsideClick}><Link to='/advance' className='menu_link menu_link--inside'>Noticias y Avances</Link></li>
                         <li className='menu_inside' onClick={handleInsideClick}><a className='menu_link menu_link--inside' href='#'>Faraday's House</a></li>
                     </ul>
                 </li>
