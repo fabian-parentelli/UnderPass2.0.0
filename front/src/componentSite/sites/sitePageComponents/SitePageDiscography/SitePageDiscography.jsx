@@ -1,34 +1,28 @@
 import './sitePageDiscography.scss';
-import SpotifyComp from '../../../../component/utils/SpotifyComp';
+import SitePageDisc from './SitePageDisc/SitePageDisc';
+import { useState } from 'react';
 
 const SitePageDiscography = ({ site }) => {
 
+    const [vew, setVew] = useState(0);
+
     return (
         <div className='sitePageDiscography'>
-            
-            <h2>Discografía:</h2>
+            <h2>Discografía</h2>
 
             <section>
-                {site.discography && site.discography.map((dis, ind) => (
-                    <div key={ind} className='sitePageDiscographyDiv'>
-
-                        <p className='sitePageDiscographyTitle colUS'>{dis.discTitle}</p>
-                        
-                        <div className='sitePageDiscographyCont'>
-                            <img
-                                src={site.images.find(i => i.name === `disc${ind + 1}`)?.url}
-                                alt="img" className='sitePageDiscographyImg'
-                                style={{ objectPosition: site.images.find(i => i.name === `disc${ind + 1}`)?.position }}
+                <div className='sitePageDiscographySelect'>
+                    {site.discography && site.discography.map((disc, ind) => (
+                        <div key={ind} className='sitePageDiscographyDivDisc' onMouseOver={() => setVew(ind)}>
+                            <p>{disc.title}</p>
+                            <img src={disc.img.url} alt={disc.title} className='sitePageDiscographyimg'
+                                style={{ objectPosition: disc.img?.position }}
                             />
-                            <div className='sitePageDiscographySong'>
-                                {dis.discUrls && dis.discUrls.length > 0 && dis.discUrls.map((song, ind) => (
-                                    <SpotifyComp key={ind} url={song} />
-                                ))}   
-                            </div>
                         </div>
+                    ))}
+                </div>
 
-                    </div>
-                ))}
+                {<SitePageDisc disc={site.discography[vew]} />}
             </section>
         </div>
     );

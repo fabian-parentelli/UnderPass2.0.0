@@ -20,11 +20,11 @@ const BodySite = () => {
     return (
         <div className='bodySite'>
             <UnderSiteLog size={4} />
-            {/* <section className='bodySiteMap'>
+            <section className='bodySiteMap'>
                 {sites && sites.map((site) => (
                     <SiteCard site={site} key={site._id} />
                 ))}
-            </section> */}
+            </section>
             <Link to={'/allsites'} className='bodySiteMore'>Ver mas sitios</Link>
         </div>
     );

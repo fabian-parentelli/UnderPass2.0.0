@@ -19,16 +19,16 @@ const SitePageCastAll = ({ site }) => {
                     <Fragment key={ind}>
                         <div className='sitePageCastAllCard' onClick={() => hanldeOpen(ind)}>
                             <img
-                                src={site.images.find(i => i.name === `castImg${ind}`)?.url}
+                                src={cast.img.url}
                                 alt="img" className='sitePageCastAllImg'
-                                style={{ objectPosition: site.images.find(i => i.name === `castImg${ind}`)?.position }}
+                                style={{ objectPosition: cast.img?.position }}
                             />
-                            <p>{cast.castTitle}</p>
+                            <p>{cast.title}</p>
                         </div>
 
                         {vew.index === ind &&
                             <ModalCustom modalIsOpen={vew.open} closeModal={handleClosed}>
-                                <SitePageCastModal cast={cast} images={site.images} ind={ind} />
+                                <SitePageCastModal cast={cast} />
                             </ModalCustom>
                         }
                     </Fragment>

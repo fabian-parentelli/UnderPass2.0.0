@@ -62,15 +62,6 @@ const updActive = async (id) => {
     return { status: 'success', result };
 };
 
-const deleteCast = async (toDelete) => {
-    const site = await sitesRepository.getById(toDelete.id);
-    if (!site) throw new SitesNotFound('Sitio no encontrado');
-    site.cast.splice(toDelete.index, 1)
-    const result = await sitesRepository.update(site);
-    if (!result) throw new SitesNotFound('No se puede actualizar el sitio');
-    return { status: 'success', result };
-};
-
 const updSite = async (images, imagesUrl, body) => {
     const title = await sitesRepository.getByTitle(body.title);
     const site = await sitesRepository.getById(body._id);
@@ -96,4 +87,4 @@ const updSite = async (images, imagesUrl, body) => {
     return { status: 'success', result };
 };
 
-export { newSite, getByUserId, getById, getByLinks, getRandom, getSites, updActive, deleteCast, updSite };
+export { newSite, getByUserId, getById, getByLinks, getRandom, getSites, updActive, updSite };

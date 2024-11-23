@@ -1,0 +1,42 @@
+.sitePageDisc {
+    width: 86%;
+
+    h3 {
+        color: #058d4d;
+        text-align: right;
+    }
+
+    .sitePageDiscCont {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        width: 100%;
+        margin-top: 1rem;
+        gap: 1rem;
+
+        .sitePageDiscImg {
+            width: 300px;
+            height: 300px;
+            object-fit: cover;
+            box-shadow: 5px 5px 15px;
+            border-radius: 3px;
+        }
+
+        .sitePageDiscSongs {
+            width: 500px;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .sitePageDisc {
+        .sitePageDiscCont {
+            justify-content: center;
+
+            .sitePageDiscImg {
+                width: 280px;
+                height: 280px;
+            }
+        }
+    }
+}

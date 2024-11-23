@@ -11,6 +11,9 @@ import { getSiteByIdApi } from '../../../helpers/sites/getSiteById.api.js';
 import DescriptionSite from '../newSiteSeccion/DescriptionSite/DescriptionSite.jsx';
 import SocialMediaSite from '../newSiteSeccion/SocialMediaSite/SocialMediaSite.jsx';
 import Discography from '../newSiteSeccion/Discography/Discography.jsx';
+import ProductSite from '../newSiteSeccion/ProductSite/ProductSite.jsx';
+import ImagesSities from '../newSiteSeccion/ImagesSities/ImagesSities.jsx';
+import SiteVideo from '../newSiteSeccion/SiteVideo/SiteVideo.jsx';
 
 const NewSitesComp = ({ userId, id }) => {
 
@@ -50,7 +53,7 @@ const NewSitesComp = ({ userId, id }) => {
         };
         checkUniqueTitles();
     }, [values.cast, values.discography]);
-    
+
 
     const handleSubmit = async (e) => {
         setLoading(true);
@@ -94,6 +97,13 @@ const NewSitesComp = ({ userId, id }) => {
                 {vew === 'socialMedia' && <SocialMediaSite values={values} setValues={setValues} />}
                 {vew === 'cast' && <Cast values={values} setValues={setValues} setFiles={setFiles} setVew={setVew} />}
                 {vew === 'discography' && <Discography values={values} setFiles={setFiles} setValues={setValues} />}
+                {vew === 'products' && <ProductSite values={values} setValues={setValues} />}
+                {vew === 'galery' && <ImagesSities values={values} setFiles={setFiles} setValues={setValues} />}
+                {vew === 'videos' && <SiteVideo values={values} setValues={setValues} />}
+
+
+                {/* {vew === 'end' && 'Aca muestro la pagina .....................'} */}
+                
 
                 <button className='btn btnUS' disabled={!vewButton}>{id ? 'Actualizar' : 'Agragar'}</button>
                 {!vewButton && <p className='newSitesCompAlert'>No se puede repetir los nombres</p>}

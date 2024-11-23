@@ -1,7 +1,7 @@
 import './siteUpdateCastAll.scss';
 import { useEffect } from 'react';
 import ImgUpload from '../../newSiteSeccion/ImgUpload/ImgUpload';
-import { deleteCastSiteApi } from '../../../../helpers/sites/deleteCastSite.api.js';
+
 import SiteUpdateAddCast from './SiteUpdateAddCast.jsx';
 
 const SiteUpdateCastAll = ({ site, setFiles, handleSubmit, handleValues, values, setValues, setSites }) => {
@@ -15,12 +15,7 @@ const SiteUpdateCastAll = ({ site, setFiles, handleSubmit, handleValues, values,
     };
 
     const handleDelete = async (index) => {
-        const response = await deleteCastSiteApi({ _id: values._id, index });
-        if (response.status === 'success') {
-            const data = { ...values };
-            data.cast.splice(index, 1);
-            setValues(data);
-        } else console.error(response.error);
+
     };
 
     return (

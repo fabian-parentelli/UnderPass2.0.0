@@ -1,19 +1,16 @@
 import './sitePageCastModal.scss';
 
-const SitePageCastModal = ({ cast, images, ind }) => {
-
-    console.log(cast);
-
+const SitePageCastModal = ({ cast }) => {
 
     return (
         <div className='sitePageCastModal'>
             <img
-                src={images.find(i => i.name === `castImg${ind}`)?.url}
+                src={cast.img.url}
                 alt="img" className='sitePageCastAllImg'
-                style={{ objectPosition: images.find(i => i.name === `castImg${ind}`)?.position }}
+                style={{ objectPosition: cast.img?.position }}
             />
-            <p className='sitePageCastModalTitle'>{cast.castTitle}</p>
-            <p>{cast.castText}</p>
+            <p className='sitePageCastModalTitle'>{cast.title}</p>
+            <p>{cast.text}</p>
         </div>
     );
 };

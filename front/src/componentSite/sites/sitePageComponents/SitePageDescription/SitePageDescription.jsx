@@ -8,9 +8,9 @@ const SitePageDescription = ({ site }) => {
             <div className='sitePageDescriptionTop'>
                 <p>{site.description.short}</p>
                 <img
-                    src={site.images.find(i => i.name === 'photoDescription')?.url}
+                    src={site.description.img.url}
                     alt="img" className='sitePageDescriptionImg'
-                    style={{ objectPosition: site.images.find(i => i.name === 'photoDescription')?.position }}
+                    style={{ objectPosition: site.description.img?.position }}
                 />
             </div>
             <p>{site.description.long}</p>

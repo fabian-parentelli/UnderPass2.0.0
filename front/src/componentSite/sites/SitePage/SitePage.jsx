@@ -42,12 +42,12 @@ const SitePage = () => {
                     <SitePageSocialMedia site={site} />
                     <SitePageCast site={site} />
                     {site.isDiscography && <SitePageDiscography site={site} />}
-                    {site.isProduct && <SitePageProducts site={site} />}
-                    <BackImg url={site.images.find(i => i.name === 'banner')?.url} height={50} />
-                    {site.isGalery && <SitePageGalery site={site} />}
-                    {site.isVideo && <SitePageVideo site={site} />}
-                    <div className='sitePageMessages' ><Messages type='site' typeId={site._id} /></div>
-                    <div className='sitePageLogo'><UnderSiteLog size={3} /></div>
+                    {/* {site.isProduct && <SitePageProducts site={site} />} */}
+                    {/* <BackImg url={site.images.find(i => i.name === 'banner')?.url} height={50} /> */}
+                    {/* {site.isGalery && <SitePageGalery site={site} />} */}
+                    {/* {site.isVideo && <SitePageVideo site={site} />} */}
+                    {/* <div className='sitePageMessages' ><Messages type='site' typeId={site._id} /></div> */}
+                    {/* <div className='sitePageLogo'><UnderSiteLog size={3} /></div> */}
                 </>
             }
             <Load loading={loading} />

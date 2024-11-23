@@ -1,0 +1,88 @@
+.videoSities {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h6 {
+        font-size: 1rem;
+        font-weight: 300;
+    }
+
+    .videoSitiesSectSwitch {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .videoSitiesSwitch {
+            display: flex;
+            align-items: center;
+        }
+
+        .videoSitiesHelp {
+            font-size: 12px;
+            color: gray;
+        }
+    }
+
+    .videoSitiesHelpUrl {
+        margin-top: 1rem;
+        color: red;
+        cursor: pointer;
+        transition: .3s ease-in-out;
+
+        &:hover {
+            color: rgb(199, 50, 50);
+        }
+    }
+
+    .videoSitiesCenter {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        margin-top: 1rem;
+
+        .videoSitiesInputsDiv {
+            display: flex;
+            align-items: center;
+            gap: 6x;
+
+            input {
+                width: 300px;
+            }
+
+            .videoSitiesIcon {
+                cursor: pointer;
+                transition: .3s ease-in-out;
+                color: gray;
+
+                &:hover {
+                    color: red;
+                }
+            }
+        }
+
+        .btnVideoSities {
+            text-align: center;
+        }
+    }
+}
+
+.videoSitiesModal {
+
+    h2 {
+        text-align: center;
+        margin-bottom: 12px;
+    }
+
+    .videoSitiesModalImg {
+        max-width: 600px;
+        max-width: 100%;
+    }
+
+    p {
+        font-size: 12px;
+    }
+}

@@ -20,19 +20,19 @@ const SitePagePortal = ({ site }) => {
 
             <section className='sitePagePortalA'>
                 <img
-                    src={site.images.find(i => i.name === 'banner')?.url}
+                    src={site.imgPortal.banner.url}
                     alt="img" className='sitePagePortalBanner'
-                    style={{ objectPosition: site.images.find(i => i.name === 'banner')?.position }}
+                    style={{ objectPosition: site.imgPortal.banner?.position }}
                 />
                 <div className='sitePagePortalDiv'>
                     <h2>{site.title}</h2>
                     <p className='pgray'>{typeSitesCategory(site.category)} - {typeSitesSubCategory(site.subCategory)}</p>
-                    <p>{site.location.city} - {site.location.province}</p>
+                    <p style={{marginTop: '10px'}}>{site.location.city} - {site.location.province}</p>
                 </div>
                 <img
-                    src={site.images.find(i => i.name === 'logo')?.url}
+                    src={site.imgPortal.logo.url}
                     alt="img" className='sitePagePortalLogo'
-                    style={{ objectPosition: site.images.find(i => i.name === 'logo')?.position }}
+                    style={{ objectPosition: site.imgPortal.banner?.position }}
                 />
             </section>
 

@@ -3,36 +3,36 @@
 
     h2 {
         margin: 2rem 0;
+        text-align: center;
     }
 
     section {
         display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 2rem;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        padding-top: 1rem;
 
-        .sitePageDiscographyDiv {
+        .sitePageDiscographySelect {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-top: 2rem;
 
-            .sitePageDiscographyTitle {
-                font-size: 2rem;
-            }
+            .sitePageDiscographyDivDisc {
+                text-align: center;
+                transition: .3s ease-in-out;
+                cursor: pointer;
 
-            .sitePageDiscographyCont {
-                display: flex;
-                align-items: flex-start;
-                justify-content: space-between;
-                flex-wrap: wrap;
-                margin-top: 1rem;
-
-                .sitePageDiscographyImg {
-                    width: 330px;
-                    height: 330px;
-                    object-fit: cover;
-                    box-shadow: 5px 5px 15px;
+                &:hover {
+                    transform: translateY(-5px);
                 }
 
-                .sitePageDiscographySong {
-                    width: 50%;
+                .sitePageDiscographyimg {
+                    width: 100px;
+                    height: 100px;
+                    object-fit: cover;
+                    box-shadow: 5px 5px 15px;
                 }
             }
         }
@@ -41,34 +41,24 @@
 
 @media (max-width: 769px) {
     .sitePageDiscography {
+        margin-top: 4rem;
 
         h2 {
+            margin: 0;
             text-align: center;
         }
 
         section {
+            justify-content: center;
+            width: 100%;
 
-            .sitePageDiscographyDiv {
+            .sitePageDiscographySelect {
 
-                .sitePageDiscographyTitle {
-                    text-align: center;
-                }
-
-                .sitePageDiscographyCont {
-                    justify-content: center;
-                    gap: 2rem;
-
-                    .sitePageDiscographyImg {
-                        width: 300px;
-                        height: 300px;
-                    }
-
-                    .sitePageDiscographySong {
-                        width: 80%;
-                    }
-                }
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 1rem;
+                margin-top: 0;
             }
         }
     }
-
 }

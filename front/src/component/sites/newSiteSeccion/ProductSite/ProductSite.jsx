@@ -7,7 +7,7 @@ import { getProductByUserIdApi } from '../../../../helpers/products/getProductBy
 const ProductSite = ({ values, setValues }) => {
 
     const [products, setProducts] = useState([]);
-    const [selected, setSelected] = useState([]);
+    const [selected, setSelected] = useState(values.products || []);
 
     const handleProduct = (e) => setValues({ ...values, isProduct: e.target.checked });
 
@@ -21,6 +21,11 @@ const ProductSite = ({ values, setValues }) => {
 
     useEffect(() => { setValues({ ...values, products: [...selected] }) }, [selected]);
 
+    useEffect(() => {
+        localStorage.setItem('to', 'galery');
+        setValues({...values, post: 'products'});
+    },[]);
+
     return (
         <div className='productSite'>
             
@@ -31,7 +36,7 @@ const ProductSite = ({ values, setValues }) => {
                 <div className='productSiteDiv'>
                     <div className='productSiteSwitch'>
                         <p>NO</p>
-                        <Switch value={values.isProduct} onChange={handleProduct} />
+                        <Switch checked={values.isProduct} onChange={handleProduct} />
                         <p>SI</p>
                     </div>
                     <p className='productSitePhelp'>Habilita la venta de productos</p>
@@ -40,7 +45,7 @@ const ProductSite = ({ values, setValues }) => {
                 {values.isProduct && products.length > 0 &&
                     <section>
                         <p className='productSitePhelp'>Productos disponibles</p>
-                        <CheckBoxes2 labels={products} setType={setSelected} multiselect={true} />
+                        <CheckBoxes2 labels={products} setType={setSelected} multiselect={true} selecteds={selected} />
                     </section>
                 }
 

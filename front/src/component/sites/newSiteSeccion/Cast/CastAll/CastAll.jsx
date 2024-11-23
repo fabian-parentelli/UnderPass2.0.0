@@ -4,7 +4,6 @@ import Tooltip from '@mui/material/Tooltip';
 import ImgUpload from '../../ImgUpload/ImgUpload';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import CharacterCounter from '../../../../utils/CharacterCounter';
-import { deleteCastSiteApi } from '../../../../../helpers/sites/deleteCastSite.api.js';
 
 const CastAll = ({ values, setFiles, setValues, setVew }) => {
 

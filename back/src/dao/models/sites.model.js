@@ -64,24 +64,39 @@ const sitesSchema = new mongoose.Schema({
                 url: { type: String },
                 name: { type: String },
                 position: { type: String }
-            } 
+            }
+        }
+    ],
+    isProduct: { type: Boolean, default: false },
+    products: [{ type: String }],
+    isGalery: { type: Boolean, default: false },
+    galery: [
+        {
+            url: { type: String },
+            name: { type: String },
+            position: { type: String }
+        }
+    ],
+    isVideo: { type: Boolean, default: false },
+    videos: [
+        {
+            url: { type: String },
+            name: { type: String },
+            description: { type: String }
         }
     ],
 
 
-    products: [{ type: String }],
+    
+
     castPerson: { type: String },
-    videos: [{ type: String }],
     stream: [
         {
             description: { type: String },
             url: { type: String },
         }
     ],
-    isProduct: { type: Boolean },
-    isVideo: { type: Boolean },
     isShift: { type: Boolean },
-    isGalery: { type: Boolean },
 
 
     active: { type: Boolean },
