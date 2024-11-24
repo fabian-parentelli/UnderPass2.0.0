@@ -64,10 +64,12 @@ const NewSiteButtom = ({ vew, setVew, values }) => {
                 )
             }
 
-            <div onClick={() => setVew('discography')} style={{ color: vew === 'discography' ? '#058d4d' : '' }}>
-                <GraphicEqIcon />
-                <p>Discografía</p>
-            </div>
+            {(values?.subCategory === 'musicalGroup' || values?.subCategory === 'solist') &&
+                <div onClick={() => setVew('discography')} style={{ color: vew === 'discography' ? '#058d4d' : '' }}>
+                    <GraphicEqIcon />
+                    <p>Discografía</p>
+                </div>
+            }
 
             <div onClick={() => setVew('products')} style={{ color: vew === 'products' ? '#058d4d' : '' }}>
                 <ShoppingBagIcon />
@@ -84,10 +86,12 @@ const NewSiteButtom = ({ vew, setVew, values }) => {
                 <p>Vidos</p>
             </div>
 
-            <div onClick={() => setVew('shifts')} style={{ color: vew === 'shifts' ? '#058d4d' : '' }}>
-                <CalendarMonthIcon />
-                <p>Turnos</p>
-            </div>
+            {values?.category === 'premises' &&
+                <div onClick={() => setVew('shifts')} style={{ color: vew === 'shifts' ? '#058d4d' : '' }}>
+                    <CalendarMonthIcon />
+                    <p>Turnos</p>
+                </div>
+            }
 
         </div>
     );

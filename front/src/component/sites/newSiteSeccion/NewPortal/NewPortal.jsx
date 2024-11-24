@@ -4,12 +4,14 @@ import { sitiesCategories, sitiesSubCategories } from '../../../../utils/sitiesC
 import SelectedProvince from '../../../utils/SelectedProvince.jsx';
 import { useState, useEffect } from 'react';
 
-const NewPortal = ({ values, handleValues, setFiles, setValues }) => {
+const NewPortal = ({ values, setFiles, setValues }) => {
 
     const [isMobile, setIsMobile] = useState(window.innerWidth >= 1000 ? 1000 : window.innerWidth);
     const handleLocation = (e) => setValues({
         ...values, location: { ...values.location, [e.target.name]: e.target.value }
     });
+
+    const handleValues = (e) => setValues({ ...values, [e.target.name]: e.target.value });
 
     useEffect(() => { localStorage.setItem('to', 'events') }, []);
     useEffect(() => {

@@ -1,0 +1,18 @@
+.endSectiosn {
+    min-height: 100vh;
+    max-width: 1000px;
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 70px;
+    margin-bottom: 4rem;
+
+    .sitePageMessages {
+        margin-top: 6rem;
+    }
+
+    .sitePageLogo {
+        margin-top: 2rem;
+        display: flex;
+        justify-content: center;
+    }
+}

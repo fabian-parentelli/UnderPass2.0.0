@@ -14,6 +14,7 @@ import Discography from '../newSiteSeccion/Discography/Discography.jsx';
 import ProductSite from '../newSiteSeccion/ProductSite/ProductSite.jsx';
 import ImagesSities from '../newSiteSeccion/ImagesSities/ImagesSities.jsx';
 import SiteVideo from '../newSiteSeccion/SiteVideo/SiteVideo.jsx';
+import EndSections from '../newSiteSeccion/EndSections/EndSections.jsx';
 
 const NewSitesComp = ({ userId, id }) => {
 
@@ -22,8 +23,6 @@ const NewSitesComp = ({ userId, id }) => {
     const [vew, setVew] = useState('portal');
     const [files, setFiles] = useState([]);
     const [values, setValues] = useState({ userId: userId || '', location: { country: localStorage.getItem('country') } });
-
-    const handleValues = (e) => setValues({ ...values, [e.target.name]: e.target.value });
 
     useEffect(() => {
         const fetchData = async () => {
@@ -70,10 +69,7 @@ const NewSitesComp = ({ userId, id }) => {
                 addedFiles.add(file.name);
             };
         });
-        formdata.set('values', JSON.stringify(values)); //---------------------------------------------
-        formdata.forEach((value, key) => {              //---------------------------------------------
-            console.log(`${key}:`, value);              //---------------------------------------------
-        });                                             //---------------------------------------------
+        formdata.set('values', JSON.stringify(values));
         const response = await newSitesApi(formdata);
         if (response.status === 'success') {
             setFiles([]);
@@ -91,7 +87,7 @@ const NewSitesComp = ({ userId, id }) => {
         <form className='newSitesComp' onSubmit={handleSubmit}>
             <ScrollToTop>
                 <NewSiteButtom vew={vew} setVew={setVew} values={values} />
-                {vew === 'portal' && <NewPortal values={values} handleValues={handleValues} setFiles={setFiles} setValues={setValues} />}
+                {vew === 'portal' && <NewPortal values={values} setFiles={setFiles} setValues={setValues} />}
                 {vew === 'events' && <EventSite values={values} setValues={setValues} />}
                 {vew === 'description' && <DescriptionSite values={values} setFiles={setFiles} setValues={setValues} />}
                 {vew === 'socialMedia' && <SocialMediaSite values={values} setValues={setValues} />}
@@ -100,11 +96,7 @@ const NewSitesComp = ({ userId, id }) => {
                 {vew === 'products' && <ProductSite values={values} setValues={setValues} />}
                 {vew === 'galery' && <ImagesSities values={values} setFiles={setFiles} setValues={setValues} />}
                 {vew === 'videos' && <SiteVideo values={values} setValues={setValues} />}
-
-
-                {/* {vew === 'end' && 'Aca muestro la pagina .....................'} */}
-                
-
+                {vew === 'end' && <EndSections values={values} />}
                 <button className='btn btnUS' disabled={!vewButton}>{id ? 'Actualizar' : 'Agragar'}</button>
                 {!vewButton && <p className='newSitesCompAlert'>No se puede repetir los nombres</p>}
                 <Load loading={loading} />

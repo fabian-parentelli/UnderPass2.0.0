@@ -14,7 +14,7 @@ const SiteEventPage = ({ site }) => {
                     <div className='lineVert'></div>
 
                     <div style={{ width: '40%' }}>
-                        <p className='pgray'>{sit.location.city} - {sit.location.province}</p>
+                        <p className='pgray'>{sit.location?.city} - {sit.location?.province}</p>
                         <h2 className='colUE'>{sit.title}</h2>
                     </div>
                     <div className='lineVert'></div>

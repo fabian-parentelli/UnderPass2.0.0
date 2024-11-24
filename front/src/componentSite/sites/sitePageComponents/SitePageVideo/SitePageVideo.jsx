@@ -6,7 +6,7 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 const SitePageVideo = ({ site }) => {
 
-    const [vew, setVew] = useState(site?.videos[0]);
+    const [vew, setVew] = useState(site?.videos[0].url);
     const [startIndex, setStartIndex] = useState(0);
     const [videosVisible, setVideosVisible] = useState(3);
     const [isPlaying, setIsPlaying] = useState(false);
@@ -48,8 +48,8 @@ const SitePageVideo = ({ site }) => {
                     >
                         {site?.videos.map((vid, ind) => (
                             <div className='sitePageVideoVewFather' key={ind}>
-                                <VideosVew url={vid} />
-                                <div className='sitePageVideoBox' onClick={() => handleClick(vid)}></div>
+                                <VideosVew url={vid.url} />
+                                <div className='sitePageVideoBox' onClick={() => handleClick(vid.url)}></div>
                             </div>
                         ))}
                     </div>

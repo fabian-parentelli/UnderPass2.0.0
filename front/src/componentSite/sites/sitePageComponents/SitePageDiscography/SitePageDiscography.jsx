@@ -1,6 +1,6 @@
 import './sitePageDiscography.scss';
-import SitePageDisc from './SitePageDisc/SitePageDisc';
 import { useState } from 'react';
+import SitePageDisc from './SitePageDisc/SitePageDisc';
 
 const SitePageDiscography = ({ site }) => {
 

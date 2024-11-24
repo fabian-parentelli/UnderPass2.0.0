@@ -14,23 +14,22 @@ const SitePageGalery = ({ site }) => {
         <div className='sitePageGalery'>
             <h2>Galería</h2>
             <section>
-                {site?.images && site?.images.filter(img => img.name.startsWith('galery'))
-                    .map((img, ind) => (
-                        <Fragment key={ind}>
-                            <img
-                                src={img.url}
-                                alt={img.name}
-                                className={img.name}
-                                style={{ objectPosition: img.position }}
-                                onClick={() => handleOpen(ind)}
-                            />
-                            {vew.index === ind &&
-                                <ModalCustom modalIsOpen={vew.open} closeModal={handleClosed} >
-                                    <SitePageGaleryVew img={img} handleOpen={handleOpen} vew={vew} />
-                                </ModalCustom>
-                            }
-                        </Fragment>
-                    ))
+                {site?.galery && site?.galery.map((img, ind) => (
+                    <Fragment key={ind}>
+                        <img
+                            src={img.url}
+                            alt={img.name}
+                            className={img.name}
+                            style={{ objectPosition: img.position }}
+                            onClick={() => handleOpen(ind)}
+                        />
+                        {vew.index === ind &&
+                            <ModalCustom modalIsOpen={vew.open} closeModal={handleClosed} >
+                                <SitePageGaleryVew img={img} handleOpen={handleOpen} vew={vew} />
+                            </ModalCustom>
+                        }
+                    </Fragment>
+                ))
                 }
             </section>
         </div>

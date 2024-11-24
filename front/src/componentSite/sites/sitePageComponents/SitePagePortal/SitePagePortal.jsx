@@ -27,7 +27,7 @@ const SitePagePortal = ({ site }) => {
                 <div className='sitePagePortalDiv'>
                     <h2>{site.title}</h2>
                     <p className='pgray'>{typeSitesCategory(site.category)} - {typeSitesSubCategory(site.subCategory)}</p>
-                    <p style={{marginTop: '10px'}}>{site.location.city} - {site.location.province}</p>
+                    <p style={{marginTop: '10px'}}>{site.location?.city} - {site.location.province}</p>
                 </div>
                 <img
                     src={site.imgPortal.logo.url}

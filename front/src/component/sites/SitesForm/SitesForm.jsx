@@ -1,9 +1,9 @@
 import './sitesForm.scss';
+import { Link } from 'react-router-dom';
 import { Fragment, useState } from 'react';
 import Tooltip from '@mui/material/Tooltip';
 import BigImg from '../../utils/BigImg/BigImg';
 import PersonIcon from '@mui/icons-material/Person';
-import SiteUpdate from '../SiteUpdate/SiteUpdate.jsx';
 import SyncAltIcon from '@mui/icons-material/SyncAlt';
 import ModalCustom from '../../utils/ModalCustom/ModalCustom.jsx';
 import UserVewSmall from '../../user/UserVewSmall/UserVewSmall.jsx';
@@ -15,15 +15,13 @@ const SitesForm = ({ sites, setSites, setLoading }) => {
 
     const { user } = useLoginContext();
     const [vew, setVew] = useState({ id: null, open: false });
-    const [update, setUpdate] = useState({ id: null, open: false });
 
     const handleOpen = (id) => setVew({ id: id, open: true });
-    const handleUpdate = (id) => setUpdate({ id: id, open: true });
 
     const handleActive = async (id) => {
         setLoading(true);
         const response = await updSiteActiveApi(id);
-        if (response.status === 'success') {
+        if (response.status === 'success') {            
             const data = [...sites];
             const index = data.findIndex(site => site._id == response.result._id);
             data[index] = response.result;
@@ -55,7 +53,7 @@ const SitesForm = ({ sites, setSites, setLoading }) => {
                         <Fragment key={site._id}>
                             <tr>
                                 <td>
-                                    <BigImg img={site.images.find(img => img.name === 'logo').url} border={false} />
+                                    <BigImg img={site.imgPortal.logo.url} border={false} />
                                 </td>
                                 <td>
                                     <p>{site.title}</p>
@@ -88,9 +86,11 @@ const SitesForm = ({ sites, setSites, setLoading }) => {
                                 }
 
                                 <Tooltip title='Actualizar' placement="left-start">
-                                    <td className='sitesFormBack' onClick={() => handleUpdate(site._id)}>
-                                        <SyncAltIcon />
-                                    </td>
+                                    <Link to={`/newsites?id=${site._id}`} className='sitesFormLink'>
+                                        <td className='sitesFormBack'>
+                                            <SyncAltIcon />
+                                        </td>
+                                    </Link>
                                 </Tooltip>
 
                                 <Tooltip title={site.active ? 'Desactivar' : 'Activar'} placement="left-start">
@@ -107,12 +107,6 @@ const SitesForm = ({ sites, setSites, setLoading }) => {
                             {vew.id == site._id &&
                                 <ModalCustom modalIsOpen={vew.open} closeModal={() => setVew({ id: null, open: false })}>
                                     <UserVewSmall userId={site.userId} />
-                                </ModalCustom>
-                            }
-
-                            {update.id === site._id &&
-                                <ModalCustom modalIsOpen={update.open} closeModal={() => setUpdate({ id: null, open: false })}>
-                                    <SiteUpdate site={site} sites={sites} setSites={setSites} />
                                 </ModalCustom>
                             }
 
