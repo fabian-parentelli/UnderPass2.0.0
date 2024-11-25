@@ -2,7 +2,7 @@ import './sitePageDisc.scss';
 import SpotifyComp from '../../../../../component/utils/SpotifyComp';
 
 const SitePageDisc = ({ disc }) => {
-    
+        
     return (
         <div className='sitePageDisc'>
             <h3>{disc.title}</h3>
@@ -19,6 +19,8 @@ const SitePageDisc = ({ disc }) => {
                     ))}
                 </div>
             </div>
+            
+            {disc.text && <p className='sitePageDiscText'>{disc.text}</p>}
         </div>
     );
 };

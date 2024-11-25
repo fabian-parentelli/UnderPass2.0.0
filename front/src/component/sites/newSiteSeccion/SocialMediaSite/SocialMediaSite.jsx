@@ -24,7 +24,7 @@ const SocialMediaSite = ({ values, setValues }) => {
                         <label>Facebook</label>
                         <div>
                             <FacebookIcon className='socialMediaSiteIcon' />
-                            <input type="text" name='facebook' placeholder='Opcional' onChange={handleValues} value={values.socialMedia.facebook || ''} />
+                            <input type="text" name='facebook' placeholder='Opcional' onChange={handleValues} value={values.socialMedia?.facebook || ''} />
                         </div>
                     </div>
 
@@ -32,7 +32,7 @@ const SocialMediaSite = ({ values, setValues }) => {
                         <label>X (twitter)</label>
                         <div>
                             <XIcon className='socialMediaSiteIcon' />
-                            <input type="text" name='twitter' placeholder='Opcional' onChange={handleValues} value={values.socialMedia.twitter || ''} />
+                            <input type="text" name='twitter' placeholder='Opcional' onChange={handleValues} value={values.socialMedia?.twitter || ''} />
                         </div>
                     </div>
 
@@ -40,7 +40,7 @@ const SocialMediaSite = ({ values, setValues }) => {
                         <label>Youtube</label>
                         <div>
                             <YouTubeIcon className='socialMediaSiteIcon' />
-                            <input type="text" name='youtube' placeholder='Opcional' onChange={handleValues} value={values.socialMedia.youtube || ''} />
+                            <input type="text" name='youtube' placeholder='Opcional' onChange={handleValues} value={values.socialMedia?.youtube || ''} />
                         </div>
                     </div>
                 </section>
@@ -50,7 +50,7 @@ const SocialMediaSite = ({ values, setValues }) => {
                         <label>Instagrame</label>
                         <div>
                             <InstagramIcon className='socialMediaSiteIcon' />
-                            <input type="text" name='instagrame' placeholder='Opcional' onChange={handleValues} value={values.socialMedia.instagrame || ''} />
+                            <input type="text" name='instagrame' placeholder='Opcional' onChange={handleValues} value={values.socialMedia?.instagrame || ''} />
                         </div>
                     </div>
 
@@ -58,7 +58,7 @@ const SocialMediaSite = ({ values, setValues }) => {
                         <label>Spotify</label>
                         <div>
                             <img width="30" height="30" src="https://img.icons8.com/ios-filled/50/spotify.png" alt="spotify" />
-                            <input type="text" name='spotify' placeholder='Opcional' onChange={handleValues} value={values.socialMedia.spotify || ''} />
+                            <input type="text" name='spotify' placeholder='Opcional' onChange={handleValues} value={values.socialMedia?.spotify || ''} />
                         </div>
                     </div>
 
@@ -66,7 +66,7 @@ const SocialMediaSite = ({ values, setValues }) => {
                         <label>WhatsApp</label>
                         <div>
                             <WhatsAppIcon className='socialMediaSiteIcon' />
-                            <input type="text" name='whatsApp' placeholder='Opcional' onChange={handleValues} value={values.socialMedia.whatsApp || ''} />
+                            <input type="text" name='whatsApp' placeholder='Opcional' onChange={handleValues} value={values.socialMedia?.whatsApp || ''} />
                         </div>
                     </div>
                 </section>

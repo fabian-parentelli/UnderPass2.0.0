@@ -59,7 +59,6 @@ const NewSitesComp = ({ userId, id }) => {
         e.preventDefault();
         let formdata = new FormData()
         const folderName = formatText(values.title);
-        setValues({ ...values, link: folderName });
         formdata.set('folderName', `sites/${folderName}`);
         const addedFiles = new Set();
         formdata.delete('files');
@@ -88,15 +87,15 @@ const NewSitesComp = ({ userId, id }) => {
             <ScrollToTop>
                 <NewSiteButtom vew={vew} setVew={setVew} values={values} />
                 {vew === 'portal' && <NewPortal values={values} setFiles={setFiles} setValues={setValues} />}
-                {vew === 'events' && <EventSite values={values} setValues={setValues} />}
-                {vew === 'description' && <DescriptionSite values={values} setFiles={setFiles} setValues={setValues} />}
-                {vew === 'socialMedia' && <SocialMediaSite values={values} setValues={setValues} />}
-                {vew === 'cast' && <Cast values={values} setValues={setValues} setFiles={setFiles} setVew={setVew} />}
+                {vew === 'events' && values._id && <EventSite values={values} setValues={setValues} />}
+                {vew === 'description' && values._id && <DescriptionSite values={values} setFiles={setFiles} setValues={setValues} />}
+                {vew === 'socialMedia' && values._id && <SocialMediaSite values={values} setValues={setValues} />}
+                {vew === 'cast' && values._id && <Cast values={values} setValues={setValues} setFiles={setFiles} setVew={setVew} />}
                 {vew === 'discography' && <Discography values={values} setFiles={setFiles} setValues={setValues} />}
-                {vew === 'products' && <ProductSite values={values} setValues={setValues} />}
-                {vew === 'galery' && <ImagesSities values={values} setFiles={setFiles} setValues={setValues} />}
-                {vew === 'videos' && <SiteVideo values={values} setValues={setValues} />}
-                {vew === 'end' && <EndSections values={values} />}
+                {vew === 'products' && values._id && <ProductSite values={values} setValues={setValues} />}
+                {vew === 'galery' && values._id && <ImagesSities values={values} setFiles={setFiles} setValues={setValues} />}
+                {vew === 'videos' && values._id && <SiteVideo values={values} setValues={setValues} />}
+                {vew === 'end' && values._id && <EndSections values={values} />}
                 <button className='btn btnUS' disabled={!vewButton}>{id ? 'Actualizar' : 'Agragar'}</button>
                 {!vewButton && <p className='newSitesCompAlert'>No se puede repetir los nombres</p>}
                 <Load loading={loading} />

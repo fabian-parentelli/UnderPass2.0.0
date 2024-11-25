@@ -1,0 +1,99 @@
+@import '../../../../style/colors.scss';
+
+#siteNewHelp {
+    border-top: 1px solid gray;
+    width: 80%;
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .siteNewHelpPara {
+        margin-top: 2rem;
+        text-align: center;
+        line-height: 2;
+    }
+
+    .siteNewHelpA {
+        margin-top: 2rem;
+        text-align: center;
+
+        p {
+            margin-top: 12px;
+            line-height: 2;
+        }
+
+        h4 {
+            margin-top: 12px;
+        }
+
+        img {
+            margin-top: 2rem;
+            width: 100%;
+        }
+
+        .siteManager {
+            width: 80%;
+        }
+
+        .siteSocial {
+            width: 50%;
+        }
+    }
+
+    .siteNewHelpB {
+        margin-top: 4rem;
+        text-align: center;
+
+        div {
+            margin: 1rem auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 50%;
+
+            p {
+                line-height: 3;
+            }
+        }
+    }
+
+    .siteNewHelpLog {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin-top: 3rem;
+
+        span {
+            color: $underSite;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    #siteNewHelp {
+        width: 90%;
+
+        .siteNewHelpA {
+
+            .siteSocial {
+                width: 90%;
+            }
+        }
+
+        .siteNewHelpB {
+
+            div {
+                flex-direction: column;
+                width: 100%;
+
+                p {
+                    line-height: 3;
+                }
+            }
+        }
+    }
+}

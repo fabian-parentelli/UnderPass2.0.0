@@ -7,6 +7,7 @@ import OrderBuyHelp from "./OrderBuyHelp/OrderBuyHelp";
 import OrderSellerHelp from "./OrderSellerHelp/OrderSellerHelp";
 import PublicityHelp from "./PublicityHelp/PublicityHelp";
 import PublicityVewHelp from "./PublicityVewHelp/PublicityVewHelp";
+import SiteNewHelp from "./SiteNewHelp/SiteNewHelp";
 import SpotifyHelp from "./SpotifyHelp/SpotifyHelp";
 import UpdEventHelp from "./UpdEventHelp/UpdEventHelp";
 import VewProductHelp from "./VewProductHelp/VewProductHrlp";
@@ -31,6 +32,7 @@ const AppHelp = () => {
             <NewEventHelp />
             <UpdEventHelp />
             <SpotifyHelp />
+            <SiteNewHelp />
         </div>
     );
 };

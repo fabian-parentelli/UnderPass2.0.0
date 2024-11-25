@@ -15,6 +15,8 @@ const newSiteOptions = (images, imagesUrl, sit, site) => {
 export { newSiteOptions };
 
 function isPortal(images, imagesUrl, sit, site) {
+
+    const folderName = formatText(sit.title);
     const imgPortal = {};
     if (imagesUrl.length > 0 && images.length > 0) {
         imagesUrl.forEach((img, ind) => {
@@ -32,6 +34,7 @@ function isPortal(images, imagesUrl, sit, site) {
             if (site.imgPortal.logo) site.imgPortal.logo.position = sit.position_logo;
         };
     };
+    site.link = folderName;    
     return site;
 };
 
@@ -159,4 +162,12 @@ function isVideo(sit, site) {
     site = { ...site, ...sit };
     if (!site.isVideo) site.videos = [];
     return site;
+};
+
+function formatText(text) {
+    return text
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/\s+/g, "");
 };

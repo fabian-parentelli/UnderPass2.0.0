@@ -1,16 +1,18 @@
 import './discography.scss';
-import { Link } from 'react-router-dom';
 import Switch from '@mui/material/Switch';
 import { useEffect, useState } from 'react';
 import Tooltip from '@mui/material/Tooltip';
 import ImgUpload from '../ImgUpload/ImgUpload';
 import CharacterCounter from '../../../utils/CharacterCounter';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import ModalCustom from '../../../utils/ModalCustom/ModalCustom';
+import SpotifyHelp from '../../../../componentSite/help/AppHelp/SpotifyHelp/SpotifyHelp';
 
 const Discography = ({ values, setFiles, setValues }) => {
 
-    const [discs, setDiscs] = useState(values.discography.length > 0 ? values.discography : [{}]);
+    const [discs, setDiscs] = useState(values.discography.length > 0 ? values.discography : [{ songs: ['', '', '', ''] }]);
     const [deleteSong, setDeleteSong] = useState({ disc: false, song: false });
+    const [open, setOpen] = useState(false);
 
     const addDisc = () => setDiscs([...discs, { songs: ['', '', '', ''] }]);
 
@@ -72,9 +74,9 @@ const Discography = ({ values, setFiles, setValues }) => {
 
             {values.isDiscography && (
                 <>
-                    <Link to='/help#spotifyHelp' className='discographyPHelp'>Ayuda con la url de Spotify</Link>
+                    <p onClick={() => setOpen(true)} className='discographyPHelp'>Ayuda con la url de Spotify</p>
                     <section>
-                        {discs.map((disc, index) => (
+                        {discs && discs.map((disc, index) => (
                             <div key={index}>
                                 <div className='discographyDiv'>
                                     {disc.title ?
@@ -110,7 +112,7 @@ const Discography = ({ values, setFiles, setValues }) => {
                                         </div>
 
                                         <div className='discographyInputsDiv'>
-                                            {disc.songs.map((song, ind) => (
+                                            {disc.songs && disc.songs.map((song, ind) => (
                                                 <div key={ind} className='discographyUrl'>
                                                     <input
                                                         type="text"
@@ -152,6 +154,9 @@ const Discography = ({ values, setFiles, setValues }) => {
                     <div className='line discographyLine'></div>
                 </>
             )}
+            <ModalCustom modalIsOpen={open} closeModal={() => setOpen(false)}>
+                <SpotifyHelp />
+            </ModalCustom>
         </div>
     );
 };

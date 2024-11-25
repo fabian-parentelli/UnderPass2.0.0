@@ -33,5 +33,6 @@ const data = [
     { label: 'Ordenes de venta', data: 'orderSellerHelp' },
     { label: 'Crear un evento', data: 'newEventHelp' },
     { label: 'Ver y modificar un evento', data: 'updEventHelp' },
-    { label: 'Enlazar spotify', data: 'spotifyHelp' },
+    { label: 'Enlace spotify', data: 'spotifyHelp' },
+    { label: 'Crear un sitio web', data: 'siteNewHelp' },
 ];

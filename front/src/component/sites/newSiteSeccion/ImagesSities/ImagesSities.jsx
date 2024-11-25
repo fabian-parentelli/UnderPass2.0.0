@@ -5,10 +5,6 @@ import ImgUpload from '../ImgUpload/ImgUpload';
 
 const ImagesSities = ({ values, setFiles, setValues }) => {
 
-    console.log(values.galery);
-
-
-    const [vew, setVew] = useState(false);
     const [isMobile, setIsMobile] = useState(window.innerWidth >= 900 ? 900 : window.innerWidth);
 
     const handleVew = (e) => setValues({ ...values, isGalery: e.target.checked });

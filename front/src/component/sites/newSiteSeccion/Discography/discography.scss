@@ -29,8 +29,8 @@
     .discographyPHelp {
         color: orangered;
         margin-top: 1rem;
-        text-decoration: none;
         transition: .3s ease-in-out;
+        cursor: pointer;
 
         &:hover {
             color: rgba(255, 68, 0, 0.527);
