@@ -8,6 +8,7 @@ import NewsSeparator from "../../NewsSeparator/NewsSeparator";
 import BodyShifts from "../../BodyShifts/BodyShifts";
 import BodySite from "../../BodySite/BodySite";
 import BodyFooter from "../../BodyFooter/BodyFooter";
+import BodyTitles from "../../BodyTitles/BodyTitles";
 
 const MainBody = () => {
 
@@ -17,6 +18,7 @@ const MainBody = () => {
         <>
             {user.logged && <SubNav />}
             <BannerBody />
+            <BodyTitles />
 
             <BodyEvents />
             <NewsSeparator start={1} end={2} />

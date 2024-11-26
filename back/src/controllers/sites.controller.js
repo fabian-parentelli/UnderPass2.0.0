@@ -8,10 +8,6 @@ const newSite = async (req, res) => {
         const result = await sitesService.newSite(images, imagesUrl, { ...req.body });
         if (result) return res.sendSuccess(result);
     } catch (error) {
-
-        console.log(error);
-        
-
         if (error instanceof SitesNotFound) return res.sendClientError(error.message);
         res.sendServerError(error.message);
     };
@@ -83,16 +79,4 @@ const updActive = async (req, res) => {
     };
 };
 
-const updSite = async (req, res) => {
-    const images = req.files;
-    const imagesUrl = req.cloudinaryUrls;
-    try {
-        const result = await sitesService.updSite(images, imagesUrl, { ...req.body });
-        if (result) return res.sendSuccess(result);
-    } catch (error) {
-        if (error instanceof SitesNotFound) return res.sendClientError(error.message);
-        res.sendServerError(error.message);
-    };
-};
-
-export { newSite, getByUserId, getById, getByLinks, getRandom, getSites, updActive, updSite };
+export { newSite, getByUserId, getById, getByLinks, getRandom, getSites, updActive };

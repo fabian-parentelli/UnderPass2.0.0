@@ -8,7 +8,7 @@ import ChooseSites from '../../sites/ChooseSites/ChooseSites';
 import ModalCustom from '../../utils/ModalCustom/ModalCustom';
 
 const EventInfoTable = ({ values, handleChangue, handleSubmit, handleMinors, handleTicket, handleType,
-    lsEvent, isChange, handleInSite, handleInPerson }) => {
+    lsEvent, isChange, handleInSite, handleInPerson, setValues }) => {
 
     const [vew, setVew] = useState(false);
 
@@ -103,7 +103,7 @@ const EventInfoTable = ({ values, handleChangue, handleSubmit, handleMinors, han
                         <p className='eventInfoTablePP'>Escribir los invitados separados por comas, pero <strong>SIN ESPACIOS</strong></p>
                     </div>
 
-                    <ChooseSites values={values} handleInSite={handleInSite} type='evento' />
+                    <ChooseSites values={values} handleInSite={handleInSite} type='evento' setValues={setValues} />
                 </div>
             </form>
 

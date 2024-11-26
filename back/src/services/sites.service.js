@@ -62,29 +62,4 @@ const updActive = async (id) => {
     return { status: 'success', result };
 };
 
-const updSite = async (images, imagesUrl, body) => {
-    const title = await sitesRepository.getByTitle(body.title);
-    const site = await sitesRepository.getById(body._id);
-    if (title && body.title !== site.title) throw new SitesNotFound('Ya existe este titulo, prueba con otro');
-    let img;
-    if (images && imagesUrl) {
-        img = images.map((img, ind) => {
-            const name = img.originalname.split('_')[1];
-            const positionKey = `position_${name}`;
-            return { name, url: imagesUrl[ind], position: body[positionKey] };
-        });
-    };
-    // const img = [
-    //     {
-    //       name: 'castNewImg0',
-    //       url: 'https://res.cloudinary.com/dtzy75wyt/image/upload/v1731858391/sites/aborigenescachafaz/q359ca2ezbwdz3hf62vw.ppp',
-    //       position: 'center'
-    //     }
-    //   ]
-    // const siteToUpdate = updSitesOption(img, body, site);
-    const result = await sitesRepository.update(siteToUpdate);
-    if (!result) throw new SitesNotFound('No se puede actualizar el sitio');
-    return { status: 'success', result };
-};
-
-export { newSite, getByUserId, getById, getByLinks, getRandom, getSites, updActive, updSite };
+export { newSite, getByUserId, getById, getByLinks, getRandom, getSites, updActive };

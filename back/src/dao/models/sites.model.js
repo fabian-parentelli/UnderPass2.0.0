@@ -85,11 +85,13 @@ const sitesSchema = new mongoose.Schema({
             description: { type: String }
         }
     ],
-
-
-    
-
-    castPerson: { type: String },
+    castPerson: {
+        text: { type: String },
+        img: {
+            url: { type: String },
+            position: { type: String }
+        }
+    },
     stream: [
         {
             description: { type: String },
@@ -97,8 +99,6 @@ const sitesSchema = new mongoose.Schema({
         }
     ],
     isShift: { type: Boolean },
-
-
     active: { type: Boolean },
     date: { type: Date, default: Date.now },
     type: { type: String, default: 'site' },

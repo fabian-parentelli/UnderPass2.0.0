@@ -1,4 +1,4 @@
-import { productRepository, userRepository, publicityRepository } from "../repositories/index.repositories.js";
+import { productRepository, userRepository, publicityRepository, sitesRepository } from "../repositories/index.repositories.js";
 import { ProductNotFound } from '../utils/custom-exceptions.utils.js';
 import { joinPublicity } from "../utils/joinPublicity.utils.js";
 import { callBooking } from "./booking.service.js";
@@ -18,6 +18,15 @@ const newProduct = async (images, imagesUrl, product) => {
     product.location = user.location || {};
     const result = await productRepository.newProduct(product);
     if (!result) throw new ProductNotFound('No se puede agregar un nuevo producto');
+    if (product.sites) {
+        const sites = product.sites.split(',');
+        for (const sit of sites) {
+            const site = await sitesRepository.getById(sit);
+            site.isProduct = true;
+            site.products.push(result._id);
+            sitesRepository.update(site);
+        };
+    };
     return { status: 'success', result };
 };
 

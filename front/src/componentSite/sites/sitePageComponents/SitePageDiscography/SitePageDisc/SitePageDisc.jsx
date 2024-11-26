@@ -15,7 +15,7 @@ const SitePageDisc = ({ disc }) => {
 
                 <div className='sitePageDiscSongs'>
                     {disc.songs && disc.songs.map((song, ind) => (
-                        <SpotifyComp url={song}  />
+                        <SpotifyComp url={song} key={ind}  />
                     ))}
                 </div>
             </div>

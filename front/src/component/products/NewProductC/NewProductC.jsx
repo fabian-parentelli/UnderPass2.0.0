@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import CloudFile from '../../utils/CloudFile/CloudFile';
 import { newProductsApi } from '../../../helpers/products/newProducts.api';
 import { useLoginContext } from '../../../context/LoginContext';
+import ChooseSites from '../../sites/ChooseSites/ChooseSites';
 
 const NewProductC = ({ userId, setOpen, setMessage, setLoading }) => {
 
@@ -13,7 +14,7 @@ const NewProductC = ({ userId, setOpen, setMessage, setLoading }) => {
     const [values, setValues] = useState({
         userId: userId, name: '', price: '',
         description: { small: '', long: '' },
-        quantity: '', inSite: checked
+        quantity: '', inSite: checked,
     });
     const { user } = useLoginContext();
     const navigate = useNavigate();
@@ -105,6 +106,8 @@ const NewProductC = ({ userId, setOpen, setMessage, setLoading }) => {
                     </div>
                     <p className='newProductCSwitchText'>Tu producto se mostrará en el mercado, pero si quieres que aparezca <br /> en tu sitio  debes seleccionar este swich</p>
                 </div>
+
+                <ChooseSites values={values} type='prdoucto' setValues={setValues} vew={false} />
 
                 <div className='newProductText'>
                     <label>Descripción Larga</label>

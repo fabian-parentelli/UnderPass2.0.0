@@ -53,7 +53,6 @@ const NewSitesComp = ({ userId, id }) => {
         checkUniqueTitles();
     }, [values.cast, values.discography]);
 
-
     const handleSubmit = async (e) => {
         setLoading(true);
         e.preventDefault();
@@ -73,7 +72,7 @@ const NewSitesComp = ({ userId, id }) => {
         if (response.status === 'success') {
             setFiles([]);
             setValues(response.result);
-            localStorage.setItem('site', response.result._id);
+            localStorage.setItem('site', response.result._id);            
             setVew(localStorage.getItem('to'));
         } else console.error(response.error);
         formdata = new FormData()

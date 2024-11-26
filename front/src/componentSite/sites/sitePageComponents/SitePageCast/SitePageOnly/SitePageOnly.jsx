@@ -8,12 +8,12 @@ const SitePageOnly = ({ site }) => {
 
             <section>
                 {site.castPerson &&
-                    <p>{site.castPerson}</p>
+                    <p>{site.castPerson.text}</p>
                 }
                 <img
-                    src={site.images.find(i => i.name === 'castImg')?.url}
+                    src={site.castPerson.img.url}
                     alt="img" className='sitePageOnlyImg'
-                    style={{ objectPosition: site.images.find(i => i.name === 'castImg')?.position }}
+                    style={{ objectPosition: site.castPerson.img?.position}}
                 />
             </section>
         </div>

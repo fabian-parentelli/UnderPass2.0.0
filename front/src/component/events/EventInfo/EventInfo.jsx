@@ -17,7 +17,7 @@ const EventInfo = ({ setProgres, setLoading, values, setValues, lsEvent }) => {
     const handleInPerson = (e) => { setValues({ ...values, inPerson: e.target.checked }); setIsChange(true) };
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
+        e.preventDefault();        
         setLoading(true);
         if (isChange) {
             if (!lsEvent) {
@@ -51,6 +51,7 @@ const EventInfo = ({ setProgres, setLoading, values, setValues, lsEvent }) => {
                 isChange={isChange}
                 handleInSite={handleInSite}
                 handleInPerson={handleInPerson}
+                setValues={setValues}
             />
 
             <UnderEventsLog size={3} />

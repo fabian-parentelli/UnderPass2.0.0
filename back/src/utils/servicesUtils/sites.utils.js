@@ -3,12 +3,12 @@ const newSiteOptions = (images, imagesUrl, sit, site) => {
     if (sit.post === 'events') site = isEvent(sit, site);
     if (sit.post === 'description') site = isDescription(images, imagesUrl, sit, site);
     if (sit.post === 'socialMedia') site = isSocialMedia(sit, site);
-    if (sit.post === 'cast') site = isCast(images, imagesUrl, sit, site);
+    if (sit.post === 'cast' && sit.castPerson) site = isCastOnly(imagesUrl, sit, site);
+    if (sit.post === 'cast' && !sit.castPerson) site = isCast(images, imagesUrl, sit, site);
     if (sit.post === 'discography') site = isDiscography(images, imagesUrl, sit, site);
     if (sit.post === 'products') site = isProduct(sit, site);
     if (sit.post === 'galery') site = isGalery(images, imagesUrl, sit, site);
     if (sit.post === 'videos') site = isVideo(sit, site);
-
     return site;
 };
 
@@ -34,7 +34,7 @@ function isPortal(images, imagesUrl, sit, site) {
             if (site.imgPortal.logo) site.imgPortal.logo.position = sit.position_logo;
         };
     };
-    site.link = folderName;    
+    site.link = folderName;
     return site;
 };
 
@@ -94,6 +94,17 @@ function isCast(images, imagesUrl, sit, site) {
             site.cast[index].img.position = sit[pos];
         });
     };
+    return site;
+};
+
+function isCastOnly(imagesUrl, sit, site) {    
+    site = { ...site, ...sit };
+    if (imagesUrl.length > 0) {
+        site.castPerson.img = {
+            url: imagesUrl[0],
+            position: sit[`position_castImg`] || undefined
+        };
+    };    
     return site;
 };
 

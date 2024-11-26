@@ -29,7 +29,7 @@ const CastAll = ({ values, setFiles, setValues, setVew }) => {
     useEffect(() => {
         if (values.subCategory === 'musicalGroup' || values.subCategory === 'solist') {
             localStorage.setItem('to', 'discography');
-        } else localStorage.setItem('to', 'product');
+        } else localStorage.setItem('to', 'products');
     }, []);
 
     return (

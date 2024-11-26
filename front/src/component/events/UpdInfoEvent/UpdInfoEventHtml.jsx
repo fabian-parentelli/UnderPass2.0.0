@@ -7,7 +7,7 @@ import { useLoginContext } from '../../../context/LoginContext';
 import ChooseSites from '../../sites/ChooseSites/ChooseSites';
 
 const UpdInfoEventHtml = ({ values, handleChange, handleSubmit, handleMinors, handleTicket, handleType,
-    handleLocation, handleCoordenates, handleInSite }) => {
+    handleLocation, handleCoordenates, setValues }) => {
 
     const country = localStorage.getItem('country');
     const { user } = useLoginContext();
@@ -143,7 +143,7 @@ const UpdInfoEventHtml = ({ values, handleChange, handleSubmit, handleMinors, ha
                 </>
             }
 
-            <ChooseSites values={values} handleInSite={handleInSite} type='evento' />
+            <ChooseSites values={values} type='evento' setValues={setValues} vew={false} />
 
             {user.data.role !== 'user' && values.dateCreate &&
                 <div>

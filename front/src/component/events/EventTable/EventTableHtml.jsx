@@ -13,7 +13,6 @@ import UpdTicketEvent from '../UpdTicketEvent/UpdTicketEvent.jsx';
 import { useLoginContext } from '../../../context/LoginContext.jsx';
 import UserVewSmall from '../../user/UserVewSmall/UserVewSmall.jsx';
 import EventDelete from '../EventDelete/EventDelete.jsx';
-import EventStream from '../EventStream/EventStream.jsx';
 import UpdEventStream from '../UpdEventStream/UpdEventStream.jsx';
 
 const EventTableHtml = ({ events, closedImg, openImg, vewImg, setEvents, vewInfo, closedInfo, openInfo,
@@ -21,6 +20,9 @@ const EventTableHtml = ({ events, closedImg, openImg, vewImg, setEvents, vewInfo
     openDelete, vewStream, openStream, closedStream }) => {
 
     const { user } = useLoginContext();
+
+    console.log(events);
+    
 
     return (
         <div className='eventTableHtml'>

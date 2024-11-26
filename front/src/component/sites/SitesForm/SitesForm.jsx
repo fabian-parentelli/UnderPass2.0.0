@@ -9,6 +9,7 @@ import ModalCustom from '../../utils/ModalCustom/ModalCustom.jsx';
 import UserVewSmall from '../../user/UserVewSmall/UserVewSmall.jsx';
 import { useLoginContext } from '../../../context/LoginContext.jsx';
 import { updSiteActiveApi } from '../../../helpers/sites/updSiteActive.api.js';
+import IndeterminateCheckBoxIcon from '@mui/icons-material/IndeterminateCheckBox';
 import { typeSitesCategory, typeSitesSubCategory } from '../../../utils/sitiesCategories.js';
 
 const SitesForm = ({ sites, setSites, setLoading }) => {
@@ -21,7 +22,7 @@ const SitesForm = ({ sites, setSites, setLoading }) => {
     const handleActive = async (id) => {
         setLoading(true);
         const response = await updSiteActiveApi(id);
-        if (response.status === 'success') {            
+        if (response.status === 'success') {
             const data = [...sites];
             const index = data.findIndex(site => site._id == response.result._id);
             data[index] = response.result;
@@ -44,6 +45,7 @@ const SitesForm = ({ sites, setSites, setLoading }) => {
                         {user.data.role !== 'user' && <th>Usuario</th>}
                         <th>Turnos</th>
                         <th>Actualizar</th>
+                        <th>Ver</th>
                         <th>Activo</th>
                     </tr>
                 </thead>
@@ -86,11 +88,19 @@ const SitesForm = ({ sites, setSites, setLoading }) => {
                                 }
 
                                 <Tooltip title='Actualizar' placement="left-start">
-                                    <Link to={`/newsites?id=${site._id}`} className='sitesFormLink'>
-                                        <td className='sitesFormBack'>
+                                    <td className='sitesFormBack'>
+                                        <Link to={`/newsites?id=${site._id}`} className='sitesFormLink'>
                                             <SyncAltIcon />
-                                        </td>
-                                    </Link>
+                                        </Link>
+                                    </td>
+                                </Tooltip>
+
+                                <Tooltip title='Ir al sitio' placement="left-start">
+                                    <td className='sitesFormBack'>
+                                        <Link to={`/site/${site.link}`} className='sitesFormLink'>
+                                            <IndeterminateCheckBoxIcon />
+                                        </Link>
+                                    </td>
                                 </Tooltip>
 
                                 <Tooltip title={site.active ? 'Desactivar' : 'Activar'} placement="left-start">

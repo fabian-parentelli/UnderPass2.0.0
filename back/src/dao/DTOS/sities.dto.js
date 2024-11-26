@@ -9,7 +9,7 @@ const thereIsSmoething = async (site) => {
 
 const existTitle = async (title) => {
     const site = await sitesRepository.getByTitle(title);
-    if(site) throw new SitesNotFound('Ya existe este título'); 
+    if (site) throw new SitesNotFound('Ya existe este título');
 };
 
 export { thereIsSmoething, existTitle };
@@ -31,8 +31,10 @@ async function getProducts(site) {
     const products = []
     for (const prod of site.products) {
         const product = await productRepository.getProdById(prod);
-        const { _id, name, description, price, img } = product;
-        products.push({ _id, name, description, price, img });
+        if (product.active) {
+            const { _id, name, description, price, img } = product;
+            products.push({ _id, name, description, price, img });
+        };
     };
     site.products = products;
     return site;

@@ -1,4 +1,4 @@
-import { alertsRepository, eventRepository, publicityRepository } from "../repositories/index.repositories.js";
+import { alertsRepository, eventRepository, publicityRepository, sitesRepository } from "../repositories/index.repositories.js";
 import { EventNotFound } from '../utils/custom-exceptions.utils.js';
 import { joinPublicity } from "../utils/joinPublicity.utils.js";
 
@@ -6,12 +6,14 @@ const newEvent = async (event) => {
     event.guests = event.guests.split(',');
     const result = await eventRepository.newEvent(event);
     if (!result) throw new EventNotFound('No se puede guardar el nuevo evento');
-
-    // Acá lo que voy a hacer es cuando viene, el array con los sitios
-    // actualizar el sitio con los id de los eventos, pensar esto luego para los 
-    // productos también... *Y cuanod elimino un evento por algun motico hacerlo 
-    // tambien en el sitio.
-
+    if(event.sites) {
+        for(const sit of event.sites) {
+            const site = await sitesRepository.getById(sit);
+            site.isEvent = true;
+            site.events.push(result._id);
+            sitesRepository.update(site);
+        };
+    };
     return { status: 'success', result };
 };
 
