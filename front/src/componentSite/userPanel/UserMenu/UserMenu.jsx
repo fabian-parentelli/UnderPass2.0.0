@@ -11,6 +11,7 @@ import LiveTvIcon from '@mui/icons-material/LiveTv';
 import AccessAlarmsIcon from '@mui/icons-material/AccessAlarms';
 import ListAltIcon from '@mui/icons-material/ListAlt';
 import LocalAtmIcon from '@mui/icons-material/LocalAtm';
+import DateRangeIcon from '@mui/icons-material/DateRange';
 
 const UserMenu = () => {
 
@@ -65,6 +66,11 @@ const UserMenu = () => {
             <Link to={'/profile/advertising'} className='userMen'>
                 <LiveTvIcon className='icon' />
                 <p>Publicidad</p>
+            </Link>
+            
+            <Link to={'/profile/shiftpanel'} className='userMen'>
+                <DateRangeIcon className='icon' />
+                <p>Turnos</p>
             </Link>
             
             <Link to={'/profile/alerts'} className='userMen'>

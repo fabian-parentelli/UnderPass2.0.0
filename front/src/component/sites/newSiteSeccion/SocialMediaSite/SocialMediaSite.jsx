@@ -8,7 +8,10 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 
 const SocialMediaSite = ({ values, setValues }) => {
 
-    useEffect(() => { localStorage.setItem('to', 'cast') }, []); 
+    useEffect(() => {         
+        if(values.category === 'trade') localStorage.setItem('to', 'products');
+        else localStorage.setItem('to', 'cast'); 
+    }, []); 
     const handleValues = (e) => setValues({ ...values, socialMedia: { ...values.socialMedia, [e.target.name]: e.target.value } });
 
     return (

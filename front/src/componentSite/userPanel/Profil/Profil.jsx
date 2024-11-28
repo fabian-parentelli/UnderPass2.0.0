@@ -13,6 +13,7 @@ import CommerceHome from '../commerce/CommerceHome/CommerceHome';
 import Wallet from '../Wallet/Wallet';
 import Eventmenu from '../EventMenu/EventMenu';
 import SitesPanel from '../Sites/SitesPanel';
+import ShiftPanel from '../ShiftPanel/ShiftPanel';
 
 const Profile = () => {
 
@@ -33,6 +34,7 @@ const Profile = () => {
                 <Route path='/wallet' element={<Wallet />} />
                 <Route path='/eventmenu' element={<Eventmenu />} />
                 <Route path='/sitepanel' element={<SitesPanel />} />
+                <Route path='/shiftpanel' element={<ShiftPanel />} />
             </Routes>
         </div>
     );

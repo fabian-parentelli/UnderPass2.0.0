@@ -36,7 +36,7 @@ const DescriptionSite = ({ values, setFiles, setValues }) => {
                 value={values?.description?.long || ''}
             ></textarea>
             <div className='descriptionSiteText2'>
-                <CharacterCounter min={800} max={900} text={values.descriptionLong} />
+                <CharacterCounter min={800} max={900} text={values.description?.long || ''} />
             </div>
         </div>
     );

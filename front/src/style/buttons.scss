@@ -87,3 +87,12 @@
         background-color: $underSiteHover;
     }
 }
+
+.btnSH {
+    background-color: $underShifts;
+    color: #fff;
+
+    &:hover {
+        background-color: #ee5b5d;
+    }
+}

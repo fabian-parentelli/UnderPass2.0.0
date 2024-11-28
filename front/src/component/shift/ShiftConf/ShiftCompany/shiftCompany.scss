@@ -1,0 +1,89 @@
+.shiftCompany {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+
+    summary {
+        cursor: pointer;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .shiftCompanyA {
+        display: flex;
+        align-items: flex-end;
+        flex-wrap: wrap;
+        gap: 1rem;
+
+        div {
+            display: flex;
+            flex-direction: column;
+
+            label {
+                font-size: 12px;
+            }
+
+            input {
+                width: 220px;
+            }
+
+            select {
+                width: 220px;
+            }
+        }
+
+        .shiftCompanyInfo {
+            cursor: pointer;
+            position: relative;
+
+            .shiftCompanyInfoText {
+                width: 260px;
+                padding: 6px;
+                font-size: 12px;
+                position: absolute;
+                background-color: #ccc;
+                border-radius: 5px;
+                bottom: 28px;
+                left: 15px;
+            }
+
+            .shiftCompanyInfoIcon {
+                color: #ccc;
+                transition: .3s ease-in-out;
+
+                &:hover {
+                    color: gray;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 769px) {
+    .shiftCompany {
+        .shiftCompanyA {
+            .shiftCompanyInfo {
+
+                .shiftCompanyInfoText {
+                    bottom: 28px;
+                    left: -230px;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 320px) {
+    .shiftCompany {
+        .shiftCompanyA {
+            .shiftCompanyInfo {
+
+                .shiftCompanyInfoText {
+                    bottom: 28px;
+                    left: -20px;
+                }
+            }
+        }
+    }
+}

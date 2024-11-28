@@ -21,9 +21,6 @@ const EventTableHtml = ({ events, closedImg, openImg, vewImg, setEvents, vewInfo
 
     const { user } = useLoginContext();
 
-    console.log(events);
-    
-
     return (
         <div className='eventTableHtml'>
             <table>

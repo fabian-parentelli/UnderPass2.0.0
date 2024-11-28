@@ -152,8 +152,6 @@ function isGalery(images, imagesUrl, sit, site) {
         });
         bothImages.forEach((sitGal) => {
             const index = site.galery.findIndex(sit => sit.name === sitGal.name);
-            console.log(index);
-
             if (index !== -1) site.galery[index] = sitGal;
             else site.galery.push(sitGal)
         });
