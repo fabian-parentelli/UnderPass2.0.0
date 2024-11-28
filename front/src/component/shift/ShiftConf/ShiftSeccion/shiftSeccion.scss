@@ -1,0 +1,19 @@
+.shiftSeccion {
+
+    .shiftSeccionSect {
+        width: 200px;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        
+        div {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+
+            input {
+                width: 120px;
+            }
+        }
+    }
+}

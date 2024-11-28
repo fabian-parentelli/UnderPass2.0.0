@@ -1,0 +1,31 @@
+.shiftRooms {
+
+    .shiftRoomsSect {
+
+        .shiftRoomsEnv {
+            display: flex;
+            align-items: flex-end;
+            gap: 12px;
+            input {
+                width: 50px;
+            }
+        }
+
+        .shiftRoomsAbility {
+
+            .shiftRoomsSwitch {
+                display: flex;
+                align-items: center;
+            }
+        }
+
+        .shiftRoomsName {
+            display: flex;
+            flex-direction: column;
+
+            input {
+                width: 220px;
+            }
+        }
+    }
+}

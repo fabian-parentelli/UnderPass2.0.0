@@ -1,20 +1,29 @@
 import './shiftConf.scss';
 import { useState } from 'react';
+import ShiftRooms from './ShiftRooms/ShiftRooms';
 import ShiftCompany from './ShiftCompany/ShiftCompany';
+import ShiftSeccion from './ShiftSeccion/ShiftSeccion';
 
 const ShiftConf = ({ userId }) => {
 
-    const [values, setValues] = useState({ userId, location: localStorage.getItem('country') });
+    const [files, setFiles] = useState([]);
+    const [values, setValues] = useState({ userId, location: localStorage.getItem('country'), rooms: 1 });
 
+    const handleValues = (e) => setValues({ ...values, [e.target.name]: e.target.value });
 
-    console.log(values);
+    const handleSubmit = (e) => {
+        e.preventDefault();
 
+        console.log(values);
+    };
 
     return (
-        <div className='shiftConf'>
-            <ShiftCompany />
-            <ShiftCompany />
-        </div>
+        <form className='shiftConf' onSubmit={handleSubmit}>
+            <ShiftCompany values={values} setValues={setValues} setFiles={setFiles} handleValues={handleValues} />
+            <ShiftRooms values={values} setValues={setValues} handleValues={handleValues} />
+            <ShiftSeccion values={values} setValues={setValues} handleValues={handleValues} />
+            <button className='btn btnSH'>Aceptar</button>
+        </form>
     );
 };
 
