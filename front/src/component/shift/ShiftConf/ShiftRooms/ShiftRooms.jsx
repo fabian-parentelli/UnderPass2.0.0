@@ -4,7 +4,7 @@ import Switch from '@mui/material/Switch';
 
 const ShiftRooms = ({ values, setValues }) => {
 
-    const [roomsData, setRoomsData] = useState([{ name: '', ability: false, abilityNumber: 1 }]);
+    const [roomsData, setRoomsData] = useState([{ name: '', ability: false, abilityNumber: 1, sections: [] }]);
 
     const handleRoomsChange = (e) => {
         const roomCount = +e.target.value;
@@ -50,9 +50,10 @@ const ShiftRooms = ({ values, setValues }) => {
                         <input
                             type="text"
                             name='rooms'
-                            placeholder='ej. Sala Gustavo Cerati'
+                            placeholder='ej. Sala Gustavo Cerati, sala principal'
                             value={room.name}
                             onChange={(e) => handleRoomChange(ind, 'name', e.target.value)}
+                            required
                         />
                     </div>
 

@@ -3,6 +3,7 @@ import { useState } from 'react';
 import ShiftRooms from './ShiftRooms/ShiftRooms';
 import ShiftCompany from './ShiftCompany/ShiftCompany';
 import ShiftSeccion from './ShiftSeccion/ShiftSeccion';
+import ShiftSections from './ShiftSections/ShiftSections';
 
 const ShiftConf = ({ userId }) => {
 
@@ -22,6 +23,7 @@ const ShiftConf = ({ userId }) => {
             <ShiftCompany values={values} setValues={setValues} setFiles={setFiles} handleValues={handleValues} />
             <ShiftRooms values={values} setValues={setValues} handleValues={handleValues} />
             <ShiftSeccion values={values} setValues={setValues} handleValues={handleValues} />
+            <ShiftSections values={values} setValues={setValues} handleValues={handleValues} />
             <button className='btn btnSH'>Aceptar</button>
         </form>
     );

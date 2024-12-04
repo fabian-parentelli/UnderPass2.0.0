@@ -10,7 +10,7 @@ const ShiftCompany = ({ values, setValues, setFiles, handleValues }) => {
     const [info, setInfo] = useState(false);
 
     return (
-        <details className='shiftCompany'>
+        <details className='shiftCompany' onClick={() => info && setInfo(false)}>
             <summary>Empresa</summary>
 
             <section className='shiftCompanyA'>
@@ -49,7 +49,7 @@ const ShiftCompany = ({ values, setValues, setFiles, handleValues }) => {
                     <textarea
                         name="description" onChange={handleValues}
                         placeholder='Describe tu empresa.'
-                        value={values?.description || ''} 
+                        value={values?.description || ''}
                     ></textarea>
                     <CharacterCounter min={200} max={250} text={values.description} />
                 </div>
