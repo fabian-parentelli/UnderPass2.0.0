@@ -1,0 +1,57 @@
+.ShiftSectionsInp {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    .shiftSectionsSectKey {
+        display: flex;
+        flex-direction: column;
+        gap: .6rem;
+
+        .shiftSectionsDiv {
+            display: flex;
+            flex-direction: column;
+
+            .shiftSectionsDivINp {
+                margin-top: 6px;
+                width: 160px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            label {
+                font-size: 12px;
+            }
+
+            .shiftSectionsDivName {
+                display: flex;
+                align-items: center;
+                margin-top: 0.4rem;
+
+                label {
+                    font-size: 12px;
+                }
+
+                .shiftSectionsDivNameIcon {
+                    font-size: 1.2rem;
+                    cursor: pointer;
+                    transition: .3s ease-in-out;
+
+                    &:hover {
+                        color: red;
+                    }
+                }
+            }
+
+            .shiftSectionsDivCheckBoxes {
+                display: flex;
+                flex-wrap: wrap;
+            }
+
+            input {
+                width: 250px;
+            }
+        }
+    }
+}

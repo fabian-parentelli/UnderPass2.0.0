@@ -1,6 +1,7 @@
 import './shiftSeccion.scss';
 import { useEffect, useState } from 'react';
-import CheckBoxes2 from '../../../utils/CheckBoxes2';
+import Shift_hours from '../Shift_inputs/Shift_hours';
+import Shift_days from '../Shift_inputs/Shift_days';
 
 const ShiftSeccion = ({ values, setValues, handleValues }) => {
 
@@ -15,22 +16,11 @@ const ShiftSeccion = ({ values, setValues, handleValues }) => {
 
             <section className='shiftSeccionCont'>
                 <div className='shiftSeccionSect'>
-                    <p>Horarios generales</p>
-                    <div>
-                        <label>Apertura</label>
-                        <input type="time" name='startHour' onChange={handleHour} value={values?.hour?.startHour || ''} required />
-                    </div>
-                    <div>
-                        <label>Cierre</label>
-                        <input type="time" name='endHour' onChange={handleHour} value={values?.hour?.endHour || ''} required />
-                    </div>
+                    <Shift_hours values={values} handleHour={handleHour} title='Horarios generales' />
                 </div>
 
                 <div className='shiftSeccionDays'>
-                    <p>Días generales de apertura</p>
-                    <div className='shiftSeccionCheck'>
-                        <CheckBoxes2 labels={labels} setType={setType} multiselect={true} selecteds={[]} />
-                    </div>
+                    <Shift_days setType={setType} title='Días generales de apertura' />
                     <p className='pgray'>Si existen secciones podrás independizar la hora, el días y el precio.</p>
                     <p className='pgray'>La Fracción horaria es el intervalo de tiempo que dura la seción. La unidad de medida es minutos.</p>
                 </div>
@@ -56,13 +46,3 @@ const ShiftSeccion = ({ values, setValues, handleValues }) => {
 };
 
 export default ShiftSeccion;
-
-const labels = [
-    { _id: 'monday', name: 'Lunes' },
-    { _id: 'tuesday', name: 'Martes' },
-    { _id: 'wednesday', name: 'Miércoles' },
-    { _id: 'thursday', name: 'Jueves' },
-    { _id: 'friday', name: 'Viernes' },
-    { _id: 'saturday', name: 'Sábado' },
-    { _id: 'sunday', name: 'Domingo' }
-];

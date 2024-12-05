@@ -9,7 +9,7 @@ const ShiftRooms = ({ values, setValues }) => {
     const handleRoomsChange = (e) => {
         const roomCount = +e.target.value;
         const updatedRooms = [...Array(roomCount)].map((_, index) =>
-            roomsData[index] || { name: '', ability: false, abilityNumber: 1 }
+            roomsData[index] || { name: '', ability: false, abilityNumber: 1, sections: [] }
         );
         setRoomsData(updatedRooms);
         setValues({ ...values, rooms: roomCount });

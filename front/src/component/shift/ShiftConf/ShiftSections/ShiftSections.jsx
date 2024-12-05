@@ -1,9 +1,10 @@
 import './shiftSections.scss';
 import Switch from '@mui/material/Switch';
+import Tooltip from '@mui/material/Tooltip';
 import AddBoxIcon from '@mui/icons-material/AddBox';
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import ShiftSectionsInp from './ShiftSectionsInp/ShiftSectionsInp';
 
-const ShiftSections = ({ values, setValues, handleValues }) => {
+const ShiftSections = ({ values, setValues }) => {
 
     const handleChecked = (e) => setValues({ ...values, isSection: e.target.checked });
 
@@ -12,15 +13,13 @@ const ShiftSections = ({ values, setValues, handleValues }) => {
             if (i === index) {
                 return {
                     ...room,
-                    sections: [...room.sections, { title: '', hour: {}, days: [], price: '' }],
+                    sections: [...room.sections, { title: '', hour: {}, days: [], price: '', people: '' }],
                 };
             };
             return room;
         });
         setValues({ ...values, roomsData: updatedRooms });
     };
-
-    console.log(values);
 
     return (
         <details className='shiftSections'>
@@ -43,25 +42,12 @@ const ShiftSections = ({ values, setValues, handleValues }) => {
                     <div key={ind}>
                         <div className='shiftSectionsName'>
                             <p className='colSH'>Sala {sect.name}</p>
-                            <AddBoxIcon className='colSH shiftSectionsIcon' onClick={() => addSectionToRoom(ind)} />
+                            <Tooltip title='Agregar secciones' placement='right' >
+                                <AddBoxIcon className='colSH shiftSectionsIcon' onClick={() => addSectionToRoom(ind)} />
+                            </Tooltip>
                         </div>
-
-                        <section className='shiftSectionsSect'>
-                            {sect.sections && sect.sections.map((sec, index) => (
-                                <div key={index}>
-                                    <div className='shiftSectionsDiv'>
-                                        <div className='shiftSectionsDivName'>
-                                            <label>Nombre</label>
-                                            <DeleteForeverIcon className='shiftSectionsDivNameIcon' />
-                                        </div>
-                                        <input type="text" name='title' placeholder='Nombre de la sección' />
-                                        <p className='pgray'>Nombre de la sección ejemplo "Clases de canto".</p>
-                                    </div>
-
-                                </div>
-                            ))}
-                        </section>
-                        <div className='line'></div>
+                        <ShiftSectionsInp sect={sect} ind={ind} values={values} setValues={setValues} />
+                        <div className='line' style={{margin: '1rem 0'}}></div>
                     </div>
                 ))}
             </section>
