@@ -23,6 +23,7 @@ import Event from './event.manager.js';
 import Preset from './preset.manager.js';
 import Notes from './notes.manager.js';
 import Sites from './sites.manager.js';
+import Shiftconf from './shiftconf.manager.js';
 
 export const userManager = new User();
 export const tutorialsManager = new Tutorials();
@@ -49,3 +50,4 @@ export const eventManager = new Event();
 export const presetManager = new Preset();
 export const notesManager = new Notes();
 export const sitesManager = new Sites();
+export const shiftconfManager = new Shiftconf();

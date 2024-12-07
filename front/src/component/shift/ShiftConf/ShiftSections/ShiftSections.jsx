@@ -1,14 +1,18 @@
 import './shiftSections.scss';
+import { useState } from 'react';
 import Switch from '@mui/material/Switch';
 import Tooltip from '@mui/material/Tooltip';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import ShiftSectionsInp from './ShiftSectionsInp/ShiftSectionsInp';
+import SnackbarAlert from '../../../utils/SnackbarAlert';
 
 const ShiftSections = ({ values, setValues }) => {
 
+    const [open, setOpen] = useState(false);
     const handleChecked = (e) => setValues({ ...values, isSection: e.target.checked });
 
     const addSectionToRoom = (index) => {
+        setOpen(true);
         const updatedRooms = values.roomsData.map((room, i) => {
             if (i === index) {
                 return {
@@ -19,6 +23,7 @@ const ShiftSections = ({ values, setValues }) => {
             return room;
         });
         setValues({ ...values, roomsData: updatedRooms });
+        setTimeout(() => { setOpen(false) }, 2000);
     };
 
     return (
@@ -47,11 +52,11 @@ const ShiftSections = ({ values, setValues }) => {
                             </Tooltip>
                         </div>
                         <ShiftSectionsInp sect={sect} ind={ind} values={values} setValues={setValues} />
-                        <div className='line' style={{margin: '1rem 0'}}></div>
+                        <div className='line' style={{ margin: '1rem 0' }}></div>
                     </div>
                 ))}
             </section>
-
+            <SnackbarAlert message={{ mess: 'Nueva sección creada', status: 'success' }} open={open} />
         </details>
     );
 };

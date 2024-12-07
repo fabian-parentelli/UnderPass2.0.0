@@ -23,6 +23,7 @@ import MessageRouter from "./messages.router.js";
 import EventRouter from "./event.router.js";
 import NotesRouter from "./notes.router.js";
 import SitesRouter from "./sites.router.js";
+import ShiftconfRouter from "./shiftconf.router.js";
 
 export const userRouter = new UserRouter().getRouter();
 export const imagenRouter = new ImagenRouter().getRouter();
@@ -49,3 +50,4 @@ export const messageRouter = new MessageRouter().getRouter();
 export const eventRouter = new EventRouter().getRouter();
 export const notesRouter = new NotesRouter().getRouter();
 export const sitesRouter = new SitesRouter().getRouter();
+export const shiftconfRouter = new ShiftconfRouter().getRouter();
