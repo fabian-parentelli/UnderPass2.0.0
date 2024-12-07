@@ -1,0 +1,17 @@
+.shiftInfo {
+    margin-top: 1rem;
+
+    .shiftInfoLog {
+        margin: 2rem 0;
+    }
+
+    .shiftInfoClick {
+        cursor: pointer;
+        margin-top: 1rem;
+        transition: .3s ease-in-out;
+
+        &:hover {
+            color: rgb(25, 105, 45);
+        }
+    }
+}

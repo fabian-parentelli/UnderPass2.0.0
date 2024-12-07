@@ -1,10 +1,14 @@
 import './shiftRooms.scss';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Switch from '@mui/material/Switch';
 
-const ShiftRooms = ({ values, setValues }) => {
+const ShiftRooms = ({ values, setValues, updateData }) => {
 
-    const [roomsData, setRoomsData] = useState([{ name: '', ability: false, abilityNumber: 1, sections: [] }]);
+    const [roomsData, setRoomsData] = useState(values?.roomsData || [{ name: '', ability: false, abilityNumber: 1, sections: [] }]);
+
+    useEffect(() => {
+        if (updateData) setRoomsData(values?.roomsData || [{ name: '', ability: false, abilityNumber: 1, sections: [] }]);
+    }, [updateData]);
 
     const handleRoomsChange = (e) => {
         const roomCount = +e.target.value;
@@ -32,7 +36,7 @@ const ShiftRooms = ({ values, setValues }) => {
                     <input
                         type="number"
                         name='rooms'
-                        value={values.rooms || 1}
+                        value={values?.rooms || 1}
                         onChange={handleRoomsChange}
                     />
                 </div>

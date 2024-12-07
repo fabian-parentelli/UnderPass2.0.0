@@ -43,7 +43,10 @@ const shiftconfSchema = new mongoose.Schema({
     },
     price: { type: Number },
     isSection: { type: Boolean },
-    img: { type: String },
+    img: {
+        url: { type: String },
+    },
+    active: { type: Boolean, default: true }
 });
 
 shiftconfSchema.plugin(mongoosePaginate);

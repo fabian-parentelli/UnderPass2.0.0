@@ -20,7 +20,7 @@ const ShiftSeccion = ({ values, setValues, handleValues }) => {
                 </div>
 
                 <div className='shiftSeccionDays'>
-                    <Shift_days setType={setType} title='Días generales de apertura' />
+                    <Shift_days setType={setType} title='Días generales de apertura' values={values} />
                     <p className='pgray'>Si existen secciones podrás independizar la hora, el días y el precio.</p>
                     <p className='pgray'>La Fracción horaria es el intervalo de tiempo que dura la seción. La unidad de medida es minutos.</p>
                 </div>
@@ -35,7 +35,7 @@ const ShiftSeccion = ({ values, setValues, handleValues }) => {
                 <div className='shiftSeccionDays'>
                     <p>Fracción Horaria.</p>
                     <div className='shiftSeccionCheck'>
-                        <input type="number" name='fractionHour' onChange={handleHour} style={{ width: '110px' }} />
+                        <input type="number" name='fractionHour' value={values?.hour?.fractionHour || ''} onChange={handleHour} style={{ width: '110px' }} />
                     </div>
                     <p className='pgray'>En minutos</p>
                 </div>

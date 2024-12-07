@@ -1,13 +1,13 @@
 import './shift_inputs.scss';
 import CheckBoxes2 from '../../../utils/CheckBoxes2';
 
-const Shift_days = ({ setType, title }) => {
+const Shift_days = ({ setType, title, values }) => {
 
     return (
         <div className='Shift_days'>
             <p>{title}</p>
             <div className='shiftSeccionCheck'>
-                <CheckBoxes2 labels={labels} setType={setType} multiselect={true} selecteds={[]} />
+                <CheckBoxes2 labels={labels} setType={setType} multiselect={true} selecteds={values?.days || []} />
             </div>
         </div>
     );

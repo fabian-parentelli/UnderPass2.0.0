@@ -35,7 +35,7 @@ const ShiftSections = ({ values, setValues }) => {
                     <label>¿Quieres agregar secciones?</label>
                     <div className='shiftSectionsSwitch'>
                         <p>NO</p>
-                        <Switch checked={values.isSection || false} onChange={handleChecked} />
+                        <Switch checked={values?.isSection || false} onChange={handleChecked} />
                         <p>SI</p>
                     </div>
                     <p className='pgray'>Las secciónes pueden ser clases, ejemplo clases de canto, clases de Guitarra.</p>
@@ -43,7 +43,7 @@ const ShiftSections = ({ values, setValues }) => {
             </section>
 
             <section style={{ marginTop: '1rem' }}>
-                {values.isSection && values?.roomsData && values.roomsData.map((sect, ind) => (
+                {values && values?.isSection && values?.roomsData && values.roomsData.map((sect, ind) => (
                     <div key={ind}>
                         <div className='shiftSectionsName'>
                             <p className='colSH'>Sala {sect.name}</p>
