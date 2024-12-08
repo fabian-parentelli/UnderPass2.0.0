@@ -1,10 +1,10 @@
 import './shiftCompany.scss';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import InfoIcon from '@mui/icons-material/Info';
 import { typeShifts } from '../../../../utils/typeShifts.utils.js';
 import CharacterCounter from '../../../utils/CharacterCounter.jsx';
-import ImgUpload from '../../../sites/newSiteSeccion/ImgUpload/ImgUpload.jsx';
 import SelectedProvince from '../../../utils/SelectedProvince.jsx';
+import ImgUpload from '../../../sites/newSiteSeccion/ImgUpload/ImgUpload.jsx';
 
 const ShiftCompany = ({ values, setValues, setFiles, handleValues }) => {
 

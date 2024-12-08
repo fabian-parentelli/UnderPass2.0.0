@@ -1,7 +1,8 @@
-import ShiftConf from '../ShiftConf/ShiftConf';
-import ShiftInfo from '../ShiftInfo/ShiftInfo';
 import './shiftPanels.scss';
 import { useState } from 'react';
+import ShiftConf from '../ShiftConf/ShiftConf';
+import ShiftInfo from '../ShiftInfo/ShiftInfo';
+import ShiftAdmin from '../ShiftAdmin/ShiftAdmin';
 
 const ShiftPanels = ({ userId }) => {
 
@@ -21,7 +22,7 @@ const ShiftPanels = ({ userId }) => {
             {vew === null && <ShiftInfo />} 
             {vew === 'shif' && 'Mis Turnos'}
             {vew === 'book' && 'book'}
-            {vew === 'admi' && 'admi'}
+            {vew === 'admi' && <ShiftAdmin userId={userId} />}
             {vew === 'conf' && <ShiftConf userId={userId} />}
         </div>
     );

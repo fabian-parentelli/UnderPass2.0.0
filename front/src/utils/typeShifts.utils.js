@@ -5,4 +5,16 @@ const typeShifts = [
     { value: 'academy', type: 'Academia' },
 ];
 
-export { typeShifts };
+function typeShiftCategory(types) {
+
+    const data = {
+        'rehearsal': () => { return 'Sala de ensayo' },
+        'studio': () => { return 'Estudio' },
+        'scenary': () => { return 'Escenario' },
+        'academy': () => { return 'Academia' },
+    };
+
+    return (data[types] || (() => types))();
+};
+
+export { typeShifts, typeShiftCategory };

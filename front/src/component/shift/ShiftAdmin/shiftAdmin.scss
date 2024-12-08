@@ -1,0 +1,12 @@
+.shiftAdmin {
+    margin-top: .6rem;
+
+    span {
+        cursor: pointer;
+        transition: .3s ease-in-out;
+
+        &:hover {
+            color: red;
+        }
+    }
+}

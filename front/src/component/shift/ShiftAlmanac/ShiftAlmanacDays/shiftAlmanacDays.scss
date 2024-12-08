@@ -1,0 +1,40 @@
+@import '../../../../style/colors.scss';
+
+.shiftAlmanacDays {
+
+    .shiftAlmanacDaysName {
+        display: flex;
+        align-items: center;
+        margin-bottom: 6px;
+        justify-content: space-between;
+
+        button {
+            width: 90px;
+            background-color: rgba(128, 128, 128, 0.514);
+            border: none;
+            height: 25px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: .3s ease-in-out;
+
+            &:hover {
+                background-color: gray;
+            }
+        }
+    }
+
+    table {
+        width: 300px;
+
+        .prev-month,
+        .next-month,
+        .non-work-day {
+            color: #ccc;
+            background-color: #f9f9f9;
+        }
+
+        .today {
+            color: $underShifts;
+        }
+    }
+}
