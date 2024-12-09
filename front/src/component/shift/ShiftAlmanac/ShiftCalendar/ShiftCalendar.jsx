@@ -2,7 +2,7 @@ import './shiftCalendar.scss';
 import { useEffect, useState } from 'react';
 import ShiftAlmanacDays from '../ShiftAlmanacDays/ShiftAlamanacDays';
 
-const ShiftCalendar = ({ config }) => {
+const ShiftCalendar = ({ config, setSelected }) => {
 
     const [today, setToday] = useState(new Date());
     const [weeks, setWeeks] = useState([]);
@@ -18,6 +18,13 @@ const ShiftCalendar = ({ config }) => {
         const newDate = new Date(today);
         newDate.setMonth(today.getMonth() + 1);
         setToday(newDate);
+    };
+
+    const handleDayClick = (day) => {
+        if (day.className.includes('prev-month') || day.className.includes('next-month') || day.className.includes('non-work-day')) {
+            return;
+        };
+        setSelected({ day: day.day, month: daysSet[currentMonth], year: today.getFullYear() });
     };
 
     const getDayInMonth = (date) => {
@@ -42,7 +49,7 @@ const ShiftCalendar = ({ config }) => {
                 const dayIndex = date.getDay();
                 const isNonWorkDay = config?.days && !config.days.includes(daysOfWeek[dayIndex]);
                 const isToday = day === new Date().getDate() && month === new Date().getMonth() && year === new Date().getFullYear();
-                const className = `current-month${isNonWorkDay ? ' non-work-day' : ''}${isToday ? ' today' : ''}`;
+                const className = `${isNonWorkDay ? ' non-work-day' : 'current-month'}${isToday ? ' today' : ''}`;
                 return { day, className };
             }),
             ...daysFromNextMonth.map(day => ({ day, className: 'next-month' })),
@@ -67,6 +74,7 @@ const ShiftCalendar = ({ config }) => {
                     goToNextMonth={goToNextMonth}
                     today={today}
                     currentMonth={currentMonth}
+                    handleDayClick={handleDayClick}
                 />
             }
         </div>
@@ -74,3 +82,9 @@ const ShiftCalendar = ({ config }) => {
 };
 
 export default ShiftCalendar;
+
+const daysSet = {
+    enero: 'january', febrero: 'february', marzo: 'march', abril: 'april', mayo: 'may',
+    junio: 'june', julio: 'july', agosto: 'august', septiembre: 'september', octubre: 'october',
+    noviembre: 'november', diciembre: 'december'
+};

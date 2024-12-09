@@ -22,10 +22,18 @@ const ShiftSectionsInp = ({ sect, ind, values, setValues }) => {
 
     const labels = values.days.map((day) => {
         const daysMapping = {
-            monday: 'Lunes', tuesday: 'Martes', wednesday: 'Miércoles', thursday: 'Jueves',
-            friday: 'Viernes', saturday: 'Sábado', sunday: 'Domingo',
+            monday: 'Lunes',
+            tuesday: 'Martes',
+            wednesday: 'Miércoles',
+            thursday: 'Jueves',
+            friday: 'Viernes',
+            saturday: 'Sábado',
+            sunday: 'Domingo',
         };
         return { title: daysMapping[day], _id: day };
+    }).sort((a, b) => {
+        const order = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+        return order.indexOf(a._id) - order.indexOf(b._id);
     });
 
     useEffect(() => {
@@ -41,7 +49,7 @@ const ShiftSectionsInp = ({ sect, ind, values, setValues }) => {
         data.roomsData[ind].sections[index].hour = { ...data.roomsData[ind].sections[index].hour, [e.target.name]: e.target.value };
         setValues(data);
     };
-    
+
     return (
         <div className='ShiftSectionsInp'>
             {sect.sections && sect.sections.map((sec, index) => (
@@ -82,7 +90,7 @@ const ShiftSectionsInp = ({ sect, ind, values, setValues }) => {
                         <label>Precio de la sección</label>
                         <input type="number" name='price' placeholder='Precio en moneda local' onChange={(e) => handleChange(e, ind, index)} value={values.roomsData[ind]?.sections[index]?.price || ''} />
                     </div>
-                    
+
                     <div className='shiftSectionsDiv'>
                         <label>Máximo de personas en esta sección</label>
                         <input type="number" name='people' max={values?.abilityNumber} placeholder='Personas por sección' onChange={(e) => handleChange(e, ind, index)} value={values.roomsData[ind]?.sections[index]?.people || ''} />

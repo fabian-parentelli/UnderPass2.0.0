@@ -15,7 +15,7 @@ const getShiftconfApi = async (obj) => {
     if (obj.userId) urlData += `userid=${obj.userId}&`; 
 
     if (urlData.endsWith('&')) urlData = urlData.slice(0, -1);
-
+    
     const token = localStorage.getItem('token');
     const response = await fetch(urlData, {
         method: 'GET',

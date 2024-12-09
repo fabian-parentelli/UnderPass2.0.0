@@ -1,6 +1,6 @@
 import './shiftAlmanacDays.scss';
 
-const ShiftAlmanacDays = ({ weeks, goToPreviousMonth, goToNextMonth, today, currentMonth }) => {
+const ShiftAlmanacDays = ({ weeks, goToPreviousMonth, goToNextMonth, today, currentMonth, handleDayClick }) => {
 
     return (
         <div className="shiftAlmanacDays">
@@ -25,7 +25,7 @@ const ShiftAlmanacDays = ({ weeks, goToPreviousMonth, goToNextMonth, today, curr
                     {weeks.map((week, weekIndex) => (
                         <tr key={weekIndex}>
                             {week.map((day, dayIndex) => (
-                                <td key={dayIndex} className={day.className}>
+                                <td key={dayIndex} className={day.className} onClick={() => handleDayClick(day)}>
                                     {day.day}
                                 </td>
                             ))}

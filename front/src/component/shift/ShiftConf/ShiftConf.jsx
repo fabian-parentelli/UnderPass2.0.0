@@ -18,13 +18,13 @@ const ShiftConf = ({ userId }) => {
     const [updateData, setUpdateData] = useState(false);
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState({ status: '', mess: '' });
-    const [values, setValues] = useState({ userId, location: { country: localStorage.getItem('country') }, rooms: 1 });
+    const [values, setValues] = useState({ userId, location: { country: localStorage.getItem('country') }, rooms: 1 });    
 
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
             const response = await getShiftconfApi({ userId });
-            if (response.status === 'success') {                
+            if (response.status === 'success') {
                 setValues(response.result.docs[0]);
                 setUpdateData(true);
             } else {
@@ -69,7 +69,7 @@ const ShiftConf = ({ userId }) => {
     return (
         <form className='shiftConf' onSubmit={handleSubmit}>
             <p>Configuración de tu servicio de turnos.</p>
-            <p>Puedes ver nuestra <span className='colSH' onClick={()=>navigate('/help')}>Ayuda</span> con toda la info detallada e incluso ver un <span className='colSH' onClick={()=>navigate('/help')}>video tutorial</span>.</p>
+            <p>Puedes ver nuestra <span className='colSH' onClick={() => navigate('/help')}>Ayuda</span> con toda la info detallada e incluso ver un <span className='colSH' onClick={() => navigate('/help')}>video tutorial</span>.</p>
             <ShiftCompany values={values} setValues={setValues} setFiles={setFiles} handleValues={handleValues} />
             <ShiftRooms values={values} setValues={setValues} handleValues={handleValues} updateData={updateData} />
             <ShiftSeccion values={values} setValues={setValues} handleValues={handleValues} />

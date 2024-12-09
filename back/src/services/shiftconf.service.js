@@ -31,7 +31,7 @@ const getShiftconf = async (page, limit, country, active, province, category, ti
     };
     if (userid) query.userId = userid;
     const result = await shiftconfRepository.getShiftconf(query, page, limit);
-    if (!result) throw new ShiftNotFound('No se puede guardar la configuración');
+    if (result.docs.length < 1) throw new ShiftNotFound('No se encuentra configuración previa');
     return { status: 'success', result };
 };
 

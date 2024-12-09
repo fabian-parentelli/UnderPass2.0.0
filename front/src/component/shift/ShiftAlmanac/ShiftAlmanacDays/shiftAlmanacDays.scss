@@ -36,5 +36,13 @@
         .today {
             color: $underShifts;
         }
+
+        .current-month {
+            cursor: pointer;
+
+            &:hover {
+                color: black;
+            }
+        }
     }
 }
