@@ -10,6 +10,10 @@ export default class Shiftconf {
         return await shiftconfModel.paginate(query, { limit, page, lean: true });
     };
 
+    getByUserId = async (userId) => {
+        return await shiftconfModel.findOne({ userId: userId }).lean();
+    };
+
     getById = async (id) => {
         return await shiftconfModel.findById(id).lean();
     };

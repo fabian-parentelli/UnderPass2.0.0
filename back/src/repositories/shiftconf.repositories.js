@@ -8,10 +8,15 @@ export default class ShiftconfRepository {
     };
 
     getShiftconf = async (query, page, limit) => {
-        const result = await shiftconfManager.getShiftconf(query, page, limit);       
+        const result = await shiftconfManager.getShiftconf(query, page, limit);
         return result;
     };
-    
+
+    getByUserId = async (userId) => {
+        const result = await shiftconfManager.getByUserId(userId);
+        return result;
+    };
+
     getById = async (id) => {
         const result = await shiftconfManager.getById(id);
         return result;
