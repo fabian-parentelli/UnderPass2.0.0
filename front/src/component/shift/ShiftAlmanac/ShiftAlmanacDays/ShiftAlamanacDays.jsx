@@ -26,7 +26,7 @@ const ShiftAlmanacDays = ({ weeks, goToPreviousMonth, goToNextMonth, today, curr
                         <tr key={weekIndex}>
                             {week.map((day, dayIndex) => (
                                 <td key={dayIndex} className={day.className} onClick={() => handleDayClick(day)}>
-                                    {day.day}
+                                    <div>{day.day}</div>
                                 </td>
                             ))}
                         </tr>

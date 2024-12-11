@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import ShiftAlmanacDays from '../ShiftAlmanacDays/ShiftAlamanacDays';
 
-const ShiftCalendar = ({ config, setSelected, nonWorkDays }) => {
+const ShiftCalendar = ({ config, setSelected, nonWorkDays, selected }) => {
 
-    const [today, setToday] = useState(new Date());
     const [weeks, setWeeks] = useState([]);
+    const [today, setToday] = useState(new Date());
     const [currentMonth, setCurrentMonth] = useState(today.toLocaleString('default', { month: 'long' }));
 
     const goToPreviousMonth = () => {
@@ -23,16 +23,6 @@ const ShiftCalendar = ({ config, setSelected, nonWorkDays }) => {
         if (day.className.includes('prev-month') || day.className.includes('next-month') || day.className.includes('non-work-day')) {
             return;
         };
-        const updatedWeeks = weeks.map(week =>
-            week.map(d =>
-                d.className.includes('dayClick')
-                    ? { ...d, className: d.className.replace(' dayClick', '') }
-                    : d.day === day.day && d.className.includes('current-month')
-                        ? { ...d, className: `${d.className} dayClick` }
-                        : d
-            )
-        );
-        setWeeks(updatedWeeks);
         setSelected({ day: day.day, month: daysSet[currentMonth], year: today.getFullYear() });
     };
 
@@ -57,8 +47,8 @@ const ShiftCalendar = ({ config, setSelected, nonWorkDays }) => {
                 const formattedDate = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
                 const dayIndex = date.getDay();
                 const isNonWorkDay = config?.days && !config.days.includes(daysOfWeek[dayIndex]) || nonWorkDays.includes(formattedDate);
-                const isToday = day === new Date().getDate() && month === new Date().getMonth() && year === new Date().getFullYear();
-                const className = `${isNonWorkDay ? ' non-work-day' : 'current-month'}${isToday ? ' today' : ''}`;
+                const isToday = day === today.getDate() && month === today.getMonth() && year === today.getFullYear();                
+                const className = `${isNonWorkDay ? ' non-work-day' : 'current-month'}${isToday ? ' today' : ''}${day === selected.day ? ' dayClick' : ''}`;
                 return { day, className };
             }),
             ...daysFromNextMonth.map(day => ({ day, className: 'next-month' })),
@@ -72,7 +62,7 @@ const ShiftCalendar = ({ config, setSelected, nonWorkDays }) => {
         const newWeeks = getDayInMonth(today, nonWorkDays);
         setWeeks(newWeeks);
         setCurrentMonth(today.toLocaleString('default', { month: 'long' }));
-    }, [today, nonWorkDays]);
+    }, [today, nonWorkDays,selected]);
 
     return (
         <div className='shiftCalendar'>

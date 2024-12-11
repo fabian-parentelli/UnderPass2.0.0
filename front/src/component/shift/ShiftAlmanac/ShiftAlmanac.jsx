@@ -13,7 +13,7 @@ const ShiftAlmanac = ({ config }) => {
     const [loading, setLoading] = useState(false);
     const [type, setType] = useState(null);
     const [selected, setSelected] = useState(getCurrentDate());
-
+    
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
@@ -22,7 +22,7 @@ const ShiftAlmanac = ({ config }) => {
                 const booksFuture = [];
                 response.result.forEach((res) => {
                     if (res.active) booksFuture.push(res);
-                    if (res.notDay) setnonWorkDays([res.notDay]);
+                    if (res.notDay) setnonWorkDays(res.notDay);
                 });
                 setBook(booksFuture);
             };
@@ -38,7 +38,7 @@ const ShiftAlmanac = ({ config }) => {
     return (
         <div className='shiftAlmanac'>
             <section>
-                {config && <ShiftCalendar config={config} setSelected={setSelected} nonWorkDays={nonWorkDays} />}
+                {config && <ShiftCalendar config={config} setSelected={setSelected} nonWorkDays={nonWorkDays} selected={selected} />}
                 {config && <ShiftAlmanacHours config={config} setType={setType} book={book} />}
             </section>
             <button className='btn btnSH shiftAlmanacBtn' onClick={handleBook}>Reservar</button>

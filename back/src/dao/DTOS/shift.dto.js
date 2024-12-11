@@ -1,25 +1,35 @@
 import { shiftconfRepository } from "../../repositories/index.repositories.js";
 import { setHoursBack, transformDate } from '../../utils/servicesUtils/shift.utils.js'
 
-const isNotTime = async (shift) => {
+const isNotTime = async (shift, day) => {
+    let result = [];
     if (shift) {
         const config = await shiftconfRepository.getByUserId(shift[0].userId);
         let labels = setHoursBack(config.hour);
-        shift.forEach((book) => {
-            book.hour.forEach((hour) => {
-                labels = labels.filter(lab => lab.title !== hour)
-            });
-        });
-        if (labels.length === 0) {
-            const notDay = transformDate(shift[0].day);
-            shift.push({ notDay });
-        };
-    };    
-    return shift;
+        const groupedByDay = shift.reduce((acc, curr) => {
+            const key = transformDate(curr.day);
+            if (!acc[key]) acc[key] = [];
+            acc[key] = acc[key].concat(curr.hour);
+            return acc;
+        }, {});
+        const fullDays = Object.entries(groupedByDay).reduce((result, [day, hours]) => {
+            const availableHours = labels.map(label => label.title);
+            const allHoursOccupied = availableHours.every(hour => hours.includes(hour));
+            if (allHoursOccupied) result.push(day);
+            return result;
+        }, []);
+        result = filterDay(shift, day);
+        if (fullDays.length > 0) result.push({ notDay: fullDays });
+    };
+    return result;
 };
 
-// Acá tengo el problema, tengo que ver como detecto todo el mes, y no solo el día
-// probablemente tengo que hacer una llamada doble a la base de datos, o puedo llamar 
-// por mes y filtrar por día en el back.
+const filterDay = (shifts, day) => {
+    if (shifts.length > 0) {
+        const newResult = shifts.filter(sh => +sh.day.day === +day);
+        return newResult;
+    };
+    return shifts;
+};
 
-export { isNotTime };
+export { isNotTime, filterDay };
