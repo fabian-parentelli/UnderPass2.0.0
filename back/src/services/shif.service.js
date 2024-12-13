@@ -7,8 +7,9 @@ const newShift = async (shift) => {
     return { status: 'success', result };
 };
 
-const getDataShift = async (uid, month, year, day) => {
+const getDataShift = async (uid, month, year, day, room) => {
     const query = { userId: uid, ['day.month']: month, ['day.year']: year };
+    if(room) query.room = room;
     const result = await shiftRepository.getDataShift(query, day);
     if (!result) throw new ShiftNotFound('No se puede reservar el turno');    
     return { status: 'success', result };

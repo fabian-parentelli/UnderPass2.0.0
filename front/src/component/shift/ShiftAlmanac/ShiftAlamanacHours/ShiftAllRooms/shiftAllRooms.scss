@@ -1,0 +1,12 @@
+.shiftAllRooms {
+    margin-top: 1rem;
+
+    .shiftAllRoomsRoom {
+        display: flex;
+        align-items: center;
+        
+        select {
+            width: 200px;
+        }
+    }
+}

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import ShiftAlmanacDays from '../ShiftAlmanacDays/ShiftAlamanacDays';
 
-const ShiftCalendar = ({ config, setSelected, nonWorkDays, selected }) => {
+const ShiftCalendar = ({ config, setSelected, nonWorkDays, selected, rooms }) => {
 
     const [weeks, setWeeks] = useState([]);
     const [today, setToday] = useState(new Date());
@@ -47,7 +47,7 @@ const ShiftCalendar = ({ config, setSelected, nonWorkDays, selected }) => {
                 const formattedDate = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
                 const dayIndex = date.getDay();
                 const isNonWorkDay = config?.days && !config.days.includes(daysOfWeek[dayIndex]) || nonWorkDays.includes(formattedDate);
-                const isToday = day === today.getDate() && month === today.getMonth() && year === today.getFullYear();                
+                const isToday = day === today.getDate() && month === today.getMonth() && year === today.getFullYear();
                 const className = `${isNonWorkDay ? ' non-work-day' : 'current-month'}${isToday ? ' today' : ''}${day === selected.day ? ' dayClick' : ''}`;
                 return { day, className };
             }),
@@ -62,7 +62,7 @@ const ShiftCalendar = ({ config, setSelected, nonWorkDays, selected }) => {
         const newWeeks = getDayInMonth(today, nonWorkDays);
         setWeeks(newWeeks);
         setCurrentMonth(today.toLocaleString('default', { month: 'long' }));
-    }, [today, nonWorkDays,selected]);
+    }, [today, nonWorkDays, selected, rooms]);
 
     return (
         <div className='shiftCalendar'>

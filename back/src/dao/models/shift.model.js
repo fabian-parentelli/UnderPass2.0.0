@@ -6,6 +6,7 @@ const shiftCollection = 'shift';
 const shiftSchema = new mongoose.Schema({
     userId: { type: String },
     hour: [{ type: String }],
+    room: {type: String},
     day: { 
         day: {type: Number},
         month: {type: String},

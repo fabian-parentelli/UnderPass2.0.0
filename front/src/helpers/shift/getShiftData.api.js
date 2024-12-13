@@ -8,6 +8,7 @@ async function getShiftDataApi(obj) {
     if (obj.month) urlData += `month=${obj.month}&`; 
     if (obj.year) urlData += `year=${obj.year}&`; 
     if (obj.day) urlData += `day=${obj.day}&`; 
+    if (obj.room) urlData += `room=${obj.room}&`; 
 
     if (urlData.endsWith('&')) urlData = urlData.slice(0, -1);
 
