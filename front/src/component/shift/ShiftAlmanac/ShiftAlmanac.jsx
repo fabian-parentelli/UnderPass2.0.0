@@ -24,6 +24,7 @@ const ShiftAlmanac = ({ config }) => {
                 setnonWorkDays([]);
                 const query = { uid: config.userId, day: selected.day, month: selected.month, year: selected.year };
                 if (rooms) query.room = formatText(rooms);
+                if (sections) query.sections = formatText(sections.title);
                 const response = await getShiftDataApi(query);
                 if (response.status === 'success') {
                     const booksFuture = [];
@@ -41,6 +42,7 @@ const ShiftAlmanac = ({ config }) => {
     const handleBook = async () => {
         const query = { day: selected, hour: type, userId: config.userId };
         if (rooms) query.room = formatText(rooms);
+        if (sections) query.sections = formatText(sections.title);
 
         // Luego poner una condicional que si no ponen un horario no lo concidero....
         const response = await newShiftApi(query);

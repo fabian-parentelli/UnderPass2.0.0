@@ -6,13 +6,15 @@ const shiftCollection = 'shift';
 const shiftSchema = new mongoose.Schema({
     userId: { type: String },
     hour: [{ type: String }],
-    room: {type: String},
-    day: { 
-        day: {type: Number},
-        month: {type: String},
-        year: {type: Number},
-     },
-    active: { type: Boolean, default: true }
+    room: { type: String },
+    day: {
+        day: { type: Number },
+        month: { type: String },
+        year: { type: Number },
+    },
+    active: { type: Boolean, default: true },
+    date: { type: Date, default: Date.now },
+    sections: { type: String },
 });
 
 shiftSchema.plugin(mongoosePaginate);

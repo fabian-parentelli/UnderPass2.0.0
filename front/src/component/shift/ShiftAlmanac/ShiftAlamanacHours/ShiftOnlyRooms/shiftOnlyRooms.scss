@@ -1,3 +1,13 @@
 .shiftOnlyRooms {
     margin-top: 6px;
+
+    section {
+        margin-top: 12px;
+        display: flex;
+        justify-content: space-between;
+        width: 280px;
+        select {
+            width: 180px;
+        }
+    }
 }

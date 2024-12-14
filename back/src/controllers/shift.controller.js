@@ -12,9 +12,9 @@ const newShift = async (req, res) => {
 };
 
 const getDataShift = async (req, res) => {
-    const { uid, month, year, day, room } = req.query;
+    const { uid, month, year, day, room, sections } = req.query;
     try {
-        const result = await shiftService.getDataShift(uid, month, year, day, room);
+        const result = await shiftService.getDataShift(uid, month, year, day, room, sections);
         if (result) return res.sendSuccess(result);
     } catch (error) {
         if (error instanceof ShiftNotFound) return res.sendClientError(error.message);

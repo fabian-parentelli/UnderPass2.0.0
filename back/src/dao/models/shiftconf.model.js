@@ -29,7 +29,7 @@ const shiftconfSchema = new mongoose.Schema({
                         endHour: { type: String },
                         fractionHour: { type: Number },
                     },
-                    people: { type: Number },
+                    abilityNumber: { type: Number },
                     price: { type: Number },
                     title: { type: String },
                 }

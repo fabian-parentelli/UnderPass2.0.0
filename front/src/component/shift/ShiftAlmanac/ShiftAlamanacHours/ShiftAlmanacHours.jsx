@@ -10,7 +10,13 @@ const ShiftAlmanacHours = ({ config, setType, book, setRooms, rooms, sections, s
             <h3>{typeShiftCategory(config.category)} {config.title}</h3>
             <p>Numero de salas {config.rooms}</p>
             {config && config.rooms < 2
-                ? <ShiftOnlyRooms config={config} setType={setType} book={book} />
+                ? <ShiftOnlyRooms
+                    config={config}
+                    setType={setType}
+                    book={book}
+                    sections={sections}
+                    setSections={setSections}
+                />
                 : <ShiftAllRooms
                     config={config}
                     setType={setType}
