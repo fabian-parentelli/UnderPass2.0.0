@@ -9,15 +9,13 @@ import { getShiftDataApi } from '../../../helpers/shift/getShiftData.api.js';
 
 const ShiftAlmanac = ({ config }) => {
 
-    console.log(config);
-    
-
     const [book, setBook] = useState([]);
     const [type, setType] = useState(null);
     const [rooms, setRooms] = useState(null);
     const [loading, setLoading] = useState(false);
     const [nonWorkDays, setnonWorkDays] = useState([]);
     const [selected, setSelected] = useState(getCurrentDate());
+    const [sections, setSections] = useState(null);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -30,7 +28,7 @@ const ShiftAlmanac = ({ config }) => {
                 if (response.status === 'success') {
                     const booksFuture = [];
                     response.result.forEach((res) => {
-                        if (res.active) booksFuture.push(res); 
+                        if (res.active) booksFuture.push(res);
                         if (res.notDay) setnonWorkDays(res.notDay);
                     });
                     setBook(booksFuture);
@@ -38,7 +36,7 @@ const ShiftAlmanac = ({ config }) => {
             };
             setLoading(false);
         }; if (config && config.userId) fetchData();
-    }, [config, selected, rooms]);
+    }, [config, selected, rooms, sections]);
 
     const handleBook = async () => {
         const query = { day: selected, hour: type, userId: config.userId };
@@ -52,8 +50,26 @@ const ShiftAlmanac = ({ config }) => {
     return (
         <div className='shiftAlmanac'>
             <section>
-                {config && <ShiftCalendar config={config} setSelected={setSelected} nonWorkDays={nonWorkDays} selected={selected} rooms={rooms} />}
-                {config && <ShiftAlmanacHours config={config} setType={setType} book={book} setRooms={setRooms} rooms={rooms} />}
+                {config &&
+                    <>
+                        <ShiftCalendar
+                            config={sections || config}
+                            setSelected={setSelected}
+                            nonWorkDays={nonWorkDays}
+                            selected={selected}
+                            rooms={rooms}
+                        />
+                        <ShiftAlmanacHours
+                            config={config}
+                            setType={setType}
+                            book={book}
+                            setRooms={setRooms}
+                            rooms={rooms}
+                            sections={sections}
+                            setSections={setSections}
+                        />
+                    </>
+                }
             </section>
             <button className='btn btnSH shiftAlmanacBtn' onClick={handleBook}>Reservar</button>
             <Load loading={loading} />

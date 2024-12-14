@@ -1,6 +1,6 @@
 const setHours = (hour) => {
 
-    if (!hour || !hour.startHour || !hour.endHour || !hour.fractionHour) {
+    if (!hour || !hour.startHour || !hour.endHour) {
         console.error("Faltan datos en 'hour':", hour);
         return [];
     };
@@ -20,8 +20,13 @@ const setHours = (hour) => {
     const start = toMinutes(hour.startHour);
     const end = toMinutes(hour.endHour) + (toMinutes(hour.endHour) < start ? 24 * 60 : 0);
 
+    let fractionHour = hour.fractionHour;
+    if (!fractionHour) {
+        fractionHour = (end - start);  
+    };
+
     const labels = [];
-    for (let time = start; time < end; time += hour.fractionHour) {
+    for (let time = start; time < end; time += fractionHour) {
         const timeString = toTimeString(time);
         labels.push({ title: timeString, _id: timeString });
     };
