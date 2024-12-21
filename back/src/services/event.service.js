@@ -6,8 +6,8 @@ const newEvent = async (event) => {
     event.guests = event.guests.split(',');
     const result = await eventRepository.newEvent(event);
     if (!result) throw new EventNotFound('No se puede guardar el nuevo evento');
-    if(event.sites) {
-        for(const sit of event.sites) {
+    if (event.sites) {
+        for (const sit of event.sites) {
             const site = await sitesRepository.getById(sit);
             site.isEvent = true;
             site.events.push(result._id);

@@ -19,20 +19,20 @@ export default class PublicityRepository {
         return result;
     };
 
-    getAll = async (query, limit, page) => {
-        const result = await publicityManager.getAll(query, limit, page);  
-        if(query.active === 'false') return result;
+    getAll = async (query, limit, page = 1) => {
+        const result = await publicityManager.getAll(query, limit, page);
+        if (query.active === 'false') return result;
         const today = new Date().setHours(0, 0, 0, 0);
         const updatedDocs = [];
         for (let i = 0; i < result.docs.length; i++) {
             const publicity = result.docs[i];
             if (!publicity.end) updatedDocs.push(publicity);
             else {
-                const publicityEnd = new Date(publicity.end).setHours(0, 0, 0, 0);                
+                const publicityEnd = new Date(publicity.end).setHours(0, 0, 0, 0);
                 if (publicityEnd > today) updatedDocs.push(publicity);
                 else {
                     if (publicity.active === true) {
-                        await newAlert({ eventId: publicity._id, userId: publicity.application.userId, type: 'publicityOff' });
+                        if (publicity.application?.userId) await newAlert({ eventId: publicity._id, userId: publicity.application?.userId, type: 'publicityOff' });
                         publicity.active = false;
                         publicity.inPortal = false;
                         await publicityManager.update(publicity);

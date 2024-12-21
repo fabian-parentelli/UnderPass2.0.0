@@ -1,4 +1,4 @@
-import { isNotTime, filterDay } from '../dao/DTOS/shift.dto.js';
+import { isNotTime } from '../dao/DTOS/shift.dto.js';
 import { shiftManager } from '../dao/manager/index.manager.js';
 
 export default class ShiftRepository {

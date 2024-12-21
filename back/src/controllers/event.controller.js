@@ -72,7 +72,7 @@ const getEvent = async (req, res) => {
             { ...req.user }, page, limit, active, country, publicity, userid, category, province, startdate, title, favorite, confirm
         );
         if (result) return res.sendSuccess(result);
-    } catch (error) {
+    } catch (error) {        
         if (error instanceof EventNotFound) return res.sendClientError(error.message);
         res.sendServerError(error.message);
     };

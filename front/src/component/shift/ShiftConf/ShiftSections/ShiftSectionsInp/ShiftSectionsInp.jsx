@@ -93,7 +93,7 @@ const ShiftSectionsInp = ({ sect, ind, values, setValues }) => {
 
                     <div className='shiftSectionsDiv'>
                         <label>Máximo de personas en esta sección</label>
-                        <input type="number" name='abilityNumber' max={values?.abilityNumber} placeholder='Personas por sección' onChange={(e) => handleChange(e, ind, index)} value={values.roomsData[ind]?.sections[index]?.people || ''} />
+                        <input type="number" name='abilityNumber' max={values?.abilityNumber} placeholder='Personas por sección' onChange={(e) => handleChange(e, ind, index)} value={values.roomsData[ind]?.sections[index]?.abilityNumber || ''} />
                     </div>
 
                     <div className='line'></div>
