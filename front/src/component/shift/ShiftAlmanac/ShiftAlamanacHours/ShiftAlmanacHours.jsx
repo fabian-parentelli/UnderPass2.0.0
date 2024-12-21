@@ -1,4 +1,3 @@
-import './shiftAlmanacHours.scss';
 import ShiftOnlyRooms from './ShiftOnlyRooms/ShiftOnlyRooms';
 import { typeShiftCategory } from '../../../../utils/typeShifts.utils.js';
 import ShiftAllRooms from './ShiftAllRooms/ShiftAllRooms.jsx';

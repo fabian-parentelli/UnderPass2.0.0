@@ -2,8 +2,7 @@ import './shiftAllRooms.scss';
 import { useEffect, useState } from 'react';
 import ShiftHours from '../ShiftHoursConf/ShiftHoursConf';
 
-const ShiftAllRooms = ({ config, setType, book, setRooms, rooms, sections, setSections }) => {
-
+const ShiftAllRooms = ({ config, setType, book, setRooms, rooms = "", sections, setSections }) => {
     const [roomSel, setRoomSel] = useState([]);
     const [vew, setVew] = useState(null);
 
@@ -25,43 +24,42 @@ const ShiftAllRooms = ({ config, setType, book, setRooms, rooms, sections, setSe
             const room = config.roomsData.find(rom => rom.name === rooms);
             setVew(room);
             if (room && room.sections.length > 0) setRoomSel(room.sections);
-        };
+        } else setVew(null);
     }, [rooms]);
 
     return (
-        <div className='shiftAllRooms'>
+        <div className="shiftAllRooms">
 
-            <section className='shiftAllRoomsRoom'>
+            <section className="shiftAllRoomsRoom">
                 <label>Sala</label>
-                <select onChange={handleRoom} value={rooms}>
+                <select onChange={handleRoom} value={rooms || ""}>
                     <option value="">Elegir</option>
-                    {config && config.roomsData.map((room, ind) => (
+                    {config?.roomsData.map((room, ind) => (
                         <option key={ind} value={room.name}>{room.name}</option>
                     ))}
                 </select>
             </section>
 
-            {roomSel && roomSel.length > 0 &&
-                <section className='shiftAllRoomsRoom' onChange={handleSect}>
+            {roomSel.length > 0 && (
+                <section className="shiftAllRoomsRoom">
                     <label>Sección</label>
-                    <select>
+                    <select onChange={handleSect} value={sections?.title || ""}>
                         <option value="">Seleccionar Sección</option>
                         {roomSel.map((sect, ind) => (
                             <option key={ind} value={sect.title}>{sect.title}</option>
                         ))}
                     </select>
                 </section>
-            }
+            )}
 
-            {(!vew && !sections
-                ? <p style={{ color: 'green', marginTop: '1rem' }}>No hay nada seleccionado</p>
-                : (vew.sections.length < 1
-                    ? <ShiftHours hour={config.hour} setType={setType} book={book} />
-                    : (!sections
-                        ? <p style={{ color: 'green', marginTop: '1rem' }}>No hay nada seleccionado</p>
-                        : <ShiftHours hour={sections.hour} setType={setType} book={book} />
-                    )
-                )
+            {!vew && !sections ? (
+                <p style={{ color: 'green', marginTop: '1rem' }}>No hay nada seleccionado</p>
+            ) : vew?.sections?.length < 1 ? (
+                <ShiftHours hour={config.hour} setType={setType} book={book} />
+            ) : !sections ? (
+                <p style={{ color: 'green', marginTop: '1rem' }}>No hay nada seleccionado</p>
+            ) : (
+                <ShiftHours hour={sections.hour} setType={setType} book={book} />
             )}
 
         </div>

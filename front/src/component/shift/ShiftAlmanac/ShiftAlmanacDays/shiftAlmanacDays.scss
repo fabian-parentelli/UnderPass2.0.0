@@ -60,3 +60,31 @@
         }
     }
 }
+
+@media (max-width: 767px) {
+    
+    .shiftAlmanacDays {
+        width: 90%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+
+        &::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: $colorB;
+            border-radius: 6px;
+        }
+
+        .sellerTable {
+            cursor: pointer;
+            transition: .3s;
+
+            &:hover {
+                color: black;
+                background-color: $colorB;
+            }
+        }
+    }
+}

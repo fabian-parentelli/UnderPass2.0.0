@@ -17,10 +17,6 @@ const getDataShift = async (req, res) => {
         const result = await shiftService.getDataShift(uid, month, year, day, room, sections);
         if (result) return res.sendSuccess(result);
     } catch (error) {
-
-        console.log(error); //--------------------------------------------------Borrar------
-        
-
         if (error instanceof ShiftNotFound) return res.sendClientError(error.message);
         res.sendServerError(error.message);
     };
