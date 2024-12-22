@@ -59,6 +59,9 @@ const ShiftAlmanac = ({ config }) => {
         }
     }, [type, dataUser, selected, rooms, sections, config]);
 
+    console.log(dataUser);
+    
+
     const handleBook = async () => {
         if (vew.status) {
             const query = { day: selected, hour: type, userId: config.userId, customer: dataUser };
@@ -69,14 +72,14 @@ const ShiftAlmanac = ({ config }) => {
 
 
             // Luego poner una condicional que si no ponen un horario no lo concidero....
-            // const response = await newShiftApi(query);
-            // console.log(response);
+            const response = await newShiftApi(query);
+            console.log(response);
         };
     };
 
     return (
         <div className='shiftAlmanac'>
-            <section>
+            <section className='shiftAlmanacSect'>
                 {config &&
                     <>
                         <ShiftCalendar
@@ -97,7 +100,7 @@ const ShiftAlmanac = ({ config }) => {
                         />
                         {(user && user.data) &&
                             user.data._id === config.userId
-                            ? <ShiftDataAdminUser configId={config._id} setDataUser={setDataUser} />
+                            ? <ShiftDataAdminUser userId={config.userId} setDataUser={setDataUser} />
                             : user.data.role !== 'user'
                                 ? 'Esres el administrador del sitio'
                                 : 'Eres el usuario administrador'

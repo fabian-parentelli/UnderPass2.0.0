@@ -8,6 +8,7 @@ const AutoComplete = ({ data, handleChange }) => {
             id="combo-box-demo"
             options={data}
             onChange={handleChange}
+            isOptionEqualToValue={(option, value) => option._id === value._id}
             clearOnBlur={true}
             sx={{
                 width: '100%',
@@ -30,3 +31,5 @@ const AutoComplete = ({ data, handleChange }) => {
 };
 
 export default AutoComplete;
+
+// Este componente exige que el array de objetos contengan una propiedad "label".

@@ -1,10 +1,10 @@
 .shiftAlmanac {
     margin-top: 1rem;
 
-    section {
+    .shiftAlmanacSect {
         display: flex;
         flex-wrap: wrap;
-        gap: 1rem;
+        gap: 4rem;
     }
 
     .shiftAlmanacBtn {
@@ -21,5 +21,11 @@
         font-size: 12px;
         margin-top: 3px;
         color: red;
+    }
+}
+
+@media (max-width: 767px) {
+    .shiftAlmanac .shiftAlmanacSect {
+        gap: 1rem;
     }
 }

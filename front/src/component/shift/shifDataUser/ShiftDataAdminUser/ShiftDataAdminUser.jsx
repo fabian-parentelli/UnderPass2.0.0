@@ -4,7 +4,7 @@ import PermContactCalendarIcon from '@mui/icons-material/PermContactCalendar';
 import ShiftFindCustomer from '../tools/ShiftFindCustomer/ShiftFindCustomer';
 import ShiftInputUser from '../tools/ShiftInputUser/ShiftInputUser';
 
-const ShiftDataAdminUser = ({ configId, setDataUser }) => {
+const ShiftDataAdminUser = ({ userId, setDataUser }) => {
 
     const [vew, setVew] = useState(null);
 
@@ -14,7 +14,7 @@ const ShiftDataAdminUser = ({ configId, setDataUser }) => {
         <div className='shiftDataAdminUser'>
             <h4>Datos del cliente</h4>
 
-            <section>
+            <section className='shiftDataAdminUserSect'>
                 <button className='btn btnSH' onClick={() => handleVew('customer')}>Clientes</button>
                 <button className='btn btnSH' onClick={() => handleVew('new')}>Nuevo</button>
             </section>
@@ -26,7 +26,7 @@ const ShiftDataAdminUser = ({ configId, setDataUser }) => {
                     <PermContactCalendarIcon className='shiftDataAdminUserIcon' />
                 </>
             }
-            {vew === 'customer' && <ShiftFindCustomer configId={configId} />}
+            {vew === 'customer' && <ShiftFindCustomer userId={userId} setDataUser={setDataUser} />}
             {vew === 'new' && <ShiftInputUser setDataUser={setDataUser} />}
         </div>
     );

@@ -16,6 +16,9 @@ const UserSearch = ({ setUser }) => {
         }; fetchData();
     }, []);
 
+    console.log(data);
+    
+
     const handleChange = (e, newValue) => newValue && setUser(newValue);
 
     return (
