@@ -2,7 +2,7 @@ import { shiftRepository, shiftCustomerRepository } from "../repositories/index.
 import { ShiftNotFound } from '../utils/custom-exceptions.utils.js';
 
 const newShift = async (shift) => {
-    if (!shift.customer.customerId) {        
+    if (!shift.customer.customerId) {
         const customer = await shiftCustomerRepository.newCustomer({ ...shift.customer, userId: shift.userId, isCustomer: true });
         shift.customer = customer._id;
         shift.isCustomer = customer.isCustomer;

@@ -3,6 +3,32 @@
     padding: 2rem 0;
     display: flex;
     justify-content: center;
-
+    align-items: center;
+    flex-direction: column;
     min-height: 40vh;
+
+    .notShift {
+        max-width: 1340px;
+        display: flex;
+
+        img {
+            width: 60%;
+            margin: 2rem auto;
+            box-shadow: 5px 5px 15px;
+            transition: .3s ease-in-out;
+
+            &:hover {
+                transform: translateY(-3px);
+            }
+        }
+    }
 }
+
+ @media (max-width: 767px) {
+    .bodyShifts {
+        
+        .notShift img {
+            width: 80%;
+        }
+    }
+ }

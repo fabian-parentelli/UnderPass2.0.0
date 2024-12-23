@@ -20,4 +20,9 @@ const imagesHelp = {
     // 
 };
 
-export { imagesHelp };
+const genericImages = {
+
+    notShifts: 'https://ik.imagekit.io/sn6eyrykr/General/calendario.png?updatedAt=1734992704114'
+};
+
+export { imagesHelp, genericImages };

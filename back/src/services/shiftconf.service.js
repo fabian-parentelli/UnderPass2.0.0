@@ -18,6 +18,18 @@ const newShift = async (shifts, imgUrl) => {
     };
 };
 
+const getPublicShiftconf = async (page, limit, country, active, province, category, title) => {
+    const query = {};
+    if (category) query.category = category;
+    if (active !== undefined) query.active = active;
+    if (country) query['location.country'] = { $regex: country, $options: "i" };
+    if (province) query['location.province'] = { $regex: province, $options: "i" };
+    if (title) query.title = { $regex: title, $options: "i" };
+    const result = await shiftconfRepository.getShiftconf(query, page, limit);
+    if (result.docs.length < 1) throw new ShiftNotFound('No se encuentra configuración previa');
+    return { status: 'success', result };
+};
+
 const getShiftconf = async (page, limit, country, active, province, category, title, favorite, userid) => {
     const query = {};
     if (category) query.category = category;
@@ -35,4 +47,4 @@ const getShiftconf = async (page, limit, country, active, province, category, ti
     return { status: 'success', result };
 };
 
-export { newShift, getShiftconf };
+export { newShift, getShiftconf, getPublicShiftconf };

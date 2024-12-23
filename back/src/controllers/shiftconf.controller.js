@@ -12,6 +12,17 @@ const newShift = async (req, res) => {
     };
 };
 
+const getPublicShiftconf = async (req, res) => {
+    const { page = 1, limit, country, active, province, category, title, favorite } = req.query;
+    try {
+        const result = await shiftconfService.getPublicShiftconf(page, limit, country, active, province, category, title, favorite);
+        if (result) return res.sendSuccess(result);
+    } catch (error) {        
+        if (error instanceof ShiftNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
 const getShiftconf = async (req, res) => {
     const { page = 1, limit, country, active, province, category, title, favorite, userid } = req.query;
     try {
@@ -23,4 +34,4 @@ const getShiftconf = async (req, res) => {
     };
 };
 
-export { newShift, getShiftconf };
+export { newShift, getShiftconf, getPublicShiftconf };

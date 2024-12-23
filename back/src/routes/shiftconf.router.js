@@ -7,6 +7,7 @@ import { uploadToCloudinary } from '../config/cloudinary.config.js';
 export default class ShiftconfRouter extends Router {
     init() {
         this.post('/', ['USER', 'ADMIN', 'MASTER'], passportEnum.JWT, multipleUploader, uploadToCloudinary, shiftconfController.newShift);
+        this.get('/public', ['PUBLIC'], passportEnum.NOTHING, shiftconfController.getPublicShiftconf);
         this.get('/', ['USER', 'ADMIN', 'MASTER'], passportEnum.JWT, shiftconfController.getShiftconf);
     };
 };
