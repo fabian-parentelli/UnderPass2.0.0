@@ -25,7 +25,9 @@
 }
 
 @media (max-width: 767px) {
+
     .shiftAlmanac .shiftAlmanacSect {
         gap: 1rem;
+        justify-content: center;
     }
 }

@@ -9,6 +9,7 @@ import { getShiftDataApi } from '../../../helpers/shift/getShiftData.api.js';
 import { useLoginContext } from '../../../context/LoginContext.jsx';
 import ShiftDataAdminUser from '../shifDataUser/ShiftDataAdminUser/ShiftDataAdminUser.jsx';
 import { monthMapping } from '../../../utils/typeShifts.utils.js';
+import ShiftInputUser from '../shifDataUser/tools/ShiftInputUser/ShiftInputUser.jsx';
 
 const ShiftAlmanac = ({ config }) => {
 
@@ -58,10 +59,7 @@ const ShiftAlmanac = ({ config }) => {
             };
         }
     }, [type, dataUser, selected, rooms, sections, config]);
-
-    console.log(dataUser);
     
-
     const handleBook = async () => {
         if (vew.status) {
             const query = { day: selected, hour: type, userId: config.userId, customer: dataUser };
@@ -72,8 +70,8 @@ const ShiftAlmanac = ({ config }) => {
 
 
             // Luego poner una condicional que si no ponen un horario no lo concidero....
-            const response = await newShiftApi(query);
-            console.log(response);
+            // const response = await newShiftApi(query);
+            // console.log(response);
         };
     };
 
@@ -101,9 +99,12 @@ const ShiftAlmanac = ({ config }) => {
                         {(user && user.data) &&
                             user.data._id === config.userId
                             ? <ShiftDataAdminUser userId={config.userId} setDataUser={setDataUser} />
-                            : user.data.role !== 'user'
-                                ? 'Esres el administrador del sitio'
-                                : 'Eres el usuario administrador'
+                            : !user.data?.role
+                                ? <ShiftInputUser setDataUser={setDataUser} />
+                                : (user.data.role !== 'user'
+                                    ? 'Eres el jefe'
+                                    : 'Eres un usario'
+                                )
                         }
                     </>
                 }

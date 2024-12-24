@@ -30,6 +30,12 @@ const getPublicShiftconf = async (page, limit, country, active, province, catego
     return { status: 'success', result };
 };
 
+const getShiftconfById = async (id) => {
+    const result = await shiftconfRepository.getById(id);
+    if (!result) throw new ShiftNotFound('No se encuentra configuración previa');
+    return { status: 'success', result };
+};
+
 const getShiftconf = async (page, limit, country, active, province, category, title, favorite, userid) => {
     const query = {};
     if (category) query.category = category;
@@ -47,4 +53,4 @@ const getShiftconf = async (page, limit, country, active, province, category, ti
     return { status: 'success', result };
 };
 
-export { newShift, getShiftconf, getPublicShiftconf };
+export { newShift, getShiftconf, getShiftconfById, getPublicShiftconf };
