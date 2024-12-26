@@ -67,6 +67,38 @@
         display: flex;
         justify-content: center;
     }
+
+    .shiftPageMap {
+        margin-top: 4rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+        gap: 2rem;
+
+        .shiftPageMapDiv {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            gap: 1rem;
+
+            .shiftPageMapDivIcon {
+                font-size: 6rem;
+                color: $underShifts;
+            }
+        }
+
+        .shiftPageMapVew {
+            width: 300px;
+            height: 300px;
+            box-shadow: 5px 5px 15px;
+            transition: .3s ease-in-out;
+
+            &:hover {
+                transform: translateY(-5px);
+            }
+        }
+    }
 }
 
 @media (max-width: 767px) {

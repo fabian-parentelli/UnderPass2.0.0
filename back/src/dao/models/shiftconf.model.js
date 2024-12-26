@@ -10,6 +10,10 @@ const shiftconfSchema = new mongoose.Schema({
         province: { type: String },
         city: { type: String },
         address: { type: String },
+        coordinates: {
+            lat: { type: String },
+            lon: { type: String },
+        }
     },
     rooms: { type: Number },
     days: [{ type: String }],

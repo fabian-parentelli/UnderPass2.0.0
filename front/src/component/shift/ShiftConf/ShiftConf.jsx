@@ -70,10 +70,13 @@ const ShiftConf = ({ userId }) => {
         <form className='shiftConf' onSubmit={handleSubmit}>
             <p>Configuración de tu servicio de turnos.</p>
             <p>Puedes ver nuestra <span className='colSH' onClick={() => navigate('/help')}>Ayuda</span> con toda la info detallada e incluso ver un <span className='colSH' onClick={() => navigate('/help')}>video tutorial</span>.</p>
-            <ShiftCompany values={values} setValues={setValues} setFiles={setFiles} handleValues={handleValues} />
+            <ShiftCompany values={values} setValues={setValues} setFiles={setFiles} handleValues={handleValues} setLoading={setLoading} />
             <ShiftRooms values={values} setValues={setValues} handleValues={handleValues} updateData={updateData} />
             <ShiftSeccion values={values} setValues={setValues} handleValues={handleValues} />
             <ShiftSections values={values} setValues={setValues} handleValues={handleValues} />
+            {values?.location?.coordinates?.lat &&
+                <p className='shiftConfPP'>No te olvides de seleccionar una dirección en el mapa.</p>
+            }
             <button className='btn btnSH'>
                 {values?._id ? 'Actualizar' : 'Configurar'}
             </button>

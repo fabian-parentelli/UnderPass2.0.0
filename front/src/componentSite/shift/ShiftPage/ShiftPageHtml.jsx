@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
+import BusinessIcon from '@mui/icons-material/Business';
 import { typeShiftCategory } from "../../../utils/typeShifts.utils.js";
 import ShiftAlmanac from "../../../component/shift/ShiftAlmanac/ShiftAlmanac.jsx";
+import MapView from "../../../component/utils/MapVew.jsx";
 
 const ShiftPageHtml = ({ config }) => {
 
@@ -24,9 +26,21 @@ const ShiftPageHtml = ({ config }) => {
                 <ShiftAlmanac config={config} />
             </section>
 
-            <section>
+            {config.location.coordinates &&
+                <section className="shiftPageMap">
+                    <div className="shiftPageMapDiv">
+                        <BusinessIcon className="shiftPageMapDivIcon" />
+                        <p>{config.location.address}</p>
+                        <p>{config.location.city}</p>
+                        <p>{config.location.province}</p>
+                    </div>
+                    <div className="shiftPageMapVew">
+                        <MapView coordinates={config?.location?.coordinates} />
+                    </div>
+                </section>
+            }
 
-            </section>
+            
 
         </div>
     );

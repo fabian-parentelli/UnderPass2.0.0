@@ -1,17 +1,45 @@
 import './shiftCompany.scss';
 import { useState } from 'react';
+import AddIcon from '@mui/icons-material/Add';
 import InfoIcon from '@mui/icons-material/Info';
 import { typeShifts } from '../../../../utils/typeShifts.utils.js';
 import CharacterCounter from '../../../utils/CharacterCounter.jsx';
 import SelectedProvince from '../../../utils/SelectedProvince.jsx';
 import ImgUpload from '../../../sites/newSiteSeccion/ImgUpload/ImgUpload.jsx';
+import { getCoordinatesApi } from '../../../../helpers/maps/getCoordinates.api.js';
 
-const ShiftCompany = ({ values, setValues, setFiles, handleValues }) => {
+const ShiftCompany = ({ values, setValues, setFiles, handleValues, setLoading }) => {
 
     const [info, setInfo] = useState(false);
+    const [message, setMessage] = useState(false);
+    const [locations, setLocations] = useState([]);
+    const [color, setColor] = useState(null);
 
     const country = localStorage.getItem('country');
-    const handleChange = (e) => setValues({ ...values, location: { ...values.location, [e.target.name]: e.target.value } })
+    const handleChange = (e) => setValues({ ...values, location: { ...values.location, [e.target.name]: e.target.value } });
+
+    const handleMapa = async () => {
+        setLoading(true);
+        if (!values?.location?.province || !values?.location?.city || !values?.location?.address) {
+            setLoading(false);
+            return setMessage(true);
+        };
+        const response = await getCoordinatesApi(values.location);
+        if (response) setLocations(response);
+        setLoading(false);
+    };
+
+    const handleMap = (loc, ind) => {
+        if (loc) {
+            setLoading(true);
+            setValues({
+                ...values, location: { ...values.location, coordinates: { ...values.location.coordinates, lat: loc.lat, lon: loc.lon } }
+            });
+            setColor(ind);
+            setLoading(false);
+        };
+    };
+
 
     return (
         <details className='shiftCompany' onClick={() => info && setInfo(false)}>
@@ -78,11 +106,29 @@ const ShiftCompany = ({ values, setValues, setFiles, handleValues }) => {
                     <label>Ciudad</label>
                     <input type="text" name='city' placeholder='Ciudad' onChange={handleChange} value={values?.location?.city || ''} />
                 </div>
-                
+
                 <div>
                     <label>Dirección</label>
                     <input type="text" name='address' placeholder='Dirección' onChange={handleChange} value={values?.location?.address || ''} />
                 </div>
+
+                <p className='btn btnSH' style={{ textAlign: 'center' }} onClick={handleMapa}>Mapa</p>
+            </section>
+
+            {message && <p className='shiftCompanyMessage'>Falta completar datos ...</p>}
+
+            <section className='shiftCompanyMap'>
+                {locations && locations.length > 0 && (
+                    <>
+                        <p className='colSH'>Selecciona la correcta</p>
+                        {locations.map((loc, ind) => (
+                            <div key={ind} className="shiftCompanyMapDiv">
+                                <AddIcon className={`shiftCompanyMapIcon ${color === ind ? 'shiftCompanyMapBack' : ''}`} onClick={() => handleMap(loc, ind)} />
+                                <p>{loc.display_name}</p>
+                            </div>
+                        ))}
+                    </>
+                )}
             </section>
 
         </details>

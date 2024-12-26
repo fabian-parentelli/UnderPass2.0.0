@@ -2,22 +2,25 @@ const url = 'https://nominatim.openstreetmap.org/search?q=';
 
 const getCoordinatesApi = async (coordinate) => {
 
-    const address = coordinate.address.replace(/ /g, '+');
-    const door = coordinate.door.replace(/ /g, '+');
-    const city = coordinate.city.replace(/ /g, '+');
-    const province = coordinate.province.replace(/ /g, '+');
+    const parts = [
+        coordinate.address?.replace(/ /g, '+'),
+        coordinate.door?.replace(/ /g, '+'),
+        coordinate.city?.replace(/ /g, '+'),
+        coordinate.province?.replace(/ /g, '+')
+    ].filter(Boolean);
+
     const country = coordinate.country === 'UY' ? 'uruguay' : 'argentina';
-    
-    const response = await fetch(`${url}${address}+${door}+${city}+${province}+${country}&format=json`, {
+    const query = `${parts.join('+')}+${country}`;
+
+    const response = await fetch(`${url}${query}&format=json`, {
         method: 'GET',
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
         }
     });
-    const content = await response.json();    
-    if (content.error) return content;
-    if (content) return content;
+    const content = await response.json();
+    return content.error ? content : content;
 };
 
 export { getCoordinatesApi };
