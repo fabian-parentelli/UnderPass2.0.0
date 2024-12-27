@@ -2,6 +2,7 @@ import Messnews from "../manager/messnews.manager.js";
 import MessProduct from "../manager/messproduct.manager.js";
 import MessEvent from "../manager/messevent.manager.js";
 import MessSite from "../manager/messsite.manager.js";
+import MessShift from "../manager/messshift.manager.js";
 
 class MessageFactory {
     static getManager(type) {
@@ -14,6 +15,8 @@ class MessageFactory {
                 return new MessEvent();
             case 'site':
                 return new MessSite();
+            case 'shift':
+                return new MessShift();
             default:
                 throw new Error(`No manager found for type: ${type}`);
         };

@@ -3,15 +3,16 @@ import Load from '../../utils/Load.jsx';
 import { useEffect, useState } from 'react';
 import ShiftCalendar from './ShiftCalendar/ShiftCalendar';
 import { formatText } from '../../../utils/formatText.utils.js';
+import { monthMapping } from '../../../utils/typeShifts.utils.js';
+import { useLoginContext } from '../../../context/LoginContext.jsx';
 import { newShiftApi } from '../../../helpers/shift/newShift.api.js';
 import ShiftAlmanacHours from './ShiftAlamanacHours/ShiftAlmanacHours';
+import ShiftDataUser from '../shifDataUser/ShiftDataUser/ShiftDataUser.jsx';
 import { getShiftDataApi } from '../../../helpers/shift/getShiftData.api.js';
-import { useLoginContext } from '../../../context/LoginContext.jsx';
-import ShiftDataAdminUser from '../shifDataUser/ShiftDataAdminUser/ShiftDataAdminUser.jsx';
-import { monthMapping } from '../../../utils/typeShifts.utils.js';
 import ShiftInputUser from '../shifDataUser/tools/ShiftInputUser/ShiftInputUser.jsx';
+import ShiftDataAdminUser from '../shifDataUser/ShiftDataAdminUser/ShiftDataAdminUser.jsx';
 
-const ShiftAlmanac = ({ config }) => {
+const ShiftAlmanac = ({ config, width = 4 }) => {
 
     const { user } = useLoginContext();
     const [book, setBook] = useState([]);
@@ -55,11 +56,11 @@ const ShiftAlmanac = ({ config }) => {
             if (!isDay) setVew({ status: false, message: 'El día seleccionado no es correcto' });
             else {
                 if (!type || !dataUser?.name) setVew({ status: false, message: 'Seleccionar día y datos del usuario' });
-                else setVew({status: true, message: 'Listo para reservar'});
+                else setVew({ status: true, message: 'Listo para reservar' });
             };
         }
     }, [type, dataUser, selected, rooms, sections, config]);
-    
+
     const handleBook = async () => {
         if (vew.status) {
             const query = { day: selected, hour: type, userId: config.userId, customer: dataUser };
@@ -70,14 +71,14 @@ const ShiftAlmanac = ({ config }) => {
 
 
             // Luego poner una condicional que si no ponen un horario no lo concidero....
-            // const response = await newShiftApi(query);
-            // console.log(response);
+            const response = await newShiftApi(query);
+            console.log(response);
         };
     };
 
     return (
         <div className='shiftAlmanac'>
-            <section className='shiftAlmanacSect'>
+            <section className='shiftAlmanacSect' style={{ gap: `${width}rem`}}>
                 {config &&
                     <>
                         <ShiftCalendar
@@ -102,8 +103,8 @@ const ShiftAlmanac = ({ config }) => {
                             : !user.data?.role
                                 ? <ShiftInputUser setDataUser={setDataUser} />
                                 : (user.data.role !== 'user'
-                                    ? 'Eres el jefe'
-                                    : 'Eres un usario'
+                                    ? <ShiftDataAdminUser userId={config.userId} setDataUser={setDataUser} />
+                                    : <ShiftDataUser setDataUser={setDataUser} user={user?.data} />
                                 )
                         }
                     </>

@@ -99,6 +99,18 @@
             }
         }
     }
+
+    .shiftPageMessages {
+        width: 80%;
+        margin: auto;
+        padding: 4rem 0;
+    }
+
+    .shiftPageLogo {
+        margin-top: 2rem;
+        display: flex;
+        justify-content: center;
+    }
 }
 
 @media (max-width: 767px) {
@@ -120,6 +132,10 @@
                 margin-top: 2rem;
                 width: 90%;
             }
+        }
+
+        .shiftPageMessages {
+            width: 95%;
         }
     }
 }

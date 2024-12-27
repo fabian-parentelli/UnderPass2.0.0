@@ -9,6 +9,7 @@ const newSiteOptions = (images, imagesUrl, sit, site) => {
     if (sit.post === 'products') site = isProduct(sit, site);
     if (sit.post === 'galery') site = isGalery(images, imagesUrl, sit, site);
     if (sit.post === 'videos') site = isVideo(sit, site);
+    if (sit.post === 'shifts') site = isShift(sit, site);
     return site;
 };
 
@@ -170,6 +171,11 @@ function isGalery(images, imagesUrl, sit, site) {
 function isVideo(sit, site) {
     site = { ...site, ...sit };
     if (!site.isVideo) site.videos = [];
+    return site;
+};
+
+function isShift(sit, site) {
+    site = { ...site, ...sit };
     return site;
 };
 

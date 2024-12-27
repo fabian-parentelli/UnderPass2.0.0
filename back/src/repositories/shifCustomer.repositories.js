@@ -13,5 +13,10 @@ export default class ShiftCustomerRepository {
         const result = await typeCustomer(preResult);
         return result;
     };
+    
+    getShiftCustomerByEmail = async (email) => {
+        const result = await shiftCustomerManager.getShiftCustomerByEmail(email);
+        return result;
+    };
 
 };

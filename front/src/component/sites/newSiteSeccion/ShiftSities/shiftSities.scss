@@ -8,4 +8,13 @@
         font-size: 1rem;
         font-weight: 300;
     }
+
+    .videoSitiesSectSwitch {
+        margin-top: 1rem;
+
+        .videoSitiesSwitch {
+            display: flex;
+            align-items: center;
+        }
+    }
 }

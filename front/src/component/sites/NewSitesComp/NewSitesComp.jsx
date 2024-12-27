@@ -15,6 +15,7 @@ import ProductSite from '../newSiteSeccion/ProductSite/ProductSite.jsx';
 import ImagesSities from '../newSiteSeccion/ImagesSities/ImagesSities.jsx';
 import SiteVideo from '../newSiteSeccion/SiteVideo/SiteVideo.jsx';
 import EndSections from '../newSiteSeccion/EndSections/EndSections.jsx';
+import ShiftSities from '../newSiteSeccion/ShiftSities/ShiftSities.jsx';
 
 const NewSitesComp = ({ userId, id }) => {
 
@@ -72,7 +73,7 @@ const NewSitesComp = ({ userId, id }) => {
         if (response.status === 'success') {
             setFiles([]);
             setValues(response.result);
-            localStorage.setItem('site', response.result._id);            
+            localStorage.setItem('site', response.result._id);
             setVew(localStorage.getItem('to'));
         } else console.error(response.error);
         formdata = new FormData()
@@ -94,6 +95,7 @@ const NewSitesComp = ({ userId, id }) => {
                 {vew === 'products' && values._id && <ProductSite values={values} setValues={setValues} />}
                 {vew === 'galery' && values._id && <ImagesSities values={values} setFiles={setFiles} setValues={setValues} />}
                 {vew === 'videos' && values._id && <SiteVideo values={values} setValues={setValues} />}
+                {vew === 'shifts' && values._id && <ShiftSities values={values} setValues={setValues} />}
                 {vew === 'end' && values._id && <EndSections values={values} />}
                 <button className='btn btnUS' disabled={!vewButton}>{id ? 'Actualizar' : 'Agragar'}</button>
                 {!vewButton && <p className='newSitesCompAlert'>No se puede repetir los nombres</p>}

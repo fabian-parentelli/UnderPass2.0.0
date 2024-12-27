@@ -10,6 +10,7 @@ import SitePageProducts from '../sitePageComponents/SitePageProducts/SitePagePro
 import SitePageDescription from '../sitePageComponents/SitePageDescription/SitePageDescription.jsx';
 import SitePageSocialMedia from '../sitePageComponents/SitePageSocialMedia/SitePageSocialMedia.jsx';
 import SitePageDiscography from '../sitePageComponents/SitePageDiscography/SitePageDiscography.jsx';
+import SitePageCalendar from './SitePageCalendar/SitePageCalendar.jsx';
 
 const SitePageComponents = ({ site }) => {
 
@@ -19,6 +20,7 @@ const SitePageComponents = ({ site }) => {
                 <>
                     <SitePagePortal site={site} />
                     {site.isEvent && <SiteEventPage site={site} />}
+                    {site.isShift && <SitePageCalendar site={site} />}
                     <SitePageDescription site={site} />
                     <SitePageSocialMedia site={site} />
                     <SitePageCast site={site} />

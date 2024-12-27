@@ -98,7 +98,7 @@ const sitesSchema = new mongoose.Schema({
             url: { type: String },
         }
     ],
-    isShift: { type: Boolean },
+    isShift: { type: Boolean, default: false },
     active: { type: Boolean },
     date: { type: Date, default: Date.now },
     type: { type: String, default: 'site' },

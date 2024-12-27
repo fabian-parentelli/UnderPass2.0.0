@@ -24,7 +24,7 @@
     }
 
     table {
-        width: 300px;
+        width: 280px;
 
         .prev-month,
         .next-month,
@@ -49,7 +49,7 @@
             color: #ccc;
             width: 100%;
             height: 100%;
-            
+
             div {
                 background-color: $underShifts;
                 padding: 3px 3px 3px 5px;
@@ -62,7 +62,7 @@
 }
 
 @media (max-width: 767px) {
-    
+
     .shiftAlmanacDays {
         width: 100%;
         overflow-x: auto;
@@ -86,5 +86,12 @@
                 background-color: $colorB;
             }
         }
+    }
+}
+
+@media (max-width: 424px) {
+
+    .shiftAlmanacDays {
+        width: 280px;
     }
 }

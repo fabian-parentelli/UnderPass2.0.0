@@ -2,12 +2,18 @@ import { shiftRepository, shiftCustomerRepository } from "../repositories/index.
 import { ShiftNotFound } from '../utils/custom-exceptions.utils.js';
 
 const newShift = async (shift) => {
-    if (!shift.customer.customerId) {
-        const customer = await shiftCustomerRepository.newCustomer({ ...shift.customer, userId: shift.userId, isCustomer: true });
-        shift.customer = customer._id;
-        shift.isCustomer = customer.isCustomer;
+    if (!shift.customer?.customerId) {
+        const isCustomers = await shiftCustomerRepository.getShiftCustomerByEmail(shift.customer?.email);
+        if (isCustomers) {
+            shift.customer = isCustomers._id;
+            shift.isCustomer = true;            
+        } else {
+            const customer = await shiftCustomerRepository.newCustomer({ ...shift.customer, userId: shift.userId, isCustomer: true });
+            shift.customer = customer._id;
+            shift.isCustomer = customer.isCustomer;
+        };
     };
-    if (shift.customer.customerId) {
+    if (shift.customer?.customerId) {
         shift.customer = shift.customer.customerId;
         shift.isCustomer = shift.customer.isCustomer;
     };

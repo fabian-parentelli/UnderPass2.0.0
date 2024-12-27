@@ -74,7 +74,7 @@ const ShiftConf = ({ userId }) => {
             <ShiftRooms values={values} setValues={setValues} handleValues={handleValues} updateData={updateData} />
             <ShiftSeccion values={values} setValues={setValues} handleValues={handleValues} />
             <ShiftSections values={values} setValues={setValues} handleValues={handleValues} />
-            {values?.location?.coordinates?.lat &&
+            {!values?.location?.coordinates?.lat &&
                 <p className='shiftConfPP'>No te olvides de seleccionar una dirección en el mapa.</p>
             }
             <button className='btn btnSH'>
