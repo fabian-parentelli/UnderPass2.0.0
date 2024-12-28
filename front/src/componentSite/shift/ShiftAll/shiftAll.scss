@@ -1,7 +1,7 @@
 .shiftAll {
     min-height: 70vh;
     margin: 70px 0;
-    
+
     .shiftAllTitle {
         display: flex;
         justify-content: center;
@@ -11,5 +11,16 @@
     .shiftAllFilter {
         display: flex;
         justify-content: center;
+    }
+
+    .shiftAllCards {
+        max-width: 1140px;
+        margin: auto;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        gap: 2rem;
+        flex-wrap: wrap;
+        margin-top: 3rem;
     }
 }

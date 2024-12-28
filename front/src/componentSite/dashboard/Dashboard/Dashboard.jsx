@@ -36,7 +36,8 @@ import GetEvents from '../events/GetEvents/GetEvents';
 import GetEventUser from '../events/GetEventUser/GetEventUser';
 import AllSitesDas from '../sites/AllSitesDas/AllSitesDas';
 import UserSiteDas from '../sites/UserSiteDas/UserSiteDas';
-import ShiftUserDas from '../shifts/ShiftUserDas';
+import ShiftUserDas from '../shifts/ShiftUserDas/ShiftUserDas';
+import ShiftPanelDas from '../shifts/ShiftPanelDas/ShiftPanelDas';
 
 const Dashboard = () => {
 
@@ -73,7 +74,7 @@ const Dashboard = () => {
 
                 <Fields title={'Turnos'}
                     category={[
-                        { name: 'Ver', path: 'allsitedas' },
+                        { name: 'Ver', path: 'shiftpanel' },
                         { name: 'Usuarios', path: 'shiftuser' }
                     ]}
                 />
@@ -132,6 +133,7 @@ const Dashboard = () => {
                 <Route path='/usersitedas' element={<UserSiteDas />} />
 
                 <Route path='/shiftuser' element={<ShiftUserDas />} />
+                <Route path='/shiftpanel' element={<ShiftPanelDas />} />
 
                 <Route path='/cash' element={<Cash />} />
                 <Route path='/pricelist' element={<PriceList />} />

@@ -1,0 +1,14 @@
+.shiftPanelDas {
+    margin-top: 70px;
+    width: 85%;
+    padding: 1rem;
+
+    .shiftPanelDasButons {
+        display: flex;
+        gap: 1rem;
+
+        .boxTrue {
+            color: black;
+        }
+    }
+}

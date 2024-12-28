@@ -2,10 +2,10 @@
     background-color: rgb(202, 202, 202);
     padding: 6px;
     border-radius: 6px;
-
     gap: 1rem;
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 
     .shiftFilterCategory {
         width: 150px;
@@ -16,12 +16,18 @@
         background-color: #ffff;
         border-radius: 3px;
         position: relative;
+        border: solid 1px rgba(0, 0, 0, 0);
+        
+        &:hover {
+            border: solid 1px black;
+        }
 
         details {
             width: 143px;
             position: absolute;
             top: 6px;
             left: 6px;
+            z-index: 1;
 
             summary {
                 font-family: "Pangolin", cursive;
@@ -34,5 +40,18 @@
 
             }
         }
+    }
+
+    .shiftFilterProvince {
+        width: 150px;
+        input {
+            width: 150px;
+        }
+    }
+
+    .shiftFilterFavorite {
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 }
