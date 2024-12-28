@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const UnderShiftsFont = ({ size, color }) => {
 
     return (
-        <Link to={'/themarket'}
+        <Link to={'/shift/all'}
             className='underShiftsFont'
             style={{ fontSize: `${size}rem`, color: color === 'true' ? '#fbdca8' : '#242424' }}
         >

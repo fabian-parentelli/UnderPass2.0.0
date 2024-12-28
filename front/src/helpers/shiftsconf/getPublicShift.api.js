@@ -13,6 +13,7 @@ const getPublicShiftconfApi = async (obj) => {
     if (obj.title) urlData += `title=${obj.title}&`; 
     if (obj.favorite !== undefined) urlData += `favorite=${obj.favorite}&`;
     if (obj.userId) urlData += `userid=${obj.userId}&`; 
+    if (obj.days) urlData += `days=${obj.days}&`;
 
     if (urlData.endsWith('&')) urlData = urlData.slice(0, -1);
     

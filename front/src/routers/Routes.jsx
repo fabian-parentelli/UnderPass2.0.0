@@ -37,6 +37,7 @@ import SitePage from "../componentSite/sites/SitePage/SitePage.jsx";
 import AllSites from "../componentSite/sites/AllSites/AllSites.jsx";
 import Advances from "../componentSite/advances/Advances/Advances.jsx";
 import ShiftPage from "../componentSite/shift/ShiftPage/ShiftPage.jsx";
+import ShiftAll from "../componentSite/shift/ShiftAll/ShiftAll.jsx";
 
 const RoutesComp = () => {
 
@@ -70,6 +71,7 @@ const RoutesComp = () => {
                     <Route path="/allsites" element={<AllSites />} />
                     <Route path="/advance" element={<Advances />} />
                     <Route path="/shift/:sid" element={<ShiftPage />} />
+                    <Route path="/shift/all" element={<ShiftAll />} />
 
                     {user.logged &&
                         <>

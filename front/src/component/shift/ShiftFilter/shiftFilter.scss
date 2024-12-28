@@ -1,0 +1,38 @@
+.shiftFilter {
+    background-color: rgb(202, 202, 202);
+    padding: 6px;
+    border-radius: 6px;
+
+    gap: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+
+    .shiftFilterCategory {
+        width: 150px;
+    }
+
+    .shiftFilterDays {
+        width: 150px;
+        background-color: #ffff;
+        border-radius: 3px;
+        position: relative;
+
+        details {
+            width: 143px;
+            position: absolute;
+            top: 6px;
+            left: 6px;
+
+            summary {
+                font-family: "Pangolin", cursive;
+            }
+
+            .shiftFilterDaysDiv {
+                background-color: #ffff;
+                border: solid 1px rgba(0, 0, 0, 0.5);
+                box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.2);
+
+            }
+        }
+    }
+}

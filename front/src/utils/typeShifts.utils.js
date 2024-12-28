@@ -32,4 +32,14 @@ const monthMapping = {
     "december": 11
 };
 
-export { typeShifts, typeShiftCategory, monthMapping };
+const daysOfWeek = [
+    { _id: "monday", title: "Lunes" },
+    { _id: "tuesday", title: "Martes" },
+    { _id: "wednesday", title: "Miércoles" },
+    { _id: "thursday", title: "Jueves" },
+    { _id: "friday", title: "Viernes" },
+    { _id: "saturday", title: "Sábado" },
+    { _id: "sunday", title: "Domingo" },
+];
+
+export { typeShifts, typeShiftCategory, monthMapping, daysOfWeek };
