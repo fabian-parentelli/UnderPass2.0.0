@@ -11,4 +11,20 @@
             color: black;
         }
     }
+
+    .shiftPanelDasSect {
+        display: flex;
+        gap: 2rem;
+        margin-top: .4rem;
+        color: gray;
+        
+        p {
+            cursor: pointer;
+            transition: .3s ease-in-out;
+
+            &:hover {
+                color: black;
+            }
+        }
+    }
 }

@@ -1,0 +1,55 @@
+.shiftSite {
+
+    .shiftSiteBody {
+
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+
+        .shiftSiteSearch {
+            border: solid gray 1px;
+            padding: 6px;
+            width: 330px;
+            border-radius: 4px;
+
+            p:nth-child(2) {
+                margin-top: 3px;
+            }
+
+            .shiftSiteButton {
+                margin-top: .6rem;
+                text-align: center;
+            }
+        }
+
+        .shiftSiteSearchResult {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+
+            div .shiftSiteSwitch {
+                display: flex;
+                align-items: center;
+            }
+        }
+
+        .shiftSiteSpinner {
+            height: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    .shiftSite {
+
+        .shiftSiteBody {
+
+            .shiftSiteSearch {
+                width: 100%;
+            }
+        }
+    }
+}

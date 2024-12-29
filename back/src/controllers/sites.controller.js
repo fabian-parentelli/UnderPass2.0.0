@@ -79,4 +79,15 @@ const updActive = async (req, res) => {
     };
 };
 
-export { newSite, getByUserId, getById, getByLinks, getRandom, getSites, updActive };
+const updIsShift = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const result = await sitesService.updIsShift(id);
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof SitesNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
+export { newSite, getByUserId, getById, getByLinks, getRandom, getSites, updActive, updIsShift };

@@ -61,4 +61,13 @@ const getShiftconf = async (page, limit, country, active, province, category, ti
     return { status: 'success', result };
 };
 
-export { newShift, getShiftconf, getShiftconfById, getPublicShiftconf };
+const updActive = async (id) => {
+    const shift = await shiftconfRepository.getById(id);
+    if (!shift) throw new ShiftNotFound('No se encuentra la confiuración');
+    shift.active = !shift.active;
+    const result = await shiftconfRepository.update(shift);
+    if (!result) throw new ShiftNotFound('No se puede actualizar el turno');
+    return { status: 'success', result };
+};
+
+export { newShift, getShiftconf, getShiftconfById, getPublicShiftconf, updActive };

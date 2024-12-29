@@ -62,4 +62,12 @@ const updActive = async (id) => {
     return { status: 'success', result };
 };
 
-export { newSite, getByUserId, getById, getByLinks, getRandom, getSites, updActive };
+const updIsShift = async (id) => {
+    const site = await sitesRepository.getById(id);
+    site.isShift = !site.isShift;
+    const result = await sitesRepository.update(site);
+    if (!result) throw new SitesNotFound('No se puede actualizar el sitio');
+    return { status: 'success', result };
+};
+
+export { newSite, getByUserId, getById, getByLinks, getRandom, getSites, updActive, updIsShift };

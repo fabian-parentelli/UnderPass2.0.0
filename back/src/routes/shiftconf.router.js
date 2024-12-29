@@ -10,5 +10,6 @@ export default class ShiftconfRouter extends Router {
         this.get('/public', ['PUBLIC'], passportEnum.NOTHING, shiftconfController.getPublicShiftconf);
         this.get('/:id', ['PUBLIC'], passportEnum.NOTHING, shiftconfController.getShiftconfById);
         this.get('/', ['USER', 'ADMIN', 'MASTER'], passportEnum.JWT, shiftconfController.getShiftconf);
+        this.put('/active/:id', ['USER', 'ADMIN', 'MASTER'], passportEnum.JWT, shiftconfController.updActive);
     };
 };

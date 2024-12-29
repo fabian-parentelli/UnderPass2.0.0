@@ -9,6 +9,7 @@ import ShiftSections from './ShiftSections/ShiftSections';
 import SnackbarAlert from '../../utils/SnackbarAlert.jsx';
 import { newShiftconfApi } from '../../../helpers/shiftsconf/newShiftconf.api.js';
 import { getShiftconfApi } from '../../../helpers/shiftsconf/getShiftconf.api.js';
+import ShiftSite from './ShiftSite/ShiftSite.jsx';
 
 const ShiftConf = ({ userId }) => {
 
@@ -74,6 +75,11 @@ const ShiftConf = ({ userId }) => {
             <ShiftRooms values={values} setValues={setValues} handleValues={handleValues} updateData={updateData} />
             <ShiftSeccion values={values} setValues={setValues} handleValues={handleValues} />
             <ShiftSections values={values} setValues={setValues} handleValues={handleValues} />
+
+
+            <ShiftSite values={values} />
+
+
             {!values?.location?.coordinates?.lat &&
                 <p className='shiftConfPP'>No te olvides de seleccionar una dirección en el mapa.</p>
             }

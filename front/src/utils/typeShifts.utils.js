@@ -42,4 +42,19 @@ const daysOfWeek = [
     { _id: "sunday", title: "Domingo" },
 ];
 
-export { typeShifts, typeShiftCategory, monthMapping, daysOfWeek };
+function daysOfWeekTable(types) {
+
+    const data = {
+        'monday': () => { return 'Lunes' },
+        'tuesday': () => { return 'Martes' },
+        'wednesday': () => { return 'Miercoles' },
+        'thursday': () => { return 'Jueves' },
+        'friday': () => { return 'Viernes' },
+        'saturday': () => { return 'Sábado' },
+        'sunday': () => { return 'Domingo' },
+    };
+
+    return (data[types] || (() => types))();
+};
+
+export { typeShifts, typeShiftCategory, monthMapping, daysOfWeek, daysOfWeekTable };
