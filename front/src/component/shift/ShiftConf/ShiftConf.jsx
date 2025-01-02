@@ -1,23 +1,23 @@
 import './shiftConf.scss';
 import Load from '../../utils/Load';
-import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import ShiftRooms from './ShiftRooms/ShiftRooms';
+import ShiftSite from './ShiftSite/ShiftSite.jsx';
 import ShiftCompany from './ShiftCompany/ShiftCompany';
 import ShiftSeccion from './ShiftSeccion/ShiftSeccion';
 import ShiftSections from './ShiftSections/ShiftSections';
 import SnackbarAlert from '../../utils/SnackbarAlert.jsx';
 import { newShiftconfApi } from '../../../helpers/shiftsconf/newShiftconf.api.js';
 import { getShiftconfApi } from '../../../helpers/shiftsconf/getShiftconf.api.js';
-import ShiftSite from './ShiftSite/ShiftSite.jsx';
 
 const ShiftConf = ({ userId }) => {
 
     const navigate = useNavigate();
     const [files, setFiles] = useState([]);
     const [open, setOpen] = useState(false);
-    const [updateData, setUpdateData] = useState(false);
     const [loading, setLoading] = useState(false);
+    const [updateData, setUpdateData] = useState(false);
     const [message, setMessage] = useState({ status: '', mess: '' });
     const [values, setValues] = useState({ userId, location: { country: localStorage.getItem('country') }, rooms: 1 });    
 
@@ -75,11 +75,7 @@ const ShiftConf = ({ userId }) => {
             <ShiftRooms values={values} setValues={setValues} handleValues={handleValues} updateData={updateData} />
             <ShiftSeccion values={values} setValues={setValues} handleValues={handleValues} />
             <ShiftSections values={values} setValues={setValues} handleValues={handleValues} />
-
-
             <ShiftSite values={values} />
-
-
             {!values?.location?.coordinates?.lat &&
                 <p className='shiftConfPP'>No te olvides de seleccionar una dirección en el mapa.</p>
             }

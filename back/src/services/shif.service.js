@@ -6,7 +6,7 @@ const newShift = async (shift) => {
         const isCustomers = await shiftCustomerRepository.getShiftCustomerByEmail(shift.customer?.email);
         if (isCustomers) {
             shift.customer = isCustomers._id;
-            shift.isCustomer = true;            
+            shift.isCustomer = true;
         } else {
             const customer = await shiftCustomerRepository.newCustomer({ ...shift.customer, userId: shift.userId, isCustomer: true });
             shift.customer = customer._id;
@@ -23,12 +23,21 @@ const newShift = async (shift) => {
 };
 
 const getDataShift = async (uid, month, year, day, room, sections) => {
-    const query = { userId: uid, ['day.month']: month, ['day.year']: year };
+    const query = { ['day.month']: month, ['day.year']: year };
+    if (uid) query.userId = uid
     if (room) query.room = room;
-    if (sections) query.sections = sections;
+    if (sections) query.sections = sections;    
     const result = await shiftRepository.getDataShift(query, day);
     if (!result) throw new ShiftNotFound('No se puede reservar el turno');
     return { status: 'success', result };
 };
 
-export { newShift, getDataShift };
+const getShifts = async (uid, month, year) => {
+    const query = { ['day.month']: month, ['day.year']: year };
+    if (uid) query.userId = uid
+    const result = await shiftRepository.getShifts(query);
+    if (!result) throw new ShiftNotFound('No se pueden ver los turnos');
+    return { status: 'success', result };
+};
+
+export { newShift, getDataShift, getShifts };

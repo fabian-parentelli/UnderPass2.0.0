@@ -6,5 +6,6 @@ export default class ShiftRouter extends Router {
     init() {
         this.post('/', ['USER', 'ADMIN', 'MASTER'], passportEnum.JWT, shiftController.newShift);
         this.get('/data', ['PUBLIC'], passportEnum.NOTHING, shiftController.getDataShift);
+        this.get('/', ['USER', 'ADMIN', 'MASTER'], passportEnum.JWT, shiftController.getShifts);
     };
 };

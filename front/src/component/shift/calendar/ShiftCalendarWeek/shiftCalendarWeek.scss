@@ -1,0 +1,59 @@
+.shiftCalendarWeek {
+    margin-top: 1rem;
+
+    .shiftCalendarWeekHeader {
+        display: grid;
+        grid-template-columns: minmax(80px, auto) repeat(7, 1fr);
+
+        .shiftCalendarWeekDay {
+            display: flex;
+            gap: 6px;
+            justify-content: center;
+        }
+    }
+
+    .shiftCalendarWeekBody {
+        margin-top: 1rem;
+
+        .shiftCalendarWeekBodyHour {
+            display: grid;
+            grid-template-columns: minmax(80px, auto) repeat(7, 1fr);
+
+            &:hover {
+                background-color: rgb(241, 241, 241);
+            }
+        }
+
+        .shiftCalendarWeekBodyHour p {
+            grid-column: span 1;
+            padding: 10px;
+        }
+
+        .shiftCalendarWeekCells {
+            grid-column: span 7;
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            border-left: 1px solid #ccc;
+            border-top: 1px solid #ccc;
+            border-bottom: 1px solid #ccc;
+            box-sizing: border-box;
+
+        }
+
+        .shiftCalendarWeekCell {
+            border-right: 1px solid #ccc;
+            padding: 10px;
+            box-sizing: border-box;
+
+            &:hover {
+                outline: 1px solid black;
+
+            }
+        }
+
+        .shiftCalendarWeekCellEvent {
+            background-color: #ccc;
+        }
+        
+    }
+}

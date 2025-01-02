@@ -42,6 +42,21 @@ const daysOfWeek = [
     { _id: "sunday", title: "Domingo" },
 ];
 
+const monthsArray = [
+    "january", 
+    "february", 
+    "march", 
+    "april", 
+    "may", 
+    "june", 
+    "july", 
+    "august", 
+    "september", 
+    "october", 
+    "november", 
+    "december"
+];
+
 function daysOfWeekTable(types) {
 
     const data = {
@@ -57,4 +72,4 @@ function daysOfWeekTable(types) {
     return (data[types] || (() => types))();
 };
 
-export { typeShifts, typeShiftCategory, monthMapping, daysOfWeek, daysOfWeekTable };
+export { typeShifts, typeShiftCategory, monthMapping, daysOfWeek, daysOfWeekTable, monthsArray };

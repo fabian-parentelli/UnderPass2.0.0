@@ -3,6 +3,7 @@ import { useState } from 'react';
 import ShiftConf from '../ShiftConf/ShiftConf';
 import ShiftInfo from '../ShiftInfo/ShiftInfo';
 import ShiftAdmin from '../ShiftAdmin/ShiftAdmin';
+import ShiftBooks from '../ShiftBooks/ShiftBooks';
 
 const ShiftPanels = ({ userId }) => {
 
@@ -21,7 +22,7 @@ const ShiftPanels = ({ userId }) => {
 
             {vew === null && <ShiftInfo />} 
             {vew === 'shif' && 'Mis Turnos'}
-            {vew === 'book' && 'book'}
+            {vew === 'book' && <ShiftBooks userId={userId} />}
             {vew === 'admi' && <ShiftAdmin userId={userId} />}
             {vew === 'conf' && <ShiftConf userId={userId} />}
         </div>

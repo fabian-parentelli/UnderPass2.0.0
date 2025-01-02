@@ -1,0 +1,10 @@
+.shiftBooks {
+    margin-top: .6rem;
+    margin-bottom: 2rem;
+
+    .shiftBooksButtons {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+}

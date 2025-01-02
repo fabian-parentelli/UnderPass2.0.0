@@ -13,4 +13,9 @@ export default class ShiftRepository {
         const result = await isNotTime(shifts, day);
         return result;
     };
+
+    getShifts = async (query) => {
+        const result = await shiftManager.getDataShift(query)
+        return result;
+    };
 };

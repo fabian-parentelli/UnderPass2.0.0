@@ -22,4 +22,19 @@ const getDataShift = async (req, res) => {
     };
 };
 
-export { newShift, getDataShift };
+const getShifts = async (req, res) => {
+    const { uid, month, year } = req.query;
+    try {
+        const result = await shiftService.getShifts(uid, month, year);
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+
+        console.log(error); // ---- Borrar -------------------------------------------
+        
+
+        if (error instanceof ShiftNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
+export { newShift, getDataShift, getShifts };

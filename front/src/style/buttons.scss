@@ -23,7 +23,7 @@
 .btnB {
     background-color: $colorB;
     color: black;
-    
+
     &:hover {
         background-color: $colorF;
     }
@@ -31,7 +31,7 @@
 
 .btnC {
     border: solid 1px black;
-    
+
     &:hover {
         background-color: rgb(180, 180, 180);
     }
@@ -40,7 +40,7 @@
 .btnD {
     background-color: $colorC;
     color: #fff;
-    
+
     &:hover {
         background-color: $colorD;
     }
@@ -49,7 +49,7 @@
 .btnE {
     background-color: #840005;
     color: #fff;
-    
+
     &:hover {
         background-color: #a6291f;
     }
@@ -94,5 +94,14 @@
 
     &:hover {
         background-color: #ee5b5d;
+    }
+}
+
+.btnGray {
+    background-color: rgb(201, 201, 201);
+    color: #fff;
+
+    &:hover {
+        background-color: rgb(151, 147, 147);
     }
 }
