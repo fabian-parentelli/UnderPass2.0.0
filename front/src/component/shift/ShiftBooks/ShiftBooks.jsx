@@ -6,7 +6,7 @@ import ShiftCalendarWeek from '../calendar/ShiftCalendarWeek/ShiftCalendarWeek.j
 
 const ShiftBooks = ({ userId }) => {
 
-    const [month, setMonyh] = useState(monthsArray[new Date().getMonth()]);
+    const [month, setMonth] = useState([monthsArray[new Date().getMonth()]]);
     const [year, setYear] = useState(new Date().getFullYear());
     const [events, setEvents] = useState([]);
     const [vew, setVew] = useState('weeks');
@@ -37,7 +37,7 @@ const ShiftBooks = ({ userId }) => {
                 </div>
             </section>
 
-            {vew === 'weeks' && <ShiftCalendarWeek events={events} month={month} year={year} />}
+            {vew === 'weeks' && <ShiftCalendarWeek events={events} month={month} year={year} setMonth={setMonth} />}
 
         </div>
     );

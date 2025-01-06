@@ -1,6 +1,6 @@
 const typeCustomer = async (customers) => {
 
-   console.log(customers);
+//    console.log(customers); no se porque hice esto ......
    
     
 

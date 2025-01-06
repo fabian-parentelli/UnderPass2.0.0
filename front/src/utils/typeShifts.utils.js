@@ -43,19 +43,39 @@ const daysOfWeek = [
 ];
 
 const monthsArray = [
-    "january", 
-    "february", 
-    "march", 
-    "april", 
-    "may", 
-    "june", 
-    "july", 
-    "august", 
-    "september", 
-    "october", 
-    "november", 
+    "january",
+    "february",
+    "march",
+    "april",
+    "may",
+    "june",
+    "july",
+    "august",
+    "september",
+    "october",
+    "november",
     "december"
 ];
+
+function monthsArraySpanish(types) {
+    
+    const data = {
+        'january': () => { return 'Enero' },
+        'february': () => { return 'Febrero' },
+        'march': () => { return 'Marzo' },
+        'april': () => { return 'Abril' },
+        'may': () => { return 'Mayo' },
+        'june': () => { return 'Junio' },
+        'july': () => { return 'Julio' },
+        'august': () => { return 'Agosto' },
+        'september': () => { return 'Septiembre' },
+        'october': () => { return 'Octubre' },
+        'november': () => { return 'Noviembre' },
+        'december': () => { return 'Diciembre' },
+    };
+
+    return (data[types] || (() => types))();
+};
 
 function daysOfWeekTable(types) {
 
@@ -72,4 +92,6 @@ function daysOfWeekTable(types) {
     return (data[types] || (() => types))();
 };
 
-export { typeShifts, typeShiftCategory, monthMapping, daysOfWeek, daysOfWeekTable, monthsArray };
+export {
+    typeShifts, typeShiftCategory, monthMapping, daysOfWeek, daysOfWeekTable, monthsArray, monthsArraySpanish
+};
