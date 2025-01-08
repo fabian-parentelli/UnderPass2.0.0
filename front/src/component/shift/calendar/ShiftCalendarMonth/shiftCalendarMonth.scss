@@ -1,0 +1,38 @@
+.shiftCalendarMonth {
+    margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding-top: 1rem;
+
+    .shiftCalendarMonthCalendar {
+        max-width: 410px;
+        width: 100%;
+    }
+
+    .shiftCalendarMonthEvents {
+        margin-top: 2rem;
+    }
+}
+
+
+@media (max-width: 767px) {
+
+    .shiftCalendarMonth {
+
+        
+        .shiftCalendarMonthEvents {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .shiftCalendarMonthEvents::-webkit-scrollbar {
+            height: 6px;
+        }
+        
+        .shiftCalendarMonthEvents::-webkit-scrollbar-thumb {
+            border-radius: 6px; 
+        }
+    }
+}

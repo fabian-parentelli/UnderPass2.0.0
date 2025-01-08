@@ -25,9 +25,6 @@ const ShiftCalendarWeek = ({ events, month, year, setMonth }) => {
     };
 
     const handleOpenModal = (day, hour, dayIndex) => {
-
-        console.log(dayIndex);
-
         if (events && events.length > 0) {
             const chooses = events.filter(event => {
                 return (
@@ -55,7 +52,6 @@ const ShiftCalendarWeek = ({ events, month, year, setMonth }) => {
             <section className='shiftCalendarWeekBtns'>
                 <button onClick={() => setWeekOffset(weekOffset - 1)}>Semana Anterior</button>
                 <button onClick={() => setWeekOffset(weekOffset + 1)}>Semana Siguiente</button>
-
                 <div className='shiftCalendarWeekMonths'>{month.map((mon) => <p key={mon}>{monthsArraySpanish(mon)}</p>)}</div>
             </section>
 

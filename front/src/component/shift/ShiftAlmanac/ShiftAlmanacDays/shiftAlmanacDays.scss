@@ -37,6 +37,16 @@
             color: $underShifts;
         }
 
+        .eventss {
+            background-color: #ec363936;
+            cursor: pointer;
+            transition: .3s ease-in-out;
+
+            &:hover {
+                color: black;
+            }
+        }
+
         .current-month {
             cursor: pointer;
 

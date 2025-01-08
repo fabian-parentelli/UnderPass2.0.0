@@ -14,4 +14,8 @@ export default class ShiftCustomer {
         return await shiftCustomerModel.findOne({ email: email }).lean();
     };
 
+    getShiftCustomerById = async (id) => {
+        return await shiftCustomerModel.findById(id).lean();
+    };
+
 };

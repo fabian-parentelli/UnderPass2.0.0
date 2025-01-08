@@ -1,0 +1,32 @@
+@import '../../../style/colors.scss';
+
+.shiftForm {
+    
+    .backShiftForm {
+        cursor: pointer;
+        transition: .3s ease-in-out;
+        text-align: center;
+
+        &:hover {
+            background-color: rgb(226, 226, 226);
+        }
+    }
+}
+
+@media (max-width: 767px) {
+
+    .shiftForm {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .shiftForm::-webkit-scrollbar {
+        height: 6px;
+    }
+    
+    .shiftForm::-webkit-scrollbar-thumb {
+        background-color: $underShifts; 
+        border-radius: 6px; 
+    }
+}

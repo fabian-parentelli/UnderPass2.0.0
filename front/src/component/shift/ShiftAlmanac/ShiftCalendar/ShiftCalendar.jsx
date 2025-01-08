@@ -47,7 +47,7 @@ const ShiftCalendar = ({ config, setSelected, nonWorkDays, selected, rooms }) =>
                 const formattedDate = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
                 const dayIndex = date.getDay();
                 const isNonWorkDay = config?.days && !config.days.includes(daysOfWeek[dayIndex]) || nonWorkDays.includes(formattedDate);
-                const isToday = day === today.getDate() && month === today.getMonth() && year === today.getFullYear();
+                const isToday = day === today.getDate() && month === new Date().getMonth() && year === today.getFullYear();
                 const className = `${isNonWorkDay ? ' non-work-day' : 'current-month'}${isToday ? ' today' : ''}${day === selected.day ? ' dayClick' : ''}`;
                 return { day, className };
             }),
