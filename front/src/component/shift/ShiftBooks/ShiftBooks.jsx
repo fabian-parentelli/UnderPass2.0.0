@@ -3,7 +3,9 @@ import Load from '../../utils/Load.jsx';
 import { useEffect, useState } from 'react';
 import { monthsArray } from '../../../utils/typeShifts.utils.js';
 import { getShiftsApi } from '../../../helpers/shift/getShifts.api.js';
+import ShiftCalendarDay from '../calendar/ShiftCalendarDay/ShiftCalendarDay.jsx';
 import ShiftCalendarWeek from '../calendar/ShiftCalendarWeek/ShiftCalendarWeek.jsx';
+import ShiftCalendarUser from '../calendar/ShiftCalendarUser/ShiftCalendarUser.jsx';
 import ShiftCalendarMonth from '../calendar/ShiftCalendarMonth/ShiftCalendarMonth.jsx';
 
 const ShiftBooks = ({ userId }) => {
@@ -42,6 +44,8 @@ const ShiftBooks = ({ userId }) => {
 
             {vew === 'month' && <ShiftCalendarMonth events={events} month={month} year={year} setMonth={setMonth} />}
             {vew === 'weeks' && <ShiftCalendarWeek events={events} month={month} year={year} setMonth={setMonth} />}
+            {vew === 'day' && <ShiftCalendarDay events={events} month={month} year={year} setMonth={setMonth} /> }
+            {vew === 'users' && <ShiftCalendarUser userId={userId} /> }
 
             <Load loading={loading} />
         </div>

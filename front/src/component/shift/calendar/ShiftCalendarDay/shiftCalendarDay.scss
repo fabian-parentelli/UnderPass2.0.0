@@ -1,0 +1,57 @@
+.shiftCalendarDay {
+    margin-top: 1rem;
+
+    .shiftCalendarDayHeader {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 400px;
+        width: 100%;
+
+        button {
+            height: 30px;
+            padding: 0 6px;
+            background-color: #ffffff;
+            border: solid 1px gray;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: .3s ease-in-out;
+
+            &:hover {
+                background-color: rgb(209, 209, 209);
+            }
+        }
+    }
+
+    .shiftCalendarDayHours {
+        margin-top: 1rem;
+        display: grid;
+        grid-template-rows: repeat(24, 1fr);
+        row-gap: 4px;
+
+        .shiftCalendarDaySlot {
+            border-bottom: 1px solid #ddd;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            height: 40px;
+
+            .shiftCalendarDayEvent {
+                display: flex;
+                background-color: #ec3639;
+                height: 100%;
+                align-items: center;
+                padding: 0 12px;
+                border-radius: 3px;
+                color: #ffffff;
+                cursor: pointer;
+                transition: .3s ease-in-out;
+
+                &:hover {
+                    background-color: #ec3639ad;
+                }
+            }
+        }
+    }
+}

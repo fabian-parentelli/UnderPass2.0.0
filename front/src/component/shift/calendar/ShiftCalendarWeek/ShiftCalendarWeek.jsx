@@ -1,9 +1,9 @@
 import './shiftCalendarWeek.scss';
+import ShiftForm from '../../ShiftForm/ShiftForm.jsx';
 import { useEffect, useState, Fragment } from 'react';
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
-import { monthsArraySpanish } from '../../../../utils/typeShifts.utils.js';
 import ModalCustom from '../../../utils/ModalCustom/ModalCustom.jsx';
-import ShiftForm from '../../ShiftForm/ShiftForm.jsx';
+import { monthsArraySpanish } from '../../../../utils/typeShifts.utils.js';
 
 const ShiftCalendarWeek = ({ events, month, year, setMonth }) => {
 
@@ -97,11 +97,6 @@ const ShiftCalendarWeek = ({ events, month, year, setMonth }) => {
                                                 </>
                                             )}
                                         </div>
-                                        {modal.vew === hourIndex + dayIndex &&
-                                            <ModalCustom modalIsOpen={modal.open} closeModal={() => setModal({ open: false, vew: null, data: [] })}>
-                                                {modal && modal.data.length > 0 && <ShiftForm shifts={modal.data} />}
-                                            </ModalCustom>
-                                        }
                                     </Fragment>
                                 );
                             })}
@@ -109,6 +104,9 @@ const ShiftCalendarWeek = ({ events, month, year, setMonth }) => {
                     </div>
                 ))}
             </div>
+            <ModalCustom modalIsOpen={modal.open} closeModal={() => setModal({ open: false, vew: null, data: [] })}>
+                {modal && modal.data.length > 0 && <ShiftForm shifts={modal.data} />}
+            </ModalCustom>
         </div>
     );
 };

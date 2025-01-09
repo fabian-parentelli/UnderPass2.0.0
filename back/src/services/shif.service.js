@@ -33,11 +33,9 @@ const getDataShift = async (uid, month, year, day, room, sections) => {
 };
 
 const getShifts = async (uid, month, year) => {
-    const query = {
-        'day.month': { $in: month.split(',') },
-        'day.year': year,
-        active: true
-    };
+    const query = { active: true };
+    if (month) query['day.month'] = { $in: month.split(',') };
+    if (year) query['day.year'] = year;
     if (uid) query.userId = uid;
     const result = await shiftRepository.getShifts(query);
     if (!result) throw new ShiftNotFound('No se pueden ver los turnos');

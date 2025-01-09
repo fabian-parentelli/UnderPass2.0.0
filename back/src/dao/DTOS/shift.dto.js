@@ -80,7 +80,7 @@ const filterDay = (shifts, day, roomAbilityNumber = 0, hasAbility = false) => {
 const getCustomer = async (shifts) => {
     for (const shift of shifts) {
         const customer = await shiftCustomerRepository.getShiftCustomerById(shift.customer);
-        if(customer) shift.customerData = customer;
+        if (customer) shift.customerData = customer;
     };
     return shifts;
 };

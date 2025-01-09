@@ -1,7 +1,7 @@
 const transformDate = (dateObj) => {
 
     const { day, month, year } = dateObj;
-    
+
     const monthMap = {
         january: '01',
         february: '02',
@@ -51,4 +51,28 @@ const setHoursBack = (hour) => {
     return labels;
 };
 
-export { transformDate, setHoursBack };
+const months = [
+    'january', 'february', 'march', 'april', 'may', 'june',
+    'july', 'august', 'september', 'october', 'november', 'december'
+];
+
+const sortShift = (shifts) => {
+    const sortedArray = shifts.sort((a, b) => {
+        const dateA = new Date(
+            a.day.year,
+            months.indexOf(a.day.month.toLowerCase()),
+            a.day.day,
+            parseInt(a.hour[0].split(':')[0], 10)
+        );
+        const dateB = new Date(
+            b.day.year,
+            months.indexOf(b.day.month.toLowerCase()),
+            b.day.day,
+            parseInt(b.hour[0].split(':')[0], 10)
+        );
+        return dateA - dateB;
+    });
+    return sortedArray || shifts;
+};
+
+export { transformDate, setHoursBack, sortShift };
