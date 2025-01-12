@@ -1,0 +1,75 @@
+@import '../../../../../style/colors.scss';
+
+#shiftConfigDataHelp {
+    border-top: 1px solid gray;
+    width: 80%;
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .shiftConfigDataHelpSect {
+        text-align: center;
+        margin-top: 4rem;
+
+        p {
+            width: 70%;
+            margin: 1rem auto;
+            line-height: 2;
+        }
+
+        img {
+            margin-top: 3rem;
+            transition: .3s ease-in-out;
+            box-shadow: 5px 5px 15px;
+            &:hover {
+                transform: translateY(-5px);
+            }
+        }
+
+        .shiftConfigDataHelpImgA {
+            width: 60%;
+        }
+    }
+
+    span {
+        color: $underShifts;
+    }
+
+    .shiftWhatIsHelpLog {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin-top: 3rem;
+
+        span {
+            color: $underShifts;
+        }
+    }
+}
+
+@media (max-width: 767px) {
+
+    #shiftConfigDataHelp {
+        width: 100%;
+
+        section {
+            margin-top: 2rem;
+    
+            p {
+                width: 300px;
+            }
+
+            img {
+                margin-top: 2rem;
+            }
+    
+            .shiftConfigDataHelpImgA {
+                width: 80%;
+            }
+        }
+    }
+}

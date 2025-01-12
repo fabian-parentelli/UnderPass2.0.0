@@ -1,5 +1,5 @@
 import './shiftCalendarDay.scss';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ShiftForm from '../../ShiftForm/ShiftForm';
 import PersonIcon from '@mui/icons-material/Person';
 import ModalCustom from '../../../utils/ModalCustom/ModalCustom';
@@ -9,6 +9,10 @@ const ShiftCalendarDay = ({ events, month, year, setMonth }) => {
     const [today, setToday] = useState(new Date());
     const [modal, setModal] = useState({ open: false, data: [] });
     const hours = Array.from({ length: 24 }, (_, i) => `${i}:00`);
+
+    useEffect(() => { 
+        setMonth([today.toLocaleString('en-US', { month: 'long' }).toLowerCase()]);
+    }, []);
 
     const changeDay = (direction) => {
         const newDate = new Date(today);

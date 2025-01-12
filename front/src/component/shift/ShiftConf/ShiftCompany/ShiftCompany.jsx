@@ -83,7 +83,7 @@ const ShiftCompany = ({ values, setValues, setFiles, handleValues, setLoading })
                         placeholder='Describe tu empresa.'
                         value={values?.description || ''}
                     ></textarea>
-                    <CharacterCounter min={200} max={250} text={values?.description} />
+                    <CharacterCounter min={600} max={750} text={values?.description} />
                 </div>
 
                 <div>

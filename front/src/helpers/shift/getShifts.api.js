@@ -7,6 +7,8 @@ async function getShiftsApi(obj) {
     if (obj.uid) urlData += `uid=${obj.uid}&`; 
     if (obj.month) urlData += `month=${obj.month}&`; 
     if (obj.year) urlData += `year=${obj.year}&`; 
+    if (obj.customer) urlData += `customer=${obj.customer}&`; 
+    if (obj.userCustomer) urlData += `usercustomer=${obj.userCustomer}&`; 
 
     if (urlData.endsWith('&')) urlData = urlData.slice(0, -1);
 

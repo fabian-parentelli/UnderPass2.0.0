@@ -10,6 +10,10 @@ const ShiftCalendarMonth = ({ events, month: monthArray, year: years, setMonth }
     const [currentMonth, setCurrentMonth] = useState(today.toLocaleString('default', { month: 'long' }));
     const [shifts, setShifts] = useState([]);
 
+    useEffect(() => { 
+        setMonth([today.toLocaleString('en-US', { month: 'long' }).toLowerCase()]);
+    }, []);
+
     const goToPreviousMonth = () => {
         const newDate = new Date(today);
         newDate.setMonth(today.getMonth() - 1);
@@ -48,7 +52,7 @@ const ShiftCalendarMonth = ({ events, month: monthArray, year: years, setMonth }
         const daysToShow = 42 - (daysFromPrevMonth.length + daysFromCurrentMonth.length);
         const daysFromNextMonth = Array.from({ length: daysToShow }, (_, i) => i + 1);
         const calendarDays = [
-            ...daysFromPrevMonth.map(day => ({ day, className: 'prev-month gray' })), // Días del mes anterior con clase gris
+            ...daysFromPrevMonth.map(day => ({ day, className: 'prev-month gray' })), 
             ...daysFromCurrentMonth.map((day, index) => {
                 const isToday = day === today.getDate() && month === new Date().getMonth() && year === today.getFullYear();
                 let className = '';
@@ -57,7 +61,7 @@ const ShiftCalendarMonth = ({ events, month: monthArray, year: years, setMonth }
                 if (isEvent) className += ' eventss';
                 return { day, className };
             }),
-            ...daysFromNextMonth.map(day => ({ day, className: 'next-month gray' })), // Días del mes siguiente con clase gris
+            ...daysFromNextMonth.map(day => ({ day, className: 'next-month gray' })), 
         ];
         const weeks = [];
         for (let i = 0; i < calendarDays.length; i += 7) {

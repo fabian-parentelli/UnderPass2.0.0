@@ -1,0 +1,51 @@
+@import '../../../../../style/colors.scss';
+
+#shiftConfigHelp {
+    border-top: 1px solid gray;
+    width: 80%;
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    section {
+        text-align: center;
+        margin-top: 4rem;
+
+        p {
+            width: 60%;
+            margin: 1rem auto;
+            line-height: 2;
+        }
+    }
+
+    .shiftWhatIsHelpLog {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin-top: 3rem;
+
+        span {
+            color: $underShifts;
+        }
+    }
+}
+
+@media (max-width: 767px) {
+
+    #shiftConfigHelp {
+        max-width: 310px;
+        width: 100%;
+
+        section {
+            margin-top: 2rem;
+        }
+
+        section p {
+            width: 100%;
+        }
+    }
+}

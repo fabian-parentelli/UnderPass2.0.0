@@ -4,6 +4,7 @@ import ShiftConf from '../ShiftConf/ShiftConf';
 import ShiftInfo from '../ShiftInfo/ShiftInfo';
 import ShiftAdmin from '../ShiftAdmin/ShiftAdmin';
 import ShiftBooks from '../ShiftBooks/ShiftBooks';
+import MyShifts from '../MyShifts/MyShifts';
 
 const ShiftPanels = ({ userId }) => {
 
@@ -20,8 +21,8 @@ const ShiftPanels = ({ userId }) => {
                 <button className='btn btnSH' onClick={() => handleVew('conf')}>Configuración</button>
             </section>
 
-            {vew === null && <ShiftInfo />} 
-            {vew === 'shif' && 'Mis Turnos'}
+            {vew === null && <ShiftInfo />}
+            {vew === 'shif' && <MyShifts userId={userId} />}
             {vew === 'book' && <ShiftBooks userId={userId} />}
             {vew === 'admi' && <ShiftAdmin userId={userId} />}
             {vew === 'conf' && <ShiftConf userId={userId} />}

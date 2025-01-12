@@ -10,7 +10,7 @@ const ShiftPanel = () => {
 
     return (
         <div className='shiftPanel'>
-            <Title Icon={DateRangeIcon} name='Turnos' goTo={'/help'} />
+            <Title Icon={DateRangeIcon} name='Turnos' goTo={'/help#shiftWhatIsHelp'} />
             <ShiftPanels userId={user.data._id} />
         </div>
     );

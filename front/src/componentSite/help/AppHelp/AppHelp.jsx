@@ -7,6 +7,7 @@ import OrderBuyHelp from "./OrderBuyHelp/OrderBuyHelp";
 import OrderSellerHelp from "./OrderSellerHelp/OrderSellerHelp";
 import PublicityHelp from "./PublicityHelp/PublicityHelp";
 import PublicityVewHelp from "./PublicityVewHelp/PublicityVewHelp";
+import ShiftHelp from "./shifts/ShiftHelp";
 import SiteNewHelp from "./SiteNewHelp/SiteNewHelp";
 import SpotifyHelp from "./SpotifyHelp/SpotifyHelp";
 import UpdEventHelp from "./UpdEventHelp/UpdEventHelp";
@@ -33,6 +34,7 @@ const AppHelp = () => {
             <UpdEventHelp />
             <SpotifyHelp />
             <SiteNewHelp />
+            <ShiftHelp />
         </div>
     );
 };

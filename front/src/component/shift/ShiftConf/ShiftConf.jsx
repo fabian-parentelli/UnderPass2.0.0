@@ -70,7 +70,7 @@ const ShiftConf = ({ userId }) => {
     return (
         <form className='shiftConf' onSubmit={handleSubmit}>
             <p>Configuración de tu servicio de turnos.</p>
-            <p>Puedes ver nuestra <span className='colSH' onClick={() => navigate('/help')}>Ayuda</span> con toda la info detallada e incluso ver un <span className='colSH' onClick={() => navigate('/help')}>video tutorial</span>.</p>
+            <p>Puedes ver nuestra <span className='colSH' onClick={() => navigate('/help#shiftConfigDataHelp')}>Ayuda</span> con toda la info detallada e incluso ver un <span className='colSH' onClick={() => navigate('/videohelp/shiftConfigDataHelp')}>video tutorial</span>.</p>
             <ShiftCompany values={values} setValues={setValues} setFiles={setFiles} handleValues={handleValues} setLoading={setLoading} />
             <ShiftRooms values={values} setValues={setValues} handleValues={handleValues} updateData={updateData} />
             <ShiftSeccion values={values} setValues={setValues} handleValues={handleValues} />

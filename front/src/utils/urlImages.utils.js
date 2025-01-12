@@ -17,7 +17,21 @@ const imagesHelp = {
     siteGalery: 'https://ik.imagekit.io/sn6eyrykr/Helps/Imagen10.png?updatedAt=1732563117134',
     siteVideo: 'https://ik.imagekit.io/sn6eyrykr/Helps/Imagen11.png?updatedAt=1732563115845',
 
-    // 
+    // Shifts -- What Is
+    shiftCards: 'https://ik.imagekit.io/sn6eyrykr/Helps/shiftsHelp/What%20is/Imagen1.png',
+    shiftheaders: 'https://ik.imagekit.io/sn6eyrykr/Helps/shiftsHelp/What%20is/Imagen2.png',
+    shiftCalendar: 'https://ik.imagekit.io/sn6eyrykr/Helps/shiftsHelp/What%20is/Imagen3.png',
+    shiftlocalization: 'https://ik.imagekit.io/sn6eyrykr/Helps/shiftsHelp/What%20is/Imagen4.png',
+    shiftmessages: 'https://ik.imagekit.io/sn6eyrykr/Helps/shiftsHelp/What%20is/Imagen5.png',
+    shiftAdmin: 'https://ik.imagekit.io/sn6eyrykr/Helps/shiftsHelp/What%20is/Imagen6.png',
+
+    // Shifts - Config
+    shiftConfigA: 'https://ik.imagekit.io/sn6eyrykr/Helps/shiftsHelp/Config/Imagen1.png',
+    shiftConfigB: 'https://ik.imagekit.io/sn6eyrykr/Helps/shiftsHelp/Config/Imagen2.png',
+    shiftConfigC: 'https://ik.imagekit.io/sn6eyrykr/Helps/shiftsHelp/Config/Imagen3.png',
+    shiftConfigD: 'https://ik.imagekit.io/sn6eyrykr/Helps/shiftsHelp/Config/Imagen4.png',
+    shiftConfigE: 'https://ik.imagekit.io/sn6eyrykr/Helps/shiftsHelp/Config/Imagen5.png',
+    shiftConfigF: 'https://ik.imagekit.io/sn6eyrykr/Helps/shiftsHelp/Config/Imagen6.png'
 };
 
 const genericImages = {

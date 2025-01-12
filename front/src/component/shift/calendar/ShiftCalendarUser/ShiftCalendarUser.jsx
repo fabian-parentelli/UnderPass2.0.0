@@ -1,14 +1,16 @@
 import './shiftCalendarUser.scss';
 import { useEffect, useState } from 'react';
+import ShiftFrom from '../../ShiftForm/ShiftForm.jsx'
 import AutoComplete from '../../../utils/AutoComplete.jsx';
 import { getShiftsApi } from '../../../../helpers/shift/getShifts.api.js';
 import { getShiftCustomerByUserIdApi } from '../../../../helpers/shiftCustomer/getShiftCustomerByUserId.api.js';
 
-const ShiftCalendarUser = ({ userId }) => {
+const ShiftCalendarUser = ({ userId, setLoading }) => {
 
     const [events, setEvents] = useState([]);
     const [data, setData] = useState([]);
-    const [query, setQuery] = useState({ uid: userId });
+    const [message, setMessage] = useState(false);
+    const [user, setUser] = useState(null);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -25,17 +27,39 @@ const ShiftCalendarUser = ({ userId }) => {
         }; fetchData();
     }, []);
 
-    const handleChange = (e, newValue) => console.log(newValue);
+    const handleChange = async (e, newValue) => {
+        setLoading(true);
+        if (newValue) {
+            setUser(newValue.label);
+            setMessage(false);
+            const response = await getShiftsApi({ uid: userId, customer: newValue.data });
+            if (response.status === 'success') {
+                if (response.result.length > 0) setEvents(response.result);
+                else {
+                    setEvents([]);
+                    setMessage(true);
+                };
+            } else console.error(response);
+        } else { setMessage(false); setEvents([]) };
+        setLoading(false);
+    };
 
     return (
         <div className='shiftCalendarUser'>
             <div className='shiftCalendarUserText'>
                 <AutoComplete data={data} handleChange={handleChange} />
             </div>
+
+            <section className='shiftCalendarUserSect'>
+                {events && events.length > 0 &&
+                    <ShiftFrom shifts={events} />
+                }
+                {message && user &&
+                    <p className='shiftCalendarUserP'>{user} no tiene reservaciónes activas</p>
+                }
+            </section>
         </div>
     );
 };
 
 export default ShiftCalendarUser;
-
-// Esty acá seguir trabajando en en ver los eventos filtrando por usuario......

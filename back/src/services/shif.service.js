@@ -1,5 +1,6 @@
 import { shiftRepository, shiftCustomerRepository } from "../repositories/index.repositories.js";
 import { ShiftNotFound } from '../utils/custom-exceptions.utils.js';
+import { sortShift } from "../utils/servicesUtils/shift.utils.js";
 
 const newShift = async (shift) => {
     if (!shift.customer?.customerId) {
@@ -32,13 +33,20 @@ const getDataShift = async (uid, month, year, day, room, sections) => {
     return { status: 'success', result };
 };
 
-const getShifts = async (uid, month, year) => {
+const getShifts = async (uid, month, year, customer, usercustomer, user) => {
     const query = { active: true };
+    if (customer) query.customer = customer;
+    if (usercustomer && user) {
+        const customerData = await shiftCustomerRepository.getShiftCustomerByEmail(user.email);
+        if (customerData) query.customer = customerData._id;
+        else return { status: 'success', result: [] };
+    };
     if (month) query['day.month'] = { $in: month.split(',') };
     if (year) query['day.year'] = year;
     if (uid) query.userId = uid;
-    const result = await shiftRepository.getShifts(query);
-    if (!result) throw new ShiftNotFound('No se pueden ver los turnos');
+    const data = await shiftRepository.getShifts(query);
+    if (!data) throw new ShiftNotFound('No se pueden ver los turnos');
+    const result = usercustomer ? sortShift(data) : customer ? sortShift(data) : data;
     return { status: 'success', result };
 };
 

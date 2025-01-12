@@ -35,4 +35,7 @@ const data = [
     { label: 'Ver y modificar un evento', data: 'updEventHelp' },
     { label: 'Enlace spotify', data: 'spotifyHelp' },
     { label: 'Crear un sitio web', data: 'siteNewHelp' },
+    { label: 'Que es UnderShifts', data: 'shiftWhatIsHelp' },
+    { label: 'Como funicona configurar turnos', data: 'shiftConfigHelp' },
+    { label: 'Configurar turnos', data: 'shiftConfigDataHelp' },
 ];

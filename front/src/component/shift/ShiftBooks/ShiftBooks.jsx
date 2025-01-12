@@ -45,7 +45,7 @@ const ShiftBooks = ({ userId }) => {
             {vew === 'month' && <ShiftCalendarMonth events={events} month={month} year={year} setMonth={setMonth} />}
             {vew === 'weeks' && <ShiftCalendarWeek events={events} month={month} year={year} setMonth={setMonth} />}
             {vew === 'day' && <ShiftCalendarDay events={events} month={month} year={year} setMonth={setMonth} /> }
-            {vew === 'users' && <ShiftCalendarUser userId={userId} /> }
+            {vew === 'users' && <ShiftCalendarUser userId={userId} setLoading={setLoading} /> }
 
             <Load loading={loading} />
         </div>

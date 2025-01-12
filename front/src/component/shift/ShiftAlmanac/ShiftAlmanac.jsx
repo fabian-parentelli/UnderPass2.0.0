@@ -69,8 +69,11 @@ const ShiftAlmanac = ({ config, width = 4 }) => {
 
             console.log(query);
 
-
             // Luego poner una condicional que si no ponen un horario no lo concidero....
+            // agregar al carrito si es usuario, pero si es administrador no......
+            // Probablemente sacar el handle Book de aca y que venga desde afuera.....
+            // No lo se esto ultimo esta a resolver
+
             const response = await newShiftApi(query);
             console.log(response);
         };
