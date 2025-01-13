@@ -1,8 +1,8 @@
 import './shiftAdmin.scss';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getShiftconfApi } from '../../../helpers/shiftsconf/getShiftconf.api.js';
 import ShiftAlmanac from '../ShiftAlmanac/ShiftAlmanac.jsx';
+import { getShiftconfApi } from '../../../helpers/shiftsconf/getShiftconf.api.js';
 
 const ShiftAdmin = ({ userId }) => {
 
@@ -21,7 +21,7 @@ const ShiftAdmin = ({ userId }) => {
         <div className='shiftAdmin'>
             <p>Aqui puedes autogestionarte la reservas de turnos.</p>
             <p>Podrás ver la disponibilidad y ocupar las reservas solicitadas.</p>
-            <p>Si precisas ayuda has <span className='colSH' onClick={() => navigate('/help')}>aqui</span> la encontraras.</p>
+            <p>Si precisas ayuda has <span className='colSH' onClick={() => navigate('/help#shiftAdminHelp')}>aqui</span> la encontraras.</p>
             <ShiftAlmanac config={config} />
         </div>
     );

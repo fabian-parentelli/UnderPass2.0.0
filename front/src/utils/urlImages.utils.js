@@ -31,7 +31,19 @@ const imagesHelp = {
     shiftConfigC: 'https://ik.imagekit.io/sn6eyrykr/Helps/shiftsHelp/Config/Imagen3.png',
     shiftConfigD: 'https://ik.imagekit.io/sn6eyrykr/Helps/shiftsHelp/Config/Imagen4.png',
     shiftConfigE: 'https://ik.imagekit.io/sn6eyrykr/Helps/shiftsHelp/Config/Imagen5.png',
-    shiftConfigF: 'https://ik.imagekit.io/sn6eyrykr/Helps/shiftsHelp/Config/Imagen6.png'
+    shiftConfigF: 'https://ik.imagekit.io/sn6eyrykr/Helps/shiftsHelp/Config/Imagen6.png',
+
+    // Shifts - Admin
+    shiftAdminA: 'https://ik.imagekit.io/sn6eyrykr/Helps/shiftsHelp/Admin%20Help/Imagen1.png',
+    shiftAdminB: 'https://ik.imagekit.io/sn6eyrykr/Helps/shiftsHelp/Admin%20Help/Imagen2.png',
+    shiftAdminC: 'https://ik.imagekit.io/sn6eyrykr/Helps/shiftsHelp/Admin%20Help/Imagen3.png',
+
+    // Shift - Bookings
+    shiftBookingA: 'https://ik.imagekit.io/sn6eyrykr/Helps/shiftsHelp/Booking%20help/Imagen1.png',
+    shiftBookingB: 'https://ik.imagekit.io/sn6eyrykr/Helps/shiftsHelp/Booking%20help/Imagen2.png',
+    shiftBookingC: 'https://ik.imagekit.io/sn6eyrykr/Helps/shiftsHelp/Booking%20help/Imagen3.png',
+    shiftBookingD: 'https://ik.imagekit.io/sn6eyrykr/Helps/shiftsHelp/Booking%20help/Imagen4.png',
+    shiftBookingE: 'https://ik.imagekit.io/sn6eyrykr/Helps/shiftsHelp/Booking%20help/Imagen5.png'
 };
 
 const genericImages = {

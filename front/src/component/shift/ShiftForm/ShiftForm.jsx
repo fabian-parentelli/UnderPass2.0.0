@@ -41,7 +41,7 @@ const ShiftForm = ({ shifts }) => {
                                 <p key={hou}>{hou}</p>))}
                             </td>
                             <td>{shift.room}</td>
-                            <td style={{ textAlign: !shift?.section && 'center' }} >{shift?.section || <ClearAllIcon />}</td>
+                            <td style={{ textAlign: !shift?.sections && 'center' }} >{shift?.sections || <ClearAllIcon />}</td>
                             <td>
                                 <p>{shift?.customerData.name}</p>
                                 <p>{shift?.customerData?.phone}</p>

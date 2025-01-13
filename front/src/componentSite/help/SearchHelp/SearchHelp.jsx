@@ -38,4 +38,6 @@ const data = [
     { label: 'Que es UnderShifts', data: 'shiftWhatIsHelp' },
     { label: 'Como funicona configurar turnos', data: 'shiftConfigHelp' },
     { label: 'Configurar turnos', data: 'shiftConfigDataHelp' },
+    { label: 'Administrar turnos', data: 'shiftAdminHelp' },
+    { label: 'Ver reservas de clientes turnos', data: 'shiftBookingHelp' },
 ];

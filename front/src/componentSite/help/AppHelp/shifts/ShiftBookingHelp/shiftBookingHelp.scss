@@ -1,0 +1,53 @@
+@import '../../../../../style/colors.scss';
+
+#shiftBookingHelp {
+    border-top: 1px solid gray;
+    width: 80%;
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .shiftBookingHelpSect {
+        text-align: center;
+        margin-top: 4rem;
+
+        p {
+            width: 70%;
+            margin: 1rem auto;
+            line-height: 2;
+        }
+
+        span {
+            color: $underShifts;
+        }
+
+        img {
+            margin-top: 3rem;
+            transition: .3s ease-in-out;
+            box-shadow: 5px 5px 15px;
+
+            &:hover {
+                transform: translateY(-5px);
+            }
+        }
+
+        .shiftConfigDataHelpImgA {
+            width: 60%;
+        }
+    }
+
+    .shiftWhatIsHelpLog {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin-top: 3rem;
+
+        span {
+            color: $underShifts;
+        }
+    }
+}
