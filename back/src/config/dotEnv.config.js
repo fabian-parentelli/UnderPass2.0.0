@@ -12,5 +12,6 @@ export default {
     userNodemailer: process.env.USERNODEMAILER,
     passNodemailer: process.env.PASSNODEMAILER,
     privateKey: process.env.PRIVATEKEY,
-    frontUrl: process.env.FRONTURL
+    frontUrl: process.env.FRONTURL,
+    mongoDB2: process.env.MONGODBDOS
 };

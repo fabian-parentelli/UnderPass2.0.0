@@ -40,4 +40,5 @@ const data = [
     { label: 'Configurar turnos', data: 'shiftConfigDataHelp' },
     { label: 'Administrar turnos', data: 'shiftAdminHelp' },
     { label: 'Ver reservas de clientes turnos', data: 'shiftBookingHelp' },
+    { label: 'Ver mis turnos', data: 'shiftMyHlep' },
 ];

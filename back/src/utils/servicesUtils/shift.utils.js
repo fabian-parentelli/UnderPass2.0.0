@@ -1,3 +1,5 @@
+import { userRepository } from "../../repositories/index.repositories.js";
+
 const transformDate = (dateObj) => {
 
     const { day, month, year } = dateObj;
@@ -75,4 +77,12 @@ const sortShift = (shifts) => {
     return sortedArray || shifts;
 };
 
-export { transformDate, setHoursBack, sortShift };
+const updateUserShifts = async (customer) => {
+    const user = await userRepository.getByEmail(customer.email);
+    if (user && !user.phone) {
+        user.phone = customer.phone;
+        await userRepository.update(user);
+    };
+};
+
+export { transformDate, setHoursBack, sortShift, updateUserShifts };

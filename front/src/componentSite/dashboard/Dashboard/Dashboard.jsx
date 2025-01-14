@@ -38,6 +38,7 @@ import AllSitesDas from '../sites/AllSitesDas/AllSitesDas';
 import UserSiteDas from '../sites/UserSiteDas/UserSiteDas';
 import ShiftUserDas from '../shifts/ShiftUserDas/ShiftUserDas';
 import ShiftPanelDas from '../shifts/ShiftPanelDas/ShiftPanelDas';
+import CodeMain from '../configuration/code/CodeMain/CodeMain';
 
 const Dashboard = () => {
 
@@ -110,7 +111,7 @@ const Dashboard = () => {
                 {user.data.role === 'master' &&
                     <Fields
                         title={'Configuraciones'}
-                        category={[{ name: 'Generales', path: 'configuration' }]}
+                        category={[{ name: 'Generales', path: 'configuration' }, { name: 'Código', path: 'codemain' }]}
                     />
                 }
             </div>
@@ -165,6 +166,7 @@ const Dashboard = () => {
                 <Route path='/updnews/:id' element={<UpdNewsDas />} />
 
                 <Route path='/configuration' element={<Configuration />} />
+                <Route path='/codemain' element={<CodeMain />} />
             </Routes>
         </div>
     );

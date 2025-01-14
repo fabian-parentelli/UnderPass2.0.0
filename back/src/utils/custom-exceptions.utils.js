@@ -172,3 +172,10 @@ export class ShiftNotFound extends Error {
         this.name = this.constructor.name;
     };
 };
+
+export class CodeNotFound extends Error {
+    constructor(message) {
+        super(message);
+        this.name = this.constructor.name;
+    };
+};

@@ -1,0 +1,38 @@
+.codeForm {
+    margin-top: 1rem;
+
+    section {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin-top: 1rem;
+
+        div {
+            display: flex;
+            flex-direction: column;
+            width: 600px;
+
+            input {
+                font-family: 'Fira Code', monospace;
+            }
+
+            textarea {
+                font-family: 'Fira Code', monospace;
+                min-height: 100px;
+            }
+        }
+
+        .codeNewShort {
+            display: flex;
+            flex-direction: row;
+
+            div {
+                width: 290px;
+            }
+        }
+    }
+
+    button {
+        margin-top: 1rem;
+    }
+}

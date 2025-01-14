@@ -51,3 +51,27 @@
         }
     }
 }
+
+@media (max-width: 767px) {
+
+    #shiftBookingHelp {
+        max-width: 375px;
+        width: 100%;
+
+        .shiftBookingHelpSect {
+            margin-top: 2rem;
+
+            p {
+                width: 90%;
+            }
+
+            img {
+                width: 80%;
+            }
+
+            .shiftConfigDataHelpImgA {
+                width: 80%;
+            }
+        }
+    }
+}

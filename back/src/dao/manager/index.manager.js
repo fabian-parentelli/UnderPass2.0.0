@@ -26,6 +26,7 @@ import Sites from './sites.manager.js';
 import Shiftconf from './shiftconf.manager.js';
 import Shift from './shift.manager.js';
 import ShiftCustomer from './shiftCustomer.manager.js';
+import Code from './code.manager.js';
 
 export const userManager = new User();
 export const tutorialsManager = new Tutorials();
@@ -55,3 +56,4 @@ export const sitesManager = new Sites();
 export const shiftconfManager = new Shiftconf();
 export const shiftManager = new Shift();
 export const shiftCustomerManager = new ShiftCustomer();
+export const codeManager = new Code();

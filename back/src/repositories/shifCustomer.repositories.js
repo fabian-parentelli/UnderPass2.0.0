@@ -3,7 +3,7 @@ import { shiftCustomerManager } from '../dao/manager/index.manager.js';
 
 export default class ShiftCustomerRepository {
 
-    newCustomer = async (customer) => {
+    newCustomer = async (customer) => {        
         const result = await shiftCustomerManager.newCustomer(customer);
         return result;
     };

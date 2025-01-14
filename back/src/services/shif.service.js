@@ -1,8 +1,10 @@
-import { shiftRepository, shiftCustomerRepository } from "../repositories/index.repositories.js";
+import { shiftRepository, shiftCustomerRepository, shiftconfRepository } from "../repositories/index.repositories.js";
 import { ShiftNotFound } from '../utils/custom-exceptions.utils.js';
-import { sortShift } from "../utils/servicesUtils/shift.utils.js";
+import { sortShift, updateUserShifts } from "../utils/servicesUtils/shift.utils.js";
 
 const newShift = async (shift) => {
+
+    if (shift.customer?.email) await updateUserShifts(shift.customer);
     if (!shift.customer?.customerId) {
         const isCustomers = await shiftCustomerRepository.getShiftCustomerByEmail(shift.customer?.email);
         if (isCustomers) {
@@ -16,7 +18,7 @@ const newShift = async (shift) => {
     };
     if (shift.customer?.customerId) {
         shift.customer = shift.customer.customerId;
-        shift.isCustomer = shift.customer.isCustomer;
+        shift.isCustomer = true;
     };
     const result = await shiftRepository.newShift(shift);
     if (!result) throw new ShiftNotFound('No se puede reservar el turno');
@@ -46,6 +48,12 @@ const getShifts = async (uid, month, year, customer, usercustomer, user) => {
     if (uid) query.userId = uid;
     const data = await shiftRepository.getShifts(query);
     if (!data) throw new ShiftNotFound('No se pueden ver los turnos');
+    if (usercustomer) {
+        for (const dat of data) {
+            const placeDB = await shiftconfRepository.getByUserId(dat.userId);
+            dat.place = { name: placeDB.title, shiftId: placeDB._id };
+        };
+    };
     const result = usercustomer ? sortShift(data) : customer ? sortShift(data) : data;
     return { status: 'success', result };
 };

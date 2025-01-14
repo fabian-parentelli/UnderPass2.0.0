@@ -24,8 +24,8 @@ const MyShifts = ({ userId }) => {
             <h3>Mis Turnos</h3>
             <p className='myShiftsPP'>Acá puedes ver todos los turnos activos oredenados por fecha.</p>
 
-            {!loading && (shifts && shifts.length > 0 
-                ? <ShiftForm shifts={shifts} />
+            {!loading && (shifts && shifts.length > 0
+                ? <ShiftForm shifts={shifts} customer={true} />
                 : <p className='myShiftsP'>No tienes reservas activas.</p>)
             }
             <Load loading={loading} />

@@ -1,6 +1,7 @@
 import './shiftAlmanac.scss';
 import Load from '../../utils/Load.jsx';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import ShiftCalendar from './ShiftCalendar/ShiftCalendar';
 import { formatText } from '../../../utils/formatText.utils.js';
 import { monthMapping } from '../../../utils/typeShifts.utils.js';
@@ -15,6 +16,7 @@ import ShiftDataAdminUser from '../shifDataUser/ShiftDataAdminUser/ShiftDataAdmi
 const ShiftAlmanac = ({ config, width = 4 }) => {
 
     const { user } = useLoginContext();
+    const navigate = useNavigate();
     const [book, setBook] = useState([]);
     const [type, setType] = useState(null);
     const [rooms, setRooms] = useState(null);
@@ -63,6 +65,8 @@ const ShiftAlmanac = ({ config, width = 4 }) => {
 
     const handleBook = async () => {
         if (vew.status) {
+            setLoading(true);
+
             const query = { day: selected, hour: type, userId: config.userId, customer: dataUser };
             if (rooms) query.room = formatText(rooms);
             if (sections) query.sections = formatText(sections.title);
@@ -76,12 +80,16 @@ const ShiftAlmanac = ({ config, width = 4 }) => {
 
             const response = await newShiftApi(query);
             console.log(response);
+
+            
+            navigate('/')
+            setLoading(false);
         };
     };
 
     return (
         <div className='shiftAlmanac'>
-            <section className='shiftAlmanacSect' style={{ gap: `${width}rem`}}>
+            <section className='shiftAlmanacSect' style={{ gap: `${width}rem` }}>
                 {config &&
                     <>
                         <ShiftCalendar

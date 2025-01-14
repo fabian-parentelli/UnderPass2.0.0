@@ -36,8 +36,9 @@ const getShiftconfById = async (req, res) => {
 
 const getShiftconf = async (req, res) => {
     const { page = 1, limit, country, active, province, category, title, favorite, userid, days } = req.query;
+    const { user } = req.user;
     try {
-        const result = await shiftconfService.getShiftconf(page, limit, country, active, province, category, title, favorite, userid, days);
+        const result = await shiftconfService.getShiftconf(page, limit, country, active, province, category, title, favorite, userid, days, user);
         if (result) return res.sendSuccess(result);
     } catch (error) {
         if (error instanceof ShiftNotFound) return res.sendClientError(error.message);

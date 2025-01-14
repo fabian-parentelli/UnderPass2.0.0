@@ -1,10 +1,11 @@
 import './shiftForm.scss';
+import { Link } from 'react-router-dom';
 import ChatIcon from '@mui/icons-material/Chat';
 import ClearAllIcon from '@mui/icons-material/ClearAll';
 import BackspaceIcon from '@mui/icons-material/Backspace';
 import { monthsArraySpanish } from '../../../utils/typeShifts.utils.js';
 
-const ShiftForm = ({ shifts }) => {
+const ShiftForm = ({ shifts, customer = false }) => {
 
     const handleContact = (shift) => {
         console.log(shift);
@@ -24,7 +25,7 @@ const ShiftForm = ({ shifts }) => {
                         <th>Hora</th>
                         <th>Sala</th>
                         <th>Sección</th>
-                        <th>Cliente</th>
+                        <th>{customer ? 'Local' : 'Cliente'}</th>
                         <th>Contacto</th>
                         <th>Suspender</th>
                     </tr>
@@ -43,12 +44,20 @@ const ShiftForm = ({ shifts }) => {
                             <td>{shift.room}</td>
                             <td style={{ textAlign: !shift?.sections && 'center' }} >{shift?.sections || <ClearAllIcon />}</td>
                             <td>
-                                <p>{shift?.customerData.name}</p>
-                                <p>{shift?.customerData?.phone}</p>
-                                <p>{shift?.customerData?.email}</p>
+                                {customer ?
+                                    <>
+                                        <p>{shift?.place?.name}</p>
+                                        <Link to={`/shift/${shift?.place?.shiftId}`} className='shiftFormLink' >Sitio</Link>
+                                    </>
+                                    : <>
+                                        <p>{shift?.customerData.name}</p>
+                                        <p>{shift?.customerData?.phone}</p>
+                                        <p>{shift?.customerData?.email}</p>
+                                    </>
+                                }
                             </td>
-                            <td className='backShiftForm' onClick={()=> handleContact(shift)} ><ChatIcon /></td>
-                            <td className='backShiftForm' onClick={()=> handleSuspend(shift._id)} ><BackspaceIcon /> </td>
+                            <td className='backShiftForm' onClick={() => handleContact(shift)} ><ChatIcon /></td>
+                            <td className='backShiftForm' onClick={() => handleSuspend(shift._id)} ><BackspaceIcon /> </td>
                         </tr>
                     ))}
                 </tbody>

@@ -38,6 +38,7 @@ import AllSites from "../componentSite/sites/AllSites/AllSites.jsx";
 import Advances from "../componentSite/advances/Advances/Advances.jsx";
 import ShiftPage from "../componentSite/shift/ShiftPage/ShiftPage.jsx";
 import ShiftAll from "../componentSite/shift/ShiftAll/ShiftAll.jsx";
+import Recommendations from "../componentSite/Recommendations/Recommendations.jsx";
 
 const RoutesComp = () => {
 
@@ -83,6 +84,7 @@ const RoutesComp = () => {
                             <Route path="/ticket_by_order/:id" element={<TicketUnique />} />
                             <Route path="/vewalert/:type/:id" element={<VewAlertsBody />} />
                             <Route path="/newsites" element={<NewSites />} />
+                            <Route path="/recommendations" element={<Recommendations />} />
                         </>
                     }
 

@@ -43,7 +43,10 @@ const imagesHelp = {
     shiftBookingB: 'https://ik.imagekit.io/sn6eyrykr/Helps/shiftsHelp/Booking%20help/Imagen2.png',
     shiftBookingC: 'https://ik.imagekit.io/sn6eyrykr/Helps/shiftsHelp/Booking%20help/Imagen3.png',
     shiftBookingD: 'https://ik.imagekit.io/sn6eyrykr/Helps/shiftsHelp/Booking%20help/Imagen4.png',
-    shiftBookingE: 'https://ik.imagekit.io/sn6eyrykr/Helps/shiftsHelp/Booking%20help/Imagen5.png'
+    shiftBookingE: 'https://ik.imagekit.io/sn6eyrykr/Helps/shiftsHelp/Booking%20help/Imagen5.png',
+
+    // Shift - My shift
+    myShiftImg: 'https://ik.imagekit.io/sn6eyrykr/Helps/shiftsHelp/My%20shifts/Imagen1.png?updatedAt=1736880783141'
 };
 
 const genericImages = {

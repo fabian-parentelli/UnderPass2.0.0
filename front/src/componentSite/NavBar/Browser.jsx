@@ -43,7 +43,9 @@ const Browser = ({ handleMenuClick, menuVisible, listElementsRef, setMenuVisible
                         <li className='menu_inside' onClick={handleInsideClick}><Link to='/' className='menu_link menu_link--inside'>Quienes somos</Link></li>
                         <li className='menu_inside' onClick={handleInsideClick}><Link to='/' className='menu_link menu_link--inside'>Videos Tutoriales</Link></li>
                         <li className='menu_inside' onClick={handleInsideClick}><Link to='/advance' className='menu_link menu_link--inside'>Noticias y Avances</Link></li>
-                        <li className='menu_inside' onClick={handleInsideClick}><a className='menu_link menu_link--inside' href='#'>Faraday's House</a></li>
+                        {user && user.logged &&
+                            <li className='menu_inside' onClick={handleInsideClick}><Link to='/recommendations' className='menu_link menu_link--inside'>Recomendaciones</Link></li>
+                        }
                     </ul>
                 </li>
 

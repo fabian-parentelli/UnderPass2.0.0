@@ -5,6 +5,8 @@ const ShiftDataUser = ({ setDataUser, user }) => {
 
     const [userData, setUserData] = useState(null);
 
+    console.log(user);
+
     useEffect(() => {
         const query = {};
         if (user.name) query.name = user.name;
@@ -39,10 +41,7 @@ const ShiftDataUser = ({ setDataUser, user }) => {
 
                     <div className='shiftDataUserDiv'>
                         <label>Teléfono</label>
-                        {userData?.phone
-                            ? <p className='shiftDataUserInputP'>{userData?.phone}</p>
-                            : <input type="text" name='phone' placeholder='Completa este input' onChange={handleChangue} />
-                        }
+                        <input type="text" name='phone' placeholder='Completa este input' value={userData?.phone} onChange={handleChangue} />
                     </div>
 
                     <div className='shiftDataUserDiv'>

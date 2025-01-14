@@ -1,5 +1,6 @@
 import { shiftconfRepository } from "../repositories/index.repositories.js";
 import { ShiftNotFound } from '../utils/custom-exceptions.utils.js';
+import orderByLocation from '../utils/orderByLocation.utils.js'
 
 const newShift = async (shifts, imgUrl) => {
     const shift = JSON.parse(shifts.values);
@@ -40,7 +41,7 @@ const getShiftconfById = async (id) => {
     return { status: 'success', result };
 };
 
-const getShiftconf = async (page, limit, country, active, province, category, title, favorite, userid, days) => {
+const getShiftconf = async (page, limit, country, active, province, category, title, favorite, userid, days, user) => {
     const query = {};
     if (category) query.category = category;
     if (active !== undefined) query.active = active;
@@ -56,8 +57,10 @@ const getShiftconf = async (page, limit, country, active, province, category, ti
         const daysArray = days.split(',');
         query.days = { $in: daysArray };
     };
-    const result = await shiftconfRepository.getShiftconf(query, page, limit);
-    if (result.docs.length < 1) throw new ShiftNotFound('No se encuentra configuración previa');
+    const preResult = await shiftconfRepository.getShiftconf(query, page, limit);
+    if (preResult?.docs.length < 1) throw new ShiftNotFound('No se encuentra configuración previa');
+    const userLocation = { provinceSort: user.location.province, citySort: user.location.city };
+    const result = user.location.country === country ? orderByLocation(preResult, userLocation) : preResult;
     return { status: 'success', result };
 };
 

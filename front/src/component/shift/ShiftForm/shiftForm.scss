@@ -11,6 +11,16 @@
             background-color: rgb(226, 226, 226);
         }
     }
+
+    .shiftFormLink {
+        text-decoration: none;
+        color: $underShifts;
+        transition: .3s ease-in-out;
+
+        &:hover {
+            color: gray;
+        }
+    }
 }
 
 @media (max-width: 767px) {

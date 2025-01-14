@@ -23,6 +23,7 @@ import SitesRepository from './sites.repositories.js';
 import ShiftconfRepository from './shiftconf.repositories.js';
 import ShiftRepository from './shif.repositories.js';
 import ShiftCustomerRepository from './shifCustomer.repositories.js';
+import CodeRepository from './code.repositories.js';
 
 export const userRepository = new UserRepository();
 export const imagenRepository = new ImagenRepository();
@@ -49,3 +50,4 @@ export const sitesRepository = new SitesRepository();
 export const shiftconfRepository = new ShiftconfRepository();
 export const shiftRepository = new ShiftRepository();
 export const shiftCustomerRepository = new ShiftCustomerRepository();
+export const codeRepository = new CodeRepository();

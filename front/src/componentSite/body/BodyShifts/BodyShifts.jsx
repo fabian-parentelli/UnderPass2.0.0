@@ -1,10 +1,10 @@
 import './bodyShifts.scss';
 import { useEffect, useState } from 'react';
+import ShiftBody from '../../shift/ShiftBody/ShiftBody.jsx';
 import { genericImages } from '../../../utils/urlImages.utils.js';
+import { getShiftconfApi } from '../../../helpers/shiftsconf/getShiftconf.api.js';
 import UnderShiftsLog from '../../../component/fonts/UnderShiftsLog/UnderShiftsLog';
 import { getPublicShiftconfApi } from '../../../helpers/shiftsconf/getPublicShift.api.js';
-import ShiftBody from '../../shift/ShiftBody/ShiftBody.jsx';
-import { getShiftconfApi } from '../../../helpers/shiftsconf/getShiftconf.api.js';
 
 const BodyShifts = () => {
 
