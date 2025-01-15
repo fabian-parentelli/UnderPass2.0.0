@@ -18,12 +18,12 @@ const ShiftInputUser = ({ setDataUser }) => {
 
                 <div>
                     <label>Teléfono</label>
-                    <input type="phone" name='phone' onChange={handleChangue} />
+                    <input type="phone" name='phone' onChange={handleChangue} required />
                 </div>
 
                 <div>
                     <label>Email</label>
-                    <input type="email" name='email' onChange={handleChangue} />
+                    <input type="email" name='email' onChange={handleChangue} required />
                 </div>
 
             </section>

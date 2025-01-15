@@ -15,7 +15,14 @@ import ShiftDataAdminUser from '../shifDataUser/ShiftDataAdminUser/ShiftDataAdmi
 
 const ShiftAlmanac = ({ config, width = 4 }) => {
 
-    const { user } = useLoginContext();
+    const { user, current } = useLoginContext();
+
+    useEffect(() => {  
+        const fetchData = async () => {
+            await current();
+        }; fetchData();
+    }, []);
+
     const navigate = useNavigate();
     const [book, setBook] = useState([]);
     const [type, setType] = useState(null);
@@ -57,13 +64,17 @@ const ShiftAlmanac = ({ config, width = 4 }) => {
             const isDay = arrayDay.includes(dayOfWeek);
             if (!isDay) setVew({ status: false, message: 'El día seleccionado no es correcto' });
             else {
-                if (!type || !dataUser?.name) setVew({ status: false, message: 'Seleccionar día y datos del usuario' });
+                if (!type || !dataUser?.name || !dataUser?.phone || !dataUser?.email) setVew({ status: false, message: 'Seleccionar día y datos del usuario' });
                 else setVew({ status: true, message: 'Listo para reservar' });
             };
         }
     }, [type, dataUser, selected, rooms, sections, config]);
 
     const handleBook = async () => {
+        if (!user.logged) {
+            localStorage.setItem('path', `shift/${config._id}`);
+            navigate('/login');
+        };
         if (vew.status) {
             setLoading(true);
 
@@ -71,17 +82,18 @@ const ShiftAlmanac = ({ config, width = 4 }) => {
             if (rooms) query.room = formatText(rooms);
             if (sections) query.sections = formatText(sections.title);
 
-            console.log(query);
-
             // Luego poner una condicional que si no ponen un horario no lo concidero....
             // agregar al carrito si es usuario, pero si es administrador no......
             // Probablemente sacar el handle Book de aca y que venga desde afuera.....
             // No lo se esto ultimo esta a resolver
 
+            console.log(query);
+
+
             const response = await newShiftApi(query);
             console.log(response);
 
-            
+
             navigate('/')
             setLoading(false);
         };
@@ -121,8 +133,12 @@ const ShiftAlmanac = ({ config, width = 4 }) => {
                     </>
                 }
             </section>
-            <button className='btn btnSH shiftAlmanacBtn' onClick={handleBook}>Reservar</button>
-            <p className={vew.status ? 'shiftAlmanacOk' : 'shiftAlmanacOff'}>{vew.message}</p>
+            <button className='btn btnSH shiftAlmanacBtn' onClick={handleBook}>{user.logged ? 'Reservar' : 'inicia sesión'}</button>
+            {user.logged
+                ? <p className={vew.status ? 'shiftAlmanacOk' : 'shiftAlmanacOff'}>{vew.message}</p>
+                : <p className='shiftAlmanacOff'>Debes iniciar sesión, para poder reservar un turno.</p>
+            }
+
             <Load loading={loading} />
         </div>
     );

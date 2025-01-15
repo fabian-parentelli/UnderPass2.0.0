@@ -1,12 +1,10 @@
 import { useState } from 'react';
 import CodeForm from '../CodeForm/CodeForm';
-import Load from '../../../../../component/utils/Load';
 import { newCodeApi } from '../../../../../helpers/code/newCode.api.js';
 import SnackbarAlert from '../../../../../component/utils/SnackbarAlert.jsx';
 
-const CodeNew = ({ setVew }) => {
+const CodeNew = ({ setVew, setLoading }) => {
 
-    const [loading, setLoading] = useState(false);
     const [values, setValues] = useState({
         route: '', name: '', type: '', code: '', description: '', version: ''
     });
@@ -33,9 +31,14 @@ const CodeNew = ({ setVew }) => {
 
     return (
         <>
-            <CodeForm values={values} handleCodeChange={handleCodeChange} handleSubmit={handleSubmit} />
+            <CodeForm
+                values={values}
+                handleCodeChange={handleCodeChange}
+                handleSubmit={handleSubmit}
+                buttonName='Agregar'
+            />
+
             <SnackbarAlert message={message} open={open} />
-            <Load loading={loading} />
         </>
     );
 };

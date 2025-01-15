@@ -4,7 +4,7 @@ import mongoosePaginate from 'mongoose-paginate-v2';
 const shiftCustomerCollection = 'shiftcustomer';
 
 const shiftCustomerSchema = new mongoose.Schema({
-    userId: { type: String },
+    userId: [{ type: String }],
     name: { type: String },
     phone: { type: String },
     email: { type: String },

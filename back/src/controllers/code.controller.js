@@ -12,9 +12,9 @@ const newCode = async (req, res) => {
 };
 
 const getCodes = async (req, res) => {
-    const { name, type, page = 1 } = req.query;
+    const { name } = req.params;
     try {
-        const result = await codeService.getCodes(name, type, page);
+        const result = await codeService.getCodes(name);
         if (result) return res.sendSuccess(result);
     } catch (error) {
         if (error instanceof CodeNotFound) return res.sendClientError(error.message);
@@ -22,4 +22,14 @@ const getCodes = async (req, res) => {
     };
 };
 
-export { newCode, getCodes };
+const updCodes = async (req, res) => {
+    try {
+        const result = await codeService.updCodes({ ...req.body });
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof CodeNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
+export { newCode, getCodes, updCodes };

@@ -7,8 +7,18 @@ export default class CodeRepository {
         return result;
     };
 
-    getCodes = async (query, page) => {
-        const result = await codeManager.getCodes(query, page);
+    getCodes = async (name) => {
+        const result = await codeManager.getCodes(name);
+        return result;
+    };
+    
+    getCodeById = async (id) => {
+        const result = await codeManager.getCodeById(id);
+        return result;
+    };
+   
+    update = async (code) => {
+        const result = await codeManager.update(code);
         return result;
     };
 

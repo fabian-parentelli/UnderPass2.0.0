@@ -1,9 +1,8 @@
-import { userRepository } from "../../repositories/index.repositories.js";
+import { userRepository, shiftconfRepository, shiftCustomerRepository } from "../../repositories/index.repositories.js";
+import { ShiftNotFound } from "../custom-exceptions.utils.js";
 
 const transformDate = (dateObj) => {
-
     const { day, month, year } = dateObj;
-
     const monthMap = {
         january: '01',
         february: '02',
@@ -18,38 +17,31 @@ const transformDate = (dateObj) => {
         november: '11',
         december: '12',
     };
-
     return `${year}-${monthMap[month.toLowerCase()]}-${String(day).padStart(2, '0')}`;
 };
 
 const setHoursBack = (hour) => {
-
     if (!hour || !hour.startHour || !hour.endHour || !hour.fractionHour) {
         console.error("Faltan datos en 'hour':", hour);
         return [];
     };
-
     const toMinutes = (time) => {
         const [hours, minutes] = time.split(':').map(Number);
         return hours * 60 + minutes;
     };
-
     const toTimeString = (minutes) => {
         const adjustedMinutes = minutes % (24 * 60);
         const hours = Math.floor(adjustedMinutes / 60).toString().padStart(2, '0');
         const mins = (adjustedMinutes % 60).toString().padStart(2, '0');
         return `${hours}:${mins}`;
     };
-
     const start = toMinutes(hour.startHour);
     const end = toMinutes(hour.endHour) + (toMinutes(hour.endHour) < start ? 24 * 60 : 0);
-
     const labels = [];
     for (let time = start; time < end; time += hour.fractionHour) {
         const timeString = toTimeString(time);
         labels.push({ title: timeString, _id: timeString });
     };
-
     return labels;
 };
 
@@ -77,12 +69,45 @@ const sortShift = (shifts) => {
     return sortedArray || shifts;
 };
 
-const updateUserShifts = async (customer) => {
-    const user = await userRepository.getByEmail(customer.email);
-    if (user && !user.phone) {
-        user.phone = customer.phone;
-        await userRepository.update(user);
+const updateCustomer = async (shift) => {
+    const user = await userRepository.getByEmail(shift.customer.email);
+    if (user) {                                     
+        if (!user.phone) {                          
+            user.phone = shift.customer.phone;            
+            await userRepository.update(user);      
+        };
+        shift.customer.customerUser = user._id;     
     };
+    let customer = await shiftCustomerRepository.getShiftCustomerByEmail(shift.customer.email) || null;
+    if (customer) {                                  
+        const userIdIncludes = customer.userId.includes(shift.userId);   
+        if (!userIdIncludes) customer.userId.push(shift.userId);  
+        await shiftCustomerRepository.update(customer); 
+    } else {
+        customer = await shiftCustomerRepository.newCustomer({  
+            userId: [shift.userId],
+            name: shift.customer.name,
+            phone: shift.customer.phone,
+            email: shift.customer.email,
+            customerUser: shift.customer.customerUser || undefined
+        });
+    };
+    return customer._id;
 };
 
-export { transformDate, setHoursBack, sortShift, updateUserShifts };
+const emailToCustomer = async (shift) => {
+    // const config = await shiftconfRepository.getByUserId(shift.userId);
+    // console.log(shift)
+    console.log('****************************************************');
+    // console.log(config);
+    
+    // Construir el envío de emails .......... 
+    // Construir el envío de emails .......... 
+    // Construir el envío de emails .......... 
+    // Construir el envío de emails .......... 
+    // Construir el envío de emails .......... 
+    // Construir el envío de emails .......... 
+    // Construir el envío de emails .......... 
+};
+
+export { transformDate, setHoursBack, updateCustomer, sortShift, emailToCustomer };

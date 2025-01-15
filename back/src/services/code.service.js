@@ -7,13 +7,19 @@ const newCode = async (code) => {
     return { status: 'success', result };
 };
 
-const getCodes = async (name, type, page, active) => {
-    const query = {};
-    if (name) query.name = name;
-    if (type) query.type = type;
-    const result = await codeRepository.getCodes(query, page);
-    if (!result) throw new CodeNotFound('No se puede guardar el código');
+const getCodes = async (name) => {
+    const result = await codeRepository.getCodes(name);
+    if (!result) throw new CodeNotFound('No se encuentra el código');
     return { status: 'success', result };
 };
 
-export { newCode, getCodes };
+const updCodes = async (code) => {
+    const codeDB = await codeRepository.getCodeById(code._id)
+    if (!codeDB) throw new CodeNotFound('No se encuentra el código');
+    const newCode = { ...codeDB, ...code };
+    const result = await codeRepository.update(newCode);
+    if (!result) throw new CodeNotFound('No se puede actualizar el código');
+    return { status: 'success', result };
+};
+
+export { newCode, getCodes, updCodes };

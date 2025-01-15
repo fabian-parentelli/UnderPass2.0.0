@@ -3,7 +3,6 @@ import { loginUserApi } from '../helpers/users/loginUser.api.js';
 import { currentUserApi } from '../helpers/users/currentUser.api.js';
 import { userRegisterApi } from '../helpers/users/registerUser.api.js';
 import { updDataUserApi } from "../helpers/users/updDataUser.api.js";
-// import { updateUserApi } from '../helpers/users/updateUser.api.js';
 
 const LoginContext = createContext();
 export const useLoginContext = () => useContext(LoginContext);

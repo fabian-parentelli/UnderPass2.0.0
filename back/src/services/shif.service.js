@@ -1,27 +1,13 @@
-import { shiftRepository, shiftCustomerRepository, shiftconfRepository } from "../repositories/index.repositories.js";
+import { shiftRepository, shiftconfRepository, shiftCustomerRepository } from "../repositories/index.repositories.js";
 import { ShiftNotFound } from '../utils/custom-exceptions.utils.js';
-import { sortShift, updateUserShifts } from "../utils/servicesUtils/shift.utils.js";
+import { emailToCustomer, sortShift, updateCustomer } from "../utils/servicesUtils/shift.utils.js";
 
 const newShift = async (shift) => {
-
-    if (shift.customer?.email) await updateUserShifts(shift.customer);
-    if (!shift.customer?.customerId) {
-        const isCustomers = await shiftCustomerRepository.getShiftCustomerByEmail(shift.customer?.email);
-        if (isCustomers) {
-            shift.customer = isCustomers._id;
-            shift.isCustomer = true;
-        } else {
-            const customer = await shiftCustomerRepository.newCustomer({ ...shift.customer, userId: shift.userId, isCustomer: true });
-            shift.customer = customer._id;
-            shift.isCustomer = customer.isCustomer;
-        };
-    };
-    if (shift.customer?.customerId) {
-        shift.customer = shift.customer.customerId;
-        shift.isCustomer = true;
-    };
+    const customer = await updateCustomer(shift);
+    shift.customer = customer;
     const result = await shiftRepository.newShift(shift);
     if (!result) throw new ShiftNotFound('No se puede reservar el turno');
+    await emailToCustomer(result);
     return { status: 'success', result };
 };
 

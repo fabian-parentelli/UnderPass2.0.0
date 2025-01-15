@@ -1,7 +1,7 @@
 import './codeForm.scss';
 import TextAreas from '../../../../../component/utils/TextAreas/TextAreas';
 
-const CodeForm = ({ values, handleCodeChange, handleSubmit }) => {
+const CodeForm = ({ values, handleCodeChange, handleSubmit, buttonName }) => {
 
     return (
         <form className='codeForm' onSubmit={handleSubmit}>
@@ -59,7 +59,7 @@ const CodeForm = ({ values, handleCodeChange, handleSubmit }) => {
 
             </section>
 
-            <button className='btn btnA'>Agregar</button>
+            <button className='btn btnA'>{buttonName}</button>
         </form>
     );
 };

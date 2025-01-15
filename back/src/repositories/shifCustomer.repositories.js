@@ -23,4 +23,9 @@ export default class ShiftCustomerRepository {
         const result = await shiftCustomerManager.getShiftCustomerById(id);
         return result;
     };
+    
+    update = async (customer) => {
+        const result = await shiftCustomerManager.update(customer);
+        return result;
+    };
 };

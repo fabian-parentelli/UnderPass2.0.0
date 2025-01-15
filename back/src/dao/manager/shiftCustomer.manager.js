@@ -7,8 +7,8 @@ export default class ShiftCustomer {
     };
 
     getShiftCustomerByUserId = async (userId) => {
-        return await shiftCustomerModel.find({ userId }).lean();
-    };
+        return await shiftCustomerModel.find({ userId: { $elemMatch: { $eq: userId } } }).lean();
+    };    
 
     getShiftCustomerByEmail = async (email) => {
         return await shiftCustomerModel.findOne({ email: email }).lean();
@@ -16,6 +16,10 @@ export default class ShiftCustomer {
 
     getShiftCustomerById = async (id) => {
         return await shiftCustomerModel.findById(id).lean();
+    };
+
+    update = async (customer) => {
+        return await shiftCustomerModel.findByIdAndUpdate(customer._id, customer, { lean: true, new: true });
     };
 
 };

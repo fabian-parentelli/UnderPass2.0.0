@@ -22,14 +22,11 @@ const ShiftFindCustomer = ({ userId, setDataUser }) => {
         }; fetchData();
     }, []);
 
-    console.log(customers);
-
-
     const handleChange = (e, newValue) => {
         if (newValue) {
             const matchedCustomer = customers.find((cust) => cust._id === newValue._id);
             if (matchedCustomer) {
-                setDataUser({ customerId: matchedCustomer._id, name: matchedCustomer.name, isCustomer: matchedCustomer.isCustomer });
+                setDataUser({ name: matchedCustomer.name, phone: matchedCustomer.phone, email: matchedCustomer.email });
                 setCustomer(matchedCustomer);
             };
         } else {
