@@ -17,7 +17,7 @@ const ShiftAlmanac = ({ config, width = 4 }) => {
 
     const { user, current } = useLoginContext();
 
-    useEffect(() => {  
+    useEffect(() => {
         const fetchData = async () => {
             await current();
         }; fetchData();
@@ -76,9 +76,13 @@ const ShiftAlmanac = ({ config, width = 4 }) => {
             navigate('/login');
         };
         if (vew.status) {
-            setLoading(true);
-
-            const query = { day: selected, hour: type, userId: config.userId, customer: dataUser };
+            // setLoading(true);
+            const query = {
+                day: selected, hour: type, userId: config.userId, customer: dataUser,
+                dataConf: {
+                    title: config.title, location: config.location
+                }
+            };
             if (rooms) query.room = formatText(rooms);
             if (sections) query.sections = formatText(sections.title);
 
@@ -87,14 +91,15 @@ const ShiftAlmanac = ({ config, width = 4 }) => {
             // Probablemente sacar el handle Book de aca y que venga desde afuera.....
             // No lo se esto ultimo esta a resolver
 
-            console.log(query);
+            // console.log(query);
+            // console.log(config);
 
 
             const response = await newShiftApi(query);
             console.log(response);
 
 
-            navigate('/')
+            // navigate('/')
             setLoading(false);
         };
     };

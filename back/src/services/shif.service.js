@@ -3,12 +3,18 @@ import { ShiftNotFound } from '../utils/custom-exceptions.utils.js';
 import { emailToCustomer, sortShift, updateCustomer } from "../utils/servicesUtils/shift.utils.js";
 
 const newShift = async (shift) => {
-    const customer = await updateCustomer(shift);
-    shift.customer = customer;
-    const result = await shiftRepository.newShift(shift);
-    if (!result) throw new ShiftNotFound('No se puede reservar el turno');
-    await emailToCustomer(result);
-    return { status: 'success', result };
+
+    const result = {
+        _id: '678ac54fcf7d2deb6fe3fe9'
+    }
+
+    await emailToCustomer(shift, result);
+    // const customer = await updateCustomer(shift);
+    // shift.customer = customer;
+    // const result = await shiftRepository.newShift(shift);
+    // if (!result) throw new ShiftNotFound('No se puede reservar el turno');
+
+    // return { status: 'success', result };
 };
 
 const getDataShift = async (uid, month, year, day, room, sections) => {

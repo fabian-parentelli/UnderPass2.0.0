@@ -71,20 +71,20 @@ const sortShift = (shifts) => {
 
 const updateCustomer = async (shift) => {
     const user = await userRepository.getByEmail(shift.customer.email);
-    if (user) {                                     
-        if (!user.phone) {                          
-            user.phone = shift.customer.phone;            
-            await userRepository.update(user);      
+    if (user) {
+        if (!user.phone) {
+            user.phone = shift.customer.phone;
+            await userRepository.update(user);
         };
-        shift.customer.customerUser = user._id;     
+        shift.customer.customerUser = user._id;
     };
     let customer = await shiftCustomerRepository.getShiftCustomerByEmail(shift.customer.email) || null;
-    if (customer) {                                  
-        const userIdIncludes = customer.userId.includes(shift.userId);   
-        if (!userIdIncludes) customer.userId.push(shift.userId);  
-        await shiftCustomerRepository.update(customer); 
+    if (customer) {
+        const userIdIncludes = customer.userId.includes(shift.userId);
+        if (!userIdIncludes) customer.userId.push(shift.userId);
+        await shiftCustomerRepository.update(customer);
     } else {
-        customer = await shiftCustomerRepository.newCustomer({  
+        customer = await shiftCustomerRepository.newCustomer({
             userId: [shift.userId],
             name: shift.customer.name,
             phone: shift.customer.phone,
@@ -95,19 +95,11 @@ const updateCustomer = async (shift) => {
     return customer._id;
 };
 
-const emailToCustomer = async (shift) => {
-    // const config = await shiftconfRepository.getByUserId(shift.userId);
-    // console.log(shift)
-    console.log('****************************************************');
-    // console.log(config);
+const emailToCustomer = async (shift, result) => {
     
-    // Construir el envío de emails .......... 
-    // Construir el envío de emails .......... 
-    // Construir el envío de emails .......... 
-    // Construir el envío de emails .......... 
-    // Construir el envío de emails .......... 
-    // Construir el envío de emails .......... 
-    // Construir el envío de emails .......... 
+    console.log(shift);
+    console.log('********************************');
+    console.log(result);
 };
 
 export { transformDate, setHoursBack, updateCustomer, sortShift, emailToCustomer };
