@@ -6,10 +6,11 @@ import ShiftRooms from './ShiftRooms/ShiftRooms';
 import ShiftSite from './ShiftSite/ShiftSite.jsx';
 import ShiftCompany from './ShiftCompany/ShiftCompany';
 import ShiftSeccion from './ShiftSeccion/ShiftSeccion';
+import ShiftClosed from './ShiftClosed/ShiftClosed.jsx';
 import ShiftSections from './ShiftSections/ShiftSections';
 import SnackbarAlert from '../../utils/SnackbarAlert.jsx';
-import { newShiftconfApi } from '../../../helpers/shiftsconf/newShiftconf.api.js';
 import { getShiftconfApi } from '../../../helpers/shiftsconf/getShiftconf.api.js';
+import { newShiftconfApi } from '../../../helpers/shiftsconf/newShiftconf.api.js';
 
 const ShiftConf = ({ userId }) => {
 
@@ -19,7 +20,7 @@ const ShiftConf = ({ userId }) => {
     const [loading, setLoading] = useState(false);
     const [updateData, setUpdateData] = useState(false);
     const [message, setMessage] = useState({ status: '', mess: '' });
-    const [values, setValues] = useState({ userId, location: { country: localStorage.getItem('country') }, rooms: 1 });    
+    const [values, setValues] = useState({ userId, location: { country: localStorage.getItem('country') }, rooms: 1 });
 
     useEffect(() => {
         const fetchData = async () => {
@@ -76,6 +77,7 @@ const ShiftConf = ({ userId }) => {
             <ShiftSeccion values={values} setValues={setValues} handleValues={handleValues} />
             <ShiftSections values={values} setValues={setValues} handleValues={handleValues} />
             <ShiftSite values={values} />
+            <ShiftClosed values={values} setValues={setValues} setLoading={setLoading} />
             {!values?.location?.coordinates?.lat &&
                 <p className='shiftConfPP'>No te olvides de seleccionar una dirección en el mapa.</p>
             }

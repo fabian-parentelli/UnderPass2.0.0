@@ -19,7 +19,7 @@ const newShift = async (shifts, imgUrl) => {
     };
 };
 
-const getPublicShiftconf = async (page, limit, country, active, province, category, title, days) => {
+const getPublicShiftconf = async (page, limit, country, active, province, category, title, days, userid) => {
     const query = {};
     if (category) query.category = category;
     if (active !== undefined) query.active = active;
@@ -30,6 +30,7 @@ const getPublicShiftconf = async (page, limit, country, active, province, catego
         const daysArray = days.split(',');
         query.days = { $in: daysArray };
     };
+    if (userid) query.userId = userid;
     const result = await shiftconfRepository.getShiftconf(query, page, limit);
     if (result.docs.length < 1) throw new ShiftNotFound('No se encuentra configuración previa');
     return { status: 'success', result };
@@ -73,4 +74,21 @@ const updActive = async (id) => {
     return { status: 'success', result };
 };
 
-export { newShift, getShiftconf, getShiftconfById, getPublicShiftconf, updActive };
+const updHolidays = async (holidays) => {
+    const shift = await shiftconfRepository.getById(holidays.configId);
+    if (!shift) throw new ShiftNotFound('No se encuentra la configuración');
+    shift.holidays = holidays.isHolidays;
+    if (!shift.holidays) {
+        shift.holidaysDate = {};
+    } else {
+        if (!shift.holidaysDate) shift.holidaysDate = {};
+        if (holidays.holdaysOn) shift.holidaysDate.holdaysOn = new Date(holidays.holdaysOn);
+        if (holidays.holdaysOff) shift.holidaysDate.holdaysOff = new Date(holidays.holdaysOff);
+    };
+    const result = await shiftconfRepository.update(shift);
+    if (!result) throw new ShiftNotFound('No se puede actualizar la vacaciones');
+    return { status: 'success', result };
+};
+
+
+export { newShift, getShiftconf, getShiftconfById, getPublicShiftconf, updActive, updHolidays };

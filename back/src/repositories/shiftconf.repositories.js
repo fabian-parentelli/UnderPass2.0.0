@@ -1,4 +1,5 @@
 import { shiftconfManager } from '../dao/manager/index.manager.js';
+import { updHolidaysDate } from '../dao/DTOS/shiftConfig.dto.js';
 
 export default class ShiftconfRepository {
 
@@ -8,7 +9,8 @@ export default class ShiftconfRepository {
     };
 
     getShiftconf = async (query, page, limit) => {
-        const result = await shiftconfManager.getShiftconf(query, page, limit);
+        const preResult = await shiftconfManager.getShiftconf(query, page, limit);
+        const result = await updHolidaysDate(preResult);
         return result;
     };
 
@@ -18,7 +20,8 @@ export default class ShiftconfRepository {
     };
 
     getById = async (id) => {
-        const result = await shiftconfManager.getById(id);
+        const preResult = await shiftconfManager.getById(id);
+        const result = await updHolidaysDate(preResult)
         return result;
     };
 

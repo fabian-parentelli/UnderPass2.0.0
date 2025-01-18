@@ -1,0 +1,15 @@
+@import '../../../../style/colors.scss';
+
+.shiftAlmanacHolidays {
+    text-align: center;
+    margin: 1rem 0 3rem 0;
+    
+    p {
+        background-color: $underShifts;
+        max-width: 600px;
+        margin: auto;
+        border-radius: 6px;
+        padding: 12px 6px;
+        color: #fff;
+    }
+}

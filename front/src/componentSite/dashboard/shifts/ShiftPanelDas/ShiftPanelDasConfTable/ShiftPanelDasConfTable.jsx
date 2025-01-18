@@ -54,7 +54,7 @@ const ShiftPanelDasConfTable = ({ configs, handleActive }) => {
                                     ))}
                                 </th>
                                 <th>
-                                    <Tooltip title='Usuario' placement="left">
+                                    <Tooltip title={'Usuario'} placement="left">
                                         <AccountBoxIcon
                                             className='shiftPanelDasConfTableIcon'
                                             onClick={() => handleOpen(conf._id)}

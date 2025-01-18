@@ -12,6 +12,7 @@ import ShiftDataUser from '../shifDataUser/ShiftDataUser/ShiftDataUser.jsx';
 import { getShiftDataApi } from '../../../helpers/shift/getShiftData.api.js';
 import ShiftInputUser from '../shifDataUser/tools/ShiftInputUser/ShiftInputUser.jsx';
 import ShiftDataAdminUser from '../shifDataUser/ShiftDataAdminUser/ShiftDataAdminUser.jsx';
+import ShiftAlmanacHolidays from './ShiftAlmanacHolidays/ShiftAlamanacHolidays.jsx';
 
 const ShiftAlmanac = ({ config, width = 4 }) => {
 
@@ -76,7 +77,7 @@ const ShiftAlmanac = ({ config, width = 4 }) => {
             navigate('/login');
         };
         if (vew.status) {
-            // setLoading(true);
+            setLoading(true);
             const query = {
                 day: selected, hour: type, userId: config.userId, customer: dataUser,
                 dataConf: {
@@ -99,13 +100,14 @@ const ShiftAlmanac = ({ config, width = 4 }) => {
             console.log(response);
 
 
-            // navigate('/')
+            navigate('/');
             setLoading(false);
         };
     };
 
     return (
         <div className='shiftAlmanac'>
+            {config && config.holidays && <ShiftAlmanacHolidays config={config} />}
             <section className='shiftAlmanacSect' style={{ gap: `${width}rem` }}>
                 {config &&
                     <>

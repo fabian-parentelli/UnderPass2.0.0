@@ -1,5 +1,6 @@
 import { userRepository, shiftconfRepository, shiftCustomerRepository } from "../../repositories/index.repositories.js";
-import { ShiftNotFound } from "../custom-exceptions.utils.js";
+import { sendEmail } from "../../services/email.service.js";
+import { shiftSuccessHtml } from "../html/shiftSccessHtml.utils.js";
 
 const transformDate = (dateObj) => {
     const { day, month, year } = dateObj;
@@ -95,11 +96,13 @@ const updateCustomer = async (shift) => {
     return customer._id;
 };
 
-const emailToCustomer = async (shift, result) => {
-    
-    console.log(shift);
-    console.log('********************************');
-    console.log(result);
+const emailToCustomer = async (shiftData, result) => {
+    const emailTo = {
+        to: shiftData.customer.email,
+        subject: `Agendaste un turno en ${shiftData.dataConf.title}`,
+        html: await shiftSuccessHtml(shiftData, result)
+    };
+    await sendEmail(emailTo);
 };
 
-export { transformDate, setHoursBack, updateCustomer, sortShift, emailToCustomer };
+export { transformDate, setHoursBack, updateCustomer, sortShift, emailToCustomer, months };

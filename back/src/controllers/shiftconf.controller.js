@@ -13,9 +13,9 @@ const newShift = async (req, res) => {
 };
 
 const getPublicShiftconf = async (req, res) => {
-    const { page = 1, limit, country, active, province, category, title, days } = req.query;
+    const { page = 1, limit, country, active, province, category, title, days, userid } = req.query;
     try {
-        const result = await shiftconfService.getPublicShiftconf(page, limit, country, active, province, category, title, days);
+        const result = await shiftconfService.getPublicShiftconf(page, limit, country, active, province, category, title, days, userid);
         if (result) return res.sendSuccess(result);
     } catch (error) {
         if (error instanceof ShiftNotFound) return res.sendClientError(error.message);
@@ -57,4 +57,14 @@ const updActive = async (req, res) => {
     };
 };
 
-export { newShift, getShiftconf, getShiftconfById, getPublicShiftconf, updActive };
+const updHolidays = async (req, res) => {
+    try {
+        const result = await shiftconfService.updHolidays({ ...req.body });
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof ShiftNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
+export { newShift, getShiftconf, getShiftconfById, getPublicShiftconf, updActive, updHolidays };

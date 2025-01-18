@@ -6,6 +6,9 @@ const newShift = async (req, res) => {
         const result = await shiftService.newShift({ ...req.body });
         if (result) return res.sendSuccess(result);
     } catch (error) {
+
+        console.log(error);
+
         if (error instanceof ShiftNotFound) return res.sendClientError(error.message);
         res.sendServerError(error.message);
     };

@@ -50,7 +50,12 @@ const shiftconfSchema = new mongoose.Schema({
     img: {
         url: { type: String },
     },
-    active: { type: Boolean, default: true }
+    active: { type: Boolean, default: true },
+    holidays: { type: Boolean, default: false },
+    holidaysDate: {
+        holdaysOn: { type: Date },
+        holdaysOff: { type: Date }
+    }
 });
 
 shiftconfSchema.plugin(mongoosePaginate);

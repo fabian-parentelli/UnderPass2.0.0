@@ -1,0 +1,25 @@
+.shiftClosedHol {
+    margin: 1rem 0;
+
+    .shiftClosedSetSwitch {
+        display: flex;
+        align-items: center;
+    }
+
+    .shiftClosedHolInp {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-top: 1rem;
+
+        div {
+            display: flex;
+            flex-direction: column;
+            width: 200px;
+        }
+
+        .shiftClosedHolBtn {
+            text-align: center;
+        }
+    }
+}

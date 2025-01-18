@@ -1,5 +1,7 @@
-async function shiftSuccessHtml(shift, result) {
+import { months } from "../servicesUtils/shift.utils.js";
 
+async function shiftSuccessHtml(shiftData, result) {
+    
     const email = `
         <!DOCTYPE html>
         <html lang="en">
@@ -27,22 +29,25 @@ async function shiftSuccessHtml(shift, result) {
         </head>
         <body>
             <h2>Reserva de turno.</h2>
-            <p>Felicidades, has agendado una reserva en <span class="highlight">${shift.dataConf.title}</span>.</p>
-            <p>El número de reserva es <span class="highlight">${result._id}</span>.</p>
-            ${!shift?.room
+            <p>Felicidades, has agendado una reserva en <span class="highlight">${shiftData.dataConf.title}</span>.</p>
+            <p><span class="highlight">${shiftData.customer.name}</span> el número de reserva es <span class="highlight">${result._id.toString()}</span>.</p>
+            ${!shiftData?.room
             ? '<p>En nuestro espacio principal.</p>'
-            : `<p>En nuestro espacio <span class="highlight">${shift.room}</span>.</p>`
+            : `<p>En nuestro espacio <span class="highlight">${shiftData.room}</span>.</p>`
         }
-            ${shift?.section ? `<p>En nuestra sección <span class="highlight">${shift.section}</span>.</p>` : ''}
+            ${shiftData?.section ? `<p>En nuestra sección <span class="highlight">${shiftData.section}</span>.</p>` : ''}
             <div>
-                <p>El día agendado es el <span class="highlight">${shift.day.day}</span> de <span class="highlight">${shift.day.month}</span> del <span class="highlight">${shift.day.year}</span>.</p>
+                <p>El día agendado es: <span class="highlight">${shiftData.day.day}</span>/<span class="highlight">${months.findIndex(mon => mon === shiftData.day.month)+1}</span>/<span class="highlight">${shiftData.day.year}</span>.</p>
                 <p>La hora seleccionada es:</p>
-                ${shift.hour.map(hour => `<p class="highlight">${hour}</p>`).join('')} 
+                ${shiftData.hour.map(hour => `<p class="highlight">${hour}</p>`).join('')} 
             </div>
             <p>Dirección:</p>
-            <p>${shift.dataConf.location.address}</p>
-            <p>${shift.dataConf.location.city} - ${shift.dataConf.location.province}</p>
-            <p>${shift.dataConf.location.country}</p>
+            <p>${shiftData.dataConf.location.address}</p>
+            <p>${shiftData.dataConf.location.city} - ${shiftData.dataConf.location.province}</p>
+            <p>${shiftData.dataConf.location.country === 'UY' ? 'Uruguay' : 'Argentina'}</p>
+            <br/>
+            <br/>
+            <p>Gracias por utilizar el módulo <span class="highlight">UnderShift</span> de UnderPass.</p>
         </body>
         </html>
     `;

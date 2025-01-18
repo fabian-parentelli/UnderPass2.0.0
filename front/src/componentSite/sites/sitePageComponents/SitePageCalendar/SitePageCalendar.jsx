@@ -12,7 +12,7 @@ const SitePageCalendar = ({ site }) => {
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
-            const response = await getPublicShiftconfApi({ userId: site.userId });
+            const response = await getPublicShiftconfApi({ userId: site.userId, active: true });
             if (response.status === 'success') setConfig(response.result.docs[0]);
             else console.error(response);
             setLoading(false);
