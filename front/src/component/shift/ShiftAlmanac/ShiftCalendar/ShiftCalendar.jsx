@@ -46,7 +46,12 @@ const ShiftCalendar = ({ config, setSelected, nonWorkDays, selected, rooms }) =>
                 const date = new Date(year, month, day);
                 const formattedDate = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
                 const dayIndex = date.getDay();
-                const isNonWorkDay = config?.days && !config.days.includes(daysOfWeek[dayIndex]) || nonWorkDays.includes(formattedDate);
+                let isNonWorkDay = config?.days && !config.days.includes(daysOfWeek[dayIndex]) || nonWorkDays.includes(formattedDate);
+                if (config.holidays) {
+                    if (formatDate(date) >= formatDate(new Date(config.holidaysDate.holdaysOn)) && formatDate(date) <= formatDate(new Date(config.holidaysDate.holdaysOff))) {
+                        isNonWorkDay = true;
+                    };
+                };
                 const isToday = day === today.getDate() && month === new Date().getMonth() && year === today.getFullYear();
                 const className = `${isNonWorkDay ? ' non-work-day' : 'current-month'}${isToday ? ' today' : ''}${day === selected.day ? ' dayClick' : ''}`;
                 return { day, className };
@@ -87,3 +92,5 @@ const daysSet = {
     junio: 'june', julio: 'july', agosto: 'august', septiembre: 'september', octubre: 'october',
     noviembre: 'november', diciembre: 'december'
 };
+
+const formatDate = (date) => date.toISOString().split('T')[0];

@@ -23,7 +23,7 @@ const ShiftCard = ({ shift }) => {
             <Favorite id={shift._id} />
             {status &&
                 <div className='shiftCardHolidays'>
-                    <p>Cerrado hasta el {new Date(shift.holidaysDate.holdaysOff).toLocaleDateString('es-ES')}</p>
+                    <p>Cerrado hasta el {new Date(shift.holidaysDate.holdaysOff).toISOString().slice(0, 10).split('-').reverse().join('/')}</p>
                 </div>
             }
             <Link to={`/shift/${shift._id}`} className='shiftCardLink'>

@@ -61,7 +61,7 @@ const ShiftAlmanac = ({ config, width = 4 }) => {
         if (config) {
             const arrayDay = setArrayDays(config, rooms, sections);
             const date = new Date(selected.year, monthMapping[selected.month.toLowerCase()], selected.day);
-            const dayOfWeek = date.toLocaleDateString('en-US', { weekday: 'long' }).toLowerCase();
+            const dayOfWeek = date.toLocaleDateString('en-US', { weekday: 'long' }).toLowerCase();            
             const isDay = arrayDay.includes(dayOfWeek);
             if (!isDay) setVew({ status: false, message: 'El día seleccionado no es correcto' });
             else {

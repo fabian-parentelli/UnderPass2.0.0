@@ -1,9 +1,9 @@
 import './shiftPanelDas.scss';
 import { useEffect, useState } from 'react';
+import Load from '../../../../component/utils/Load';
 import DateRangeIcon from '@mui/icons-material/DateRange';
 import Title from '../../../../component/dashboard/Title/Title';
 import ShiftPanelDasConf from './ShiftPanelDasConf/ShiftPanelDasConf';
-import Load from '../../../../component/utils/Load';
 
 const ShiftPanelDas = () => {
 

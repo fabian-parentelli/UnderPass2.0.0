@@ -13,7 +13,7 @@ const updShiftConfHolApi = async (holidays) => {
         }
     });
     const content = await response.json();
-    if (content.error) return error;
+    if (content.error) return content;
     if (content.data) return content.data;
 };
 

@@ -11,10 +11,13 @@ const SubNav = () => {
 
     return (
         <div className='subNav'>
-            <div className='subNavTitle'>
-                <img src={user.data.avatar[0]} alt="img" />
-                <p>Hola {user.data.name} !!!</p>
-            </div>
+            
+            {user.logged &&
+                <div className='subNavTitle'>
+                    <img src={user.data.avatar[0]} alt="img" />
+                    <p>Hola {user.data.name} !!!</p>
+                </div>
+            }
 
             <div className='subNavIcons'>
                 <HaveEvent />

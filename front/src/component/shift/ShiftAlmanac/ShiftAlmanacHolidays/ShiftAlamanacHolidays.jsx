@@ -21,13 +21,15 @@ const ShiftAlmanacHolidays = ({ config }) => {
 
             {status === 'before' &&
                 <>
-                    <p>Hola,{user.logged ? ` ${user.data.name}` : ''} queremos contarte que estaremos de vacaciones desde el {new Date(config.holidaysDate.holdaysOn).toLocaleDateString()} hasta el {new Date(config.holidaysDate.holdaysOff).toLocaleDateString()}.</p>
+                    <p>Hola,{user.logged ? ` ${user.data.name}` : ''} queremos contarte que estaremos de vacaciones desde el {new Date(config.holidaysDate.holdaysOn).toISOString().slice(0, 10).split('-').reverse().join('/')} hasta el {new Date(config.holidaysDate.holdaysOff).toISOString().slice(0, 10).split('-').reverse().join('/')}.</p>
                 </>
             }
 
             {status === 'during' &&
                 <>
-                    <p>Hola,{user.logged ? ` ${user.data.name}` : ''} queremos contarte que estamos cerrado por vacaciones puedes ir agendando turnos a partir del {new Date(config.holidaysDate.holdaysOff).toLocaleDateString()}.</p>
+                   <p>Hola,{user.logged ? ` ${user.data.name}` : ''} queremos contarte que estamos cerrado por vacaciones puedes ir agendando turnos a partir del {(() => { const nextDay = new Date(config.holidaysDate.holdaysOff); nextDay.setDate(nextDay.getDate() + 1); return nextDay.toISOString().slice(0, 10).split('-').reverse().join('/'); })()}.</p>
+
+
                 </>
             }
 

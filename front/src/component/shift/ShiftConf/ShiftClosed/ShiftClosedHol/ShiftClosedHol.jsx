@@ -17,8 +17,8 @@ const ShiftClosedHol = ({ values, setLoading }) => {
             setHolidays({
                 configId: values._id,
                 isHolidays: values.holidays || false,
-                holdaysOn: values.holidaysDate.holdaysOn ? new Date(values.holidaysDate.holdaysOn).toISOString().split('T')[0] : '',
-                holdaysOff: values.holidaysDate.holdaysOff ? new Date(values.holidaysDate.holdaysOff).toISOString().split('T')[0] : '',
+                holdaysOn: values?.holidaysDate?.holdaysOn ? new Date(values.holidaysDate.holdaysOn).toISOString().split('T')[0] : '',
+                holdaysOff: values?.holidaysDate?.holdaysOff ? new Date(values.holidaysDate.holdaysOff).toISOString().split('T')[0] : '',
             });
         };
     }, [values]);

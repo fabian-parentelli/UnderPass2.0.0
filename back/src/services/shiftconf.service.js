@@ -75,6 +75,10 @@ const updActive = async (id) => {
 };
 
 const updHolidays = async (holidays) => {
+
+    console.log(holidays);
+    
+
     const shift = await shiftconfRepository.getById(holidays.configId);
     if (!shift) throw new ShiftNotFound('No se encuentra la configuración');
     shift.holidays = holidays.isHolidays;

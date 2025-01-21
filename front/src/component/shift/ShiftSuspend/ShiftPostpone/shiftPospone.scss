@@ -1,0 +1,29 @@
+.shiftPospone {
+    margin-top: .6rem;
+    width: 600px;
+
+    .shiftPosponeP {
+        margin-bottom: 3px;
+    }
+
+    textarea {
+        padding: 6px 3px;
+        width: 100%;
+    }
+
+    button {
+        margin-top: 12px;
+    }
+
+    .shiftPosponePPP {
+        font-size: 12px;
+        margin-top: 3px;
+    }
+}
+
+@media (max-width: 767px) {
+    
+    .shiftPospone {
+        width: 280px;
+    }
+}

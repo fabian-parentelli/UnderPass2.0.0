@@ -12,6 +12,9 @@ const ShiftPanelDasConfTable = ({ configs, handleActive }) => {
     const [vew, setVew] = useState({ id: null, open: false });
     const handleOpen = (id) => setVew({ id: id, open: true });
 
+    console.log(configs);
+
+
     return (
         <div className='shiftPanelDasConfTable'>
             <table>
@@ -33,7 +36,16 @@ const ShiftPanelDasConfTable = ({ configs, handleActive }) => {
                         <Fragment key={ind}>
                             <tr>
                                 <th style={{ paddingTop: '3px' }}>{<BigImg img={conf.img.url} border={false} />}</th>
-                                <th>{conf.title}</th>
+                                <th>
+                                    <p>{conf.title}</p>
+                                    {conf.holidays && conf?.holidaysDate &&
+                                        <p className='shiftPanelDasConfTableHolidays'>
+                                            Vacaciones&nbsp;
+                                            {new Date(conf.holidaysDate?.holdaysOn).toLocaleDateString()} -
+                                            {new Date(conf.holidaysDate?.holdaysOff).toLocaleDateString()}
+                                        </p>
+                                    }
+                                </th>
                                 <th>{typeShiftCategory(conf.category)}</th>
                                 <th>
                                     {conf.days.length === 7
