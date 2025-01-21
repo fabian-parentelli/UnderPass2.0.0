@@ -2,11 +2,13 @@ import './shiftSuspend.scss';
 import { useEffect, useState } from 'react';
 import { useLoginContext } from '../../../context/LoginContext';
 import ShiftPospone from './ShiftPostpone/ShiftPostpone';
+import SnackbarAlert from '../../utils/SnackbarAlert';
 
-const ShiftSuspend = ({ shift }) => {
+const ShiftSuspend = ({ shift, setModal }) => {
 
-    const [admin, setAdmin] = useState(false);
     const { user } = useLoginContext();
+    const [admin, setAdmin] = useState(false);
+    const [snack, setSnack] = useState({ open: false, message: { status: '', mess: '' } });
 
     useEffect(() => {
         if (user.data._id === shift.userId) setAdmin(true);
@@ -17,7 +19,8 @@ const ShiftSuspend = ({ shift }) => {
     return (
         <div className='shiftSuspend'>
             <h3>Posponer || Suspender, reserva.</h3>
-            {shift && <ShiftPospone admin={admin} shift={shift} />}
+            {shift && <ShiftPospone admin={admin} shift={shift} setSnack={setSnack} setModal={setModal} />}
+            <SnackbarAlert message={snack.message} open={snack.open} />
         </div>
     );
 };

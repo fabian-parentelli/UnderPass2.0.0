@@ -17,6 +17,7 @@ function getTypeAlerts(types) {
         'newReport_product': () => { return 'Denunciaron un comentario - Producto' },
         'publicityOff': () => { return 'Fin de la publicidad' },
         'mapNoMatch': () => { return 'El mapa no coincide con la dirección' },
+        'shiftPostpone': () => { return 'Solicitud de posponer una reserva' },
         'default': () => { return 'otro' },
     };
     

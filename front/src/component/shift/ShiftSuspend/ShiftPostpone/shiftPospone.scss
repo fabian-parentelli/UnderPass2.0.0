@@ -13,6 +13,11 @@
 
     button {
         margin-top: 12px;
+
+        .shiftPosponeBtn {
+            display: flex;
+            justify-content: center;
+        }
     }
 
     .shiftPosponePPP {

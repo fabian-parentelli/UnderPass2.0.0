@@ -65,7 +65,7 @@ const ShiftForm = ({ shifts, customer = false }) => {
                             </tr>
                             {modal.id === shift._id &&
                                 <ModalCustom modalIsOpen={modal.open} closeModal={() => setModal({ open: false, id: null })}>
-                                    <ShiftSuspend shift={shift} />
+                                    <ShiftSuspend shift={shift} setModal={setModal} />
                                 </ModalCustom>
                             }
                         </Fragment>

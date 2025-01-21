@@ -1,5 +1,7 @@
-import { userRepository, shiftconfRepository, shiftCustomerRepository } from "../../repositories/index.repositories.js";
+import { userRepository, shiftconfRepository, shiftCustomerRepository, alertsRepository } from "../../repositories/index.repositories.js";
 import { sendEmail } from "../../services/email.service.js";
+import { shiftPostponeToAdminHTML } from "../html/shiftPostponeToAdmin.utils.js";
+import { shiftPostponeToUserHTML } from "../html/shiftPostponeToUser.utils.js";
 import { shiftSuccessHtml } from "../html/shiftSccessHtml.utils.js";
 
 const transformDate = (dateObj) => {
@@ -105,4 +107,35 @@ const emailToCustomer = async (shiftData, result) => {
     await sendEmail(emailTo);
 };
 
-export { transformDate, setHoursBack, updateCustomer, sortShift, emailToCustomer, months };
+const emailPostponer = async (postpone, result) => {
+    if (postpone.to === 'customer') {
+        const shiftConfig = await shiftconfRepository.getByUserId(postpone.shift.userId);
+        const emailTo = {
+            to: postpone.shift.customerData.email,
+            subject: `Propuesta de posponer de parte de ${shiftConfig.title}`,
+            html: await shiftPostponeToUserHTML(shiftConfig.title, postpone, result)
+        };
+        await sendEmail(emailTo);
+        await alertsRepository.newAlert({
+            eventId: result._id,
+            userId: postpone.shift.customerData.customerUser._id,
+            type: 'shiftPostpone'
+        });
+    } else {
+        const user = await userRepository.getUserById(postpone.shift.userId);
+        const emailTo = {
+            to: user.email,
+            subject: `Propuesta de posponer de parte de ${postpone.shift.customerData.name}`,
+            html: await shiftPostponeToAdminHTML(postpone, result)
+        };
+        await sendEmail(emailTo);
+        await alertsRepository.newAlert({
+            eventId: result._id,
+            userId: postpone.shift.userId,
+            type: 'shiftPostpone'
+        });
+    };
+    return { status: 'success' };
+};
+
+export { transformDate, setHoursBack, updateCustomer, sortShift, emailToCustomer, months, emailPostponer };

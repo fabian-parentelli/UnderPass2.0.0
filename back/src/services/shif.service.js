@@ -1,14 +1,25 @@
-import { shiftRepository, shiftconfRepository, shiftCustomerRepository } from "../repositories/index.repositories.js";
+import {
+    shiftRepository, shiftconfRepository, shiftCustomerRepository, shiftPostponeRepository
+} from "../repositories/index.repositories.js";
 import { ShiftNotFound } from '../utils/custom-exceptions.utils.js';
-import { emailToCustomer, sortShift, updateCustomer } from "../utils/servicesUtils/shift.utils.js";
+import * as shiftUtils from "../utils/servicesUtils/shift.utils.js";
+
+const newPostpone = async (postpone) => {
+    const { shift, to, message } = postpone;
+    const result = await shiftPostponeRepository.newPostpone({ shiftId: shift._id, to, message });
+    if (!result) throw new ShiftNotFound('No se puede enviar la propuesta de posponer.');
+    const comunication = await shiftUtils.emailPostponer(postpone, result);
+    if (!comunication) throw new ShiftNotFound(`No pudimos contactar al ${to === 'admin' ? 'Administrador' : 'Cliente'}`);
+    return { status: 'success', result };
+};
 
 const newShift = async (shift) => {
     const shiftData = { ...shift };
-    const customer = await updateCustomer(shift);
+    const customer = await shiftUtils.updateCustomer(shift);
     shift.customer = customer;
     const result = await shiftRepository.newShift(shift);
     if (!result) throw new ShiftNotFound('No se puede reservar el turno');
-    await emailToCustomer(shiftData, result);
+    await shiftUtils.emailToCustomer(shiftData, result);
     return { status: 'success', result };
 };
 
@@ -19,6 +30,12 @@ const getDataShift = async (uid, month, year, day, room, sections) => {
     if (sections) query.sections = sections;
     const result = await shiftRepository.getDataShift(query, day);
     if (!result) throw new ShiftNotFound('No se puede reservar el turno');
+    return { status: 'success', result };
+};
+
+const getPostponeById = async (id) => {
+    const result = await shiftPostponeRepository.getById(id);
+    if (!result) throw new ShiftNotFound('No se puede ver la alerta');
     return { status: 'success', result };
 };
 
@@ -41,8 +58,8 @@ const getShifts = async (uid, month, year, customer, usercustomer, user) => {
             dat.place = { name: placeDB.title, shiftId: placeDB._id };
         };
     };
-    const result = usercustomer ? sortShift(data) : customer ? sortShift(data) : data;
+    const result = usercustomer ? shiftUtils.sortShift(data) : customer ? shiftUtils.sortShift(data) : data;
     return { status: 'success', result };
 };
 
-export { newShift, getDataShift, getShifts };
+export { newPostpone, newShift, getDataShift, getPostponeById, getShifts };

@@ -1,0 +1,56 @@
+@import '../../../../../style/colors.scss';
+
+.shiftPostponerUser {
+    margin-top: 1rem;
+
+    .shiftPostponerUserTop {
+        display: flex;
+        justify-content: space-evenly;
+        width: 600px;
+        margin: auto;
+
+        .shiftPostponerUserImg {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+
+            h3 {
+                font-size: 2rem;
+            }
+
+            img {
+                width: 150px;
+                transition: .3s ease-in-out;
+
+                &:hover {
+                    transform: translateX(-3px);
+                }
+            }
+        }
+
+        .shiftPostponerUserRight {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+    }
+
+    .shiftPostponerUserMessage {
+        padding-top: 2rem;
+        width: 50%;
+        margin: 0 auto;
+    }
+
+    .shiftPostponerUserBtn {
+        display: flex;
+        justify-content: center;
+        margin-top: 2rem;
+        gap: 2rem;
+    }
+
+    span {
+        color: $underShifts;
+    }
+}

@@ -14,6 +14,7 @@ import ReqTranferAlert from './ReqTransferAlert/ReqTransferAlert.jsx';
 import WeHaveSeeYourReq from './WeHaveSeeYourReq/WeHaveSeeYourReq.jsx';
 import MapNoMatch from './MapNoMatch/MapNoMatch.jsx';
 import SoldEvents from './SoldEvents/SoldEvents.jsx';
+import ShiftPostpone from './ShiftPostpone/ShiftPostpone.jsx';
 
 const VewAlertsBody = () => {
 
@@ -39,6 +40,7 @@ const VewAlertsBody = () => {
             {type === 'publicityOff' && <PublicityOff id={id} setLoading={setLoading} />}
             {type === 'mapNoMatch' && <MapNoMatch id={id} setLoading={setLoading} />}
             {type === 'sold_events' && <SoldEvents id={id} setLoading={setLoading} /> }
+            {type === 'shiftPostpone' && <ShiftPostpone id={id} setLoading={setLoading} /> }
 
             <Load loading={loading} />
         </div>
