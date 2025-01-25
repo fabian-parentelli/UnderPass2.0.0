@@ -20,6 +20,7 @@ function getTypeAlerts(types) {
         'shiftPostpone': () => { return 'Solicitud de posponer una reserva' },
         'resShiftPostponeCA_notIsPay': () => { return 'Respuesta de posponer la solicitud'},
         'acceptUpdateDateShift': () => { return 'Han aceptado modificar la reserva.'},
+        'shiftSupend_notIsPay': () => { return 'Han suspendia tu reserva.'},
         'default': () => { return 'otro' },
     };
     

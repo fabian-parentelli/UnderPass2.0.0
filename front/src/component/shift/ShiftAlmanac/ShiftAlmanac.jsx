@@ -92,7 +92,7 @@ const ShiftAlmanac = ({ config, width = 4, typeApi, isShiftId }) => {
                 if (response.status === 'success') setSnack({ message: { status: 'success', mess: 'Has modificado tu resreva con exito' }, open: true });
                 else setSnack({ message: { status: 'error', mess: response.error }, open: true });
             } else if (typeApi === 'admin') {
-                const response = await updShiftApi(query);
+                const response = await newShiftApi(query);
                 if (response.status === 'success') setSnack({ message: { status: 'success', mess: 'Has creado una resreva con exito' }, open: true });
                 else setSnack({ message: { status: 'error', mess: response.error }, open: true });
             } else {

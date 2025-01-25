@@ -55,10 +55,10 @@ const getPostponeById = async (req, res) => {
 };
 
 const getShifts = async (req, res) => {
-    const { uid, month, year, customer, usercustomer, id } = req.query;
+    const { uid, month, year, customer, usercustomer, id, active } = req.query;
     const { user } = req.user;
     try {
-        const result = await shiftService.getShifts(uid, month, year, customer, usercustomer, user, id);
+        const result = await shiftService.getShifts(uid, month, year, customer, usercustomer, user, id, active);
         if (result) return res.sendSuccess(result);
     } catch (error) {
         if (error instanceof ShiftNotFound) return res.sendClientError(error.message);
@@ -71,9 +71,6 @@ const suspendPanel = async (req, res) => {
         const result = await shiftService.suspendPanel({ ...req.body }, { ...req.user });
         if (result) return res.sendSuccess(result);
     } catch (error) {
-
-        console.log(error); // ------ Borrar -------- //// ------ Borrar -----------
-
         if (error instanceof ShiftNotFound) return res.sendClientError(error.message);
         res.sendServerError(error.message);
     };

@@ -1,8 +1,3 @@
-import { userRepository, shiftconfRepository, shiftCustomerRepository, alertsRepository } from "../../repositories/index.repositories.js";
-import { sendEmail } from "../../services/email.service.js";
-import { shiftPostponeToAdminHTML } from "../html/shiftPostponeToAdmin.utils.js";
-import { shiftPostponeToUserHTML } from "../html/shiftPostponeToUser.utils.js";
-import { shiftSuccessHtml } from "../html/shiftSccessHtml.utils.js";
 
 const transformDate = (dateObj) => {
     const { day, month, year } = dateObj;
@@ -72,85 +67,16 @@ const sortShift = (shifts) => {
     return sortedArray || shifts;
 };
 
-const updateCustomer = async (shift) => {
-    const user = await userRepository.getByEmail(shift.customer.email);
-    if (user) {
-        if (!user.phone) {
-            user.phone = shift.customer.phone;
-            await userRepository.update(user);
-        };
-        shift.customer.customerUser = user._id;
-    };
-    let customer = await shiftCustomerRepository.getShiftCustomerByEmail(shift.customer.email) || null;
-    if (customer) {
-        const userIdIncludes = customer.userId.includes(shift.userId);
-        if (!userIdIncludes) customer.userId.push(shift.userId);
-        await shiftCustomerRepository.update(customer);
-    } else {
-        customer = await shiftCustomerRepository.newCustomer({
-            userId: [shift.userId],
-            name: shift.customer.name,
-            phone: shift.customer.phone,
-            email: shift.customer.email,
-            customerUser: shift.customer.customerUser || undefined
-        });
-    };
-    return customer._id;
-};
-
-const emailToCustomer = async (shiftData, result) => {
-    const emailTo = {
-        to: shiftData.customer.email,
-        subject: `Agendaste un turno en ${shiftData.dataConf.title}`,
-        html: await shiftSuccessHtml(shiftData, result)
-    };
-    await sendEmail(emailTo);
-};
-
-const emailPostponer = async (postpone, result) => {
-    if (postpone.to === 'customer') {
-        const shiftConfig = await shiftconfRepository.getByUserId(postpone.shift.userId);
-        const emailTo = {
-            to: postpone.shift.customerData.email,
-            subject: `Propuesta de posponer de parte de ${shiftConfig.title}`,
-            html: await shiftPostponeToUserHTML(shiftConfig.title, postpone, result)
-        };
-        await sendEmail(emailTo);
-        await alertsRepository.newAlert({
-            eventId: result._id,
-            userId: postpone.shift.customerData.customerUser._id,
-            type: 'shiftPostpone'
-        });
-    } else {
-        const user = await userRepository.getUserById(postpone.shift.userId);
-        const emailTo = {
-            to: user.email,
-            subject: `Propuesta de posponer de parte de ${postpone.shift.customerData.name}`,
-            html: await shiftPostponeToAdminHTML(postpone, result)
-        };
-        await sendEmail(emailTo);
-        await alertsRepository.newAlert({
-            eventId: result._id,
-            userId: postpone.shift.userId,
-            type: 'shiftPostpone'
-        });
-    };
-    return { status: 'success' };
-};
-
 const returnPay = async (shift, postpone) => {
 
     console.log('entro al retorno del dinero');
-    
+
     // Esto esta para trabajar
     // Esto esta para trabajar
     // Esto esta para trabajar
     // Esto esta para trabajar
     // Esto esta para trabajar
-    
+
 };
 
-export { 
-    transformDate, setHoursBack, updateCustomer, sortShift, emailToCustomer, months, emailPostponer,
-    returnPay
-};
+export { transformDate, setHoursBack, sortShift, months, returnPay };

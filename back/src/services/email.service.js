@@ -1,6 +1,7 @@
 import { transporter } from '../utils/nodeMailer.utils.js';
 
 export const sendEmail = async (email) => {
+
     try {
         await transporter.sendMail({
             from: 'Cervecería Potter',
@@ -9,6 +10,7 @@ export const sendEmail = async (email) => {
             html: email.html
         });
         return { status: 'success' };
+
     } catch (error) {
         console.error('Error enviando el email:', error);
         return { status: 'error' };

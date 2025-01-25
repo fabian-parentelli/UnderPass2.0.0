@@ -9,8 +9,8 @@ const shiftPostponeSchema = new mongoose.Schema({
     active: { type: Boolean, default: true },
     date: { type: Date, default: Date.now },
     adminId: { type: String },
-    response: { type: Boolean }, // Si ha echo o no la respuesta
-    accept: { type: Boolean },      // Acepta o no (true: pospone, false: Suspende)
+    response: { type: Boolean },    
+    accept: { type: Boolean },      
     resMessage: { type: String }
 });
 

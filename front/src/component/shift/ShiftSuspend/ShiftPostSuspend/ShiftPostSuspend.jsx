@@ -1,22 +1,33 @@
 import './shiftPostSuspend.scss';
+import { useState } from 'react';
+import { Spinner } from 'faradaycomp';
 import UnderMoney from '../../../pay/UnderMoney/UnderMoney';
 import { useLoginContext } from '../../../../context/LoginContext';
 import { shiftSuspendByPanelApi } from '../../../../helpers/shift/shiftSuspendByAdmin.api.js';
-import { useState } from 'react';
 
 const ShiftPostSuspend = ({ admin, shift, setSnack, setModal }) => {
 
     const { user } = useLoginContext();
     const [isUnderPay, setIsUnderPay] = useState(null);
     const [password, setPassword] = useState(null);
+    const [loadin, setLoading] = useState(false);
 
     const handleSuspend = async () => {
+        setLoading(true);
         const query = { id: shift._id, admin };
-        if (password) query.password = password;        
+        if (password) query.password = password;
         const response = await shiftSuspendByPanelApi(query);
 
+        console.log(response);
+        
 
-        // --------------------------------------------------
+        // if (response.status) setSnack({ open: true, message: { status: 'success', mess: response.result } });
+        // else setSnack({ open: true, message: { status: 'error', mess: response.error } });
+        // setTimeout(() => {
+        //     setSnack({ open: false, message: { status: '', mess: '' } });
+        //     setModal({ open: false, id: null });
+        //     setLoading(false);
+        // }, 2000);
     };
 
     return (
@@ -25,12 +36,15 @@ const ShiftPostSuspend = ({ admin, shift, setSnack, setModal }) => {
             <p className='colSH'>Suspender:</p>
             {!shift.isPay
                 ? <>
-                    <p className='pgray'>La transacción no se realizó a través de esta plataforma. Si decides suspender la reserva, asegúrate de contactar al cliente directamente para gestionar la devolución del importe correspondiente.</p>
-                    <div>
-                        <p style={{ fontSize: '12px' }}>{shift.customerData.name}</p>
-                        <p style={{ fontSize: '12px' }}>{shift.customerData.email}</p>
-                        <p style={{ fontSize: '12px' }}>cel:{shift.customerData?.phone}</p>
-                    </div>
+                    <p className='pgray'>La transacción no se realizó a través de esta plataforma. Si decides suspender la reserva, asegúrate de contactar al {admin ? 'cliente' : 'administrador'} directamente para gestionar la devolución del importe correspondiente.</p>
+                    {admin ?
+                        <div>
+                            <p style={{ fontSize: '12px' }}>{shift.customerData.name}</p>
+                            <p style={{ fontSize: '12px' }}>{shift.customerData.email}</p>
+                            <p style={{ fontSize: '12px' }}>cel:{shift.customerData?.phone}</p>
+                        </div>
+                        : <p style={{ fontSize: '12px' }}>Dirígite al sitio de {shift.place.name} luego de suspender</p>
+                    }
                 </>
                 : <>
                     <p className='pgray'>La transacción se realizó a través de esta plataforma. Si decides suspender la reserva, asegúrate de devolver el importe correspondiente a UnderPass, para que podamos revertir el dinero al cliente.</p>
@@ -48,9 +62,9 @@ const ShiftPostSuspend = ({ admin, shift, setSnack, setModal }) => {
                     )}
                 </>
             }
-            
+
             <button className='btn btnSH' onClick={handleSuspend}>
-                Suspender
+                {loadin ? <Spinner size={25} color='gray' /> : 'Suspender'}
             </button>
         </div>
     );

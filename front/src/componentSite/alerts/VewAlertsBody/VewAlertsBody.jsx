@@ -17,6 +17,7 @@ import ReqTranferAlert from './ReqTransferAlert/ReqTransferAlert.jsx';
 import WeHaveSeeYourReq from './WeHaveSeeYourReq/WeHaveSeeYourReq.jsx';
 import ShiftPostRespNoPay from './ShiftPostRespNoPay/ShiftPostRespNoPay.jsx';
 import AccepUpdateDateShift from './AcceptUpdateDateShift/AceptUpdateDateShift.jsx';
+import ShiftSuspendByAdmin from './ShiftSuspendByAdmin/ShiftSuspendByAdmin.jsx';
 
 const VewAlertsBody = () => {
 
@@ -45,6 +46,7 @@ const VewAlertsBody = () => {
             {type === 'shiftPostpone' && <ShiftPostpone id={id} setLoading={setLoading} /> }
             {type === 'resShiftPostponeCA_notIsPay' && <ShiftPostRespNoPay id={id} setLoading={setLoading} /> }
             {type === 'acceptUpdateDateShift' && <AccepUpdateDateShift id={id} setLoading={setLoading} /> }
+            {type === 'shiftSupend_notIsPay' && <ShiftSuspendByAdmin id={id} setLoading={setLoading} />}
 
             <Load loading={loading} />
         </div>

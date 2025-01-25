@@ -5,12 +5,14 @@ import {
 import { ShiftNotFound } from '../utils/custom-exceptions.utils.js';
 import * as shiftUtils from "../utils/servicesUtils/shift.utils.js"; // Proximamanet eliminarlo para organizar, mejor
 import * as indexShift from '../utils/servicesUtils/shifts/index.shift.utils.js';
+import { shiftSuccessHtml } from "../utils/html/shiftSccessHtml.utils.js";
+import { sendEmail } from "./email.service.js";
 
 const newPostpone = async (postpone) => {
     const { shift, to, message } = postpone;
     const result = await shiftPostponeRepository.newPostpone({ shiftId: shift._id, to, message, adminId: shift.userId });
     if (!result) throw new ShiftNotFound('No se puede enviar la propuesta de posponer.');
-    const comunication = await shiftUtils.emailPostponer(postpone, result);
+    const comunication = await indexShift.emailPostponer(postpone, result);
     if (!comunication) throw new ShiftNotFound(`No pudimos contactar al ${to === 'admin' ? 'Administrador' : 'Cliente'}`);
     return { status: 'success', result };
 };
@@ -18,11 +20,17 @@ const newPostpone = async (postpone) => {
 const newShift = async (shift, { user }) => {
     if (user.role === 'user' && shift.userId !== user._id) shift.isPay = true;
     const shiftData = { ...shift };
-    const customer = await shiftUtils.updateCustomer(shift);
+    const customer = await indexShift.updateCustomer(shift);
     shift.customer = customer;
     const result = await shiftRepository.newShift(shift);
-    if (!result) throw new ShiftNotFound('No se puede reservar el turno');
-    await shiftUtils.emailToCustomer(shiftData, result);
+    if (!result) throw new ShiftNotFound('Error para generar un nuevo turno');
+    const emailTo = {
+        to: shiftData.customer.email,
+        subject: `Agendaste un turno en ${shiftData.dataConf.title}`,
+        html: await shiftSuccessHtml(shiftData, result)
+    };
+    const emailGo = await sendEmail(emailTo);
+    if (!emailGo) throw new ShiftNotFound('Error al enviar eamil al cliente');
     return { status: 'success', result };
 };
 
@@ -48,8 +56,9 @@ const getPostponeById = async (id, { user }) => {
     return { status: 'success', result };
 };
 
-const getShifts = async (uid, month, year, customer, usercustomer, user, id) => {
-    const query = { active: true };
+const getShifts = async (uid, month, year, customer, usercustomer, user, id, active) => {
+    const query = {};
+    active !== undefined ? query.active = active : query.active = true;
     if (id) query._id = id;
     if (customer) query.customer = customer;
     if (usercustomer && user) {
@@ -65,7 +74,7 @@ const getShifts = async (uid, month, year, customer, usercustomer, user, id) => 
     if (usercustomer) {
         for (const dat of data) {
             const placeDB = await shiftconfRepository.getByUserId(dat.userId);
-            dat.place = { name: placeDB.title, shiftId: placeDB._id };
+            dat.place = { name: placeDB.title, shiftId: placeDB._id, img: placeDB.img.url };
         };
     };
     const result = usercustomer ? shiftUtils.sortShift(data) : customer ? shiftUtils.sortShift(data) : data;
@@ -76,12 +85,10 @@ const suspendPanel = async (data, { user }) => {
     // { id: '678b885812796a0966381d4b', admin: true, password: 'casa' }
     const shift = await shiftRepository.getById(data.id);
     const result = await (data.admin
-        ? indexShift.suspenBayPanelU(shift, user)
-        : 'usuario'
+        ? indexShift.suspendByPanel(shift, user)
+        : indexShift.suspendByPanelUs(shift, user)
     );
-
-    // console.log(result);
-
+    return result;
 };
 
 const suspend = async (postponeId) => {
