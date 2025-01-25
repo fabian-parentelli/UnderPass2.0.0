@@ -44,7 +44,7 @@ const isNotTime = async (shift, day) => {
         if (room && room.ability) result = filterDay(shift, day, room.abilityNumber, true);
         else result = filterDay(shift, day);
         if (fullDays.length > 0) result.push({ notDay: fullDays });
-    };
+    };    
     return result;
 };
 

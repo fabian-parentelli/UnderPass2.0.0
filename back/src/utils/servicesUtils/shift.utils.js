@@ -138,4 +138,19 @@ const emailPostponer = async (postpone, result) => {
     return { status: 'success' };
 };
 
-export { transformDate, setHoursBack, updateCustomer, sortShift, emailToCustomer, months, emailPostponer };
+const returnPay = async (shift, postpone) => {
+
+    console.log('entro al retorno del dinero');
+    
+    // Esto esta para trabajar
+    // Esto esta para trabajar
+    // Esto esta para trabajar
+    // Esto esta para trabajar
+    // Esto esta para trabajar
+    
+};
+
+export { 
+    transformDate, setHoursBack, updateCustomer, sortShift, emailToCustomer, months, emailPostponer,
+    returnPay 
+};

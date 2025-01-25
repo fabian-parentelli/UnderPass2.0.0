@@ -8,6 +8,10 @@ const shiftPostponeSchema = new mongoose.Schema({
     message: { type: String },
     active: { type: Boolean, default: true },
     date: { type: Date, default: Date.now },
+    adminId: { type: String },
+    response: { type: Boolean }, // Si ha echo o no la respuesta
+    accept: { type: Boolean },      // Acepta o no (true: pospone, false: Suspende)
+    resMessage: { type: String }
 });
 
 const autoPopulateShift = function (next) {

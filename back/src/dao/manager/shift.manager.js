@@ -6,8 +6,16 @@ export default class Shift {
         return await shiftModel.create(shift);
     };
 
-    getDataShift = async (query) => {        
+    getDataShift = async (query) => {
         return await shiftModel.find(query).lean();
+    };
+
+    update = async (shift) => {
+        return await shiftModel.findByIdAndUpdate(shift._id, shift, { new: true, lean: true });
+    };
+
+    getById = async (id) => {
+        return await shiftModel.findById(id).lean();
     };
 
 };

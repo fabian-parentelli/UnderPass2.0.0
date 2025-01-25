@@ -7,6 +7,7 @@ import ShiftCalendarDay from '../calendar/ShiftCalendarDay/ShiftCalendarDay.jsx'
 import ShiftCalendarWeek from '../calendar/ShiftCalendarWeek/ShiftCalendarWeek.jsx';
 import ShiftCalendarUser from '../calendar/ShiftCalendarUser/ShiftCalendarUser.jsx';
 import ShiftCalendarMonth from '../calendar/ShiftCalendarMonth/ShiftCalendarMonth.jsx';
+import ShiftPostponePanel from '../calendar/ShiftPostponePanel/ShiftPostponePanel.jsx';
 
 const ShiftBooks = ({ userId }) => {
 
@@ -40,12 +41,14 @@ const ShiftBooks = ({ userId }) => {
                 <button className='btn btnGray' style={{ backgroundColor: vew === 'weeks' ? 'gray' : '' }} onClick={() => handleVew('weeks')}>Semana</button>
                 <button className='btn btnGray' style={{ backgroundColor: vew === 'day' ? 'gray' : '' }} onClick={() => handleVew('day')}>Día</button>
                 <button className='btn btnGray' style={{ backgroundColor: vew === 'users' ? 'gray' : '' }} onClick={() => handleVew('users')}>Usuario</button>
+                <button className='btn btnGray' style={{ backgroundColor: vew === 'postpone' ? 'gray' : '' }} onClick={() => handleVew('postpone')}>Pospuesto</button>
             </section>
 
             {vew === 'month' && <ShiftCalendarMonth events={events} month={month} year={year} setMonth={setMonth} />}
             {vew === 'weeks' && <ShiftCalendarWeek events={events} month={month} year={year} setMonth={setMonth} />}
             {vew === 'day' && <ShiftCalendarDay events={events} month={month} year={year} setMonth={setMonth} /> }
             {vew === 'users' && <ShiftCalendarUser userId={userId} setLoading={setLoading} /> }
+            {vew === 'postpone' && <ShiftPostponePanel userId={userId} setLoading={setLoading} /> }
 
             <Load loading={loading} />
         </div>

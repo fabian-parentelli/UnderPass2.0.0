@@ -16,7 +16,7 @@ const shiftSchema = new mongoose.Schema({
     date: { type: Date, default: Date.now },
     sections: { type: String },
     customer: { type: String },
-    isCustomer: { type: Boolean, default: false },
+    isPay: { type: Boolean, default: false },
 });
 
 shiftSchema.plugin(mongoosePaginate);

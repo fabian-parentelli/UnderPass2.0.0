@@ -23,6 +23,7 @@ const ShiftPospone = ({ admin, shift, setSnack, setModal }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if(before) return;
         setLoading(true);
         const response = await newPostponeApi({
             shift: shift,

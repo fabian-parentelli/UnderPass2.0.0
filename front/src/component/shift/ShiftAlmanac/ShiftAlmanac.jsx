@@ -3,18 +3,20 @@ import Load from '../../utils/Load.jsx';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ShiftCalendar from './ShiftCalendar/ShiftCalendar';
+import SnackbarAlert from '../../utils/SnackbarAlert.jsx';
 import { formatText } from '../../../utils/formatText.utils.js';
 import { monthMapping } from '../../../utils/typeShifts.utils.js';
 import { useLoginContext } from '../../../context/LoginContext.jsx';
+import { updShiftApi } from '../../../helpers/shift/updShift.api.js';
 import { newShiftApi } from '../../../helpers/shift/newShift.api.js';
 import ShiftAlmanacHours from './ShiftAlamanacHours/ShiftAlmanacHours';
 import ShiftDataUser from '../shifDataUser/ShiftDataUser/ShiftDataUser.jsx';
 import { getShiftDataApi } from '../../../helpers/shift/getShiftData.api.js';
+import ShiftAlmanacHolidays from './ShiftAlmanacHolidays/ShiftAlamanacHolidays.jsx';
 import ShiftInputUser from '../shifDataUser/tools/ShiftInputUser/ShiftInputUser.jsx';
 import ShiftDataAdminUser from '../shifDataUser/ShiftDataAdminUser/ShiftDataAdminUser.jsx';
-import ShiftAlmanacHolidays from './ShiftAlmanacHolidays/ShiftAlamanacHolidays.jsx';
 
-const ShiftAlmanac = ({ config, width = 4 }) => {
+const ShiftAlmanac = ({ config, width = 4, typeApi, isShiftId }) => {
 
     const { user, current } = useLoginContext();
 
@@ -34,6 +36,7 @@ const ShiftAlmanac = ({ config, width = 4 }) => {
     const [sections, setSections] = useState(null);
     const [dataUser, setDataUser] = useState(null);
     const [vew, setVew] = useState({ status: false, message: '' });
+    const [snack, setSnack] = useState({ message: { status: '', mess: '' }, open: false });
 
     useEffect(() => {
         const fetchData = async () => {
@@ -61,7 +64,7 @@ const ShiftAlmanac = ({ config, width = 4 }) => {
         if (config) {
             const arrayDay = setArrayDays(config, rooms, sections);
             const date = new Date(selected.year, monthMapping[selected.month.toLowerCase()], selected.day);
-            const dayOfWeek = date.toLocaleDateString('en-US', { weekday: 'long' }).toLowerCase();            
+            const dayOfWeek = date.toLocaleDateString('en-US', { weekday: 'long' }).toLowerCase();
             const isDay = arrayDay.includes(dayOfWeek);
             if (!isDay) setVew({ status: false, message: 'El día seleccionado no es correcto' });
             else {
@@ -72,12 +75,10 @@ const ShiftAlmanac = ({ config, width = 4 }) => {
     }, [type, dataUser, selected, rooms, sections, config]);
 
     const handleBook = async () => {
-        if (!user.logged) {
-            localStorage.setItem('path', `shift/${config._id}`);
-            navigate('/login');
-        };
+        if (!user.logged) { localStorage.setItem('path', `shift/${config._id}`); navigate('/login') };
         if (vew.status) {
             setLoading(true);
+            if (snack.open) setSnack({ message: { status: '', mess: '' }, open: false });
             const query = {
                 day: selected, hour: type, userId: config.userId, customer: dataUser,
                 dataConf: {
@@ -87,21 +88,32 @@ const ShiftAlmanac = ({ config, width = 4 }) => {
             if (rooms) query.room = formatText(rooms);
             if (sections) query.sections = formatText(sections.title);
 
-            // Luego poner una condicional que si no ponen un horario no lo concidero....
-            // agregar al carrito si es usuario, pero si es administrador no......
-            // Probablemente sacar el handle Book de aca y que venga desde afuera.....
-            // No lo se esto ultimo esta a resolver
 
-            // console.log(query);
-            // console.log(config);
+            // Acá va una serie de filtros dependiendo de typeApi es a donde apunto.....
+            // Acá va una serie de filtros dependiendo de typeApi es a donde apunto.....
+            // Acá va una serie de filtros dependiendo de typeApi es a donde apunto.....
+            // Acá va una serie de filtros dependiendo de typeApi es a donde apunto.....
 
+            if (typeApi === 'update') {
+                const response = await updShiftApi(isShiftId, query);
+                if (response.status === 'success') setSnack({ message: { status: 'success', mess: 'Has modificado tu resreva con exito' }, open: true });
+                else setSnack({ message: { status: 'error', mess: response.error }, open: true });
+            } else if (typeApi === 'admin') {
+                const response = await newShiftApi(query);
+                console.log(response);
+                ///  resolver 
+                ///  resolver 
+                ///  resolver 
+                ///  resolver 
+            } else {
+                // Aca conectar con  el carrito de compras.....
+            };
 
-            const response = await newShiftApi(query);
-            console.log(response);
-
-
-            navigate('/');
             setLoading(false);
+            setTimeout(() => {
+                setSnack({ message: { status: '', mess: '' }, open: false });
+                navigate('/');
+            }, 4000);
         };
     };
 
@@ -146,6 +158,7 @@ const ShiftAlmanac = ({ config, width = 4 }) => {
                 : <p className='shiftAlmanacOff'>Debes iniciar sesión, para poder reservar un turno.</p>
             }
 
+            <SnackbarAlert message={snack.message} open={snack.open} />
             <Load loading={loading} />
         </div>
     );

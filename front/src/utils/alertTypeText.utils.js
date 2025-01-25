@@ -18,6 +18,7 @@ function getTypeAlerts(types) {
         'publicityOff': () => { return 'Fin de la publicidad' },
         'mapNoMatch': () => { return 'El mapa no coincide con la dirección' },
         'shiftPostpone': () => { return 'Solicitud de posponer una reserva' },
+        'resShiftPostponeCA_notIsPay': () => { return 'Respuesta de posponer la solicitud'},
         'default': () => { return 'otro' },
     };
     

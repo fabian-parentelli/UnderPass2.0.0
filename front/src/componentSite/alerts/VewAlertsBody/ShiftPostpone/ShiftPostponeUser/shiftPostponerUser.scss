@@ -3,10 +3,17 @@
 .shiftPostponerUser {
     margin-top: 1rem;
 
+    .shiftPostponerUserIsNotPay {
+        width: 60%;
+        margin: auto;
+        line-height: 3;
+    }
+
     .shiftPostponerUserTop {
         display: flex;
         justify-content: space-evenly;
-        width: 600px;
+        max-width: 600px;
+        flex-wrap: wrap;
         margin: auto;
 
         .shiftPostponerUserImg {
@@ -52,5 +59,24 @@
 
     span {
         color: $underShifts;
+    }
+
+    .shiftPostponerUserAlmanac {
+        display: flex;
+        justify-content: center;
+        margin-top: 4rem;
+    }
+}
+
+@media (max-width: 767px) {
+    
+    .shiftPostponerUser {
+
+        .shiftPostponerUserTop {
+
+            .shiftPostponerUserImg {
+                align-items: center;
+            }
+        }
     }
 }

@@ -23,7 +23,7 @@ const ShiftPostpone = ({ id, setLoading }) => {
                 <>
                     {postpone.to === 'admin'
                         ? 'Administrador'
-                        : <ShiftPostponerUser postpone={postpone} />
+                        : <ShiftPostponerUser postpone={postpone} setLoading={setLoading} />
                     }
                 </>
             }

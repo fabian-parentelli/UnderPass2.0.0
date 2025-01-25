@@ -15,6 +15,7 @@ import WeHaveSeeYourReq from './WeHaveSeeYourReq/WeHaveSeeYourReq.jsx';
 import MapNoMatch from './MapNoMatch/MapNoMatch.jsx';
 import SoldEvents from './SoldEvents/SoldEvents.jsx';
 import ShiftPostpone from './ShiftPostpone/ShiftPostpone.jsx';
+import ShiftPostRespNoPay from './ShiftPostRespNoPay/ShiftPostRespNoPay.jsx';
 
 const VewAlertsBody = () => {
 
@@ -41,6 +42,7 @@ const VewAlertsBody = () => {
             {type === 'mapNoMatch' && <MapNoMatch id={id} setLoading={setLoading} />}
             {type === 'sold_events' && <SoldEvents id={id} setLoading={setLoading} /> }
             {type === 'shiftPostpone' && <ShiftPostpone id={id} setLoading={setLoading} /> }
+            {type === 'resShiftPostponeCA_notIsPay' && <ShiftPostRespNoPay id={id} setLoading={setLoading} /> }
 
             <Load loading={loading} />
         </div>
