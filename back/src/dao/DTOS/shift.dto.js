@@ -1,6 +1,7 @@
 import { shiftconfRepository, shiftCustomerRepository } from "../../repositories/index.repositories.js";
 import { formatText } from "../../utils/formatText.utils.js";
-import { setHoursBack, transformDate } from '../../utils/servicesUtils/shift.utils.js';
+import { months, setHoursBack, transformDate } from '../../utils/servicesUtils/shift.utils.js';
+import { shiftManager } from "../manager/index.manager.js";
 
 const isNotTime = async (shift, day) => {
 
@@ -44,7 +45,7 @@ const isNotTime = async (shift, day) => {
         if (room && room.ability) result = filterDay(shift, day, room.abilityNumber, true);
         else result = filterDay(shift, day);
         if (fullDays.length > 0) result.push({ notDay: fullDays });
-    };    
+    };
     return result;
 };
 
@@ -85,4 +86,19 @@ const getCustomer = async (shifts) => {
     return shifts;
 };
 
-export { isNotTime, getCustomer };
+const updByDate = async (shifts) => {
+    if (!shifts || shifts.length < 1) return shifts;
+    const newResult = [];
+    for (const shift of shifts) {
+        const [hours, minutes] = shift.hour[0].split(':');
+        const monthIndex = new Date(`${shift.day.month} 1`).getMonth();
+        const dateDb = new Date(shift.day.year, monthIndex, shift.day.day, parseInt(hours), parseInt(minutes));
+        if (dateDb < new Date()) {
+            shift.active = false;
+            await shiftManager.update(shift);
+        } else newResult.push(shift);
+    };
+    return newResult || result;
+};
+
+export { isNotTime, getCustomer, updByDate };

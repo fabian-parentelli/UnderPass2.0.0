@@ -55,12 +55,25 @@ const getPostponeById = async (req, res) => {
 };
 
 const getShifts = async (req, res) => {
-    const { uid, month, year, customer, usercustomer } = req.query;
+    const { uid, month, year, customer, usercustomer, id } = req.query;
     const { user } = req.user;
     try {
-        const result = await shiftService.getShifts(uid, month, year, customer, usercustomer, user);
+        const result = await shiftService.getShifts(uid, month, year, customer, usercustomer, user, id);
         if (result) return res.sendSuccess(result);
     } catch (error) {
+        if (error instanceof ShiftNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
+const suspendPanel = async (req, res) => {
+    try {
+        const result = await shiftService.suspendPanel({ ...req.body }, { ...req.user });
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+
+        console.log(error); // ------ Borrar -------- //// ------ Borrar -----------
+
         if (error instanceof ShiftNotFound) return res.sendClientError(error.message);
         res.sendServerError(error.message);
     };
@@ -94,10 +107,6 @@ const updShift = async (req, res) => {
         const result = await shiftService.updShift(id, { ...req.body });
         if (result) return res.sendSuccess(result);
     } catch (error) {
-
-        console.log(error); // Borrar -------------------- Borrar -------------------
-        
-
         if (error instanceof ShiftNotFound) return res.sendClientError(error.message);
         res.sendServerError(error.message);
     };
@@ -105,5 +114,5 @@ const updShift = async (req, res) => {
 
 export {
     newPostpone, newShift, getDataShift, getPostponeByAdminId, getPostponeById, getShifts, suspend,
-    activePostpone, updShift
+    activePostpone, updShift, suspendPanel
 };

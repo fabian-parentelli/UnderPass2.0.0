@@ -9,7 +9,7 @@ async function getShiftDataApi(obj) {
     if (obj.year) urlData += `year=${obj.year}&`; 
     if (obj.day) urlData += `day=${obj.day}&`; 
     if (obj.room) urlData += `room=${obj.room}&`; 
-    if (obj.sections) urlData += `sections=${obj.sections}&`; 
+    if (obj.sections) urlData += `sections=${obj.sections}&`;  
 
     if (urlData.endsWith('&')) urlData = urlData.slice(0, -1);
 

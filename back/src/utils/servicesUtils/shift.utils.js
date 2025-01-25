@@ -152,5 +152,5 @@ const returnPay = async (shift, postpone) => {
 
 export { 
     transformDate, setHoursBack, updateCustomer, sortShift, emailToCustomer, months, emailPostponer,
-    returnPay 
+    returnPay
 };

@@ -87,28 +87,20 @@ const ShiftAlmanac = ({ config, width = 4, typeApi, isShiftId }) => {
             };
             if (rooms) query.room = formatText(rooms);
             if (sections) query.sections = formatText(sections.title);
-
-
-            // Acá va una serie de filtros dependiendo de typeApi es a donde apunto.....
-            // Acá va una serie de filtros dependiendo de typeApi es a donde apunto.....
-            // Acá va una serie de filtros dependiendo de typeApi es a donde apunto.....
-            // Acá va una serie de filtros dependiendo de typeApi es a donde apunto.....
-
             if (typeApi === 'update') {
                 const response = await updShiftApi(isShiftId, query);
                 if (response.status === 'success') setSnack({ message: { status: 'success', mess: 'Has modificado tu resreva con exito' }, open: true });
                 else setSnack({ message: { status: 'error', mess: response.error }, open: true });
             } else if (typeApi === 'admin') {
-                const response = await newShiftApi(query);
-                console.log(response);
-                ///  resolver 
-                ///  resolver 
-                ///  resolver 
-                ///  resolver 
+                const response = await updShiftApi(query);
+                if (response.status === 'success') setSnack({ message: { status: 'success', mess: 'Has creado una resreva con exito' }, open: true });
+                else setSnack({ message: { status: 'error', mess: response.error }, open: true });
             } else {
                 // Aca conectar con  el carrito de compras.....
+                // Aca conectar con  el carrito de compras.....
+                // Pero tengo que meter un return grande como una casa para que rediriga al carrito
+                // Pero tengo que meter un return grande como una casa para que rediriga al carrito
             };
-
             setLoading(false);
             setTimeout(() => {
                 setSnack({ message: { status: '', mess: '' }, open: false });

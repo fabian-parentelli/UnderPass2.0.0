@@ -17,6 +17,12 @@ const shiftSchema = new mongoose.Schema({
     sections: { type: String },
     customer: { type: String },
     isPay: { type: Boolean, default: false },
+    oldDate: {
+        day: { type: Number },
+        month: { type: String },
+        year: { type: Number },
+    },
+    oldHour: [{ type: String }],
 });
 
 shiftSchema.plugin(mongoosePaginate);

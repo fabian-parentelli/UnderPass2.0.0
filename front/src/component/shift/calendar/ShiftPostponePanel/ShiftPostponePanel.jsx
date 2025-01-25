@@ -1,8 +1,8 @@
 import './shiftPostponePanel.scss';
 import { useEffect, useState } from 'react';
 import SnackbarAlert from '../../../utils/SnackbarAlert.jsx';
-import { getPostponesByAdminIdApi } from '../../../../helpers/shift/getPostponesByAdminId.api.js';
 import ShiftPostponePanelTab from './ShiftPostponePanelTab/ShiftPostponePanelTab.jsx';
+import { getPostponesByAdminIdApi } from '../../../../helpers/shift/getPostponesByAdminId.api.js';
 
 const ShiftPostponePanel = ({ userId, setLoading }) => {
 

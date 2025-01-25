@@ -1,7 +1,7 @@
 import './shiftPostponePanelResp.scss';
-import { Spinner } from 'faradaycomp';
-import { activePostponeApi } from '../../../../../helpers/shift/activePostpone.api';
 import { useState } from 'react';
+import { Spinner } from 'faradaycomp';
+import { activePostponeApi } from '../../../../../helpers/shift/activePostpone.api.js';
 
 const ShiftPostponePanelResp = ({ postpone, setModal }) => {
 
@@ -21,7 +21,8 @@ const ShiftPostponePanelResp = ({ postpone, setModal }) => {
             <p>El usuario a decidido <span style={{ color: postpone.accept ? 'green' : '#ec3639' }}>
                 {postpone.accept ? 'posponer' : 'suspender'}</span>.
             </p>
-            {!postpone.accept &&
+
+            {!postpone.accept ?
                 <>
                     <p className='pgray'>{postpone.resMessage}</p>
                     <div>
@@ -29,11 +30,15 @@ const ShiftPostponePanelResp = ({ postpone, setModal }) => {
                         <p>{postpone.customerData.email}</p>
                         <p>cel: {postpone.customerData.phone}</p>
                     </div>
-                    <button className='btn btnSH shiftPostponePanelRespBtn' onClick={handleConfirm}>
-                        {loading ? <Spinner size={25} color={'gray'} /> : 'Confirmar'}
-                    </button>
+                </>
+                : <>
+                    <p className='pgray'>{postpone.resMessage}</p>
                 </>
             }
+            
+            <button className='btn btnSH shiftPostponePanelRespBtn' onClick={handleConfirm}>
+                {loading ? <Spinner size={25} color={'gray'} /> : 'Confirmar'}
+            </button>
         </div>
     );
 };

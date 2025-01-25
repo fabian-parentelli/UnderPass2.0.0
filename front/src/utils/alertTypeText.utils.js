@@ -19,6 +19,7 @@ function getTypeAlerts(types) {
         'mapNoMatch': () => { return 'El mapa no coincide con la dirección' },
         'shiftPostpone': () => { return 'Solicitud de posponer una reserva' },
         'resShiftPostponeCA_notIsPay': () => { return 'Respuesta de posponer la solicitud'},
+        'acceptUpdateDateShift': () => { return 'Han aceptado modificar la reserva.'},
         'default': () => { return 'otro' },
     };
     

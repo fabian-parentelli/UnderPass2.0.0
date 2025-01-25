@@ -1,8 +1,9 @@
 import './shiftSuspend.scss';
 import { useEffect, useState } from 'react';
-import { useLoginContext } from '../../../context/LoginContext';
-import ShiftPospone from './ShiftPostpone/ShiftPostpone';
 import SnackbarAlert from '../../utils/SnackbarAlert';
+import ShiftPospone from './ShiftPostpone/ShiftPostpone';
+import { useLoginContext } from '../../../context/LoginContext';
+import ShiftPostSuspend from './ShiftPostSuspend/ShiftPostSuspend';
 
 const ShiftSuspend = ({ shift, setModal }) => {
 
@@ -20,6 +21,7 @@ const ShiftSuspend = ({ shift, setModal }) => {
         <div className='shiftSuspend'>
             <h3>Posponer || Suspender, reserva.</h3>
             {shift && <ShiftPospone admin={admin} shift={shift} setSnack={setSnack} setModal={setModal} />}
+            {shift && <ShiftPostSuspend admin={admin} shift={shift} setSnack={setSnack} setModal={setModal} />}
             <SnackbarAlert message={snack.message} open={snack.open} />
         </div>
     );

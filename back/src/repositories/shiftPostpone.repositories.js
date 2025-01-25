@@ -7,9 +7,9 @@ export default class ShiftPostponeRepository {
         return result;
     };
 
-    getByAdminId = async (id, active) => {
+    getByAdminId = async (id, active, data = true) => {
         const result = await shiftPostponeManager.getByAdminId(id, active);
-        if(result && result.length > 0) {
+        if(data && result && result.length > 0) {
             for(const cust of result) {
                 const customer = await shiftCustomerManager.getShiftCustomerById(cust.shiftId.customer);
                 cust.customerData = customer.customerUser;

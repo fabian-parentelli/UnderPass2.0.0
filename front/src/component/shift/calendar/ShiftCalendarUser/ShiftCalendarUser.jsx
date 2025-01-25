@@ -46,6 +46,7 @@ const ShiftCalendarUser = ({ userId, setLoading }) => {
 
     return (
         <div className='shiftCalendarUser'>
+            
             <div className='shiftCalendarUserText'>
                 <AutoComplete data={data} handleChange={handleChange} />
             </div>

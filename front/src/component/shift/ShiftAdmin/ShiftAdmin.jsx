@@ -22,7 +22,7 @@ const ShiftAdmin = ({ userId }) => {
             <p>Aqui puedes autogestionarte la reservas de turnos.</p>
             <p>Podrás ver la disponibilidad y ocupar las reservas solicitadas.</p>
             <p>Si precisas ayuda has <span className='colSH' onClick={() => navigate('/help#shiftAdminHelp')}>aqui</span> la encontraras.</p>
-            <ShiftAlmanac config={config} />
+            <ShiftAlmanac config={config} typeApi='admin' />
         </div>
     );
 };

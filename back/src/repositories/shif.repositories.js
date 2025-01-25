@@ -1,4 +1,4 @@
-import { getCustomer, isNotTime } from '../dao/DTOS/shift.dto.js';
+import { getCustomer, isNotTime, updByDate } from '../dao/DTOS/shift.dto.js';
 import { shiftManager } from '../dao/manager/index.manager.js';
 
 export default class ShiftRepository {
@@ -15,8 +15,9 @@ export default class ShiftRepository {
     };
     
     getShifts = async (query) => {
-        const preResult = await shiftManager.getDataShift(query);
-        const result = await getCustomer(preResult);        
+        const resultDB = await shiftManager.getDataShift(query);
+        const resultCust = await getCustomer(resultDB);
+        const result = await updByDate(resultCust);
         return result;
     };
     

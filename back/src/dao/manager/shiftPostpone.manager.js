@@ -6,7 +6,7 @@ export default class ShiftCustomer {
         return await shiftPostponeModel.create(customer);
     };
 
-    getByAdminId = async (id, active) => {
+    getByAdminId = async (id, active = true) => {
         return await shiftPostponeModel.find({ adminId: id, active }).lean();
     }
 

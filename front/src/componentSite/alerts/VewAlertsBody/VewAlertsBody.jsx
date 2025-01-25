@@ -3,7 +3,10 @@ import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import HaveAPay from './HaveAPay/HaveAPay.jsx';
 import Load from '../../../component/utils/Load';
+import MapNoMatch from './MapNoMatch/MapNoMatch.jsx';
+import SoldEvents from './SoldEvents/SoldEvents.jsx';
 import PublicityOff from './PublicityOff/PublicityOff.jsx';
+import ShiftPostpone from './ShiftPostpone/ShiftPostpone.jsx';
 import ReportComment from './ReportComment/ReportComment.jsx';
 import OrderToPayAlert from './OrderToPayAlert/OrderToPayAlert';
 import ProductInStock from './ProductInStock/ProductInStock.jsx';
@@ -12,10 +15,8 @@ import SoldProductAlert from './SoldProductAlert/SoldProductAlert';
 import HaveMoneyAlerts from './HaveMoneyAlerts/HaveMoneyAlerts.jsx';
 import ReqTranferAlert from './ReqTransferAlert/ReqTransferAlert.jsx';
 import WeHaveSeeYourReq from './WeHaveSeeYourReq/WeHaveSeeYourReq.jsx';
-import MapNoMatch from './MapNoMatch/MapNoMatch.jsx';
-import SoldEvents from './SoldEvents/SoldEvents.jsx';
-import ShiftPostpone from './ShiftPostpone/ShiftPostpone.jsx';
 import ShiftPostRespNoPay from './ShiftPostRespNoPay/ShiftPostRespNoPay.jsx';
+import AccepUpdateDateShift from './AcceptUpdateDateShift/AceptUpdateDateShift.jsx';
 
 const VewAlertsBody = () => {
 
@@ -43,6 +44,7 @@ const VewAlertsBody = () => {
             {type === 'sold_events' && <SoldEvents id={id} setLoading={setLoading} /> }
             {type === 'shiftPostpone' && <ShiftPostpone id={id} setLoading={setLoading} /> }
             {type === 'resShiftPostponeCA_notIsPay' && <ShiftPostRespNoPay id={id} setLoading={setLoading} /> }
+            {type === 'acceptUpdateDateShift' && <AccepUpdateDateShift id={id} setLoading={setLoading} /> }
 
             <Load loading={loading} />
         </div>
