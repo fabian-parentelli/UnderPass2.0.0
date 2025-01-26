@@ -17,15 +17,13 @@ const ShiftPostpone = ({ id, setLoading }) => {
         }; fetchData();
     }, []);
 
+    console.log(postpone);
+    
+
     return (
         <div className='shiftPostpone'>
             {postpone &&
-                <>
-                    {postpone.to === 'admin'
-                        ? 'Administrador'
-                        : <ShiftPostponerUser postpone={postpone} setLoading={setLoading} />
-                    }
-                </>
+                <ShiftPostponerUser postpone={postpone} setLoading={setLoading} />
             }
         </div>
     );

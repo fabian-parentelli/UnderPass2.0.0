@@ -56,7 +56,7 @@ const getPostponeById = async (id, { user }) => {
     return { status: 'success', result };
 };
 
-const getShifts = async (uid, month, year, customer, usercustomer, user, id, active) => {
+const getShifts = async (uid, month, year, customer, usercustomer, user, id, active, place) => {
     const query = {};
     active !== undefined ? query.active = active : query.active = true;
     if (id) query._id = id;
@@ -71,7 +71,7 @@ const getShifts = async (uid, month, year, customer, usercustomer, user, id, act
     if (uid) query.userId = uid;
     const data = await shiftRepository.getShifts(query);
     if (!data) throw new ShiftNotFound('No se pueden ver los turnos');
-    if (usercustomer) {
+    if (usercustomer || place !== undefined) {
         for (const dat of data) {
             const placeDB = await shiftconfRepository.getByUserId(dat.userId);
             dat.place = { name: placeDB.title, shiftId: placeDB._id, img: placeDB.img.url };
@@ -129,30 +129,10 @@ const activePostpone = async (id) => {
     return { status: 'success', result };
 };
 
-const updShift = async (id, shift) => {
-    const shiftDB = await shiftRepository.getById(id);
-    shiftDB.oldDate = shiftDB.day;
-    shiftDB.oldHour = shiftDB.hour;
-    shiftDB.hour = shift.hour;
-    shiftDB.day = shift.day;
-    if (shift.room) shiftDB.room = shift.room;
-    if (shift.sections) shiftDB.sections = shift.sections;
-    const result = await shiftRepository.update(shiftDB);
-    if (!result) throw new ShiftNotFound('No se puede ver la alerta');
-    const postponeDB = await shiftPostponeRepository.getByAdminId(shiftDB.userId, true, false);
-    const postpone = postponeDB[0];
-    postpone.shiftId = postpone.shiftId._id;
-    postpone.response = true;
-    postpone.accept = true;
-    postpone.resMessage = `El turno se ha modificado para el dia ${result.day.day}/${shiftUtils.months.indexOf(result.day.month) + 1}/${result.day.year} - ${result.hour.join(' - ')}`;
-    const updatePostpone = await shiftPostponeRepository.update(postpone);
-    if (!updatePostpone) throw new ShiftNotFound('No se puede devolver el mensaje al admin');
-    await alertsRepository.newAlert({
-        eventId: result._id,
-        userId: shiftDB.userId,
-        type: 'acceptUpdateDateShift'
-    });
-    return { status: 'success', result };
+const updShift = async (id, shift, { user }) => {
+    const result = await indexShift.updateDateShift(id, shift, user);
+    if(!result) throw new ShiftNotFound('Error al actualizar la nueva reserva');
+    return result;
 };
 
 export {

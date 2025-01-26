@@ -46,4 +46,33 @@
         margin: 0 auto;
         line-height: 2;
     }
+
+    .shiftSuspendByAdminUser {
+        border-top: 1px solid gray;
+        width: 200px;
+        margin: 0 auto;
+        margin-top: 1rem;
+        padding-top: 1rem;
+    }
+}
+
+@media (max-width: 767px) {
+    .shiftSuspendByAdmin {
+
+        .shiftPostponerUserTop {
+            align-items: center;
+
+            .shiftPostponerUserImg {
+                align-items: center;
+            }
+
+            .shiftPostponerUserRight {
+                align-items: center;
+            }
+        }
+
+        .shiftSuspendByAdminP {
+            width: 90%;
+        }
+    }
 }

@@ -17,33 +17,29 @@ const ShiftPostSuspend = ({ admin, shift, setSnack, setModal }) => {
         const query = { id: shift._id, admin };
         if (password) query.password = password;
         const response = await shiftSuspendByPanelApi(query);
-
-        console.log(response);
-        
-
-        // if (response.status) setSnack({ open: true, message: { status: 'success', mess: response.result } });
-        // else setSnack({ open: true, message: { status: 'error', mess: response.error } });
-        // setTimeout(() => {
-        //     setSnack({ open: false, message: { status: '', mess: '' } });
-        //     setModal({ open: false, id: null });
-        //     setLoading(false);
-        // }, 2000);
+        if (response.status) setSnack({ open: true, message: { status: 'success', mess: response.result } });
+        else setSnack({ open: true, message: { status: 'error', mess: response.error } });
+        setTimeout(() => {
+            setSnack({ open: false, message: { status: '', mess: '' } });
+            setModal({ open: false, id: null });
+            setLoading(false);
+        }, 2000);
     };
 
     return (
         <div className='shiftPostSuspend'>
             <div className='line' style={{ backgroundColor: '#ec3639' }}></div>
             <p className='colSH'>Suspender:</p>
-            {!shift.isPay
+            {shift && (!shift.isPay
                 ? <>
                     <p className='pgray'>La transacción no se realizó a través de esta plataforma. Si decides suspender la reserva, asegúrate de contactar al {admin ? 'cliente' : 'administrador'} directamente para gestionar la devolución del importe correspondiente.</p>
                     {admin ?
                         <div>
-                            <p style={{ fontSize: '12px' }}>{shift.customerData.name}</p>
-                            <p style={{ fontSize: '12px' }}>{shift.customerData.email}</p>
+                            <p style={{ fontSize: '12px' }}>{shift.customerData?.name}</p>
+                            <p style={{ fontSize: '12px' }}>{shift.customerData?.email}</p>
                             <p style={{ fontSize: '12px' }}>cel:{shift.customerData?.phone}</p>
                         </div>
-                        : <p style={{ fontSize: '12px' }}>Dirígite al sitio de {shift.place.name} luego de suspender</p>
+                        : <p style={{ fontSize: '12px' }}>Dirígite al sitio de {shift?.place?.name} luego de suspender</p>
                     }
                 </>
                 : <>
@@ -61,7 +57,7 @@ const ShiftPostSuspend = ({ admin, shift, setSnack, setModal }) => {
                         />
                     )}
                 </>
-            }
+            )}
 
             <button className='btn btnSH' onClick={handleSuspend}>
                 {loadin ? <Spinner size={25} color='gray' /> : 'Suspender'}

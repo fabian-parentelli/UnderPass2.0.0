@@ -45,10 +45,12 @@ const ShiftPostponerUser = ({ postpone, setLoading }) => {
 
             <section className='shiftPostponerUserTop'>
 
-                <div className='shiftPostponerUserImg'>
-                    <h3>{postpone.shiftId.place}</h3>
-                    <img src={postpone.shiftId.img} alt="img" />
-                </div>
+                {postpone && postpone.to !== 'admin' &&
+                    <div className='shiftPostponerUserImg'>
+                        <h3>{postpone.shiftId.place}</h3>
+                        <img src={postpone.shiftId.img} alt="img" />
+                    </div>
+                }
 
                 <div className='shiftPostponerUserRight'>
                     <p><span>Fecha de Reserva:</span> {postpone.shiftId.day.day}/{monthsArray.indexOf(postpone.shiftId.day.month) + 1}/{postpone.shiftId.day.year}</p>

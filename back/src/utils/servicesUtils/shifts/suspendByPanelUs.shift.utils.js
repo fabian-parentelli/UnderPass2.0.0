@@ -1,15 +1,29 @@
-import {
-    shiftconfRepository, shiftCustomerRepository, shiftRepository, alertsRepository
-} from "../../../repositories/index.repositories.js";
+import { shiftRepository, alertsRepository } from "../../../repositories/index.repositories.js";
 import { ShiftNotFound } from "../../custom-exceptions.utils.js";
-import { shiftSuspendHtml } from "../../html/shftSuspendHtml.utils.js";
-import { sendEmail } from "../../../services/email.service.js";
 
 const suspendByPanelUs = async (shift, user) => {
 
-    console.log(shift);
-    
-    
+    shift.active = false;
+    const updShift = await shiftRepository.update(shift);
+    if (!updShift) throw new ShiftNotFound('Error al desactivar la resreva');
+
+    if (shift.isPay) {
+        console.log('Es de pago');
+        //  Es de pago ver que hago en esta parte..... trabajar
+        //  Es de pago ver que hago en esta parte..... trabajar
+        //  Es de pago ver que hago en esta parte..... trabajar
+        //  Es de pago ver que hago en esta parte..... trabajar
+    } else {
+
+        const alert = await alertsRepository.newAlert({
+            eventId: shift._id,
+            userId: shift.userId,
+            type: 'shiftSupend_notIsPay'
+        });
+        if (!alert) throw new ShiftNotFound('Error al crear una aleta para el usuario');
+
+        return { status: 'success', result: 'Hemos eliminado la reserva' };
+    };
 };
 
 export { suspendByPanelUs };

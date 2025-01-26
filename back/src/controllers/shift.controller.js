@@ -55,10 +55,10 @@ const getPostponeById = async (req, res) => {
 };
 
 const getShifts = async (req, res) => {
-    const { uid, month, year, customer, usercustomer, id, active } = req.query;
+    const { uid, month, year, customer, usercustomer, id, active, place } = req.query;
     const { user } = req.user;
     try {
-        const result = await shiftService.getShifts(uid, month, year, customer, usercustomer, user, id, active);
+        const result = await shiftService.getShifts(uid, month, year, customer, usercustomer, user, id, active, place);
         if (result) return res.sendSuccess(result);
     } catch (error) {
         if (error instanceof ShiftNotFound) return res.sendClientError(error.message);
@@ -101,7 +101,7 @@ const activePostpone = async (req, res) => {
 const updShift = async (req, res) => {
     const { id } = req.params;
     try {
-        const result = await shiftService.updShift(id, { ...req.body });
+        const result = await shiftService.updShift(id, { ...req.body }, {...req.user});
         if (result) return res.sendSuccess(result);
     } catch (error) {
         if (error instanceof ShiftNotFound) return res.sendClientError(error.message);
