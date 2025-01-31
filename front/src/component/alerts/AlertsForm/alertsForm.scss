@@ -1,0 +1,12 @@
+.alertsForm {
+    margin-top: 1rem;
+
+    .alertsFormBack {
+        cursor: pointer;
+        transition: .3s ease-in-out;
+
+        &:hover {
+            background-color: rgb(216, 216, 216);
+        }
+    }
+}

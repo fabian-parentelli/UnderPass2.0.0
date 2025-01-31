@@ -1,6 +1,8 @@
 import { priceRepository } from "../repositories/index.repositories.js";
 import { PriceNotFound } from '../utils/custom-exceptions.utils.js';
 import * as exchangeData from "../utils/exchangeApi.utils.js";
+import * as alertsServices from '../services/alerts.service.js';
+import * as shiftServices from '../services/shif.service.js';
 
 const newDataPass = async (data) => {
     const result = await priceRepository.newDataPass(data);
@@ -30,6 +32,15 @@ const exchange = async () => {
     return { status: 'success', result };
 };
 
+const getMaxCounterByType = async (type) => {
+    const result = await priceRepository.getMaxCounterByType(type);
+    if (!result) throw new PriceNotFound(`Error al obtener datos de ${type}`);
+    if (type === 'maxAlert') result.countData = await alertsServices.getAlertMax(result.maxCount);
+    if(type === 'maxPostp') result.countData = await shiftServices.getPostponeMax(result.maxCount);
+    return { status: 'success', result };
+    // Seguir agregando las búsquedas turnos - turnos pospuestos - eventos - otros ....
+};
+
 const getDataPass = async (country) => {
     const result = await priceRepository.getDataPass(country);
     if (!result) return { status: 'error', result };
@@ -44,10 +55,22 @@ const updDataPass = async (data) => {
     return { status: 'success', result };
 };
 
+const updMaxCount = async (data) => {
+    const maxDataCount = await priceRepository.getMaxCounterByType(data.type);
+    if (!maxDataCount) throw new PriceNotFound(`Error al obtener datos de ${data.type}`);
+    maxDataCount.maxCount = data.maxCount;
+    const result = await priceRepository.updDataPass(maxDataCount);
+    if (!result) throw new PriceNotFound('No se puede actualizar los datos');
+    return { status: 'success', result };
+};
+
 const getAllPrice = async () => {
     const result = await priceRepository.getAllPrice();
     if (!result) throw new PriceNotFound('No se puede obtener la lista de precios');
     return { status: 'success', result };
 };
 
-export { newPrice, getLastPrice, exchange, getAllPrice, newDataPass, getDataPass, updDataPass };
+export {
+    newPrice, getLastPrice, exchange, getAllPrice, newDataPass, getDataPass, updDataPass, updMaxCount,
+    getMaxCounterByType
+};

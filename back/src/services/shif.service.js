@@ -115,6 +115,8 @@ const suspend = async (postponeId) => {
         if (!result) throw new ShiftNotFound('No se puede ver la alerta');
         return { status: 'success', isPay: false };
     } else {
+        console.log('Esta parte esta para construir');
+
         // Esto es si es del admin al usuario ...... a trabajar ----------
     };
 };
@@ -123,7 +125,17 @@ const activePostpone = async (id) => {
     const postpone = await shiftPostponeRepository.getById(id);
     const { shiftId: shift, ...rest } = postpone;
     rest.shiftId = shift._id;
-    rest.active = !rest.active;
+    rest.active = false;
+    const result = await shiftPostponeRepository.update(rest);
+    if (!result) throw new ShiftNotFound('No se puede ver la alerta');
+    return { status: 'success', result };
+};
+
+const actPostByShId = async (id) => {
+    const postpone = await shiftPostponeRepository.getByShiftId(id);
+    const { shiftId: shift, ...rest } = postpone;
+    rest.shiftId = shift._id;
+    rest.active = false;
     const result = await shiftPostponeRepository.update(rest);
     if (!result) throw new ShiftNotFound('No se puede ver la alerta');
     return { status: 'success', result };
@@ -131,11 +143,31 @@ const activePostpone = async (id) => {
 
 const updShift = async (id, shift, { user }) => {
     const result = await indexShift.updateDateShift(id, shift, user);
-    if(!result) throw new ShiftNotFound('Error al actualizar la nueva reserva');
+    if (!result) throw new ShiftNotFound('Error al actualizar la nueva reserva');
     return result;
+};
+
+const getPostponeMax = async (days) => {
+    const total = await shiftPostponeRepository.postponeAmount() || 0;
+    const cutoffDate = new Date();
+    cutoffDate.setDate(cutoffDate.getDate() - +days);
+    const defeated = await shiftPostponeRepository.getPostPone({ date: { $lt: cutoffDate } }) || [];
+    return { total, defeated };
+};
+
+const delPostponeById = async (id) => {
+    const result = await shiftPostponeRepository.delPostponeById(id);
+    if (!result) throw new ShiftNotFound('Error al eliminar el postpone de base de datos');
+    return { status: 'success', result };
+};
+
+const delAllpostpones = async ({ ids }) => {
+    const result = await shiftPostponeRepository.deleteMany({ _id: { $in: ids } })
+    if (!result) throw new AllertsNotFound(`No se pueden eliminar las propuestas`);
+    return { status: 'success', result };
 };
 
 export {
     newPostpone, newShift, getDataShift, getPostponeByAdminId, getPostponeById, getShifts, suspend,
-    activePostpone, updShift, suspendPanel
+    activePostpone, updShift, suspendPanel, actPostByShId, getPostponeMax, delPostponeById, delAllpostpones
 };

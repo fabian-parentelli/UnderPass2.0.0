@@ -37,4 +37,30 @@ export default class ShiftPostponeRepository {
         const result = await shiftPostponeManager.update(postpone);
         return result;
     };
+    
+    getByShiftId = async (id) => {
+        const result = await shiftPostponeManager.getByShiftId(id);
+        return result;
+    };
+    
+    postponeAmount = async () => {
+        const result = await shiftPostponeManager.postponeAmount();
+        return result;
+    };
+    
+    getPostPone = async (query) => {
+        const result = await shiftPostponeManager.getPostPone(query);
+        return result;
+    };
+    
+    delPostponeById = async (id) => {
+        const result = await shiftPostponeManager.delPostponeById(id);
+        return result;
+    };
+    
+    deleteMany = async (query) => {
+        const result = await shiftPostponeManager.deleteMany(query);
+        return result;
+    };
+    
 };

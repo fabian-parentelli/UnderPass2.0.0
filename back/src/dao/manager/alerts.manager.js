@@ -30,4 +30,15 @@ export default class Alerts {
         return await alertsModel.findByIdAndDelete(id);
     };
 
+    alertAmount = async () => {
+        return await alertsModel.countDocuments();
+    };
+
+    getAlertQuery = async (query) => {
+        return await alertsModel.find(query).lean();
+    };
+
+    deleteMany = async (query) => {
+        return await alertsModel.deleteMany(query);
+    };
 };

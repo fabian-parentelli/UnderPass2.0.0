@@ -14,4 +14,8 @@ export default class Data {
         return await dataModel.findByIdAndUpdate(data._id, data, { new: true }).lean();
     };
 
+    getMaxCounterByType = async (type) => {
+        return await dataModel.findOne({ type }).lean();
+    };
+
 };

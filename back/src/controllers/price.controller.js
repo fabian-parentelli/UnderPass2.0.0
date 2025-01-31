@@ -42,10 +42,31 @@ const exchange = async (req, res) => {
     };
 };
 
+const getMaxCounterByType = async (req, res) => {
+    const { type } = req.params;
+    try {
+        const result = await priceService.getMaxCounterByType(type);
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof PriceNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
 const getDataPass = async (req, res) => {
     const { country } = req.params;
     try {
         const result = await priceService.getDataPass(country);
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof PriceNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
+const updMaxCount = async (req, res) => {
+    try {
+        const result = await priceService.updMaxCount({ ...req.body });
         if (result) return res.sendSuccess(result);
     } catch (error) {
         if (error instanceof PriceNotFound) return res.sendClientError(error.message);
@@ -73,4 +94,7 @@ const getAllPrice = async (req, res) => {
     };
 };
 
-export { newPrice, getLastPrice, exchange, getAllPrice, newDataPass, getDataPass, updDataPass };
+export { 
+    newPrice, getLastPrice, exchange, getAllPrice, newDataPass, getDataPass, updDataPass, updMaxCount,
+    getMaxCounterByType 
+};

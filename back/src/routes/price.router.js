@@ -8,8 +8,10 @@ export default class PriceRouter extends Router {
         this.post('/', ['MASTER'], passportEnum.JWT, priceController.newPrice);
         this.get('/last', ['PUBLIC'], passportEnum.NOTHING, priceController.getLastPrice);
         this.get('/exchange', ['PUBLIC'], passportEnum.NOTHING, priceController.exchange);
+        this.get('/maxcounter/:type', ['ADMIN', 'MASTER'], passportEnum.JWT, priceController.getMaxCounterByType);
         this.get('/:country', ['PUBLIC'], passportEnum.NOTHING, priceController.getDataPass);
         this.get('/', ['PUBLIC'], passportEnum.NOTHING, priceController.getAllPrice);
+        this.put('/maxcounter', ['ADMIN', 'MASTER'], passportEnum.JWT, priceController.updMaxCount);
         this.put('/', ['ADMIN', 'MASTER'], passportEnum.JWT, priceController.updDataPass);
     };
 };

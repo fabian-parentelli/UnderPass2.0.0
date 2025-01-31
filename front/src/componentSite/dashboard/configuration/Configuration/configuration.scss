@@ -3,9 +3,10 @@
     padding: 1rem;
     width: 85%;
 
-    .configurationBtn {
+    .configurationBtns {
+        margin: 1rem 0;
         display: flex;
         gap: 1rem;
+        flex-wrap: wrap;
     }
-
 }

@@ -51,7 +51,9 @@ const imagesHelp = {
 
 const genericImages = {
 
-    notShifts: 'https://ik.imagekit.io/sn6eyrykr/General/calendario.png?updatedAt=1734992704114'
+    notShifts: 'https://ik.imagekit.io/sn6eyrykr/General/calendario.png?updatedAt=1734992704114',
+    underAlerts: 'https://ik.imagekit.io/sn6eyrykr/General/Imagen1.png?updatedAt=1738274000587',
+
 };
 
 export { imagesHelp, genericImages };

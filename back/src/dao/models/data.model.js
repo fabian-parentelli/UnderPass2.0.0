@@ -14,6 +14,8 @@ const dataSchema = new mongoose.Schema({
     twitter: { type: String },
     country: { type: String },
     email: { type: String },
+    type: { type: String },
+    maxCount: { type: Number },
 });
 
 export const dataModel = mongoose.model(dataCollection, dataSchema);

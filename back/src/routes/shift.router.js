@@ -12,7 +12,10 @@ export default class ShiftRouter extends Router {
         this.get('/', ['USER', 'ADMIN', 'MASTER'], passportEnum.JWT, shiftController.getShifts);
         this.put('/suspend/:id', ['USER', 'ADMIN', 'MASTER'], passportEnum.JWT, shiftController.suspend);
         this.put('/activepostpone/:id', ['USER', 'ADMIN', 'MASTER'], passportEnum.JWT, shiftController.activePostpone);
+        this.put('/actpostbyshid/:id', ['USER', 'ADMIN', 'MASTER'], passportEnum.JWT, shiftController.actPostByShId);
         this.put('/suspendpanel', ['USER', 'ADMIN', 'MASTER'], passportEnum.JWT, shiftController.suspendPanel);
+        this.put('/delallpost', ['ADMIN', 'MASTER'], passportEnum.JWT, shiftController.delAllpostpones);
         this.put('/:id', ['USER', 'ADMIN', 'MASTER'], passportEnum.JWT, shiftController.updShift);
+        this.delete('/:id', ['ADMIN', 'MASTER'], passportEnum.JWT, shiftController.delPostponeById);
     };
 };

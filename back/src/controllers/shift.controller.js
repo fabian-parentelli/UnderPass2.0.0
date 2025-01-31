@@ -98,10 +98,42 @@ const activePostpone = async (req, res) => {
     };
 };
 
+const actPostByShId = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const result = await shiftService.actPostByShId(id);
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof ShiftNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
 const updShift = async (req, res) => {
     const { id } = req.params;
     try {
-        const result = await shiftService.updShift(id, { ...req.body }, {...req.user});
+        const result = await shiftService.updShift(id, { ...req.body }, { ...req.user });
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof ShiftNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
+const delPostponeById = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const result = await shiftService.delPostponeById(id);
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof ShiftNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
+const delAllpostpones = async (req, res) => {    
+    try {
+        const result = await shiftService.delAllpostpones({ ...req.body });
         if (result) return res.sendSuccess(result);
     } catch (error) {
         if (error instanceof ShiftNotFound) return res.sendClientError(error.message);
@@ -111,5 +143,5 @@ const updShift = async (req, res) => {
 
 export {
     newPostpone, newShift, getDataShift, getPostponeByAdminId, getPostponeById, getShifts, suspend,
-    activePostpone, updShift, suspendPanel
+    activePostpone, updShift, suspendPanel, actPostByShId, delPostponeById, delAllpostpones
 };

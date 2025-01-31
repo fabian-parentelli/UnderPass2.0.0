@@ -55,4 +55,14 @@ const deleteAlert = async (req, res) => {
     };
 };
 
-export { getAll, amount, updActive, getByUser, deleteAlert };
+const deleteAll = async (req, res) => {
+    try {
+        const result = await alertsServices.deleteAll({ ...req.body });
+        if (result) return res.sendSuccess(result);
+    } catch (error) {
+        if (error instanceof AllertsNotFound) return res.sendClientError(error.message);
+        res.sendServerError(error.message);
+    };
+};
+
+export { getAll, amount, updActive, getByUser, deleteAlert, deleteAll };

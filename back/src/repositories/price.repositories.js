@@ -19,6 +19,11 @@ export default class PriceRepository {
         return result;
     };
 
+    getMaxCounterByType = async (type) => {
+        const result = await dataManager.getMaxCounterByType(type);
+        return result;
+    };
+
     // Prices
 
     newPrice = async (price) => {

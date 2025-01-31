@@ -1,11 +1,13 @@
 import './accepUpdateDateShift.scss';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { monthsArray } from '../../../../utils/typeShifts.utils.js';
 import { getShiftsApi } from '../../../../helpers/shift/getShifts.api.js';
+import { actPostByShIdApi } from '../../../../helpers/shift/actPostByShId.api.js';
 
 const AccepUpdateDateShift = ({ id, setLoading }) => {
 
+    const navigate = useNavigate();
     const [shift, setShift] = useState(null);
 
     useEffect(() => {
@@ -18,8 +20,12 @@ const AccepUpdateDateShift = ({ id, setLoading }) => {
         }; fetchData();
     }, []);
 
-    const handleActive = () => {
-
+    const handleActive = async () => {
+        setLoading(true);
+        const response = await actPostByShIdApi(shift._id);
+        if (response.status === 'success') navigate('/');
+        else console.error(response.error);
+        setLoading(false);
     };
 
     return (
@@ -30,8 +36,7 @@ const AccepUpdateDateShift = ({ id, setLoading }) => {
                     <div className='line' style={{ backgroundColor: '#ec3639', width: '50%' }}></div>
                     <p>La reserva del día {shift.oldDate.day}/{monthsArray.findIndex(d => d === shift.oldDate.month) + 1}/{shift.oldDate.year} - {shift.oldHour.join(' - ')}.</p>
                     <p>A pasado para el {shift.day.day}/{monthsArray.findIndex(d => d === shift.day.month) + 1}/{shift.day.year} - {shift.hour.join(' - ')} Horas.</p>
-                    
-                    <button className='btn btnSH'>Volver</button>
+                    <button className='btn btnSH' onClick={handleActive}>Volver</button>
                 </>
             }
         </div>

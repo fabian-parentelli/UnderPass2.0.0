@@ -1,0 +1,14 @@
+.cleanDataBase {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    .cleanDataBaseSelect {
+        display: flex;
+        flex-direction: column;
+
+        select {
+            width: 200px;
+        }
+    }
+}

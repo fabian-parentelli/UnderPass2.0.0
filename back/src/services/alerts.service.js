@@ -70,4 +70,20 @@ const deleteAlert = async (id) => {
     return { status: 'success', result };
 };
 
-export { getAll, amount, newAlert, updActive, getByUser, updateOneActive, deleteAlert };
+const getAlertMax = async (days) => {
+    const total = await alertsRepository.alertAmount() || 0;
+    const cutoffDate = new Date();
+    cutoffDate.setDate(cutoffDate.getDate() - +days);
+    const defeated = await alertsRepository.getAlertQuery({ date: { $lt: cutoffDate } }) || [];
+    return { total, defeated };
+};
+
+const deleteAll = async ({ ids }) => {
+    const result = await alertsRepository.deleteMany({ _id: { $in: ids } })
+    if (!result) throw new AllertsNotFound(`No se pueden eliminar las alertas`);
+    return { status: 'success', result };
+};
+
+export {
+    getAll, amount, newAlert, updActive, getByUser, updateOneActive, deleteAlert, getAlertMax, deleteAll
+};

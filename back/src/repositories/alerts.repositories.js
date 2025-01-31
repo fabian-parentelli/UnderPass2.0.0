@@ -62,4 +62,19 @@ export default class AlertsRepository {
         const result = await alertsManager.deleteAlert(id);
         return result;
     };
+    
+    alertAmount = async () => {
+        const result = await alertsManager.alertAmount();
+        return result;
+    };
+    
+    getAlertQuery = async (query) => {
+        const result = await alertsManager.getAlertQuery(query);
+        return result;
+    };
+    
+    deleteMany = async (query) => {
+        const result = await alertsManager.deleteMany(query);
+        return result;
+    };
 }
