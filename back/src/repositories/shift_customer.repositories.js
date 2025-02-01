@@ -1,7 +1,7 @@
 import { typeCustomer } from '../dao/DTOS/shiftCustomer.dto.js';
 import { shiftCustomerManager } from '../dao/manager/index.manager.js';
 
-export default class ShiftCustomerRepository {
+export default class CustomerRepository {
 
     newCustomer = async (customer) => {        
         const result = await shiftCustomerManager.newCustomer(customer);
@@ -19,8 +19,8 @@ export default class ShiftCustomerRepository {
         return result;
     };
 
-    getShiftCustomerById = async (id) => {
-        const result = await shiftCustomerManager.getShiftCustomerById(id);
+    getById = async (id) => {
+        const result = await shiftCustomerManager.getById(id);
         return result;
     };
     

@@ -25,8 +25,9 @@ import NotesRouter from "./notes.router.js";
 import SitesRouter from "./sites.router.js";
 import ShiftconfRouter from "./shiftconf.router.js";
 import ShiftRouter from "./shift.router.js";
-import ShiftCustomerRouter from "./shiftCustomer.router.js";
+import ShiftCustomerRouter from "./shift_customer.router.js";
 import CodeRouter from "./code.router.js";
+import PostponeRouter from "./shift_postpone.router.js";
 
 export const userRouter = new UserRouter().getRouter();
 export const imagenRouter = new ImagenRouter().getRouter();
@@ -57,3 +58,4 @@ export const shiftconfRouter = new ShiftconfRouter().getRouter();
 export const shiftRouter = new ShiftRouter().getRouter();
 export const shiftCustomerRouter = new ShiftCustomerRouter().getRouter();
 export const codeRouter = new CodeRouter().getRouter();
+export const postponeRouter = new PostponeRouter().getRouter();

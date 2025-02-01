@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 
-const shiftPostponeCollection = 'shiftPostpone';
+const postponeCollection = 'shift_postpone';
 
-const shiftPostponeSchema = new mongoose.Schema({
+const postponeSchema = new mongoose.Schema({
     shiftId: { type: mongoose.Schema.Types.ObjectId, ref: 'shift' },
     to: { type: String },
     message: { type: String },
@@ -19,8 +19,8 @@ const autoPopulateShift = function (next) {
     next();
 };
 
-shiftPostponeSchema.pre('find', autoPopulateShift);
-shiftPostponeSchema.pre('findOne', autoPopulateShift);
-shiftPostponeSchema.pre('findById', autoPopulateShift);
+postponeSchema.pre('find', autoPopulateShift);
+postponeSchema.pre('findOne', autoPopulateShift);
+postponeSchema.pre('findById', autoPopulateShift);
 
-export const shiftPostponeModel = mongoose.model(shiftPostponeCollection, shiftPostponeSchema);
+export const postponeModel = mongoose.model(postponeCollection, postponeSchema);

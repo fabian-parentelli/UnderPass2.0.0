@@ -5,14 +5,17 @@ import AlertsForm from '../../../../../component/alerts/AlertsForm/AlertsForm.js
 import { newDataPassApi } from '../../../../../helpers/dataPass/newDataPass.api.js';
 import { deleteAlertsApi } from '../../../../../helpers/alerts/deleteAlerts.api.js';
 import { updMaxCountConfApi } from '../../../../../helpers/dataPass/updMaxCount.api.js';
+import { delManyPostponeApi } from '../../../../../helpers/shift/deleManyPostpone.api.js';
 import { deleteAllAlertsApi } from '../../../../../helpers/alerts/deleteAllAlerts.api.js';
+import { deletePostponeByIdApi } from '../../../../../helpers/shift/deletePostponeById.api.js';
 import { getMaxCounterByTypeApi } from '../../../../../helpers/dataPass/getMaxCounterByType.api.js';
 import ShiftPostponePanelTab from '../../../../../component/shift/calendar/ShiftPostponePanel/ShiftPostponePanelTab/ShiftPostponePanelTab.jsx';
-import { deletePostponeByIdApi } from '../../../../../helpers/shift/deletePostponeById.api.js';
-import { delManyPostponeApi } from '../../../../../helpers/shift/deleManyPostpone.api.js';
+import ShiftTableConfig from '../../../../../component/shift/ShiftTableForConfig/ShiftTableConfig.jsx';
+import { deleteShiftByIdApi } from '../../../../../helpers/shift/deleShiftById.api.js';
+import { deleteAllShiftsApi } from '../../../../../helpers/shift/deleteAllShifts.api.js';
 
 const CleanAlerts = ({ setLoading, type }) => {
-
+    
     const [days, setDays] = useState({ type: type, maxCount: 0 });
     const [snack, setSnack] = useState({ message: { status: '', mess: '' }, open: false });
 
@@ -40,14 +43,13 @@ const CleanAlerts = ({ setLoading, type }) => {
         setSnack({ message: { status: '', mess: '' }, open: false });
     };
 
-    // Alertas ... Tengo que ver según el tipo es el helper que llamo.....
-
     const handleDeleteAlertById = async (id) => {
         if (snack.open) setSnack({ message: { status: '', mess: '' }, open: false });
         setLoading(true);
         let response;
         if (type === 'maxAlert') response = await deleteAlertsApi(id);
         if (type === 'maxPostp') response = await deletePostponeByIdApi(id);
+        if (type === 'maxShift') response = await deleteShiftByIdApi(id);
         if (response.status === 'success') {
             const data = { ...days };
             const result = data.countData.defeated.filter(def => def._id !== id);
@@ -67,6 +69,7 @@ const CleanAlerts = ({ setLoading, type }) => {
         let response;
         if (type === 'maxAlert') response = await deleteAllAlertsApi({ ids: ids });
         if (type === 'maxPostp') response = await delManyPostponeApi({ ids: ids });
+        if (type === 'maxShift') response = await deleteAllShiftsApi({ ids: ids });
         if (response.status === 'success') {
             setSnack({ message: { status: 'success', mess: 'Todo ha sido eliminado' }, open: true });
             setDays({ ...days, countData: { ...days.countData, defeated: [], total: 0 } });
@@ -123,6 +126,10 @@ const CleanAlerts = ({ setLoading, type }) => {
 
             {type === 'maxPostp' && days.countData && days.countData?.defeated &&
                 <ShiftPostponePanelTab postpones={days.countData.defeated} deleteById={handleDeleteAlertById} />
+            }
+
+            {type === 'maxShift' && days.countData && days.countData?.defeated &&
+                <ShiftTableConfig shifts={days.countData.defeated} deleteById={handleDeleteAlertById} />
             }
 
             <SnackbarAlert message={snack.message} open={snack.open} />

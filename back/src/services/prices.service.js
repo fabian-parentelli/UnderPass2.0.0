@@ -36,9 +36,9 @@ const getMaxCounterByType = async (type) => {
     const result = await priceRepository.getMaxCounterByType(type);
     if (!result) throw new PriceNotFound(`Error al obtener datos de ${type}`);
     if (type === 'maxAlert') result.countData = await alertsServices.getAlertMax(result.maxCount);
-    if(type === 'maxPostp') result.countData = await shiftServices.getPostponeMax(result.maxCount);
+    if (type === 'maxPostp') result.countData = await shiftServices.getPostponeMax(result.maxCount);
+    if (type === 'maxShift') result.countData = await shiftServices.getShiftMax(result.maxCount);
     return { status: 'success', result };
-    // Seguir agregando las búsquedas turnos - turnos pospuestos - eventos - otros ....
 };
 
 const getDataPass = async (country) => {

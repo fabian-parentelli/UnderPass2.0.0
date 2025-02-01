@@ -18,4 +18,16 @@ export default class Shift {
         return await shiftModel.findById(id).lean();
     };
 
+    shiftAmount = async () => {
+        return await shiftModel.countDocuments();
+    };
+
+    delShiftById = async (id) => {
+        return await shiftModel.findByIdAndDelete(id);
+    };
+
+    deleteMany = async(query) => {
+        return await shiftModel.deleteMany(query);
+    };
+
 };

@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import mongoosePaginate from 'mongoose-paginate-v2';
 
-const shiftCustomerCollection = 'shiftcustomer';
+const shiftCustomerCollection = 'shift_customer';
 
 const shiftCustomerSchema = new mongoose.Schema({
     userId: [{ type: String }],

@@ -1,10 +1,10 @@
-import * as shiftCustomerService from '../services/shiftCustomer.service.js';
+import * as postponeService from '../services/shift_postpone.service.js';
 import { ShiftNotFound } from '../utils/custom-exceptions.utils.js';
 
-const getShiftCustomerByUserId = async (req, res) => {
-    const { uid } = req.params;    
+const denied = async (req, res) => {
+    const { id } = req.params;
     try {
-        const result = await shiftCustomerService.getShiftCustomerByUserId(uid);
+        const result = await postponeService.denied(id);
         if (result) return res.sendSuccess(result);
     } catch (error) {
         if (error instanceof ShiftNotFound) return res.sendClientError(error.message);
@@ -12,4 +12,4 @@ const getShiftCustomerByUserId = async (req, res) => {
     };
 };
 
-export { getShiftCustomerByUserId };
+export { denied };

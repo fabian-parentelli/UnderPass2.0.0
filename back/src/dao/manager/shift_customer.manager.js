@@ -1,4 +1,4 @@
-import { shiftCustomerModel } from '../models/shiftCustomer.model.js';
+import { shiftCustomerModel } from '../models/shift_customer.model.js';
 
 export default class ShiftCustomer {
 
@@ -14,7 +14,7 @@ export default class ShiftCustomer {
         return await shiftCustomerModel.findOne({ email: email }).lean();
     };
 
-    getShiftCustomerById = async (id) => {
+    getById = async (id) => {
         return await shiftCustomerModel.findById(id).lean();
     };
 

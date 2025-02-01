@@ -1,4 +1,4 @@
-import { shiftconfRepository, shiftCustomerRepository } from "../../repositories/index.repositories.js";
+import { shiftconfRepository, customerRepository } from "../../repositories/index.repositories.js";
 import { formatText } from "../../utils/formatText.utils.js";
 import { months, setHoursBack, transformDate } from '../../utils/servicesUtils/shift.utils.js';
 import { shiftManager } from "../manager/index.manager.js";
@@ -80,7 +80,7 @@ const filterDay = (shifts, day, roomAbilityNumber = 0, hasAbility = false) => {
 
 const getCustomer = async (shifts) => {
     for (const shift of shifts) {
-        const customer = await shiftCustomerRepository.getShiftCustomerById(shift.customer);
+        const customer = await customerRepository.getById(shift.customer);
         if (customer) shift.customerData = customer;
     };
     return shifts;

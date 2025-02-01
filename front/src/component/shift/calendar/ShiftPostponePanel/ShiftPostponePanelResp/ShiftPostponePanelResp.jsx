@@ -18,24 +18,26 @@ const ShiftPostponePanelResp = ({ postpone, setModal }) => {
     return (
         <div className='shiftPostponePanelResp'>
             <h2>Respuesta de la propuesta de posponer.</h2>
-            <p>El usuario a decidido <span style={{ color: postpone.accept ? 'green' : '#ec3639' }}>
+            <p>El {postpone.to === 'admin' ? 'administrador' : 'usuario'} a decidido <span style={{ color: postpone.accept ? 'green' : '#ec3639' }}>
                 {postpone.accept ? 'posponer' : 'suspender'}</span>.
             </p>
 
             {!postpone.accept ?
                 <>
                     <p className='pgray'>{postpone.resMessage}</p>
-                    <div>
-                        <p>{postpone.customerData.name}</p>
-                        <p>{postpone.customerData.email}</p>
-                        <p>cel: {postpone.customerData.phone}</p>
-                    </div>
+                    {postpone?.customerData &&
+                        <div>
+                            <p>{postpone.customerData.name}</p>
+                            <p>{postpone.customerData.email}</p>
+                            <p>cel: {postpone.customerData.phone}</p>
+                        </div>
+                    }
                 </>
                 : <>
                     <p className='pgray'>{postpone.resMessage}</p>
                 </>
             }
-            
+
             <button className='btn btnSH shiftPostponePanelRespBtn' onClick={handleConfirm}>
                 {loading ? <Spinner size={25} color={'gray'} /> : 'Confirmar'}
             </button>

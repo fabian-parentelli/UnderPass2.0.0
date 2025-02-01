@@ -1,5 +1,5 @@
 import {
-    shiftconfRepository, shiftCustomerRepository, shiftRepository, alertsRepository
+    shiftconfRepository, customerRepository, shiftRepository, alertsRepository
 } from "../../../repositories/index.repositories.js";
 import { ShiftNotFound } from "../../custom-exceptions.utils.js";
 import { shiftSuspendHtml } from "../../html/shftSuspendHtml.utils.js";
@@ -11,7 +11,7 @@ const suspendByPanel = async (shift, user) => {
     const updShift = await shiftRepository.update(shift);
     if (!updShift) throw new ShiftNotFound('Error al desactivar la resreva');
 
-    const customer = await shiftCustomerRepository.getShiftCustomerById(shift.customer);
+    const customer = await customerRepository.getById(shift.customer);
     if (!customer) throw new ShiftNotFound('No podemos accedera los datos del usuario');
 
     const config = await shiftconfRepository.getByUserId(shift.userId);

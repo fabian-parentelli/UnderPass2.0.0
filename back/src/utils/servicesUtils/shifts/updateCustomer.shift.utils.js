@@ -1,4 +1,4 @@
-import { userRepository, shiftCustomerRepository } from "../../../repositories/index.repositories.js";
+import { userRepository, customerRepository } from "../../../repositories/index.repositories.js";
 import { ShiftNotFound } from "../../custom-exceptions.utils.js";
 
 const updateCustomer = async (shift) => {
@@ -16,17 +16,17 @@ const updateCustomer = async (shift) => {
         shift.customer.customerUser = user._id;
     };
 
-    let customer = await shiftCustomerRepository.getShiftCustomerByEmail(shift.customer.email) || null;
+    let customer = await customerRepository.getShiftCustomerByEmail(shift.customer.email) || null;
     
     if (customer) {
         const userIdIncludes = customer.userId.includes(shift.userId);
         if (!userIdIncludes) customer.userId.push(shift.userId);
-        const result = await shiftCustomerRepository.update(customer);
+        const result = await customerRepository.update(customer);
         if(!result) throw new ShiftNotFound('Error al actualizar datos del cliente');
 
     } else {
 
-        customer = await shiftCustomerRepository.newCustomer({
+        customer = await customerRepository.newCustomer({
             userId: [shift.userId],
             name: shift.customer.name,
             phone: shift.customer.phone,

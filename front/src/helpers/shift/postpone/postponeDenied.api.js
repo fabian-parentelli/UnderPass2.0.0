@@ -1,9 +1,9 @@
 const url = import.meta.env.VITE_API_URL;
 
-async function shiftSuspendApi(id) {
+async function postponeDeniedApi(id) {
 
     const token = localStorage.getItem('token');
-    const response = await fetch(`${url}/api/shift/suspend/${id}`, {
+    const response = await fetch(`${url}/api/postpone/denied/${id}`, {
         method: 'PUT',
         headers: {
             'Accept': 'application/json',
@@ -15,4 +15,4 @@ async function shiftSuspendApi(id) {
     if(content.data) return content.data;
 };
 
-export { shiftSuspendApi };
+export { postponeDeniedApi };

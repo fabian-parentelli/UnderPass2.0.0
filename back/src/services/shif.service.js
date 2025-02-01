@@ -1,5 +1,5 @@
 import {
-    shiftRepository, shiftconfRepository, shiftCustomerRepository, shiftPostponeRepository,
+    shiftRepository, shiftconfRepository, customerRepository, postponeRepository,
     alertsRepository
 } from "../repositories/index.repositories.js";
 import { ShiftNotFound } from '../utils/custom-exceptions.utils.js';
@@ -10,7 +10,7 @@ import { sendEmail } from "./email.service.js";
 
 const newPostpone = async (postpone) => {
     const { shift, to, message } = postpone;
-    const result = await shiftPostponeRepository.newPostpone({ shiftId: shift._id, to, message, adminId: shift.userId });
+    const result = await postponeRepository.newPostpone({ shiftId: shift._id, to, message, adminId: shift.userId });
     if (!result) throw new ShiftNotFound('No se puede enviar la propuesta de posponer.');
     const comunication = await indexShift.emailPostponer(postpone, result);
     if (!comunication) throw new ShiftNotFound(`No pudimos contactar al ${to === 'admin' ? 'Administrador' : 'Cliente'}`);
@@ -45,13 +45,13 @@ const getDataShift = async (uid, month, year, day, room, sections) => {
 };
 
 const getPostponeByAdminId = async (id, active) => {
-    const result = await shiftPostponeRepository.getByAdminId(id, active)
+    const result = await postponeRepository.getByAdminId(id, active)
     if (!result) throw new ShiftNotFound('No se puede obtener las propuestas de porponer');
     return { status: 'success', result };
 };
 
 const getPostponeById = async (id, { user }) => {
-    const result = await shiftPostponeRepository.getById(id, user);
+    const result = await postponeRepository.getById(id, user);
     if (!result) throw new ShiftNotFound('No se puede ver la alerta');
     return { status: 'success', result };
 };
@@ -62,7 +62,7 @@ const getShifts = async (uid, month, year, customer, usercustomer, user, id, act
     if (id) query._id = id;
     if (customer) query.customer = customer;
     if (usercustomer && user) {
-        const customerData = await shiftCustomerRepository.getShiftCustomerByEmail(user.email);
+        const customerData = await customerRepository.getShiftCustomerByEmail(user.email);
         if (customerData) query.customer = customerData._id;
         else return { status: 'success', result: [] };
     };
@@ -91,52 +91,22 @@ const suspendPanel = async (data, { user }) => {
     return result;
 };
 
-const suspend = async (postponeId) => {
-    let result;
-    const postpone = await shiftPostponeRepository.getById(postponeId);
-    const { shiftId: shift, ...rest } = postpone;
-    rest.shiftId = shift._id;
-    shift.active = false;
-    const updateShift = await shiftRepository.update(shift);
-    if (!updateShift) throw new ShiftNotFound('Error al suspender el turno.');
-    if (rest.to === 'customer') {
-        rest.response = true;
-        rest.accept = false;
-        if (shift.isPay) result = await shiftUtils.returnPay(shift, rest); // Esto esta para trabajar.....
-        else {
-            rest.resMessage = 'Lamentamos informarte que la reserva ha sido suspendida. Como el pago no se realizó a través de nuestra plataforma, no podemos intervenir en el proceso de devolución. Por favor, coordina directamente con la persona o entidad correspondiente para gestionar el reembolso.'
-            await alertsRepository.newAlert({
-                eventId: rest._id,
-                userId: rest.adminId,
-                type: 'resShiftPostponeCA_notIsPay'
-            });
-        };
-        result = await shiftPostponeRepository.update(rest);
-        if (!result) throw new ShiftNotFound('No se puede ver la alerta');
-        return { status: 'success', isPay: false };
-    } else {
-        console.log('Esta parte esta para construir');
-
-        // Esto es si es del admin al usuario ...... a trabajar ----------
-    };
-};
-
 const activePostpone = async (id) => {
-    const postpone = await shiftPostponeRepository.getById(id);
+    const postpone = await postponeRepository.getById(id);
     const { shiftId: shift, ...rest } = postpone;
     rest.shiftId = shift._id;
     rest.active = false;
-    const result = await shiftPostponeRepository.update(rest);
+    const result = await postponeRepository.update(rest);
     if (!result) throw new ShiftNotFound('No se puede ver la alerta');
     return { status: 'success', result };
 };
 
 const actPostByShId = async (id) => {
-    const postpone = await shiftPostponeRepository.getByShiftId(id);
+    const postpone = await postponeRepository.getByShiftId(id);
     const { shiftId: shift, ...rest } = postpone;
     rest.shiftId = shift._id;
     rest.active = false;
-    const result = await shiftPostponeRepository.update(rest);
+    const result = await postponeRepository.update(rest);
     if (!result) throw new ShiftNotFound('No se puede ver la alerta');
     return { status: 'success', result };
 };
@@ -148,26 +118,47 @@ const updShift = async (id, shift, { user }) => {
 };
 
 const getPostponeMax = async (days) => {
-    const total = await shiftPostponeRepository.postponeAmount() || 0;
+    const total = await postponeRepository.postponeAmount() || 0;
     const cutoffDate = new Date();
     cutoffDate.setDate(cutoffDate.getDate() - +days);
-    const defeated = await shiftPostponeRepository.getPostPone({ date: { $lt: cutoffDate } }) || [];
+    const defeated = await postponeRepository.getPostPone({ date: { $lt: cutoffDate } }) || [];
+    return { total, defeated };
+};
+
+const getShiftMax = async (days) => {
+    const total = await shiftRepository.shiftAmount() || 0;
+    const cutoffDate = new Date();
+    cutoffDate.setDate(cutoffDate.getDate() - +days);
+    const defeated = await shiftRepository.getShifts({ date: { $lt: cutoffDate } }) || [];    
     return { total, defeated };
 };
 
 const delPostponeById = async (id) => {
-    const result = await shiftPostponeRepository.delPostponeById(id);
+    const result = await postponeRepository.delPostponeById(id);
     if (!result) throw new ShiftNotFound('Error al eliminar el postpone de base de datos');
     return { status: 'success', result };
 };
 
+const delShiftById = async (id) => {
+    const result = await shiftRepository.delShiftById(id);
+    if (!result) throw new ShiftNotFound('Error al eliminar el turno de la base de datos');
+    return { status: 'success', result };
+};
+
 const delAllpostpones = async ({ ids }) => {
-    const result = await shiftPostponeRepository.deleteMany({ _id: { $in: ids } })
+    const result = await postponeRepository.deleteMany({ _id: { $in: ids } })
+    if (!result) throw new AllertsNotFound(`No se pueden eliminar las propuestas`);
+    return { status: 'success', result };
+};
+
+const delAllShifts = async ({ ids }) => {
+    const result = await shiftRepository.deleteMany({ _id: { $in: ids } })
     if (!result) throw new AllertsNotFound(`No se pueden eliminar las propuestas`);
     return { status: 'success', result };
 };
 
 export {
-    newPostpone, newShift, getDataShift, getPostponeByAdminId, getPostponeById, getShifts, suspend,
-    activePostpone, updShift, suspendPanel, actPostByShId, getPostponeMax, delPostponeById, delAllpostpones
+    newPostpone, newShift, getDataShift, getPostponeByAdminId, getPostponeById, getShifts,
+    activePostpone, updShift, suspendPanel, actPostByShId, getPostponeMax, delPostponeById, delAllpostpones,
+    getShiftMax, delShiftById, delAllShifts
 };

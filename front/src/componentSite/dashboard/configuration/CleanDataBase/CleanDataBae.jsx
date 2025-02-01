@@ -17,8 +17,16 @@ const CleanDataBase = ({ setLoading }) => {
                     <option value="">Elegir base de datos</option>
                     <option value="maxAlert">Alertas</option>
                     <option value="maxPostp">Turnos pospuestos</option>
+                    <option value="maxShift">Turnos</option>
                 </select>
             </div>
+
+            {vew === '' &&
+                <>
+                    <p>1- Configuración de días, en el cual se concidera vencido un dato.</p>
+                    <p>2- Borrar individualmente o de forma grupal.</p>
+                </>
+            }
 
             {vew && <CleanAlerts setLoading={setLoading} type={vew} />}
         </div>

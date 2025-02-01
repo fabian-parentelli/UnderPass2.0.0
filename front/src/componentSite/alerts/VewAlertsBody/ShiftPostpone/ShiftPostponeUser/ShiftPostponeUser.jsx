@@ -3,9 +3,9 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { monthsArray } from '../../../../../utils/typeShifts.utils.js';
 import SnackbarAlert from '../../../../../component/utils/SnackbarAlert.jsx';
-import { shiftSuspendApi } from '../../../../../helpers/shift/shiftSuspend.api.js';
 import { getShiftconfApi } from '../../../../../helpers/shiftsconf/getShiftconf.api.js';
 import ShiftAlmanac from '../../../../../component/shift/ShiftAlmanac/ShiftAlmanac.jsx';
+import { postponeDeniedApi } from '../../../../../helpers/shift/postpone/postponeDenied.api.js';
 
 const ShiftPostponerUser = ({ postpone, setLoading }) => {
 
@@ -16,7 +16,10 @@ const ShiftPostponerUser = ({ postpone, setLoading }) => {
     const handleSuspend = async () => {
         setLoading(true);
         if (sanck.open) setSnack({ message: { satatus: '', mess: '' }, open: false });
-        const response = await shiftSuspendApi(postpone._id);
+        const response = await postponeDeniedApi(postpone._id);
+
+        console.log(response);
+
         if (response.status === 'success') setMessage(true);
         else setSnack({ message: { satatus: 'error', mess: response.error }, open: true });
         setLoading(false);
@@ -34,7 +37,7 @@ const ShiftPostponerUser = ({ postpone, setLoading }) => {
     if (message) return (
         <div className='shiftPostponerUser'>
             <p className='shiftPostponerUserIsNotPay'>La reserva ha sido suspendida. Como el pago no se realizó a través de nuestra plataforma, no podemos intervenir en el proceso de devolución. Por favor, coordina directamente con la persona o entidad correspondiente para gestionar el reembolso.</p>
-            <Link to={`/shift/${postpone.shiftId.placeId}`}>
+            <Link to={postpone?.shiftId?.placeId ? `/shift/${postpone.shiftId.placeId}` : '/'}>
                 <button className='btn btnSH' style={{ marginTop: '1rem' }}>Sitio</button>
             </Link>
         </div>
@@ -59,6 +62,16 @@ const ShiftPostponerUser = ({ postpone, setLoading }) => {
                     {postpone.shiftId.sections && <p><span>Sala:</span> {postpone.shiftId.sections}</p>}
                     <p><span>Alerta generada: </span>{new Date(postpone.date).toLocaleString()}</p>
                     <p className='pgray'><span>Número de reserva:</span> {postpone.shiftId._id}</p>
+
+                    {postpone?.customerData &&
+                        <div className='shiftPostponerUserRight'>
+                            <p className='colUS'>Cliente:</p>
+                            <p><span>Nombre:</span> {postpone.customerData?.name}</p>
+                            <p><span>Email:</span> {postpone.customerData?.email}</p>
+                            <p><span>cel:</span> {postpone.customerData?.phone}</p>
+                        </div>
+                    }
+
                 </div>
 
             </section>

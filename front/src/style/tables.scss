@@ -67,3 +67,12 @@ table {
     }
   }
 }
+
+.tableBack {
+  cursor: pointer;
+  transition: .3s ease-in-out;
+
+  &:hover {
+    background-color: #dfdfdf;
+  }
+}

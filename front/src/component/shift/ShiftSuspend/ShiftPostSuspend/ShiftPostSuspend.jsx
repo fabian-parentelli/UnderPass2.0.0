@@ -12,6 +12,9 @@ const ShiftPostSuspend = ({ admin, shift, setSnack, setModal }) => {
     const [password, setPassword] = useState(null);
     const [loadin, setLoading] = useState(false);
 
+    console.log(admin);
+    
+
     const handleSuspend = async () => {
         setLoading(true);
         const query = { id: shift._id, admin };

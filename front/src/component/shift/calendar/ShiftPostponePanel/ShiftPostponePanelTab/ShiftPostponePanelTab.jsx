@@ -15,6 +15,9 @@ const ShiftPostponePanelTab = ({ postpones, deleteById }) => {
     const [modal, setModal] = useState({ open: false, id: null, message: '' });
     const handleModal = (id, message) => setModal({ open: true, id, message });
 
+    console.log(postpones);
+    
+
     return (
         <div className='ShiftPostponePanelTab'>
 

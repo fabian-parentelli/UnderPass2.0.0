@@ -25,9 +25,9 @@ import Notes from './notes.manager.js';
 import Sites from './sites.manager.js';
 import Shiftconf from './shiftconf.manager.js';
 import Shift from './shift.manager.js';
-import ShiftCustomer from './shiftCustomer.manager.js';
+import ShiftCustomer from './shift_customer.manager.js';
 import Code from './code.manager.js';
-import ShiftPostpone from './shiftPostpone.manager.js';
+import Postpone from './shift_postpone.manager.js';
 
 export const userManager = new User();
 export const tutorialsManager = new Tutorials();
@@ -58,4 +58,4 @@ export const shiftconfManager = new Shiftconf();
 export const shiftManager = new Shift();
 export const shiftCustomerManager = new ShiftCustomer();
 export const codeManager = new Code();
-export const shiftPostponeManager = new ShiftPostpone();
+export const postponeManager = new Postpone();
