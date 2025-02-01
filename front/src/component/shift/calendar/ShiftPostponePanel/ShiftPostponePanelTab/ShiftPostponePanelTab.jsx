@@ -9,14 +9,11 @@ import MarkUnreadChatAltIcon from '@mui/icons-material/MarkUnreadChatAlt';
 import { useLoginContext } from '../../../../../context/LoginContext.jsx';
 import ShiftPostponePanelResp from '../ShiftPostponePanelResp/ShiftPostponePanelResp.jsx';
 
-const ShiftPostponePanelTab = ({ postpones, deleteById }) => {
+const ShiftPostponePanelTab = ({ postpones, deleteById, setPostpones }) => {
 
     const { user } = useLoginContext();
     const [modal, setModal] = useState({ open: false, id: null, message: '' });
     const handleModal = (id, message) => setModal({ open: true, id, message });
-
-    console.log(postpones);
-    
 
     return (
         <div className='ShiftPostponePanelTab'>
@@ -91,7 +88,11 @@ const ShiftPostponePanelTab = ({ postpones, deleteById }) => {
                                 <ModalCustom modalIsOpen={modal.open} closeModal={() => setModal({ open: false, id: null, message: '' })}>
                                     {modal.message === 'mess'
                                         ? <p>{post.message}</p>
-                                        : <ShiftPostponePanelResp postpone={post} setModal={setModal} />
+                                        : <ShiftPostponePanelResp 
+                                            postpone={post} 
+                                            setModal={setModal} 
+                                            postpones={postpones}
+                                            setPostpones={setPostpones} />
                                     }
                                 </ModalCustom>
                             }

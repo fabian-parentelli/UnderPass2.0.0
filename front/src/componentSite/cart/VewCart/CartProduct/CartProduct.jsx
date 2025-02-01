@@ -5,7 +5,7 @@ import BigImg from '../../../../component/utils/BigImg/BigImg';
 import { useCartContext } from '../../../../context/CartContext';
 import Counter from '../../../../component/utils/Counter/Counter';
 import { getLastPriceApi } from '../../../../helpers/prices/getLastPrice.api.js';
-import typeCart from '../../../../utils/typeCart.utils.js';
+import { typeCart_caUtils } from '../../../../utils/cart_utils/typeCart.cart.utils.js';
 
 const CartProduct = ({ item }) => {
 
@@ -29,7 +29,7 @@ const CartProduct = ({ item }) => {
                 <p>{item.name}</p>
                 <p className='pID'>{item._id}</p>
             </td>
-            <td>{typeCart(item.is)}</td>
+            <td>{typeCart_caUtils(item.is)}</td>
             <td>${item.price}</td>
             <td><Counter prod={item} /></td>
             {<td style={{ width: '80px' }}>${totalProduct(item._id)}</td>}

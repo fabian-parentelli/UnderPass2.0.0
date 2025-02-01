@@ -1,9 +1,9 @@
 const url = import.meta.env.VITE_API_URL;
 
-const getPostponesByAdminIdApi = async (id, active) => {
+const getPostponeByIdApi = async (id) => {
 
     const token = localStorage.getItem('token');
-    const response = await fetch(`${url}/api/shift/postpones/${id}/active/${active}`, {
+    const response = await fetch(`${url}/api/postpone/${id}`, {
         method: 'GET',
         headers: {
             'Accept': 'application/json',
@@ -16,4 +16,4 @@ const getPostponesByAdminIdApi = async (id, active) => {
     if (content.data) return content.data;
 };
 
-export { getPostponesByAdminIdApi };
+export { getPostponeByIdApi };

@@ -2,11 +2,11 @@ import './sellerTable.scss';
 import { Link } from 'react-router-dom';
 import { Fragment, useState } from 'react';
 import BigImg from '../../utils/BigImg/BigImg.jsx';
-import typeCart from '../../../utils/typeCart.utils.js';
 import { imgages } from '../../../utils/imagesData.utils.js';
 import GetTicketByOrder from '../../ticket/GetTicketByOrder.jsx';
 import ModalCustom from '../../utils/ModalCustom/ModalCustom.jsx';
 import { useLoginContext } from '../../../context/LoginContext.jsx';
+import { typeCart_caUtils } from '../../../utils/cart_utils/typeCart.cart.utils.js';
 
 const SellerTable = ({ values, inWallet = false, generateOrdenPay }) => {
 
@@ -124,7 +124,7 @@ const SellerTable = ({ values, inWallet = false, generateOrdenPay }) => {
                                                             />
                                                         </td>
                                                         <td>{item.data?.name} {item.data?.title}</td>
-                                                        <td>{typeCart(item?.is)}</td>
+                                                        <td>{typeCart_caUtils(item?.is)}</td>
                                                         <td>${item?.data?.price}</td>
                                                         <td>{item?.quantity}</td>
                                                         <td>${item?.quantity * item?.data?.price}</td>

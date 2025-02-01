@@ -1,12 +1,13 @@
 const url = import.meta.env.VITE_API_URL;
 
-const deletePostponeByIdApi = async (id) => {
+const getPostponesByAdminIdApi = async (id, active) => {
 
     const token = localStorage.getItem('token');
-    const response = await fetch(`${url}/api/shift/${id}`, {
-        method: 'DELETE',
+    const response = await fetch(`${url}/api/postpone/byadminid/${id}/active/${active}`, {
+        method: 'GET',
         headers: {
             'Accept': 'application/json',
+            'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`,
         }
     });
@@ -15,4 +16,4 @@ const deletePostponeByIdApi = async (id) => {
     if (content.data) return content.data;
 };
 
-export { deletePostponeByIdApi };
+export { getPostponesByAdminIdApi };

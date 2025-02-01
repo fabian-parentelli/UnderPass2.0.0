@@ -3,7 +3,7 @@ import { Spinner } from 'faradaycomp';
 import { useEffect, useState } from 'react';
 import TextAreas from '../../../utils/TextAreas/TextAreas';
 import { monthMapping } from '../../../../utils/typeShifts.utils.js';
-import { newPostponeApi } from '../../../../helpers/shift/newPostpone.api.js';
+import { newPostponeApi } from '../../../../helpers/shift/postpone/newPostpone.api.js';
 
 const ShiftPospone = ({ admin, shift, setSnack, setModal }) => {
 

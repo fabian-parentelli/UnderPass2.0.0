@@ -15,7 +15,7 @@ export default class ShiftCustomer {
     };
 
     getByShiftId = async (id) => {
-        return await postponeModel.findOne({ shiftId: id }).lean();
+        return await postponeModel.findOne({ shiftId: id, active: true }).lean();
     };
 
     update = async (postpone) => {
@@ -30,11 +30,12 @@ export default class ShiftCustomer {
         return await postponeModel.find(query).lean();
     };
 
-    delPostponeById = async (id) => {
+    deleteById = async (id) => {
         return await postponeModel.findByIdAndDelete(id);
     };
 
     deleteMany = async (query) => {
         return await postponeModel.deleteMany(query);
     };
+
 };

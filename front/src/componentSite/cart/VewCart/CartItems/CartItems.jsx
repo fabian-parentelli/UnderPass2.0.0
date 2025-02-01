@@ -5,6 +5,7 @@ import CartBanner from '../CartBanner/CartBanner';
 import CartProduct from '../CartProduct/CartProduct';
 import CartAddToPortal from '../CartAddToportal/CartAddToPortal';
 import CartEvent from '../CartEvent/CartEvent';
+import CartShift from '../CartShift/CartShift';
 
 const CartItems = ({ cart }) => {
 
@@ -32,6 +33,7 @@ const CartItems = ({ cart }) => {
                             {item.is === 'moreTime' && <CartCards item={item} />}
                             {item.is === 'toPortal' && <CartAddToPortal item={item} />}
                             {item.is === 'events' && <CartEvent item={item} />}
+                            {item.is === 'shift' && <CartShift item={item} />}
                         </Fragment>
                     ))}
                 </tbody>

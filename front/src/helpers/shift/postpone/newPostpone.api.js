@@ -3,7 +3,7 @@ const url = import.meta.env.VITE_API_URL;
 async function newPostponeApi(postpone) {
 
     const token = localStorage.getItem('token');
-    const response = await fetch(`${url}/api/shift/postpone`, {
+    const response = await fetch(`${url}/api/postpone`, {
         method: 'POST',
         body: JSON.stringify(postpone),
         headers: {

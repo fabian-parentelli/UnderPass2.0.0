@@ -3,7 +3,7 @@ import CancelIcon from '@mui/icons-material/Cancel';
 import BigImg from '../../../../component/utils/BigImg/BigImg';
 import { useCartContext } from '../../../../context/CartContext';
 import Counter from '../../../../component/utils/Counter/Counter';
-import typeCart from '../../../../utils/typeCart.utils';
+import { typeCart_caUtils } from '../../../../utils/cart_utils/typeCart.cart.utils';
 
 const CartCards = ({ item }) => {
 
@@ -18,7 +18,7 @@ const CartCards = ({ item }) => {
                 <p>{item.name}</p>
                 <p className='pID'>{item._id}</p>
             </td>
-            <td>{typeCart(item.is)}</td>
+            <td>{typeCart_caUtils(item.is)}</td>
             <td style={{width: '285px'}}><PriceCards item={item} /></td>
             <td><Counter prod={item} /></td>
             <td style={{ width: '80px' }}>${totalProduct(item._id)}</td>

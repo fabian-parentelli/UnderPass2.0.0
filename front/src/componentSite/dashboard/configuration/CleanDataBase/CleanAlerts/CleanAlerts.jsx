@@ -5,9 +5,9 @@ import AlertsForm from '../../../../../component/alerts/AlertsForm/AlertsForm.js
 import { newDataPassApi } from '../../../../../helpers/dataPass/newDataPass.api.js';
 import { deleteAlertsApi } from '../../../../../helpers/alerts/deleteAlerts.api.js';
 import { updMaxCountConfApi } from '../../../../../helpers/dataPass/updMaxCount.api.js';
-import { delManyPostponeApi } from '../../../../../helpers/shift/deleManyPostpone.api.js';
+import { delAllPostponesApi } from '../../../../../helpers/shift/postpone/deleManyPostpone.api.js';
 import { deleteAllAlertsApi } from '../../../../../helpers/alerts/deleteAllAlerts.api.js';
-import { deletePostponeByIdApi } from '../../../../../helpers/shift/deletePostponeById.api.js';
+import { deletePostponeByIdApi } from '../../../../../helpers/shift/postpone/deletePostponeById.api.js';
 import { getMaxCounterByTypeApi } from '../../../../../helpers/dataPass/getMaxCounterByType.api.js';
 import ShiftPostponePanelTab from '../../../../../component/shift/calendar/ShiftPostponePanel/ShiftPostponePanelTab/ShiftPostponePanelTab.jsx';
 import ShiftTableConfig from '../../../../../component/shift/ShiftTableForConfig/ShiftTableConfig.jsx';
@@ -68,7 +68,7 @@ const CleanAlerts = ({ setLoading, type }) => {
         const ids = days.countData.defeated.map(data => data._id)
         let response;
         if (type === 'maxAlert') response = await deleteAllAlertsApi({ ids: ids });
-        if (type === 'maxPostp') response = await delManyPostponeApi({ ids: ids });
+        if (type === 'maxPostp') response = await delAllPostponesApi({ ids: ids });
         if (type === 'maxShift') response = await deleteAllShiftsApi({ ids: ids });
         if (response.status === 'success') {
             setSnack({ message: { status: 'success', mess: 'Todo ha sido eliminado' }, open: true });

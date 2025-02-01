@@ -1,12 +1,14 @@
 const url = import.meta.env.VITE_API_URL;
 
-const activePostponeApi = async (id) => {
+const delAllPostponesApi = async (postpones) => {
 
     const token = localStorage.getItem('token');
-    const response = await fetch(`${url}/api/shift/activepostpone/${id}`, {
+    const response = await fetch(`${url}/api/postpone/deleteall`, {
         method: 'PUT',
+        body: JSON.stringify(postpones),
         headers: {
             'Accept': 'application/json',
+            'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`,
         }
     });
@@ -15,4 +17,4 @@ const activePostponeApi = async (id) => {
     if (content.data) return content.data;
 };
 
-export { activePostponeApi };
+export { delAllPostponesApi };

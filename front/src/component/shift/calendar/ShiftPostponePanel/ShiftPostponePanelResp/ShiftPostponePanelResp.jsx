@@ -1,17 +1,21 @@
 import './shiftPostponePanelResp.scss';
 import { useState } from 'react';
 import { Spinner } from 'faradaycomp';
-import { activePostponeApi } from '../../../../../helpers/shift/activePostpone.api.js';
+import { activePostponeApi } from '../../../../../helpers/shift/postpone/activePostpone.api.js';
 
-const ShiftPostponePanelResp = ({ postpone, setModal }) => {
+const ShiftPostponePanelResp = ({ postpone, setModal, postpones, setPostpones }) => {
 
     const [loading, setLoading] = useState(false);
 
     const handleConfirm = async () => {
         setLoading(true);
         const response = await activePostponeApi(postpone._id);
-        if (response.status) setModal({ open: false, id: null, message: '' });
-        else console.error(response);
+        if (response.status) {
+            const data = [...postpones];
+            const result = data.filter(post => post._id !== postpone._id);
+            setPostpones(result);
+            setModal({ open: false, id: null, message: '' });
+        }else console.error(response);
         setLoading(false);
     };
 

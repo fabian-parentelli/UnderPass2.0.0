@@ -1,7 +1,7 @@
 import './shiftPostpone.scss';
 import { useEffect, useState } from 'react';
 import ShiftPostponerUser from './ShiftPostponeUser/ShiftPostponeUser.jsx';
-import { getPostponeByIdApi } from '../../../../helpers/shift/getPostponeById.api.js';
+import { getPostponeByIdApi } from '../../../../helpers/shift/postpone/getPostponeById.api.js';
 
 const ShiftPostpone = ({ id, setLoading }) => {
 
@@ -16,9 +16,6 @@ const ShiftPostpone = ({ id, setLoading }) => {
             setLoading(false);
         }; fetchData();
     }, []);
-
-    console.log(postpone);
-    
 
     return (
         <div className='shiftPostpone'>

@@ -2,7 +2,7 @@ import './shiftPostponePanel.scss';
 import { useEffect, useState } from 'react';
 import SnackbarAlert from '../../../utils/SnackbarAlert.jsx';
 import ShiftPostponePanelTab from './ShiftPostponePanelTab/ShiftPostponePanelTab.jsx';
-import { getPostponesByAdminIdApi } from '../../../../helpers/shift/getPostponesByAdminId.api.js';
+import { getPostponesByAdminIdApi } from '../../../../helpers/shift/postpone/getPostponesByAdminId.api.js';
 
 const ShiftPostponePanel = ({ userId, setLoading }) => {
 
@@ -34,7 +34,7 @@ const ShiftPostponePanel = ({ userId, setLoading }) => {
                 <option value="true">Por confirmar</option>
                 <option value="false">Confirmadas</option>
             </select>
-            <ShiftPostponePanelTab postpones={postpones} />
+            <ShiftPostponePanelTab postpones={postpones} setPostpones={setPostpones} />
             <SnackbarAlert message={alert.message} open={alert.open} />
         </div>
     );

@@ -18,6 +18,12 @@ export default class PostponeRepository {
         return result;
     };
     
+    // Estoy acá limpiar este código .....................
+    // Estoy acá limpiar este código .....................
+    // Estoy acá limpiar este código .....................
+    // Estoy acá limpiar este código .....................
+    // Estoy acá limpiar este código .....................
+
     getById = async (id, user) => {
         const result = await postponeManager.getById(id);
         if(result.to === 'customer') {
@@ -32,14 +38,14 @@ export default class PostponeRepository {
         };  
         return result;
     };
-
-    update = async (postpone) => {
-        const result = await postponeManager.update(postpone);
-        return result;
-    };
     
     getByShiftId = async (id) => {
         const result = await postponeManager.getByShiftId(id);
+        return result;
+    };
+
+    update = async (postpone) => {
+        const result = await postponeManager.update(postpone);
         return result;
     };
     
@@ -53,8 +59,8 @@ export default class PostponeRepository {
         return result;
     };
     
-    delPostponeById = async (id) => {
-        const result = await postponeManager.delPostponeById(id);
+    deleteById = async (id) => {
+        const result = await postponeManager.deleteById(id);
         return result;
     };
     

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { monthsArray } from '../../../../utils/typeShifts.utils.js';
 import { getShiftsApi } from '../../../../helpers/shift/getShifts.api.js';
-import { actPostByShIdApi } from '../../../../helpers/shift/actPostByShId.api.js';
+import { actPostByShIdApi } from '../../../../helpers/shift/postpone/actPostByShId.api.js';
 
 const AccepUpdateDateShift = ({ id, setLoading }) => {
 
@@ -21,8 +21,8 @@ const AccepUpdateDateShift = ({ id, setLoading }) => {
     }, []);
 
     const handleActive = async () => {
-        setLoading(true);
-        const response = await actPostByShIdApi(shift._id);
+        setLoading(true);        
+        const response = await actPostByShIdApi(id);
         if (response.status === 'success') navigate('/');
         else console.error(response.error);
         setLoading(false);

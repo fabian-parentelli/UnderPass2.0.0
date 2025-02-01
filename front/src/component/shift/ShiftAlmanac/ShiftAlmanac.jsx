@@ -6,6 +6,7 @@ import ShiftCalendar from './ShiftCalendar/ShiftCalendar';
 import SnackbarAlert from '../../utils/SnackbarAlert.jsx';
 import { formatText } from '../../../utils/formatText.utils.js';
 import { monthMapping } from '../../../utils/typeShifts.utils.js';
+import { useCartContext } from '../../../context/CartContext.jsx';
 import { useLoginContext } from '../../../context/LoginContext.jsx';
 import { updShiftApi } from '../../../helpers/shift/updShift.api.js';
 import { newShiftApi } from '../../../helpers/shift/newShift.api.js';
@@ -14,11 +15,13 @@ import ShiftDataUser from '../shifDataUser/ShiftDataUser/ShiftDataUser.jsx';
 import { getShiftDataApi } from '../../../helpers/shift/getShiftData.api.js';
 import ShiftAlmanacHolidays from './ShiftAlmanacHolidays/ShiftAlamanacHolidays.jsx';
 import ShiftInputUser from '../shifDataUser/tools/ShiftInputUser/ShiftInputUser.jsx';
+import { getPrices_shUtils } from '../../../utils/shift_utils/getPrice.shift.utils.js';
 import ShiftDataAdminUser from '../shifDataUser/ShiftDataAdminUser/ShiftDataAdminUser.jsx';
 
 const ShiftAlmanac = ({ config, width = 4, typeApi, isShiftId }) => {
 
     const { user, current } = useLoginContext();
+    const { addToCart } = useCartContext();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -91,15 +94,23 @@ const ShiftAlmanac = ({ config, width = 4, typeApi, isShiftId }) => {
                 const response = await updShiftApi(isShiftId, query);
                 if (response.status === 'success') setSnack({ message: { status: 'success', mess: 'Has modificado tu resreva con exito' }, open: true });
                 else setSnack({ message: { status: 'error', mess: response.error }, open: true });
-            } else if (typeApi === 'admin') {
+            } else {
                 const response = await newShiftApi(query);
                 if (response.status === 'success') setSnack({ message: { status: 'success', mess: 'Has creado una resreva con exito' }, open: true });
                 else setSnack({ message: { status: 'error', mess: response.error }, open: true });
-            } else {
-                // Aca conectar con  el carrito de compras.....
-                // Aca conectar con  el carrito de compras.....
-                // Pero tengo que meter un return grande como una casa para que rediriga al carrito
-                // Pero tengo que meter un return grande como una casa para que rediriga al carrito
+                if (typeApi !== 'admin') {
+                    addToCart({
+                        _id: response.result._id,
+                        quantity: response.result.hour.length,
+                        stock: null,
+                        price: await getPrices_shUtils(query, config),
+                        is: 'shift',
+                        name: config.title,
+                        description: `Turno reservado en ${config.title}${query.sections ? ` en ${query.sections}` : query.room ? ` en sala ${query.room}` : ''}`,
+                        img: config.img.url
+                    })
+                    return navigate('/cart');
+                };
             };
             setLoading(false);
             setTimeout(() => {

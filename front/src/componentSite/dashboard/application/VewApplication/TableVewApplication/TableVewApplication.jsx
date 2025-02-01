@@ -1,11 +1,11 @@
 import './tableVewApplication.scss';
 import React, { Fragment, useState } from 'react';
-import typeCart from '../../../../../utils/typeCart.utils.js';
 import flagsIcon from '../../../../../utils/flagsIcon.utils.js';
 import { useLoginContext } from '../../../../../context/LoginContext';
 import ExpandApplication from '../ExpandApplicattion/ExpandApplication';
 import ModalCustom from '../../../../../component/utils/ModalCustom/ModalCustom.jsx';
 import PayApplication from '../PayApplication/PayApplication.jsx';
+import { typeCart_caUtils } from '../../../../../utils/cart_utils/typeCart.cart.utils.js';
 
 const TableVewApplication = ({ appli, handleActive, handeleVew }) => {
 
@@ -68,7 +68,7 @@ const TableVewApplication = ({ appli, handleActive, handeleVew }) => {
                                         color: (app.type !== 'cards' && app.type !== 'banners' && app.type !== 'separator')
                                             ? '#00756F' : 'gray'
                                     }}
-                                >{typeCart(app.type)}</td>
+                                >{typeCart_caUtils(app.type)}</td>
 
                                 <td
                                     onClick={!app.pay ? () => openModal(app._id) : null}

@@ -17,7 +17,7 @@ const newPrice = async (price) => {
     return { status: 'success', result };
 };
 
-const getLastPrice = async (country, name) => {
+const getLastPrice = async (country, name) => {    
     const result = await priceRepository.getLastPrice(country, name);
     if (!result) return { status: 'notFound', result: {} };
     return { status: 'success', result };

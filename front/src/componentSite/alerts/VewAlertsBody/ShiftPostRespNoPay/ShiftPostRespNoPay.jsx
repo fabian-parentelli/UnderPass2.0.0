@@ -1,7 +1,7 @@
 import './shiftPostRespNoPay.scss';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { getPostponeByIdApi } from '../../../../helpers/shift/getPostponeById.api.js';
+import { getPostponeByIdApi } from '../../../../helpers/shift/postpone/getPostponeById.api.js';
 import ShiftPostponePanelTab from '../../../../component/shift/calendar/ShiftPostponePanel/ShiftPostponePanelTab/ShiftPostponePanelTab.jsx';
 
 const ShiftPostRespNoPay = ({ id, setLoading, }) => {
