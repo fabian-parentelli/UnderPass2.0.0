@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import ShiftForm from '../../ShiftForm/ShiftForm';
 import ShiftAlmanacDays from '../../ShiftAlmanac/ShiftAlmanacDays/ShiftAlamanacDays';
 
-const ShiftCalendarMonth = ({ events, month: monthArray, year: years, setMonth }) => {
+const ShiftCalendarMonth = ({ events, month: monthArray, year: years, setMonth, setYear }) => {
 
     const [weeks, setWeeks] = useState([]);
     const [today, setToday] = useState(new Date());
@@ -19,6 +19,7 @@ const ShiftCalendarMonth = ({ events, month: monthArray, year: years, setMonth }
         newDate.setMonth(today.getMonth() - 1);
         setToday(newDate);
         setMonth([newDate.toLocaleString('en-US', { month: 'long' }).toLowerCase()]);
+        setYear([newDate.toLocaleString('en-US', { year: 'numeric' })]);
     };
 
     const goToNextMonth = () => {
@@ -26,6 +27,7 @@ const ShiftCalendarMonth = ({ events, month: monthArray, year: years, setMonth }
         newDate.setMonth(today.getMonth() + 1);
         setToday(newDate);
         setMonth([newDate.toLocaleString('en-US', { month: 'long' }).toLowerCase()]);
+        setYear([newDate.toLocaleString('en-US', { year: 'numeric' })]);
     };
 
     const handleDayClick = (day) => {
@@ -34,7 +36,7 @@ const ShiftCalendarMonth = ({ events, month: monthArray, year: years, setMonth }
                 return (
                     event.day.day === day.day &&
                     monthArray.some(m => m.toLowerCase() === event.day.month.toLowerCase()) &&
-                    event.day.year === years
+                    event.day.year == years[0]
                 );
             });
             if (chooses) setShifts(chooses);
@@ -56,7 +58,7 @@ const ShiftCalendarMonth = ({ events, month: monthArray, year: years, setMonth }
             ...daysFromCurrentMonth.map((day, index) => {
                 const isToday = day === today.getDate() && month === new Date().getMonth() && year === today.getFullYear();
                 let className = '';
-                const isEvent = events.some(event => event.day.day === day && event.day.month === monthArray[0] && event.day.year === years);
+                const isEvent = events.some(event => event.day.day === day && event.day.month === monthArray[0] && event.day.year == years[0]);
                 if (isToday) className = 'today';
                 if (isEvent) className += ' eventss';
                 return { day, className };

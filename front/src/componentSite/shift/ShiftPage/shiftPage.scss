@@ -55,6 +55,7 @@
             object-fit: contain;
             box-shadow: 5px 5px 15px;
             transition: .3s ease-in-out;
+
             &:hover {
                 transform: translateY(-5px);
             }

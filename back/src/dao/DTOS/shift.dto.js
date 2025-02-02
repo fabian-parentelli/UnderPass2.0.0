@@ -1,6 +1,6 @@
 import { shiftconfRepository, customerRepository } from "../../repositories/index.repositories.js";
 import { formatText } from "../../utils/formatText.utils.js";
-import { months, setHoursBack, transformDate } from '../../utils/servicesUtils/shift.utils.js';
+import { setHoursBack, transformDate } from '../../utils/servicesUtils/shift.utils.js';
 import { shiftManager } from "../manager/index.manager.js";
 
 const isNotTime = async (shift, day) => {
@@ -36,6 +36,7 @@ const isNotTime = async (shift, day) => {
                     if (hours.length >= (room.abilityNumber * labels.length)) availableHours = hours;
                 };
             };
+
             if (availableHours) {
                 const allHoursOccupied = availableHours.every(hour => hours.includes(hour));
                 if (allHoursOccupied) result.push(day);

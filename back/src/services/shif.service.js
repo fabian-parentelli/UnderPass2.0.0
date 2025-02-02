@@ -1,5 +1,5 @@
 import {
-    shiftRepository, shiftconfRepository, customerRepository, postponeRepository,    
+    shiftRepository, shiftconfRepository, customerRepository, postponeRepository,
 } from "../repositories/index.repositories.js";
 import { ShiftNotFound } from '../utils/custom-exceptions.utils.js';
 import * as shiftUtils from "../utils/servicesUtils/shift.utils.js"; // Proximamanet eliminarlo para organizar, mejor
@@ -17,7 +17,7 @@ const newShift = async (shift, { user }) => {
     shift.customer = customer;
     const result = await shiftRepository.newShift(shift);
     if (!result) throw new ShiftNotFound('Error para generar un nuevo turno');
-    if(!shift.isPay) {
+    if (!shift.isPay) {
         const emailTo = {
             to: shiftData.customer.email,
             subject: `Agendaste un turno en ${shiftData.dataConf.title}`,
@@ -50,14 +50,14 @@ const getShifts = async (uid, month, year, customer, usercustomer, user, id, act
         else return { status: 'success', result: [] };
     };
     if (month) query['day.month'] = { $in: month.split(',') };
-    if (year) query['day.year'] = year;
+    if (year) query['day.year'] = { $in: year.split(',') };
     if (uid) query.userId = uid;
     const data = await shiftRepository.getShifts(query);
     if (!data) throw new ShiftNotFound('No se pueden ver los turnos');
     if (usercustomer || place !== undefined) {
         for (const dat of data) {
             const placeDB = await shiftconfRepository.getByUserId(dat.userId);
-            dat.place = { name: placeDB.title, shiftId: placeDB._id, img: placeDB.img.url };
+            dat.place = { name: placeDB.title, shiftId: placeDB._id, img: placeDB.img.url, hour: placeDB.hour };
         };
     };
     const result = usercustomer ? shiftUtils.sortShift(data) : customer ? shiftUtils.sortShift(data) : data;

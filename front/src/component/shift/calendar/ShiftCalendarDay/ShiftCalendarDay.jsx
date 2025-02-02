@@ -4,13 +4,12 @@ import ShiftForm from '../../ShiftForm/ShiftForm';
 import PersonIcon from '@mui/icons-material/Person';
 import ModalCustom from '../../../utils/ModalCustom/ModalCustom';
 
-const ShiftCalendarDay = ({ events, month, year, setMonth }) => {
+const ShiftCalendarDay = ({ events, month, year, setMonth, setYear, hourConfig }) => {
 
     const [today, setToday] = useState(new Date());
     const [modal, setModal] = useState({ open: false, data: [] });
-    const hours = Array.from({ length: 24 }, (_, i) => `${i}:00`);
 
-    useEffect(() => { 
+    useEffect(() => {
         setMonth([today.toLocaleString('en-US', { month: 'long' }).toLowerCase()]);
     }, []);
 
@@ -20,6 +19,10 @@ const ShiftCalendarDay = ({ events, month, year, setMonth }) => {
         setMonth([newDate.toLocaleString('en-US', { month: 'long' }).toLowerCase()]);
         setToday(newDate);
     };
+
+    useEffect(() => {
+        setYear([today.toLocaleString('en-US', { year: 'numeric' })]);
+    }, [today]);
 
     const handleModal = (id) => {
         setModal({
@@ -38,14 +41,14 @@ const ShiftCalendarDay = ({ events, month, year, setMonth }) => {
             </header>
 
             <div className='shiftCalendarDayHours'>
-                {hours.map((hour) => (
+                {hourConfig.map((hour) => (
                     <div key={hour} className='shiftCalendarDaySlot'>
                         <p>{hour}</p>
                         {events && events.length > 0 && events.map((event) => {
                             if (
                                 event.day.day === today.getDate() &&
                                 month.some(m => m.toLowerCase() === event.day.month.toLowerCase()) &&
-                                event.day.year === year &&
+                                year.some(y => y == event.day.year) &&
                                 event.hour.includes(hour)
                             ) {
                                 return (

@@ -14,5 +14,4 @@ export default class PostponeRouter extends Router {
         this.put('/deleteall', ['ADMIN', 'MASTER'], passportEnum.JWT, postponeController.deleteAll);
         this.delete('/:id', ['ADMIN', 'MASTER'], passportEnum.JWT, postponeController.deleteById);
     };
-
 };

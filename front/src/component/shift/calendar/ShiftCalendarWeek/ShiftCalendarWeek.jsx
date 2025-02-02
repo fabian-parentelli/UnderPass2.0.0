@@ -5,19 +5,18 @@ import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import ModalCustom from '../../../utils/ModalCustom/ModalCustom.jsx';
 import { monthsArraySpanish } from '../../../../utils/typeShifts.utils.js';
 
-const ShiftCalendarWeek = ({ events, month, year, setMonth }) => {
+const ShiftCalendarWeek = ({ events, month, year, setMonth, setYear, hourConfig }) => {
 
     const [weekOffset, setWeekOffset] = useState(0);
     const [modal, setModal] = useState({ open: false, vew: null, data: [] });
     const weekDays = getWeekDays(new Date(), weekOffset);
-    const hours = Array.from({ length: 24 }, (_, i) => `${i}:00`);
 
     const isEventInCell = (hour, day) => {
         if (events && events.length > 0) {
             return events.some(event =>
                 event.day.day === day &&
                 month.some(m => m.toLowerCase() === event.day.month.toLowerCase()) &&
-                event.day.year === year &&
+                year.some(y => y == event.day.year) &&
                 event.hour.includes(hour)
             );
         };
@@ -30,7 +29,7 @@ const ShiftCalendarWeek = ({ events, month, year, setMonth }) => {
                 return (
                     event.day.day === day.getDate() &&
                     month.some(m => m.toLowerCase() === event.day.month.toLowerCase()) &&
-                    event.day.year === year &&
+                    year.some(y => y == event.day.year) &&
                     event.hour.includes(hour)
                 );
             });
@@ -44,6 +43,10 @@ const ShiftCalendarWeek = ({ events, month, year, setMonth }) => {
             ...new Set(weekDays.map(day => day.toLocaleString('en-US', { month: 'long' }).toLowerCase()))
         ];
         setMonth(monthsInWeek);
+        const yearsInWeek = [
+            ...new Set(weekDays.map(day => day.toLocaleString('en-US', { year: 'numeric' })))
+        ];
+        setYear(yearsInWeek);
     }, [weekOffset]);
 
     return (
@@ -66,7 +69,7 @@ const ShiftCalendarWeek = ({ events, month, year, setMonth }) => {
             </div>
 
             <div className="shiftCalendarWeekBody">
-                {hours.map((hour, hourIndex) => (
+                {hourConfig.map((hour, hourIndex) => (
                     <div key={hourIndex} className="shiftCalendarWeekBodyHour">
                         <p>{hour}</p>
                         <div className="shiftCalendarWeekCells">
@@ -86,7 +89,7 @@ const ShiftCalendarWeek = ({ events, month, year, setMonth }) => {
                                                             if (
                                                                 event.day.day === day.getDate() &&
                                                                 month.some(m => m.toLowerCase() === event.day.month.toLowerCase()) &&
-                                                                event.day.year === year &&
+                                                                year.some(y => y == event.day.year) &&
                                                                 event.hour.includes(hour)
                                                             ) {
                                                                 return total + 1;

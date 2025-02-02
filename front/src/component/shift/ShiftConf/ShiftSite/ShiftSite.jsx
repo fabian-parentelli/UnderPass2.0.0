@@ -9,12 +9,16 @@ const ShiftSite = ({ values }) => {
 
     const [site, setSite] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [search, setSearch] = useState(false);
 
     const handleSites = async () => {
         setLoading(true);
         const response = await getSiteByUserIdApi(values.userId);
-        if (response.status === 'success') setSite(response.result);
-        else console.error(response);
+        if (response.status === 'success') {
+            console.log(response);
+            if (response.result.length < 1) setSearch(true);
+            else setSite(response.result);
+        } else console.error(response);
         setLoading(false);
     };
 
@@ -39,7 +43,7 @@ const ShiftSite = ({ values }) => {
 
                 <div className='shiftSiteSearch'>
                     <p className='pgray'>Lo primero que haremos es buscar si tienes sitios.</p>
-                    <p className='pgray'>De ser así seleccionar el que quieras realcionar.</p>
+                    <p className='pgray'>De ser así seleccionar el que quieras relacionar.</p>
                     <p className='btn btnSH shiftSiteButton' onClick={handleSites}>Buscar Sitios</p>
                 </div>
 
@@ -59,6 +63,7 @@ const ShiftSite = ({ values }) => {
                     ))}
                 </div>
 
+                {search && <p style={{ color: '#ec3639' }}>No tienes un sitio creado...</p>}
             </section>
 
         </details>

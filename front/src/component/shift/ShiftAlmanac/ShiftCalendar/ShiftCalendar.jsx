@@ -53,6 +53,7 @@ const ShiftCalendar = ({ config, setSelected, nonWorkDays, selected, rooms }) =>
                     };
                 };
                 const isToday = day === today.getDate() && month === new Date().getMonth() && year === today.getFullYear();
+                if (isBeforeToday(day, month + 1, year)) isNonWorkDay = true;
                 const className = `${isNonWorkDay ? ' non-work-day' : 'current-month'}${isToday ? ' today' : ''}${day === selected.day ? ' dayClick' : ''}`;
                 return { day, className };
             }),
@@ -94,3 +95,10 @@ const daysSet = {
 };
 
 const formatDate = (date) => date.toISOString().split('T')[0];
+
+const isBeforeToday = (day, month, year) => {
+    const date = new Date(`${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}T00:00:00Z`);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    return date.getTime() < today.getTime();
+};

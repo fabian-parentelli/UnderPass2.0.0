@@ -35,6 +35,8 @@ const ShiftPageHtml = ({ config }) => {
                         <p>{config.location.address}</p>
                         <p>{config.location.city}</p>
                         <p>{config.location.province}</p>
+                        <button className="btn btnSH">Chat</button>
+
                     </div>
                     <div className="shiftPageMapVew">
                         <MapView coordinates={config?.location?.coordinates} />

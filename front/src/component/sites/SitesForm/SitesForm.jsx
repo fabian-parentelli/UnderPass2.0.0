@@ -42,8 +42,8 @@ const SitesForm = ({ sites, setSites, setLoading }) => {
                         <th>Categoría</th>
                         <th>Eventos</th>
                         <th>Productos</th>
-                        {user.data.role !== 'user' && <th>Usuario</th>}
                         <th>Turnos</th>
+                        {user.data.role !== 'user' && <th>Usuario</th>}
                         <th>Actualizar</th>
                         <th>Ver</th>
                         <th>Activo</th>
@@ -76,7 +76,7 @@ const SitesForm = ({ sites, setSites, setLoading }) => {
 
                                 <td>
                                     <p>{site.isShift ? 'SI' : 'NO'}</p>
-                                    <p className='pgray'>{site?.shifts?.length || 0}</p>
+                                    <p className='pgray'>{site?.isShift && 1}</p>
                                 </td>
 
                                 {user.data.role !== 'user' &&
