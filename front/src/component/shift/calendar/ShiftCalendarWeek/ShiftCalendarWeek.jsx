@@ -63,7 +63,7 @@ const ShiftCalendarWeek = ({ events, month, year, setMonth, setYear, hourConfig 
                 {weekDays.map((day, ind) => (
                     <div key={ind} className="shiftCalendarWeekDay">
                         <p>{day.getDate()}</p>
-                        <p>{day.toLocaleString('default', { weekday: 'long' })}</p>
+                        <p className='shiftCalendarWeekDayP'>{day.toLocaleString('default', { weekday: 'long' })}</p>
                     </div>
                 ))}
             </div>
@@ -83,8 +83,8 @@ const ShiftCalendarWeek = ({ events, month, year, setMonth, setYear, hourConfig 
                                         >
                                             {isSelected && (
                                                 <>
-                                                    <PeopleAltIcon />
-                                                    <span>
+                                                    <PeopleAltIcon className='shiftCalendarWeekIcon' />
+                                                    <span className='shiftCalendarWeekSpan'>
                                                         {events.reduce((total, event) => {
                                                             if (
                                                                 event.day.day === day.getDate() &&

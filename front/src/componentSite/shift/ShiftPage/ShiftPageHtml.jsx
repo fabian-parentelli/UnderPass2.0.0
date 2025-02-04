@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 import BusinessIcon from '@mui/icons-material/Business';
 import MapView from "../../../component/utils/MapVew.jsx";
 import { typeShiftCategory } from "../../../utils/typeShifts.utils.js";
-import ShiftAlmanac from "../../../component/shift/ShiftAlmanac/ShiftAlmanac.jsx";
 import Messages from "../../../component/messages/Messages/Messages.jsx";
+import ShiftAlmanac from "../../../component/shift/ShiftAlmanac/ShiftAlmanac.jsx";
 import UnderShiftsLog from "../../../component/fonts/UnderShiftsLog/UnderShiftsLog.jsx";
 
 const ShiftPageHtml = ({ config }) => {

@@ -1,0 +1,62 @@
+@import '../../../../../style/colors.scss';
+
+#shiftPostponeHelp {
+    border-top: 1px solid gray;
+    width: 80%;
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .shiftPostponeHelpSect {
+        text-align: center;
+        width: 70%;
+        margin: 2rem auto;
+
+        p {
+            line-height: 2;
+        }
+    }
+
+    .shiftPostponeHelpImg {
+        max-width: 600px;
+        width: 100%;
+        margin: 4rem auto;
+        box-shadow: 5px 5px 15px;
+        transition: .3s ease-in-out;
+
+        &:hover {
+            transform: translateY(-5px);
+        }
+    }
+
+    strong {
+        color: $underShifts;
+    }
+
+    .shiftMyHlepLog {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin-top: 3rem;
+        box-shadow: none;
+
+        span {
+            color: $underShifts;
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    
+    #shiftPostponeHelp {
+        width: 90%;
+
+        .shiftPostponeHelpSect {
+            width: 100%;
+        }
+    }
+}

@@ -35,10 +35,13 @@ const data = [
     { label: 'Ver y modificar un evento', data: 'updEventHelp' },
     { label: 'Enlace spotify', data: 'spotifyHelp' },
     { label: 'Crear un sitio web', data: 'siteNewHelp' },
+
+    // Turnos
     { label: 'Que es UnderShifts', data: 'shiftWhatIsHelp' },
     { label: 'Como funicona configurar turnos', data: 'shiftConfigHelp' },
     { label: 'Configurar turnos', data: 'shiftConfigDataHelp' },
     { label: 'Administrar turnos', data: 'shiftAdminHelp' },
     { label: 'Ver reservas de clientes turnos', data: 'shiftBookingHelp' },
     { label: 'Ver mis turnos', data: 'shiftMyHlep' },
+    { label: 'Posponer y suspender turnos', data: 'shiftPostponeHelp' },
 ];

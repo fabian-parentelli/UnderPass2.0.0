@@ -1,8 +1,13 @@
 import './shiftClosedSet.scss';
 import Switch from '@mui/material/Switch';
+import { useEffect, useState } from 'react';
 import { updShiftconfActiveApi } from '../../../../../helpers/shiftsconf/updShiftconfActive.api.js';
 
 const ShiftClosedSet = ({ values, setValues, setLoading }) => {
+
+    const [checked, setChecked] = useState(values?.active ?? true);
+
+    useEffect(() => { setChecked(values?.active ?? true) }, [values.active]);
 
     const handleActive = async (e) => {
         setLoading(true);
@@ -21,7 +26,7 @@ const ShiftClosedSet = ({ values, setValues, setLoading }) => {
 
             <div className='shiftClosedSetSwitch'>
                 <p>Cerrado</p>
-                <Switch checked={values.active || true} onChange={handleActive} />
+                <Switch checked={checked} onChange={handleActive} />
                 <p>Abierto</p>
             </div>
 

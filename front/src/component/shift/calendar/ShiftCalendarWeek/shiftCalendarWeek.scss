@@ -92,3 +92,46 @@
         }
     }
 }
+
+@media (max-width: 767px) {
+    .shiftCalendarWeek {
+
+        .shiftCalendarWeekHeader {
+            grid-template-columns: minmax(40px, auto) repeat(7, 1fr);
+
+            .shiftCalendarWeekDay {
+                flex-direction: column;
+                align-items: center;
+
+                .shiftCalendarWeekDayP {
+                    width: 3ch;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    font-size: 12px;
+                }
+            }
+        }
+
+        .shiftCalendarWeekBody {
+
+            .shiftCalendarWeekBodyHour {
+                grid-template-columns: minmax(40px, auto) repeat(7, 1fr);
+            }
+
+            .shiftCalendarWeekCellEvent {
+                overflow: hidden;
+                height: 40px;
+                width: 40px;
+
+                .shiftCalendarWeekSpan {
+                    display: none;
+                }
+
+                .shiftCalendarWeekIcon {
+                    font-size: 12px;
+                }
+
+            }
+        }
+    }
+}
