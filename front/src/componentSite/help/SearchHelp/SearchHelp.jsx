@@ -44,4 +44,5 @@ const data = [
     { label: 'Ver reservas de clientes turnos', data: 'shiftBookingHelp' },
     { label: 'Ver mis turnos', data: 'shiftMyHlep' },
     { label: 'Posponer y suspender turnos', data: 'shiftPostponeHelp' },
+    { label: 'Turnos, cerrado y vacaciones', data: 'shiftHolidaysHelp' },
 ];

@@ -1,0 +1,64 @@
+@import '../../../../../style/colors.scss';
+
+#shiftHolidaysHelp {
+    border-top: 1px solid gray;
+    width: 80%;
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .shiftHolidaysHelpSect {
+        margin: 4rem auto;
+        text-align: center;
+
+        p {
+            width: 60%;
+            line-height: 2;
+            margin: 1rem auto;
+        }
+    }
+
+    .shiftHolidaysHelpImg {
+        box-shadow: 5px 5px 15px;
+        transition: .3s ease-in-out;
+        max-width: 600px;
+        width: 100%;
+
+        &:hover {
+            transform: translateY(-5px);
+        }
+    }
+
+    .shiftWhatIsHelpLog {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin-top: 6rem;
+
+        span {
+            color: $underShifts;
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    
+    #shiftHolidaysHelp {
+        width: 90%;
+
+        .shiftHolidaysHelpSect {
+            margin: 2rem auto;
+            p {
+                width: 100%;
+            }
+        }
+
+        .shiftWhatIsHelpLog {
+            margin-top: 3rem;
+        }
+    }
+}

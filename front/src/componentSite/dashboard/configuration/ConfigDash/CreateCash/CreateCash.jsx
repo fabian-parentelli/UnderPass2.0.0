@@ -1,4 +1,4 @@
-import { newCashApi } from "../../../../helpers/cash/newCash.api";
+import { newCashApi } from "../../../../../helpers/cash/newCash.api";
 
 const CreateCash = () => {
 

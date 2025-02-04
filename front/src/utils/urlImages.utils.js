@@ -54,7 +54,11 @@ const imagesHelp = {
     postponeMenu: 'https://ik.imagekit.io/sn6eyrykr/Helps/shiftsHelp/Shift%20postpone/Imagen3.png',
     postponeEmial: 'https://ik.imagekit.io/sn6eyrykr/Helps/shiftsHelp/Shift%20postpone/Imagen4.png',
     postponeChoise: 'https://ik.imagekit.io/sn6eyrykr/Helps/shiftsHelp/Shift%20postpone/Imagen5.png',
-    postponeResponse: 'https://ik.imagekit.io/sn6eyrykr/Helps/shiftsHelp/Shift%20postpone/Imagen6.png'  
+    postponeResponse: 'https://ik.imagekit.io/sn6eyrykr/Helps/shiftsHelp/Shift%20postpone/Imagen6.png',
+    
+    // shift holidays
+    shiftHolidaysClosed : 'https://ik.imagekit.io/sn6eyrykr/Helps/shiftsHelp/shift%20holidays/Imagen1.png',
+    shiftHolidaysVac: 'https://ik.imagekit.io/sn6eyrykr/Helps/shiftsHelp/shift%20holidays/Imagen2.png'
 };
 
 const genericImages = {
